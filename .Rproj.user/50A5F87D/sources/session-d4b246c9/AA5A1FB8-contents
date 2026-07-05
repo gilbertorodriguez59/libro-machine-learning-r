@@ -1,0 +1,45 @@
+# Presentación
+
+Este libro tiene como objetivo introducir al lector en el aprendizaje automático, también conocido como *Machine Learning*, mediante ejemplos claros, didácticos y prácticos desarrollados principalmente en R.
+
+El propósito no es presentar un tratado matemático extenso, sino construir una guía aplicada que permita aprender haciendo.
+
+A lo largo del libro se utilizarán conjuntos de datos abiertos reales, principalmente de México, aunque también se incluirán algunos conjuntos internacionales cuando sean útiles para explicar determinados métodos.
+
+## Objetivo general
+
+Desarrollar competencias básicas e intermedias en aprendizaje automático mediante el análisis, modelado e interpretación de datos reales.
+
+## Público al que va dirigido
+
+Este libro está dirigido a estudiantes de ingeniería, ciencias, ciencia de datos, estadística aplicada y áreas afines que deseen aprender aprendizaje automático desde un enfoque práctico.
+
+## Software utilizado
+
+Los ejemplos se desarrollan principalmente en R, utilizando RStudio y Quarto.
+
+También se podrán utilizar herramientas como:
+
+- RStudio
+- Consola de R
+- Google Colab
+- GitHub
+- GitHub Pages
+- Quarto Pub
+
+## Estructura inicial del libro
+
+La primera edición del libro incluye los siguientes temas:
+
+1. Introducción al aprendizaje automático.
+2. Preparación de datos reales.
+3. Análisis exploratorio de datos.
+4. Regresión lineal.
+5. Regresión logística.
+6. k vecinos más cercanos.
+7. Árboles de decisión.
+8. Bosques aleatorios.
+9. Máquinas de soporte vectorial.
+10. Naive Bayes.
+11. Agrupamiento.
+12. Componentes principales.

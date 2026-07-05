@@ -1,0 +1,14 @@
+{
+  "index.qmd": {
+    "index.html": "390a0ed1"
+  },
+  "01-introduccion.qmd": {
+    "01-introduccion.html": "9a7483a6"
+  },
+  "02-preparacion-datos.qmd": {
+    "02-preparacion-datos.html": "5683a4d4"
+  },
+  "03-analisis-exploratorio.qmd": {
+    "03-analisis-exploratorio.html": "3b61342e"
+  }
+}

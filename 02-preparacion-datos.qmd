@@ -1,0 +1,15 @@
+# Preparación de datos reales
+
+En este capítulo aprenderemos a preparar conjuntos de datos reales para construir modelos de aprendizaje automático.
+
+Los datos reales casi nunca vienen limpios. Por eso, antes de aplicar cualquier algoritmo, necesitamos revisar, limpiar, transformar y organizar la información.
+
+## Objetivos del capítulo
+
+Al finalizar este capítulo, el lector será capaz de:
+
+- Leer datos desde archivos CSV y Excel.
+- Identificar variables numéricas y categóricas.
+- Detectar datos faltantes.
+- Transformar variables.
+- Preparar datos para modelos de aprendizaje automático.

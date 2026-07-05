@@ -1,0 +1,18 @@
+# ¿Qué es el aprendizaje automático?
+
+El aprendizaje automático, también conocido como *Machine Learning*, es una rama de la inteligencia artificial que permite construir modelos capaces de aprender patrones a partir de datos.
+
+A diferencia de la programación tradicional, donde el programador escribe reglas explícitas, en el aprendizaje automático el modelo aprende a partir de ejemplos.
+
+## Programación tradicional
+
+En la programación tradicional, una persona define reglas como la siguiente:
+
+```{r}
+pm10 <- 85
+
+if (pm10 > 75) {
+  print("Contaminación alta")
+} else {
+  print("Contaminación baja")
+}

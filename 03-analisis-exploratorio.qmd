@@ -1,0 +1,15 @@
+# Análisis exploratorio de datos
+
+Antes de construir un modelo, es necesario conocer los datos.
+
+El análisis exploratorio permite identificar patrones, relaciones, valores atípicos y posibles problemas en el conjunto de datos.
+
+## Objetivos del capítulo
+
+Al finalizar este capítulo, el lector será capaz de:
+
+- Calcular estadísticas descriptivas.
+- Construir gráficas exploratorias.
+- Identificar relaciones entre variables.
+- Detectar valores extremos.
+- Formular preguntas iniciales antes de modelar.

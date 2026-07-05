@@ -1,0 +1,102 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Aprendizaje y Clasificación Automática con R",
+    "section": "",
+    "text": "1 Presentación\nEste libro tiene como objetivo introducir al lector en el aprendizaje automático, también conocido como Machine Learning, mediante ejemplos claros, didácticos y prácticos desarrollados principalmente en R.\nEl propósito no es presentar un tratado matemático extenso, sino construir una guía aplicada que permita aprender haciendo.\nA lo largo del libro se utilizarán conjuntos de datos abiertos reales, principalmente de México, aunque también se incluirán algunos conjuntos internacionales cuando sean útiles para explicar determinados métodos.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Presentación</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#objetivo-general",
+    "href": "index.html#objetivo-general",
+    "title": "Aprendizaje y Clasificación Automática con R",
+    "section": "1.1 Objetivo general",
+    "text": "1.1 Objetivo general\nDesarrollar competencias básicas e intermedias en aprendizaje automático mediante el análisis, modelado e interpretación de datos reales.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Presentación</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#público-al-que-va-dirigido",
+    "href": "index.html#público-al-que-va-dirigido",
+    "title": "Aprendizaje y Clasificación Automática con R",
+    "section": "1.2 Público al que va dirigido",
+    "text": "1.2 Público al que va dirigido\nEste libro está dirigido a estudiantes de ingeniería, ciencias, ciencia de datos, estadística aplicada y áreas afines que deseen aprender aprendizaje automático desde un enfoque práctico.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Presentación</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#software-utilizado",
+    "href": "index.html#software-utilizado",
+    "title": "Aprendizaje y Clasificación Automática con R",
+    "section": "1.3 Software utilizado",
+    "text": "1.3 Software utilizado\nLos ejemplos se desarrollan principalmente en R, utilizando RStudio y Quarto.\nTambién se podrán utilizar herramientas como:\n\nRStudio\nConsola de R\nGoogle Colab\nGitHub\nGitHub Pages\nQuarto Pub",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Presentación</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#estructura-inicial-del-libro",
+    "href": "index.html#estructura-inicial-del-libro",
+    "title": "Aprendizaje y Clasificación Automática con R",
+    "section": "1.4 Estructura inicial del libro",
+    "text": "1.4 Estructura inicial del libro\nLa primera edición del libro incluye los siguientes temas:\n\nIntroducción al aprendizaje automático.\nPreparación de datos reales.\nAnálisis exploratorio de datos.\nRegresión lineal.\nRegresión logística.\nk vecinos más cercanos.\nÁrboles de decisión.\nBosques aleatorios.\nMáquinas de soporte vectorial.\nNaive Bayes.\nAgrupamiento.\nComponentes principales.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Presentación</span>"
+    ]
+  },
+  {
+    "objectID": "01-introduccion.html",
+    "href": "01-introduccion.html",
+    "title": "2  ¿Qué es el aprendizaje automático?",
+    "section": "",
+    "text": "2.1 Programación tradicional\nEl aprendizaje automático, también conocido como Machine Learning, es una rama de la inteligencia artificial que permite construir modelos capaces de aprender patrones a partir de datos.\nA diferencia de la programación tradicional, donde el programador escribe reglas explícitas, en el aprendizaje automático el modelo aprende a partir de ejemplos.\nEn la programación tradicional, una persona define reglas como la siguiente:\npm10 &lt;- 85\nif (pm10 &gt; 75) { print(“Contaminación alta”) } else { print(“Contaminación baja”) }",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>¿Qué es el aprendizaje automático?</span>"
+    ]
+  },
+  {
+    "objectID": "02-preparacion-datos.html",
+    "href": "02-preparacion-datos.html",
+    "title": "3  Preparación de datos reales",
+    "section": "",
+    "text": "3.1 Objetivos del capítulo\nEn este capítulo aprenderemos a preparar conjuntos de datos reales para construir modelos de aprendizaje automático.\nLos datos reales casi nunca vienen limpios. Por eso, antes de aplicar cualquier algoritmo, necesitamos revisar, limpiar, transformar y organizar la información.\nAl finalizar este capítulo, el lector será capaz de:",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Preparación de datos reales</span>"
+    ]
+  },
+  {
+    "objectID": "02-preparacion-datos.html#objetivos-del-capítulo",
+    "href": "02-preparacion-datos.html#objetivos-del-capítulo",
+    "title": "3  Preparación de datos reales",
+    "section": "",
+    "text": "Leer datos desde archivos CSV y Excel.\nIdentificar variables numéricas y categóricas.\nDetectar datos faltantes.\nTransformar variables.\nPreparar datos para modelos de aprendizaje automático.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Preparación de datos reales</span>"
+    ]
+  },
+  {
+    "objectID": "03-analisis-exploratorio.html",
+    "href": "03-analisis-exploratorio.html",
+    "title": "4  Análisis exploratorio de datos",
+    "section": "",
+    "text": "4.1 Objetivos del capítulo\nAntes de construir un modelo, es necesario conocer los datos.\nEl análisis exploratorio permite identificar patrones, relaciones, valores atípicos y posibles problemas en el conjunto de datos.\nAl finalizar este capítulo, el lector será capaz de:",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Análisis exploratorio de datos</span>"
+    ]
+  },
+  {
+    "objectID": "03-analisis-exploratorio.html#objetivos-del-capítulo",
+    "href": "03-analisis-exploratorio.html#objetivos-del-capítulo",
+    "title": "4  Análisis exploratorio de datos",
+    "section": "",
+    "text": "Calcular estadísticas descriptivas.\nConstruir gráficas exploratorias.\nIdentificar relaciones entre variables.\nDetectar valores extremos.\nFormular preguntas iniciales antes de modelar.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Análisis exploratorio de datos</span>"
+    ]
+  }
+]

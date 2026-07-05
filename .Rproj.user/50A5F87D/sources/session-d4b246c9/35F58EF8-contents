@@ -1,0 +1,27 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "Aprendizaje y Clasificación Automática con R"
+  subtitle: "Un enfoque práctico con datos abiertos reales"
+  author: "MI. Gilberto Rodríguez"
+  date: today
+  chapters:
+    - index.qmd
+    - 01-introduccion.qmd
+    - 02-preparacion-datos.qmd
+    - 03-analisis-exploratorio.qmd
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    number-sections: true
+    code-fold: true
+    code-tools: true
+
+  pdf:
+    documentclass: book
+    toc: true
+    number-sections: true

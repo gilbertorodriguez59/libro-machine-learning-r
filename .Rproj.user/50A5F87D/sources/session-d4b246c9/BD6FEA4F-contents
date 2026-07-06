@@ -1,5 +1,14 @@
 # Análisis exploratorio de datos
 
+```{r}
+#| include: false
+
+knitr::opts_chunk$set(
+  warning = FALSE,
+  message = FALSE
+)
+```
+
 ## Objetivos del capítulo
 
 Al finalizar este capítulo, el lector será capaz de:
@@ -50,19 +59,6 @@ Si alguno no está instalado, puedes instalarlo con:
 install.packages(c("readr", "dplyr", "ggplot2"))
 ```
 
-## Opciones generales del capítulo
-
-Para que el libro no muestre mensajes o advertencias innecesarias, usamos la siguiente configuración:
-
-```{r}
-#| include: false
-
-knitr::opts_chunk$set(
-  warning = FALSE,
-  message = FALSE
-)
-```
-
 ## Cargar la base preparada
 
 En el capítulo anterior guardamos una base preparada llamada:
@@ -98,6 +94,43 @@ if (file.exists(ruta_atus_ml)) {
   print("No se encontró el archivo datos/atus_ml_preparado.csv. Ejecuta primero el capítulo 2.")
 }
 ```
+
+## Preparar variables para el análisis exploratorio
+
+Después de cargar la base, haremos algunos ajustes para que las tablas y gráficas sean más claras.
+
+Primero convertimos la hora del accidente a una variable numérica. Esto permitirá ordenar correctamente las horas de 0 a 23.
+
+También ordenamos los días de la semana en su orden natural.
+
+```{r}
+if (!is.null(atus_ml)) {
+  atus_ml <- atus_ml |>
+    mutate(
+      ID_HORA_NUM = as.numeric(ID_HORA),
+      DIASEMANA = factor(
+        DIASEMANA,
+        levels = c(
+          "lunes",
+          "Martes",
+          "Miercoles",
+          "Jueves",
+          "Viernes",
+          "Sabado",
+          "Domingo"
+        )
+      ),
+      accidente_con_victimas = factor(
+        accidente_con_victimas,
+        levels = c("Con víctimas", "Solo daños")
+      )
+    )
+}
+```
+
+La variable `ID_HORA_NUM` será útil para gráficas y resúmenes numéricos.
+
+La variable `DIASEMANA` se ordenó manualmente porque, si no lo hacemos, R puede mostrar los días en orden alfabético o en el orden en que aparecen en la base.
 
 ## Primer vistazo a la base
 
@@ -188,7 +221,7 @@ if (!is.null(atus_ml)) {
 }
 ```
 
-## Interpretación inicial
+## Interpretación de la variable respuesta
 
 En problemas de clasificación es importante revisar si las clases están balanceadas.
 
@@ -196,11 +229,11 @@ Un conjunto está **balanceado** cuando las categorías de la variable respuesta
 
 Un conjunto está **desbalanceado** cuando una categoría aparece con mucha mayor frecuencia que otra.
 
-Por ejemplo, si hay muchos más accidentes de solo daños que accidentes con víctimas, el problema puede estar desbalanceado.
+En esta base se observa un desbalance importante: aproximadamente 82.56% de los accidentes corresponden a solo daños, mientras que 17.44% corresponden a accidentes con víctimas.
 
-Esto es importante porque un modelo podría aprender a predecir casi siempre la clase mayoritaria y aun así obtener una exactitud aparentemente alta.
+Esto será relevante cuando construyamos modelos de clasificación, porque un modelo ingenuo podría predecir siempre “Solo daños” y aun así obtener una exactitud cercana al 82.56%.
 
-Por eso, en aprendizaje automático no basta con mirar solo la exactitud. Más adelante también revisaremos medidas como:
+Por esa razón, más adelante necesitaremos usar métricas adicionales a la exactitud, como:
 
 - sensibilidad,
 - especificidad,
@@ -242,7 +275,7 @@ Construimos una tabla ordenada por mes:
 if (!is.null(atus_ml)) {
   accidentes_mes <- atus_ml |>
     count(MES) |>
-    arrange(MES)
+    arrange(as.numeric(MES))
   
   accidentes_mes
 }
@@ -252,7 +285,7 @@ Ahora graficamos:
 
 ```{r}
 if (!is.null(atus_ml)) {
-  ggplot(accidentes_mes, aes(x = MES, y = n)) +
+  ggplot(accidentes_mes, aes(x = factor(MES, levels = sort(unique(as.numeric(MES)))), y = n)) +
     geom_col() +
     labs(
       title = "Número de accidentes por mes",
@@ -262,9 +295,11 @@ if (!is.null(atus_ml)) {
 }
 ```
 
-## Interpretación
+## Interpretación de accidentes por mes
 
 La gráfica de accidentes por mes permite identificar si existen meses con mayor número de accidentes.
+
+En la tabla se observa que mayo presenta el mayor número de accidentes, con 34,665 registros, mientras que julio presenta el menor número, con 30,062 registros. La variación mensual existe, aunque no es extrema.
 
 En un análisis más profundo podríamos preguntarnos:
 
@@ -280,13 +315,15 @@ Por ahora, nuestro objetivo es observar patrones generales.
 
 La variable `ID_HORA` indica la hora en la que ocurrió el accidente.
 
+Como esta variable puede leerse como texto, usaremos la variable numérica `ID_HORA_NUM`, creada previamente.
+
 Primero construimos una tabla de frecuencias:
 
 ```{r}
 if (!is.null(atus_ml)) {
   accidentes_hora <- atus_ml |>
-    count(ID_HORA) |>
-    arrange(ID_HORA)
+    count(ID_HORA_NUM) |>
+    arrange(ID_HORA_NUM)
   
   accidentes_hora
 }
@@ -296,8 +333,9 @@ Ahora graficamos:
 
 ```{r}
 if (!is.null(atus_ml)) {
-  ggplot(accidentes_hora, aes(x = ID_HORA, y = n)) +
+  ggplot(accidentes_hora, aes(x = ID_HORA_NUM, y = n)) +
     geom_col() +
+    scale_x_continuous(breaks = 0:23) +
     labs(
       title = "Número de accidentes por hora del día",
       x = "Hora del día",
@@ -306,7 +344,7 @@ if (!is.null(atus_ml)) {
 }
 ```
 
-## Interpretación
+## Interpretación de accidentes por hora
 
 El análisis por hora puede revelar patrones asociados con la movilidad diaria.
 
@@ -327,7 +365,7 @@ Ahora analizamos la variable `DIASEMANA`.
 if (!is.null(atus_ml)) {
   accidentes_dia <- atus_ml |>
     count(DIASEMANA) |>
-    arrange(desc(n))
+    arrange(DIASEMANA)
   
   accidentes_dia
 }
@@ -337,7 +375,7 @@ Graficamos:
 
 ```{r}
 if (!is.null(atus_ml)) {
-  ggplot(accidentes_dia, aes(x = reorder(DIASEMANA, n), y = n)) +
+  ggplot(accidentes_dia, aes(x = DIASEMANA, y = n)) +
     geom_col() +
     coord_flip() +
     labs(
@@ -348,7 +386,7 @@ if (!is.null(atus_ml)) {
 }
 ```
 
-## Interpretación
+## Interpretación de accidentes por día de la semana
 
 El día de la semana puede ser una variable importante.
 
@@ -393,19 +431,17 @@ if (!is.null(atus_ml)) {
 }
 ```
 
-## Interpretación
+## Interpretación por tipo de accidente
 
 El tipo de accidente puede estar relacionado con la presencia de víctimas.
 
-Por ejemplo, no necesariamente tienen la misma severidad:
+El tipo de accidente más frecuente es la colisión con vehículo automotor, con 224,720 casos. Le siguen la colisión con motocicleta, con 61,869 casos, y la colisión con objeto fijo, con 43,119 casos.
 
-- una colisión con vehículo automotor,
-- una colisión con peatón,
-- una volcadura,
-- una salida del camino,
-- una colisión con motocicleta.
+Esto sugiere que las colisiones entre vehículos concentran una parte muy importante del fenómeno.
 
-Más adelante podremos usar `TIPACCID` como variable predictora en modelos de clasificación.
+Sin embargo, frecuencia no significa necesariamente mayor gravedad. Un tipo de accidente puede ser muy frecuente, pero tener baja proporción de víctimas; otro puede ser menos frecuente, pero más grave en términos relativos.
+
+Por eso más adelante analizaremos proporciones, no solo cantidades absolutas.
 
 ## Accidentes por causa presunta
 
@@ -439,7 +475,7 @@ if (!is.null(atus_ml)) {
 }
 ```
 
-## Interpretación
+## Interpretación por causa presunta
 
 La causa presunta del accidente puede aportar información importante para el modelo.
 
@@ -451,6 +487,8 @@ Por eso, antes de usar una variable en un modelo, conviene revisar:
 - si hay categorías muy poco frecuentes,
 - si contiene valores faltantes,
 - si su interpretación es clara.
+
+Nota didáctica: la categoría “Certificado cero” aparece en algunas variables del conjunto de datos. Antes de usarla en un modelo predictivo, conviene revisar la documentación oficial de la base para entender exactamente qué representa. En esta primera exploración la conservamos, pero en un análisis más cuidadoso podríamos tratarla como una categoría especial.
 
 ## Relación entre tipo de accidente y presencia de víctimas
 
@@ -498,7 +536,7 @@ if (!is.null(atus_ml)) {
 }
 ```
 
-## Interpretación
+## Interpretación de la relación entre tipo de accidente y víctimas
 
 La gráfica anterior no muestra cantidades absolutas, sino proporciones.
 
@@ -516,8 +554,9 @@ Ahora analizamos si la proporción de accidentes con víctimas cambia según la 
 
 ```{r}
 if (!is.null(atus_ml)) {
-  ggplot(atus_ml, aes(x = ID_HORA, fill = accidente_con_victimas)) +
+  ggplot(atus_ml, aes(x = ID_HORA_NUM, fill = accidente_con_victimas)) +
     geom_bar(position = "fill") +
+    scale_x_continuous(breaks = 0:23) +
     labs(
       title = "Proporción de accidentes con víctimas por hora",
       x = "Hora del día",
@@ -527,7 +566,7 @@ if (!is.null(atus_ml)) {
 }
 ```
 
-## Interpretación
+## Interpretación de la relación entre hora y víctimas
 
 Esta gráfica ayuda a identificar si algunas horas tienen mayor proporción de accidentes con víctimas.
 
@@ -560,7 +599,7 @@ if (!is.null(atus_ml)) {
 }
 ```
 
-## Interpretación
+## Interpretación de la relación entre día de la semana y víctimas
 
 Esta gráfica permite observar si los accidentes con víctimas son proporcionalmente más frecuentes en algunos días.
 
@@ -583,9 +622,9 @@ if (!is.null(atus_ml)) {
     group_by(accidente_con_victimas) |>
     summarise(
       total = n(),
-      hora_promedio = mean(ID_HORA, na.rm = TRUE),
-      hora_minima = min(ID_HORA, na.rm = TRUE),
-      hora_maxima = max(ID_HORA, na.rm = TRUE),
+      hora_promedio = mean(ID_HORA_NUM, na.rm = TRUE),
+      hora_minima = min(ID_HORA_NUM, na.rm = TRUE),
+      hora_maxima = max(ID_HORA_NUM, na.rm = TRUE),
       .groups = "drop"
     )
   
@@ -593,20 +632,29 @@ if (!is.null(atus_ml)) {
 }
 ```
 
-## Interpretación
+## Interpretación de la tabla resumen
 
 Esta tabla resume algunas diferencias básicas entre los accidentes con víctimas y los accidentes de solo daños.
 
-La hora promedio no debe interpretarse de forma aislada, pero puede servir como una primera descripción.
+La hora promedio no debe interpretarse de forma aislada, porque la hora del día es una variable circular: después de las 23 horas vuelve la hora 0. Sin embargo, puede servir como una primera descripción general.
 
 En análisis posteriores podríamos comparar distribuciones completas, no solo promedios.
+
+También podríamos crear variables derivadas como:
+
+- madrugada,
+- mañana,
+- tarde,
+- noche.
+
+Este tipo de transformación puede mejorar la interpretación y eventualmente el desempeño de algunos modelos.
 
 ## ¿Qué aprendimos de los datos?
 
 Después de este análisis exploratorio podemos resumir algunas ideas:
 
 - La base contiene accidentes clasificados en dos categorías.
-- La variable respuesta puede estar desbalanceada.
+- La variable respuesta está desbalanceada.
 - El mes, la hora y el día de la semana permiten observar patrones temporales.
 - El tipo de accidente puede estar relacionado con la presencia de víctimas.
 - La causa presunta puede ser una variable predictora útil.

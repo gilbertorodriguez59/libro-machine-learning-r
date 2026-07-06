@@ -544,17 +544,7 @@
     "href": "03-analisis-exploratorio.html#cargar-paquetes",
     "title": "3  Análisis exploratorio de datos",
     "section": "3.3 Cargar paquetes",
-    "text": "3.3 Cargar paquetes\nEn este capítulo utilizaremos los siguientes paquetes:\n\n\nCode\nlibrary(readr)\n\n\nWarning: package 'readr' was built under R version 4.5.3\n\n\nCode\nlibrary(dplyr)\n\n\nWarning: package 'dplyr' was built under R version 4.5.3\n\n\n\nAdjuntando el paquete: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\n\nCode\nlibrary(ggplot2)\n\n\nWarning: package 'ggplot2' was built under R version 4.5.3\n\n\nSi alguno no está instalado, puedes instalarlo con:\n\n\nCode\ninstall.packages(c(\"readr\", \"dplyr\", \"ggplot2\"))",
-    "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Análisis exploratorio de datos</span>"
-    ]
-  },
-  {
-    "objectID": "03-analisis-exploratorio.html#opciones-generales-del-capítulo",
-    "href": "03-analisis-exploratorio.html#opciones-generales-del-capítulo",
-    "title": "3  Análisis exploratorio de datos",
-    "section": "3.4 Opciones generales del capítulo",
-    "text": "3.4 Opciones generales del capítulo\nPara que el libro no muestre mensajes o advertencias innecesarias, usamos la siguiente configuración:",
+    "text": "3.3 Cargar paquetes\nEn este capítulo utilizaremos los siguientes paquetes:\n\n\nCode\nlibrary(readr)\nlibrary(dplyr)\nlibrary(ggplot2)\n\n\nSi alguno no está instalado, puedes instalarlo con:\n\n\nCode\ninstall.packages(c(\"readr\", \"dplyr\", \"ggplot2\"))",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Análisis exploratorio de datos</span>"
     ]
@@ -563,8 +553,18 @@
     "objectID": "03-analisis-exploratorio.html#cargar-la-base-preparada",
     "href": "03-analisis-exploratorio.html#cargar-la-base-preparada",
     "title": "3  Análisis exploratorio de datos",
-    "section": "3.5 Cargar la base preparada",
-    "text": "3.5 Cargar la base preparada\nEn el capítulo anterior guardamos una base preparada llamada:\natus_ml_preparado.csv\nPrimero definimos la ruta del archivo.\n\n\nCode\nruta_atus_ml &lt;- \"datos/atus_ml_preparado.csv\"\n\n\nVerificamos si el archivo existe:\n\n\nCode\nfile.exists(ruta_atus_ml)\n\n\n[1] TRUE\n\n\nAhora cargamos la base.\n\n\nCode\nif (file.exists(ruta_atus_ml)) {\n  atus_ml &lt;- read_csv(\n    ruta_atus_ml,\n    show_col_types = FALSE\n  )\n  \n  print(\"Base preparada cargada correctamente.\")\n} else {\n  atus_ml &lt;- NULL\n  print(\"No se encontró el archivo datos/atus_ml_preparado.csv. Ejecuta primero el capítulo 2.\")\n}\n\n\n[1] \"Base preparada cargada correctamente.\"",
+    "section": "3.4 Cargar la base preparada",
+    "text": "3.4 Cargar la base preparada\nEn el capítulo anterior guardamos una base preparada llamada:\natus_ml_preparado.csv\nPrimero definimos la ruta del archivo.\n\n\nCode\nruta_atus_ml &lt;- \"datos/atus_ml_preparado.csv\"\n\n\nVerificamos si el archivo existe:\n\n\nCode\nfile.exists(ruta_atus_ml)\n\n\n[1] TRUE\n\n\nAhora cargamos la base.\n\n\nCode\nif (file.exists(ruta_atus_ml)) {\n  atus_ml &lt;- read_csv(\n    ruta_atus_ml,\n    show_col_types = FALSE\n  )\n  \n  print(\"Base preparada cargada correctamente.\")\n} else {\n  atus_ml &lt;- NULL\n  print(\"No se encontró el archivo datos/atus_ml_preparado.csv. Ejecuta primero el capítulo 2.\")\n}\n\n\n[1] \"Base preparada cargada correctamente.\"",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Análisis exploratorio de datos</span>"
+    ]
+  },
+  {
+    "objectID": "03-analisis-exploratorio.html#preparar-variables-para-el-análisis-exploratorio",
+    "href": "03-analisis-exploratorio.html#preparar-variables-para-el-análisis-exploratorio",
+    "title": "3  Análisis exploratorio de datos",
+    "section": "3.5 Preparar variables para el análisis exploratorio",
+    "text": "3.5 Preparar variables para el análisis exploratorio\nDespués de cargar la base, haremos algunos ajustes para que las tablas y gráficas sean más claras.\nPrimero convertimos la hora del accidente a una variable numérica. Esto permitirá ordenar correctamente las horas de 0 a 23.\nTambién ordenamos los días de la semana en su orden natural.\n\n\nCode\nif (!is.null(atus_ml)) {\n  atus_ml &lt;- atus_ml |&gt;\n    mutate(\n      ID_HORA_NUM = as.numeric(ID_HORA),\n      DIASEMANA = factor(\n        DIASEMANA,\n        levels = c(\n          \"lunes\",\n          \"Martes\",\n          \"Miercoles\",\n          \"Jueves\",\n          \"Viernes\",\n          \"Sabado\",\n          \"Domingo\"\n        )\n      ),\n      accidente_con_victimas = factor(\n        accidente_con_victimas,\n        levels = c(\"Con víctimas\", \"Solo daños\")\n      )\n    )\n}\n\n\nLa variable ID_HORA_NUM será útil para gráficas y resúmenes numéricos.\nLa variable DIASEMANA se ordenó manualmente porque, si no lo hacemos, R puede mostrar los días en orden alfabético o en el orden en que aparecen en la base.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Análisis exploratorio de datos</span>"
     ]
@@ -574,7 +574,7 @@
     "href": "03-analisis-exploratorio.html#primer-vistazo-a-la-base",
     "title": "3  Análisis exploratorio de datos",
     "section": "3.6 Primer vistazo a la base",
-    "text": "3.6 Primer vistazo a la base\nRevisamos las dimensiones de la base:\n\n\nCode\nif (!is.null(atus_ml)) {\n  dim(atus_ml)\n}\n\n\n[1] 390627      6\n\n\nEl primer número corresponde al número de accidentes registrados.\nEl segundo número corresponde al número de variables disponibles para este primer análisis.\nAhora observamos los primeros registros:\n\n\nCode\nif (!is.null(atus_ml)) {\n  head(atus_ml)\n}\n\n\n# A tibble: 6 × 6\n  accidente_con_victimas MES   ID_HORA DIASEMANA TIPACCID              CAUSAACCI\n  &lt;chr&gt;                  &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;                 &lt;chr&gt;    \n1 Solo daños             01    02      lunes     Colisión con vehícul… Conductor\n2 Solo daños             01    03      lunes     Colisión con objeto … Conductor\n3 Con víctimas           01    04      lunes     Colisión con peatón … Conductor\n4 Solo daños             01    05      lunes     Colisión con objeto … Conductor\n5 Solo daños             01    06      lunes     Colisión con objeto … Conductor\n6 Con víctimas           01    07      lunes     Colisión con vehícul… Conductor\n\n\nTambién revisamos los nombres de las variables:\n\n\nCode\nif (!is.null(atus_ml)) {\n  names(atus_ml)\n}\n\n\n[1] \"accidente_con_victimas\" \"MES\"                    \"ID_HORA\"               \n[4] \"DIASEMANA\"              \"TIPACCID\"               \"CAUSAACCI\"",
+    "text": "3.6 Primer vistazo a la base\nRevisamos las dimensiones de la base:\n\n\nCode\nif (!is.null(atus_ml)) {\n  dim(atus_ml)\n}\n\n\n[1] 390627      7\n\n\nEl primer número corresponde al número de accidentes registrados.\nEl segundo número corresponde al número de variables disponibles para este primer análisis.\nAhora observamos los primeros registros:\n\n\nCode\nif (!is.null(atus_ml)) {\n  head(atus_ml)\n}\n\n\n# A tibble: 6 × 7\n  accidente_con_victimas MES   ID_HORA DIASEMANA TIPACCID  CAUSAACCI ID_HORA_NUM\n  &lt;fct&gt;                  &lt;chr&gt; &lt;chr&gt;   &lt;fct&gt;     &lt;chr&gt;     &lt;chr&gt;           &lt;dbl&gt;\n1 Solo daños             01    02      lunes     Colisión… Conductor           2\n2 Solo daños             01    03      lunes     Colisión… Conductor           3\n3 Con víctimas           01    04      lunes     Colisión… Conductor           4\n4 Solo daños             01    05      lunes     Colisión… Conductor           5\n5 Solo daños             01    06      lunes     Colisión… Conductor           6\n6 Con víctimas           01    07      lunes     Colisión… Conductor           7\n\n\nTambién revisamos los nombres de las variables:\n\n\nCode\nif (!is.null(atus_ml)) {\n  names(atus_ml)\n}\n\n\n[1] \"accidente_con_victimas\" \"MES\"                    \"ID_HORA\"               \n[4] \"DIASEMANA\"              \"TIPACCID\"               \"CAUSAACCI\"             \n[7] \"ID_HORA_NUM\"",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Análisis exploratorio de datos</span>"
     ]
@@ -584,7 +584,7 @@
     "href": "03-analisis-exploratorio.html#estructura-de-los-datos",
     "title": "3  Análisis exploratorio de datos",
     "section": "3.7 Estructura de los datos",
-    "text": "3.7 Estructura de los datos\nLa función str() permite revisar el tipo de cada variable.\n\n\nCode\nif (!is.null(atus_ml)) {\n  str(atus_ml)\n}\n\n\nspc_tbl_ [390,627 × 6] (S3: spec_tbl_df/tbl_df/tbl/data.frame)\n $ accidente_con_victimas: chr [1:390627] \"Solo daños\" \"Solo daños\" \"Con víctimas\" \"Solo daños\" ...\n $ MES                   : chr [1:390627] \"01\" \"01\" \"01\" \"01\" ...\n $ ID_HORA               : chr [1:390627] \"02\" \"03\" \"04\" \"05\" ...\n $ DIASEMANA             : chr [1:390627] \"lunes\" \"lunes\" \"lunes\" \"lunes\" ...\n $ TIPACCID              : chr [1:390627] \"Colisión con vehículo automotor\" \"Colisión con objeto fijo\" \"Colisión con peatón (atropellamiento)\" \"Colisión con objeto fijo\" ...\n $ CAUSAACCI             : chr [1:390627] \"Conductor\" \"Conductor\" \"Conductor\" \"Conductor\" ...\n - attr(*, \"spec\")=\n  .. cols(\n  ..   accidente_con_victimas = col_character(),\n  ..   MES = col_character(),\n  ..   ID_HORA = col_character(),\n  ..   DIASEMANA = col_character(),\n  ..   TIPACCID = col_character(),\n  ..   CAUSAACCI = col_character()\n  .. )\n - attr(*, \"problems\")=&lt;externalptr&gt; \n\n\nEn esta base tenemos una variable respuesta:\naccidente_con_victimas\ny varias variables predictoras:\nMES\nID_HORA\nDIASEMANA\nTIPACCID\nCAUSAACCI\nLa variable respuesta indica si el accidente fue clasificado como:\nCon víctimas\nSolo daños",
+    "text": "3.7 Estructura de los datos\nLa función str() permite revisar el tipo de cada variable.\n\n\nCode\nif (!is.null(atus_ml)) {\n  str(atus_ml)\n}\n\n\ntibble [390,627 × 7] (S3: tbl_df/tbl/data.frame)\n $ accidente_con_victimas: Factor w/ 2 levels \"Con víctimas\",..: 2 2 1 2 2 1 1 2 2 2 ...\n $ MES                   : chr [1:390627] \"01\" \"01\" \"01\" \"01\" ...\n $ ID_HORA               : chr [1:390627] \"02\" \"03\" \"04\" \"05\" ...\n $ DIASEMANA             : Factor w/ 7 levels \"lunes\",\"Martes\",..: 1 1 1 1 1 1 1 1 1 1 ...\n $ TIPACCID              : chr [1:390627] \"Colisión con vehículo automotor\" \"Colisión con objeto fijo\" \"Colisión con peatón (atropellamiento)\" \"Colisión con objeto fijo\" ...\n $ CAUSAACCI             : chr [1:390627] \"Conductor\" \"Conductor\" \"Conductor\" \"Conductor\" ...\n $ ID_HORA_NUM           : num [1:390627] 2 3 4 5 6 7 12 13 18 20 ...\n\n\nEn esta base tenemos una variable respuesta:\naccidente_con_victimas\ny varias variables predictoras:\nMES\nID_HORA\nDIASEMANA\nTIPACCID\nCAUSAACCI\nLa variable respuesta indica si el accidente fue clasificado como:\nCon víctimas\nSolo daños",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Análisis exploratorio de datos</span>"
     ]
@@ -600,11 +600,11 @@
     ]
   },
   {
-    "objectID": "03-analisis-exploratorio.html#interpretación-inicial",
-    "href": "03-analisis-exploratorio.html#interpretación-inicial",
+    "objectID": "03-analisis-exploratorio.html#interpretación-de-la-variable-respuesta",
+    "href": "03-analisis-exploratorio.html#interpretación-de-la-variable-respuesta",
     "title": "3  Análisis exploratorio de datos",
-    "section": "3.9 Interpretación inicial",
-    "text": "3.9 Interpretación inicial\nEn problemas de clasificación es importante revisar si las clases están balanceadas.\nUn conjunto está balanceado cuando las categorías de la variable respuesta aparecen en proporciones similares.\nUn conjunto está desbalanceado cuando una categoría aparece con mucha mayor frecuencia que otra.\nPor ejemplo, si hay muchos más accidentes de solo daños que accidentes con víctimas, el problema puede estar desbalanceado.\nEsto es importante porque un modelo podría aprender a predecir casi siempre la clase mayoritaria y aun así obtener una exactitud aparentemente alta.\nPor eso, en aprendizaje automático no basta con mirar solo la exactitud. Más adelante también revisaremos medidas como:\n\nsensibilidad,\nespecificidad,\nprecisión,\nmatriz de confusión,\ncurva ROC.",
+    "section": "3.9 Interpretación de la variable respuesta",
+    "text": "3.9 Interpretación de la variable respuesta\nEn problemas de clasificación es importante revisar si las clases están balanceadas.\nUn conjunto está balanceado cuando las categorías de la variable respuesta aparecen en proporciones similares.\nUn conjunto está desbalanceado cuando una categoría aparece con mucha mayor frecuencia que otra.\nEn esta base se observa un desbalance importante: aproximadamente 82.56% de los accidentes corresponden a solo daños, mientras que 17.44% corresponden a accidentes con víctimas.\nEsto será relevante cuando construyamos modelos de clasificación, porque un modelo ingenuo podría predecir siempre “Solo daños” y aun así obtener una exactitud cercana al 82.56%.\nPor esa razón, más adelante necesitaremos usar métricas adicionales a la exactitud, como:\n\nsensibilidad,\nespecificidad,\nprecisión,\nmatriz de confusión,\ncurva ROC.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Análisis exploratorio de datos</span>"
     ]
@@ -624,17 +624,17 @@
     "href": "03-analisis-exploratorio.html#accidentes-por-mes",
     "title": "3  Análisis exploratorio de datos",
     "section": "3.11 Accidentes por mes",
-    "text": "3.11 Accidentes por mes\nAhora analizamos la variable MES.\n\n\nCode\nif (!is.null(atus_ml)) {\n  table(atus_ml$MES)\n}\n\n\n\n   01    02    03    04    05    06    07    08    09    10    11    12 \n31600 32208 33237 32666 34665 31737 30062 31800 31351 33771 34047 33483 \n\n\nConstruimos una tabla ordenada por mes:\n\n\nCode\nif (!is.null(atus_ml)) {\n  accidentes_mes &lt;- atus_ml |&gt;\n    count(MES) |&gt;\n    arrange(MES)\n  \n  accidentes_mes\n}\n\n\n# A tibble: 12 × 2\n   MES       n\n   &lt;chr&gt; &lt;int&gt;\n 1 01    31600\n 2 02    32208\n 3 03    33237\n 4 04    32666\n 5 05    34665\n 6 06    31737\n 7 07    30062\n 8 08    31800\n 9 09    31351\n10 10    33771\n11 11    34047\n12 12    33483\n\n\nAhora graficamos:\n\n\nCode\nif (!is.null(atus_ml)) {\n  ggplot(accidentes_mes, aes(x = MES, y = n)) +\n    geom_col() +\n    labs(\n      title = \"Número de accidentes por mes\",\n      x = \"Mes\",\n      y = \"Número de accidentes\"\n    )\n}",
+    "text": "3.11 Accidentes por mes\nAhora analizamos la variable MES.\n\n\nCode\nif (!is.null(atus_ml)) {\n  table(atus_ml$MES)\n}\n\n\n\n   01    02    03    04    05    06    07    08    09    10    11    12 \n31600 32208 33237 32666 34665 31737 30062 31800 31351 33771 34047 33483 \n\n\nConstruimos una tabla ordenada por mes:\n\n\nCode\nif (!is.null(atus_ml)) {\n  accidentes_mes &lt;- atus_ml |&gt;\n    count(MES) |&gt;\n    arrange(as.numeric(MES))\n  \n  accidentes_mes\n}\n\n\n# A tibble: 12 × 2\n   MES       n\n   &lt;chr&gt; &lt;int&gt;\n 1 01    31600\n 2 02    32208\n 3 03    33237\n 4 04    32666\n 5 05    34665\n 6 06    31737\n 7 07    30062\n 8 08    31800\n 9 09    31351\n10 10    33771\n11 11    34047\n12 12    33483\n\n\nAhora graficamos:\n\n\nCode\nif (!is.null(atus_ml)) {\n  ggplot(accidentes_mes, aes(x = factor(MES, levels = sort(unique(as.numeric(MES)))), y = n)) +\n    geom_col() +\n    labs(\n      title = \"Número de accidentes por mes\",\n      x = \"Mes\",\n      y = \"Número de accidentes\"\n    )\n}",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Análisis exploratorio de datos</span>"
     ]
   },
   {
-    "objectID": "03-analisis-exploratorio.html#interpretación",
-    "href": "03-analisis-exploratorio.html#interpretación",
+    "objectID": "03-analisis-exploratorio.html#interpretación-de-accidentes-por-mes",
+    "href": "03-analisis-exploratorio.html#interpretación-de-accidentes-por-mes",
     "title": "3  Análisis exploratorio de datos",
-    "section": "3.12 Interpretación",
-    "text": "3.12 Interpretación\nLa gráfica de accidentes por mes permite identificar si existen meses con mayor número de accidentes.\nEn un análisis más profundo podríamos preguntarnos:\n\n¿hay meses con más movilidad?\n¿hay relación con vacaciones?\n¿hay relación con temporadas de lluvia?\n¿hay diferencias por entidad federativa?\n¿hay diferencias entre accidentes con víctimas y solo daños?\n\nPor ahora, nuestro objetivo es observar patrones generales.",
+    "section": "3.12 Interpretación de accidentes por mes",
+    "text": "3.12 Interpretación de accidentes por mes\nLa gráfica de accidentes por mes permite identificar si existen meses con mayor número de accidentes.\nEn la tabla se observa que mayo presenta el mayor número de accidentes, con 34,665 registros, mientras que julio presenta el menor número, con 30,062 registros. La variación mensual existe, aunque no es extrema.\nEn un análisis más profundo podríamos preguntarnos:\n\n¿hay meses con más movilidad?\n¿hay relación con vacaciones?\n¿hay relación con temporadas de lluvia?\n¿hay diferencias por entidad federativa?\n¿hay diferencias entre accidentes con víctimas y solo daños?\n\nPor ahora, nuestro objetivo es observar patrones generales.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Análisis exploratorio de datos</span>"
     ]
@@ -644,17 +644,17 @@
     "href": "03-analisis-exploratorio.html#accidentes-por-hora-del-día",
     "title": "3  Análisis exploratorio de datos",
     "section": "3.13 Accidentes por hora del día",
-    "text": "3.13 Accidentes por hora del día\nLa variable ID_HORA indica la hora en la que ocurrió el accidente.\nPrimero construimos una tabla de frecuencias:\n\n\nCode\nif (!is.null(atus_ml)) {\n  accidentes_hora &lt;- atus_ml |&gt;\n    count(ID_HORA) |&gt;\n    arrange(ID_HORA)\n  \n  accidentes_hora\n}\n\n\n# A tibble: 24 × 2\n   ID_HORA     n\n   &lt;chr&gt;   &lt;int&gt;\n 1 00       9143\n 2 01       7400\n 3 02       6594\n 4 03       5694\n 5 04       4880\n 6 05       4986\n 7 06       8034\n 8 07      15159\n 9 08      20666\n10 09      19486\n# ℹ 14 more rows\n\n\nAhora graficamos:\n\n\nCode\nif (!is.null(atus_ml)) {\n  ggplot(accidentes_hora, aes(x = ID_HORA, y = n)) +\n    geom_col() +\n    labs(\n      title = \"Número de accidentes por hora del día\",\n      x = \"Hora del día\",\n      y = \"Número de accidentes\"\n    )\n}",
+    "text": "3.13 Accidentes por hora del día\nLa variable ID_HORA indica la hora en la que ocurrió el accidente.\nComo esta variable puede leerse como texto, usaremos la variable numérica ID_HORA_NUM, creada previamente.\nPrimero construimos una tabla de frecuencias:\n\n\nCode\nif (!is.null(atus_ml)) {\n  accidentes_hora &lt;- atus_ml |&gt;\n    count(ID_HORA_NUM) |&gt;\n    arrange(ID_HORA_NUM)\n  \n  accidentes_hora\n}\n\n\n# A tibble: 24 × 2\n   ID_HORA_NUM     n\n         &lt;dbl&gt; &lt;int&gt;\n 1           0  9143\n 2           1  7400\n 3           2  6594\n 4           3  5694\n 5           4  4880\n 6           5  4986\n 7           6  8034\n 8           7 15159\n 9           8 20666\n10           9 19486\n# ℹ 14 more rows\n\n\nAhora graficamos:\n\n\nCode\nif (!is.null(atus_ml)) {\n  ggplot(accidentes_hora, aes(x = ID_HORA_NUM, y = n)) +\n    geom_col() +\n    scale_x_continuous(breaks = 0:23) +\n    labs(\n      title = \"Número de accidentes por hora del día\",\n      x = \"Hora del día\",\n      y = \"Número de accidentes\"\n    )\n}",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Análisis exploratorio de datos</span>"
     ]
   },
   {
-    "objectID": "03-analisis-exploratorio.html#interpretación-1",
-    "href": "03-analisis-exploratorio.html#interpretación-1",
+    "objectID": "03-analisis-exploratorio.html#interpretación-de-accidentes-por-hora",
+    "href": "03-analisis-exploratorio.html#interpretación-de-accidentes-por-hora",
     "title": "3  Análisis exploratorio de datos",
-    "section": "3.14 Interpretación",
-    "text": "3.14 Interpretación\nEl análisis por hora puede revelar patrones asociados con la movilidad diaria.\nPor ejemplo, podrían aparecer más accidentes:\n\nen horas de entrada al trabajo o escuela,\nen horas de salida,\ndurante la noche,\nen horarios de mayor tráfico.\n\nEste tipo de análisis es útil porque algunas variables temporales pueden ayudar a clasificar la severidad o el tipo de accidente.",
+    "section": "3.14 Interpretación de accidentes por hora",
+    "text": "3.14 Interpretación de accidentes por hora\nEl análisis por hora puede revelar patrones asociados con la movilidad diaria.\nPor ejemplo, podrían aparecer más accidentes:\n\nen horas de entrada al trabajo o escuela,\nen horas de salida,\ndurante la noche,\nen horarios de mayor tráfico.\n\nEste tipo de análisis es útil porque algunas variables temporales pueden ayudar a clasificar la severidad o el tipo de accidente.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Análisis exploratorio de datos</span>"
     ]
@@ -664,17 +664,17 @@
     "href": "03-analisis-exploratorio.html#accidentes-por-día-de-la-semana",
     "title": "3  Análisis exploratorio de datos",
     "section": "3.15 Accidentes por día de la semana",
-    "text": "3.15 Accidentes por día de la semana\nAhora analizamos la variable DIASEMANA.\n\n\nCode\nif (!is.null(atus_ml)) {\n  accidentes_dia &lt;- atus_ml |&gt;\n    count(DIASEMANA) |&gt;\n    arrange(desc(n))\n  \n  accidentes_dia\n}\n\n\n# A tibble: 7 × 2\n  DIASEMANA     n\n  &lt;chr&gt;     &lt;int&gt;\n1 lunes     69412\n2 Sabado    58321\n3 Viernes   56708\n4 Domingo   52437\n5 Miercoles 51580\n6 Martes    51215\n7 Jueves    50954\n\n\nGraficamos:\n\n\nCode\nif (!is.null(atus_ml)) {\n  ggplot(accidentes_dia, aes(x = reorder(DIASEMANA, n), y = n)) +\n    geom_col() +\n    coord_flip() +\n    labs(\n      title = \"Número de accidentes por día de la semana\",\n      x = \"Día de la semana\",\n      y = \"Número de accidentes\"\n    )\n}",
+    "text": "3.15 Accidentes por día de la semana\nAhora analizamos la variable DIASEMANA.\n\n\nCode\nif (!is.null(atus_ml)) {\n  accidentes_dia &lt;- atus_ml |&gt;\n    count(DIASEMANA) |&gt;\n    arrange(DIASEMANA)\n  \n  accidentes_dia\n}\n\n\n# A tibble: 7 × 2\n  DIASEMANA     n\n  &lt;fct&gt;     &lt;int&gt;\n1 lunes     69412\n2 Martes    51215\n3 Miercoles 51580\n4 Jueves    50954\n5 Viernes   56708\n6 Sabado    58321\n7 Domingo   52437\n\n\nGraficamos:\n\n\nCode\nif (!is.null(atus_ml)) {\n  ggplot(accidentes_dia, aes(x = DIASEMANA, y = n)) +\n    geom_col() +\n    coord_flip() +\n    labs(\n      title = \"Número de accidentes por día de la semana\",\n      x = \"Día de la semana\",\n      y = \"Número de accidentes\"\n    )\n}",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Análisis exploratorio de datos</span>"
     ]
   },
   {
-    "objectID": "03-analisis-exploratorio.html#interpretación-2",
-    "href": "03-analisis-exploratorio.html#interpretación-2",
+    "objectID": "03-analisis-exploratorio.html#interpretación-de-accidentes-por-día-de-la-semana",
+    "href": "03-analisis-exploratorio.html#interpretación-de-accidentes-por-día-de-la-semana",
     "title": "3  Análisis exploratorio de datos",
-    "section": "3.16 Interpretación",
-    "text": "3.16 Interpretación\nEl día de la semana puede ser una variable importante.\nPodemos preguntarnos:\n\n¿ocurren más accidentes entre semana o en fin de semana?\n¿el patrón cambia para accidentes con víctimas?\n¿hay más accidentes graves en viernes, sábado o domingo?\n¿el comportamiento es distinto por hora?\n\nEstas preguntas serán útiles cuando construyamos modelos de clasificación.",
+    "section": "3.16 Interpretación de accidentes por día de la semana",
+    "text": "3.16 Interpretación de accidentes por día de la semana\nEl día de la semana puede ser una variable importante.\nPodemos preguntarnos:\n\n¿ocurren más accidentes entre semana o en fin de semana?\n¿el patrón cambia para accidentes con víctimas?\n¿hay más accidentes graves en viernes, sábado o domingo?\n¿el comportamiento es distinto por hora?\n\nEstas preguntas serán útiles cuando construyamos modelos de clasificación.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Análisis exploratorio de datos</span>"
     ]
@@ -690,11 +690,11 @@
     ]
   },
   {
-    "objectID": "03-analisis-exploratorio.html#interpretación-3",
-    "href": "03-analisis-exploratorio.html#interpretación-3",
+    "objectID": "03-analisis-exploratorio.html#interpretación-por-tipo-de-accidente",
+    "href": "03-analisis-exploratorio.html#interpretación-por-tipo-de-accidente",
     "title": "3  Análisis exploratorio de datos",
-    "section": "3.18 Interpretación",
-    "text": "3.18 Interpretación\nEl tipo de accidente puede estar relacionado con la presencia de víctimas.\nPor ejemplo, no necesariamente tienen la misma severidad:\n\nuna colisión con vehículo automotor,\nuna colisión con peatón,\nuna volcadura,\nuna salida del camino,\nuna colisión con motocicleta.\n\nMás adelante podremos usar TIPACCID como variable predictora en modelos de clasificación.",
+    "section": "3.18 Interpretación por tipo de accidente",
+    "text": "3.18 Interpretación por tipo de accidente\nEl tipo de accidente puede estar relacionado con la presencia de víctimas.\nEl tipo de accidente más frecuente es la colisión con vehículo automotor, con 224,720 casos. Le siguen la colisión con motocicleta, con 61,869 casos, y la colisión con objeto fijo, con 43,119 casos.\nEsto sugiere que las colisiones entre vehículos concentran una parte muy importante del fenómeno.\nSin embargo, frecuencia no significa necesariamente mayor gravedad. Un tipo de accidente puede ser muy frecuente, pero tener baja proporción de víctimas; otro puede ser menos frecuente, pero más grave en términos relativos.\nPor eso más adelante analizaremos proporciones, no solo cantidades absolutas.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Análisis exploratorio de datos</span>"
     ]
@@ -710,11 +710,11 @@
     ]
   },
   {
-    "objectID": "03-analisis-exploratorio.html#interpretación-4",
-    "href": "03-analisis-exploratorio.html#interpretación-4",
+    "objectID": "03-analisis-exploratorio.html#interpretación-por-causa-presunta",
+    "href": "03-analisis-exploratorio.html#interpretación-por-causa-presunta",
     "title": "3  Análisis exploratorio de datos",
-    "section": "3.20 Interpretación",
-    "text": "3.20 Interpretación\nLa causa presunta del accidente puede aportar información importante para el modelo.\nSin embargo, también debemos tener cuidado: algunas variables pueden estar codificadas de manera muy general o depender del registro administrativo.\nPor eso, antes de usar una variable en un modelo, conviene revisar:\n\ncuántas categorías tiene,\nsi hay categorías muy poco frecuentes,\nsi contiene valores faltantes,\nsi su interpretación es clara.",
+    "section": "3.20 Interpretación por causa presunta",
+    "text": "3.20 Interpretación por causa presunta\nLa causa presunta del accidente puede aportar información importante para el modelo.\nSin embargo, también debemos tener cuidado: algunas variables pueden estar codificadas de manera muy general o depender del registro administrativo.\nPor eso, antes de usar una variable en un modelo, conviene revisar:\n\ncuántas categorías tiene,\nsi hay categorías muy poco frecuentes,\nsi contiene valores faltantes,\nsi su interpretación es clara.\n\nNota didáctica: la categoría “Certificado cero” aparece en algunas variables del conjunto de datos. Antes de usarla en un modelo predictivo, conviene revisar la documentación oficial de la base para entender exactamente qué representa. En esta primera exploración la conservamos, pero en un análisis más cuidadoso podríamos tratarla como una categoría especial.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Análisis exploratorio de datos</span>"
     ]
@@ -730,11 +730,11 @@
     ]
   },
   {
-    "objectID": "03-analisis-exploratorio.html#interpretación-5",
-    "href": "03-analisis-exploratorio.html#interpretación-5",
+    "objectID": "03-analisis-exploratorio.html#interpretación-de-la-relación-entre-tipo-de-accidente-y-víctimas",
+    "href": "03-analisis-exploratorio.html#interpretación-de-la-relación-entre-tipo-de-accidente-y-víctimas",
     "title": "3  Análisis exploratorio de datos",
-    "section": "3.22 Interpretación",
-    "text": "3.22 Interpretación\nLa gráfica anterior no muestra cantidades absolutas, sino proporciones.\nEsto permite comparar tipos de accidente aunque algunos sean mucho más frecuentes que otros.\nPor ejemplo, si un tipo de accidente tiene una proporción alta de “Con víctimas”, podría ser una variable importante para el modelo.\nEsta es una de las ideas centrales del análisis exploratorio:\n\nNo solo queremos contar datos; queremos encontrar relaciones que ayuden a entender el problema.",
+    "section": "3.22 Interpretación de la relación entre tipo de accidente y víctimas",
+    "text": "3.22 Interpretación de la relación entre tipo de accidente y víctimas\nLa gráfica anterior no muestra cantidades absolutas, sino proporciones.\nEsto permite comparar tipos de accidente aunque algunos sean mucho más frecuentes que otros.\nPor ejemplo, si un tipo de accidente tiene una proporción alta de “Con víctimas”, podría ser una variable importante para el modelo.\nEsta es una de las ideas centrales del análisis exploratorio:\n\nNo solo queremos contar datos; queremos encontrar relaciones que ayuden a entender el problema.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Análisis exploratorio de datos</span>"
     ]
@@ -744,17 +744,17 @@
     "href": "03-analisis-exploratorio.html#relación-entre-hora-y-presencia-de-víctimas",
     "title": "3  Análisis exploratorio de datos",
     "section": "3.23 Relación entre hora y presencia de víctimas",
-    "text": "3.23 Relación entre hora y presencia de víctimas\nAhora analizamos si la proporción de accidentes con víctimas cambia según la hora.\n\n\nCode\nif (!is.null(atus_ml)) {\n  ggplot(atus_ml, aes(x = ID_HORA, fill = accidente_con_victimas)) +\n    geom_bar(position = \"fill\") +\n    labs(\n      title = \"Proporción de accidentes con víctimas por hora\",\n      x = \"Hora del día\",\n      y = \"Proporción\",\n      fill = \"Clase\"\n    )\n}",
+    "text": "3.23 Relación entre hora y presencia de víctimas\nAhora analizamos si la proporción de accidentes con víctimas cambia según la hora.\n\n\nCode\nif (!is.null(atus_ml)) {\n  ggplot(atus_ml, aes(x = ID_HORA_NUM, fill = accidente_con_victimas)) +\n    geom_bar(position = \"fill\") +\n    scale_x_continuous(breaks = 0:23) +\n    labs(\n      title = \"Proporción de accidentes con víctimas por hora\",\n      x = \"Hora del día\",\n      y = \"Proporción\",\n      fill = \"Clase\"\n    )\n}",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Análisis exploratorio de datos</span>"
     ]
   },
   {
-    "objectID": "03-analisis-exploratorio.html#interpretación-6",
-    "href": "03-analisis-exploratorio.html#interpretación-6",
+    "objectID": "03-analisis-exploratorio.html#interpretación-de-la-relación-entre-hora-y-víctimas",
+    "href": "03-analisis-exploratorio.html#interpretación-de-la-relación-entre-hora-y-víctimas",
     "title": "3  Análisis exploratorio de datos",
-    "section": "3.24 Interpretación",
-    "text": "3.24 Interpretación\nEsta gráfica ayuda a identificar si algunas horas tienen mayor proporción de accidentes con víctimas.\nEs importante distinguir entre:\n\nnúmero total de accidentes,\nproporción de accidentes con víctimas.\n\nUna hora puede tener muchos accidentes, pero una proporción baja de accidentes graves.\nOtra hora puede tener menos accidentes, pero una proporción mayor de accidentes con víctimas.\nAmbas interpretaciones son útiles.",
+    "section": "3.24 Interpretación de la relación entre hora y víctimas",
+    "text": "3.24 Interpretación de la relación entre hora y víctimas\nEsta gráfica ayuda a identificar si algunas horas tienen mayor proporción de accidentes con víctimas.\nEs importante distinguir entre:\n\nnúmero total de accidentes,\nproporción de accidentes con víctimas.\n\nUna hora puede tener muchos accidentes, pero una proporción baja de accidentes graves.\nOtra hora puede tener menos accidentes, pero una proporción mayor de accidentes con víctimas.\nAmbas interpretaciones son útiles.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Análisis exploratorio de datos</span>"
     ]
@@ -770,11 +770,11 @@
     ]
   },
   {
-    "objectID": "03-analisis-exploratorio.html#interpretación-7",
-    "href": "03-analisis-exploratorio.html#interpretación-7",
+    "objectID": "03-analisis-exploratorio.html#interpretación-de-la-relación-entre-día-de-la-semana-y-víctimas",
+    "href": "03-analisis-exploratorio.html#interpretación-de-la-relación-entre-día-de-la-semana-y-víctimas",
     "title": "3  Análisis exploratorio de datos",
-    "section": "3.26 Interpretación",
-    "text": "3.26 Interpretación\nEsta gráfica permite observar si los accidentes con víctimas son proporcionalmente más frecuentes en algunos días.\nEste análisis puede sugerir hipótesis, por ejemplo:\n\nmayor riesgo en fines de semana,\nmayor riesgo en días laborales,\nrelación con horarios de movilidad,\nrelación con actividades recreativas o laborales.\n\nEstas hipótesis deberán evaluarse con modelos y análisis más formales.",
+    "section": "3.26 Interpretación de la relación entre día de la semana y víctimas",
+    "text": "3.26 Interpretación de la relación entre día de la semana y víctimas\nEsta gráfica permite observar si los accidentes con víctimas son proporcionalmente más frecuentes en algunos días.\nEste análisis puede sugerir hipótesis, por ejemplo:\n\nmayor riesgo en fines de semana,\nmayor riesgo en días laborales,\nrelación con horarios de movilidad,\nrelación con actividades recreativas o laborales.\n\nEstas hipótesis deberán evaluarse con modelos y análisis más formales.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Análisis exploratorio de datos</span>"
     ]
@@ -784,17 +784,17 @@
     "href": "03-analisis-exploratorio.html#tabla-resumen-por-clase",
     "title": "3  Análisis exploratorio de datos",
     "section": "3.27 Tabla resumen por clase",
-    "text": "3.27 Tabla resumen por clase\nAhora calculamos un resumen general por clase de accidente.\n\n\nCode\nif (!is.null(atus_ml)) {\n  resumen_clase &lt;- atus_ml |&gt;\n    group_by(accidente_con_victimas) |&gt;\n    summarise(\n      total = n(),\n      hora_promedio = mean(ID_HORA, na.rm = TRUE),\n      hora_minima = min(ID_HORA, na.rm = TRUE),\n      hora_maxima = max(ID_HORA, na.rm = TRUE),\n      .groups = \"drop\"\n    )\n  \n  resumen_clase\n}\n\n\n# A tibble: 2 × 5\n  accidente_con_victimas  total hora_promedio hora_minima hora_maxima\n  &lt;chr&gt;                   &lt;int&gt;         &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;      \n1 Con víctimas            68108            NA 00          23         \n2 Solo daños             322519            NA 00          23",
+    "text": "3.27 Tabla resumen por clase\nAhora calculamos un resumen general por clase de accidente.\n\n\nCode\nif (!is.null(atus_ml)) {\n  resumen_clase &lt;- atus_ml |&gt;\n    group_by(accidente_con_victimas) |&gt;\n    summarise(\n      total = n(),\n      hora_promedio = mean(ID_HORA_NUM, na.rm = TRUE),\n      hora_minima = min(ID_HORA_NUM, na.rm = TRUE),\n      hora_maxima = max(ID_HORA_NUM, na.rm = TRUE),\n      .groups = \"drop\"\n    )\n  \n  resumen_clase\n}\n\n\n# A tibble: 2 × 5\n  accidente_con_victimas  total hora_promedio hora_minima hora_maxima\n  &lt;fct&gt;                   &lt;int&gt;         &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;\n1 Con víctimas            68108          13.6           0          23\n2 Solo daños             322519          13.7           0          23",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Análisis exploratorio de datos</span>"
     ]
   },
   {
-    "objectID": "03-analisis-exploratorio.html#interpretación-8",
-    "href": "03-analisis-exploratorio.html#interpretación-8",
+    "objectID": "03-analisis-exploratorio.html#interpretación-de-la-tabla-resumen",
+    "href": "03-analisis-exploratorio.html#interpretación-de-la-tabla-resumen",
     "title": "3  Análisis exploratorio de datos",
-    "section": "3.28 Interpretación",
-    "text": "3.28 Interpretación\nEsta tabla resume algunas diferencias básicas entre los accidentes con víctimas y los accidentes de solo daños.\nLa hora promedio no debe interpretarse de forma aislada, pero puede servir como una primera descripción.\nEn análisis posteriores podríamos comparar distribuciones completas, no solo promedios.",
+    "section": "3.28 Interpretación de la tabla resumen",
+    "text": "3.28 Interpretación de la tabla resumen\nEsta tabla resume algunas diferencias básicas entre los accidentes con víctimas y los accidentes de solo daños.\nLa hora promedio no debe interpretarse de forma aislada, porque la hora del día es una variable circular: después de las 23 horas vuelve la hora 0. Sin embargo, puede servir como una primera descripción general.\nEn análisis posteriores podríamos comparar distribuciones completas, no solo promedios.\nTambién podríamos crear variables derivadas como:\n\nmadrugada,\nmañana,\ntarde,\nnoche.\n\nEste tipo de transformación puede mejorar la interpretación y eventualmente el desempeño de algunos modelos.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Análisis exploratorio de datos</span>"
     ]
@@ -804,7 +804,7 @@
     "href": "03-analisis-exploratorio.html#qué-aprendimos-de-los-datos",
     "title": "3  Análisis exploratorio de datos",
     "section": "3.29 ¿Qué aprendimos de los datos?",
-    "text": "3.29 ¿Qué aprendimos de los datos?\nDespués de este análisis exploratorio podemos resumir algunas ideas:\n\nLa base contiene accidentes clasificados en dos categorías.\nLa variable respuesta puede estar desbalanceada.\nEl mes, la hora y el día de la semana permiten observar patrones temporales.\nEl tipo de accidente puede estar relacionado con la presencia de víctimas.\nLa causa presunta puede ser una variable predictora útil.\nLas gráficas ayudan a detectar relaciones antes de construir modelos.\n\nEste análisis no sustituye al modelado, pero lo orienta.",
+    "text": "3.29 ¿Qué aprendimos de los datos?\nDespués de este análisis exploratorio podemos resumir algunas ideas:\n\nLa base contiene accidentes clasificados en dos categorías.\nLa variable respuesta está desbalanceada.\nEl mes, la hora y el día de la semana permiten observar patrones temporales.\nEl tipo de accidente puede estar relacionado con la presencia de víctimas.\nLa causa presunta puede ser una variable predictora útil.\nLas gráficas ayudan a detectar relaciones antes de construir modelos.\n\nEste análisis no sustituye al modelado, pero lo orienta.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Análisis exploratorio de datos</span>"
     ]

@@ -3,7 +3,7 @@
     "path": "C:/libro-machine-learning-r/04-regresion-logistica.qmd",
     "project_path": "04-regresion-logistica.qmd",
     "type": "quarto_markdown",
-    "hash": "2990617068",
+    "hash": "1645707627",
     "contents": "",
     "dirty": false,
     "created": 1783312156982.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "781,133",
-        "scrollLine": "755"
+        "cursorPosition": "826,133",
+        "scrollLine": "800"
     },
     "folds": "",
-    "lastKnownWriteTime": 1783312246,
+    "lastKnownWriteTime": 1783313524,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1783312246299,
+    "last_content_update": 1783313524764,
     "read_only": false,
     "read_only_alternatives": []
 }

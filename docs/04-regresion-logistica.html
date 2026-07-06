@@ -475,9 +475,13 @@ Si probabilidad &lt;  0.5 → Solo daños</code></pre>
 <span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">DIASEMANA =</span> <span class="fu">as.factor</span>(DIASEMANA),</span>
 <span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">TIPACCID =</span> <span class="fu">as.factor</span>(TIPACCID),</span>
 <span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">CAUSAACCI =</span> <span class="fu">as.factor</span>(CAUSAACCI),</span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">ID_HORA =</span> <span class="fu">as.numeric</span>(ID_HORA)</span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">ID_HORA =</span> <span class="fu">as.numeric</span>(ID_HORA),</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">accidente_con_victimas =</span> <span class="fu">factor</span>(</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>        accidente_con_victimas,</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Con víctimas"</span>, <span class="st">"Solo daños"</span>)</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>Revisamos las primeras filas:</p>
@@ -491,7 +495,7 @@ Si probabilidad &lt;  0.5 → Solo daños</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 7
   accidente_con_victimas MES   ID_HORA DIASEMANA TIPACCID              CAUSAACCI
-  &lt;chr&gt;                  &lt;fct&gt;   &lt;dbl&gt; &lt;fct&gt;     &lt;fct&gt;                 &lt;fct&gt;    
+  &lt;fct&gt;                  &lt;fct&gt;   &lt;dbl&gt; &lt;fct&gt;     &lt;fct&gt;                 &lt;fct&gt;    
 1 Solo daños             01          2 lunes     Colisión con vehícul… Conductor
 2 Solo daños             01          3 lunes     Colisión con objeto … Conductor
 3 Con víctimas           01          4 lunes     Colisión con peatón … Conductor
@@ -501,7 +505,7 @@ Si probabilidad &lt;  0.5 → Solo daños</code></pre>
 # ℹ 1 more variable: victimas_binaria &lt;dbl&gt;</code></pre>
 </div>
 </div>
-<p>Verificamos la distribución de la variable respuesta:</p>
+<p>Verificamos la distribución de la variable respuesta binaria:</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -575,12 +579,20 @@ CAUSAACCI</code></pre>
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"entrenamiento"</span>) <span class="sc">&amp;&amp;</span> <span class="fu">exists</span>(<span class="st">"prueba"</span>)) {</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nrow</span>(entrenamiento)</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nrow</span>(prueba)</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">conjunto =</span> <span class="fu">c</span>(<span class="st">"Entrenamiento"</span>, <span class="st">"Prueba"</span>),</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">registros =</span> <span class="fu">c</span>(<span class="fu">nrow</span>(entrenamiento), <span class="fu">nrow</span>(prueba)),</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">porcentaje =</span> <span class="fu">c</span>(</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> <span class="fu">nrow</span>(entrenamiento) <span class="sc">/</span> <span class="fu">nrow</span>(atus_modelo), <span class="dv">2</span>),</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> <span class="fu">nrow</span>(prueba) <span class="sc">/</span> <span class="fu">nrow</span>(atus_modelo), <span class="dv">2</span>)</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 117188</code></pre>
+<pre><code>       conjunto registros porcentaje
+1 Entrenamiento    273439         70
+2        Prueba    117188         30</code></pre>
 </div>
 </div>
 <p>También revisamos si la proporción de clases se mantiene razonablemente parecida en ambos conjuntos.</p>
@@ -588,14 +600,27 @@ CAUSAACCI</code></pre>
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"entrenamiento"</span>) <span class="sc">&amp;&amp;</span> <span class="fu">exists</span>(<span class="st">"prueba"</span>)) {</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> <span class="fu">prop.table</span>(<span class="fu">table</span>(entrenamiento<span class="sc">$</span>accidente_con_victimas)), <span class="dv">2</span>)</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> <span class="fu">prop.table</span>(<span class="fu">table</span>(prueba<span class="sc">$</span>accidente_con_victimas)), <span class="dv">2</span>)</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  prop_entrenamiento <span class="ot">&lt;-</span> <span class="fu">round</span>(</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    <span class="dv">100</span> <span class="sc">*</span> <span class="fu">prop.table</span>(<span class="fu">table</span>(entrenamiento<span class="sc">$</span>accidente_con_victimas)),</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>    <span class="dv">2</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>  prop_prueba <span class="ot">&lt;-</span> <span class="fu">round</span>(</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>    <span class="dv">100</span> <span class="sc">*</span> <span class="fu">prop.table</span>(<span class="fu">table</span>(prueba<span class="sc">$</span>accidente_con_victimas)),</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>    <span class="dv">2</span></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(</span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">clase =</span> <span class="fu">names</span>(prop_entrenamiento),</span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">entrenamiento =</span> <span class="fu">as.numeric</span>(prop_entrenamiento),</span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">prueba =</span> <span class="fu">as.numeric</span>(prop_prueba)</span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>
-Con víctimas   Solo daños 
-        17.5         82.5 </code></pre>
+<pre><code>         clase entrenamiento prueba
+1 Con víctimas         17.41   17.5
+2   Solo daños         82.59   82.5</code></pre>
 </div>
 </div>
 </section>
@@ -726,6 +751,7 @@ Number of Fisher Scoring iterations: 16</code></pre>
 <p>En esta primera lectura no nos enfocaremos todavía en interpretar todos los coeficientes, porque varias variables son categóricas y generan muchas categorías.</p>
 <p>Lo importante por ahora es entender que el modelo estima una relación entre las variables predictoras y la probabilidad de que el accidente tenga víctimas.</p>
 <p>Más adelante podemos profundizar en la interpretación mediante los <strong>odds ratios</strong>.</p>
+<p>Nota didáctica: si aparece el mensaje “1 not defined because of singularities”, significa que una categoría no pudo estimarse de forma independiente, posiblemente por redundancia o falta de variación suficiente respecto a otras variables. En esta primera aproximación no lo trataremos como un error fatal, pero en un análisis profesional convendría revisar las categorías y simplificar algunas variables.</p>
 </section>
 <section id="predicción-de-probabilidades" class="level2" data-number="4.15">
 <h2 data-number="4.15" class="anchored" data-anchor-id="predicción-de-probabilidades"><span class="header-section-number">4.15</span> Predicción de probabilidades</h2>
@@ -757,7 +783,7 @@ Number of Fisher Scoring iterations: 16</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 3
   accidente_con_victimas victimas_binaria probabilidad_victimas
-  &lt;chr&gt;                             &lt;dbl&gt;                 &lt;dbl&gt;
+  &lt;fct&gt;                             &lt;dbl&gt;                 &lt;dbl&gt;
 1 Solo daños                            0                0.0685
 2 Solo daños                            0                0.116 
 3 Con víctimas                          1                1.000 
@@ -807,7 +833,7 @@ Si probabilidad &lt;  0.5 → Solo daños</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 3
   accidente_con_victimas probabilidad_victimas prediccion_05
-  &lt;chr&gt;                                  &lt;dbl&gt; &lt;fct&gt;        
+  &lt;fct&gt;                                  &lt;dbl&gt; &lt;fct&gt;        
 1 Solo daños                            0.0685 Solo daños   
 2 Solo daños                            0.116  Solo daños   
 3 Con víctimas                          1.000  Con víctimas 
@@ -862,14 +888,30 @@ Real           Con víctimas Solo daños
 <span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>  FP <span class="ot">&lt;-</span> matriz_confusion_05[<span class="st">"Solo daños"</span>, <span class="st">"Con víctimas"</span>]</span>
 <span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>  VN <span class="ot">&lt;-</span> matriz_confusion_05[<span class="st">"Solo daños"</span>, <span class="st">"Solo daños"</span>]</span>
 <span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>  VP</span>
-<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>  FN</span>
-<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a>  FP</span>
-<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a>  VN</span>
-<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(</span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">medida =</span> <span class="fu">c</span>(<span class="st">"VP"</span>, <span class="st">"FN"</span>, <span class="st">"FP"</span>, <span class="st">"VN"</span>),</span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">nombre =</span> <span class="fu">c</span>(</span>
+<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Verdaderos positivos"</span>,</span>
+<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Falsos negativos"</span>,</span>
+<span id="cb50-12"><a href="#cb50-12" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Falsos positivos"</span>,</span>
+<span id="cb50-13"><a href="#cb50-13" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Verdaderos negativos"</span></span>
+<span id="cb50-14"><a href="#cb50-14" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb50-15"><a href="#cb50-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">descripcion =</span> <span class="fu">c</span>(</span>
+<span id="cb50-16"><a href="#cb50-16" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Con víctimas clasificado como Con víctimas"</span>,</span>
+<span id="cb50-17"><a href="#cb50-17" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Con víctimas clasificado como Solo daños"</span>,</span>
+<span id="cb50-18"><a href="#cb50-18" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Solo daños clasificado como Con víctimas"</span>,</span>
+<span id="cb50-19"><a href="#cb50-19" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Solo daños clasificado como Solo daños"</span></span>
+<span id="cb50-20"><a href="#cb50-20" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb50-21"><a href="#cb50-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">valor =</span> <span class="fu">c</span>(VP, FN, FP, VN)</span>
+<span id="cb50-22"><a href="#cb50-22" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb50-23"><a href="#cb50-23" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 95877</code></pre>
+<pre><code>  medida               nombre                                descripcion valor
+1     VP Verdaderos positivos Con víctimas clasificado como Con víctimas  4886
+2     FN     Falsos negativos   Con víctimas clasificado como Solo daños 15618
+3     FP     Falsos positivos   Solo daños clasificado como Con víctimas   807
+4     VN Verdaderos negativos     Solo daños clasificado como Solo daños 95877</code></pre>
 </div>
 </div>
 <p>Donde:</p>
@@ -1041,7 +1083,8 @@ Real           Con víctimas Solo daños
 <pre class="text"><code>Mayor sensibilidad  → más detección de positivos, pero más falsos positivos.
 Mayor especificidad → menos falsos positivos, pero más positivos no detectados.</code></pre>
 <p>La elección del punto de corte depende del problema.</p>
-<p>En un problema de seguridad vial, puede ser preferible detectar más accidentes con víctimas, aunque eso aumente algunos falsos positivos.</p>
+<p>En este ejemplo, el punto de corte 0.5 produce mayor exactitud, pero detecta pocos accidentes con víctimas. En cambio, el punto de corte 0.3 reduce la exactitud global, pero mejora considerablemente la sensibilidad.</p>
+<p>Desde una perspectiva de seguridad vial, podría ser más útil detectar una mayor proporción de accidentes con víctimas, aunque eso implique aceptar más falsos positivos.</p>
 </section>
 <section id="distribución-de-probabilidades-predichas" class="level2" data-number="4.24">
 <h2 data-number="4.24" class="anchored" data-anchor-id="distribución-de-probabilidades-predichas"><span class="header-section-number">4.24</span> Distribución de probabilidades predichas</h2>
@@ -1088,83 +1131,31 @@ Mayor especificidad → menos falsos positivos, pero más positivos no detectado
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"modelo_logistico"</span>)) {</span>
-<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>  odds_ratios <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="fu">coef</span>(modelo_logistico))</span>
-<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>  odds_ratios</span>
-<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>  odds_ratios <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">variable =</span> <span class="fu">names</span>(<span class="fu">coef</span>(modelo_logistico)),</span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">odds_ratio =</span> <span class="fu">exp</span>(<span class="fu">coef</span>(modelo_logistico))</span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb68-7"><a href="#cb68-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(odds_ratios, <span class="dv">15</span>)</span>
+<span id="cb68-8"><a href="#cb68-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>                                  (Intercept) 
-                                 7.309402e+07 
-                                        MES02 
-                                 9.552658e-01 
-                                        MES03 
-                                 9.683213e-01 
-                                        MES04 
-                                 9.971660e-01 
-                                        MES05 
-                                 9.847096e-01 
-                                        MES06 
-                                 9.467188e-01 
-                                        MES07 
-                                 9.265412e-01 
-                                        MES08 
-                                 9.102377e-01 
-                                        MES09 
-                                 9.257885e-01 
-                                        MES10 
-                                 8.571414e-01 
-                                        MES11 
-                                 8.990784e-01 
-                                        MES12 
-                                 8.941439e-01 
-                                      ID_HORA 
-                                 9.989611e-01 
-                              DIASEMANAJueves 
-                                 7.801123e-01 
-                               DIASEMANAlunes 
-                                 8.029666e-01 
-                              DIASEMANAMartes 
-                                 7.662134e-01 
-                           DIASEMANAMiercoles 
-                                 7.427043e-01 
-                              DIASEMANASabado 
-                                 8.644442e-01 
-                             DIASEMANAViernes 
-                                 7.906058e-01 
-                     TIPACCIDCertificado cero 
-                                 4.372826e-16 
-                  TIPACCIDColisión con animal 
-                                 1.012323e-08 
-                TIPACCIDColisión con ciclista 
-                                 2.596545e-08 
-             TIPACCIDColisión con ferrocarril 
-                                 9.090763e-09 
-             TIPACCIDColisión con motocicleta 
-                                 1.532311e-08 
-             TIPACCIDColisión con objeto fijo 
-                                 2.978553e-09 
-TIPACCIDColisión con peatón (atropellamiento) 
-                                 9.852867e-01 
-      TIPACCIDColisión con vehículo automotor 
-                                 1.665497e-09 
-                             TIPACCIDIncendio 
-                                 3.443225e-10 
-                                 TIPACCIDOtro 
-                                 3.864937e-09 
-                    TIPACCIDSalida del camino 
-                                 6.223066e-09 
-                            TIPACCIDVolcadura 
-                                 2.046753e-08 
-                           CAUSAACCIConductor 
-                                 7.536524e-01 
-                  CAUSAACCIFalla del vehículo 
-                                 5.784403e-01 
-           CAUSAACCIMala condición del camino 
-                                 9.071282e-01 
-                                CAUSAACCIOtra 
-                                 9.104479e-01 
-                   CAUSAACCIPeatón o pasajero 
-                                           NA </code></pre>
+<pre><code>                       variable   odds_ratio
+(Intercept)         (Intercept) 7.309402e+07
+MES02                     MES02 9.552658e-01
+MES03                     MES03 9.683213e-01
+MES04                     MES04 9.971660e-01
+MES05                     MES05 9.847096e-01
+MES06                     MES06 9.467188e-01
+MES07                     MES07 9.265412e-01
+MES08                     MES08 9.102377e-01
+MES09                     MES09 9.257885e-01
+MES10                     MES10 8.571414e-01
+MES11                     MES11 8.990784e-01
+MES12                     MES12 8.941439e-01
+ID_HORA                 ID_HORA 9.989611e-01
+DIASEMANAJueves DIASEMANAJueves 7.801123e-01
+DIASEMANAlunes   DIASEMANAlunes 8.029666e-01</code></pre>
 </div>
 </div>
 <p>Estos valores se conocen como <strong>odds ratios</strong> o razones de momios.</p>
@@ -1176,6 +1167,7 @@ TIPACCIDColisión con peatón (atropellamiento)
 <p>Cuando hay variables categóricas, R elige automáticamente una categoría de referencia.</p>
 <p>Los coeficientes de las demás categorías se interpretan en comparación con esa categoría base.</p>
 <p>Por eso, interpretar odds ratios requiere saber cuál es la categoría de referencia.</p>
+<p>En modelos con muchas variables categóricas, los odds ratios pueden ser numerosos y algunos pueden tomar valores extremos. Por eso, en esta primera lectura los usamos solo como introducción conceptual.</p>
 <p>En esta primera aproximación, nuestro objetivo principal es entender el flujo completo:</p>
 <pre class="text"><code>datos → modelo → probabilidades → clases → matriz de confusión → métricas</code></pre>
 <p>En capítulos posteriores podremos profundizar más en interpretación estadística.</p>
@@ -1946,524 +1938,569 @@ TIPACCIDColisión con peatón (atropellamiento)
 <span id="cb71-276"><a href="#cb71-276" aria-hidden="true" tabindex="-1"></a>      <span class="at">DIASEMANA =</span> <span class="fu">as.factor</span>(DIASEMANA),</span>
 <span id="cb71-277"><a href="#cb71-277" aria-hidden="true" tabindex="-1"></a>      <span class="at">TIPACCID =</span> <span class="fu">as.factor</span>(TIPACCID),</span>
 <span id="cb71-278"><a href="#cb71-278" aria-hidden="true" tabindex="-1"></a>      <span class="at">CAUSAACCI =</span> <span class="fu">as.factor</span>(CAUSAACCI),</span>
-<span id="cb71-279"><a href="#cb71-279" aria-hidden="true" tabindex="-1"></a>      <span class="at">ID_HORA =</span> <span class="fu">as.numeric</span>(ID_HORA)</span>
-<span id="cb71-280"><a href="#cb71-280" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb71-281"><a href="#cb71-281" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb71-282"><a href="#cb71-282" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb71-283"><a href="#cb71-283" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-284"><a href="#cb71-284" aria-hidden="true" tabindex="-1"></a>Revisamos las primeras filas:</span>
-<span id="cb71-285"><a href="#cb71-285" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-288"><a href="#cb71-288" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb71-289"><a href="#cb71-289" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"atus_modelo"</span>)) {</span>
-<span id="cb71-290"><a href="#cb71-290" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(atus_modelo)</span>
-<span id="cb71-291"><a href="#cb71-291" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb71-292"><a href="#cb71-292" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb71-293"><a href="#cb71-293" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-294"><a href="#cb71-294" aria-hidden="true" tabindex="-1"></a>Verificamos la distribución de la variable respuesta:</span>
-<span id="cb71-295"><a href="#cb71-295" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-298"><a href="#cb71-298" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb71-299"><a href="#cb71-299" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"atus_modelo"</span>)) {</span>
-<span id="cb71-300"><a href="#cb71-300" aria-hidden="true" tabindex="-1"></a>  <span class="fu">table</span>(atus_modelo<span class="sc">$</span>victimas_binaria)</span>
-<span id="cb71-301"><a href="#cb71-301" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb71-302"><a href="#cb71-302" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb71-303"><a href="#cb71-303" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-304"><a href="#cb71-304" aria-hidden="true" tabindex="-1"></a>También revisamos la variable original:</span>
-<span id="cb71-305"><a href="#cb71-305" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-308"><a href="#cb71-308" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb71-309"><a href="#cb71-309" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"atus_modelo"</span>)) {</span>
-<span id="cb71-310"><a href="#cb71-310" aria-hidden="true" tabindex="-1"></a>  <span class="fu">table</span>(atus_modelo<span class="sc">$</span>accidente_con_victimas)</span>
-<span id="cb71-311"><a href="#cb71-311" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb71-312"><a href="#cb71-312" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb71-313"><a href="#cb71-313" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-314"><a href="#cb71-314" aria-hidden="true" tabindex="-1"></a><span class="fu">## Selección inicial de variables predictoras</span></span>
-<span id="cb71-315"><a href="#cb71-315" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-316"><a href="#cb71-316" aria-hidden="true" tabindex="-1"></a>Para nuestro primer modelo usaremos las siguientes variables:</span>
+<span id="cb71-279"><a href="#cb71-279" aria-hidden="true" tabindex="-1"></a>      <span class="at">ID_HORA =</span> <span class="fu">as.numeric</span>(ID_HORA),</span>
+<span id="cb71-280"><a href="#cb71-280" aria-hidden="true" tabindex="-1"></a>      <span class="at">accidente_con_victimas =</span> <span class="fu">factor</span>(</span>
+<span id="cb71-281"><a href="#cb71-281" aria-hidden="true" tabindex="-1"></a>        accidente_con_victimas,</span>
+<span id="cb71-282"><a href="#cb71-282" aria-hidden="true" tabindex="-1"></a>        <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Con víctimas"</span>, <span class="st">"Solo daños"</span>)</span>
+<span id="cb71-283"><a href="#cb71-283" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb71-284"><a href="#cb71-284" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb71-285"><a href="#cb71-285" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb71-286"><a href="#cb71-286" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb71-287"><a href="#cb71-287" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-288"><a href="#cb71-288" aria-hidden="true" tabindex="-1"></a>Revisamos las primeras filas:</span>
+<span id="cb71-289"><a href="#cb71-289" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-292"><a href="#cb71-292" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb71-293"><a href="#cb71-293" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"atus_modelo"</span>)) {</span>
+<span id="cb71-294"><a href="#cb71-294" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(atus_modelo)</span>
+<span id="cb71-295"><a href="#cb71-295" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb71-296"><a href="#cb71-296" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb71-297"><a href="#cb71-297" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-298"><a href="#cb71-298" aria-hidden="true" tabindex="-1"></a>Verificamos la distribución de la variable respuesta binaria:</span>
+<span id="cb71-299"><a href="#cb71-299" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-302"><a href="#cb71-302" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb71-303"><a href="#cb71-303" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"atus_modelo"</span>)) {</span>
+<span id="cb71-304"><a href="#cb71-304" aria-hidden="true" tabindex="-1"></a>  <span class="fu">table</span>(atus_modelo<span class="sc">$</span>victimas_binaria)</span>
+<span id="cb71-305"><a href="#cb71-305" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb71-306"><a href="#cb71-306" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb71-307"><a href="#cb71-307" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-308"><a href="#cb71-308" aria-hidden="true" tabindex="-1"></a>También revisamos la variable original:</span>
+<span id="cb71-309"><a href="#cb71-309" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-312"><a href="#cb71-312" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb71-313"><a href="#cb71-313" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"atus_modelo"</span>)) {</span>
+<span id="cb71-314"><a href="#cb71-314" aria-hidden="true" tabindex="-1"></a>  <span class="fu">table</span>(atus_modelo<span class="sc">$</span>accidente_con_victimas)</span>
+<span id="cb71-315"><a href="#cb71-315" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb71-316"><a href="#cb71-316" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb71-317"><a href="#cb71-317" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-318"><a href="#cb71-318" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
-<span id="cb71-319"><a href="#cb71-319" aria-hidden="true" tabindex="-1"></a><span class="in">MES</span></span>
-<span id="cb71-320"><a href="#cb71-320" aria-hidden="true" tabindex="-1"></a><span class="in">ID_HORA</span></span>
-<span id="cb71-321"><a href="#cb71-321" aria-hidden="true" tabindex="-1"></a><span class="in">DIASEMANA</span></span>
-<span id="cb71-322"><a href="#cb71-322" aria-hidden="true" tabindex="-1"></a><span class="in">TIPACCID</span></span>
-<span id="cb71-323"><a href="#cb71-323" aria-hidden="true" tabindex="-1"></a><span class="in">CAUSAACCI</span></span>
-<span id="cb71-324"><a href="#cb71-324" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb71-325"><a href="#cb71-325" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-326"><a href="#cb71-326" aria-hidden="true" tabindex="-1"></a>La fórmula del modelo será:</span>
-<span id="cb71-327"><a href="#cb71-327" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-328"><a href="#cb71-328" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
-<span id="cb71-329"><a href="#cb71-329" aria-hidden="true" tabindex="-1"></a><span class="in">victimas_binaria ~ MES + ID_HORA + DIASEMANA + TIPACCID + CAUSAACCI</span></span>
-<span id="cb71-330"><a href="#cb71-330" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb71-318"><a href="#cb71-318" aria-hidden="true" tabindex="-1"></a><span class="fu">## Selección inicial de variables predictoras</span></span>
+<span id="cb71-319"><a href="#cb71-319" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-320"><a href="#cb71-320" aria-hidden="true" tabindex="-1"></a>Para nuestro primer modelo usaremos las siguientes variables:</span>
+<span id="cb71-321"><a href="#cb71-321" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-322"><a href="#cb71-322" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
+<span id="cb71-323"><a href="#cb71-323" aria-hidden="true" tabindex="-1"></a><span class="in">MES</span></span>
+<span id="cb71-324"><a href="#cb71-324" aria-hidden="true" tabindex="-1"></a><span class="in">ID_HORA</span></span>
+<span id="cb71-325"><a href="#cb71-325" aria-hidden="true" tabindex="-1"></a><span class="in">DIASEMANA</span></span>
+<span id="cb71-326"><a href="#cb71-326" aria-hidden="true" tabindex="-1"></a><span class="in">TIPACCID</span></span>
+<span id="cb71-327"><a href="#cb71-327" aria-hidden="true" tabindex="-1"></a><span class="in">CAUSAACCI</span></span>
+<span id="cb71-328"><a href="#cb71-328" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb71-329"><a href="#cb71-329" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-330"><a href="#cb71-330" aria-hidden="true" tabindex="-1"></a>La fórmula del modelo será:</span>
 <span id="cb71-331"><a href="#cb71-331" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-332"><a href="#cb71-332" aria-hidden="true" tabindex="-1"></a>Esto significa que intentaremos estimar la probabilidad de que un accidente tenga víctimas usando información temporal y descriptiva del accidente.</span>
-<span id="cb71-333"><a href="#cb71-333" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-334"><a href="#cb71-334" aria-hidden="true" tabindex="-1"></a><span class="fu">## División en entrenamiento y prueba</span></span>
+<span id="cb71-332"><a href="#cb71-332" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
+<span id="cb71-333"><a href="#cb71-333" aria-hidden="true" tabindex="-1"></a><span class="in">victimas_binaria ~ MES + ID_HORA + DIASEMANA + TIPACCID + CAUSAACCI</span></span>
+<span id="cb71-334"><a href="#cb71-334" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb71-335"><a href="#cb71-335" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-336"><a href="#cb71-336" aria-hidden="true" tabindex="-1"></a>Antes de entrenar el modelo, dividimos los datos en dos partes:</span>
+<span id="cb71-336"><a href="#cb71-336" aria-hidden="true" tabindex="-1"></a>Esto significa que intentaremos estimar la probabilidad de que un accidente tenga víctimas usando información temporal y descriptiva del accidente.</span>
 <span id="cb71-337"><a href="#cb71-337" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-338"><a href="#cb71-338" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>conjunto de entrenamiento,</span>
-<span id="cb71-339"><a href="#cb71-339" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>conjunto de prueba.</span>
-<span id="cb71-340"><a href="#cb71-340" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-341"><a href="#cb71-341" aria-hidden="true" tabindex="-1"></a>El conjunto de entrenamiento se usa para ajustar el modelo.</span>
-<span id="cb71-342"><a href="#cb71-342" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-343"><a href="#cb71-343" aria-hidden="true" tabindex="-1"></a>El conjunto de prueba se usa para evaluar el desempeño del modelo con datos que no se usaron para entrenarlo.</span>
+<span id="cb71-338"><a href="#cb71-338" aria-hidden="true" tabindex="-1"></a><span class="fu">## División en entrenamiento y prueba</span></span>
+<span id="cb71-339"><a href="#cb71-339" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-340"><a href="#cb71-340" aria-hidden="true" tabindex="-1"></a>Antes de entrenar el modelo, dividimos los datos en dos partes:</span>
+<span id="cb71-341"><a href="#cb71-341" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-342"><a href="#cb71-342" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>conjunto de entrenamiento,</span>
+<span id="cb71-343"><a href="#cb71-343" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>conjunto de prueba.</span>
 <span id="cb71-344"><a href="#cb71-344" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-345"><a href="#cb71-345" aria-hidden="true" tabindex="-1"></a>Usaremos 70% de los datos para entrenamiento y 30% para prueba.</span>
+<span id="cb71-345"><a href="#cb71-345" aria-hidden="true" tabindex="-1"></a>El conjunto de entrenamiento se usa para ajustar el modelo.</span>
 <span id="cb71-346"><a href="#cb71-346" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-349"><a href="#cb71-349" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb71-350"><a href="#cb71-350" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"atus_modelo"</span>)) {</span>
-<span id="cb71-351"><a href="#cb71-351" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb71-352"><a href="#cb71-352" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb71-353"><a href="#cb71-353" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(atus_modelo)</span>
-<span id="cb71-354"><a href="#cb71-354" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb71-355"><a href="#cb71-355" aria-hidden="true" tabindex="-1"></a>  indices_entrenamiento <span class="ot">&lt;-</span> <span class="fu">sample</span>(</span>
-<span id="cb71-356"><a href="#cb71-356" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span><span class="sc">:</span>n,</span>
-<span id="cb71-357"><a href="#cb71-357" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="fu">round</span>(<span class="fl">0.7</span> <span class="sc">*</span> n)</span>
-<span id="cb71-358"><a href="#cb71-358" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb71-359"><a href="#cb71-359" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb71-360"><a href="#cb71-360" aria-hidden="true" tabindex="-1"></a>  entrenamiento <span class="ot">&lt;-</span> atus_modelo[indices_entrenamiento, ]</span>
-<span id="cb71-361"><a href="#cb71-361" aria-hidden="true" tabindex="-1"></a>  prueba <span class="ot">&lt;-</span> atus_modelo[<span class="sc">-</span>indices_entrenamiento, ]</span>
-<span id="cb71-362"><a href="#cb71-362" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb71-363"><a href="#cb71-363" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb71-364"><a href="#cb71-364" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-365"><a href="#cb71-365" aria-hidden="true" tabindex="-1"></a>Revisamos el tamaño de cada conjunto:</span>
-<span id="cb71-366"><a href="#cb71-366" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-369"><a href="#cb71-369" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb71-370"><a href="#cb71-370" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"entrenamiento"</span>) <span class="sc">&amp;&amp;</span> <span class="fu">exists</span>(<span class="st">"prueba"</span>)) {</span>
-<span id="cb71-371"><a href="#cb71-371" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nrow</span>(entrenamiento)</span>
-<span id="cb71-372"><a href="#cb71-372" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nrow</span>(prueba)</span>
-<span id="cb71-373"><a href="#cb71-373" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb71-374"><a href="#cb71-374" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb71-375"><a href="#cb71-375" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-376"><a href="#cb71-376" aria-hidden="true" tabindex="-1"></a>También revisamos si la proporción de clases se mantiene razonablemente parecida en ambos conjuntos.</span>
-<span id="cb71-377"><a href="#cb71-377" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-380"><a href="#cb71-380" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb71-381"><a href="#cb71-381" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"entrenamiento"</span>) <span class="sc">&amp;&amp;</span> <span class="fu">exists</span>(<span class="st">"prueba"</span>)) {</span>
-<span id="cb71-382"><a href="#cb71-382" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> <span class="fu">prop.table</span>(<span class="fu">table</span>(entrenamiento<span class="sc">$</span>accidente_con_victimas)), <span class="dv">2</span>)</span>
-<span id="cb71-383"><a href="#cb71-383" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> <span class="fu">prop.table</span>(<span class="fu">table</span>(prueba<span class="sc">$</span>accidente_con_victimas)), <span class="dv">2</span>)</span>
-<span id="cb71-384"><a href="#cb71-384" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb71-385"><a href="#cb71-385" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb71-386"><a href="#cb71-386" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-387"><a href="#cb71-387" aria-hidden="true" tabindex="-1"></a><span class="fu">## Ajustar el modelo de regresión logística</span></span>
-<span id="cb71-388"><a href="#cb71-388" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-389"><a href="#cb71-389" aria-hidden="true" tabindex="-1"></a>En R, la regresión logística se ajusta con la función <span class="in">`glm()`</span>.</span>
-<span id="cb71-390"><a href="#cb71-390" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-391"><a href="#cb71-391" aria-hidden="true" tabindex="-1"></a>La opción importante es:</span>
-<span id="cb71-392"><a href="#cb71-392" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-393"><a href="#cb71-393" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
-<span id="cb71-394"><a href="#cb71-394" aria-hidden="true" tabindex="-1"></a><span class="in">family = binomial</span></span>
-<span id="cb71-395"><a href="#cb71-395" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb71-396"><a href="#cb71-396" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-397"><a href="#cb71-397" aria-hidden="true" tabindex="-1"></a>Esto le indica a R que queremos ajustar un modelo logístico para una respuesta binaria.</span>
-<span id="cb71-398"><a href="#cb71-398" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-401"><a href="#cb71-401" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb71-402"><a href="#cb71-402" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"entrenamiento"</span>)) {</span>
-<span id="cb71-403"><a href="#cb71-403" aria-hidden="true" tabindex="-1"></a>  modelo_logistico <span class="ot">&lt;-</span> <span class="fu">glm</span>(</span>
-<span id="cb71-404"><a href="#cb71-404" aria-hidden="true" tabindex="-1"></a>    victimas_binaria <span class="sc">~</span> MES <span class="sc">+</span> ID_HORA <span class="sc">+</span> DIASEMANA <span class="sc">+</span> TIPACCID <span class="sc">+</span> CAUSAACCI,</span>
-<span id="cb71-405"><a href="#cb71-405" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> entrenamiento,</span>
-<span id="cb71-406"><a href="#cb71-406" aria-hidden="true" tabindex="-1"></a>    <span class="at">family =</span> binomial</span>
-<span id="cb71-407"><a href="#cb71-407" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb71-408"><a href="#cb71-408" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb71-409"><a href="#cb71-409" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb71-410"><a href="#cb71-410" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-411"><a href="#cb71-411" aria-hidden="true" tabindex="-1"></a>Revisamos el resumen del modelo:</span>
-<span id="cb71-412"><a href="#cb71-412" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-415"><a href="#cb71-415" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb71-416"><a href="#cb71-416" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"modelo_logistico"</span>)) {</span>
-<span id="cb71-417"><a href="#cb71-417" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>(modelo_logistico)</span>
-<span id="cb71-418"><a href="#cb71-418" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb71-419"><a href="#cb71-419" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb71-420"><a href="#cb71-420" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-421"><a href="#cb71-421" aria-hidden="true" tabindex="-1"></a><span class="fu">## Interpretación inicial del resumen</span></span>
-<span id="cb71-422"><a href="#cb71-422" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-423"><a href="#cb71-423" aria-hidden="true" tabindex="-1"></a>El resumen del modelo muestra los coeficientes estimados.</span>
-<span id="cb71-424"><a href="#cb71-424" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-425"><a href="#cb71-425" aria-hidden="true" tabindex="-1"></a>Cada coeficiente indica cómo cambia el logaritmo de las razones de momios, conocido como **log-odds**, cuando cambia una variable predictora.</span>
-<span id="cb71-426"><a href="#cb71-426" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-427"><a href="#cb71-427" aria-hidden="true" tabindex="-1"></a>En esta primera lectura no nos enfocaremos todavía en interpretar todos los coeficientes, porque varias variables son categóricas y generan muchas categorías.</span>
-<span id="cb71-428"><a href="#cb71-428" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-429"><a href="#cb71-429" aria-hidden="true" tabindex="-1"></a>Lo importante por ahora es entender que el modelo estima una relación entre las variables predictoras y la probabilidad de que el accidente tenga víctimas.</span>
-<span id="cb71-430"><a href="#cb71-430" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-431"><a href="#cb71-431" aria-hidden="true" tabindex="-1"></a>Más adelante podemos profundizar en la interpretación mediante los **odds ratios**.</span>
-<span id="cb71-432"><a href="#cb71-432" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-433"><a href="#cb71-433" aria-hidden="true" tabindex="-1"></a><span class="fu">## Predicción de probabilidades</span></span>
-<span id="cb71-434"><a href="#cb71-434" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-435"><a href="#cb71-435" aria-hidden="true" tabindex="-1"></a>Ahora usaremos el modelo para predecir sobre el conjunto de prueba.</span>
-<span id="cb71-436"><a href="#cb71-436" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-437"><a href="#cb71-437" aria-hidden="true" tabindex="-1"></a>Primero obtenemos probabilidades:</span>
-<span id="cb71-438"><a href="#cb71-438" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-441"><a href="#cb71-441" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb71-442"><a href="#cb71-442" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"modelo_logistico"</span>) <span class="sc">&amp;&amp;</span> <span class="fu">exists</span>(<span class="st">"prueba"</span>)) {</span>
-<span id="cb71-443"><a href="#cb71-443" aria-hidden="true" tabindex="-1"></a>  prueba<span class="sc">$</span>probabilidad_victimas <span class="ot">&lt;-</span> <span class="fu">predict</span>(</span>
-<span id="cb71-444"><a href="#cb71-444" aria-hidden="true" tabindex="-1"></a>    modelo_logistico,</span>
-<span id="cb71-445"><a href="#cb71-445" aria-hidden="true" tabindex="-1"></a>    <span class="at">newdata =</span> prueba,</span>
-<span id="cb71-446"><a href="#cb71-446" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">"response"</span></span>
-<span id="cb71-447"><a href="#cb71-447" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb71-448"><a href="#cb71-448" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb71-449"><a href="#cb71-449" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb71-450"><a href="#cb71-450" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-451"><a href="#cb71-451" aria-hidden="true" tabindex="-1"></a>Revisamos algunas predicciones:</span>
-<span id="cb71-452"><a href="#cb71-452" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-455"><a href="#cb71-455" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb71-456"><a href="#cb71-456" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"prueba"</span>)) {</span>
-<span id="cb71-457"><a href="#cb71-457" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(</span>
-<span id="cb71-458"><a href="#cb71-458" aria-hidden="true" tabindex="-1"></a>    prueba <span class="sc">|&gt;</span></span>
-<span id="cb71-459"><a href="#cb71-459" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(accidente_con_victimas, victimas_binaria, probabilidad_victimas)</span>
-<span id="cb71-460"><a href="#cb71-460" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb71-461"><a href="#cb71-461" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb71-462"><a href="#cb71-462" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb71-347"><a href="#cb71-347" aria-hidden="true" tabindex="-1"></a>El conjunto de prueba se usa para evaluar el desempeño del modelo con datos que no se usaron para entrenarlo.</span>
+<span id="cb71-348"><a href="#cb71-348" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-349"><a href="#cb71-349" aria-hidden="true" tabindex="-1"></a>Usaremos 70% de los datos para entrenamiento y 30% para prueba.</span>
+<span id="cb71-350"><a href="#cb71-350" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-353"><a href="#cb71-353" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb71-354"><a href="#cb71-354" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"atus_modelo"</span>)) {</span>
+<span id="cb71-355"><a href="#cb71-355" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb71-356"><a href="#cb71-356" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb71-357"><a href="#cb71-357" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(atus_modelo)</span>
+<span id="cb71-358"><a href="#cb71-358" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb71-359"><a href="#cb71-359" aria-hidden="true" tabindex="-1"></a>  indices_entrenamiento <span class="ot">&lt;-</span> <span class="fu">sample</span>(</span>
+<span id="cb71-360"><a href="#cb71-360" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span><span class="sc">:</span>n,</span>
+<span id="cb71-361"><a href="#cb71-361" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="fu">round</span>(<span class="fl">0.7</span> <span class="sc">*</span> n)</span>
+<span id="cb71-362"><a href="#cb71-362" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb71-363"><a href="#cb71-363" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb71-364"><a href="#cb71-364" aria-hidden="true" tabindex="-1"></a>  entrenamiento <span class="ot">&lt;-</span> atus_modelo[indices_entrenamiento, ]</span>
+<span id="cb71-365"><a href="#cb71-365" aria-hidden="true" tabindex="-1"></a>  prueba <span class="ot">&lt;-</span> atus_modelo[<span class="sc">-</span>indices_entrenamiento, ]</span>
+<span id="cb71-366"><a href="#cb71-366" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb71-367"><a href="#cb71-367" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb71-368"><a href="#cb71-368" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-369"><a href="#cb71-369" aria-hidden="true" tabindex="-1"></a>Revisamos el tamaño de cada conjunto:</span>
+<span id="cb71-370"><a href="#cb71-370" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-373"><a href="#cb71-373" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb71-374"><a href="#cb71-374" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"entrenamiento"</span>) <span class="sc">&amp;&amp;</span> <span class="fu">exists</span>(<span class="st">"prueba"</span>)) {</span>
+<span id="cb71-375"><a href="#cb71-375" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(</span>
+<span id="cb71-376"><a href="#cb71-376" aria-hidden="true" tabindex="-1"></a>    <span class="at">conjunto =</span> <span class="fu">c</span>(<span class="st">"Entrenamiento"</span>, <span class="st">"Prueba"</span>),</span>
+<span id="cb71-377"><a href="#cb71-377" aria-hidden="true" tabindex="-1"></a>    <span class="at">registros =</span> <span class="fu">c</span>(<span class="fu">nrow</span>(entrenamiento), <span class="fu">nrow</span>(prueba)),</span>
+<span id="cb71-378"><a href="#cb71-378" aria-hidden="true" tabindex="-1"></a>    <span class="at">porcentaje =</span> <span class="fu">c</span>(</span>
+<span id="cb71-379"><a href="#cb71-379" aria-hidden="true" tabindex="-1"></a>      <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> <span class="fu">nrow</span>(entrenamiento) <span class="sc">/</span> <span class="fu">nrow</span>(atus_modelo), <span class="dv">2</span>),</span>
+<span id="cb71-380"><a href="#cb71-380" aria-hidden="true" tabindex="-1"></a>      <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> <span class="fu">nrow</span>(prueba) <span class="sc">/</span> <span class="fu">nrow</span>(atus_modelo), <span class="dv">2</span>)</span>
+<span id="cb71-381"><a href="#cb71-381" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb71-382"><a href="#cb71-382" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb71-383"><a href="#cb71-383" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb71-384"><a href="#cb71-384" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb71-385"><a href="#cb71-385" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-386"><a href="#cb71-386" aria-hidden="true" tabindex="-1"></a>También revisamos si la proporción de clases se mantiene razonablemente parecida en ambos conjuntos.</span>
+<span id="cb71-387"><a href="#cb71-387" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-390"><a href="#cb71-390" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb71-391"><a href="#cb71-391" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"entrenamiento"</span>) <span class="sc">&amp;&amp;</span> <span class="fu">exists</span>(<span class="st">"prueba"</span>)) {</span>
+<span id="cb71-392"><a href="#cb71-392" aria-hidden="true" tabindex="-1"></a>  prop_entrenamiento <span class="ot">&lt;-</span> <span class="fu">round</span>(</span>
+<span id="cb71-393"><a href="#cb71-393" aria-hidden="true" tabindex="-1"></a>    <span class="dv">100</span> <span class="sc">*</span> <span class="fu">prop.table</span>(<span class="fu">table</span>(entrenamiento<span class="sc">$</span>accidente_con_victimas)),</span>
+<span id="cb71-394"><a href="#cb71-394" aria-hidden="true" tabindex="-1"></a>    <span class="dv">2</span></span>
+<span id="cb71-395"><a href="#cb71-395" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb71-396"><a href="#cb71-396" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb71-397"><a href="#cb71-397" aria-hidden="true" tabindex="-1"></a>  prop_prueba <span class="ot">&lt;-</span> <span class="fu">round</span>(</span>
+<span id="cb71-398"><a href="#cb71-398" aria-hidden="true" tabindex="-1"></a>    <span class="dv">100</span> <span class="sc">*</span> <span class="fu">prop.table</span>(<span class="fu">table</span>(prueba<span class="sc">$</span>accidente_con_victimas)),</span>
+<span id="cb71-399"><a href="#cb71-399" aria-hidden="true" tabindex="-1"></a>    <span class="dv">2</span></span>
+<span id="cb71-400"><a href="#cb71-400" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb71-401"><a href="#cb71-401" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb71-402"><a href="#cb71-402" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(</span>
+<span id="cb71-403"><a href="#cb71-403" aria-hidden="true" tabindex="-1"></a>    <span class="at">clase =</span> <span class="fu">names</span>(prop_entrenamiento),</span>
+<span id="cb71-404"><a href="#cb71-404" aria-hidden="true" tabindex="-1"></a>    <span class="at">entrenamiento =</span> <span class="fu">as.numeric</span>(prop_entrenamiento),</span>
+<span id="cb71-405"><a href="#cb71-405" aria-hidden="true" tabindex="-1"></a>    <span class="at">prueba =</span> <span class="fu">as.numeric</span>(prop_prueba)</span>
+<span id="cb71-406"><a href="#cb71-406" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb71-407"><a href="#cb71-407" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb71-408"><a href="#cb71-408" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb71-409"><a href="#cb71-409" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-410"><a href="#cb71-410" aria-hidden="true" tabindex="-1"></a><span class="fu">## Ajustar el modelo de regresión logística</span></span>
+<span id="cb71-411"><a href="#cb71-411" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-412"><a href="#cb71-412" aria-hidden="true" tabindex="-1"></a>En R, la regresión logística se ajusta con la función <span class="in">`glm()`</span>.</span>
+<span id="cb71-413"><a href="#cb71-413" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-414"><a href="#cb71-414" aria-hidden="true" tabindex="-1"></a>La opción importante es:</span>
+<span id="cb71-415"><a href="#cb71-415" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-416"><a href="#cb71-416" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
+<span id="cb71-417"><a href="#cb71-417" aria-hidden="true" tabindex="-1"></a><span class="in">family = binomial</span></span>
+<span id="cb71-418"><a href="#cb71-418" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb71-419"><a href="#cb71-419" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-420"><a href="#cb71-420" aria-hidden="true" tabindex="-1"></a>Esto le indica a R que queremos ajustar un modelo logístico para una respuesta binaria.</span>
+<span id="cb71-421"><a href="#cb71-421" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-424"><a href="#cb71-424" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb71-425"><a href="#cb71-425" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"entrenamiento"</span>)) {</span>
+<span id="cb71-426"><a href="#cb71-426" aria-hidden="true" tabindex="-1"></a>  modelo_logistico <span class="ot">&lt;-</span> <span class="fu">glm</span>(</span>
+<span id="cb71-427"><a href="#cb71-427" aria-hidden="true" tabindex="-1"></a>    victimas_binaria <span class="sc">~</span> MES <span class="sc">+</span> ID_HORA <span class="sc">+</span> DIASEMANA <span class="sc">+</span> TIPACCID <span class="sc">+</span> CAUSAACCI,</span>
+<span id="cb71-428"><a href="#cb71-428" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> entrenamiento,</span>
+<span id="cb71-429"><a href="#cb71-429" aria-hidden="true" tabindex="-1"></a>    <span class="at">family =</span> binomial</span>
+<span id="cb71-430"><a href="#cb71-430" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb71-431"><a href="#cb71-431" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb71-432"><a href="#cb71-432" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb71-433"><a href="#cb71-433" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-434"><a href="#cb71-434" aria-hidden="true" tabindex="-1"></a>Revisamos el resumen del modelo:</span>
+<span id="cb71-435"><a href="#cb71-435" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-438"><a href="#cb71-438" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb71-439"><a href="#cb71-439" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"modelo_logistico"</span>)) {</span>
+<span id="cb71-440"><a href="#cb71-440" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>(modelo_logistico)</span>
+<span id="cb71-441"><a href="#cb71-441" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb71-442"><a href="#cb71-442" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb71-443"><a href="#cb71-443" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-444"><a href="#cb71-444" aria-hidden="true" tabindex="-1"></a><span class="fu">## Interpretación inicial del resumen</span></span>
+<span id="cb71-445"><a href="#cb71-445" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-446"><a href="#cb71-446" aria-hidden="true" tabindex="-1"></a>El resumen del modelo muestra los coeficientes estimados.</span>
+<span id="cb71-447"><a href="#cb71-447" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-448"><a href="#cb71-448" aria-hidden="true" tabindex="-1"></a>Cada coeficiente indica cómo cambia el logaritmo de las razones de momios, conocido como **log-odds**, cuando cambia una variable predictora.</span>
+<span id="cb71-449"><a href="#cb71-449" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-450"><a href="#cb71-450" aria-hidden="true" tabindex="-1"></a>En esta primera lectura no nos enfocaremos todavía en interpretar todos los coeficientes, porque varias variables son categóricas y generan muchas categorías.</span>
+<span id="cb71-451"><a href="#cb71-451" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-452"><a href="#cb71-452" aria-hidden="true" tabindex="-1"></a>Lo importante por ahora es entender que el modelo estima una relación entre las variables predictoras y la probabilidad de que el accidente tenga víctimas.</span>
+<span id="cb71-453"><a href="#cb71-453" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-454"><a href="#cb71-454" aria-hidden="true" tabindex="-1"></a>Más adelante podemos profundizar en la interpretación mediante los **odds ratios**.</span>
+<span id="cb71-455"><a href="#cb71-455" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-456"><a href="#cb71-456" aria-hidden="true" tabindex="-1"></a>Nota didáctica: si aparece el mensaje “1 not defined because of singularities”, significa que una categoría no pudo estimarse de forma independiente, posiblemente por redundancia o falta de variación suficiente respecto a otras variables. En esta primera aproximación no lo trataremos como un error fatal, pero en un análisis profesional convendría revisar las categorías y simplificar algunas variables.</span>
+<span id="cb71-457"><a href="#cb71-457" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-458"><a href="#cb71-458" aria-hidden="true" tabindex="-1"></a><span class="fu">## Predicción de probabilidades</span></span>
+<span id="cb71-459"><a href="#cb71-459" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-460"><a href="#cb71-460" aria-hidden="true" tabindex="-1"></a>Ahora usaremos el modelo para predecir sobre el conjunto de prueba.</span>
+<span id="cb71-461"><a href="#cb71-461" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-462"><a href="#cb71-462" aria-hidden="true" tabindex="-1"></a>Primero obtenemos probabilidades:</span>
 <span id="cb71-463"><a href="#cb71-463" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-464"><a href="#cb71-464" aria-hidden="true" tabindex="-1"></a>La columna <span class="in">`probabilidad_victimas`</span> indica la probabilidad estimada de que el accidente tenga víctimas.</span>
-<span id="cb71-465"><a href="#cb71-465" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-466"><a href="#cb71-466" aria-hidden="true" tabindex="-1"></a><span class="fu">## De probabilidades a clases</span></span>
-<span id="cb71-467"><a href="#cb71-467" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-468"><a href="#cb71-468" aria-hidden="true" tabindex="-1"></a>Para convertir probabilidades en clases, usamos un punto de corte.</span>
-<span id="cb71-469"><a href="#cb71-469" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-470"><a href="#cb71-470" aria-hidden="true" tabindex="-1"></a>Comenzaremos con el punto de corte clásico:</span>
-<span id="cb71-471"><a href="#cb71-471" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-472"><a href="#cb71-472" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
-<span id="cb71-473"><a href="#cb71-473" aria-hidden="true" tabindex="-1"></a><span class="in">0.5</span></span>
+<span id="cb71-466"><a href="#cb71-466" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb71-467"><a href="#cb71-467" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"modelo_logistico"</span>) <span class="sc">&amp;&amp;</span> <span class="fu">exists</span>(<span class="st">"prueba"</span>)) {</span>
+<span id="cb71-468"><a href="#cb71-468" aria-hidden="true" tabindex="-1"></a>  prueba<span class="sc">$</span>probabilidad_victimas <span class="ot">&lt;-</span> <span class="fu">predict</span>(</span>
+<span id="cb71-469"><a href="#cb71-469" aria-hidden="true" tabindex="-1"></a>    modelo_logistico,</span>
+<span id="cb71-470"><a href="#cb71-470" aria-hidden="true" tabindex="-1"></a>    <span class="at">newdata =</span> prueba,</span>
+<span id="cb71-471"><a href="#cb71-471" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">"response"</span></span>
+<span id="cb71-472"><a href="#cb71-472" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb71-473"><a href="#cb71-473" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb71-474"><a href="#cb71-474" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb71-475"><a href="#cb71-475" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-476"><a href="#cb71-476" aria-hidden="true" tabindex="-1"></a>La regla será:</span>
+<span id="cb71-476"><a href="#cb71-476" aria-hidden="true" tabindex="-1"></a>Revisamos algunas predicciones:</span>
 <span id="cb71-477"><a href="#cb71-477" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-478"><a href="#cb71-478" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
-<span id="cb71-479"><a href="#cb71-479" aria-hidden="true" tabindex="-1"></a><span class="in">Si probabilidad &gt;= 0.5 → Con víctimas</span></span>
-<span id="cb71-480"><a href="#cb71-480" aria-hidden="true" tabindex="-1"></a><span class="in">Si probabilidad &lt;  0.5 → Solo daños</span></span>
-<span id="cb71-481"><a href="#cb71-481" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb71-482"><a href="#cb71-482" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-485"><a href="#cb71-485" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb71-486"><a href="#cb71-486" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"prueba"</span>)) {</span>
-<span id="cb71-487"><a href="#cb71-487" aria-hidden="true" tabindex="-1"></a>  prueba<span class="sc">$</span>prediccion_05 <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(</span>
-<span id="cb71-488"><a href="#cb71-488" aria-hidden="true" tabindex="-1"></a>    prueba<span class="sc">$</span>probabilidad_victimas <span class="sc">&gt;=</span> <span class="fl">0.5</span>,</span>
-<span id="cb71-489"><a href="#cb71-489" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Con víctimas"</span>,</span>
-<span id="cb71-490"><a href="#cb71-490" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Solo daños"</span></span>
-<span id="cb71-491"><a href="#cb71-491" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb71-492"><a href="#cb71-492" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb71-493"><a href="#cb71-493" aria-hidden="true" tabindex="-1"></a>  prueba<span class="sc">$</span>prediccion_05 <span class="ot">&lt;-</span> <span class="fu">factor</span>(</span>
-<span id="cb71-494"><a href="#cb71-494" aria-hidden="true" tabindex="-1"></a>    prueba<span class="sc">$</span>prediccion_05,</span>
-<span id="cb71-495"><a href="#cb71-495" aria-hidden="true" tabindex="-1"></a>    <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Con víctimas"</span>, <span class="st">"Solo daños"</span>)</span>
-<span id="cb71-496"><a href="#cb71-496" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb71-497"><a href="#cb71-497" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb71-498"><a href="#cb71-498" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb71-499"><a href="#cb71-499" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-500"><a href="#cb71-500" aria-hidden="true" tabindex="-1"></a>Revisamos las primeras predicciones:</span>
-<span id="cb71-501"><a href="#cb71-501" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-504"><a href="#cb71-504" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb71-505"><a href="#cb71-505" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"prueba"</span>)) {</span>
-<span id="cb71-506"><a href="#cb71-506" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(</span>
-<span id="cb71-507"><a href="#cb71-507" aria-hidden="true" tabindex="-1"></a>    prueba <span class="sc">|&gt;</span></span>
-<span id="cb71-508"><a href="#cb71-508" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(accidente_con_victimas, probabilidad_victimas, prediccion_05)</span>
-<span id="cb71-509"><a href="#cb71-509" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb71-510"><a href="#cb71-510" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb71-511"><a href="#cb71-511" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb71-512"><a href="#cb71-512" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-513"><a href="#cb71-513" aria-hidden="true" tabindex="-1"></a><span class="fu">## Matriz de confusión</span></span>
-<span id="cb71-514"><a href="#cb71-514" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-515"><a href="#cb71-515" aria-hidden="true" tabindex="-1"></a>La matriz de confusión compara las clases reales contra las clases predichas.</span>
-<span id="cb71-516"><a href="#cb71-516" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-519"><a href="#cb71-519" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb71-520"><a href="#cb71-520" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"prueba"</span>)) {</span>
-<span id="cb71-521"><a href="#cb71-521" aria-hidden="true" tabindex="-1"></a>  matriz_confusion_05 <span class="ot">&lt;-</span> <span class="fu">table</span>(</span>
-<span id="cb71-522"><a href="#cb71-522" aria-hidden="true" tabindex="-1"></a>    <span class="at">Real =</span> prueba<span class="sc">$</span>accidente_con_victimas,</span>
-<span id="cb71-523"><a href="#cb71-523" aria-hidden="true" tabindex="-1"></a>    <span class="at">Predicho =</span> prueba<span class="sc">$</span>prediccion_05</span>
-<span id="cb71-524"><a href="#cb71-524" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb71-525"><a href="#cb71-525" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb71-526"><a href="#cb71-526" aria-hidden="true" tabindex="-1"></a>  matriz_confusion_05</span>
-<span id="cb71-527"><a href="#cb71-527" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb71-528"><a href="#cb71-528" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb71-529"><a href="#cb71-529" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-530"><a href="#cb71-530" aria-hidden="true" tabindex="-1"></a>La matriz de confusión permite identificar:</span>
-<span id="cb71-531"><a href="#cb71-531" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-532"><a href="#cb71-532" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>verdaderos positivos,</span>
-<span id="cb71-533"><a href="#cb71-533" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>falsos positivos,</span>
-<span id="cb71-534"><a href="#cb71-534" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>verdaderos negativos,</span>
-<span id="cb71-535"><a href="#cb71-535" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>falsos negativos.</span>
-<span id="cb71-536"><a href="#cb71-536" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-537"><a href="#cb71-537" aria-hidden="true" tabindex="-1"></a>En nuestro caso, consideraremos como clase positiva:</span>
-<span id="cb71-538"><a href="#cb71-538" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-539"><a href="#cb71-539" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
-<span id="cb71-540"><a href="#cb71-540" aria-hidden="true" tabindex="-1"></a><span class="in">Con víctimas</span></span>
-<span id="cb71-541"><a href="#cb71-541" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb71-542"><a href="#cb71-542" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-543"><a href="#cb71-543" aria-hidden="true" tabindex="-1"></a><span class="fu">## Métricas de evaluación</span></span>
-<span id="cb71-544"><a href="#cb71-544" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-545"><a href="#cb71-545" aria-hidden="true" tabindex="-1"></a>A partir de la matriz de confusión podemos calcular varias métricas.</span>
-<span id="cb71-546"><a href="#cb71-546" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-547"><a href="#cb71-547" aria-hidden="true" tabindex="-1"></a>Para evitar confusiones, primero extraemos los valores de la matriz.</span>
-<span id="cb71-548"><a href="#cb71-548" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-551"><a href="#cb71-551" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb71-552"><a href="#cb71-552" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"matriz_confusion_05"</span>)) {</span>
-<span id="cb71-553"><a href="#cb71-553" aria-hidden="true" tabindex="-1"></a>  VP <span class="ot">&lt;-</span> matriz_confusion_05[<span class="st">"Con víctimas"</span>, <span class="st">"Con víctimas"</span>]</span>
-<span id="cb71-554"><a href="#cb71-554" aria-hidden="true" tabindex="-1"></a>  FN <span class="ot">&lt;-</span> matriz_confusion_05[<span class="st">"Con víctimas"</span>, <span class="st">"Solo daños"</span>]</span>
-<span id="cb71-555"><a href="#cb71-555" aria-hidden="true" tabindex="-1"></a>  FP <span class="ot">&lt;-</span> matriz_confusion_05[<span class="st">"Solo daños"</span>, <span class="st">"Con víctimas"</span>]</span>
-<span id="cb71-556"><a href="#cb71-556" aria-hidden="true" tabindex="-1"></a>  VN <span class="ot">&lt;-</span> matriz_confusion_05[<span class="st">"Solo daños"</span>, <span class="st">"Solo daños"</span>]</span>
-<span id="cb71-557"><a href="#cb71-557" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb71-558"><a href="#cb71-558" aria-hidden="true" tabindex="-1"></a>  VP</span>
-<span id="cb71-559"><a href="#cb71-559" aria-hidden="true" tabindex="-1"></a>  FN</span>
-<span id="cb71-560"><a href="#cb71-560" aria-hidden="true" tabindex="-1"></a>  FP</span>
-<span id="cb71-561"><a href="#cb71-561" aria-hidden="true" tabindex="-1"></a>  VN</span>
-<span id="cb71-562"><a href="#cb71-562" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb71-563"><a href="#cb71-563" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb71-564"><a href="#cb71-564" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-565"><a href="#cb71-565" aria-hidden="true" tabindex="-1"></a>Donde:</span>
-<span id="cb71-566"><a href="#cb71-566" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-567"><a href="#cb71-567" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**VP**: verdaderos positivos.</span>
-<span id="cb71-568"><a href="#cb71-568" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**FN**: falsos negativos.</span>
-<span id="cb71-569"><a href="#cb71-569" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**FP**: falsos positivos.</span>
-<span id="cb71-570"><a href="#cb71-570" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**VN**: verdaderos negativos.</span>
+<span id="cb71-480"><a href="#cb71-480" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb71-481"><a href="#cb71-481" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"prueba"</span>)) {</span>
+<span id="cb71-482"><a href="#cb71-482" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(</span>
+<span id="cb71-483"><a href="#cb71-483" aria-hidden="true" tabindex="-1"></a>    prueba <span class="sc">|&gt;</span></span>
+<span id="cb71-484"><a href="#cb71-484" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(accidente_con_victimas, victimas_binaria, probabilidad_victimas)</span>
+<span id="cb71-485"><a href="#cb71-485" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb71-486"><a href="#cb71-486" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb71-487"><a href="#cb71-487" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb71-488"><a href="#cb71-488" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-489"><a href="#cb71-489" aria-hidden="true" tabindex="-1"></a>La columna <span class="in">`probabilidad_victimas`</span> indica la probabilidad estimada de que el accidente tenga víctimas.</span>
+<span id="cb71-490"><a href="#cb71-490" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-491"><a href="#cb71-491" aria-hidden="true" tabindex="-1"></a><span class="fu">## De probabilidades a clases</span></span>
+<span id="cb71-492"><a href="#cb71-492" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-493"><a href="#cb71-493" aria-hidden="true" tabindex="-1"></a>Para convertir probabilidades en clases, usamos un punto de corte.</span>
+<span id="cb71-494"><a href="#cb71-494" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-495"><a href="#cb71-495" aria-hidden="true" tabindex="-1"></a>Comenzaremos con el punto de corte clásico:</span>
+<span id="cb71-496"><a href="#cb71-496" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-497"><a href="#cb71-497" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
+<span id="cb71-498"><a href="#cb71-498" aria-hidden="true" tabindex="-1"></a><span class="in">0.5</span></span>
+<span id="cb71-499"><a href="#cb71-499" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb71-500"><a href="#cb71-500" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-501"><a href="#cb71-501" aria-hidden="true" tabindex="-1"></a>La regla será:</span>
+<span id="cb71-502"><a href="#cb71-502" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-503"><a href="#cb71-503" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
+<span id="cb71-504"><a href="#cb71-504" aria-hidden="true" tabindex="-1"></a><span class="in">Si probabilidad &gt;= 0.5 → Con víctimas</span></span>
+<span id="cb71-505"><a href="#cb71-505" aria-hidden="true" tabindex="-1"></a><span class="in">Si probabilidad &lt;  0.5 → Solo daños</span></span>
+<span id="cb71-506"><a href="#cb71-506" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb71-507"><a href="#cb71-507" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-510"><a href="#cb71-510" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb71-511"><a href="#cb71-511" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"prueba"</span>)) {</span>
+<span id="cb71-512"><a href="#cb71-512" aria-hidden="true" tabindex="-1"></a>  prueba<span class="sc">$</span>prediccion_05 <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(</span>
+<span id="cb71-513"><a href="#cb71-513" aria-hidden="true" tabindex="-1"></a>    prueba<span class="sc">$</span>probabilidad_victimas <span class="sc">&gt;=</span> <span class="fl">0.5</span>,</span>
+<span id="cb71-514"><a href="#cb71-514" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Con víctimas"</span>,</span>
+<span id="cb71-515"><a href="#cb71-515" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Solo daños"</span></span>
+<span id="cb71-516"><a href="#cb71-516" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb71-517"><a href="#cb71-517" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb71-518"><a href="#cb71-518" aria-hidden="true" tabindex="-1"></a>  prueba<span class="sc">$</span>prediccion_05 <span class="ot">&lt;-</span> <span class="fu">factor</span>(</span>
+<span id="cb71-519"><a href="#cb71-519" aria-hidden="true" tabindex="-1"></a>    prueba<span class="sc">$</span>prediccion_05,</span>
+<span id="cb71-520"><a href="#cb71-520" aria-hidden="true" tabindex="-1"></a>    <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Con víctimas"</span>, <span class="st">"Solo daños"</span>)</span>
+<span id="cb71-521"><a href="#cb71-521" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb71-522"><a href="#cb71-522" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb71-523"><a href="#cb71-523" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb71-524"><a href="#cb71-524" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-525"><a href="#cb71-525" aria-hidden="true" tabindex="-1"></a>Revisamos las primeras predicciones:</span>
+<span id="cb71-526"><a href="#cb71-526" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-529"><a href="#cb71-529" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb71-530"><a href="#cb71-530" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"prueba"</span>)) {</span>
+<span id="cb71-531"><a href="#cb71-531" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(</span>
+<span id="cb71-532"><a href="#cb71-532" aria-hidden="true" tabindex="-1"></a>    prueba <span class="sc">|&gt;</span></span>
+<span id="cb71-533"><a href="#cb71-533" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(accidente_con_victimas, probabilidad_victimas, prediccion_05)</span>
+<span id="cb71-534"><a href="#cb71-534" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb71-535"><a href="#cb71-535" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb71-536"><a href="#cb71-536" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb71-537"><a href="#cb71-537" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-538"><a href="#cb71-538" aria-hidden="true" tabindex="-1"></a><span class="fu">## Matriz de confusión</span></span>
+<span id="cb71-539"><a href="#cb71-539" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-540"><a href="#cb71-540" aria-hidden="true" tabindex="-1"></a>La matriz de confusión compara las clases reales contra las clases predichas.</span>
+<span id="cb71-541"><a href="#cb71-541" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-544"><a href="#cb71-544" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb71-545"><a href="#cb71-545" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"prueba"</span>)) {</span>
+<span id="cb71-546"><a href="#cb71-546" aria-hidden="true" tabindex="-1"></a>  matriz_confusion_05 <span class="ot">&lt;-</span> <span class="fu">table</span>(</span>
+<span id="cb71-547"><a href="#cb71-547" aria-hidden="true" tabindex="-1"></a>    <span class="at">Real =</span> prueba<span class="sc">$</span>accidente_con_victimas,</span>
+<span id="cb71-548"><a href="#cb71-548" aria-hidden="true" tabindex="-1"></a>    <span class="at">Predicho =</span> prueba<span class="sc">$</span>prediccion_05</span>
+<span id="cb71-549"><a href="#cb71-549" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb71-550"><a href="#cb71-550" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb71-551"><a href="#cb71-551" aria-hidden="true" tabindex="-1"></a>  matriz_confusion_05</span>
+<span id="cb71-552"><a href="#cb71-552" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb71-553"><a href="#cb71-553" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb71-554"><a href="#cb71-554" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-555"><a href="#cb71-555" aria-hidden="true" tabindex="-1"></a>La matriz de confusión permite identificar:</span>
+<span id="cb71-556"><a href="#cb71-556" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-557"><a href="#cb71-557" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>verdaderos positivos,</span>
+<span id="cb71-558"><a href="#cb71-558" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>falsos positivos,</span>
+<span id="cb71-559"><a href="#cb71-559" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>verdaderos negativos,</span>
+<span id="cb71-560"><a href="#cb71-560" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>falsos negativos.</span>
+<span id="cb71-561"><a href="#cb71-561" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-562"><a href="#cb71-562" aria-hidden="true" tabindex="-1"></a>En nuestro caso, consideraremos como clase positiva:</span>
+<span id="cb71-563"><a href="#cb71-563" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-564"><a href="#cb71-564" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
+<span id="cb71-565"><a href="#cb71-565" aria-hidden="true" tabindex="-1"></a><span class="in">Con víctimas</span></span>
+<span id="cb71-566"><a href="#cb71-566" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb71-567"><a href="#cb71-567" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-568"><a href="#cb71-568" aria-hidden="true" tabindex="-1"></a><span class="fu">## Métricas de evaluación</span></span>
+<span id="cb71-569"><a href="#cb71-569" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-570"><a href="#cb71-570" aria-hidden="true" tabindex="-1"></a>A partir de la matriz de confusión podemos calcular varias métricas.</span>
 <span id="cb71-571"><a href="#cb71-571" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-572"><a href="#cb71-572" aria-hidden="true" tabindex="-1"></a>Calculamos la exactitud:</span>
+<span id="cb71-572"><a href="#cb71-572" aria-hidden="true" tabindex="-1"></a>Para evitar confusiones, primero extraemos los valores de la matriz.</span>
 <span id="cb71-573"><a href="#cb71-573" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb71-576"><a href="#cb71-576" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb71-577"><a href="#cb71-577" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"VP"</span>)) {</span>
-<span id="cb71-578"><a href="#cb71-578" aria-hidden="true" tabindex="-1"></a>  exactitud <span class="ot">&lt;-</span> (VP <span class="sc">+</span> VN) <span class="sc">/</span> (VP <span class="sc">+</span> FN <span class="sc">+</span> FP <span class="sc">+</span> VN)</span>
-<span id="cb71-579"><a href="#cb71-579" aria-hidden="true" tabindex="-1"></a>  exactitud</span>
-<span id="cb71-580"><a href="#cb71-580" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb71-581"><a href="#cb71-581" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb71-582"><a href="#cb71-582" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-583"><a href="#cb71-583" aria-hidden="true" tabindex="-1"></a>Calculamos la sensibilidad:</span>
-<span id="cb71-584"><a href="#cb71-584" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-587"><a href="#cb71-587" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb71-588"><a href="#cb71-588" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"VP"</span>)) {</span>
-<span id="cb71-589"><a href="#cb71-589" aria-hidden="true" tabindex="-1"></a>  sensibilidad <span class="ot">&lt;-</span> VP <span class="sc">/</span> (VP <span class="sc">+</span> FN)</span>
-<span id="cb71-590"><a href="#cb71-590" aria-hidden="true" tabindex="-1"></a>  sensibilidad</span>
-<span id="cb71-591"><a href="#cb71-591" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb71-592"><a href="#cb71-592" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb71-593"><a href="#cb71-593" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-594"><a href="#cb71-594" aria-hidden="true" tabindex="-1"></a>Calculamos la especificidad:</span>
-<span id="cb71-595"><a href="#cb71-595" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-598"><a href="#cb71-598" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb71-599"><a href="#cb71-599" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"VP"</span>)) {</span>
-<span id="cb71-600"><a href="#cb71-600" aria-hidden="true" tabindex="-1"></a>  especificidad <span class="ot">&lt;-</span> VN <span class="sc">/</span> (VN <span class="sc">+</span> FP)</span>
-<span id="cb71-601"><a href="#cb71-601" aria-hidden="true" tabindex="-1"></a>  especificidad</span>
-<span id="cb71-602"><a href="#cb71-602" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb71-603"><a href="#cb71-603" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb71-604"><a href="#cb71-604" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-605"><a href="#cb71-605" aria-hidden="true" tabindex="-1"></a><span class="fu">## Interpretación de las métricas</span></span>
-<span id="cb71-606"><a href="#cb71-606" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-607"><a href="#cb71-607" aria-hidden="true" tabindex="-1"></a>La **exactitud** mide la proporción total de predicciones correctas.</span>
+<span id="cb71-577"><a href="#cb71-577" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"matriz_confusion_05"</span>)) {</span>
+<span id="cb71-578"><a href="#cb71-578" aria-hidden="true" tabindex="-1"></a>  VP <span class="ot">&lt;-</span> matriz_confusion_05[<span class="st">"Con víctimas"</span>, <span class="st">"Con víctimas"</span>]</span>
+<span id="cb71-579"><a href="#cb71-579" aria-hidden="true" tabindex="-1"></a>  FN <span class="ot">&lt;-</span> matriz_confusion_05[<span class="st">"Con víctimas"</span>, <span class="st">"Solo daños"</span>]</span>
+<span id="cb71-580"><a href="#cb71-580" aria-hidden="true" tabindex="-1"></a>  FP <span class="ot">&lt;-</span> matriz_confusion_05[<span class="st">"Solo daños"</span>, <span class="st">"Con víctimas"</span>]</span>
+<span id="cb71-581"><a href="#cb71-581" aria-hidden="true" tabindex="-1"></a>  VN <span class="ot">&lt;-</span> matriz_confusion_05[<span class="st">"Solo daños"</span>, <span class="st">"Solo daños"</span>]</span>
+<span id="cb71-582"><a href="#cb71-582" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb71-583"><a href="#cb71-583" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(</span>
+<span id="cb71-584"><a href="#cb71-584" aria-hidden="true" tabindex="-1"></a>    <span class="at">medida =</span> <span class="fu">c</span>(<span class="st">"VP"</span>, <span class="st">"FN"</span>, <span class="st">"FP"</span>, <span class="st">"VN"</span>),</span>
+<span id="cb71-585"><a href="#cb71-585" aria-hidden="true" tabindex="-1"></a>    <span class="at">nombre =</span> <span class="fu">c</span>(</span>
+<span id="cb71-586"><a href="#cb71-586" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Verdaderos positivos"</span>,</span>
+<span id="cb71-587"><a href="#cb71-587" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Falsos negativos"</span>,</span>
+<span id="cb71-588"><a href="#cb71-588" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Falsos positivos"</span>,</span>
+<span id="cb71-589"><a href="#cb71-589" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Verdaderos negativos"</span></span>
+<span id="cb71-590"><a href="#cb71-590" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb71-591"><a href="#cb71-591" aria-hidden="true" tabindex="-1"></a>    <span class="at">descripcion =</span> <span class="fu">c</span>(</span>
+<span id="cb71-592"><a href="#cb71-592" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Con víctimas clasificado como Con víctimas"</span>,</span>
+<span id="cb71-593"><a href="#cb71-593" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Con víctimas clasificado como Solo daños"</span>,</span>
+<span id="cb71-594"><a href="#cb71-594" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Solo daños clasificado como Con víctimas"</span>,</span>
+<span id="cb71-595"><a href="#cb71-595" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Solo daños clasificado como Solo daños"</span></span>
+<span id="cb71-596"><a href="#cb71-596" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb71-597"><a href="#cb71-597" aria-hidden="true" tabindex="-1"></a>    <span class="at">valor =</span> <span class="fu">c</span>(VP, FN, FP, VN)</span>
+<span id="cb71-598"><a href="#cb71-598" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb71-599"><a href="#cb71-599" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb71-600"><a href="#cb71-600" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb71-601"><a href="#cb71-601" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-602"><a href="#cb71-602" aria-hidden="true" tabindex="-1"></a>Donde:</span>
+<span id="cb71-603"><a href="#cb71-603" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-604"><a href="#cb71-604" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**VP**: verdaderos positivos.</span>
+<span id="cb71-605"><a href="#cb71-605" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**FN**: falsos negativos.</span>
+<span id="cb71-606"><a href="#cb71-606" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**FP**: falsos positivos.</span>
+<span id="cb71-607"><a href="#cb71-607" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**VN**: verdaderos negativos.</span>
 <span id="cb71-608"><a href="#cb71-608" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-609"><a href="#cb71-609" aria-hidden="true" tabindex="-1"></a>La **sensibilidad** mide la proporción de accidentes con víctimas que el modelo detecta correctamente.</span>
+<span id="cb71-609"><a href="#cb71-609" aria-hidden="true" tabindex="-1"></a>Calculamos la exactitud:</span>
 <span id="cb71-610"><a href="#cb71-610" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-611"><a href="#cb71-611" aria-hidden="true" tabindex="-1"></a>La **especificidad** mide la proporción de accidentes de solo daños que el modelo clasifica correctamente.</span>
-<span id="cb71-612"><a href="#cb71-612" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-613"><a href="#cb71-613" aria-hidden="true" tabindex="-1"></a>En problemas desbalanceados, la exactitud puede ser engañosa.</span>
-<span id="cb71-614"><a href="#cb71-614" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-615"><a href="#cb71-615" aria-hidden="true" tabindex="-1"></a>Por ejemplo, como en esta base hay muchos más accidentes de solo daños, un modelo que prediga siempre “Solo daños” podría obtener una exactitud alta, pero una sensibilidad muy baja.</span>
-<span id="cb71-616"><a href="#cb71-616" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-617"><a href="#cb71-617" aria-hidden="true" tabindex="-1"></a>En nuestro problema, la sensibilidad es muy importante porque nos interesa detectar accidentes con víctimas.</span>
-<span id="cb71-618"><a href="#cb71-618" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-619"><a href="#cb71-619" aria-hidden="true" tabindex="-1"></a><span class="fu">## Problema del punto de corte 0.5</span></span>
-<span id="cb71-620"><a href="#cb71-620" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-621"><a href="#cb71-621" aria-hidden="true" tabindex="-1"></a>En muchos problemas desbalanceados, usar un punto de corte de 0.5 puede no ser adecuado.</span>
-<span id="cb71-622"><a href="#cb71-622" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-623"><a href="#cb71-623" aria-hidden="true" tabindex="-1"></a>¿Por qué?</span>
-<span id="cb71-624"><a href="#cb71-624" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-625"><a href="#cb71-625" aria-hidden="true" tabindex="-1"></a>Porque si la clase positiva es poco frecuente, muchas probabilidades predichas pueden quedar por debajo de 0.5.</span>
-<span id="cb71-626"><a href="#cb71-626" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-627"><a href="#cb71-627" aria-hidden="true" tabindex="-1"></a>Esto puede provocar que el modelo prediga casi siempre la clase mayoritaria.</span>
-<span id="cb71-628"><a href="#cb71-628" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-629"><a href="#cb71-629" aria-hidden="true" tabindex="-1"></a>Por eso, conviene probar otros puntos de corte.</span>
+<span id="cb71-613"><a href="#cb71-613" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb71-614"><a href="#cb71-614" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"VP"</span>)) {</span>
+<span id="cb71-615"><a href="#cb71-615" aria-hidden="true" tabindex="-1"></a>  exactitud <span class="ot">&lt;-</span> (VP <span class="sc">+</span> VN) <span class="sc">/</span> (VP <span class="sc">+</span> FN <span class="sc">+</span> FP <span class="sc">+</span> VN)</span>
+<span id="cb71-616"><a href="#cb71-616" aria-hidden="true" tabindex="-1"></a>  exactitud</span>
+<span id="cb71-617"><a href="#cb71-617" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb71-618"><a href="#cb71-618" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb71-619"><a href="#cb71-619" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-620"><a href="#cb71-620" aria-hidden="true" tabindex="-1"></a>Calculamos la sensibilidad:</span>
+<span id="cb71-621"><a href="#cb71-621" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-624"><a href="#cb71-624" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb71-625"><a href="#cb71-625" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"VP"</span>)) {</span>
+<span id="cb71-626"><a href="#cb71-626" aria-hidden="true" tabindex="-1"></a>  sensibilidad <span class="ot">&lt;-</span> VP <span class="sc">/</span> (VP <span class="sc">+</span> FN)</span>
+<span id="cb71-627"><a href="#cb71-627" aria-hidden="true" tabindex="-1"></a>  sensibilidad</span>
+<span id="cb71-628"><a href="#cb71-628" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb71-629"><a href="#cb71-629" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb71-630"><a href="#cb71-630" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-631"><a href="#cb71-631" aria-hidden="true" tabindex="-1"></a><span class="fu">## Clasificación con punto de corte 0.3</span></span>
+<span id="cb71-631"><a href="#cb71-631" aria-hidden="true" tabindex="-1"></a>Calculamos la especificidad:</span>
 <span id="cb71-632"><a href="#cb71-632" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-633"><a href="#cb71-633" aria-hidden="true" tabindex="-1"></a>Ahora usaremos un punto de corte más bajo:</span>
-<span id="cb71-634"><a href="#cb71-634" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-635"><a href="#cb71-635" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
-<span id="cb71-636"><a href="#cb71-636" aria-hidden="true" tabindex="-1"></a><span class="in">0.3</span></span>
-<span id="cb71-637"><a href="#cb71-637" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb71-638"><a href="#cb71-638" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-641"><a href="#cb71-641" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb71-642"><a href="#cb71-642" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"prueba"</span>)) {</span>
-<span id="cb71-643"><a href="#cb71-643" aria-hidden="true" tabindex="-1"></a>  prueba<span class="sc">$</span>prediccion_03 <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(</span>
-<span id="cb71-644"><a href="#cb71-644" aria-hidden="true" tabindex="-1"></a>    prueba<span class="sc">$</span>probabilidad_victimas <span class="sc">&gt;=</span> <span class="fl">0.3</span>,</span>
-<span id="cb71-645"><a href="#cb71-645" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Con víctimas"</span>,</span>
-<span id="cb71-646"><a href="#cb71-646" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Solo daños"</span></span>
-<span id="cb71-647"><a href="#cb71-647" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb71-648"><a href="#cb71-648" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb71-649"><a href="#cb71-649" aria-hidden="true" tabindex="-1"></a>  prueba<span class="sc">$</span>prediccion_03 <span class="ot">&lt;-</span> <span class="fu">factor</span>(</span>
-<span id="cb71-650"><a href="#cb71-650" aria-hidden="true" tabindex="-1"></a>    prueba<span class="sc">$</span>prediccion_03,</span>
-<span id="cb71-651"><a href="#cb71-651" aria-hidden="true" tabindex="-1"></a>    <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Con víctimas"</span>, <span class="st">"Solo daños"</span>)</span>
-<span id="cb71-652"><a href="#cb71-652" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb71-653"><a href="#cb71-653" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb71-654"><a href="#cb71-654" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb71-635"><a href="#cb71-635" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb71-636"><a href="#cb71-636" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"VP"</span>)) {</span>
+<span id="cb71-637"><a href="#cb71-637" aria-hidden="true" tabindex="-1"></a>  especificidad <span class="ot">&lt;-</span> VN <span class="sc">/</span> (VN <span class="sc">+</span> FP)</span>
+<span id="cb71-638"><a href="#cb71-638" aria-hidden="true" tabindex="-1"></a>  especificidad</span>
+<span id="cb71-639"><a href="#cb71-639" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb71-640"><a href="#cb71-640" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb71-641"><a href="#cb71-641" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-642"><a href="#cb71-642" aria-hidden="true" tabindex="-1"></a><span class="fu">## Interpretación de las métricas</span></span>
+<span id="cb71-643"><a href="#cb71-643" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-644"><a href="#cb71-644" aria-hidden="true" tabindex="-1"></a>La **exactitud** mide la proporción total de predicciones correctas.</span>
+<span id="cb71-645"><a href="#cb71-645" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-646"><a href="#cb71-646" aria-hidden="true" tabindex="-1"></a>La **sensibilidad** mide la proporción de accidentes con víctimas que el modelo detecta correctamente.</span>
+<span id="cb71-647"><a href="#cb71-647" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-648"><a href="#cb71-648" aria-hidden="true" tabindex="-1"></a>La **especificidad** mide la proporción de accidentes de solo daños que el modelo clasifica correctamente.</span>
+<span id="cb71-649"><a href="#cb71-649" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-650"><a href="#cb71-650" aria-hidden="true" tabindex="-1"></a>En problemas desbalanceados, la exactitud puede ser engañosa.</span>
+<span id="cb71-651"><a href="#cb71-651" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-652"><a href="#cb71-652" aria-hidden="true" tabindex="-1"></a>Por ejemplo, como en esta base hay muchos más accidentes de solo daños, un modelo que prediga siempre “Solo daños” podría obtener una exactitud alta, pero una sensibilidad muy baja.</span>
+<span id="cb71-653"><a href="#cb71-653" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-654"><a href="#cb71-654" aria-hidden="true" tabindex="-1"></a>En nuestro problema, la sensibilidad es muy importante porque nos interesa detectar accidentes con víctimas.</span>
 <span id="cb71-655"><a href="#cb71-655" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-656"><a href="#cb71-656" aria-hidden="true" tabindex="-1"></a>Calculamos la matriz de confusión:</span>
+<span id="cb71-656"><a href="#cb71-656" aria-hidden="true" tabindex="-1"></a><span class="fu">## Problema del punto de corte 0.5</span></span>
 <span id="cb71-657"><a href="#cb71-657" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-660"><a href="#cb71-660" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb71-661"><a href="#cb71-661" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"prueba"</span>)) {</span>
-<span id="cb71-662"><a href="#cb71-662" aria-hidden="true" tabindex="-1"></a>  matriz_confusion_03 <span class="ot">&lt;-</span> <span class="fu">table</span>(</span>
-<span id="cb71-663"><a href="#cb71-663" aria-hidden="true" tabindex="-1"></a>    <span class="at">Real =</span> prueba<span class="sc">$</span>accidente_con_victimas,</span>
-<span id="cb71-664"><a href="#cb71-664" aria-hidden="true" tabindex="-1"></a>    <span class="at">Predicho =</span> prueba<span class="sc">$</span>prediccion_03</span>
-<span id="cb71-665"><a href="#cb71-665" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb71-666"><a href="#cb71-666" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb71-667"><a href="#cb71-667" aria-hidden="true" tabindex="-1"></a>  matriz_confusion_03</span>
-<span id="cb71-668"><a href="#cb71-668" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb71-669"><a href="#cb71-669" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb71-670"><a href="#cb71-670" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-671"><a href="#cb71-671" aria-hidden="true" tabindex="-1"></a>Calculamos las métricas:</span>
-<span id="cb71-672"><a href="#cb71-672" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-675"><a href="#cb71-675" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb71-676"><a href="#cb71-676" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"matriz_confusion_03"</span>)) {</span>
-<span id="cb71-677"><a href="#cb71-677" aria-hidden="true" tabindex="-1"></a>  VP_03 <span class="ot">&lt;-</span> matriz_confusion_03[<span class="st">"Con víctimas"</span>, <span class="st">"Con víctimas"</span>]</span>
-<span id="cb71-678"><a href="#cb71-678" aria-hidden="true" tabindex="-1"></a>  FN_03 <span class="ot">&lt;-</span> matriz_confusion_03[<span class="st">"Con víctimas"</span>, <span class="st">"Solo daños"</span>]</span>
-<span id="cb71-679"><a href="#cb71-679" aria-hidden="true" tabindex="-1"></a>  FP_03 <span class="ot">&lt;-</span> matriz_confusion_03[<span class="st">"Solo daños"</span>, <span class="st">"Con víctimas"</span>]</span>
-<span id="cb71-680"><a href="#cb71-680" aria-hidden="true" tabindex="-1"></a>  VN_03 <span class="ot">&lt;-</span> matriz_confusion_03[<span class="st">"Solo daños"</span>, <span class="st">"Solo daños"</span>]</span>
-<span id="cb71-681"><a href="#cb71-681" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb71-682"><a href="#cb71-682" aria-hidden="true" tabindex="-1"></a>  exactitud_03 <span class="ot">&lt;-</span> (VP_03 <span class="sc">+</span> VN_03) <span class="sc">/</span> (VP_03 <span class="sc">+</span> FN_03 <span class="sc">+</span> FP_03 <span class="sc">+</span> VN_03)</span>
-<span id="cb71-683"><a href="#cb71-683" aria-hidden="true" tabindex="-1"></a>  sensibilidad_03 <span class="ot">&lt;-</span> VP_03 <span class="sc">/</span> (VP_03 <span class="sc">+</span> FN_03)</span>
-<span id="cb71-684"><a href="#cb71-684" aria-hidden="true" tabindex="-1"></a>  especificidad_03 <span class="ot">&lt;-</span> VN_03 <span class="sc">/</span> (VN_03 <span class="sc">+</span> FP_03)</span>
+<span id="cb71-658"><a href="#cb71-658" aria-hidden="true" tabindex="-1"></a>En muchos problemas desbalanceados, usar un punto de corte de 0.5 puede no ser adecuado.</span>
+<span id="cb71-659"><a href="#cb71-659" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-660"><a href="#cb71-660" aria-hidden="true" tabindex="-1"></a>¿Por qué?</span>
+<span id="cb71-661"><a href="#cb71-661" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-662"><a href="#cb71-662" aria-hidden="true" tabindex="-1"></a>Porque si la clase positiva es poco frecuente, muchas probabilidades predichas pueden quedar por debajo de 0.5.</span>
+<span id="cb71-663"><a href="#cb71-663" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-664"><a href="#cb71-664" aria-hidden="true" tabindex="-1"></a>Esto puede provocar que el modelo prediga casi siempre la clase mayoritaria.</span>
+<span id="cb71-665"><a href="#cb71-665" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-666"><a href="#cb71-666" aria-hidden="true" tabindex="-1"></a>Por eso, conviene probar otros puntos de corte.</span>
+<span id="cb71-667"><a href="#cb71-667" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-668"><a href="#cb71-668" aria-hidden="true" tabindex="-1"></a><span class="fu">## Clasificación con punto de corte 0.3</span></span>
+<span id="cb71-669"><a href="#cb71-669" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-670"><a href="#cb71-670" aria-hidden="true" tabindex="-1"></a>Ahora usaremos un punto de corte más bajo:</span>
+<span id="cb71-671"><a href="#cb71-671" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-672"><a href="#cb71-672" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
+<span id="cb71-673"><a href="#cb71-673" aria-hidden="true" tabindex="-1"></a><span class="in">0.3</span></span>
+<span id="cb71-674"><a href="#cb71-674" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb71-675"><a href="#cb71-675" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-678"><a href="#cb71-678" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb71-679"><a href="#cb71-679" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"prueba"</span>)) {</span>
+<span id="cb71-680"><a href="#cb71-680" aria-hidden="true" tabindex="-1"></a>  prueba<span class="sc">$</span>prediccion_03 <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(</span>
+<span id="cb71-681"><a href="#cb71-681" aria-hidden="true" tabindex="-1"></a>    prueba<span class="sc">$</span>probabilidad_victimas <span class="sc">&gt;=</span> <span class="fl">0.3</span>,</span>
+<span id="cb71-682"><a href="#cb71-682" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Con víctimas"</span>,</span>
+<span id="cb71-683"><a href="#cb71-683" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Solo daños"</span></span>
+<span id="cb71-684"><a href="#cb71-684" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb71-685"><a href="#cb71-685" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb71-686"><a href="#cb71-686" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(</span>
-<span id="cb71-687"><a href="#cb71-687" aria-hidden="true" tabindex="-1"></a>    <span class="at">punto_corte =</span> <span class="fl">0.3</span>,</span>
-<span id="cb71-688"><a href="#cb71-688" aria-hidden="true" tabindex="-1"></a>    <span class="at">exactitud =</span> exactitud_03,</span>
-<span id="cb71-689"><a href="#cb71-689" aria-hidden="true" tabindex="-1"></a>    <span class="at">sensibilidad =</span> sensibilidad_03,</span>
-<span id="cb71-690"><a href="#cb71-690" aria-hidden="true" tabindex="-1"></a>    <span class="at">especificidad =</span> especificidad_03</span>
-<span id="cb71-691"><a href="#cb71-691" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb71-692"><a href="#cb71-692" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb71-693"><a href="#cb71-693" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb71-686"><a href="#cb71-686" aria-hidden="true" tabindex="-1"></a>  prueba<span class="sc">$</span>prediccion_03 <span class="ot">&lt;-</span> <span class="fu">factor</span>(</span>
+<span id="cb71-687"><a href="#cb71-687" aria-hidden="true" tabindex="-1"></a>    prueba<span class="sc">$</span>prediccion_03,</span>
+<span id="cb71-688"><a href="#cb71-688" aria-hidden="true" tabindex="-1"></a>    <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Con víctimas"</span>, <span class="st">"Solo daños"</span>)</span>
+<span id="cb71-689"><a href="#cb71-689" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb71-690"><a href="#cb71-690" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb71-691"><a href="#cb71-691" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb71-692"><a href="#cb71-692" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-693"><a href="#cb71-693" aria-hidden="true" tabindex="-1"></a>Calculamos la matriz de confusión:</span>
 <span id="cb71-694"><a href="#cb71-694" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-695"><a href="#cb71-695" aria-hidden="true" tabindex="-1"></a><span class="fu">## Comparación de puntos de corte</span></span>
-<span id="cb71-696"><a href="#cb71-696" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-697"><a href="#cb71-697" aria-hidden="true" tabindex="-1"></a>Ahora comparamos los resultados usando dos puntos de corte:</span>
-<span id="cb71-698"><a href="#cb71-698" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-699"><a href="#cb71-699" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>0.5</span>
-<span id="cb71-700"><a href="#cb71-700" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>0.3</span>
-<span id="cb71-701"><a href="#cb71-701" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-704"><a href="#cb71-704" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb71-705"><a href="#cb71-705" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"exactitud"</span>) <span class="sc">&amp;&amp;</span> <span class="fu">exists</span>(<span class="st">"exactitud_03"</span>)) {</span>
-<span id="cb71-706"><a href="#cb71-706" aria-hidden="true" tabindex="-1"></a>  comparacion_cortes <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb71-707"><a href="#cb71-707" aria-hidden="true" tabindex="-1"></a>    <span class="at">punto_corte =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.3</span>),</span>
-<span id="cb71-708"><a href="#cb71-708" aria-hidden="true" tabindex="-1"></a>    <span class="at">exactitud =</span> <span class="fu">c</span>(exactitud, exactitud_03),</span>
-<span id="cb71-709"><a href="#cb71-709" aria-hidden="true" tabindex="-1"></a>    <span class="at">sensibilidad =</span> <span class="fu">c</span>(sensibilidad, sensibilidad_03),</span>
-<span id="cb71-710"><a href="#cb71-710" aria-hidden="true" tabindex="-1"></a>    <span class="at">especificidad =</span> <span class="fu">c</span>(especificidad, especificidad_03)</span>
-<span id="cb71-711"><a href="#cb71-711" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb71-712"><a href="#cb71-712" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb71-713"><a href="#cb71-713" aria-hidden="true" tabindex="-1"></a>  comparacion_cortes</span>
-<span id="cb71-714"><a href="#cb71-714" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb71-715"><a href="#cb71-715" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb71-716"><a href="#cb71-716" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-717"><a href="#cb71-717" aria-hidden="true" tabindex="-1"></a><span class="fu">## Interpretación de los puntos de corte</span></span>
-<span id="cb71-718"><a href="#cb71-718" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-719"><a href="#cb71-719" aria-hidden="true" tabindex="-1"></a>Bajar el punto de corte normalmente aumenta la sensibilidad, porque el modelo clasifica más casos como “Con víctimas”.</span>
-<span id="cb71-720"><a href="#cb71-720" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-721"><a href="#cb71-721" aria-hidden="true" tabindex="-1"></a>Sin embargo, esto también puede disminuir la especificidad, porque algunos accidentes de solo daños pueden clasificarse incorrectamente como accidentes con víctimas.</span>
-<span id="cb71-722"><a href="#cb71-722" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-723"><a href="#cb71-723" aria-hidden="true" tabindex="-1"></a>Este intercambio es común en clasificación:</span>
-<span id="cb71-724"><a href="#cb71-724" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-725"><a href="#cb71-725" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
-<span id="cb71-726"><a href="#cb71-726" aria-hidden="true" tabindex="-1"></a><span class="in">Mayor sensibilidad  → más detección de positivos, pero más falsos positivos.</span></span>
-<span id="cb71-727"><a href="#cb71-727" aria-hidden="true" tabindex="-1"></a><span class="in">Mayor especificidad → menos falsos positivos, pero más positivos no detectados.</span></span>
-<span id="cb71-728"><a href="#cb71-728" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb71-729"><a href="#cb71-729" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-730"><a href="#cb71-730" aria-hidden="true" tabindex="-1"></a>La elección del punto de corte depende del problema.</span>
+<span id="cb71-697"><a href="#cb71-697" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb71-698"><a href="#cb71-698" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"prueba"</span>)) {</span>
+<span id="cb71-699"><a href="#cb71-699" aria-hidden="true" tabindex="-1"></a>  matriz_confusion_03 <span class="ot">&lt;-</span> <span class="fu">table</span>(</span>
+<span id="cb71-700"><a href="#cb71-700" aria-hidden="true" tabindex="-1"></a>    <span class="at">Real =</span> prueba<span class="sc">$</span>accidente_con_victimas,</span>
+<span id="cb71-701"><a href="#cb71-701" aria-hidden="true" tabindex="-1"></a>    <span class="at">Predicho =</span> prueba<span class="sc">$</span>prediccion_03</span>
+<span id="cb71-702"><a href="#cb71-702" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb71-703"><a href="#cb71-703" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb71-704"><a href="#cb71-704" aria-hidden="true" tabindex="-1"></a>  matriz_confusion_03</span>
+<span id="cb71-705"><a href="#cb71-705" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb71-706"><a href="#cb71-706" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb71-707"><a href="#cb71-707" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-708"><a href="#cb71-708" aria-hidden="true" tabindex="-1"></a>Calculamos las métricas:</span>
+<span id="cb71-709"><a href="#cb71-709" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-712"><a href="#cb71-712" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb71-713"><a href="#cb71-713" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"matriz_confusion_03"</span>)) {</span>
+<span id="cb71-714"><a href="#cb71-714" aria-hidden="true" tabindex="-1"></a>  VP_03 <span class="ot">&lt;-</span> matriz_confusion_03[<span class="st">"Con víctimas"</span>, <span class="st">"Con víctimas"</span>]</span>
+<span id="cb71-715"><a href="#cb71-715" aria-hidden="true" tabindex="-1"></a>  FN_03 <span class="ot">&lt;-</span> matriz_confusion_03[<span class="st">"Con víctimas"</span>, <span class="st">"Solo daños"</span>]</span>
+<span id="cb71-716"><a href="#cb71-716" aria-hidden="true" tabindex="-1"></a>  FP_03 <span class="ot">&lt;-</span> matriz_confusion_03[<span class="st">"Solo daños"</span>, <span class="st">"Con víctimas"</span>]</span>
+<span id="cb71-717"><a href="#cb71-717" aria-hidden="true" tabindex="-1"></a>  VN_03 <span class="ot">&lt;-</span> matriz_confusion_03[<span class="st">"Solo daños"</span>, <span class="st">"Solo daños"</span>]</span>
+<span id="cb71-718"><a href="#cb71-718" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb71-719"><a href="#cb71-719" aria-hidden="true" tabindex="-1"></a>  exactitud_03 <span class="ot">&lt;-</span> (VP_03 <span class="sc">+</span> VN_03) <span class="sc">/</span> (VP_03 <span class="sc">+</span> FN_03 <span class="sc">+</span> FP_03 <span class="sc">+</span> VN_03)</span>
+<span id="cb71-720"><a href="#cb71-720" aria-hidden="true" tabindex="-1"></a>  sensibilidad_03 <span class="ot">&lt;-</span> VP_03 <span class="sc">/</span> (VP_03 <span class="sc">+</span> FN_03)</span>
+<span id="cb71-721"><a href="#cb71-721" aria-hidden="true" tabindex="-1"></a>  especificidad_03 <span class="ot">&lt;-</span> VN_03 <span class="sc">/</span> (VN_03 <span class="sc">+</span> FP_03)</span>
+<span id="cb71-722"><a href="#cb71-722" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb71-723"><a href="#cb71-723" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(</span>
+<span id="cb71-724"><a href="#cb71-724" aria-hidden="true" tabindex="-1"></a>    <span class="at">punto_corte =</span> <span class="fl">0.3</span>,</span>
+<span id="cb71-725"><a href="#cb71-725" aria-hidden="true" tabindex="-1"></a>    <span class="at">exactitud =</span> exactitud_03,</span>
+<span id="cb71-726"><a href="#cb71-726" aria-hidden="true" tabindex="-1"></a>    <span class="at">sensibilidad =</span> sensibilidad_03,</span>
+<span id="cb71-727"><a href="#cb71-727" aria-hidden="true" tabindex="-1"></a>    <span class="at">especificidad =</span> especificidad_03</span>
+<span id="cb71-728"><a href="#cb71-728" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb71-729"><a href="#cb71-729" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb71-730"><a href="#cb71-730" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb71-731"><a href="#cb71-731" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-732"><a href="#cb71-732" aria-hidden="true" tabindex="-1"></a>En un problema de seguridad vial, puede ser preferible detectar más accidentes con víctimas, aunque eso aumente algunos falsos positivos.</span>
+<span id="cb71-732"><a href="#cb71-732" aria-hidden="true" tabindex="-1"></a><span class="fu">## Comparación de puntos de corte</span></span>
 <span id="cb71-733"><a href="#cb71-733" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-734"><a href="#cb71-734" aria-hidden="true" tabindex="-1"></a><span class="fu">## Distribución de probabilidades predichas</span></span>
+<span id="cb71-734"><a href="#cb71-734" aria-hidden="true" tabindex="-1"></a>Ahora comparamos los resultados usando dos puntos de corte:</span>
 <span id="cb71-735"><a href="#cb71-735" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-736"><a href="#cb71-736" aria-hidden="true" tabindex="-1"></a>Ahora analizamos cómo se distribuyen las probabilidades predichas por el modelo.</span>
-<span id="cb71-737"><a href="#cb71-737" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-740"><a href="#cb71-740" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb71-741"><a href="#cb71-741" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"prueba"</span>)) {</span>
-<span id="cb71-742"><a href="#cb71-742" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(prueba, <span class="fu">aes</span>(<span class="at">x =</span> probabilidad_victimas, <span class="at">fill =</span> accidente_con_victimas)) <span class="sc">+</span></span>
-<span id="cb71-743"><a href="#cb71-743" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">30</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">position =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
-<span id="cb71-744"><a href="#cb71-744" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
-<span id="cb71-745"><a href="#cb71-745" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> <span class="st">"Distribución de probabilidades predichas"</span>,</span>
-<span id="cb71-746"><a href="#cb71-746" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="st">"Probabilidad predicha de accidente con víctimas"</span>,</span>
-<span id="cb71-747"><a href="#cb71-747" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="st">"Frecuencia"</span>,</span>
-<span id="cb71-748"><a href="#cb71-748" aria-hidden="true" tabindex="-1"></a>      <span class="at">fill =</span> <span class="st">"Clase real"</span></span>
-<span id="cb71-749"><a href="#cb71-749" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb71-750"><a href="#cb71-750" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb71-751"><a href="#cb71-751" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb71-752"><a href="#cb71-752" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-753"><a href="#cb71-753" aria-hidden="true" tabindex="-1"></a><span class="fu">## Interpretación de las probabilidades</span></span>
-<span id="cb71-754"><a href="#cb71-754" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-755"><a href="#cb71-755" aria-hidden="true" tabindex="-1"></a>Si el modelo separara perfectamente las clases, esperaríamos que:</span>
-<span id="cb71-756"><a href="#cb71-756" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-757"><a href="#cb71-757" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>los accidentes de solo daños tuvieran probabilidades cercanas a 0;</span>
-<span id="cb71-758"><a href="#cb71-758" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>los accidentes con víctimas tuvieran probabilidades cercanas a 1.</span>
+<span id="cb71-736"><a href="#cb71-736" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>0.5</span>
+<span id="cb71-737"><a href="#cb71-737" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>0.3</span>
+<span id="cb71-738"><a href="#cb71-738" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-741"><a href="#cb71-741" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb71-742"><a href="#cb71-742" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"exactitud"</span>) <span class="sc">&amp;&amp;</span> <span class="fu">exists</span>(<span class="st">"exactitud_03"</span>)) {</span>
+<span id="cb71-743"><a href="#cb71-743" aria-hidden="true" tabindex="-1"></a>  comparacion_cortes <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb71-744"><a href="#cb71-744" aria-hidden="true" tabindex="-1"></a>    <span class="at">punto_corte =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.3</span>),</span>
+<span id="cb71-745"><a href="#cb71-745" aria-hidden="true" tabindex="-1"></a>    <span class="at">exactitud =</span> <span class="fu">c</span>(exactitud, exactitud_03),</span>
+<span id="cb71-746"><a href="#cb71-746" aria-hidden="true" tabindex="-1"></a>    <span class="at">sensibilidad =</span> <span class="fu">c</span>(sensibilidad, sensibilidad_03),</span>
+<span id="cb71-747"><a href="#cb71-747" aria-hidden="true" tabindex="-1"></a>    <span class="at">especificidad =</span> <span class="fu">c</span>(especificidad, especificidad_03)</span>
+<span id="cb71-748"><a href="#cb71-748" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb71-749"><a href="#cb71-749" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb71-750"><a href="#cb71-750" aria-hidden="true" tabindex="-1"></a>  comparacion_cortes</span>
+<span id="cb71-751"><a href="#cb71-751" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb71-752"><a href="#cb71-752" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb71-753"><a href="#cb71-753" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-754"><a href="#cb71-754" aria-hidden="true" tabindex="-1"></a><span class="fu">## Interpretación de los puntos de corte</span></span>
+<span id="cb71-755"><a href="#cb71-755" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-756"><a href="#cb71-756" aria-hidden="true" tabindex="-1"></a>Bajar el punto de corte normalmente aumenta la sensibilidad, porque el modelo clasifica más casos como “Con víctimas”.</span>
+<span id="cb71-757"><a href="#cb71-757" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-758"><a href="#cb71-758" aria-hidden="true" tabindex="-1"></a>Sin embargo, esto también puede disminuir la especificidad, porque algunos accidentes de solo daños pueden clasificarse incorrectamente como accidentes con víctimas.</span>
 <span id="cb71-759"><a href="#cb71-759" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-760"><a href="#cb71-760" aria-hidden="true" tabindex="-1"></a>En datos reales, especialmente con variables limitadas, suele haber mucho traslape.</span>
+<span id="cb71-760"><a href="#cb71-760" aria-hidden="true" tabindex="-1"></a>Este intercambio es común en clasificación:</span>
 <span id="cb71-761"><a href="#cb71-761" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-762"><a href="#cb71-762" aria-hidden="true" tabindex="-1"></a>Ese traslape significa que hay accidentes con características similares pero resultados distintos.</span>
-<span id="cb71-763"><a href="#cb71-763" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-764"><a href="#cb71-764" aria-hidden="true" tabindex="-1"></a>Esto no necesariamente indica que el modelo esté “mal”, sino que el fenómeno puede ser complejo y que quizá necesitamos mejores variables.</span>
-<span id="cb71-765"><a href="#cb71-765" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-766"><a href="#cb71-766" aria-hidden="true" tabindex="-1"></a><span class="fu">## Odds ratios</span></span>
-<span id="cb71-767"><a href="#cb71-767" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-768"><a href="#cb71-768" aria-hidden="true" tabindex="-1"></a>Los coeficientes de la regresión logística están en escala logarítmica de momios.</span>
-<span id="cb71-769"><a href="#cb71-769" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-770"><a href="#cb71-770" aria-hidden="true" tabindex="-1"></a>Para interpretarlos de manera más directa, podemos transformarlos con la función exponencial.</span>
-<span id="cb71-771"><a href="#cb71-771" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-774"><a href="#cb71-774" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb71-775"><a href="#cb71-775" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"modelo_logistico"</span>)) {</span>
-<span id="cb71-776"><a href="#cb71-776" aria-hidden="true" tabindex="-1"></a>  odds_ratios <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="fu">coef</span>(modelo_logistico))</span>
-<span id="cb71-777"><a href="#cb71-777" aria-hidden="true" tabindex="-1"></a>  odds_ratios</span>
-<span id="cb71-778"><a href="#cb71-778" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb71-779"><a href="#cb71-779" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb71-780"><a href="#cb71-780" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-781"><a href="#cb71-781" aria-hidden="true" tabindex="-1"></a>Estos valores se conocen como **odds ratios** o razones de momios.</span>
-<span id="cb71-782"><a href="#cb71-782" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-783"><a href="#cb71-783" aria-hidden="true" tabindex="-1"></a>Un odds ratio mayor que 1 indica que la variable aumenta los momios de la clase positiva, comparado con una categoría de referencia.</span>
-<span id="cb71-784"><a href="#cb71-784" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-785"><a href="#cb71-785" aria-hidden="true" tabindex="-1"></a>Un odds ratio menor que 1 indica que la variable disminuye los momios de la clase positiva, comparado con una categoría de referencia.</span>
-<span id="cb71-786"><a href="#cb71-786" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-787"><a href="#cb71-787" aria-hidden="true" tabindex="-1"></a><span class="fu">## Nota sobre la interpretación de odds ratios</span></span>
-<span id="cb71-788"><a href="#cb71-788" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-789"><a href="#cb71-789" aria-hidden="true" tabindex="-1"></a>Cuando hay variables categóricas, R elige automáticamente una categoría de referencia.</span>
-<span id="cb71-790"><a href="#cb71-790" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-791"><a href="#cb71-791" aria-hidden="true" tabindex="-1"></a>Los coeficientes de las demás categorías se interpretan en comparación con esa categoría base.</span>
-<span id="cb71-792"><a href="#cb71-792" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-793"><a href="#cb71-793" aria-hidden="true" tabindex="-1"></a>Por eso, interpretar odds ratios requiere saber cuál es la categoría de referencia.</span>
-<span id="cb71-794"><a href="#cb71-794" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-795"><a href="#cb71-795" aria-hidden="true" tabindex="-1"></a>En esta primera aproximación, nuestro objetivo principal es entender el flujo completo:</span>
-<span id="cb71-796"><a href="#cb71-796" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-797"><a href="#cb71-797" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
-<span id="cb71-798"><a href="#cb71-798" aria-hidden="true" tabindex="-1"></a><span class="in">datos → modelo → probabilidades → clases → matriz de confusión → métricas</span></span>
-<span id="cb71-799"><a href="#cb71-799" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb71-762"><a href="#cb71-762" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
+<span id="cb71-763"><a href="#cb71-763" aria-hidden="true" tabindex="-1"></a><span class="in">Mayor sensibilidad  → más detección de positivos, pero más falsos positivos.</span></span>
+<span id="cb71-764"><a href="#cb71-764" aria-hidden="true" tabindex="-1"></a><span class="in">Mayor especificidad → menos falsos positivos, pero más positivos no detectados.</span></span>
+<span id="cb71-765"><a href="#cb71-765" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb71-766"><a href="#cb71-766" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-767"><a href="#cb71-767" aria-hidden="true" tabindex="-1"></a>La elección del punto de corte depende del problema.</span>
+<span id="cb71-768"><a href="#cb71-768" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-769"><a href="#cb71-769" aria-hidden="true" tabindex="-1"></a>En este ejemplo, el punto de corte 0.5 produce mayor exactitud, pero detecta pocos accidentes con víctimas. En cambio, el punto de corte 0.3 reduce la exactitud global, pero mejora considerablemente la sensibilidad.</span>
+<span id="cb71-770"><a href="#cb71-770" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-771"><a href="#cb71-771" aria-hidden="true" tabindex="-1"></a>Desde una perspectiva de seguridad vial, podría ser más útil detectar una mayor proporción de accidentes con víctimas, aunque eso implique aceptar más falsos positivos.</span>
+<span id="cb71-772"><a href="#cb71-772" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-773"><a href="#cb71-773" aria-hidden="true" tabindex="-1"></a><span class="fu">## Distribución de probabilidades predichas</span></span>
+<span id="cb71-774"><a href="#cb71-774" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-775"><a href="#cb71-775" aria-hidden="true" tabindex="-1"></a>Ahora analizamos cómo se distribuyen las probabilidades predichas por el modelo.</span>
+<span id="cb71-776"><a href="#cb71-776" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-779"><a href="#cb71-779" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb71-780"><a href="#cb71-780" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"prueba"</span>)) {</span>
+<span id="cb71-781"><a href="#cb71-781" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(prueba, <span class="fu">aes</span>(<span class="at">x =</span> probabilidad_victimas, <span class="at">fill =</span> accidente_con_victimas)) <span class="sc">+</span></span>
+<span id="cb71-782"><a href="#cb71-782" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">30</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">position =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb71-783"><a href="#cb71-783" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb71-784"><a href="#cb71-784" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> <span class="st">"Distribución de probabilidades predichas"</span>,</span>
+<span id="cb71-785"><a href="#cb71-785" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="st">"Probabilidad predicha de accidente con víctimas"</span>,</span>
+<span id="cb71-786"><a href="#cb71-786" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="st">"Frecuencia"</span>,</span>
+<span id="cb71-787"><a href="#cb71-787" aria-hidden="true" tabindex="-1"></a>      <span class="at">fill =</span> <span class="st">"Clase real"</span></span>
+<span id="cb71-788"><a href="#cb71-788" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb71-789"><a href="#cb71-789" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb71-790"><a href="#cb71-790" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb71-791"><a href="#cb71-791" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-792"><a href="#cb71-792" aria-hidden="true" tabindex="-1"></a><span class="fu">## Interpretación de las probabilidades</span></span>
+<span id="cb71-793"><a href="#cb71-793" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-794"><a href="#cb71-794" aria-hidden="true" tabindex="-1"></a>Si el modelo separara perfectamente las clases, esperaríamos que:</span>
+<span id="cb71-795"><a href="#cb71-795" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-796"><a href="#cb71-796" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>los accidentes de solo daños tuvieran probabilidades cercanas a 0;</span>
+<span id="cb71-797"><a href="#cb71-797" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>los accidentes con víctimas tuvieran probabilidades cercanas a 1.</span>
+<span id="cb71-798"><a href="#cb71-798" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-799"><a href="#cb71-799" aria-hidden="true" tabindex="-1"></a>En datos reales, especialmente con variables limitadas, suele haber mucho traslape.</span>
 <span id="cb71-800"><a href="#cb71-800" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-801"><a href="#cb71-801" aria-hidden="true" tabindex="-1"></a>En capítulos posteriores podremos profundizar más en interpretación estadística.</span>
+<span id="cb71-801"><a href="#cb71-801" aria-hidden="true" tabindex="-1"></a>Ese traslape significa que hay accidentes con características similares pero resultados distintos.</span>
 <span id="cb71-802"><a href="#cb71-802" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-803"><a href="#cb71-803" aria-hidden="true" tabindex="-1"></a><span class="fu">## Limitaciones del modelo</span></span>
+<span id="cb71-803"><a href="#cb71-803" aria-hidden="true" tabindex="-1"></a>Esto no necesariamente indica que el modelo esté “mal”, sino que el fenómeno puede ser complejo y que quizá necesitamos mejores variables.</span>
 <span id="cb71-804"><a href="#cb71-804" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-805"><a href="#cb71-805" aria-hidden="true" tabindex="-1"></a>La regresión logística es un modelo muy útil, pero tiene limitaciones.</span>
+<span id="cb71-805"><a href="#cb71-805" aria-hidden="true" tabindex="-1"></a><span class="fu">## Odds ratios</span></span>
 <span id="cb71-806"><a href="#cb71-806" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-807"><a href="#cb71-807" aria-hidden="true" tabindex="-1"></a>Algunas de ellas son:</span>
+<span id="cb71-807"><a href="#cb71-807" aria-hidden="true" tabindex="-1"></a>Los coeficientes de la regresión logística están en escala logarítmica de momios.</span>
 <span id="cb71-808"><a href="#cb71-808" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-809"><a href="#cb71-809" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>supone una relación lineal entre las variables predictoras y el logit;</span>
-<span id="cb71-810"><a href="#cb71-810" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>puede verse afectada por variables categóricas con muchas categorías;</span>
-<span id="cb71-811"><a href="#cb71-811" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>puede tener dificultades con relaciones complejas o no lineales;</span>
-<span id="cb71-812"><a href="#cb71-812" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>requiere cuidado cuando las clases están muy desbalanceadas;</span>
-<span id="cb71-813"><a href="#cb71-813" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>no captura automáticamente interacciones complejas entre variables.</span>
-<span id="cb71-814"><a href="#cb71-814" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-815"><a href="#cb71-815" aria-hidden="true" tabindex="-1"></a>En nuestro caso, el modelo usa pocas variables y no incluye información espacial, condiciones del camino, tipo de vehículo, edad de conductores ni otros factores que podrían ser relevantes.</span>
-<span id="cb71-816"><a href="#cb71-816" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-817"><a href="#cb71-817" aria-hidden="true" tabindex="-1"></a>Por lo tanto, este modelo debe verse como un primer modelo base, no como un modelo definitivo.</span>
-<span id="cb71-818"><a href="#cb71-818" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-819"><a href="#cb71-819" aria-hidden="true" tabindex="-1"></a><span class="fu">## ¿Qué aprendimos?</span></span>
-<span id="cb71-820"><a href="#cb71-820" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-821"><a href="#cb71-821" aria-hidden="true" tabindex="-1"></a>En este capítulo construimos nuestro primer modelo supervisado de clasificación.</span>
-<span id="cb71-822"><a href="#cb71-822" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-823"><a href="#cb71-823" aria-hidden="true" tabindex="-1"></a>Aprendimos que:</span>
-<span id="cb71-824"><a href="#cb71-824" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-825"><a href="#cb71-825" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>la regresión logística se usa para problemas de clasificación binaria;</span>
-<span id="cb71-826"><a href="#cb71-826" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>el modelo produce probabilidades;</span>
-<span id="cb71-827"><a href="#cb71-827" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>las probabilidades se convierten en clases usando un punto de corte;</span>
-<span id="cb71-828"><a href="#cb71-828" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>el punto de corte afecta las métricas;</span>
-<span id="cb71-829"><a href="#cb71-829" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>la matriz de confusión permite evaluar el desempeño;</span>
-<span id="cb71-830"><a href="#cb71-830" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>la exactitud puede ser engañosa en bases desbalanceadas;</span>
-<span id="cb71-831"><a href="#cb71-831" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>la sensibilidad y la especificidad ayudan a entender mejor el modelo;</span>
-<span id="cb71-832"><a href="#cb71-832" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>los odds ratios permiten interpretar coeficientes en términos de momios.</span>
+<span id="cb71-809"><a href="#cb71-809" aria-hidden="true" tabindex="-1"></a>Para interpretarlos de manera más directa, podemos transformarlos con la función exponencial.</span>
+<span id="cb71-810"><a href="#cb71-810" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-813"><a href="#cb71-813" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb71-814"><a href="#cb71-814" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"modelo_logistico"</span>)) {</span>
+<span id="cb71-815"><a href="#cb71-815" aria-hidden="true" tabindex="-1"></a>  odds_ratios <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb71-816"><a href="#cb71-816" aria-hidden="true" tabindex="-1"></a>    <span class="at">variable =</span> <span class="fu">names</span>(<span class="fu">coef</span>(modelo_logistico)),</span>
+<span id="cb71-817"><a href="#cb71-817" aria-hidden="true" tabindex="-1"></a>    <span class="at">odds_ratio =</span> <span class="fu">exp</span>(<span class="fu">coef</span>(modelo_logistico))</span>
+<span id="cb71-818"><a href="#cb71-818" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb71-819"><a href="#cb71-819" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb71-820"><a href="#cb71-820" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(odds_ratios, <span class="dv">15</span>)</span>
+<span id="cb71-821"><a href="#cb71-821" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb71-822"><a href="#cb71-822" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb71-823"><a href="#cb71-823" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-824"><a href="#cb71-824" aria-hidden="true" tabindex="-1"></a>Estos valores se conocen como **odds ratios** o razones de momios.</span>
+<span id="cb71-825"><a href="#cb71-825" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-826"><a href="#cb71-826" aria-hidden="true" tabindex="-1"></a>Un odds ratio mayor que 1 indica que la variable aumenta los momios de la clase positiva, comparado con una categoría de referencia.</span>
+<span id="cb71-827"><a href="#cb71-827" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-828"><a href="#cb71-828" aria-hidden="true" tabindex="-1"></a>Un odds ratio menor que 1 indica que la variable disminuye los momios de la clase positiva, comparado con una categoría de referencia.</span>
+<span id="cb71-829"><a href="#cb71-829" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-830"><a href="#cb71-830" aria-hidden="true" tabindex="-1"></a><span class="fu">## Nota sobre la interpretación de odds ratios</span></span>
+<span id="cb71-831"><a href="#cb71-831" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-832"><a href="#cb71-832" aria-hidden="true" tabindex="-1"></a>Cuando hay variables categóricas, R elige automáticamente una categoría de referencia.</span>
 <span id="cb71-833"><a href="#cb71-833" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-834"><a href="#cb71-834" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conclusión</span></span>
+<span id="cb71-834"><a href="#cb71-834" aria-hidden="true" tabindex="-1"></a>Los coeficientes de las demás categorías se interpretan en comparación con esa categoría base.</span>
 <span id="cb71-835"><a href="#cb71-835" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-836"><a href="#cb71-836" aria-hidden="true" tabindex="-1"></a>La regresión logística es uno de los modelos más importantes en aprendizaje automático aplicado.</span>
+<span id="cb71-836"><a href="#cb71-836" aria-hidden="true" tabindex="-1"></a>Por eso, interpretar odds ratios requiere saber cuál es la categoría de referencia.</span>
 <span id="cb71-837"><a href="#cb71-837" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-838"><a href="#cb71-838" aria-hidden="true" tabindex="-1"></a>Aunque es relativamente simple, permite construir modelos interpretables y útiles para problemas de clasificación binaria.</span>
+<span id="cb71-838"><a href="#cb71-838" aria-hidden="true" tabindex="-1"></a>En modelos con muchas variables categóricas, los odds ratios pueden ser numerosos y algunos pueden tomar valores extremos. Por eso, en esta primera lectura los usamos solo como introducción conceptual.</span>
 <span id="cb71-839"><a href="#cb71-839" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-840"><a href="#cb71-840" aria-hidden="true" tabindex="-1"></a>En este capítulo la usamos para estimar la probabilidad de que un accidente tenga víctimas.</span>
+<span id="cb71-840"><a href="#cb71-840" aria-hidden="true" tabindex="-1"></a>En esta primera aproximación, nuestro objetivo principal es entender el flujo completo:</span>
 <span id="cb71-841"><a href="#cb71-841" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-842"><a href="#cb71-842" aria-hidden="true" tabindex="-1"></a>En el siguiente capítulo estudiaremos otro método de clasificación muy intuitivo: **k vecinos más cercanos**, conocido como **k-NN**.</span>
+<span id="cb71-842"><a href="#cb71-842" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
+<span id="cb71-843"><a href="#cb71-843" aria-hidden="true" tabindex="-1"></a><span class="in">datos → modelo → probabilidades → clases → matriz de confusión → métricas</span></span>
+<span id="cb71-844"><a href="#cb71-844" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb71-845"><a href="#cb71-845" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-846"><a href="#cb71-846" aria-hidden="true" tabindex="-1"></a>En capítulos posteriores podremos profundizar más en interpretación estadística.</span>
+<span id="cb71-847"><a href="#cb71-847" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-848"><a href="#cb71-848" aria-hidden="true" tabindex="-1"></a><span class="fu">## Limitaciones del modelo</span></span>
+<span id="cb71-849"><a href="#cb71-849" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-850"><a href="#cb71-850" aria-hidden="true" tabindex="-1"></a>La regresión logística es un modelo muy útil, pero tiene limitaciones.</span>
+<span id="cb71-851"><a href="#cb71-851" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-852"><a href="#cb71-852" aria-hidden="true" tabindex="-1"></a>Algunas de ellas son:</span>
+<span id="cb71-853"><a href="#cb71-853" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-854"><a href="#cb71-854" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>supone una relación lineal entre las variables predictoras y el logit;</span>
+<span id="cb71-855"><a href="#cb71-855" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>puede verse afectada por variables categóricas con muchas categorías;</span>
+<span id="cb71-856"><a href="#cb71-856" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>puede tener dificultades con relaciones complejas o no lineales;</span>
+<span id="cb71-857"><a href="#cb71-857" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>requiere cuidado cuando las clases están muy desbalanceadas;</span>
+<span id="cb71-858"><a href="#cb71-858" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>no captura automáticamente interacciones complejas entre variables.</span>
+<span id="cb71-859"><a href="#cb71-859" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-860"><a href="#cb71-860" aria-hidden="true" tabindex="-1"></a>En nuestro caso, el modelo usa pocas variables y no incluye información espacial, condiciones del camino, tipo de vehículo, edad de conductores ni otros factores que podrían ser relevantes.</span>
+<span id="cb71-861"><a href="#cb71-861" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-862"><a href="#cb71-862" aria-hidden="true" tabindex="-1"></a>Por lo tanto, este modelo debe verse como un primer modelo base, no como un modelo definitivo.</span>
+<span id="cb71-863"><a href="#cb71-863" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-864"><a href="#cb71-864" aria-hidden="true" tabindex="-1"></a><span class="fu">## ¿Qué aprendimos?</span></span>
+<span id="cb71-865"><a href="#cb71-865" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-866"><a href="#cb71-866" aria-hidden="true" tabindex="-1"></a>En este capítulo construimos nuestro primer modelo supervisado de clasificación.</span>
+<span id="cb71-867"><a href="#cb71-867" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-868"><a href="#cb71-868" aria-hidden="true" tabindex="-1"></a>Aprendimos que:</span>
+<span id="cb71-869"><a href="#cb71-869" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-870"><a href="#cb71-870" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>la regresión logística se usa para problemas de clasificación binaria;</span>
+<span id="cb71-871"><a href="#cb71-871" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>el modelo produce probabilidades;</span>
+<span id="cb71-872"><a href="#cb71-872" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>las probabilidades se convierten en clases usando un punto de corte;</span>
+<span id="cb71-873"><a href="#cb71-873" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>el punto de corte afecta las métricas;</span>
+<span id="cb71-874"><a href="#cb71-874" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>la matriz de confusión permite evaluar el desempeño;</span>
+<span id="cb71-875"><a href="#cb71-875" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>la exactitud puede ser engañosa en bases desbalanceadas;</span>
+<span id="cb71-876"><a href="#cb71-876" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>la sensibilidad y la especificidad ayudan a entender mejor el modelo;</span>
+<span id="cb71-877"><a href="#cb71-877" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>los odds ratios permiten interpretar coeficientes en términos de momios.</span>
+<span id="cb71-878"><a href="#cb71-878" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-879"><a href="#cb71-879" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conclusión</span></span>
+<span id="cb71-880"><a href="#cb71-880" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-881"><a href="#cb71-881" aria-hidden="true" tabindex="-1"></a>La regresión logística es uno de los modelos más importantes en aprendizaje automático aplicado.</span>
+<span id="cb71-882"><a href="#cb71-882" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-883"><a href="#cb71-883" aria-hidden="true" tabindex="-1"></a>Aunque es relativamente simple, permite construir modelos interpretables y útiles para problemas de clasificación binaria.</span>
+<span id="cb71-884"><a href="#cb71-884" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-885"><a href="#cb71-885" aria-hidden="true" tabindex="-1"></a>En este capítulo la usamos para estimar la probabilidad de que un accidente tenga víctimas.</span>
+<span id="cb71-886"><a href="#cb71-886" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-887"><a href="#cb71-887" aria-hidden="true" tabindex="-1"></a>En el siguiente capítulo estudiaremos otro método de clasificación muy intuitivo: **k vecinos más cercanos**, conocido como **k-NN**.</span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

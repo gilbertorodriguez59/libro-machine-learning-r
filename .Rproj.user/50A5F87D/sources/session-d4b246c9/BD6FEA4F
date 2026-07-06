@@ -3,7 +3,7 @@
     "path": "C:/libro-machine-learning-r/03-analisis-exploratorio.qmd",
     "project_path": "03-analisis-exploratorio.qmd",
     "type": "quarto_markdown",
-    "hash": "0",
+    "hash": "2603669673",
     "contents": "",
     "dirty": false,
     "created": 1783283797023.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "9,0",
-        "scrollLine": "0"
+        "cursorPosition": "645,121",
+        "scrollLine": "620"
     },
     "folds": "",
-    "lastKnownWriteTime": 1783283811,
+    "lastKnownWriteTime": 1783302943,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1783283811797,
+    "last_content_update": 1783302943328,
     "read_only": false,
     "read_only_alternatives": []
 }

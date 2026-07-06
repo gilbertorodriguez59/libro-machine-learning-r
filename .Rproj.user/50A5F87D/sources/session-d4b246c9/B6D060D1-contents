@@ -10,7 +10,7 @@ Al finalizar este capítulo, el lector será capaz de:
 - Reconocer las etapas principales de un proyecto de aprendizaje automático.
 - Construir un primer ejemplo sencillo de clasificación en R.
 
-## 1.1 Introducción
+## Introducción
 
 El aprendizaje automático, también conocido como *Machine Learning*, es una rama de la inteligencia artificial que permite construir modelos capaces de aprender patrones a partir de datos.
 
@@ -22,7 +22,7 @@ La idea central será:
 
 > Aprender Machine Learning haciendo proyectos con datos reales.
 
-## 1.2 Programación tradicional contra aprendizaje automático
+## Programación tradicional contra aprendizaje automático
 
 En la programación tradicional, una persona escribe reglas explícitas.
 
@@ -56,7 +56,7 @@ Por ejemplo:
 
 En estos casos, el comportamiento depende de muchas variables al mismo tiempo.
 
-## 1.3 ¿Qué hace diferente al aprendizaje automático?
+## ¿Qué hace diferente al aprendizaje automático?
 
 En aprendizaje automático no le damos al sistema una regla fija. Le damos datos.
 
@@ -104,7 +104,7 @@ En este ejemplo, el objetivo del modelo sería aprender una relación aproximada
 PM10, temperatura y humedad  →  clase de contaminación
 ```
 
-## 1.4 Variables predictoras y variable respuesta
+## Variables predictoras y variable respuesta
 
 En aprendizaje automático es importante distinguir entre:
 
@@ -146,7 +146,7 @@ En el ejemplo anterior, las variables predictoras son:
 pm10, temperatura, humedad
 ```
 
-## 1.5 Tipos principales de aprendizaje automático
+## Tipos principales de aprendizaje automático
 
 En una primera aproximación podemos hablar de tres grandes tipos de aprendizaje automático:
 
@@ -156,7 +156,7 @@ En una primera aproximación podemos hablar de tres grandes tipos de aprendizaje
 
 En este libro nos concentraremos principalmente en los dos primeros.
 
-## 1.6 Aprendizaje supervisado
+## Aprendizaje supervisado
 
 El aprendizaje supervisado se utiliza cuando tenemos una variable respuesta conocida.
 
@@ -176,7 +176,7 @@ Dentro del aprendizaje supervisado hay dos tareas muy importantes:
 - clasificación,
 - regresión.
 
-## 1.7 Clasificación
+## Clasificación
 
 La clasificación se utiliza cuando la variable respuesta es categórica.
 
@@ -198,7 +198,7 @@ Ejemplos de clasificación:
 
 En clasificación, el modelo asigna una observación a una categoría.
 
-## 1.8 Regresión
+## Regresión
 
 La regresión se utiliza cuando la variable respuesta es numérica.
 
@@ -221,7 +221,7 @@ Ejemplos de regresión:
 
 En regresión, el modelo predice un valor numérico.
 
-## 1.9 Aprendizaje no supervisado
+## Aprendizaje no supervisado
 
 El aprendizaje no supervisado se utiliza cuando no tenemos una variable respuesta conocida.
 
@@ -240,7 +240,7 @@ Dos técnicas importantes de aprendizaje no supervisado son:
 - agrupamiento o *clustering*,
 - análisis de componentes principales o PCA.
 
-## 1.10 El flujo general de un proyecto de aprendizaje automático
+## El flujo general de un proyecto de aprendizaje automático
 
 Un proyecto de aprendizaje automático casi nunca empieza directamente con el modelo.
 
@@ -263,7 +263,7 @@ Un flujo típico es:
 
 En este libro seguiremos esta lógica.
 
-## 1.11 Primer ejemplo visual en R
+## Primer ejemplo visual en R
 
 Ahora construiremos una gráfica sencilla para visualizar el ejemplo de contaminación.
 
@@ -289,7 +289,7 @@ Aunque este ejemplo es pequeño y didáctico, nos permite observar una idea fund
 
 > Los modelos de aprendizaje automático buscan patrones en las variables predictoras para explicar o predecir una variable respuesta.
 
-## 1.12 División entre entrenamiento y prueba
+## División entre entrenamiento y prueba
 
 Un error común al iniciar en aprendizaje automático es evaluar el modelo con los mismos datos con los que fue entrenado.
 
@@ -317,7 +317,7 @@ prueba
 
 En este ejemplo pequeño, la división es solo ilustrativa. En problemas reales usaremos conjuntos de datos más grandes.
 
-## 1.13 Primer clasificador sencillo basado en una regla
+## Primer clasificador sencillo basado en una regla
 
 Antes de usar algoritmos más avanzados, podemos construir una regla sencilla para entender la idea de predicción.
 
@@ -349,7 +349,7 @@ La exactitud indica la proporción de observaciones clasificadas correctamente.
 
 Este ejemplo todavía no es un modelo automático sofisticado, pero nos prepara para entender cómo evaluaremos modelos más adelante.
 
-## 1.14 ¿Qué aprenderemos en este libro?
+## ¿Qué aprenderemos en este libro?
 
 A lo largo del libro estudiaremos métodos como:
 
@@ -373,7 +373,7 @@ Cada método se estudiará con:
 6. interpretación,
 7. ejercicios.
 
-## 1.15 Conclusión
+## Conclusión
 
 El aprendizaje automático permite construir modelos capaces de aprender patrones a partir de datos.
 

@@ -4,59 +4,160 @@
 
 Al finalizar este capítulo, el lector será capaz de:
 
-- Comprender por qué la preparación de datos es una etapa fundamental en aprendizaje automático.
+- Explicar por qué la preparación de datos es una etapa fundamental en aprendizaje automático.
+- Distinguir entre datos crudos y datos preparados.
 - Leer un conjunto de datos real en R.
-- Revisar nombres de variables, dimensiones y estructura de una base.
-- Seleccionar variables de interés.
-- Crear una variable respuesta para un problema de clasificación.
-- Preparar una primera base de trabajo lista para análisis exploratorio y modelado.
+- Revisar la estructura general de una base de datos.
+- Seleccionar variables relevantes para un problema de clasificación.
+- Crear una variable respuesta a partir de una variable original.
+- Guardar una base preparada para usarla en capítulos posteriores.
 
-## 2.1 Introducción
+## Introducción
 
-En los libros y cursos introductorios es común usar bases de datos pequeñas, limpias y listas para modelar. Sin embargo, en la práctica profesional los datos reales casi nunca vienen preparados.
+En muchos cursos de estadística, programación o aprendizaje automático se utilizan bases de datos pequeñas, limpias y listas para trabajar. Esto es útil para aprender los conceptos básicos, pero en la práctica profesional la situación suele ser muy diferente.
 
-Antes de aplicar cualquier algoritmo de aprendizaje automático, normalmente tenemos que realizar varias tareas:
+Los datos reales generalmente vienen con problemas como:
 
-- descargar o importar datos,
-- revisar nombres de variables,
-- corregir tipos de datos,
-- detectar valores faltantes,
-- seleccionar variables útiles,
-- transformar variables,
-- crear una variable respuesta,
-- eliminar registros incompletos,
-- documentar cada paso.
+- nombres de variables poco claros,
+- códigos numéricos que representan categorías,
+- valores faltantes,
+- columnas que no se necesitan,
+- variables con tipos incorrectos,
+- archivos grandes,
+- fechas y horas separadas,
+- registros incompletos,
+- categorías escritas de distintas formas.
 
-Esta etapa se conoce como **preparación de datos**.
+Por eso, antes de aplicar cualquier algoritmo de aprendizaje automático, es necesario preparar los datos.
 
-En muchos proyectos reales, preparar los datos toma más tiempo que entrenar el modelo.
+A esta etapa se le conoce como **preparación de datos** o *data preprocessing*.
 
-## 2.2 Conjunto de datos de trabajo: ATUS de INEGI
+En términos sencillos:
 
-En este capítulo comenzaremos a trabajar con un conjunto de datos real de México: la estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas, conocida como **ATUS**, publicada por INEGI.
+> Preparar datos significa transformar una base real, posiblemente desordenada, en una tabla limpia, clara y útil para construir modelos.
 
-ATUS contiene información sobre accidentes de tránsito ocurridos en zonas urbanas y suburbanas. La información tiene cobertura nacional, estatal y municipal, y considera accidentes en caminos de jurisdicción no federal.
+## ¿Por qué es tan importante preparar los datos?
 
-Este conjunto de datos es útil para construir ejemplos de aprendizaje automático porque contiene variables como:
+Un modelo de aprendizaje automático no puede corregir por sí solo todos los problemas de una base de datos.
 
-- entidad federativa,
-- municipio,
-- año,
-- mes,
-- día de la semana,
-- hora,
-- tipo de accidente,
-- causa presunta,
-- clase de accidente,
-- víctimas.
+Si los datos están mal preparados, el modelo puede producir resultados equivocados, aunque el algoritmo sea sofisticado.
 
-Con estos datos podemos formular problemas como:
+Una frase común en ciencia de datos es:
 
-> ¿Podemos clasificar si un accidente tendrá víctimas o será solo de daños materiales?
+```text
+Basura entra, basura sale.
+```
 
-Ese será nuestro primer problema práctico.
+Esto significa que si usamos datos mal organizados, incompletos o incorrectos, el resultado del modelo también será poco confiable.
 
-## 2.3 Crear la carpeta de datos
+Por ejemplo, imaginemos que queremos predecir si un accidente de tránsito tuvo víctimas, pero tenemos problemas como estos:
+
+- la hora del accidente aparece como texto en algunos registros y como número en otros;
+- algunos accidentes no tienen registrada la causa;
+- la variable de severidad está codificada con números que no entendemos;
+- hay columnas que no aportan información al modelo;
+- algunas variables representan categorías, pero R las interpreta como números.
+
+Antes de modelar, debemos revisar y corregir este tipo de situaciones.
+
+## Datos crudos y datos preparados
+
+Llamaremos **datos crudos** a la base tal como se obtiene de la fuente original.
+
+Los datos crudos son valiosos porque contienen la información original, pero no siempre están listos para aplicar aprendizaje automático.
+
+Llamaremos **datos preparados** a la base que ya fue revisada, transformada y organizada para un propósito específico.
+
+La diferencia puede verse así:
+
+```text
+Datos crudos
+    ↓
+Revisión
+    ↓
+Limpieza
+    ↓
+Selección de variables
+    ↓
+Transformación
+    ↓
+Datos preparados
+    ↓
+Modelo de aprendizaje automático
+```
+
+En este capítulo construiremos nuestra primera base preparada.
+
+## Conjunto de datos de trabajo: ATUS
+
+Para iniciar usaremos un conjunto de datos real de México: **Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas**, conocido como **ATUS**, publicado por INEGI.
+
+Este conjunto contiene información sobre accidentes de tránsito ocurridos en zonas urbanas y suburbanas.
+
+Nos interesa porque permite construir problemas reales de clasificación, por ejemplo:
+
+- clasificar si un accidente tuvo víctimas;
+- clasificar el tipo de accidente;
+- identificar patrones por hora, día o mes;
+- estudiar diferencias entre municipios o entidades;
+- analizar causas frecuentes de accidentes.
+
+En esta primera edición del libro usaremos ATUS como base para varios capítulos iniciales, porque permite explicar de forma didáctica el flujo completo de un proyecto de aprendizaje automático.
+
+## Pregunta de aprendizaje automático
+
+Antes de tocar código, debemos plantear una pregunta.
+
+En este capítulo trabajaremos con la siguiente pregunta:
+
+> ¿Podemos preparar una base de datos que permita clasificar si un accidente de tránsito tuvo víctimas o fue solamente de daños materiales?
+
+Esta pregunta nos lleva a definir dos elementos:
+
+1. La variable que queremos predecir.
+2. Las variables que usaremos para intentar predecirla.
+
+## Variable respuesta
+
+La **variable respuesta** será:
+
+```text
+accidente_con_victimas
+```
+
+Esta variable tendrá dos posibles valores:
+
+```text
+Con víctimas
+Solo daños
+```
+
+La construiremos a partir de la variable original que describe la clase del accidente.
+
+En términos de aprendizaje automático, este será un problema de **clasificación binaria**, porque la respuesta solo tiene dos categorías.
+
+## Variables predictoras
+
+Para iniciar usaremos pocas variables predictoras. La idea no es construir todavía el mejor modelo posible, sino preparar una base clara y manejable.
+
+Usaremos variables como:
+
+| Variable | Interpretación |
+|---|---|
+| `MES` | Mes en que ocurrió el accidente |
+| `ID_HORA` | Hora del accidente |
+| `DIASEMANA` | Día de la semana |
+| `TIPACCID` | Tipo de accidente |
+| `CAUSAACCI` | Causa presunta del accidente |
+
+Estas variables son útiles porque permiten explorar preguntas como:
+
+- ¿hay más accidentes con víctimas en ciertas horas?
+- ¿el día de la semana influye?
+- ¿algunos tipos de accidente son más graves que otros?
+- ¿la causa presunta está relacionada con la severidad?
+
+## Crear la carpeta de datos
 
 Dentro de la carpeta del libro crea una carpeta llamada:
 
@@ -64,7 +165,7 @@ Dentro de la carpeta del libro crea una carpeta llamada:
 datos
 ```
 
-La estructura del proyecto debería verse así:
+La estructura del proyecto debería quedar así:
 
 ```text
 libro-machine-learning-r/
@@ -81,33 +182,21 @@ libro-machine-learning-r/
 └── docs/
 ```
 
-El archivo de datos que usaremos en este capítulo se llamará:
+El archivo que usaremos debe llamarse exactamente:
 
 ```text
 atus_2024.csv
 ```
 
-## 2.4 Descarga de los datos
-
-Para este capítulo descarga el archivo CSV de ATUS desde el sitio de INEGI.
-
-Una vez descargado, guarda el archivo en la carpeta:
+y debe estar dentro de la carpeta:
 
 ```text
 datos/
 ```
 
-y cambia su nombre a:
+## Cargar paquetes
 
-```text
-atus_2024.csv
-```
-
-Este paso es importante para que el código del libro funcione igual en cualquier computadora.
-
-## 2.5 Cargar paquetes
-
-Primero cargamos los paquetes que usaremos.
+Primero cargamos los paquetes necesarios.
 
 ```{r}
 library(readr)
@@ -116,83 +205,139 @@ library(ggplot2)
 library(stringr)
 ```
 
-Si alguno de estos paquetes no está instalado, se puede instalar con:
+Si alguno no está instalado, puedes instalarlo con:
 
 ```{r, eval=FALSE}
 install.packages(c("readr", "dplyr", "ggplot2", "stringr"))
 ```
 
-## 2.6 Leer el archivo CSV
+## Verificar si existe el archivo
 
-Definimos la ruta del archivo.
+Definimos la ruta del archivo:
 
 ```{r}
 ruta_atus <- "datos/atus_2024.csv"
 ```
 
-Antes de leerlo, verificamos si existe.
+Ahora verificamos si el archivo existe:
 
 ```{r}
 file.exists(ruta_atus)
 ```
 
-Ahora leemos el archivo.
+Si el resultado es:
 
-```{r}
-atus <- read_csv(
-  file = ruta_atus,
-  show_col_types = FALSE,
-  locale = locale(encoding = "Latin1")
-)
+```text
+TRUE
 ```
 
-Si aparece un error, revisa tres cosas:
+entonces el archivo fue encontrado.
 
-1. Que exista la carpeta `datos`.
-2. Que el archivo esté dentro de esa carpeta.
-3. Que el archivo se llame exactamente `atus_2024.csv`.
+Si el resultado es:
 
-## 2.7 Primer vistazo a los datos
-
-Revisamos las dimensiones de la base.
-
-```{r}
-dim(atus)
+```text
+FALSE
 ```
 
-El primer número indica cuántas filas tiene la base.
+entonces R no encontró el archivo. En ese caso revisa:
 
-El segundo número indica cuántas columnas tiene.
+1. que exista la carpeta `datos`;
+2. que el archivo esté dentro de esa carpeta;
+3. que el nombre sea exactamente `atus_2024.csv`.
 
-Ahora observamos los primeros registros.
+## Leer la base de datos
 
-```{r}
-head(atus)
-```
-
-También podemos revisar los nombres de las variables.
+Para evitar que el libro falle si el archivo aún no está descargado, primero verificamos su existencia.
 
 ```{r}
-names(atus)
+if (file.exists(ruta_atus)) {
+  atus <- read_csv(
+    file = ruta_atus,
+    show_col_types = FALSE,
+    locale = locale(encoding = "Latin1")
+  )
+  
+  print("Archivo leído correctamente.")
+} else {
+  atus <- NULL
+  print("El archivo atus_2024.csv todavía no está disponible en la carpeta datos.")
+}
 ```
 
-## 2.8 Estandarizar nombres de variables
+Esta forma de leer el archivo es útil mientras estamos construyendo el libro, porque permite seguir renderizando el libro aunque todavía falte descargar la base.
 
-Para trabajar más cómodamente, convertimos los nombres de las variables a mayúsculas.
+## Revisar dimensiones
+
+Si la base fue cargada correctamente, podemos revisar sus dimensiones:
 
 ```{r}
-names(atus) <- toupper(names(atus))
-
-names(atus)
+if (!is.null(atus)) {
+  dim(atus)
+}
 ```
 
-Esto ayuda a evitar errores por diferencias entre mayúsculas y minúsculas.
+La función `dim()` devuelve dos valores:
 
-## 2.9 Variables de interés
+```text
+número de filas, número de columnas
+```
 
-Para nuestro primer problema de clasificación no necesitamos todas las variables.
+Las filas representan registros de accidentes.
 
-Seleccionaremos algunas que son útiles para iniciar:
+Las columnas representan variables.
+
+## Primeros registros
+
+Observamos los primeros registros de la base:
+
+```{r}
+if (!is.null(atus)) {
+  head(atus)
+}
+```
+
+Esta revisión inicial permite identificar cómo viene organizada la información.
+
+## Nombres de variables
+
+Ahora revisamos los nombres de las variables:
+
+```{r}
+if (!is.null(atus)) {
+  names(atus)
+}
+```
+
+Los nombres de variables son fundamentales porque los usaremos para seleccionar columnas, transformar datos y construir modelos.
+
+## Estandarizar nombres
+
+Para evitar problemas por diferencias entre mayúsculas y minúsculas, convertimos todos los nombres a mayúsculas:
+
+```{r}
+if (!is.null(atus)) {
+  names(atus) <- toupper(names(atus))
+  names(atus)
+}
+```
+
+Por ejemplo, si una variable venía como:
+
+```text
+anio
+```
+
+la convertimos en:
+
+```text
+ANIO
+```
+
+Esto facilita escribir código más consistente.
+
+## Seleccionar variables de interés
+
+Para nuestro primer problema no necesitamos todas las columnas. Seleccionaremos solo algunas.
 
 ```{r}
 variables_interes <- c(
@@ -209,30 +354,35 @@ variables_interes <- c(
 )
 ```
 
-Como los nombres de variables pueden cambiar ligeramente entre versiones, verificamos cuáles existen realmente en la base.
+Como las bases reales pueden cambiar entre versiones, verificamos cuáles de estas variables existen realmente:
 
 ```{r}
-variables_existentes <- intersect(variables_interes, names(atus))
-
-variables_existentes
+if (!is.null(atus)) {
+  variables_existentes <- intersect(variables_interes, names(atus))
+  variables_existentes
+}
 ```
 
-Ahora creamos una base reducida.
+Creamos una base reducida:
 
 ```{r}
-atus_base <- atus |>
-  select(all_of(variables_existentes))
-
-head(atus_base)
+if (!is.null(atus)) {
+  atus_base <- atus |>
+    select(all_of(variables_existentes))
+  
+  head(atus_base)
+}
 ```
 
-## 2.10 Diccionario inicial de variables
+## Diccionario inicial de variables
 
-Para trabajar con datos reales es necesario construir un pequeño diccionario de variables.
+Un **diccionario de datos** describe el significado de las variables.
 
-En esta primera versión usaremos el siguiente diccionario de trabajo:
+En proyectos reales, nunca debemos trabajar solo con nombres de columnas. También necesitamos entender qué representan.
 
-| Variable | Descripción didáctica |
+Para este primer ejemplo usaremos el siguiente diccionario didáctico:
+
+| Variable | Descripción |
 |---|---|
 | `ANIO` | Año del accidente |
 | `MES` | Mes del accidente |
@@ -245,74 +395,68 @@ En esta primera versión usaremos el siguiente diccionario de trabajo:
 | `CAUSAACCI` | Causa presunta del accidente |
 | `CLASACC` | Clase del accidente |
 
-La variable más importante para este primer ejemplo será:
+La variable `CLASACC` será especialmente importante, porque a partir de ella construiremos la variable respuesta.
 
-```text
-CLASACC
-```
+## Revisar la variable `CLASACC`
 
-porque la usaremos para construir una variable respuesta.
-
-## 2.11 Revisión de la variable `CLASACC`
-
-Primero revisamos los valores de la variable `CLASACC`.
+Primero revisamos los valores de `CLASACC`.
 
 ```{r}
-if ("CLASACC" %in% names(atus_base)) {
+if (!is.null(atus) && "CLASACC" %in% names(atus_base)) {
   table(atus_base$CLASACC, useNA = "ifany")
 }
 ```
 
-La variable `CLASACC` permite identificar la clase del accidente.
+Esta tabla nos permite saber cómo está codificada la clase del accidente.
 
-Para fines didácticos, vamos a transformar esta variable en una nueva variable binaria:
+Dependiendo de la versión del archivo, la variable puede aparecer como texto o como número.
+
+## Crear la variable respuesta
+
+Ahora crearemos una nueva variable llamada:
+
+```text
+accidente_con_victimas
+```
+
+La idea será clasificar los accidentes en dos grupos:
 
 ```text
 Con víctimas
 Solo daños
 ```
 
-Esta será nuestra primera variable respuesta para clasificación.
-
-## 2.12 Crear una variable respuesta
-
-Primero convertimos `CLASACC` a texto para evitar problemas si viene como número o como etiqueta.
+Usaremos `case_when()` para construir la variable.
 
 ```{r}
-atus_modelo <- atus_base |>
-  mutate(
-    CLASACC_TXT = as.character(CLASACC),
-    CLASACC_TXT = str_to_lower(CLASACC_TXT)
-  )
-```
-
-Ahora creamos la variable respuesta.
-
-```{r}
-atus_modelo <- atus_modelo |>
-  mutate(
-    accidente_con_victimas = case_when(
-      str_detect(CLASACC_TXT, "fatal") ~ "Con víctimas",
-      str_detect(CLASACC_TXT, "no fatal") ~ "Con víctimas",
-      str_detect(CLASACC_TXT, "dañ") ~ "Solo daños",
-      CLASACC_TXT %in% c("1", "2") ~ "Con víctimas",
-      CLASACC_TXT %in% c("3") ~ "Solo daños",
-      TRUE ~ NA_character_
+if (!is.null(atus) && "CLASACC" %in% names(atus_base)) {
+  atus_modelo <- atus_base |>
+    mutate(
+      CLASACC_TXT = as.character(CLASACC),
+      CLASACC_TXT = str_to_lower(CLASACC_TXT),
+      accidente_con_victimas = case_when(
+        str_detect(CLASACC_TXT, "fatal") ~ "Con víctimas",
+        str_detect(CLASACC_TXT, "no fatal") ~ "Con víctimas",
+        str_detect(CLASACC_TXT, "dañ") ~ "Solo daños",
+        CLASACC_TXT %in% c("1", "2") ~ "Con víctimas",
+        CLASACC_TXT %in% c("3") ~ "Solo daños",
+        TRUE ~ NA_character_
+      )
     )
-  )
+  
+  table(atus_modelo$accidente_con_victimas, useNA = "ifany")
+}
 ```
 
-Revisamos la nueva variable.
+## Comentario didáctico sobre la variable respuesta
 
-```{r}
-table(atus_modelo$accidente_con_victimas, useNA = "ifany")
-```
+Crear una variable respuesta es una decisión importante.
 
-## 2.13 Nota importante sobre la codificación
+No basta con aplicar un algoritmo. Primero debemos definir claramente qué queremos predecir.
 
-Cuando se trabaja con bases reales, las categorías pueden venir codificadas de distintas formas.
+En este caso, convertimos la clase original del accidente en una variable binaria. Esto simplifica el problema y permite iniciar con modelos de clasificación sencillos.
 
-Por ejemplo, una variable puede venir como:
+Más adelante podríamos trabajar con una variable de tres categorías, por ejemplo:
 
 ```text
 Fatal
@@ -320,140 +464,143 @@ No fatal
 Solo daños
 ```
 
-o como códigos:
+Pero para una primera aproximación es conveniente empezar con dos clases.
 
-```text
-1, 2, 3
-```
+## Eliminar registros sin respuesta
 
-Por eso, siempre se debe consultar la documentación de la base de datos antes de modelar.
+Para entrenar un modelo, necesitamos que cada registro tenga una clase conocida.
 
-En este libro iremos documentando las transformaciones para que el análisis sea claro y reproducible.
-
-## 2.14 Eliminar registros sin variable respuesta
-
-Para entrenar un modelo de clasificación necesitamos que la variable respuesta esté definida.
-
-Eliminamos los registros donde no se pudo construir la variable `accidente_con_victimas`.
+Por eso eliminamos registros donde no se pudo construir la variable respuesta.
 
 ```{r}
-atus_modelo <- atus_modelo |>
-  filter(!is.na(accidente_con_victimas))
+if (exists("atus_modelo")) {
+  atus_modelo <- atus_modelo |>
+    filter(!is.na(accidente_con_victimas))
+  
+  table(atus_modelo$accidente_con_victimas)
+}
 ```
 
-Revisamos nuevamente.
+## Convertir variables categóricas
+
+Algunas variables son códigos, pero deben tratarse como categorías.
+
+Por ejemplo, `ID_ENTIDAD` es una clave de entidad federativa. Aunque tenga números, no debe interpretarse como una cantidad.
+
+No tiene sentido decir que la entidad 20 es “el doble” de la entidad 10.
+
+Por eso convertimos algunas variables a factor.
 
 ```{r}
-table(atus_modelo$accidente_con_victimas)
+if (exists("atus_modelo")) {
+  atus_modelo <- atus_modelo |>
+    mutate(
+      ID_ENTIDAD = as.factor(ID_ENTIDAD),
+      ID_MUNICIPIO = as.factor(ID_MUNICIPIO),
+      MES = as.factor(MES),
+      DIASEMANA = as.factor(DIASEMANA),
+      TIPACCID = as.factor(TIPACCID),
+      CAUSAACCI = as.factor(CAUSAACCI),
+      accidente_con_victimas = as.factor(accidente_con_victimas)
+    )
+  
+  str(atus_modelo)
+}
 ```
 
-## 2.15 Convertir variables categóricas
+## Revisar datos faltantes
 
-Algunas variables deben tratarse como categorías y no como números.
+Los valores faltantes son comunes en bases reales.
 
-Por ejemplo, la entidad federativa y el municipio son códigos, pero no representan cantidades numéricas.
+Calculamos cuántos valores faltantes hay por variable.
 
 ```{r}
-atus_modelo <- atus_modelo |>
-  mutate(
-    ID_ENTIDAD = as.factor(ID_ENTIDAD),
-    ID_MUNICIPIO = as.factor(ID_MUNICIPIO),
-    MES = as.factor(MES),
-    DIASEMANA = as.factor(DIASEMANA),
-    TIPACCID = as.factor(TIPACCID),
-    CAUSAACCI = as.factor(CAUSAACCI),
-    accidente_con_victimas = as.factor(accidente_con_victimas)
+if (exists("atus_modelo")) {
+  faltantes <- colSums(is.na(atus_modelo))
+  faltantes
+}
+```
+
+También podemos calcular el porcentaje de datos faltantes.
+
+```{r}
+if (exists("atus_modelo")) {
+  porcentaje_faltantes <- round(
+    100 * colSums(is.na(atus_modelo)) / nrow(atus_modelo),
+    2
   )
+  
+  porcentaje_faltantes
+}
 ```
 
-Revisamos la estructura.
+## Base final para aprendizaje automático
+
+Para iniciar, construiremos una base pequeña con la variable respuesta y algunas variables predictoras.
 
 ```{r}
-str(atus_modelo)
+if (exists("atus_modelo")) {
+  atus_ml <- atus_modelo |>
+    select(
+      accidente_con_victimas,
+      MES,
+      ID_HORA,
+      DIASEMANA,
+      TIPACCID,
+      CAUSAACCI
+    )
+  
+  head(atus_ml)
+}
 ```
 
-## 2.16 Revisión de datos faltantes
-
-Los datos faltantes son comunes en bases reales.
-
-Calculamos cuántos valores faltantes tiene cada variable.
+Revisamos sus dimensiones:
 
 ```{r}
-faltantes <- colSums(is.na(atus_modelo))
-
-faltantes
+if (exists("atus_ml")) {
+  dim(atus_ml)
+}
 ```
 
-También podemos calcular el porcentaje de faltantes.
+## Eliminar registros incompletos
+
+Para esta primera versión eliminaremos registros incompletos.
 
 ```{r}
-porcentaje_faltantes <- round(100 * colSums(is.na(atus_modelo)) / nrow(atus_modelo), 2)
-
-porcentaje_faltantes
+if (exists("atus_ml")) {
+  atus_ml <- na.omit(atus_ml)
+  dim(atus_ml)
+}
 ```
 
-## 2.17 Selección final de variables para el primer modelo
+En proyectos más avanzados se pueden usar otras estrategias, como imputación de datos faltantes. Pero para iniciar, esta solución es suficiente y fácil de explicar.
 
-Para iniciar de forma sencilla, seleccionaremos pocas variables.
+## Guardar la base preparada
+
+Guardamos la base preparada en un nuevo archivo:
 
 ```{r}
-atus_ml <- atus_modelo |>
-  select(
-    accidente_con_victimas,
-    MES,
-    ID_HORA,
-    DIASEMANA,
-    TIPACCID,
-    CAUSAACCI
-  )
+if (exists("atus_ml")) {
+  write_csv(atus_ml, "datos/atus_ml_preparado.csv")
+}
 ```
 
-Revisamos la base final.
+Este archivo será usado en capítulos posteriores.
 
-```{r}
-head(atus_ml)
-```
+La ventaja de guardar una base preparada es que no tenemos que repetir todo el proceso cada vez que queramos hacer análisis exploratorio o construir modelos.
 
-También revisamos sus dimensiones.
+## Resumen del capítulo
 
-```{r}
-dim(atus_ml)
-```
+En este capítulo trabajamos con la primera etapa real de un proyecto de aprendizaje automático: la preparación de datos.
 
-## 2.18 Eliminar registros incompletos
+Aprendimos que:
 
-Para este primer ejemplo eliminaremos registros incompletos.
+- los datos reales casi nunca vienen listos para modelar;
+- preparar datos significa limpiar, seleccionar y transformar variables;
+- es necesario entender el significado de las columnas;
+- la variable respuesta debe definirse con claridad;
+- algunas variables numéricas deben tratarse como categóricas;
+- los datos faltantes deben revisarse antes de modelar;
+- una base preparada puede guardarse para usarse en capítulos posteriores.
 
-```{r}
-atus_ml <- na.omit(atus_ml)
-
-dim(atus_ml)
-```
-
-En capítulos posteriores veremos estrategias más cuidadosas para tratar datos faltantes.
-
-## 2.19 Guardar la base preparada
-
-Guardamos la base limpia para usarla en capítulos posteriores.
-
-```{r}
-write_csv(atus_ml, "datos/atus_ml_preparado.csv")
-```
-
-Este archivo será útil para el capítulo de análisis exploratorio y para los primeros modelos de clasificación.
-
-## 2.20 Resumen del capítulo
-
-En este capítulo iniciamos el trabajo con datos reales.
-
-Aprendimos a:
-
-- leer una base CSV,
-- revisar dimensiones y nombres de variables,
-- seleccionar variables de interés,
-- construir una variable respuesta,
-- transformar variables categóricas,
-- revisar datos faltantes,
-- crear una base preparada para aprendizaje automático.
-
-En el siguiente capítulo realizaremos el análisis exploratorio de los datos preparados.
+En el siguiente capítulo realizaremos el análisis exploratorio de la base preparada.

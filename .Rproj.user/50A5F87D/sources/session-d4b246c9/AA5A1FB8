@@ -3,7 +3,7 @@
     "path": "C:/libro-machine-learning-r/index.qmd",
     "project_path": "index.qmd",
     "type": "quarto_markdown",
-    "hash": "2786041882",
+    "hash": "277683650",
     "contents": "",
     "dirty": false,
     "created": 1783283537977.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "44,28",
-        "scrollLine": "18"
+        "cursorPosition": "0,28",
+        "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1783283572,
+    "lastKnownWriteTime": 1783296867,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1783283572582,
+    "last_content_update": 1783296867801,
     "read_only": false,
     "read_only_alternatives": []
 }

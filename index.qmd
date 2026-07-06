@@ -1,4 +1,4 @@
-# Presentación
+# Presentación {.unnumbered}
 
 Este libro tiene como objetivo introducir al lector en el aprendizaje automático, también conocido como *Machine Learning*, mediante ejemplos claros, didácticos y prácticos desarrollados principalmente en R.
 

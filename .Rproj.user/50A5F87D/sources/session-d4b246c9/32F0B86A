@@ -3,7 +3,7 @@
     "path": "C:/libro-machine-learning-r/02-preparacion-datos.qmd",
     "project_path": "02-preparacion-datos.qmd",
     "type": "quarto_markdown",
-    "hash": "0",
+    "hash": "4050470155",
     "contents": "",
     "dirty": false,
     "created": 1783283761390.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "12,0",
-        "scrollLine": "0"
+        "cursorPosition": "591,3",
+        "scrollLine": "580"
     },
     "folds": "",
-    "lastKnownWriteTime": 1783293586,
+    "lastKnownWriteTime": 1783297139,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1783293586533,
+    "last_content_update": 1783297139479,
     "read_only": false,
     "read_only_alternatives": []
 }

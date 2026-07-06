@@ -3,7 +3,7 @@
     "path": "C:/libro-machine-learning-r/01-introduccion.qmd",
     "project_path": "01-introduccion.qmd",
     "type": "quarto_markdown",
-    "hash": "1916291428",
+    "hash": "3288813648",
     "contents": "",
     "dirty": false,
     "created": 1783283596983.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "389,96",
-        "scrollLine": "362"
+        "cursorPosition": "375,3",
+        "scrollLine": "364"
     },
     "folds": "",
-    "lastKnownWriteTime": 1783293401,
+    "lastKnownWriteTime": 1783297272,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1783293401771,
+    "last_content_update": 1783297272696,
     "read_only": false,
     "read_only_alternatives": []
 }

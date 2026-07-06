@@ -4,459 +4,529 @@
     "href": "index.html",
     "title": "Aprendizaje y Clasificación Automática con R",
     "section": "",
-    "text": "1 Presentación\nEste libro tiene como objetivo introducir al lector en el aprendizaje automático, también conocido como Machine Learning, mediante ejemplos claros, didácticos y prácticos desarrollados principalmente en R.\nEl propósito no es presentar un tratado matemático extenso, sino construir una guía aplicada que permita aprender haciendo.\nA lo largo del libro se utilizarán conjuntos de datos abiertos reales, principalmente de México, aunque también se incluirán algunos conjuntos internacionales cuando sean útiles para explicar determinados métodos.",
+    "text": "Presentación\nEste libro tiene como objetivo introducir al lector en el aprendizaje automático, también conocido como Machine Learning, mediante ejemplos claros, didácticos y prácticos desarrollados principalmente en R.\nEl propósito no es presentar un tratado matemático extenso, sino construir una guía aplicada que permita aprender haciendo.\nA lo largo del libro se utilizarán conjuntos de datos abiertos reales, principalmente de México, aunque también se incluirán algunos conjuntos internacionales cuando sean útiles para explicar determinados métodos.",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Presentación</span>"
+      "Presentación"
     ]
   },
   {
     "objectID": "index.html#objetivo-general",
     "href": "index.html#objetivo-general",
     "title": "Aprendizaje y Clasificación Automática con R",
-    "section": "1.1 Objetivo general",
-    "text": "1.1 Objetivo general\nDesarrollar competencias básicas e intermedias en aprendizaje automático mediante el análisis, modelado e interpretación de datos reales.",
+    "section": "Objetivo general",
+    "text": "Objetivo general\nDesarrollar competencias básicas e intermedias en aprendizaje automático mediante el análisis, modelado e interpretación de datos reales.",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Presentación</span>"
+      "Presentación"
     ]
   },
   {
     "objectID": "index.html#público-al-que-va-dirigido",
     "href": "index.html#público-al-que-va-dirigido",
     "title": "Aprendizaje y Clasificación Automática con R",
-    "section": "1.2 Público al que va dirigido",
-    "text": "1.2 Público al que va dirigido\nEste libro está dirigido a estudiantes de ingeniería, ciencias, ciencia de datos, estadística aplicada y áreas afines que deseen aprender aprendizaje automático desde un enfoque práctico.",
+    "section": "Público al que va dirigido",
+    "text": "Público al que va dirigido\nEste libro está dirigido a estudiantes de ingeniería, ciencias, ciencia de datos, estadística aplicada y áreas afines que deseen aprender aprendizaje automático desde un enfoque práctico.",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Presentación</span>"
+      "Presentación"
     ]
   },
   {
     "objectID": "index.html#software-utilizado",
     "href": "index.html#software-utilizado",
     "title": "Aprendizaje y Clasificación Automática con R",
-    "section": "1.3 Software utilizado",
-    "text": "1.3 Software utilizado\nLos ejemplos se desarrollan principalmente en R, utilizando RStudio y Quarto.\nTambién se podrán utilizar herramientas como:\n\nRStudio\nConsola de R\nGoogle Colab\nGitHub\nGitHub Pages\nQuarto Pub",
+    "section": "Software utilizado",
+    "text": "Software utilizado\nLos ejemplos se desarrollan principalmente en R, utilizando RStudio y Quarto.\nTambién se podrán utilizar herramientas como:\n\nRStudio\nConsola de R\nGoogle Colab\nGitHub\nGitHub Pages\nQuarto Pub",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Presentación</span>"
+      "Presentación"
     ]
   },
   {
     "objectID": "index.html#estructura-inicial-del-libro",
     "href": "index.html#estructura-inicial-del-libro",
     "title": "Aprendizaje y Clasificación Automática con R",
-    "section": "1.4 Estructura inicial del libro",
-    "text": "1.4 Estructura inicial del libro\nLa primera edición del libro incluye los siguientes temas:\n\nIntroducción al aprendizaje automático.\nPreparación de datos reales.\nAnálisis exploratorio de datos.\nRegresión lineal.\nRegresión logística.\nk vecinos más cercanos.\nÁrboles de decisión.\nBosques aleatorios.\nMáquinas de soporte vectorial.\nNaive Bayes.\nAgrupamiento.\nComponentes principales.",
+    "section": "Estructura inicial del libro",
+    "text": "Estructura inicial del libro\nLa primera edición del libro incluye los siguientes temas:\n\nIntroducción al aprendizaje automático.\nPreparación de datos reales.\nAnálisis exploratorio de datos.\nRegresión lineal.\nRegresión logística.\nk vecinos más cercanos.\nÁrboles de decisión.\nBosques aleatorios.\nMáquinas de soporte vectorial.\nNaive Bayes.\nAgrupamiento.\nComponentes principales.",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Presentación</span>"
+      "Presentación"
     ]
   },
   {
     "objectID": "01-introduccion.html",
     "href": "01-introduccion.html",
-    "title": "2  ¿Qué es el aprendizaje automático?",
+    "title": "1  ¿Qué es el aprendizaje automático?",
     "section": "",
-    "text": "2.1 Objetivos del capítulo\nAl finalizar este capítulo, el lector será capaz de:",
+    "text": "1.1 Objetivos del capítulo\nAl finalizar este capítulo, el lector será capaz de:",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>¿Qué es el aprendizaje automático?</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>¿Qué es el aprendizaje automático?</span>"
     ]
   },
   {
     "objectID": "01-introduccion.html#objetivos-del-capítulo",
     "href": "01-introduccion.html#objetivos-del-capítulo",
-    "title": "2  ¿Qué es el aprendizaje automático?",
+    "title": "1  ¿Qué es el aprendizaje automático?",
     "section": "",
     "text": "Explicar qué es el aprendizaje automático.\nDiferenciar entre programación tradicional y aprendizaje automático.\nIdentificar problemas de clasificación, regresión y agrupamiento.\nReconocer las etapas principales de un proyecto de aprendizaje automático.\nConstruir un primer ejemplo sencillo de clasificación en R.",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>¿Qué es el aprendizaje automático?</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>¿Qué es el aprendizaje automático?</span>"
     ]
   },
   {
     "objectID": "01-introduccion.html#introducción",
     "href": "01-introduccion.html#introducción",
-    "title": "2  ¿Qué es el aprendizaje automático?",
-    "section": "2.2 1.1 Introducción",
-    "text": "2.2 1.1 Introducción\nEl aprendizaje automático, también conocido como Machine Learning, es una rama de la inteligencia artificial que permite construir modelos capaces de aprender patrones a partir de datos.\nEn lugar de programar manualmente todas las reglas de decisión, proporcionamos datos a un algoritmo para que encuentre relaciones, regularidades o patrones útiles.\nEn este libro nos interesa aprender aprendizaje automático desde una perspectiva práctica. Es decir, no comenzaremos con desarrollos matemáticos extensos, sino con preguntas aplicadas, datos reales, código reproducible e interpretación de resultados.\nLa idea central será:\n\nAprender Machine Learning haciendo proyectos con datos reales.",
+    "title": "1  ¿Qué es el aprendizaje automático?",
+    "section": "1.2 Introducción",
+    "text": "1.2 Introducción\nEl aprendizaje automático, también conocido como Machine Learning, es una rama de la inteligencia artificial que permite construir modelos capaces de aprender patrones a partir de datos.\nEn lugar de programar manualmente todas las reglas de decisión, proporcionamos datos a un algoritmo para que encuentre relaciones, regularidades o patrones útiles.\nEn este libro nos interesa aprender aprendizaje automático desde una perspectiva práctica. Es decir, no comenzaremos con desarrollos matemáticos extensos, sino con preguntas aplicadas, datos reales, código reproducible e interpretación de resultados.\nLa idea central será:\n\nAprender Machine Learning haciendo proyectos con datos reales.",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>¿Qué es el aprendizaje automático?</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>¿Qué es el aprendizaje automático?</span>"
     ]
   },
   {
     "objectID": "01-introduccion.html#programación-tradicional-contra-aprendizaje-automático",
     "href": "01-introduccion.html#programación-tradicional-contra-aprendizaje-automático",
-    "title": "2  ¿Qué es el aprendizaje automático?",
-    "section": "2.3 1.2 Programación tradicional contra aprendizaje automático",
-    "text": "2.3 1.2 Programación tradicional contra aprendizaje automático\nEn la programación tradicional, una persona escribe reglas explícitas.\nPor ejemplo, supongamos que queremos clasificar la contaminación de un día usando la concentración de PM10.\n\n\nCode\npm10 &lt;- 85\n\nif (pm10 &gt; 75) {\n  print(\"Contaminación alta\")\n} else {\n  print(\"Contaminación baja\")\n}\n\n\n[1] \"Contaminación alta\"\n\n\nEn este caso, la regla fue escrita directamente por el programador:\nSi PM10 &gt; 75, entonces contaminación alta.\nEsto puede funcionar cuando el problema es simple. Sin embargo, muchos problemas reales no se pueden resolver con una sola regla.\nPor ejemplo:\n\n¿Un accidente de tránsito tendrá lesionados?\n¿Un paciente tiene alto riesgo de cierta enfermedad?\n¿Un día tendrá mala calidad del aire?\n¿Un municipio pertenece a un grupo de alta, media o baja incidencia?\n¿Una transacción parece normal o sospechosa?\n\nEn estos casos, el comportamiento depende de muchas variables al mismo tiempo.",
+    "title": "1  ¿Qué es el aprendizaje automático?",
+    "section": "1.3 Programación tradicional contra aprendizaje automático",
+    "text": "1.3 Programación tradicional contra aprendizaje automático\nEn la programación tradicional, una persona escribe reglas explícitas.\nPor ejemplo, supongamos que queremos clasificar la contaminación de un día usando la concentración de PM10.\n\n\nCode\npm10 &lt;- 85\n\nif (pm10 &gt; 75) {\n  print(\"Contaminación alta\")\n} else {\n  print(\"Contaminación baja\")\n}\n\n\n[1] \"Contaminación alta\"\n\n\nEn este caso, la regla fue escrita directamente por el programador:\nSi PM10 &gt; 75, entonces contaminación alta.\nEsto puede funcionar cuando el problema es simple. Sin embargo, muchos problemas reales no se pueden resolver con una sola regla.\nPor ejemplo:\n\n¿Un accidente de tránsito tendrá lesionados?\n¿Un paciente tiene alto riesgo de cierta enfermedad?\n¿Un día tendrá mala calidad del aire?\n¿Un municipio pertenece a un grupo de alta, media o baja incidencia?\n¿Una transacción parece normal o sospechosa?\n\nEn estos casos, el comportamiento depende de muchas variables al mismo tiempo.",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>¿Qué es el aprendizaje automático?</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>¿Qué es el aprendizaje automático?</span>"
     ]
   },
   {
     "objectID": "01-introduccion.html#qué-hace-diferente-al-aprendizaje-automático",
     "href": "01-introduccion.html#qué-hace-diferente-al-aprendizaje-automático",
-    "title": "2  ¿Qué es el aprendizaje automático?",
-    "section": "2.4 1.3 ¿Qué hace diferente al aprendizaje automático?",
-    "text": "2.4 1.3 ¿Qué hace diferente al aprendizaje automático?\nEn aprendizaje automático no le damos al sistema una regla fija. Le damos datos.\nPor ejemplo:\nDatos históricos + algoritmo = modelo aprendido\nUn modelo de aprendizaje automático aprende a partir de ejemplos.\nSupongamos que tenemos información de varios días con datos de PM10, temperatura, humedad y una etiqueta que indica si la contaminación fue alta o baja.\n\n\nCode\ndatos &lt;- data.frame(\n  dia = 1:12,\n  pm10 = c(42, 88, 55, 120, 63, 95, 38, 110, 72, 130, 47, 99),\n  temperatura = c(25, 28, 22, 30, 24, 29, 21, 31, 27, 32, 23, 30),\n  humedad = c(40, 35, 60, 30, 55, 33, 65, 29, 42, 28, 62, 34),\n  clase = c(\n    \"Baja\", \"Alta\", \"Baja\", \"Alta\",\n    \"Baja\", \"Alta\", \"Baja\", \"Alta\",\n    \"Baja\", \"Alta\", \"Baja\", \"Alta\"\n  )\n)\n\ndatos\n\n\n   dia pm10 temperatura humedad clase\n1    1   42          25      40  Baja\n2    2   88          28      35  Alta\n3    3   55          22      60  Baja\n4    4  120          30      30  Alta\n5    5   63          24      55  Baja\n6    6   95          29      33  Alta\n7    7   38          21      65  Baja\n8    8  110          31      29  Alta\n9    9   72          27      42  Baja\n10  10  130          32      28  Alta\n11  11   47          23      62  Baja\n12  12   99          30      34  Alta\n\n\nLa variable que deseamos predecir se llama clase.\n\n\nCode\ndatos$clase\n\n\n [1] \"Baja\" \"Alta\" \"Baja\" \"Alta\" \"Baja\" \"Alta\" \"Baja\" \"Alta\" \"Baja\" \"Alta\"\n[11] \"Baja\" \"Alta\"\n\n\nLas variables que usaremos para hacer la predicción son:\n\n\nCode\ndatos[, c(\"pm10\", \"temperatura\", \"humedad\")]\n\n\n   pm10 temperatura humedad\n1    42          25      40\n2    88          28      35\n3    55          22      60\n4   120          30      30\n5    63          24      55\n6    95          29      33\n7    38          21      65\n8   110          31      29\n9    72          27      42\n10  130          32      28\n11   47          23      62\n12   99          30      34\n\n\nEn este ejemplo, el objetivo del modelo sería aprender una relación aproximada como esta:\nPM10, temperatura y humedad  →  clase de contaminación",
+    "title": "1  ¿Qué es el aprendizaje automático?",
+    "section": "1.4 ¿Qué hace diferente al aprendizaje automático?",
+    "text": "1.4 ¿Qué hace diferente al aprendizaje automático?\nEn aprendizaje automático no le damos al sistema una regla fija. Le damos datos.\nPor ejemplo:\nDatos históricos + algoritmo = modelo aprendido\nUn modelo de aprendizaje automático aprende a partir de ejemplos.\nSupongamos que tenemos información de varios días con datos de PM10, temperatura, humedad y una etiqueta que indica si la contaminación fue alta o baja.\n\n\nCode\ndatos &lt;- data.frame(\n  dia = 1:12,\n  pm10 = c(42, 88, 55, 120, 63, 95, 38, 110, 72, 130, 47, 99),\n  temperatura = c(25, 28, 22, 30, 24, 29, 21, 31, 27, 32, 23, 30),\n  humedad = c(40, 35, 60, 30, 55, 33, 65, 29, 42, 28, 62, 34),\n  clase = c(\n    \"Baja\", \"Alta\", \"Baja\", \"Alta\",\n    \"Baja\", \"Alta\", \"Baja\", \"Alta\",\n    \"Baja\", \"Alta\", \"Baja\", \"Alta\"\n  )\n)\n\ndatos\n\n\n   dia pm10 temperatura humedad clase\n1    1   42          25      40  Baja\n2    2   88          28      35  Alta\n3    3   55          22      60  Baja\n4    4  120          30      30  Alta\n5    5   63          24      55  Baja\n6    6   95          29      33  Alta\n7    7   38          21      65  Baja\n8    8  110          31      29  Alta\n9    9   72          27      42  Baja\n10  10  130          32      28  Alta\n11  11   47          23      62  Baja\n12  12   99          30      34  Alta\n\n\nLa variable que deseamos predecir se llama clase.\n\n\nCode\ndatos$clase\n\n\n [1] \"Baja\" \"Alta\" \"Baja\" \"Alta\" \"Baja\" \"Alta\" \"Baja\" \"Alta\" \"Baja\" \"Alta\"\n[11] \"Baja\" \"Alta\"\n\n\nLas variables que usaremos para hacer la predicción son:\n\n\nCode\ndatos[, c(\"pm10\", \"temperatura\", \"humedad\")]\n\n\n   pm10 temperatura humedad\n1    42          25      40\n2    88          28      35\n3    55          22      60\n4   120          30      30\n5    63          24      55\n6    95          29      33\n7    38          21      65\n8   110          31      29\n9    72          27      42\n10  130          32      28\n11   47          23      62\n12   99          30      34\n\n\nEn este ejemplo, el objetivo del modelo sería aprender una relación aproximada como esta:\nPM10, temperatura y humedad  →  clase de contaminación",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>¿Qué es el aprendizaje automático?</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>¿Qué es el aprendizaje automático?</span>"
     ]
   },
   {
     "objectID": "01-introduccion.html#variables-predictoras-y-variable-respuesta",
     "href": "01-introduccion.html#variables-predictoras-y-variable-respuesta",
-    "title": "2  ¿Qué es el aprendizaje automático?",
-    "section": "2.5 1.4 Variables predictoras y variable respuesta",
-    "text": "2.5 1.4 Variables predictoras y variable respuesta\nEn aprendizaje automático es importante distinguir entre:\n\n2.5.1 Variable respuesta\nEs la variable que queremos predecir.\nTambién se le llama:\n\nvariable objetivo,\netiqueta,\nsalida,\nclase,\nrespuesta.\n\nEn el ejemplo anterior, la variable respuesta es:\nclase\nporque queremos predecir si la contaminación es alta o baja.\n\n\n2.5.2 Variables predictoras\nSon las variables que usamos como entrada para el modelo.\nTambién se les llama:\n\ncaracterísticas,\natributos,\nvariables independientes,\nentradas,\nfeatures.\n\nEn el ejemplo anterior, las variables predictoras son:\npm10, temperatura, humedad",
+    "title": "1  ¿Qué es el aprendizaje automático?",
+    "section": "1.5 Variables predictoras y variable respuesta",
+    "text": "1.5 Variables predictoras y variable respuesta\nEn aprendizaje automático es importante distinguir entre:\n\n1.5.1 Variable respuesta\nEs la variable que queremos predecir.\nTambién se le llama:\n\nvariable objetivo,\netiqueta,\nsalida,\nclase,\nrespuesta.\n\nEn el ejemplo anterior, la variable respuesta es:\nclase\nporque queremos predecir si la contaminación es alta o baja.\n\n\n1.5.2 Variables predictoras\nSon las variables que usamos como entrada para el modelo.\nTambién se les llama:\n\ncaracterísticas,\natributos,\nvariables independientes,\nentradas,\nfeatures.\n\nEn el ejemplo anterior, las variables predictoras son:\npm10, temperatura, humedad",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>¿Qué es el aprendizaje automático?</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>¿Qué es el aprendizaje automático?</span>"
     ]
   },
   {
     "objectID": "01-introduccion.html#tipos-principales-de-aprendizaje-automático",
     "href": "01-introduccion.html#tipos-principales-de-aprendizaje-automático",
-    "title": "2  ¿Qué es el aprendizaje automático?",
-    "section": "2.6 1.5 Tipos principales de aprendizaje automático",
-    "text": "2.6 1.5 Tipos principales de aprendizaje automático\nEn una primera aproximación podemos hablar de tres grandes tipos de aprendizaje automático:\n\nAprendizaje supervisado.\nAprendizaje no supervisado.\nAprendizaje por refuerzo.\n\nEn este libro nos concentraremos principalmente en los dos primeros.",
+    "title": "1  ¿Qué es el aprendizaje automático?",
+    "section": "1.6 Tipos principales de aprendizaje automático",
+    "text": "1.6 Tipos principales de aprendizaje automático\nEn una primera aproximación podemos hablar de tres grandes tipos de aprendizaje automático:\n\nAprendizaje supervisado.\nAprendizaje no supervisado.\nAprendizaje por refuerzo.\n\nEn este libro nos concentraremos principalmente en los dos primeros.",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>¿Qué es el aprendizaje automático?</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>¿Qué es el aprendizaje automático?</span>"
     ]
   },
   {
     "objectID": "01-introduccion.html#aprendizaje-supervisado",
     "href": "01-introduccion.html#aprendizaje-supervisado",
-    "title": "2  ¿Qué es el aprendizaje automático?",
-    "section": "2.7 1.6 Aprendizaje supervisado",
-    "text": "2.7 1.6 Aprendizaje supervisado\nEl aprendizaje supervisado se utiliza cuando tenemos una variable respuesta conocida.\nEs decir, tenemos ejemplos históricos donde ya sabemos cuál fue el resultado.\nPor ejemplo:\n\n\n\n\n\n\n\n\nProblema\nVariables predictoras\nVariable respuesta\n\n\n\n\nClasificar contaminación\nPM10, temperatura, humedad\nAlta o baja\n\n\nPredecir lesionados en accidente\nHora, día, tipo de accidente\nCon lesionados o sin lesionados\n\n\nClasificar tumor\nMediciones celulares\nBenigno o maligno\n\n\nPredecir ventas\nPrecio, mes, publicidad\nVentas\n\n\n\nDentro del aprendizaje supervisado hay dos tareas muy importantes:\n\nclasificación,\nregresión.",
+    "title": "1  ¿Qué es el aprendizaje automático?",
+    "section": "1.7 Aprendizaje supervisado",
+    "text": "1.7 Aprendizaje supervisado\nEl aprendizaje supervisado se utiliza cuando tenemos una variable respuesta conocida.\nEs decir, tenemos ejemplos históricos donde ya sabemos cuál fue el resultado.\nPor ejemplo:\n\n\n\n\n\n\n\n\nProblema\nVariables predictoras\nVariable respuesta\n\n\n\n\nClasificar contaminación\nPM10, temperatura, humedad\nAlta o baja\n\n\nPredecir lesionados en accidente\nHora, día, tipo de accidente\nCon lesionados o sin lesionados\n\n\nClasificar tumor\nMediciones celulares\nBenigno o maligno\n\n\nPredecir ventas\nPrecio, mes, publicidad\nVentas\n\n\n\nDentro del aprendizaje supervisado hay dos tareas muy importantes:\n\nclasificación,\nregresión.",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>¿Qué es el aprendizaje automático?</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>¿Qué es el aprendizaje automático?</span>"
     ]
   },
   {
     "objectID": "01-introduccion.html#clasificación",
     "href": "01-introduccion.html#clasificación",
-    "title": "2  ¿Qué es el aprendizaje automático?",
-    "section": "2.8 1.7 Clasificación",
-    "text": "2.8 1.7 Clasificación\nLa clasificación se utiliza cuando la variable respuesta es categórica.\nPor ejemplo:\nAlta / Baja\nSí / No\nBenigno / Maligno\nFatal / No fatal / Solo daños\nEjemplos de clasificación:\n\nClasificar si un accidente tendrá víctimas.\nClasificar si un tumor es benigno o maligno.\nClasificar si un correo es spam o no spam.\nClasificar si un día tiene contaminación alta o baja.\n\nEn clasificación, el modelo asigna una observación a una categoría.",
+    "title": "1  ¿Qué es el aprendizaje automático?",
+    "section": "1.8 Clasificación",
+    "text": "1.8 Clasificación\nLa clasificación se utiliza cuando la variable respuesta es categórica.\nPor ejemplo:\nAlta / Baja\nSí / No\nBenigno / Maligno\nFatal / No fatal / Solo daños\nEjemplos de clasificación:\n\nClasificar si un accidente tendrá víctimas.\nClasificar si un tumor es benigno o maligno.\nClasificar si un correo es spam o no spam.\nClasificar si un día tiene contaminación alta o baja.\n\nEn clasificación, el modelo asigna una observación a una categoría.",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>¿Qué es el aprendizaje automático?</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>¿Qué es el aprendizaje automático?</span>"
     ]
   },
   {
     "objectID": "01-introduccion.html#regresión",
     "href": "01-introduccion.html#regresión",
-    "title": "2  ¿Qué es el aprendizaje automático?",
-    "section": "2.9 1.8 Regresión",
-    "text": "2.9 1.8 Regresión\nLa regresión se utiliza cuando la variable respuesta es numérica.\nPor ejemplo:\nPrecio de una casa\nTemperatura\nVentas\nConcentración de ozono\nNúmero de accidentes\nEjemplos de regresión:\n\nPredecir la concentración de PM10.\nPredecir la temperatura promedio de un día.\nPredecir el número de accidentes en un municipio.\nPredecir ventas mensuales.\n\nEn regresión, el modelo predice un valor numérico.",
+    "title": "1  ¿Qué es el aprendizaje automático?",
+    "section": "1.9 Regresión",
+    "text": "1.9 Regresión\nLa regresión se utiliza cuando la variable respuesta es numérica.\nPor ejemplo:\nPrecio de una casa\nTemperatura\nVentas\nConcentración de ozono\nNúmero de accidentes\nEjemplos de regresión:\n\nPredecir la concentración de PM10.\nPredecir la temperatura promedio de un día.\nPredecir el número de accidentes en un municipio.\nPredecir ventas mensuales.\n\nEn regresión, el modelo predice un valor numérico.",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>¿Qué es el aprendizaje automático?</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>¿Qué es el aprendizaje automático?</span>"
     ]
   },
   {
     "objectID": "01-introduccion.html#aprendizaje-no-supervisado",
     "href": "01-introduccion.html#aprendizaje-no-supervisado",
-    "title": "2  ¿Qué es el aprendizaje automático?",
-    "section": "2.10 1.9 Aprendizaje no supervisado",
-    "text": "2.10 1.9 Aprendizaje no supervisado\nEl aprendizaje no supervisado se utiliza cuando no tenemos una variable respuesta conocida.\nEn lugar de predecir una etiqueta, buscamos patrones ocultos en los datos.\nPor ejemplo:\n\nAgrupar municipios con características similares.\nAgrupar estados por patrones de accidentes.\nAgrupar estaciones de monitoreo ambiental.\nReducir muchas variables a dos o tres componentes principales.\nDetectar observaciones atípicas.\n\nDos técnicas importantes de aprendizaje no supervisado son:\n\nagrupamiento o clustering,\nanálisis de componentes principales o PCA.",
+    "title": "1  ¿Qué es el aprendizaje automático?",
+    "section": "1.10 Aprendizaje no supervisado",
+    "text": "1.10 Aprendizaje no supervisado\nEl aprendizaje no supervisado se utiliza cuando no tenemos una variable respuesta conocida.\nEn lugar de predecir una etiqueta, buscamos patrones ocultos en los datos.\nPor ejemplo:\n\nAgrupar municipios con características similares.\nAgrupar estados por patrones de accidentes.\nAgrupar estaciones de monitoreo ambiental.\nReducir muchas variables a dos o tres componentes principales.\nDetectar observaciones atípicas.\n\nDos técnicas importantes de aprendizaje no supervisado son:\n\nagrupamiento o clustering,\nanálisis de componentes principales o PCA.",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>¿Qué es el aprendizaje automático?</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>¿Qué es el aprendizaje automático?</span>"
     ]
   },
   {
     "objectID": "01-introduccion.html#el-flujo-general-de-un-proyecto-de-aprendizaje-automático",
     "href": "01-introduccion.html#el-flujo-general-de-un-proyecto-de-aprendizaje-automático",
-    "title": "2  ¿Qué es el aprendizaje automático?",
-    "section": "2.11 1.10 El flujo general de un proyecto de aprendizaje automático",
-    "text": "2.11 1.10 El flujo general de un proyecto de aprendizaje automático\nUn proyecto de aprendizaje automático casi nunca empieza directamente con el modelo.\nAntes de modelar, necesitamos entender y preparar los datos.\nUn flujo típico es:\n1. Plantear el problema\n2. Conseguir los datos\n3. Entender las variables\n4. Limpiar los datos\n5. Explorar los datos\n6. Dividir en entrenamiento y prueba\n7. Entrenar el modelo\n8. Evaluar el modelo\n9. Interpretar los resultados\n10. Comunicar hallazgos\nEn este libro seguiremos esta lógica.",
+    "title": "1  ¿Qué es el aprendizaje automático?",
+    "section": "1.11 El flujo general de un proyecto de aprendizaje automático",
+    "text": "1.11 El flujo general de un proyecto de aprendizaje automático\nUn proyecto de aprendizaje automático casi nunca empieza directamente con el modelo.\nAntes de modelar, necesitamos entender y preparar los datos.\nUn flujo típico es:\n1. Plantear el problema\n2. Conseguir los datos\n3. Entender las variables\n4. Limpiar los datos\n5. Explorar los datos\n6. Dividir en entrenamiento y prueba\n7. Entrenar el modelo\n8. Evaluar el modelo\n9. Interpretar los resultados\n10. Comunicar hallazgos\nEn este libro seguiremos esta lógica.",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>¿Qué es el aprendizaje automático?</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>¿Qué es el aprendizaje automático?</span>"
     ]
   },
   {
     "objectID": "01-introduccion.html#primer-ejemplo-visual-en-r",
     "href": "01-introduccion.html#primer-ejemplo-visual-en-r",
-    "title": "2  ¿Qué es el aprendizaje automático?",
-    "section": "2.12 1.11 Primer ejemplo visual en R",
-    "text": "2.12 1.11 Primer ejemplo visual en R\nAhora construiremos una gráfica sencilla para visualizar el ejemplo de contaminación.\n\n\nCode\nlibrary(ggplot2)\n\n\nWarning: package 'ggplot2' was built under R version 4.5.3\n\n\nCode\nggplot(datos, aes(x = pm10, y = temperatura, color = clase)) +\n  geom_point(size = 4) +\n  labs(\n    title = \"Ejemplo inicial de clasificación\",\n    subtitle = \"Clasificación de contaminación alta o baja\",\n    x = \"PM10\",\n    y = \"Temperatura\",\n    color = \"Clase\"\n  )\n\n\n\n\n\n\n\n\n\nEn la gráfica, cada punto representa un día.\nEl color indica si ese día fue clasificado como contaminación alta o baja.\nAunque este ejemplo es pequeño y didáctico, nos permite observar una idea fundamental:\n\nLos modelos de aprendizaje automático buscan patrones en las variables predictoras para explicar o predecir una variable respuesta.",
+    "title": "1  ¿Qué es el aprendizaje automático?",
+    "section": "1.12 Primer ejemplo visual en R",
+    "text": "1.12 Primer ejemplo visual en R\nAhora construiremos una gráfica sencilla para visualizar el ejemplo de contaminación.\n\n\nCode\nlibrary(ggplot2)\n\n\nWarning: package 'ggplot2' was built under R version 4.5.3\n\n\nCode\nggplot(datos, aes(x = pm10, y = temperatura, color = clase)) +\n  geom_point(size = 4) +\n  labs(\n    title = \"Ejemplo inicial de clasificación\",\n    subtitle = \"Clasificación de contaminación alta o baja\",\n    x = \"PM10\",\n    y = \"Temperatura\",\n    color = \"Clase\"\n  )\n\n\n\n\n\n\n\n\n\nEn la gráfica, cada punto representa un día.\nEl color indica si ese día fue clasificado como contaminación alta o baja.\nAunque este ejemplo es pequeño y didáctico, nos permite observar una idea fundamental:\n\nLos modelos de aprendizaje automático buscan patrones en las variables predictoras para explicar o predecir una variable respuesta.",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>¿Qué es el aprendizaje automático?</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>¿Qué es el aprendizaje automático?</span>"
     ]
   },
   {
     "objectID": "01-introduccion.html#división-entre-entrenamiento-y-prueba",
     "href": "01-introduccion.html#división-entre-entrenamiento-y-prueba",
-    "title": "2  ¿Qué es el aprendizaje automático?",
-    "section": "2.13 1.12 División entre entrenamiento y prueba",
-    "text": "2.13 1.12 División entre entrenamiento y prueba\nUn error común al iniciar en aprendizaje automático es evaluar el modelo con los mismos datos con los que fue entrenado.\nPara evitarlo, normalmente dividimos los datos en dos partes:\n\nconjunto de entrenamiento,\nconjunto de prueba.\n\nEl conjunto de entrenamiento se usa para construir el modelo.\nEl conjunto de prueba se usa para evaluar qué tan bien funciona el modelo con datos que no vio durante el entrenamiento.\n\n\nCode\nset.seed(123)\n\nn &lt;- nrow(datos)\nindices_entrenamiento &lt;- sample(1:n, size = round(0.7 * n))\n\nentrenamiento &lt;- datos[indices_entrenamiento, ]\nprueba &lt;- datos[-indices_entrenamiento, ]\n\nentrenamiento\n\n\n   dia pm10 temperatura humedad clase\n3    3   55          22      60  Baja\n12  12   99          30      34  Alta\n10  10  130          32      28  Alta\n2    2   88          28      35  Alta\n6    6   95          29      33  Alta\n11  11   47          23      62  Baja\n5    5   63          24      55  Baja\n4    4  120          30      30  Alta\n\n\nCode\nprueba\n\n\n  dia pm10 temperatura humedad clase\n1   1   42          25      40  Baja\n7   7   38          21      65  Baja\n8   8  110          31      29  Alta\n9   9   72          27      42  Baja\n\n\nEn este ejemplo pequeño, la división es solo ilustrativa. En problemas reales usaremos conjuntos de datos más grandes.",
+    "title": "1  ¿Qué es el aprendizaje automático?",
+    "section": "1.13 División entre entrenamiento y prueba",
+    "text": "1.13 División entre entrenamiento y prueba\nUn error común al iniciar en aprendizaje automático es evaluar el modelo con los mismos datos con los que fue entrenado.\nPara evitarlo, normalmente dividimos los datos en dos partes:\n\nconjunto de entrenamiento,\nconjunto de prueba.\n\nEl conjunto de entrenamiento se usa para construir el modelo.\nEl conjunto de prueba se usa para evaluar qué tan bien funciona el modelo con datos que no vio durante el entrenamiento.\n\n\nCode\nset.seed(123)\n\nn &lt;- nrow(datos)\nindices_entrenamiento &lt;- sample(1:n, size = round(0.7 * n))\n\nentrenamiento &lt;- datos[indices_entrenamiento, ]\nprueba &lt;- datos[-indices_entrenamiento, ]\n\nentrenamiento\n\n\n   dia pm10 temperatura humedad clase\n3    3   55          22      60  Baja\n12  12   99          30      34  Alta\n10  10  130          32      28  Alta\n2    2   88          28      35  Alta\n6    6   95          29      33  Alta\n11  11   47          23      62  Baja\n5    5   63          24      55  Baja\n4    4  120          30      30  Alta\n\n\nCode\nprueba\n\n\n  dia pm10 temperatura humedad clase\n1   1   42          25      40  Baja\n7   7   38          21      65  Baja\n8   8  110          31      29  Alta\n9   9   72          27      42  Baja\n\n\nEn este ejemplo pequeño, la división es solo ilustrativa. En problemas reales usaremos conjuntos de datos más grandes.",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>¿Qué es el aprendizaje automático?</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>¿Qué es el aprendizaje automático?</span>"
     ]
   },
   {
     "objectID": "01-introduccion.html#primer-clasificador-sencillo-basado-en-una-regla",
     "href": "01-introduccion.html#primer-clasificador-sencillo-basado-en-una-regla",
-    "title": "2  ¿Qué es el aprendizaje automático?",
-    "section": "2.14 1.13 Primer clasificador sencillo basado en una regla",
-    "text": "2.14 1.13 Primer clasificador sencillo basado en una regla\nAntes de usar algoritmos más avanzados, podemos construir una regla sencilla para entender la idea de predicción.\n\n\nCode\ndatos$prediccion_regla &lt;- ifelse(datos$pm10 &gt; 75, \"Alta\", \"Baja\")\n\ndatos[, c(\"pm10\", \"clase\", \"prediccion_regla\")]\n\n\n   pm10 clase prediccion_regla\n1    42  Baja             Baja\n2    88  Alta             Alta\n3    55  Baja             Baja\n4   120  Alta             Alta\n5    63  Baja             Baja\n6    95  Alta             Alta\n7    38  Baja             Baja\n8   110  Alta             Alta\n9    72  Baja             Baja\n10  130  Alta             Alta\n11   47  Baja             Baja\n12   99  Alta             Alta\n\n\nAhora comparamos la clase real con la predicción.\n\n\nCode\ntabla_confusion &lt;- table(\n  Real = datos$clase,\n  Predicho = datos$prediccion_regla\n)\n\ntabla_confusion\n\n\n      Predicho\nReal   Alta Baja\n  Alta    6    0\n  Baja    0    6\n\n\nCalculamos la exactitud:\n\n\nCode\nexactitud &lt;- mean(datos$clase == datos$prediccion_regla)\nexactitud\n\n\n[1] 1\n\n\nLa exactitud indica la proporción de observaciones clasificadas correctamente.\nEste ejemplo todavía no es un modelo automático sofisticado, pero nos prepara para entender cómo evaluaremos modelos más adelante.",
+    "title": "1  ¿Qué es el aprendizaje automático?",
+    "section": "1.14 Primer clasificador sencillo basado en una regla",
+    "text": "1.14 Primer clasificador sencillo basado en una regla\nAntes de usar algoritmos más avanzados, podemos construir una regla sencilla para entender la idea de predicción.\n\n\nCode\ndatos$prediccion_regla &lt;- ifelse(datos$pm10 &gt; 75, \"Alta\", \"Baja\")\n\ndatos[, c(\"pm10\", \"clase\", \"prediccion_regla\")]\n\n\n   pm10 clase prediccion_regla\n1    42  Baja             Baja\n2    88  Alta             Alta\n3    55  Baja             Baja\n4   120  Alta             Alta\n5    63  Baja             Baja\n6    95  Alta             Alta\n7    38  Baja             Baja\n8   110  Alta             Alta\n9    72  Baja             Baja\n10  130  Alta             Alta\n11   47  Baja             Baja\n12   99  Alta             Alta\n\n\nAhora comparamos la clase real con la predicción.\n\n\nCode\ntabla_confusion &lt;- table(\n  Real = datos$clase,\n  Predicho = datos$prediccion_regla\n)\n\ntabla_confusion\n\n\n      Predicho\nReal   Alta Baja\n  Alta    6    0\n  Baja    0    6\n\n\nCalculamos la exactitud:\n\n\nCode\nexactitud &lt;- mean(datos$clase == datos$prediccion_regla)\nexactitud\n\n\n[1] 1\n\n\nLa exactitud indica la proporción de observaciones clasificadas correctamente.\nEste ejemplo todavía no es un modelo automático sofisticado, pero nos prepara para entender cómo evaluaremos modelos más adelante.",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>¿Qué es el aprendizaje automático?</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>¿Qué es el aprendizaje automático?</span>"
     ]
   },
   {
     "objectID": "01-introduccion.html#qué-aprenderemos-en-este-libro",
     "href": "01-introduccion.html#qué-aprenderemos-en-este-libro",
-    "title": "2  ¿Qué es el aprendizaje automático?",
-    "section": "2.15 1.14 ¿Qué aprenderemos en este libro?",
-    "text": "2.15 1.14 ¿Qué aprenderemos en este libro?\nA lo largo del libro estudiaremos métodos como:\n\nregresión lineal,\nregresión logística,\nk vecinos más cercanos,\nárboles de decisión,\nbosques aleatorios,\nmáquinas de soporte vectorial,\nNaive Bayes,\nagrupamiento,\ncomponentes principales.\n\nCada método se estudiará con:\n\nuna explicación intuitiva,\nun problema real,\npreparación de datos,\ncódigo en R,\nresultados,\ninterpretación,\nejercicios.",
+    "title": "1  ¿Qué es el aprendizaje automático?",
+    "section": "1.15 ¿Qué aprenderemos en este libro?",
+    "text": "1.15 ¿Qué aprenderemos en este libro?\nA lo largo del libro estudiaremos métodos como:\n\nregresión lineal,\nregresión logística,\nk vecinos más cercanos,\nárboles de decisión,\nbosques aleatorios,\nmáquinas de soporte vectorial,\nNaive Bayes,\nagrupamiento,\ncomponentes principales.\n\nCada método se estudiará con:\n\nuna explicación intuitiva,\nun problema real,\npreparación de datos,\ncódigo en R,\nresultados,\ninterpretación,\nejercicios.",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>¿Qué es el aprendizaje automático?</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>¿Qué es el aprendizaje automático?</span>"
     ]
   },
   {
     "objectID": "01-introduccion.html#conclusión",
     "href": "01-introduccion.html#conclusión",
-    "title": "2  ¿Qué es el aprendizaje automático?",
-    "section": "2.16 1.15 Conclusión",
-    "text": "2.16 1.15 Conclusión\nEl aprendizaje automático permite construir modelos capaces de aprender patrones a partir de datos.\nEn este capítulo vimos que:\n\nla programación tradicional usa reglas escritas directamente por una persona;\nel aprendizaje automático aprende patrones a partir de ejemplos;\nlos problemas supervisados tienen una variable respuesta;\nla clasificación predice categorías;\nla regresión predice valores numéricos;\nel aprendizaje no supervisado busca estructuras ocultas;\ntodo proyecto requiere preparar, explorar, modelar, evaluar e interpretar los datos.\n\nEn el siguiente capítulo comenzaremos con una parte fundamental: la preparación de datos reales.",
+    "title": "1  ¿Qué es el aprendizaje automático?",
+    "section": "1.16 Conclusión",
+    "text": "1.16 Conclusión\nEl aprendizaje automático permite construir modelos capaces de aprender patrones a partir de datos.\nEn este capítulo vimos que:\n\nla programación tradicional usa reglas escritas directamente por una persona;\nel aprendizaje automático aprende patrones a partir de ejemplos;\nlos problemas supervisados tienen una variable respuesta;\nla clasificación predice categorías;\nla regresión predice valores numéricos;\nel aprendizaje no supervisado busca estructuras ocultas;\ntodo proyecto requiere preparar, explorar, modelar, evaluar e interpretar los datos.\n\nEn el siguiente capítulo comenzaremos con una parte fundamental: la preparación de datos reales.",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>¿Qué es el aprendizaje automático?</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>¿Qué es el aprendizaje automático?</span>"
     ]
   },
   {
     "objectID": "02-preparacion-datos.html",
     "href": "02-preparacion-datos.html",
-    "title": "3  Preparación de datos reales",
+    "title": "2  Preparación de datos reales",
     "section": "",
-    "text": "3.1 Objetivos del capítulo\nAl finalizar este capítulo, el lector será capaz de:",
+    "text": "2.1 Objetivos del capítulo\nAl finalizar este capítulo, el lector será capaz de:",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Preparación de datos reales</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
     ]
   },
   {
     "objectID": "02-preparacion-datos.html#objetivos-del-capítulo",
     "href": "02-preparacion-datos.html#objetivos-del-capítulo",
-    "title": "3  Preparación de datos reales",
+    "title": "2  Preparación de datos reales",
     "section": "",
-    "text": "Comprender por qué la preparación de datos es una etapa fundamental en aprendizaje automático.\nLeer un conjunto de datos real en R.\nRevisar nombres de variables, dimensiones y estructura de una base.\nSeleccionar variables de interés.\nCrear una variable respuesta para un problema de clasificación.\nPreparar una primera base de trabajo lista para análisis exploratorio y modelado.",
+    "text": "Explicar por qué la preparación de datos es una etapa fundamental en aprendizaje automático.\nDistinguir entre datos crudos y datos preparados.\nLeer un conjunto de datos real en R.\nRevisar la estructura general de una base de datos.\nSeleccionar variables relevantes para un problema de clasificación.\nCrear una variable respuesta a partir de una variable original.\nGuardar una base preparada para usarla en capítulos posteriores.",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Preparación de datos reales</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
     ]
   },
   {
     "objectID": "02-preparacion-datos.html#introducción",
     "href": "02-preparacion-datos.html#introducción",
-    "title": "3  Preparación de datos reales",
-    "section": "3.2 2.1 Introducción",
-    "text": "3.2 2.1 Introducción\nEn los libros y cursos introductorios es común usar bases de datos pequeñas, limpias y listas para modelar. Sin embargo, en la práctica profesional los datos reales casi nunca vienen preparados.\nAntes de aplicar cualquier algoritmo de aprendizaje automático, normalmente tenemos que realizar varias tareas:\n\ndescargar o importar datos,\nrevisar nombres de variables,\ncorregir tipos de datos,\ndetectar valores faltantes,\nseleccionar variables útiles,\ntransformar variables,\ncrear una variable respuesta,\neliminar registros incompletos,\ndocumentar cada paso.\n\nEsta etapa se conoce como preparación de datos.\nEn muchos proyectos reales, preparar los datos toma más tiempo que entrenar el modelo.",
+    "title": "2  Preparación de datos reales",
+    "section": "2.2 Introducción",
+    "text": "2.2 Introducción\nEn muchos cursos de estadística, programación o aprendizaje automático se utilizan bases de datos pequeñas, limpias y listas para trabajar. Esto es útil para aprender los conceptos básicos, pero en la práctica profesional la situación suele ser muy diferente.\nLos datos reales generalmente vienen con problemas como:\n\nnombres de variables poco claros,\ncódigos numéricos que representan categorías,\nvalores faltantes,\ncolumnas que no se necesitan,\nvariables con tipos incorrectos,\narchivos grandes,\nfechas y horas separadas,\nregistros incompletos,\ncategorías escritas de distintas formas.\n\nPor eso, antes de aplicar cualquier algoritmo de aprendizaje automático, es necesario preparar los datos.\nA esta etapa se le conoce como preparación de datos o data preprocessing.\nEn términos sencillos:\n\nPreparar datos significa transformar una base real, posiblemente desordenada, en una tabla limpia, clara y útil para construir modelos.",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Preparación de datos reales</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
     ]
   },
   {
-    "objectID": "02-preparacion-datos.html#conjunto-de-datos-de-trabajo-atus-de-inegi",
-    "href": "02-preparacion-datos.html#conjunto-de-datos-de-trabajo-atus-de-inegi",
-    "title": "3  Preparación de datos reales",
-    "section": "3.3 2.2 Conjunto de datos de trabajo: ATUS de INEGI",
-    "text": "3.3 2.2 Conjunto de datos de trabajo: ATUS de INEGI\nEn este capítulo comenzaremos a trabajar con un conjunto de datos real de México: la estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas, conocida como ATUS, publicada por INEGI.\nATUS contiene información sobre accidentes de tránsito ocurridos en zonas urbanas y suburbanas. La información tiene cobertura nacional, estatal y municipal, y considera accidentes en caminos de jurisdicción no federal.\nEste conjunto de datos es útil para construir ejemplos de aprendizaje automático porque contiene variables como:\n\nentidad federativa,\nmunicipio,\naño,\nmes,\ndía de la semana,\nhora,\ntipo de accidente,\ncausa presunta,\nclase de accidente,\nvíctimas.\n\nCon estos datos podemos formular problemas como:\n\n¿Podemos clasificar si un accidente tendrá víctimas o será solo de daños materiales?\n\nEse será nuestro primer problema práctico.",
+    "objectID": "02-preparacion-datos.html#por-qué-es-tan-importante-preparar-los-datos",
+    "href": "02-preparacion-datos.html#por-qué-es-tan-importante-preparar-los-datos",
+    "title": "2  Preparación de datos reales",
+    "section": "2.3 ¿Por qué es tan importante preparar los datos?",
+    "text": "2.3 ¿Por qué es tan importante preparar los datos?\nUn modelo de aprendizaje automático no puede corregir por sí solo todos los problemas de una base de datos.\nSi los datos están mal preparados, el modelo puede producir resultados equivocados, aunque el algoritmo sea sofisticado.\nUna frase común en ciencia de datos es:\nBasura entra, basura sale.\nEsto significa que si usamos datos mal organizados, incompletos o incorrectos, el resultado del modelo también será poco confiable.\nPor ejemplo, imaginemos que queremos predecir si un accidente de tránsito tuvo víctimas, pero tenemos problemas como estos:\n\nla hora del accidente aparece como texto en algunos registros y como número en otros;\nalgunos accidentes no tienen registrada la causa;\nla variable de severidad está codificada con números que no entendemos;\nhay columnas que no aportan información al modelo;\nalgunas variables representan categorías, pero R las interpreta como números.\n\nAntes de modelar, debemos revisar y corregir este tipo de situaciones.",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Preparación de datos reales</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
+    ]
+  },
+  {
+    "objectID": "02-preparacion-datos.html#datos-crudos-y-datos-preparados",
+    "href": "02-preparacion-datos.html#datos-crudos-y-datos-preparados",
+    "title": "2  Preparación de datos reales",
+    "section": "2.4 Datos crudos y datos preparados",
+    "text": "2.4 Datos crudos y datos preparados\nLlamaremos datos crudos a la base tal como se obtiene de la fuente original.\nLos datos crudos son valiosos porque contienen la información original, pero no siempre están listos para aplicar aprendizaje automático.\nLlamaremos datos preparados a la base que ya fue revisada, transformada y organizada para un propósito específico.\nLa diferencia puede verse así:\nDatos crudos\n    ↓\nRevisión\n    ↓\nLimpieza\n    ↓\nSelección de variables\n    ↓\nTransformación\n    ↓\nDatos preparados\n    ↓\nModelo de aprendizaje automático\nEn este capítulo construiremos nuestra primera base preparada.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
+    ]
+  },
+  {
+    "objectID": "02-preparacion-datos.html#conjunto-de-datos-de-trabajo-atus",
+    "href": "02-preparacion-datos.html#conjunto-de-datos-de-trabajo-atus",
+    "title": "2  Preparación de datos reales",
+    "section": "2.5 Conjunto de datos de trabajo: ATUS",
+    "text": "2.5 Conjunto de datos de trabajo: ATUS\nPara iniciar usaremos un conjunto de datos real de México: Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas, conocido como ATUS, publicado por INEGI.\nEste conjunto contiene información sobre accidentes de tránsito ocurridos en zonas urbanas y suburbanas.\nNos interesa porque permite construir problemas reales de clasificación, por ejemplo:\n\nclasificar si un accidente tuvo víctimas;\nclasificar el tipo de accidente;\nidentificar patrones por hora, día o mes;\nestudiar diferencias entre municipios o entidades;\nanalizar causas frecuentes de accidentes.\n\nEn esta primera edición del libro usaremos ATUS como base para varios capítulos iniciales, porque permite explicar de forma didáctica el flujo completo de un proyecto de aprendizaje automático.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
+    ]
+  },
+  {
+    "objectID": "02-preparacion-datos.html#pregunta-de-aprendizaje-automático",
+    "href": "02-preparacion-datos.html#pregunta-de-aprendizaje-automático",
+    "title": "2  Preparación de datos reales",
+    "section": "2.6 Pregunta de aprendizaje automático",
+    "text": "2.6 Pregunta de aprendizaje automático\nAntes de tocar código, debemos plantear una pregunta.\nEn este capítulo trabajaremos con la siguiente pregunta:\n\n¿Podemos preparar una base de datos que permita clasificar si un accidente de tránsito tuvo víctimas o fue solamente de daños materiales?\n\nEsta pregunta nos lleva a definir dos elementos:\n\nLa variable que queremos predecir.\nLas variables que usaremos para intentar predecirla.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
+    ]
+  },
+  {
+    "objectID": "02-preparacion-datos.html#variable-respuesta",
+    "href": "02-preparacion-datos.html#variable-respuesta",
+    "title": "2  Preparación de datos reales",
+    "section": "2.7 Variable respuesta",
+    "text": "2.7 Variable respuesta\nLa variable respuesta será:\naccidente_con_victimas\nEsta variable tendrá dos posibles valores:\nCon víctimas\nSolo daños\nLa construiremos a partir de la variable original que describe la clase del accidente.\nEn términos de aprendizaje automático, este será un problema de clasificación binaria, porque la respuesta solo tiene dos categorías.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
+    ]
+  },
+  {
+    "objectID": "02-preparacion-datos.html#variables-predictoras",
+    "href": "02-preparacion-datos.html#variables-predictoras",
+    "title": "2  Preparación de datos reales",
+    "section": "2.8 Variables predictoras",
+    "text": "2.8 Variables predictoras\nPara iniciar usaremos pocas variables predictoras. La idea no es construir todavía el mejor modelo posible, sino preparar una base clara y manejable.\nUsaremos variables como:\n\n\n\nVariable\nInterpretación\n\n\n\n\nMES\nMes en que ocurrió el accidente\n\n\nID_HORA\nHora del accidente\n\n\nDIASEMANA\nDía de la semana\n\n\nTIPACCID\nTipo de accidente\n\n\nCAUSAACCI\nCausa presunta del accidente\n\n\n\nEstas variables son útiles porque permiten explorar preguntas como:\n\n¿hay más accidentes con víctimas en ciertas horas?\n¿el día de la semana influye?\n¿algunos tipos de accidente son más graves que otros?\n¿la causa presunta está relacionada con la severidad?",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
     ]
   },
   {
     "objectID": "02-preparacion-datos.html#crear-la-carpeta-de-datos",
     "href": "02-preparacion-datos.html#crear-la-carpeta-de-datos",
-    "title": "3  Preparación de datos reales",
-    "section": "3.4 2.3 Crear la carpeta de datos",
-    "text": "3.4 2.3 Crear la carpeta de datos\nDentro de la carpeta del libro crea una carpeta llamada:\ndatos\nLa estructura del proyecto debería verse así:\nlibro-machine-learning-r/\n│\n├── _quarto.yml\n├── index.qmd\n├── 01-introduccion.qmd\n├── 02-preparacion-datos.qmd\n├── 03-analisis-exploratorio.qmd\n│\n├── datos/\n│   └── atus_2024.csv\n│\n└── docs/\nEl archivo de datos que usaremos en este capítulo se llamará:\natus_2024.csv",
+    "title": "2  Preparación de datos reales",
+    "section": "2.9 Crear la carpeta de datos",
+    "text": "2.9 Crear la carpeta de datos\nDentro de la carpeta del libro crea una carpeta llamada:\ndatos\nLa estructura del proyecto debería quedar así:\nlibro-machine-learning-r/\n│\n├── _quarto.yml\n├── index.qmd\n├── 01-introduccion.qmd\n├── 02-preparacion-datos.qmd\n├── 03-analisis-exploratorio.qmd\n│\n├── datos/\n│   └── atus_2024.csv\n│\n└── docs/\nEl archivo que usaremos debe llamarse exactamente:\natus_2024.csv\ny debe estar dentro de la carpeta:\ndatos/",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Preparación de datos reales</span>"
-    ]
-  },
-  {
-    "objectID": "02-preparacion-datos.html#descarga-de-los-datos",
-    "href": "02-preparacion-datos.html#descarga-de-los-datos",
-    "title": "3  Preparación de datos reales",
-    "section": "3.5 2.4 Descarga de los datos",
-    "text": "3.5 2.4 Descarga de los datos\nPara este capítulo descarga el archivo CSV de ATUS desde el sitio de INEGI.\nUna vez descargado, guarda el archivo en la carpeta:\ndatos/\ny cambia su nombre a:\natus_2024.csv\nEste paso es importante para que el código del libro funcione igual en cualquier computadora.",
-    "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Preparación de datos reales</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
     ]
   },
   {
     "objectID": "02-preparacion-datos.html#cargar-paquetes",
     "href": "02-preparacion-datos.html#cargar-paquetes",
-    "title": "3  Preparación de datos reales",
-    "section": "3.6 2.5 Cargar paquetes",
-    "text": "3.6 2.5 Cargar paquetes\nPrimero cargamos los paquetes que usaremos.\n\n\nCode\nlibrary(readr)\n\n\nWarning: package 'readr' was built under R version 4.5.3\n\n\nCode\nlibrary(dplyr)\n\n\nWarning: package 'dplyr' was built under R version 4.5.3\n\n\n\nAdjuntando el paquete: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\n\nCode\nlibrary(ggplot2)\n\n\nWarning: package 'ggplot2' was built under R version 4.5.3\n\n\nCode\nlibrary(stringr)\n\n\nWarning: package 'stringr' was built under R version 4.5.3\n\n\nSi alguno de estos paquetes no está instalado, se puede instalar con:\n\n\nCode\ninstall.packages(c(\"readr\", \"dplyr\", \"ggplot2\", \"stringr\"))",
+    "title": "2  Preparación de datos reales",
+    "section": "2.10 Cargar paquetes",
+    "text": "2.10 Cargar paquetes\nPrimero cargamos los paquetes necesarios.\n\n\nCode\nlibrary(readr)\n\n\nWarning: package 'readr' was built under R version 4.5.3\n\n\nCode\nlibrary(dplyr)\n\n\nWarning: package 'dplyr' was built under R version 4.5.3\n\n\n\nAdjuntando el paquete: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\n\nCode\nlibrary(ggplot2)\n\n\nWarning: package 'ggplot2' was built under R version 4.5.3\n\n\nCode\nlibrary(stringr)\n\n\nWarning: package 'stringr' was built under R version 4.5.3\n\n\nSi alguno no está instalado, puedes instalarlo con:\n\n\nCode\ninstall.packages(c(\"readr\", \"dplyr\", \"ggplot2\", \"stringr\"))",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Preparación de datos reales</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
     ]
   },
   {
-    "objectID": "02-preparacion-datos.html#leer-el-archivo-csv",
-    "href": "02-preparacion-datos.html#leer-el-archivo-csv",
-    "title": "3  Preparación de datos reales",
-    "section": "3.7 2.6 Leer el archivo CSV",
-    "text": "3.7 2.6 Leer el archivo CSV\nDefinimos la ruta del archivo.\n\n\nCode\nruta_atus &lt;- \"datos/atus_2024.csv\"\n\n\nAntes de leerlo, verificamos si existe.\n\n\nCode\nfile.exists(ruta_atus)\n\n\n[1] TRUE\n\n\nAhora leemos el archivo.\n\n\nCode\natus &lt;- read_csv(\n  file = ruta_atus,\n  show_col_types = FALSE,\n  locale = locale(encoding = \"Latin1\")\n)\n\n\nSi aparece un error, revisa tres cosas:\n\nQue exista la carpeta datos.\nQue el archivo esté dentro de esa carpeta.\nQue el archivo se llame exactamente atus_2024.csv.",
+    "objectID": "02-preparacion-datos.html#verificar-si-existe-el-archivo",
+    "href": "02-preparacion-datos.html#verificar-si-existe-el-archivo",
+    "title": "2  Preparación de datos reales",
+    "section": "2.11 Verificar si existe el archivo",
+    "text": "2.11 Verificar si existe el archivo\nDefinimos la ruta del archivo:\n\n\nCode\nruta_atus &lt;- \"datos/atus_2024.csv\"\n\n\nAhora verificamos si el archivo existe:\n\n\nCode\nfile.exists(ruta_atus)\n\n\n[1] TRUE\n\n\nSi el resultado es:\nTRUE\nentonces el archivo fue encontrado.\nSi el resultado es:\nFALSE\nentonces R no encontró el archivo. En ese caso revisa:\n\nque exista la carpeta datos;\nque el archivo esté dentro de esa carpeta;\nque el nombre sea exactamente atus_2024.csv.",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Preparación de datos reales</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
     ]
   },
   {
-    "objectID": "02-preparacion-datos.html#primer-vistazo-a-los-datos",
-    "href": "02-preparacion-datos.html#primer-vistazo-a-los-datos",
-    "title": "3  Preparación de datos reales",
-    "section": "3.8 2.7 Primer vistazo a los datos",
-    "text": "3.8 2.7 Primer vistazo a los datos\nRevisamos las dimensiones de la base.\n\n\nCode\ndim(atus)\n\n\n[1] 390627     45\n\n\nEl primer número indica cuántas filas tiene la base.\nEl segundo número indica cuántas columnas tiene.\nAhora observamos los primeros registros.\n\n\nCode\nhead(atus)\n\n\n# A tibble: 6 × 45\n  COBERTURA ID_ENTIDAD ID_MUNICIPIO  ANIO MES   ID_HORA ID_MINUTO ID_DIA\n  &lt;chr&gt;     &lt;chr&gt;      &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt; \n1 Municipal 01         001           2024 01    02      25        01    \n2 Municipal 01         001           2024 01    03      40        01    \n3 Municipal 01         001           2024 01    04      37        01    \n4 Municipal 01         001           2024 01    05      00        01    \n5 Municipal 01         001           2024 01    06      45        01    \n6 Municipal 01         001           2024 01    07      30        01    \n# ℹ 37 more variables: DIASEMANA &lt;chr&gt;, URBANA &lt;chr&gt;, SUBURBANA &lt;chr&gt;,\n#   TIPACCID &lt;chr&gt;, AUTOMOVIL &lt;dbl&gt;, CAMPASAJ &lt;dbl&gt;, MICROBUS &lt;dbl&gt;,\n#   PASCAMION &lt;dbl&gt;, OMNIBUS &lt;dbl&gt;, TRANVIA &lt;dbl&gt;, CAMIONETA &lt;dbl&gt;,\n#   CAMION &lt;dbl&gt;, TRACTOR &lt;dbl&gt;, FERROCARRI &lt;dbl&gt;, MOTOCICLET &lt;dbl&gt;,\n#   BICICLETA &lt;dbl&gt;, OTROVEHIC &lt;dbl&gt;, CAUSAACCI &lt;chr&gt;, CAPAROD &lt;chr&gt;,\n#   SEXO &lt;chr&gt;, ALIENTO &lt;chr&gt;, CINTURON &lt;chr&gt;, ID_EDAD &lt;dbl&gt;, CONDMUERTO &lt;dbl&gt;,\n#   CONDHERIDO &lt;dbl&gt;, PASAMUERTO &lt;dbl&gt;, PASAHERIDO &lt;dbl&gt;, PEATMUERTO &lt;dbl&gt;, …\n\n\nTambién podemos revisar los nombres de las variables.\n\n\nCode\nnames(atus)\n\n\n [1] \"COBERTURA\"    \"ID_ENTIDAD\"   \"ID_MUNICIPIO\" \"ANIO\"         \"MES\"         \n [6] \"ID_HORA\"      \"ID_MINUTO\"    \"ID_DIA\"       \"DIASEMANA\"    \"URBANA\"      \n[11] \"SUBURBANA\"    \"TIPACCID\"     \"AUTOMOVIL\"    \"CAMPASAJ\"     \"MICROBUS\"    \n[16] \"PASCAMION\"    \"OMNIBUS\"      \"TRANVIA\"      \"CAMIONETA\"    \"CAMION\"      \n[21] \"TRACTOR\"      \"FERROCARRI\"   \"MOTOCICLET\"   \"BICICLETA\"    \"OTROVEHIC\"   \n[26] \"CAUSAACCI\"    \"CAPAROD\"      \"SEXO\"         \"ALIENTO\"      \"CINTURON\"    \n[31] \"ID_EDAD\"      \"CONDMUERTO\"   \"CONDHERIDO\"   \"PASAMUERTO\"   \"PASAHERIDO\"  \n[36] \"PEATMUERTO\"   \"PEATHERIDO\"   \"CICLMUERTO\"   \"CICLHERIDO\"   \"OTROMUERTO\"  \n[41] \"OTROHERIDO\"   \"NEMUERTO\"     \"NEHERIDO\"     \"CLASACC\"      \"ESTATUS\"",
+    "objectID": "02-preparacion-datos.html#leer-la-base-de-datos",
+    "href": "02-preparacion-datos.html#leer-la-base-de-datos",
+    "title": "2  Preparación de datos reales",
+    "section": "2.12 Leer la base de datos",
+    "text": "2.12 Leer la base de datos\nPara evitar que el libro falle si el archivo aún no está descargado, primero verificamos su existencia.\n\n\nCode\nif (file.exists(ruta_atus)) {\n  atus &lt;- read_csv(\n    file = ruta_atus,\n    show_col_types = FALSE,\n    locale = locale(encoding = \"Latin1\")\n  )\n  \n  print(\"Archivo leído correctamente.\")\n} else {\n  atus &lt;- NULL\n  print(\"El archivo atus_2024.csv todavía no está disponible en la carpeta datos.\")\n}\n\n\n[1] \"Archivo leído correctamente.\"\n\n\nEsta forma de leer el archivo es útil mientras estamos construyendo el libro, porque permite seguir renderizando el libro aunque todavía falte descargar la base.",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Preparación de datos reales</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
     ]
   },
   {
-    "objectID": "02-preparacion-datos.html#estandarizar-nombres-de-variables",
-    "href": "02-preparacion-datos.html#estandarizar-nombres-de-variables",
-    "title": "3  Preparación de datos reales",
-    "section": "3.9 2.8 Estandarizar nombres de variables",
-    "text": "3.9 2.8 Estandarizar nombres de variables\nPara trabajar más cómodamente, convertimos los nombres de las variables a mayúsculas.\n\n\nCode\nnames(atus) &lt;- toupper(names(atus))\n\nnames(atus)\n\n\n [1] \"COBERTURA\"    \"ID_ENTIDAD\"   \"ID_MUNICIPIO\" \"ANIO\"         \"MES\"         \n [6] \"ID_HORA\"      \"ID_MINUTO\"    \"ID_DIA\"       \"DIASEMANA\"    \"URBANA\"      \n[11] \"SUBURBANA\"    \"TIPACCID\"     \"AUTOMOVIL\"    \"CAMPASAJ\"     \"MICROBUS\"    \n[16] \"PASCAMION\"    \"OMNIBUS\"      \"TRANVIA\"      \"CAMIONETA\"    \"CAMION\"      \n[21] \"TRACTOR\"      \"FERROCARRI\"   \"MOTOCICLET\"   \"BICICLETA\"    \"OTROVEHIC\"   \n[26] \"CAUSAACCI\"    \"CAPAROD\"      \"SEXO\"         \"ALIENTO\"      \"CINTURON\"    \n[31] \"ID_EDAD\"      \"CONDMUERTO\"   \"CONDHERIDO\"   \"PASAMUERTO\"   \"PASAHERIDO\"  \n[36] \"PEATMUERTO\"   \"PEATHERIDO\"   \"CICLMUERTO\"   \"CICLHERIDO\"   \"OTROMUERTO\"  \n[41] \"OTROHERIDO\"   \"NEMUERTO\"     \"NEHERIDO\"     \"CLASACC\"      \"ESTATUS\"     \n\n\nEsto ayuda a evitar errores por diferencias entre mayúsculas y minúsculas.",
+    "objectID": "02-preparacion-datos.html#revisar-dimensiones",
+    "href": "02-preparacion-datos.html#revisar-dimensiones",
+    "title": "2  Preparación de datos reales",
+    "section": "2.13 Revisar dimensiones",
+    "text": "2.13 Revisar dimensiones\nSi la base fue cargada correctamente, podemos revisar sus dimensiones:\n\n\nCode\nif (!is.null(atus)) {\n  dim(atus)\n}\n\n\n[1] 390627     45\n\n\nLa función dim() devuelve dos valores:\nnúmero de filas, número de columnas\nLas filas representan registros de accidentes.\nLas columnas representan variables.",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Preparación de datos reales</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
     ]
   },
   {
-    "objectID": "02-preparacion-datos.html#variables-de-interés",
-    "href": "02-preparacion-datos.html#variables-de-interés",
-    "title": "3  Preparación de datos reales",
-    "section": "3.10 2.9 Variables de interés",
-    "text": "3.10 2.9 Variables de interés\nPara nuestro primer problema de clasificación no necesitamos todas las variables.\nSeleccionaremos algunas que son útiles para iniciar:\n\n\nCode\nvariables_interes &lt;- c(\n  \"ANIO\",\n  \"MES\",\n  \"ID_ENTIDAD\",\n  \"ID_MUNICIPIO\",\n  \"ID_HORA\",\n  \"ID_DIA\",\n  \"DIASEMANA\",\n  \"TIPACCID\",\n  \"CAUSAACCI\",\n  \"CLASACC\"\n)\n\n\nComo los nombres de variables pueden cambiar ligeramente entre versiones, verificamos cuáles existen realmente en la base.\n\n\nCode\nvariables_existentes &lt;- intersect(variables_interes, names(atus))\n\nvariables_existentes\n\n\n [1] \"ANIO\"         \"MES\"          \"ID_ENTIDAD\"   \"ID_MUNICIPIO\" \"ID_HORA\"     \n [6] \"ID_DIA\"       \"DIASEMANA\"    \"TIPACCID\"     \"CAUSAACCI\"    \"CLASACC\"     \n\n\nAhora creamos una base reducida.\n\n\nCode\natus_base &lt;- atus |&gt;\n  select(all_of(variables_existentes))\n\nhead(atus_base)\n\n\n# A tibble: 6 × 10\n   ANIO MES   ID_ENTIDAD ID_MUNICIPIO ID_HORA ID_DIA DIASEMANA TIPACCID         \n  &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;        &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;            \n1  2024 01    01         001          02      01     lunes     ColisiÃ³n con ve…\n2  2024 01    01         001          03      01     lunes     ColisiÃ³n con ob…\n3  2024 01    01         001          04      01     lunes     ColisiÃ³n con pe…\n4  2024 01    01         001          05      01     lunes     ColisiÃ³n con ob…\n5  2024 01    01         001          06      01     lunes     ColisiÃ³n con ob…\n6  2024 01    01         001          07      01     lunes     ColisiÃ³n con ve…\n# ℹ 2 more variables: CAUSAACCI &lt;chr&gt;, CLASACC &lt;chr&gt;",
+    "objectID": "02-preparacion-datos.html#primeros-registros",
+    "href": "02-preparacion-datos.html#primeros-registros",
+    "title": "2  Preparación de datos reales",
+    "section": "2.14 Primeros registros",
+    "text": "2.14 Primeros registros\nObservamos los primeros registros de la base:\n\n\nCode\nif (!is.null(atus)) {\n  head(atus)\n}\n\n\n# A tibble: 6 × 45\n  COBERTURA ID_ENTIDAD ID_MUNICIPIO  ANIO MES   ID_HORA ID_MINUTO ID_DIA\n  &lt;chr&gt;     &lt;chr&gt;      &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt; \n1 Municipal 01         001           2024 01    02      25        01    \n2 Municipal 01         001           2024 01    03      40        01    \n3 Municipal 01         001           2024 01    04      37        01    \n4 Municipal 01         001           2024 01    05      00        01    \n5 Municipal 01         001           2024 01    06      45        01    \n6 Municipal 01         001           2024 01    07      30        01    \n# ℹ 37 more variables: DIASEMANA &lt;chr&gt;, URBANA &lt;chr&gt;, SUBURBANA &lt;chr&gt;,\n#   TIPACCID &lt;chr&gt;, AUTOMOVIL &lt;dbl&gt;, CAMPASAJ &lt;dbl&gt;, MICROBUS &lt;dbl&gt;,\n#   PASCAMION &lt;dbl&gt;, OMNIBUS &lt;dbl&gt;, TRANVIA &lt;dbl&gt;, CAMIONETA &lt;dbl&gt;,\n#   CAMION &lt;dbl&gt;, TRACTOR &lt;dbl&gt;, FERROCARRI &lt;dbl&gt;, MOTOCICLET &lt;dbl&gt;,\n#   BICICLETA &lt;dbl&gt;, OTROVEHIC &lt;dbl&gt;, CAUSAACCI &lt;chr&gt;, CAPAROD &lt;chr&gt;,\n#   SEXO &lt;chr&gt;, ALIENTO &lt;chr&gt;, CINTURON &lt;chr&gt;, ID_EDAD &lt;dbl&gt;, CONDMUERTO &lt;dbl&gt;,\n#   CONDHERIDO &lt;dbl&gt;, PASAMUERTO &lt;dbl&gt;, PASAHERIDO &lt;dbl&gt;, PEATMUERTO &lt;dbl&gt;, …\n\n\nEsta revisión inicial permite identificar cómo viene organizada la información.",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Preparación de datos reales</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
+    ]
+  },
+  {
+    "objectID": "02-preparacion-datos.html#nombres-de-variables",
+    "href": "02-preparacion-datos.html#nombres-de-variables",
+    "title": "2  Preparación de datos reales",
+    "section": "2.15 Nombres de variables",
+    "text": "2.15 Nombres de variables\nAhora revisamos los nombres de las variables:\n\n\nCode\nif (!is.null(atus)) {\n  names(atus)\n}\n\n\n [1] \"COBERTURA\"    \"ID_ENTIDAD\"   \"ID_MUNICIPIO\" \"ANIO\"         \"MES\"         \n [6] \"ID_HORA\"      \"ID_MINUTO\"    \"ID_DIA\"       \"DIASEMANA\"    \"URBANA\"      \n[11] \"SUBURBANA\"    \"TIPACCID\"     \"AUTOMOVIL\"    \"CAMPASAJ\"     \"MICROBUS\"    \n[16] \"PASCAMION\"    \"OMNIBUS\"      \"TRANVIA\"      \"CAMIONETA\"    \"CAMION\"      \n[21] \"TRACTOR\"      \"FERROCARRI\"   \"MOTOCICLET\"   \"BICICLETA\"    \"OTROVEHIC\"   \n[26] \"CAUSAACCI\"    \"CAPAROD\"      \"SEXO\"         \"ALIENTO\"      \"CINTURON\"    \n[31] \"ID_EDAD\"      \"CONDMUERTO\"   \"CONDHERIDO\"   \"PASAMUERTO\"   \"PASAHERIDO\"  \n[36] \"PEATMUERTO\"   \"PEATHERIDO\"   \"CICLMUERTO\"   \"CICLHERIDO\"   \"OTROMUERTO\"  \n[41] \"OTROHERIDO\"   \"NEMUERTO\"     \"NEHERIDO\"     \"CLASACC\"      \"ESTATUS\"     \n\n\nLos nombres de variables son fundamentales porque los usaremos para seleccionar columnas, transformar datos y construir modelos.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
+    ]
+  },
+  {
+    "objectID": "02-preparacion-datos.html#estandarizar-nombres",
+    "href": "02-preparacion-datos.html#estandarizar-nombres",
+    "title": "2  Preparación de datos reales",
+    "section": "2.16 Estandarizar nombres",
+    "text": "2.16 Estandarizar nombres\nPara evitar problemas por diferencias entre mayúsculas y minúsculas, convertimos todos los nombres a mayúsculas:\n\n\nCode\nif (!is.null(atus)) {\n  names(atus) &lt;- toupper(names(atus))\n  names(atus)\n}\n\n\n [1] \"COBERTURA\"    \"ID_ENTIDAD\"   \"ID_MUNICIPIO\" \"ANIO\"         \"MES\"         \n [6] \"ID_HORA\"      \"ID_MINUTO\"    \"ID_DIA\"       \"DIASEMANA\"    \"URBANA\"      \n[11] \"SUBURBANA\"    \"TIPACCID\"     \"AUTOMOVIL\"    \"CAMPASAJ\"     \"MICROBUS\"    \n[16] \"PASCAMION\"    \"OMNIBUS\"      \"TRANVIA\"      \"CAMIONETA\"    \"CAMION\"      \n[21] \"TRACTOR\"      \"FERROCARRI\"   \"MOTOCICLET\"   \"BICICLETA\"    \"OTROVEHIC\"   \n[26] \"CAUSAACCI\"    \"CAPAROD\"      \"SEXO\"         \"ALIENTO\"      \"CINTURON\"    \n[31] \"ID_EDAD\"      \"CONDMUERTO\"   \"CONDHERIDO\"   \"PASAMUERTO\"   \"PASAHERIDO\"  \n[36] \"PEATMUERTO\"   \"PEATHERIDO\"   \"CICLMUERTO\"   \"CICLHERIDO\"   \"OTROMUERTO\"  \n[41] \"OTROHERIDO\"   \"NEMUERTO\"     \"NEHERIDO\"     \"CLASACC\"      \"ESTATUS\"     \n\n\nPor ejemplo, si una variable venía como:\nanio\nla convertimos en:\nANIO\nEsto facilita escribir código más consistente.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
+    ]
+  },
+  {
+    "objectID": "02-preparacion-datos.html#seleccionar-variables-de-interés",
+    "href": "02-preparacion-datos.html#seleccionar-variables-de-interés",
+    "title": "2  Preparación de datos reales",
+    "section": "2.17 Seleccionar variables de interés",
+    "text": "2.17 Seleccionar variables de interés\nPara nuestro primer problema no necesitamos todas las columnas. Seleccionaremos solo algunas.\n\n\nCode\nvariables_interes &lt;- c(\n  \"ANIO\",\n  \"MES\",\n  \"ID_ENTIDAD\",\n  \"ID_MUNICIPIO\",\n  \"ID_HORA\",\n  \"ID_DIA\",\n  \"DIASEMANA\",\n  \"TIPACCID\",\n  \"CAUSAACCI\",\n  \"CLASACC\"\n)\n\n\nComo las bases reales pueden cambiar entre versiones, verificamos cuáles de estas variables existen realmente:\n\n\nCode\nif (!is.null(atus)) {\n  variables_existentes &lt;- intersect(variables_interes, names(atus))\n  variables_existentes\n}\n\n\n [1] \"ANIO\"         \"MES\"          \"ID_ENTIDAD\"   \"ID_MUNICIPIO\" \"ID_HORA\"     \n [6] \"ID_DIA\"       \"DIASEMANA\"    \"TIPACCID\"     \"CAUSAACCI\"    \"CLASACC\"     \n\n\nCreamos una base reducida:\n\n\nCode\nif (!is.null(atus)) {\n  atus_base &lt;- atus |&gt;\n    select(all_of(variables_existentes))\n  \n  head(atus_base)\n}\n\n\n# A tibble: 6 × 10\n   ANIO MES   ID_ENTIDAD ID_MUNICIPIO ID_HORA ID_DIA DIASEMANA TIPACCID         \n  &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;        &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;            \n1  2024 01    01         001          02      01     lunes     ColisiÃ³n con ve…\n2  2024 01    01         001          03      01     lunes     ColisiÃ³n con ob…\n3  2024 01    01         001          04      01     lunes     ColisiÃ³n con pe…\n4  2024 01    01         001          05      01     lunes     ColisiÃ³n con ob…\n5  2024 01    01         001          06      01     lunes     ColisiÃ³n con ob…\n6  2024 01    01         001          07      01     lunes     ColisiÃ³n con ve…\n# ℹ 2 more variables: CAUSAACCI &lt;chr&gt;, CLASACC &lt;chr&gt;",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
     ]
   },
   {
     "objectID": "02-preparacion-datos.html#diccionario-inicial-de-variables",
     "href": "02-preparacion-datos.html#diccionario-inicial-de-variables",
-    "title": "3  Preparación de datos reales",
-    "section": "3.11 2.10 Diccionario inicial de variables",
-    "text": "3.11 2.10 Diccionario inicial de variables\nPara trabajar con datos reales es necesario construir un pequeño diccionario de variables.\nEn esta primera versión usaremos el siguiente diccionario de trabajo:\n\n\n\nVariable\nDescripción didáctica\n\n\n\n\nANIO\nAño del accidente\n\n\nMES\nMes del accidente\n\n\nID_ENTIDAD\nClave de la entidad federativa\n\n\nID_MUNICIPIO\nClave del municipio\n\n\nID_HORA\nHora del accidente\n\n\nID_DIA\nDía del mes\n\n\nDIASEMANA\nDía de la semana\n\n\nTIPACCID\nTipo de accidente\n\n\nCAUSAACCI\nCausa presunta del accidente\n\n\nCLASACC\nClase del accidente\n\n\n\nLa variable más importante para este primer ejemplo será:\nCLASACC\nporque la usaremos para construir una variable respuesta.",
+    "title": "2  Preparación de datos reales",
+    "section": "2.18 Diccionario inicial de variables",
+    "text": "2.18 Diccionario inicial de variables\nUn diccionario de datos describe el significado de las variables.\nEn proyectos reales, nunca debemos trabajar solo con nombres de columnas. También necesitamos entender qué representan.\nPara este primer ejemplo usaremos el siguiente diccionario didáctico:\n\n\n\nVariable\nDescripción\n\n\n\n\nANIO\nAño del accidente\n\n\nMES\nMes del accidente\n\n\nID_ENTIDAD\nClave de la entidad federativa\n\n\nID_MUNICIPIO\nClave del municipio\n\n\nID_HORA\nHora del accidente\n\n\nID_DIA\nDía del mes\n\n\nDIASEMANA\nDía de la semana\n\n\nTIPACCID\nTipo de accidente\n\n\nCAUSAACCI\nCausa presunta del accidente\n\n\nCLASACC\nClase del accidente\n\n\n\nLa variable CLASACC será especialmente importante, porque a partir de ella construiremos la variable respuesta.",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Preparación de datos reales</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
     ]
   },
   {
-    "objectID": "02-preparacion-datos.html#revisión-de-la-variable-clasacc",
-    "href": "02-preparacion-datos.html#revisión-de-la-variable-clasacc",
-    "title": "3  Preparación de datos reales",
-    "section": "3.12 2.11 Revisión de la variable CLASACC",
-    "text": "3.12 2.11 Revisión de la variable CLASACC\nPrimero revisamos los valores de la variable CLASACC.\n\n\nCode\nif (\"CLASACC\" %in% names(atus_base)) {\n  table(atus_base$CLASACC, useNA = \"ifany\")\n}\n\n\n\n       Fatal     No fatal SÃ³lo daÃ±os \n        4188        63920       322519 \n\n\nLa variable CLASACC permite identificar la clase del accidente.\nPara fines didácticos, vamos a transformar esta variable en una nueva variable binaria:\nCon víctimas\nSolo daños\nEsta será nuestra primera variable respuesta para clasificación.",
+    "objectID": "02-preparacion-datos.html#revisar-la-variable-clasacc",
+    "href": "02-preparacion-datos.html#revisar-la-variable-clasacc",
+    "title": "2  Preparación de datos reales",
+    "section": "2.19 Revisar la variable CLASACC",
+    "text": "2.19 Revisar la variable CLASACC\nPrimero revisamos los valores de CLASACC.\n\n\nCode\nif (!is.null(atus) && \"CLASACC\" %in% names(atus_base)) {\n  table(atus_base$CLASACC, useNA = \"ifany\")\n}\n\n\n\n       Fatal     No fatal SÃ³lo daÃ±os \n        4188        63920       322519 \n\n\nEsta tabla nos permite saber cómo está codificada la clase del accidente.\nDependiendo de la versión del archivo, la variable puede aparecer como texto o como número.",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Preparación de datos reales</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
     ]
   },
   {
-    "objectID": "02-preparacion-datos.html#crear-una-variable-respuesta",
-    "href": "02-preparacion-datos.html#crear-una-variable-respuesta",
-    "title": "3  Preparación de datos reales",
-    "section": "3.13 2.12 Crear una variable respuesta",
-    "text": "3.13 2.12 Crear una variable respuesta\nPrimero convertimos CLASACC a texto para evitar problemas si viene como número o como etiqueta.\n\n\nCode\natus_modelo &lt;- atus_base |&gt;\n  mutate(\n    CLASACC_TXT = as.character(CLASACC),\n    CLASACC_TXT = str_to_lower(CLASACC_TXT)\n  )\n\n\nAhora creamos la variable respuesta.\n\n\nCode\natus_modelo &lt;- atus_modelo |&gt;\n  mutate(\n    accidente_con_victimas = case_when(\n      str_detect(CLASACC_TXT, \"fatal\") ~ \"Con víctimas\",\n      str_detect(CLASACC_TXT, \"no fatal\") ~ \"Con víctimas\",\n      str_detect(CLASACC_TXT, \"dañ\") ~ \"Solo daños\",\n      CLASACC_TXT %in% c(\"1\", \"2\") ~ \"Con víctimas\",\n      CLASACC_TXT %in% c(\"3\") ~ \"Solo daños\",\n      TRUE ~ NA_character_\n    )\n  )\n\n\nRevisamos la nueva variable.\n\n\nCode\ntable(atus_modelo$accidente_con_victimas, useNA = \"ifany\")\n\n\n\nCon víctimas         &lt;NA&gt; \n       68108       322519",
+    "objectID": "02-preparacion-datos.html#crear-la-variable-respuesta",
+    "href": "02-preparacion-datos.html#crear-la-variable-respuesta",
+    "title": "2  Preparación de datos reales",
+    "section": "2.20 Crear la variable respuesta",
+    "text": "2.20 Crear la variable respuesta\nAhora crearemos una nueva variable llamada:\naccidente_con_victimas\nLa idea será clasificar los accidentes en dos grupos:\nCon víctimas\nSolo daños\nUsaremos case_when() para construir la variable.\n\n\nCode\nif (!is.null(atus) && \"CLASACC\" %in% names(atus_base)) {\n  atus_modelo &lt;- atus_base |&gt;\n    mutate(\n      CLASACC_TXT = as.character(CLASACC),\n      CLASACC_TXT = str_to_lower(CLASACC_TXT),\n      accidente_con_victimas = case_when(\n        str_detect(CLASACC_TXT, \"fatal\") ~ \"Con víctimas\",\n        str_detect(CLASACC_TXT, \"no fatal\") ~ \"Con víctimas\",\n        str_detect(CLASACC_TXT, \"dañ\") ~ \"Solo daños\",\n        CLASACC_TXT %in% c(\"1\", \"2\") ~ \"Con víctimas\",\n        CLASACC_TXT %in% c(\"3\") ~ \"Solo daños\",\n        TRUE ~ NA_character_\n      )\n    )\n  \n  table(atus_modelo$accidente_con_victimas, useNA = \"ifany\")\n}\n\n\n\nCon víctimas         &lt;NA&gt; \n       68108       322519",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Preparación de datos reales</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
     ]
   },
   {
-    "objectID": "02-preparacion-datos.html#nota-importante-sobre-la-codificación",
-    "href": "02-preparacion-datos.html#nota-importante-sobre-la-codificación",
-    "title": "3  Preparación de datos reales",
-    "section": "3.14 2.13 Nota importante sobre la codificación",
-    "text": "3.14 2.13 Nota importante sobre la codificación\nCuando se trabaja con bases reales, las categorías pueden venir codificadas de distintas formas.\nPor ejemplo, una variable puede venir como:\nFatal\nNo fatal\nSolo daños\no como códigos:\n1, 2, 3\nPor eso, siempre se debe consultar la documentación de la base de datos antes de modelar.\nEn este libro iremos documentando las transformaciones para que el análisis sea claro y reproducible.",
+    "objectID": "02-preparacion-datos.html#comentario-didáctico-sobre-la-variable-respuesta",
+    "href": "02-preparacion-datos.html#comentario-didáctico-sobre-la-variable-respuesta",
+    "title": "2  Preparación de datos reales",
+    "section": "2.21 Comentario didáctico sobre la variable respuesta",
+    "text": "2.21 Comentario didáctico sobre la variable respuesta\nCrear una variable respuesta es una decisión importante.\nNo basta con aplicar un algoritmo. Primero debemos definir claramente qué queremos predecir.\nEn este caso, convertimos la clase original del accidente en una variable binaria. Esto simplifica el problema y permite iniciar con modelos de clasificación sencillos.\nMás adelante podríamos trabajar con una variable de tres categorías, por ejemplo:\nFatal\nNo fatal\nSolo daños\nPero para una primera aproximación es conveniente empezar con dos clases.",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Preparación de datos reales</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
     ]
   },
   {
-    "objectID": "02-preparacion-datos.html#eliminar-registros-sin-variable-respuesta",
-    "href": "02-preparacion-datos.html#eliminar-registros-sin-variable-respuesta",
-    "title": "3  Preparación de datos reales",
-    "section": "3.15 2.14 Eliminar registros sin variable respuesta",
-    "text": "3.15 2.14 Eliminar registros sin variable respuesta\nPara entrenar un modelo de clasificación necesitamos que la variable respuesta esté definida.\nEliminamos los registros donde no se pudo construir la variable accidente_con_victimas.\n\n\nCode\natus_modelo &lt;- atus_modelo |&gt;\n  filter(!is.na(accidente_con_victimas))\n\n\nRevisamos nuevamente.\n\n\nCode\ntable(atus_modelo$accidente_con_victimas)\n\n\n\nCon víctimas \n       68108",
+    "objectID": "02-preparacion-datos.html#eliminar-registros-sin-respuesta",
+    "href": "02-preparacion-datos.html#eliminar-registros-sin-respuesta",
+    "title": "2  Preparación de datos reales",
+    "section": "2.22 Eliminar registros sin respuesta",
+    "text": "2.22 Eliminar registros sin respuesta\nPara entrenar un modelo, necesitamos que cada registro tenga una clase conocida.\nPor eso eliminamos registros donde no se pudo construir la variable respuesta.\n\n\nCode\nif (exists(\"atus_modelo\")) {\n  atus_modelo &lt;- atus_modelo |&gt;\n    filter(!is.na(accidente_con_victimas))\n  \n  table(atus_modelo$accidente_con_victimas)\n}\n\n\n\nCon víctimas \n       68108",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Preparación de datos reales</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
     ]
   },
   {
     "objectID": "02-preparacion-datos.html#convertir-variables-categóricas",
     "href": "02-preparacion-datos.html#convertir-variables-categóricas",
-    "title": "3  Preparación de datos reales",
-    "section": "3.16 2.15 Convertir variables categóricas",
-    "text": "3.16 2.15 Convertir variables categóricas\nAlgunas variables deben tratarse como categorías y no como números.\nPor ejemplo, la entidad federativa y el municipio son códigos, pero no representan cantidades numéricas.\n\n\nCode\natus_modelo &lt;- atus_modelo |&gt;\n  mutate(\n    ID_ENTIDAD = as.factor(ID_ENTIDAD),\n    ID_MUNICIPIO = as.factor(ID_MUNICIPIO),\n    MES = as.factor(MES),\n    DIASEMANA = as.factor(DIASEMANA),\n    TIPACCID = as.factor(TIPACCID),\n    CAUSAACCI = as.factor(CAUSAACCI),\n    accidente_con_victimas = as.factor(accidente_con_victimas)\n  )\n\n\nRevisamos la estructura.\n\n\nCode\nstr(atus_modelo)\n\n\ntibble [68,108 × 12] (S3: tbl_df/tbl/data.frame)\n $ ANIO                  : num [1:68108] 2024 2024 2024 2024 2024 ...\n $ MES                   : Factor w/ 12 levels \"01\",\"02\",\"03\",..: 1 1 1 1 1 1 1 1 1 1 ...\n $ ID_ENTIDAD            : Factor w/ 32 levels \"01\",\"02\",\"03\",..: 1 1 1 1 1 1 1 1 1 1 ...\n $ ID_MUNICIPIO          : Factor w/ 240 levels \"001\",\"002\",\"003\",..: 1 1 1 1 1 1 1 1 1 1 ...\n $ ID_HORA               : chr [1:68108] \"04\" \"07\" \"12\" \"14\" ...\n $ ID_DIA                : chr [1:68108] \"01\" \"01\" \"01\" \"02\" ...\n $ DIASEMANA             : Factor w/ 7 levels \"Domingo\",\"Jueves\",..: 3 3 3 4 2 7 7 7 6 1 ...\n $ TIPACCID              : Factor w/ 12 levels \"CaÃ­da de pasajero\",..: 7 8 6 7 8 7 5 8 12 6 ...\n $ CAUSAACCI             : Factor w/ 5 levels \"Conductor\",\"Falla del vehÃ­culo\",..: 1 1 1 5 1 1 1 1 1 1 ...\n $ CLASACC               : chr [1:68108] \"No fatal\" \"No fatal\" \"No fatal\" \"No fatal\" ...\n $ CLASACC_TXT           : chr [1:68108] \"no fatal\" \"no fatal\" \"no fatal\" \"no fatal\" ...\n $ accidente_con_victimas: Factor w/ 1 level \"Con víctimas\": 1 1 1 1 1 1 1 1 1 1 ...",
+    "title": "2  Preparación de datos reales",
+    "section": "2.23 Convertir variables categóricas",
+    "text": "2.23 Convertir variables categóricas\nAlgunas variables son códigos, pero deben tratarse como categorías.\nPor ejemplo, ID_ENTIDAD es una clave de entidad federativa. Aunque tenga números, no debe interpretarse como una cantidad.\nNo tiene sentido decir que la entidad 20 es “el doble” de la entidad 10.\nPor eso convertimos algunas variables a factor.\n\n\nCode\nif (exists(\"atus_modelo\")) {\n  atus_modelo &lt;- atus_modelo |&gt;\n    mutate(\n      ID_ENTIDAD = as.factor(ID_ENTIDAD),\n      ID_MUNICIPIO = as.factor(ID_MUNICIPIO),\n      MES = as.factor(MES),\n      DIASEMANA = as.factor(DIASEMANA),\n      TIPACCID = as.factor(TIPACCID),\n      CAUSAACCI = as.factor(CAUSAACCI),\n      accidente_con_victimas = as.factor(accidente_con_victimas)\n    )\n  \n  str(atus_modelo)\n}\n\n\ntibble [68,108 × 12] (S3: tbl_df/tbl/data.frame)\n $ ANIO                  : num [1:68108] 2024 2024 2024 2024 2024 ...\n $ MES                   : Factor w/ 12 levels \"01\",\"02\",\"03\",..: 1 1 1 1 1 1 1 1 1 1 ...\n $ ID_ENTIDAD            : Factor w/ 32 levels \"01\",\"02\",\"03\",..: 1 1 1 1 1 1 1 1 1 1 ...\n $ ID_MUNICIPIO          : Factor w/ 240 levels \"001\",\"002\",\"003\",..: 1 1 1 1 1 1 1 1 1 1 ...\n $ ID_HORA               : chr [1:68108] \"04\" \"07\" \"12\" \"14\" ...\n $ ID_DIA                : chr [1:68108] \"01\" \"01\" \"01\" \"02\" ...\n $ DIASEMANA             : Factor w/ 7 levels \"Domingo\",\"Jueves\",..: 3 3 3 4 2 7 7 7 6 1 ...\n $ TIPACCID              : Factor w/ 12 levels \"CaÃ­da de pasajero\",..: 7 8 6 7 8 7 5 8 12 6 ...\n $ CAUSAACCI             : Factor w/ 5 levels \"Conductor\",\"Falla del vehÃ­culo\",..: 1 1 1 5 1 1 1 1 1 1 ...\n $ CLASACC               : chr [1:68108] \"No fatal\" \"No fatal\" \"No fatal\" \"No fatal\" ...\n $ CLASACC_TXT           : chr [1:68108] \"no fatal\" \"no fatal\" \"no fatal\" \"no fatal\" ...\n $ accidente_con_victimas: Factor w/ 1 level \"Con víctimas\": 1 1 1 1 1 1 1 1 1 1 ...",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Preparación de datos reales</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
     ]
   },
   {
-    "objectID": "02-preparacion-datos.html#revisión-de-datos-faltantes",
-    "href": "02-preparacion-datos.html#revisión-de-datos-faltantes",
-    "title": "3  Preparación de datos reales",
-    "section": "3.17 2.16 Revisión de datos faltantes",
-    "text": "3.17 2.16 Revisión de datos faltantes\nLos datos faltantes son comunes en bases reales.\nCalculamos cuántos valores faltantes tiene cada variable.\n\n\nCode\nfaltantes &lt;- colSums(is.na(atus_modelo))\n\nfaltantes\n\n\n                  ANIO                    MES             ID_ENTIDAD \n                     0                      0                      0 \n          ID_MUNICIPIO                ID_HORA                 ID_DIA \n                     0                      0                      0 \n             DIASEMANA               TIPACCID              CAUSAACCI \n                     0                      0                      0 \n               CLASACC            CLASACC_TXT accidente_con_victimas \n                     0                      0                      0 \n\n\nTambién podemos calcular el porcentaje de faltantes.\n\n\nCode\nporcentaje_faltantes &lt;- round(100 * colSums(is.na(atus_modelo)) / nrow(atus_modelo), 2)\n\nporcentaje_faltantes\n\n\n                  ANIO                    MES             ID_ENTIDAD \n                     0                      0                      0 \n          ID_MUNICIPIO                ID_HORA                 ID_DIA \n                     0                      0                      0 \n             DIASEMANA               TIPACCID              CAUSAACCI \n                     0                      0                      0 \n               CLASACC            CLASACC_TXT accidente_con_victimas \n                     0                      0                      0",
+    "objectID": "02-preparacion-datos.html#revisar-datos-faltantes",
+    "href": "02-preparacion-datos.html#revisar-datos-faltantes",
+    "title": "2  Preparación de datos reales",
+    "section": "2.24 Revisar datos faltantes",
+    "text": "2.24 Revisar datos faltantes\nLos valores faltantes son comunes en bases reales.\nCalculamos cuántos valores faltantes hay por variable.\n\n\nCode\nif (exists(\"atus_modelo\")) {\n  faltantes &lt;- colSums(is.na(atus_modelo))\n  faltantes\n}\n\n\n                  ANIO                    MES             ID_ENTIDAD \n                     0                      0                      0 \n          ID_MUNICIPIO                ID_HORA                 ID_DIA \n                     0                      0                      0 \n             DIASEMANA               TIPACCID              CAUSAACCI \n                     0                      0                      0 \n               CLASACC            CLASACC_TXT accidente_con_victimas \n                     0                      0                      0 \n\n\nTambién podemos calcular el porcentaje de datos faltantes.\n\n\nCode\nif (exists(\"atus_modelo\")) {\n  porcentaje_faltantes &lt;- round(\n    100 * colSums(is.na(atus_modelo)) / nrow(atus_modelo),\n    2\n  )\n  \n  porcentaje_faltantes\n}\n\n\n                  ANIO                    MES             ID_ENTIDAD \n                     0                      0                      0 \n          ID_MUNICIPIO                ID_HORA                 ID_DIA \n                     0                      0                      0 \n             DIASEMANA               TIPACCID              CAUSAACCI \n                     0                      0                      0 \n               CLASACC            CLASACC_TXT accidente_con_victimas \n                     0                      0                      0",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Preparación de datos reales</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
     ]
   },
   {
-    "objectID": "02-preparacion-datos.html#selección-final-de-variables-para-el-primer-modelo",
-    "href": "02-preparacion-datos.html#selección-final-de-variables-para-el-primer-modelo",
-    "title": "3  Preparación de datos reales",
-    "section": "3.18 2.17 Selección final de variables para el primer modelo",
-    "text": "3.18 2.17 Selección final de variables para el primer modelo\nPara iniciar de forma sencilla, seleccionaremos pocas variables.\n\n\nCode\natus_ml &lt;- atus_modelo |&gt;\n  select(\n    accidente_con_victimas,\n    MES,\n    ID_HORA,\n    DIASEMANA,\n    TIPACCID,\n    CAUSAACCI\n  )\n\n\nRevisamos la base final.\n\n\nCode\nhead(atus_ml)\n\n\n# A tibble: 6 × 6\n  accidente_con_victimas MES   ID_HORA DIASEMANA TIPACCID              CAUSAACCI\n  &lt;fct&gt;                  &lt;fct&gt; &lt;chr&gt;   &lt;fct&gt;     &lt;fct&gt;                 &lt;fct&gt;    \n1 Con víctimas           01    04      lunes     ColisiÃ³n con peatÃ³… Conductor\n2 Con víctimas           01    07      lunes     ColisiÃ³n con vehÃ­c…  Conductor\n3 Con víctimas           01    12      lunes     ColisiÃ³n con objeto… Conductor\n4 Con víctimas           01    14      Martes    ColisiÃ³n con peatÃ³… PeatÃ³n …\n5 Con víctimas           01    08      Jueves    ColisiÃ³n con vehÃ­c…  Conductor\n6 Con víctimas           01    06      Viernes   ColisiÃ³n con peatÃ³… Conductor\n\n\nTambién revisamos sus dimensiones.\n\n\nCode\ndim(atus_ml)\n\n\n[1] 68108     6",
+    "objectID": "02-preparacion-datos.html#base-final-para-aprendizaje-automático",
+    "href": "02-preparacion-datos.html#base-final-para-aprendizaje-automático",
+    "title": "2  Preparación de datos reales",
+    "section": "2.25 Base final para aprendizaje automático",
+    "text": "2.25 Base final para aprendizaje automático\nPara iniciar, construiremos una base pequeña con la variable respuesta y algunas variables predictoras.\n\n\nCode\nif (exists(\"atus_modelo\")) {\n  atus_ml &lt;- atus_modelo |&gt;\n    select(\n      accidente_con_victimas,\n      MES,\n      ID_HORA,\n      DIASEMANA,\n      TIPACCID,\n      CAUSAACCI\n    )\n  \n  head(atus_ml)\n}\n\n\n# A tibble: 6 × 6\n  accidente_con_victimas MES   ID_HORA DIASEMANA TIPACCID              CAUSAACCI\n  &lt;fct&gt;                  &lt;fct&gt; &lt;chr&gt;   &lt;fct&gt;     &lt;fct&gt;                 &lt;fct&gt;    \n1 Con víctimas           01    04      lunes     ColisiÃ³n con peatÃ³… Conductor\n2 Con víctimas           01    07      lunes     ColisiÃ³n con vehÃ­c…  Conductor\n3 Con víctimas           01    12      lunes     ColisiÃ³n con objeto… Conductor\n4 Con víctimas           01    14      Martes    ColisiÃ³n con peatÃ³… PeatÃ³n …\n5 Con víctimas           01    08      Jueves    ColisiÃ³n con vehÃ­c…  Conductor\n6 Con víctimas           01    06      Viernes   ColisiÃ³n con peatÃ³… Conductor\n\n\nRevisamos sus dimensiones:\n\n\nCode\nif (exists(\"atus_ml\")) {\n  dim(atus_ml)\n}\n\n\n[1] 68108     6",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Preparación de datos reales</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
     ]
   },
   {
     "objectID": "02-preparacion-datos.html#eliminar-registros-incompletos",
     "href": "02-preparacion-datos.html#eliminar-registros-incompletos",
-    "title": "3  Preparación de datos reales",
-    "section": "3.19 2.18 Eliminar registros incompletos",
-    "text": "3.19 2.18 Eliminar registros incompletos\nPara este primer ejemplo eliminaremos registros incompletos.\n\n\nCode\natus_ml &lt;- na.omit(atus_ml)\n\ndim(atus_ml)\n\n\n[1] 68108     6\n\n\nEn capítulos posteriores veremos estrategias más cuidadosas para tratar datos faltantes.",
+    "title": "2  Preparación de datos reales",
+    "section": "2.26 Eliminar registros incompletos",
+    "text": "2.26 Eliminar registros incompletos\nPara esta primera versión eliminaremos registros incompletos.\n\n\nCode\nif (exists(\"atus_ml\")) {\n  atus_ml &lt;- na.omit(atus_ml)\n  dim(atus_ml)\n}\n\n\n[1] 68108     6\n\n\nEn proyectos más avanzados se pueden usar otras estrategias, como imputación de datos faltantes. Pero para iniciar, esta solución es suficiente y fácil de explicar.",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Preparación de datos reales</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
     ]
   },
   {
     "objectID": "02-preparacion-datos.html#guardar-la-base-preparada",
     "href": "02-preparacion-datos.html#guardar-la-base-preparada",
-    "title": "3  Preparación de datos reales",
-    "section": "3.20 2.19 Guardar la base preparada",
-    "text": "3.20 2.19 Guardar la base preparada\nGuardamos la base limpia para usarla en capítulos posteriores.\n\n\nCode\nwrite_csv(atus_ml, \"datos/atus_ml_preparado.csv\")\n\n\nEste archivo será útil para el capítulo de análisis exploratorio y para los primeros modelos de clasificación.",
+    "title": "2  Preparación de datos reales",
+    "section": "2.27 Guardar la base preparada",
+    "text": "2.27 Guardar la base preparada\nGuardamos la base preparada en un nuevo archivo:\n\n\nCode\nif (exists(\"atus_ml\")) {\n  write_csv(atus_ml, \"datos/atus_ml_preparado.csv\")\n}\n\n\nEste archivo será usado en capítulos posteriores.\nLa ventaja de guardar una base preparada es que no tenemos que repetir todo el proceso cada vez que queramos hacer análisis exploratorio o construir modelos.",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Preparación de datos reales</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
     ]
   },
   {
     "objectID": "02-preparacion-datos.html#resumen-del-capítulo",
     "href": "02-preparacion-datos.html#resumen-del-capítulo",
-    "title": "3  Preparación de datos reales",
-    "section": "3.21 2.20 Resumen del capítulo",
-    "text": "3.21 2.20 Resumen del capítulo\nEn este capítulo iniciamos el trabajo con datos reales.\nAprendimos a:\n\nleer una base CSV,\nrevisar dimensiones y nombres de variables,\nseleccionar variables de interés,\nconstruir una variable respuesta,\ntransformar variables categóricas,\nrevisar datos faltantes,\ncrear una base preparada para aprendizaje automático.\n\nEn el siguiente capítulo realizaremos el análisis exploratorio de los datos preparados.",
+    "title": "2  Preparación de datos reales",
+    "section": "2.28 Resumen del capítulo",
+    "text": "2.28 Resumen del capítulo\nEn este capítulo trabajamos con la primera etapa real de un proyecto de aprendizaje automático: la preparación de datos.\nAprendimos que:\n\nlos datos reales casi nunca vienen listos para modelar;\npreparar datos significa limpiar, seleccionar y transformar variables;\nes necesario entender el significado de las columnas;\nla variable respuesta debe definirse con claridad;\nalgunas variables numéricas deben tratarse como categóricas;\nlos datos faltantes deben revisarse antes de modelar;\nuna base preparada puede guardarse para usarse en capítulos posteriores.\n\nEn el siguiente capítulo realizaremos el análisis exploratorio de la base preparada.",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Preparación de datos reales</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
     ]
   },
   {
     "objectID": "03-analisis-exploratorio.html",
     "href": "03-analisis-exploratorio.html",
-    "title": "4  Análisis exploratorio de datos",
+    "title": "3  Análisis exploratorio de datos",
     "section": "",
-    "text": "4.1 Objetivos del capítulo\nAntes de construir un modelo, es necesario conocer los datos.\nEl análisis exploratorio permite identificar patrones, relaciones, valores atípicos y posibles problemas en el conjunto de datos.\nAl finalizar este capítulo, el lector será capaz de:",
+    "text": "3.1 Objetivos del capítulo\nAntes de construir un modelo, es necesario conocer los datos.\nEl análisis exploratorio permite identificar patrones, relaciones, valores atípicos y posibles problemas en el conjunto de datos.\nAl finalizar este capítulo, el lector será capaz de:",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Análisis exploratorio de datos</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Análisis exploratorio de datos</span>"
     ]
   },
   {
     "objectID": "03-analisis-exploratorio.html#objetivos-del-capítulo",
     "href": "03-analisis-exploratorio.html#objetivos-del-capítulo",
-    "title": "4  Análisis exploratorio de datos",
+    "title": "3  Análisis exploratorio de datos",
     "section": "",
     "text": "Calcular estadísticas descriptivas.\nConstruir gráficas exploratorias.\nIdentificar relaciones entre variables.\nDetectar valores extremos.\nFormular preguntas iniciales antes de modelar.",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Análisis exploratorio de datos</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Análisis exploratorio de datos</span>"
     ]
   }
 ]

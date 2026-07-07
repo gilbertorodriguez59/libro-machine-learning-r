@@ -1,0 +1,4586 @@
+% Options for packages loaded elsewhere
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  11pt,
+  letterpaper,
+]{book}
+\usepackage{xcolor}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{5}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+% Make \paragraph and \subparagraph free-standing
+\makeatletter
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}{
+    \@ifstar
+      \xxxParagraphStar
+      \xxxParagraphNoStar
+  }
+  \newcommand{\xxxParagraphStar}[1]{\oldparagraph*{#1}\mbox{}}
+  \newcommand{\xxxParagraphNoStar}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}{
+    \@ifstar
+      \xxxSubParagraphStar
+      \xxxSubParagraphNoStar
+  }
+  \newcommand{\xxxSubParagraphStar}[1]{\oldsubparagraph*{#1}\mbox{}}
+  \newcommand{\xxxSubParagraphNoStar}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+\makeatother
+
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+
+
+
+
+
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+
+ 
+
+
+\makeatletter
+\@ifpackageloaded{bookmark}{}{\usepackage{bookmark}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Aprendizaje y Clasificación Automática con R},
+  pdfauthor={MI. Gilberto Rodríguez},
+  colorlinks=true,
+  linkcolor={Maroon},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+
+\title{Aprendizaje y Clasificación Automática con R}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{Un enfoque práctico con datos abiertos reales}
+\author{MI. Gilberto Rodríguez}
+\date{2026-07-07}
+\begin{document}
+\frontmatter
+\maketitle
+
+\renewcommand*\contentsname{Table of contents}
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+
+\mainmatter
+\bookmarksetup{startatroot}
+
+\chapter*{Presentación}\label{presentaciuxf3n}
+\addcontentsline{toc}{chapter}{Presentación}
+
+\markboth{Presentación}{Presentación}
+
+Este libro tiene como objetivo introducir al lector en el aprendizaje
+automático, también conocido como \emph{Machine Learning}, mediante
+ejemplos claros, didácticos y prácticos desarrollados principalmente en
+R.
+
+El propósito no es presentar un tratado matemático extenso, sino
+construir una guía aplicada que permita aprender haciendo.
+
+A lo largo del libro se utilizarán conjuntos de datos abiertos reales,
+principalmente de México, aunque también se incluirán algunos conjuntos
+internacionales cuando sean útiles para explicar determinados métodos.
+
+\section*{Objetivo general}\label{objetivo-general}
+\addcontentsline{toc}{section}{Objetivo general}
+
+\markright{Objetivo general}
+
+Desarrollar competencias básicas e intermedias en aprendizaje automático
+mediante el análisis, modelado e interpretación de datos reales.
+
+\section*{Público al que va
+dirigido}\label{puxfablico-al-que-va-dirigido}
+\addcontentsline{toc}{section}{Público al que va dirigido}
+
+\markright{Público al que va dirigido}
+
+Este libro está dirigido a estudiantes de ingeniería, ciencias, ciencia
+de datos, estadística aplicada y áreas afines que deseen aprender
+aprendizaje automático desde un enfoque práctico.
+
+\section*{Software utilizado}\label{software-utilizado}
+\addcontentsline{toc}{section}{Software utilizado}
+
+\markright{Software utilizado}
+
+Los ejemplos se desarrollan principalmente en R, utilizando RStudio y
+Quarto.
+
+También se podrán utilizar herramientas como:
+
+\begin{itemize}
+\tightlist
+\item
+  RStudio
+\item
+  Consola de R
+\item
+  Google Colab
+\item
+  GitHub
+\item
+  GitHub Pages
+\item
+  Quarto Pub
+\end{itemize}
+
+\section*{Estructura inicial del
+libro}\label{estructura-inicial-del-libro}
+\addcontentsline{toc}{section}{Estructura inicial del libro}
+
+\markright{Estructura inicial del libro}
+
+La primera edición del libro incluye los siguientes temas:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Introducción al aprendizaje automático.
+\item
+  Preparación de datos reales.
+\item
+  Análisis exploratorio de datos.
+\item
+  Regresión logística.
+\item
+  k vecinos más cercanos.
+\item
+  Árboles de decisión.
+\item
+  Bosques aleatorios.
+\item
+  Máquinas de soporte vectorial.
+\item
+  Naive Bayes.
+\item
+  Agrupamiento.
+\item
+  Componentes principales.
+\end{enumerate}
+
+\bookmarksetup{startatroot}
+
+\chapter{¿Qué es el aprendizaje
+automático?}\label{quuxe9-es-el-aprendizaje-automuxe1tico}
+
+\section{Objetivos del capítulo}\label{objetivos-del-capuxedtulo}
+
+Al finalizar este capítulo, el lector será capaz de:
+
+\begin{itemize}
+\tightlist
+\item
+  Explicar qué es el aprendizaje automático.
+\item
+  Diferenciar entre programación tradicional y aprendizaje automático.
+\item
+  Identificar problemas de clasificación, regresión y agrupamiento.
+\item
+  Reconocer las etapas principales de un proyecto de aprendizaje
+  automático.
+\item
+  Construir un primer ejemplo sencillo de clasificación en R.
+\item
+  Reconocer la notación matemática básica usada en aprendizaje
+  automático.
+\end{itemize}
+
+\section{Introducción}\label{introducciuxf3n}
+
+El aprendizaje automático, también conocido como \emph{Machine
+Learning}, es una rama de la inteligencia artificial que permite
+construir modelos capaces de aprender patrones a partir de datos.
+
+En lugar de programar manualmente todas las reglas de decisión,
+proporcionamos datos a un algoritmo para que encuentre relaciones,
+regularidades o patrones útiles.
+
+En este libro nos interesa aprender aprendizaje automático desde una
+perspectiva práctica. Es decir, no comenzaremos con desarrollos
+matemáticos extensos, sino con preguntas aplicadas, datos reales, código
+reproducible e interpretación de resultados.
+
+La idea central será:
+
+\begin{quote}
+Aprender Machine Learning haciendo proyectos con datos reales.
+\end{quote}
+
+\section{Programación tradicional contra aprendizaje
+automático}\label{programaciuxf3n-tradicional-contra-aprendizaje-automuxe1tico}
+
+En la programación tradicional, una persona escribe reglas explícitas.
+
+Por ejemplo, supongamos que queremos clasificar la contaminación de un
+día usando la concentración de PM10.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pm10 }\OtherTok{\textless{}{-}} \DecValTok{85}
+
+\ControlFlowTok{if}\NormalTok{ (pm10 }\SpecialCharTok{\textgreater{}} \DecValTok{75}\NormalTok{) \{}
+  \FunctionTok{print}\NormalTok{(}\StringTok{"Contaminación alta"}\NormalTok{)}
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
+  \FunctionTok{print}\NormalTok{(}\StringTok{"Contaminación baja"}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+En este caso, la regla fue escrita directamente por el programador:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Si PM10 \textgreater{} 75, entonces contaminación alta.}
+\end{Highlighting}
+\end{Shaded}
+
+Esto puede funcionar cuando el problema es simple. Sin embargo, muchos
+problemas reales no se pueden resolver con una sola regla.
+
+Por ejemplo:
+
+\begin{itemize}
+\tightlist
+\item
+  ¿Un accidente de tránsito tendrá lesionados?
+\item
+  ¿Un paciente tiene alto riesgo de cierta enfermedad?
+\item
+  ¿Un día tendrá mala calidad del aire?
+\item
+  ¿Un municipio pertenece a un grupo de alta, media o baja incidencia?
+\item
+  ¿Una transacción parece normal o sospechosa?
+\end{itemize}
+
+En estos casos, el comportamiento depende de muchas variables al mismo
+tiempo.
+
+\section{¿Qué hace diferente al aprendizaje
+automático?}\label{quuxe9-hace-diferente-al-aprendizaje-automuxe1tico}
+
+En aprendizaje automático no le damos al sistema una regla fija. Le
+damos datos.
+
+Por ejemplo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Datos históricos + algoritmo = modelo aprendido}
+\end{Highlighting}
+\end{Shaded}
+
+Un modelo de aprendizaje automático aprende a partir de ejemplos.
+
+Supongamos que tenemos información de varios días con datos de PM10,
+temperatura, humedad y una etiqueta que indica si la contaminación fue
+alta o baja.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{datos }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{dia =} \DecValTok{1}\SpecialCharTok{:}\DecValTok{12}\NormalTok{,}
+  \AttributeTok{pm10 =} \FunctionTok{c}\NormalTok{(}\DecValTok{42}\NormalTok{, }\DecValTok{88}\NormalTok{, }\DecValTok{55}\NormalTok{, }\DecValTok{120}\NormalTok{, }\DecValTok{63}\NormalTok{, }\DecValTok{95}\NormalTok{, }\DecValTok{38}\NormalTok{, }\DecValTok{110}\NormalTok{, }\DecValTok{72}\NormalTok{, }\DecValTok{130}\NormalTok{, }\DecValTok{47}\NormalTok{, }\DecValTok{99}\NormalTok{),}
+  \AttributeTok{temperatura =} \FunctionTok{c}\NormalTok{(}\DecValTok{25}\NormalTok{, }\DecValTok{28}\NormalTok{, }\DecValTok{22}\NormalTok{, }\DecValTok{30}\NormalTok{, }\DecValTok{24}\NormalTok{, }\DecValTok{29}\NormalTok{, }\DecValTok{21}\NormalTok{, }\DecValTok{31}\NormalTok{, }\DecValTok{27}\NormalTok{, }\DecValTok{32}\NormalTok{, }\DecValTok{23}\NormalTok{, }\DecValTok{30}\NormalTok{),}
+  \AttributeTok{humedad =} \FunctionTok{c}\NormalTok{(}\DecValTok{40}\NormalTok{, }\DecValTok{35}\NormalTok{, }\DecValTok{60}\NormalTok{, }\DecValTok{30}\NormalTok{, }\DecValTok{55}\NormalTok{, }\DecValTok{33}\NormalTok{, }\DecValTok{65}\NormalTok{, }\DecValTok{29}\NormalTok{, }\DecValTok{42}\NormalTok{, }\DecValTok{28}\NormalTok{, }\DecValTok{62}\NormalTok{, }\DecValTok{34}\NormalTok{),}
+  \AttributeTok{clase =} \FunctionTok{c}\NormalTok{(}
+    \StringTok{"Baja"}\NormalTok{, }\StringTok{"Alta"}\NormalTok{, }\StringTok{"Baja"}\NormalTok{, }\StringTok{"Alta"}\NormalTok{,}
+    \StringTok{"Baja"}\NormalTok{, }\StringTok{"Alta"}\NormalTok{, }\StringTok{"Baja"}\NormalTok{, }\StringTok{"Alta"}\NormalTok{,}
+    \StringTok{"Baja"}\NormalTok{, }\StringTok{"Alta"}\NormalTok{, }\StringTok{"Baja"}\NormalTok{, }\StringTok{"Alta"}
+\NormalTok{  )}
+\NormalTok{)}
+
+\NormalTok{datos}
+\end{Highlighting}
+\end{Shaded}
+
+La variable que deseamos predecir se llama \textbf{clase}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{datos}\SpecialCharTok{$}\NormalTok{clase}
+\end{Highlighting}
+\end{Shaded}
+
+Las variables que usaremos para hacer la predicción son:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{datos[, }\FunctionTok{c}\NormalTok{(}\StringTok{"pm10"}\NormalTok{, }\StringTok{"temperatura"}\NormalTok{, }\StringTok{"humedad"}\NormalTok{)]}
+\end{Highlighting}
+\end{Shaded}
+
+En este ejemplo, el objetivo del modelo sería aprender una relación
+aproximada como esta:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PM10, temperatura y humedad  →  clase de contaminación}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Variables predictoras y variable
+respuesta}\label{variables-predictoras-y-variable-respuesta}
+
+En aprendizaje automático es importante distinguir entre:
+
+\subsection{Variable respuesta}\label{variable-respuesta}
+
+Es la variable que queremos predecir.
+
+También se le llama:
+
+\begin{itemize}
+\tightlist
+\item
+  variable objetivo,
+\item
+  etiqueta,
+\item
+  salida,
+\item
+  clase,
+\item
+  respuesta.
+\end{itemize}
+
+En el ejemplo anterior, la variable respuesta es:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{clase}
+\end{Highlighting}
+\end{Shaded}
+
+porque queremos predecir si la contaminación es alta o baja.
+
+\subsection{Variables predictoras}\label{variables-predictoras}
+
+Son las variables que usamos como entrada para el modelo.
+
+También se les llama:
+
+\begin{itemize}
+\tightlist
+\item
+  características,
+\item
+  atributos,
+\item
+  variables independientes,
+\item
+  entradas,
+\item
+  \emph{features}.
+\end{itemize}
+
+En el ejemplo anterior, las variables predictoras son:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pm10, temperatura, humedad}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Tipos principales de aprendizaje
+automático}\label{tipos-principales-de-aprendizaje-automuxe1tico}
+
+En una primera aproximación podemos hablar de tres grandes tipos de
+aprendizaje automático:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Aprendizaje supervisado.
+\item
+  Aprendizaje no supervisado.
+\item
+  Aprendizaje por refuerzo.
+\end{enumerate}
+
+En este libro nos concentraremos principalmente en los dos primeros.
+
+\section{Notación básica para aprendizaje
+automático}\label{notaciuxf3n-buxe1sica-para-aprendizaje-automuxe1tico}
+
+En aprendizaje automático trabajamos con observaciones y variables.
+
+Supongamos que tenemos (n) observaciones y (p) variables predictoras.
+Podemos representar los datos mediante una matriz:
+
+{[} X =
+
+\begin{bmatrix}
+x_{11} & x_{12} & \cdots & x_{1p} \\
+x_{21} & x_{22} & \cdots & x_{2p} \\
+\vdots & \vdots & \ddots & \vdots \\
+x_{n1} & x_{n2} & \cdots & x_{np}
+\end{bmatrix}
+
+{]}
+
+donde:
+
+\begin{itemize}
+\tightlist
+\item
+  (n) es el número de observaciones;
+\item
+  (p) es el número de variables predictoras;
+\item
+  (x\_\{ij\}) representa el valor de la variable (j) en la observación
+  (i).
+\end{itemize}
+
+La variable respuesta se representa como:
+
+{[} Y =
+
+\begin{bmatrix}
+y_1 \\
+y_2 \\
+\vdots \\
+y_n
+\end{bmatrix}
+
+{]}
+
+El objetivo general del aprendizaje supervisado es encontrar una función
+(f) que permita aproximar la respuesta:
+
+{[} \hat{y} = f(x\_1, x\_2, \ldots, x\_p) {]}
+
+donde:
+
+\begin{itemize}
+\tightlist
+\item
+  (\hat{y}) es la predicción del modelo;
+\item
+  (x\_1, x\_2, \ldots, x\_p) son las variables predictoras;
+\item
+  (f) es la función aprendida a partir de los datos.
+\end{itemize}
+
+En clasificación, (\hat{y}) representa una categoría.\\
+En regresión, (\hat{y}) representa un valor numérico.
+
+\section{Algoritmo general de aprendizaje
+supervisado}\label{algoritmo-general-de-aprendizaje-supervisado}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Algoritmo: Aprendizaje supervisado}
+
+\NormalTok{Entrada:}
+\NormalTok{  {-} Matriz de datos X}
+\NormalTok{  {-} Variable respuesta Y}
+\NormalTok{  {-} Algoritmo de aprendizaje}
+
+\NormalTok{Proceso:}
+\NormalTok{  1. Dividir los datos en entrenamiento y prueba.}
+\NormalTok{  2. Usar los datos de entrenamiento para aprender una función f.}
+\NormalTok{  3. Usar la función f para predecir nuevas respuestas.}
+\NormalTok{  4. Comparar las predicciones contra los valores reales.}
+\NormalTok{  5. Calcular métricas de desempeño.}
+\NormalTok{  6. Interpretar los resultados.}
+
+\NormalTok{Salida:}
+\NormalTok{  {-} Modelo entrenado}
+\NormalTok{  {-} Predicciones}
+\NormalTok{  {-} Métricas de evaluación}
+\end{Highlighting}
+\end{Shaded}
+
+Este esquema aparecerá repetidamente a lo largo del libro.
+
+\section{Aprendizaje supervisado}\label{aprendizaje-supervisado}
+
+El aprendizaje supervisado se utiliza cuando tenemos una variable
+respuesta conocida.
+
+Es decir, tenemos ejemplos históricos donde ya sabemos cuál fue el
+resultado.
+
+Por ejemplo:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Problema
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Variables predictoras
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Variable respuesta
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Clasificar contaminación & PM10, temperatura, humedad & Alta o baja \\
+Predecir lesionados en accidente & Hora, día, tipo de accidente & Con
+lesionados o sin lesionados \\
+Clasificar tumor & Mediciones celulares & Benigno o maligno \\
+Predecir ventas & Precio, mes, publicidad & Ventas \\
+\end{longtable}
+}
+
+Dentro del aprendizaje supervisado hay dos tareas muy importantes:
+
+\begin{itemize}
+\tightlist
+\item
+  clasificación,
+\item
+  regresión.
+\end{itemize}
+
+\section{Clasificación}\label{clasificaciuxf3n}
+
+La clasificación se utiliza cuando la variable respuesta es categórica.
+
+Por ejemplo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Alta / Baja}
+\NormalTok{Sí / No}
+\NormalTok{Benigno / Maligno}
+\NormalTok{Fatal / No fatal / Solo daños}
+\end{Highlighting}
+\end{Shaded}
+
+Ejemplos de clasificación:
+
+\begin{itemize}
+\tightlist
+\item
+  Clasificar si un accidente tendrá víctimas.
+\item
+  Clasificar si un tumor es benigno o maligno.
+\item
+  Clasificar si un correo es spam o no spam.
+\item
+  Clasificar si un día tiene contaminación alta o baja.
+\end{itemize}
+
+En clasificación, el modelo asigna una observación a una categoría.
+
+\section{Regresión}\label{regresiuxf3n}
+
+La regresión se utiliza cuando la variable respuesta es numérica.
+
+Por ejemplo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Precio de una casa}
+\NormalTok{Temperatura}
+\NormalTok{Ventas}
+\NormalTok{Concentración de ozono}
+\NormalTok{Número de accidentes}
+\end{Highlighting}
+\end{Shaded}
+
+Ejemplos de regresión:
+
+\begin{itemize}
+\tightlist
+\item
+  Predecir la concentración de PM10.
+\item
+  Predecir la temperatura promedio de un día.
+\item
+  Predecir el número de accidentes en un municipio.
+\item
+  Predecir ventas mensuales.
+\end{itemize}
+
+En regresión, el modelo predice un valor numérico.
+
+\section{Aprendizaje no supervisado}\label{aprendizaje-no-supervisado}
+
+El aprendizaje no supervisado se utiliza cuando no tenemos una variable
+respuesta conocida.
+
+En lugar de predecir una etiqueta, buscamos patrones ocultos en los
+datos.
+
+Por ejemplo:
+
+\begin{itemize}
+\tightlist
+\item
+  Agrupar municipios con características similares.
+\item
+  Agrupar estados por patrones de accidentes.
+\item
+  Agrupar estaciones de monitoreo ambiental.
+\item
+  Reducir muchas variables a dos o tres componentes principales.
+\item
+  Detectar observaciones atípicas.
+\end{itemize}
+
+Dos técnicas importantes de aprendizaje no supervisado son:
+
+\begin{itemize}
+\tightlist
+\item
+  agrupamiento o \emph{clustering},
+\item
+  análisis de componentes principales o PCA.
+\end{itemize}
+
+\section{El flujo general de un proyecto de aprendizaje
+automático}\label{el-flujo-general-de-un-proyecto-de-aprendizaje-automuxe1tico}
+
+Un proyecto de aprendizaje automático casi nunca empieza directamente
+con el modelo.
+
+Antes de modelar, necesitamos entender y preparar los datos.
+
+Un flujo típico es:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{1. Plantear el problema}
+\NormalTok{2. Conseguir los datos}
+\NormalTok{3. Entender las variables}
+\NormalTok{4. Limpiar los datos}
+\NormalTok{5. Explorar los datos}
+\NormalTok{6. Dividir en entrenamiento y prueba}
+\NormalTok{7. Entrenar el modelo}
+\NormalTok{8. Evaluar el modelo}
+\NormalTok{9. Interpretar los resultados}
+\NormalTok{10. Comunicar hallazgos}
+\end{Highlighting}
+\end{Shaded}
+
+En este libro seguiremos esta lógica.
+
+\section{Primer ejemplo visual en R}\label{primer-ejemplo-visual-en-r}
+
+Ahora construiremos una gráfica sencilla para visualizar el ejemplo de
+contaminación.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+
+\FunctionTok{ggplot}\NormalTok{(datos, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ pm10, }\AttributeTok{y =}\NormalTok{ temperatura, }\AttributeTok{color =}\NormalTok{ clase)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{size =} \DecValTok{4}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"Ejemplo inicial de clasificación"}\NormalTok{,}
+    \AttributeTok{subtitle =} \StringTok{"Clasificación de contaminación alta o baja"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{"PM10"}\NormalTok{,}
+    \AttributeTok{y =} \StringTok{"Temperatura"}\NormalTok{,}
+    \AttributeTok{color =} \StringTok{"Clase"}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+En la gráfica, cada punto representa un día.
+
+El color indica si ese día fue clasificado como contaminación alta o
+baja.
+
+Aunque este ejemplo es pequeño y didáctico, nos permite observar una
+idea fundamental:
+
+\begin{quote}
+Los modelos de aprendizaje automático buscan patrones en las variables
+predictoras para explicar o predecir una variable respuesta.
+\end{quote}
+
+\section{División entre entrenamiento y
+prueba}\label{divisiuxf3n-entre-entrenamiento-y-prueba}
+
+Un error común al iniciar en aprendizaje automático es evaluar el modelo
+con los mismos datos con los que fue entrenado.
+
+Para evitarlo, normalmente dividimos los datos en dos partes:
+
+\begin{itemize}
+\tightlist
+\item
+  conjunto de entrenamiento,
+\item
+  conjunto de prueba.
+\end{itemize}
+
+El conjunto de entrenamiento se usa para construir el modelo.
+
+El conjunto de prueba se usa para evaluar qué tan bien funciona el
+modelo con datos que no vio durante el entrenamiento.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\NormalTok{n }\OtherTok{\textless{}{-}} \FunctionTok{nrow}\NormalTok{(datos)}
+\NormalTok{indices\_entrenamiento }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\NormalTok{n, }\AttributeTok{size =} \FunctionTok{round}\NormalTok{(}\FloatTok{0.7} \SpecialCharTok{*}\NormalTok{ n))}
+
+\NormalTok{entrenamiento }\OtherTok{\textless{}{-}}\NormalTok{ datos[indices\_entrenamiento, ]}
+\NormalTok{prueba }\OtherTok{\textless{}{-}}\NormalTok{ datos[}\SpecialCharTok{{-}}\NormalTok{indices\_entrenamiento, ]}
+
+\NormalTok{entrenamiento}
+\NormalTok{prueba}
+\end{Highlighting}
+\end{Shaded}
+
+En este ejemplo pequeño, la división es solo ilustrativa. En problemas
+reales usaremos conjuntos de datos más grandes.
+
+\section{Primer clasificador sencillo basado en una
+regla}\label{primer-clasificador-sencillo-basado-en-una-regla}
+
+Antes de usar algoritmos más avanzados, podemos construir una regla
+sencilla para entender la idea de predicción.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{datos}\SpecialCharTok{$}\NormalTok{prediccion\_regla }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{pm10 }\SpecialCharTok{\textgreater{}} \DecValTok{75}\NormalTok{, }\StringTok{"Alta"}\NormalTok{, }\StringTok{"Baja"}\NormalTok{)}
+
+\NormalTok{datos[, }\FunctionTok{c}\NormalTok{(}\StringTok{"pm10"}\NormalTok{, }\StringTok{"clase"}\NormalTok{, }\StringTok{"prediccion\_regla"}\NormalTok{)]}
+\end{Highlighting}
+\end{Shaded}
+
+Ahora comparamos la clase real con la predicción.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tabla\_confusion }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(}
+  \AttributeTok{Real =}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{clase,}
+  \AttributeTok{Predicho =}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{prediccion\_regla}
+\NormalTok{)}
+
+\NormalTok{tabla\_confusion}
+\end{Highlighting}
+\end{Shaded}
+
+Calculamos la exactitud:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{exactitud }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{clase }\SpecialCharTok{==}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{prediccion\_regla)}
+\NormalTok{exactitud}
+\end{Highlighting}
+\end{Shaded}
+
+La exactitud indica la proporción de observaciones clasificadas
+correctamente.
+
+Este ejemplo todavía no es un modelo automático sofisticado, pero nos
+prepara para entender cómo evaluaremos modelos más adelante.
+
+\section{¿Qué aprenderemos en este
+libro?}\label{quuxe9-aprenderemos-en-este-libro}
+
+A lo largo del libro estudiaremos métodos como:
+
+\begin{itemize}
+\tightlist
+\item
+  regresión lineal,
+\item
+  regresión logística,
+\item
+  k vecinos más cercanos,
+\item
+  árboles de decisión,
+\item
+  bosques aleatorios,
+\item
+  máquinas de soporte vectorial,
+\item
+  Naive Bayes,
+\item
+  agrupamiento,
+\item
+  componentes principales.
+\end{itemize}
+
+Cada método se estudiará con:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  una explicación intuitiva,
+\item
+  un problema real,
+\item
+  preparación de datos,
+\item
+  código en R,
+\item
+  resultados,
+\item
+  interpretación,
+\item
+  ejercicios.
+\end{enumerate}
+
+\section{Conclusión}\label{conclusiuxf3n}
+
+El aprendizaje automático permite construir modelos capaces de aprender
+patrones a partir de datos.
+
+En este capítulo vimos que:
+
+\begin{itemize}
+\tightlist
+\item
+  la programación tradicional usa reglas escritas directamente por una
+  persona;
+\item
+  el aprendizaje automático aprende patrones a partir de ejemplos;
+\item
+  los problemas supervisados tienen una variable respuesta;
+\item
+  la clasificación predice categorías;
+\item
+  la regresión predice valores numéricos;
+\item
+  el aprendizaje no supervisado busca estructuras ocultas;
+\item
+  todo proyecto requiere preparar, explorar, modelar, evaluar e
+  interpretar los datos.
+\end{itemize}
+
+En el siguiente capítulo comenzaremos con una parte fundamental: la
+preparación de datos reales.
+
+\bookmarksetup{startatroot}
+
+\chapter{Preparación de datos
+reales}\label{preparaciuxf3n-de-datos-reales}
+
+\section{Objetivos del capítulo}\label{objetivos-del-capuxedtulo-1}
+
+Al finalizar este capítulo, el lector será capaz de:
+
+\begin{itemize}
+\tightlist
+\item
+  Comprender por qué la preparación de datos es una etapa fundamental en
+  aprendizaje automático.
+\item
+  Leer un conjunto de datos real en R.
+\item
+  Revisar nombres de variables, dimensiones y estructura de una base.
+\item
+  Seleccionar variables de interés.
+\item
+  Crear una variable respuesta para un problema de clasificación.
+\item
+  Preparar una primera base de trabajo lista para análisis exploratorio
+  y modelado.
+\item
+  Representar matemáticamente una base preparada para aprendizaje
+  automático.
+\end{itemize}
+
+\section{Introducción}\label{introducciuxf3n-1}
+
+En los libros y cursos introductorios es común usar bases de datos
+pequeñas, limpias y listas para modelar. Sin embargo, en la práctica
+profesional los datos reales casi nunca vienen preparados.
+
+Antes de aplicar cualquier algoritmo de aprendizaje automático,
+normalmente tenemos que realizar varias tareas:
+
+\begin{itemize}
+\tightlist
+\item
+  descargar o importar datos,
+\item
+  revisar nombres de variables,
+\item
+  corregir tipos de datos,
+\item
+  detectar valores faltantes,
+\item
+  seleccionar variables útiles,
+\item
+  transformar variables,
+\item
+  crear una variable respuesta,
+\item
+  eliminar registros incompletos,
+\item
+  documentar cada paso.
+\end{itemize}
+
+Esta etapa se conoce como \textbf{preparación de datos}.
+
+En muchos proyectos reales, preparar los datos toma más tiempo que
+entrenar el modelo.
+
+\section{¿Por qué es tan importante preparar los
+datos?}\label{por-quuxe9-es-tan-importante-preparar-los-datos}
+
+Un modelo de aprendizaje automático no puede corregir por sí solo todos
+los problemas de una base de datos.
+
+Si los datos están mal preparados, el modelo puede producir resultados
+equivocados, aunque el algoritmo sea sofisticado.
+
+Una frase común en ciencia de datos es:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Basura entra, basura sale.}
+\end{Highlighting}
+\end{Shaded}
+
+Esto significa que si usamos datos mal organizados, incompletos o
+incorrectos, el resultado del modelo también será poco confiable.
+
+\section{Datos crudos y datos
+preparados}\label{datos-crudos-y-datos-preparados}
+
+Llamaremos \textbf{datos crudos} a la base tal como se obtiene de la
+fuente original.
+
+Los datos crudos son valiosos porque contienen la información original,
+pero no siempre están listos para aplicar aprendizaje automático.
+
+Llamaremos \textbf{datos preparados} a la base que ya fue revisada,
+transformada y organizada para un propósito específico.
+
+La diferencia puede verse así:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Datos crudos}
+\NormalTok{    ↓}
+\NormalTok{Revisión}
+\NormalTok{    ↓}
+\NormalTok{Limpieza}
+\NormalTok{    ↓}
+\NormalTok{Selección de variables}
+\NormalTok{    ↓}
+\NormalTok{Transformación}
+\NormalTok{    ↓}
+\NormalTok{Datos preparados}
+\NormalTok{    ↓}
+\NormalTok{Modelo de aprendizaje automático}
+\end{Highlighting}
+\end{Shaded}
+
+En este capítulo construiremos nuestra primera base preparada.
+
+\section{Representación matemática de una base
+preparada}\label{representaciuxf3n-matemuxe1tica-de-una-base-preparada}
+
+Una base de datos para aprendizaje automático puede representarse como
+una matriz de variables predictoras (X) y una variable respuesta (Y).
+
+La matriz de variables predictoras es:
+
+{[} X =
+
+\begin{bmatrix}
+x_{11} & x_{12} & \cdots & x_{1p} \\
+x_{21} & x_{22} & \cdots & x_{2p} \\
+\vdots & \vdots & \ddots & \vdots \\
+x_{n1} & x_{n2} & \cdots & x_{np}
+\end{bmatrix}
+
+{]}
+
+y la variable respuesta es:
+
+{[} Y =
+
+\begin{bmatrix}
+y_1 \\
+y_2 \\
+\vdots \\
+y_n
+\end{bmatrix}
+
+{]}
+
+En nuestro caso, (Y) representa la variable:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{accidente\_con\_victimas}
+\end{Highlighting}
+\end{Shaded}
+
+con dos posibles valores:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Con víctimas}
+\NormalTok{Solo daños}
+\end{Highlighting}
+\end{Shaded}
+
+Cuando convertimos esta variable en forma binaria, podemos escribir:
+
+{[} Y\_i =
+
+\begin{cases}
+1, & \text{si el accidente tiene víctimas} \\
+0, & \text{si el accidente es de solo daños}
+\end{cases}
+
+{]}
+
+Esta codificación será útil para modelos como la regresión logística.
+
+\section{Algoritmo general de preparación de
+datos}\label{algoritmo-general-de-preparaciuxf3n-de-datos}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Algoritmo: Preparación de datos para aprendizaje automático}
+
+\NormalTok{Entrada:}
+\NormalTok{  {-} Base de datos cruda}
+\NormalTok{  {-} Diccionario de variables}
+\NormalTok{  {-} Pregunta de investigación o predicción}
+
+\NormalTok{Proceso:}
+\NormalTok{  1. Leer la base de datos.}
+\NormalTok{  2. Revisar dimensiones, nombres y tipos de variables.}
+\NormalTok{  3. Seleccionar variables relevantes.}
+\NormalTok{  4. Identificar la variable respuesta.}
+\NormalTok{  5. Transformar variables cuando sea necesario.}
+\NormalTok{  6. Convertir variables categóricas al tipo adecuado.}
+\NormalTok{  7. Revisar datos faltantes.}
+\NormalTok{  8. Eliminar o imputar registros incompletos.}
+\NormalTok{  9. Guardar una base preparada.}
+
+\NormalTok{Salida:}
+\NormalTok{  {-} Base limpia y lista para análisis exploratorio y modelado}
+\end{Highlighting}
+\end{Shaded}
+
+La preparación de datos no es un paso secundario. Es una parte central
+del proceso, porque la calidad del modelo depende directamente de la
+calidad de los datos.
+
+\section{Conjunto de datos de trabajo:
+ATUS}\label{conjunto-de-datos-de-trabajo-atus}
+
+En este capítulo comenzaremos a trabajar con un conjunto de datos real
+de México: la estadística de Accidentes de Tránsito Terrestre en Zonas
+Urbanas y Suburbanas, conocida como \textbf{ATUS}, publicada por INEGI.
+
+ATUS contiene información sobre accidentes de tránsito ocurridos en
+zonas urbanas y suburbanas. La información tiene cobertura nacional,
+estatal y municipal, y considera accidentes en caminos de jurisdicción
+no federal.
+
+Este conjunto de datos es útil para construir ejemplos de aprendizaje
+automático porque contiene variables como:
+
+\begin{itemize}
+\tightlist
+\item
+  entidad federativa,
+\item
+  municipio,
+\item
+  año,
+\item
+  mes,
+\item
+  día de la semana,
+\item
+  hora,
+\item
+  tipo de accidente,
+\item
+  causa presunta,
+\item
+  clase de accidente,
+\item
+  víctimas.
+\end{itemize}
+
+Con estos datos podemos formular problemas como:
+
+\begin{quote}
+¿Podemos clasificar si un accidente tendrá víctimas o será solo de daños
+materiales?
+\end{quote}
+
+Ese será nuestro primer problema práctico.
+
+\section{Crear la carpeta de datos}\label{crear-la-carpeta-de-datos}
+
+Dentro de la carpeta del libro crea una carpeta llamada:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{datos}
+\end{Highlighting}
+\end{Shaded}
+
+La estructura del proyecto debería verse así:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{libro{-}machine{-}learning{-}r/}
+\NormalTok{│}
+\NormalTok{├── \_quarto.yml}
+\NormalTok{├── index.qmd}
+\NormalTok{├── 01{-}introduccion.qmd}
+\NormalTok{├── 02{-}preparacion{-}datos.qmd}
+\NormalTok{├── 03{-}analisis{-}exploratorio.qmd}
+\NormalTok{│}
+\NormalTok{├── datos/}
+\NormalTok{│   └── atus\_2024.csv}
+\NormalTok{│}
+\NormalTok{└── docs/}
+\end{Highlighting}
+\end{Shaded}
+
+El archivo de datos que usaremos en este capítulo se llamará:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{atus\_2024.csv}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Descarga de los datos}\label{descarga-de-los-datos}
+
+Para este capítulo descarga el archivo CSV de ATUS desde el sitio de
+INEGI.
+
+Una vez descargado, guarda el archivo en la carpeta:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{datos/}
+\end{Highlighting}
+\end{Shaded}
+
+y cambia su nombre a:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{atus\_2024.csv}
+\end{Highlighting}
+\end{Shaded}
+
+Este paso es importante para que el código del libro funcione igual en
+cualquier computadora.
+
+\section{Cargar paquetes}\label{cargar-paquetes}
+
+Primero cargamos los paquetes que usaremos.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(readr)}
+\FunctionTok{library}\NormalTok{(dplyr)}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{library}\NormalTok{(stringr)}
+\end{Highlighting}
+\end{Shaded}
+
+Si alguno de estos paquetes no está instalado, se puede instalar con:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{install.packages}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"readr"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{, }\StringTok{"ggplot2"}\NormalTok{, }\StringTok{"stringr"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Leer el archivo CSV}\label{leer-el-archivo-csv}
+
+Definimos la ruta del archivo.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ruta\_atus }\OtherTok{\textless{}{-}} \StringTok{"datos/atus\_2024.csv"}
+\end{Highlighting}
+\end{Shaded}
+
+Antes de leerlo, verificamos si existe.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{file.exists}\NormalTok{(ruta\_atus)}
+\end{Highlighting}
+\end{Shaded}
+
+Ahora leemos el archivo.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{file.exists}\NormalTok{(ruta\_atus)) \{}
+\NormalTok{  atus }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}
+    \AttributeTok{file =}\NormalTok{ ruta\_atus,}
+    \AttributeTok{show\_col\_types =} \ConstantTok{FALSE}\NormalTok{,}
+    \AttributeTok{locale =} \FunctionTok{locale}\NormalTok{(}\AttributeTok{encoding =} \StringTok{"UTF{-}8"}\NormalTok{)}
+\NormalTok{  )}
+
+  \FunctionTok{print}\NormalTok{(}\StringTok{"Archivo leído correctamente."}\NormalTok{)}
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{  atus }\OtherTok{\textless{}{-}} \ConstantTok{NULL}
+  \FunctionTok{print}\NormalTok{(}\StringTok{"El archivo atus\_2024.csv todavía no está disponible en la carpeta datos."}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Si aparece un error, revisa tres cosas:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Que exista la carpeta \texttt{datos}.
+\item
+  Que el archivo esté dentro de esa carpeta.
+\item
+  Que el archivo se llame exactamente \texttt{atus\_2024.csv}.
+\end{enumerate}
+
+\section{Primer vistazo a los datos}\label{primer-vistazo-a-los-datos}
+
+Revisamos las dimensiones de la base.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(atus)) \{}
+  \FunctionTok{dim}\NormalTok{(atus)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+El primer número indica cuántas filas tiene la base.
+
+El segundo número indica cuántas columnas tiene.
+
+Ahora observamos los primeros registros.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(atus)) \{}
+  \FunctionTok{head}\NormalTok{(atus)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+También podemos revisar los nombres de las variables.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(atus)) \{}
+  \FunctionTok{names}\NormalTok{(atus)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Estandarizar nombres de
+variables}\label{estandarizar-nombres-de-variables}
+
+Para trabajar más cómodamente, convertimos los nombres de las variables
+a mayúsculas.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(atus)) \{}
+  \FunctionTok{names}\NormalTok{(atus) }\OtherTok{\textless{}{-}} \FunctionTok{toupper}\NormalTok{(}\FunctionTok{names}\NormalTok{(atus))}
+  \FunctionTok{names}\NormalTok{(atus)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Esto ayuda a evitar errores por diferencias entre mayúsculas y
+minúsculas.
+
+\section{Variables de interés}\label{variables-de-interuxe9s}
+
+Para nuestro primer problema de clasificación no necesitamos todas las
+variables.
+
+Seleccionaremos algunas que son útiles para iniciar:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{variables\_interes }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}
+  \StringTok{"ANIO"}\NormalTok{,}
+  \StringTok{"MES"}\NormalTok{,}
+  \StringTok{"ID\_ENTIDAD"}\NormalTok{,}
+  \StringTok{"ID\_MUNICIPIO"}\NormalTok{,}
+  \StringTok{"ID\_HORA"}\NormalTok{,}
+  \StringTok{"ID\_DIA"}\NormalTok{,}
+  \StringTok{"DIASEMANA"}\NormalTok{,}
+  \StringTok{"TIPACCID"}\NormalTok{,}
+  \StringTok{"CAUSAACCI"}\NormalTok{,}
+  \StringTok{"CLASACC"}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Como los nombres de variables pueden cambiar ligeramente entre
+versiones, verificamos cuáles existen realmente en la base.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(atus)) \{}
+\NormalTok{  variables\_existentes }\OtherTok{\textless{}{-}} \FunctionTok{intersect}\NormalTok{(variables\_interes, }\FunctionTok{names}\NormalTok{(atus))}
+\NormalTok{  variables\_existentes}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Ahora creamos una base reducida.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(atus)) \{}
+\NormalTok{  atus\_base }\OtherTok{\textless{}{-}}\NormalTok{ atus }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{select}\NormalTok{(}\FunctionTok{all\_of}\NormalTok{(variables\_existentes))}
+
+  \FunctionTok{head}\NormalTok{(atus\_base)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Diccionario inicial de
+variables}\label{diccionario-inicial-de-variables}
+
+Para trabajar con datos reales es necesario construir un pequeño
+diccionario de variables.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Variable & Descripción didáctica \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{ANIO} & Año del accidente \\
+\texttt{MES} & Mes del accidente \\
+\texttt{ID\_ENTIDAD} & Clave de la entidad federativa \\
+\texttt{ID\_MUNICIPIO} & Clave del municipio \\
+\texttt{ID\_HORA} & Hora del accidente \\
+\texttt{ID\_DIA} & Día del mes \\
+\texttt{DIASEMANA} & Día de la semana \\
+\texttt{TIPACCID} & Tipo de accidente \\
+\texttt{CAUSAACCI} & Causa presunta del accidente \\
+\texttt{CLASACC} & Clase del accidente \\
+\end{longtable}
+}
+
+La variable más importante para este primer ejemplo será:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CLASACC}
+\end{Highlighting}
+\end{Shaded}
+
+porque la usaremos para construir una variable respuesta.
+
+\section{\texorpdfstring{Revisión de la variable
+\texttt{CLASACC}}{Revisión de la variable CLASACC}}\label{revisiuxf3n-de-la-variable-clasacc}
+
+Primero revisamos los valores de la variable \texttt{CLASACC}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"atus\_base"}\NormalTok{) }\SpecialCharTok{\&\&} \StringTok{"CLASACC"} \SpecialCharTok{\%in\%} \FunctionTok{names}\NormalTok{(atus\_base)) \{}
+  \FunctionTok{table}\NormalTok{(atus\_base}\SpecialCharTok{$}\NormalTok{CLASACC, }\AttributeTok{useNA =} \StringTok{"ifany"}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+La variable \texttt{CLASACC} permite identificar la clase del accidente.
+
+Para fines didácticos, vamos a transformar esta variable en una nueva
+variable binaria:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Con víctimas}
+\NormalTok{Solo daños}
+\end{Highlighting}
+\end{Shaded}
+
+Esta será nuestra primera variable respuesta para clasificación.
+
+\section{Crear una variable
+respuesta}\label{crear-una-variable-respuesta}
+
+Primero convertimos \texttt{CLASACC} a texto para evitar problemas si
+viene como número o como etiqueta.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"atus\_base"}\NormalTok{) }\SpecialCharTok{\&\&} \StringTok{"CLASACC"} \SpecialCharTok{\%in\%} \FunctionTok{names}\NormalTok{(atus\_base)) \{}
+\NormalTok{  atus\_modelo }\OtherTok{\textless{}{-}}\NormalTok{ atus\_base }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{mutate}\NormalTok{(}
+      \AttributeTok{CLASACC\_TXT =} \FunctionTok{as.character}\NormalTok{(CLASACC),}
+      \AttributeTok{CLASACC\_TXT =} \FunctionTok{str\_to\_lower}\NormalTok{(CLASACC\_TXT),}
+      \AttributeTok{accidente\_con\_victimas =} \FunctionTok{case\_when}\NormalTok{(}
+        \FunctionTok{str\_detect}\NormalTok{(CLASACC\_TXT, }\StringTok{"sólo daños"}\NormalTok{) }\SpecialCharTok{\textasciitilde{}} \StringTok{"Solo daños"}\NormalTok{,}
+        \FunctionTok{str\_detect}\NormalTok{(CLASACC\_TXT, }\StringTok{"solo daños"}\NormalTok{) }\SpecialCharTok{\textasciitilde{}} \StringTok{"Solo daños"}\NormalTok{,}
+        \FunctionTok{str\_detect}\NormalTok{(CLASACC\_TXT, }\StringTok{"daños"}\NormalTok{) }\SpecialCharTok{\textasciitilde{}} \StringTok{"Solo daños"}\NormalTok{,}
+        \FunctionTok{str\_detect}\NormalTok{(CLASACC\_TXT, }\StringTok{"daã"}\NormalTok{) }\SpecialCharTok{\textasciitilde{}} \StringTok{"Solo daños"}\NormalTok{,}
+        \FunctionTok{str\_detect}\NormalTok{(CLASACC\_TXT, }\StringTok{"daÃ"}\NormalTok{) }\SpecialCharTok{\textasciitilde{}} \StringTok{"Solo daños"}\NormalTok{,}
+        \FunctionTok{str\_detect}\NormalTok{(CLASACC\_TXT, }\StringTok{"no fatal"}\NormalTok{) }\SpecialCharTok{\textasciitilde{}} \StringTok{"Con víctimas"}\NormalTok{,}
+        \FunctionTok{str\_detect}\NormalTok{(CLASACC\_TXT, }\StringTok{"fatal"}\NormalTok{) }\SpecialCharTok{\textasciitilde{}} \StringTok{"Con víctimas"}\NormalTok{,}
+\NormalTok{        CLASACC\_TXT }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{"1"}\NormalTok{, }\StringTok{"2"}\NormalTok{) }\SpecialCharTok{\textasciitilde{}} \StringTok{"Con víctimas"}\NormalTok{,}
+\NormalTok{        CLASACC\_TXT }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{"3"}\NormalTok{) }\SpecialCharTok{\textasciitilde{}} \StringTok{"Solo daños"}\NormalTok{,}
+        \ConstantTok{TRUE} \SpecialCharTok{\textasciitilde{}} \ConstantTok{NA\_character\_}
+\NormalTok{      )}
+\NormalTok{    )}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Revisamos la nueva variable.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"atus\_modelo"}\NormalTok{)) \{}
+  \FunctionTok{table}\NormalTok{(atus\_modelo}\SpecialCharTok{$}\NormalTok{accidente\_con\_victimas, }\AttributeTok{useNA =} \StringTok{"ifany"}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Nota importante sobre la
+codificación}\label{nota-importante-sobre-la-codificaciuxf3n}
+
+Cuando se trabaja con bases reales, las categorías pueden venir
+codificadas de distintas formas.
+
+Por ejemplo, una variable puede venir como:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Fatal}
+\NormalTok{No fatal}
+\NormalTok{Solo daños}
+\end{Highlighting}
+\end{Shaded}
+
+o como códigos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{1, 2, 3}
+\end{Highlighting}
+\end{Shaded}
+
+Por eso, siempre se debe consultar la documentación de la base de datos
+antes de modelar.
+
+En este libro iremos documentando las transformaciones para que el
+análisis sea claro y reproducible.
+
+\section{Eliminar registros sin variable
+respuesta}\label{eliminar-registros-sin-variable-respuesta}
+
+Para entrenar un modelo de clasificación necesitamos que la variable
+respuesta esté definida.
+
+Eliminamos los registros donde no se pudo construir la variable
+\texttt{accidente\_con\_victimas}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"atus\_modelo"}\NormalTok{)) \{}
+\NormalTok{  atus\_modelo }\OtherTok{\textless{}{-}}\NormalTok{ atus\_modelo }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(accidente\_con\_victimas))}
+
+  \FunctionTok{table}\NormalTok{(atus\_modelo}\SpecialCharTok{$}\NormalTok{accidente\_con\_victimas)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Convertir variables
+categóricas}\label{convertir-variables-categuxf3ricas}
+
+Algunas variables deben tratarse como categorías y no como números.
+
+Por ejemplo, la entidad federativa y el municipio son códigos, pero no
+representan cantidades numéricas.
+
+No tiene sentido decir que la entidad 20 es ``el doble'' de la entidad
+10.
+
+Por eso convertimos algunas variables a factor.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"atus\_modelo"}\NormalTok{)) \{}
+\NormalTok{  atus\_modelo }\OtherTok{\textless{}{-}}\NormalTok{ atus\_modelo }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{mutate}\NormalTok{(}
+      \AttributeTok{ID\_ENTIDAD =} \FunctionTok{as.factor}\NormalTok{(ID\_ENTIDAD),}
+      \AttributeTok{ID\_MUNICIPIO =} \FunctionTok{as.factor}\NormalTok{(ID\_MUNICIPIO),}
+      \AttributeTok{MES =} \FunctionTok{as.factor}\NormalTok{(MES),}
+      \AttributeTok{DIASEMANA =} \FunctionTok{as.factor}\NormalTok{(DIASEMANA),}
+      \AttributeTok{TIPACCID =} \FunctionTok{as.factor}\NormalTok{(TIPACCID),}
+      \AttributeTok{CAUSAACCI =} \FunctionTok{as.factor}\NormalTok{(CAUSAACCI),}
+      \AttributeTok{accidente\_con\_victimas =} \FunctionTok{as.factor}\NormalTok{(accidente\_con\_victimas)}
+\NormalTok{    )}
+
+  \FunctionTok{str}\NormalTok{(atus\_modelo)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Revisión de datos
+faltantes}\label{revisiuxf3n-de-datos-faltantes}
+
+Los datos faltantes son comunes en bases reales.
+
+Calculamos cuántos valores faltantes tiene cada variable.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"atus\_modelo"}\NormalTok{)) \{}
+\NormalTok{  faltantes }\OtherTok{\textless{}{-}} \FunctionTok{colSums}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(atus\_modelo))}
+\NormalTok{  faltantes}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+También podemos calcular el porcentaje de faltantes.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"atus\_modelo"}\NormalTok{)) \{}
+\NormalTok{  porcentaje\_faltantes }\OtherTok{\textless{}{-}} \FunctionTok{round}\NormalTok{(}\DecValTok{100} \SpecialCharTok{*} \FunctionTok{colSums}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(atus\_modelo)) }\SpecialCharTok{/} \FunctionTok{nrow}\NormalTok{(atus\_modelo), }\DecValTok{2}\NormalTok{)}
+\NormalTok{  porcentaje\_faltantes}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Selección final de variables para el primer
+modelo}\label{selecciuxf3n-final-de-variables-para-el-primer-modelo}
+
+Para iniciar de forma sencilla, seleccionaremos pocas variables.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"atus\_modelo"}\NormalTok{)) \{}
+\NormalTok{  atus\_ml }\OtherTok{\textless{}{-}}\NormalTok{ atus\_modelo }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{select}\NormalTok{(}
+\NormalTok{      accidente\_con\_victimas,}
+\NormalTok{      MES,}
+\NormalTok{      ID\_HORA,}
+\NormalTok{      DIASEMANA,}
+\NormalTok{      TIPACCID,}
+\NormalTok{      CAUSAACCI}
+\NormalTok{    )}
+
+  \FunctionTok{head}\NormalTok{(atus\_ml)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+También revisamos sus dimensiones.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"atus\_ml"}\NormalTok{)) \{}
+  \FunctionTok{dim}\NormalTok{(atus\_ml)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Eliminar registros
+incompletos}\label{eliminar-registros-incompletos}
+
+Para este primer ejemplo eliminaremos registros incompletos.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"atus\_ml"}\NormalTok{)) \{}
+\NormalTok{  atus\_ml }\OtherTok{\textless{}{-}} \FunctionTok{na.omit}\NormalTok{(atus\_ml)}
+  \FunctionTok{dim}\NormalTok{(atus\_ml)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+En capítulos posteriores veremos estrategias más cuidadosas para tratar
+datos faltantes.
+
+\section{Guardar la base preparada}\label{guardar-la-base-preparada}
+
+Guardamos la base limpia para usarla en capítulos posteriores.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"atus\_ml"}\NormalTok{)) \{}
+  \FunctionTok{write\_csv}\NormalTok{(atus\_ml, }\StringTok{"datos/atus\_ml\_preparado.csv"}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Este archivo será útil para el capítulo de análisis exploratorio y para
+los primeros modelos de clasificación.
+
+\section{Resumen del capítulo}\label{resumen-del-capuxedtulo}
+
+En este capítulo iniciamos el trabajo con datos reales.
+
+Aprendimos a:
+
+\begin{itemize}
+\tightlist
+\item
+  leer una base CSV;
+\item
+  revisar dimensiones y nombres de variables;
+\item
+  seleccionar variables de interés;
+\item
+  construir una variable respuesta;
+\item
+  transformar variables categóricas;
+\item
+  revisar datos faltantes;
+\item
+  crear una base preparada para aprendizaje automático;
+\item
+  representar matemáticamente una base de datos para modelado.
+\end{itemize}
+
+En el siguiente capítulo realizaremos el análisis exploratorio de los
+datos preparados.
+
+\bookmarksetup{startatroot}
+
+\chapter{Análisis exploratorio de
+datos}\label{anuxe1lisis-exploratorio-de-datos}
+
+\section{Objetivos del capítulo}\label{objetivos-del-capuxedtulo-2}
+
+Al finalizar este capítulo, el lector será capaz de:
+
+\begin{itemize}
+\tightlist
+\item
+  Explicar qué es el análisis exploratorio de datos.
+\item
+  Cargar una base preparada previamente.
+\item
+  Revisar la estructura de un conjunto de datos.
+\item
+  Analizar la distribución de una variable respuesta.
+\item
+  Construir tablas de frecuencia.
+\item
+  Elaborar gráficas de barras con \texttt{ggplot2}.
+\item
+  Interpretar patrones iniciales antes de construir modelos.
+\item
+  Formular conclusiones preliminares a partir de datos reales.
+\item
+  Comprender las proporciones y proporciones condicionales usadas en
+  EDA.
+\end{itemize}
+
+\section{Introducción}\label{introducciuxf3n-2}
+
+Después de preparar los datos, el siguiente paso en un proyecto de
+aprendizaje automático es explorarlos.
+
+El \textbf{análisis exploratorio de datos}, también conocido como
+\emph{Exploratory Data Analysis} o \textbf{EDA}, consiste en revisar,
+resumir, visualizar e interpretar los datos antes de construir modelos.
+
+Esta etapa es fundamental porque permite responder preguntas como:
+
+\begin{itemize}
+\tightlist
+\item
+  ¿Cuántos registros tiene la base?
+\item
+  ¿Cuántas variables contiene?
+\item
+  ¿Qué tipo de variables tenemos?
+\item
+  ¿Hay más accidentes con víctimas o más accidentes de solo daños?
+\item
+  ¿En qué meses ocurren más accidentes?
+\item
+  ¿A qué horas son más frecuentes?
+\item
+  ¿Qué tipos de accidente predominan?
+\item
+  ¿Qué causas aparecen con mayor frecuencia?
+\end{itemize}
+
+Antes de aplicar algoritmos como regresión logística, árboles de
+decisión o bosques aleatorios, necesitamos conocer la base con la que
+vamos a trabajar.
+
+Un buen modelo empieza con una buena comprensión de los datos.
+
+\section{Fundamento matemático del análisis
+exploratorio}\label{fundamento-matemuxe1tico-del-anuxe1lisis-exploratorio}
+
+El análisis exploratorio utiliza conteos, proporciones, resúmenes y
+gráficas para entender la estructura de los datos.
+
+Si una variable categórica tiene categorías (c\_1, c\_2, \ldots, c\_k),
+la frecuencia absoluta de una categoría (c\_j) se puede representar
+como:
+
+{[} n\_j = \sum\_\{i=1\}\^{}\{n\} I(y\_i = c\_j) {]}
+
+donde (I(y\_i = c\_j)) es una función indicadora:
+
+{[} I(y\_i = c\_j) =
+
+\begin{cases}
+1, & \text{si } y_i = c_j \\
+0, & \text{si } y_i \neq c_j
+\end{cases}
+
+{]}
+
+La proporción de la categoría (c\_j) es:
+
+{[} p\_j = \frac{n_j}{n} {]}
+
+donde:
+
+\begin{itemize}
+\tightlist
+\item
+  (n\_j) es el número de observaciones en la categoría (c\_j);
+\item
+  (n) es el número total de observaciones;
+\item
+  (p\_j) es la proporción observada.
+\end{itemize}
+
+En nuestro caso, una proporción importante es:
+
+{[} p\_\{\text{víctimas}\} =
+\frac{\text{número de accidentes con víctimas}}
+\{\text{número total de accidentes}\} {]}
+
+Esta proporción permite medir qué tan frecuente es la clase positiva.
+
+\section{Proporciones condicionales}\label{proporciones-condicionales}
+
+Cuando analizamos la relación entre dos variables categóricas, usamos
+proporciones condicionales.
+
+Por ejemplo, podemos estudiar la proporción de accidentes con víctimas
+dado un tipo de accidente:
+
+{[} P(\text{Con víctimas} \mid \text{Tipo de accidente}) {]}
+
+De forma empírica, esta proporción se calcula como:
+
+{[} \hat{P}(\text{Con víctimas} \mid T = t) = \frac{
+\text{número de accidentes con víctimas del tipo } t
+}{
+\text{número total de accidentes del tipo } t
+} {]}
+
+Esto permite comparar tipos de accidente aunque tengan frecuencias
+totales diferentes.
+
+\section{Algoritmo general del análisis
+exploratorio}\label{algoritmo-general-del-anuxe1lisis-exploratorio}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Algoritmo: Análisis exploratorio de datos}
+
+\NormalTok{Entrada:}
+\NormalTok{  {-} Base de datos preparada}
+\NormalTok{  {-} Variable respuesta}
+\NormalTok{  {-} Variables predictoras}
+
+\NormalTok{Proceso:}
+\NormalTok{  1. Revisar dimensiones de la base.}
+\NormalTok{  2. Revisar nombres y tipos de variables.}
+\NormalTok{  3. Calcular frecuencias de la variable respuesta.}
+\NormalTok{  4. Calcular proporciones de la variable respuesta.}
+\NormalTok{  5. Analizar variables temporales, categóricas y numéricas.}
+\NormalTok{  6. Construir gráficas exploratorias.}
+\NormalTok{  7. Cruzar variables predictoras con la variable respuesta.}
+\NormalTok{  8. Identificar patrones, desbalances y posibles problemas.}
+
+\NormalTok{Salida:}
+\NormalTok{  {-} Tablas descriptivas}
+\NormalTok{  {-} Gráficas exploratorias}
+\NormalTok{  {-} Primeras hipótesis sobre los datos}
+\end{Highlighting}
+\end{Shaded}
+
+El análisis exploratorio no demuestra causalidad, pero ayuda a entender
+la base antes de construir modelos.
+
+\section{Cargar paquetes}\label{cargar-paquetes-1}
+
+En este capítulo utilizaremos los siguientes paquetes:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(readr)}
+\FunctionTok{library}\NormalTok{(dplyr)}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\end{Highlighting}
+\end{Shaded}
+
+Si alguno no está instalado, puedes instalarlo con:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{install.packages}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"readr"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{, }\StringTok{"ggplot2"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Cargar la base preparada}\label{cargar-la-base-preparada}
+
+En el capítulo anterior guardamos una base preparada llamada:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{atus\_ml\_preparado.csv}
+\end{Highlighting}
+\end{Shaded}
+
+Primero definimos la ruta del archivo.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ruta\_atus\_ml }\OtherTok{\textless{}{-}} \StringTok{"datos/atus\_ml\_preparado.csv"}
+\end{Highlighting}
+\end{Shaded}
+
+Verificamos si el archivo existe:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{file.exists}\NormalTok{(ruta\_atus\_ml)}
+\end{Highlighting}
+\end{Shaded}
+
+Ahora cargamos la base.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{file.exists}\NormalTok{(ruta\_atus\_ml)) \{}
+\NormalTok{  atus\_ml }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}
+\NormalTok{    ruta\_atus\_ml,}
+    \AttributeTok{show\_col\_types =} \ConstantTok{FALSE}
+\NormalTok{  )}
+
+  \FunctionTok{print}\NormalTok{(}\StringTok{"Base preparada cargada correctamente."}\NormalTok{)}
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{  atus\_ml }\OtherTok{\textless{}{-}} \ConstantTok{NULL}
+  \FunctionTok{print}\NormalTok{(}\StringTok{"No se encontró el archivo datos/atus\_ml\_preparado.csv. Ejecuta primero el capítulo 2."}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Preparar variables para el análisis
+exploratorio}\label{preparar-variables-para-el-anuxe1lisis-exploratorio}
+
+Después de cargar la base, haremos algunos ajustes para que las tablas y
+gráficas sean más claras.
+
+Primero convertimos la hora del accidente a una variable numérica. Esto
+permitirá ordenar correctamente las horas de 0 a 23.
+
+También ordenamos los días de la semana en su orden natural.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(atus\_ml)) \{}
+\NormalTok{  atus\_ml }\OtherTok{\textless{}{-}}\NormalTok{ atus\_ml }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{mutate}\NormalTok{(}
+      \AttributeTok{ID\_HORA\_NUM =} \FunctionTok{as.numeric}\NormalTok{(ID\_HORA),}
+      \AttributeTok{DIASEMANA =} \FunctionTok{factor}\NormalTok{(}
+\NormalTok{        DIASEMANA,}
+        \AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}
+          \StringTok{"lunes"}\NormalTok{,}
+          \StringTok{"Martes"}\NormalTok{,}
+          \StringTok{"Miercoles"}\NormalTok{,}
+          \StringTok{"Jueves"}\NormalTok{,}
+          \StringTok{"Viernes"}\NormalTok{,}
+          \StringTok{"Sabado"}\NormalTok{,}
+          \StringTok{"Domingo"}
+\NormalTok{        )}
+\NormalTok{      ),}
+      \AttributeTok{accidente\_con\_victimas =} \FunctionTok{factor}\NormalTok{(}
+\NormalTok{        accidente\_con\_victimas,}
+        \AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Con víctimas"}\NormalTok{, }\StringTok{"Solo daños"}\NormalTok{)}
+\NormalTok{      )}
+\NormalTok{    )}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+La variable \texttt{ID\_HORA\_NUM} será útil para gráficas y resúmenes
+numéricos.
+
+La variable \texttt{DIASEMANA} se ordenó manualmente porque, si no lo
+hacemos, R puede mostrar los días en orden alfabético o en el orden en
+que aparecen en la base.
+
+\section{Primer vistazo a la base}\label{primer-vistazo-a-la-base}
+
+Revisamos las dimensiones de la base:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(atus\_ml)) \{}
+  \FunctionTok{dim}\NormalTok{(atus\_ml)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+El primer número corresponde al número de accidentes registrados.
+
+El segundo número corresponde al número de variables disponibles para
+este primer análisis.
+
+Ahora observamos los primeros registros:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(atus\_ml)) \{}
+  \FunctionTok{head}\NormalTok{(atus\_ml)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+También revisamos los nombres de las variables:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(atus\_ml)) \{}
+  \FunctionTok{names}\NormalTok{(atus\_ml)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Estructura de los datos}\label{estructura-de-los-datos}
+
+La función \texttt{str()} permite revisar el tipo de cada variable.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(atus\_ml)) \{}
+  \FunctionTok{str}\NormalTok{(atus\_ml)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+En esta base tenemos una variable respuesta:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{accidente\_con\_victimas}
+\end{Highlighting}
+\end{Shaded}
+
+y varias variables predictoras:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{MES}
+\NormalTok{ID\_HORA}
+\NormalTok{DIASEMANA}
+\NormalTok{TIPACCID}
+\NormalTok{CAUSAACCI}
+\end{Highlighting}
+\end{Shaded}
+
+La variable respuesta indica si el accidente fue clasificado como:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Con víctimas}
+\NormalTok{Solo daños}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Distribución de la variable
+respuesta}\label{distribuciuxf3n-de-la-variable-respuesta}
+
+La primera variable que debemos analizar es la variable respuesta.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(atus\_ml)) \{}
+  \FunctionTok{table}\NormalTok{(atus\_ml}\SpecialCharTok{$}\NormalTok{accidente\_con\_victimas)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+También podemos calcular proporciones:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(atus\_ml)) \{}
+  \FunctionTok{prop.table}\NormalTok{(}\FunctionTok{table}\NormalTok{(atus\_ml}\SpecialCharTok{$}\NormalTok{accidente\_con\_victimas))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Para mostrar los porcentajes de forma más clara:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(atus\_ml)) \{}
+  \FunctionTok{round}\NormalTok{(}\DecValTok{100} \SpecialCharTok{*} \FunctionTok{prop.table}\NormalTok{(}\FunctionTok{table}\NormalTok{(atus\_ml}\SpecialCharTok{$}\NormalTok{accidente\_con\_victimas)), }\DecValTok{2}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Interpretación de la variable
+respuesta}\label{interpretaciuxf3n-de-la-variable-respuesta}
+
+En problemas de clasificación es importante revisar si las clases están
+balanceadas.
+
+Un conjunto está \textbf{balanceado} cuando las categorías de la
+variable respuesta aparecen en proporciones similares.
+
+Un conjunto está \textbf{desbalanceado} cuando una categoría aparece con
+mucha mayor frecuencia que otra.
+
+En esta base se observa un desbalance importante: aproximadamente
+82.56\% de los accidentes corresponden a solo daños, mientras que
+17.44\% corresponden a accidentes con víctimas.
+
+Esto será relevante cuando construyamos modelos de clasificación, porque
+un modelo ingenuo podría predecir siempre ``Solo daños'' y aun así
+obtener una exactitud cercana al 82.56\%.
+
+Por esa razón, más adelante necesitaremos usar métricas adicionales a la
+exactitud, como:
+
+\begin{itemize}
+\tightlist
+\item
+  sensibilidad,
+\item
+  especificidad,
+\item
+  precisión,
+\item
+  matriz de confusión,
+\item
+  curva ROC.
+\end{itemize}
+
+\section{Gráfica de la variable
+respuesta}\label{gruxe1fica-de-la-variable-respuesta}
+
+Construimos una primera gráfica de barras.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(atus\_ml)) \{}
+  \FunctionTok{ggplot}\NormalTok{(atus\_ml, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ accidente\_con\_victimas)) }\SpecialCharTok{+}
+    \FunctionTok{geom\_bar}\NormalTok{() }\SpecialCharTok{+}
+    \FunctionTok{labs}\NormalTok{(}
+      \AttributeTok{title =} \StringTok{"Distribución de accidentes según presencia de víctimas"}\NormalTok{,}
+      \AttributeTok{x =} \StringTok{"Clase del accidente"}\NormalTok{,}
+      \AttributeTok{y =} \StringTok{"Número de accidentes"}
+\NormalTok{    )}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Esta gráfica permite observar visualmente si hay más accidentes con
+víctimas o más accidentes de solo daños.
+
+\section{Accidentes por mes}\label{accidentes-por-mes}
+
+Ahora analizamos la variable \texttt{MES}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(atus\_ml)) \{}
+  \FunctionTok{table}\NormalTok{(atus\_ml}\SpecialCharTok{$}\NormalTok{MES)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Construimos una tabla ordenada por mes:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(atus\_ml)) \{}
+\NormalTok{  accidentes\_mes }\OtherTok{\textless{}{-}}\NormalTok{ atus\_ml }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{count}\NormalTok{(MES) }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{arrange}\NormalTok{(}\FunctionTok{as.numeric}\NormalTok{(MES))}
+
+\NormalTok{  accidentes\_mes}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Ahora graficamos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(atus\_ml)) \{}
+  \FunctionTok{ggplot}\NormalTok{(accidentes\_mes, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =} \FunctionTok{factor}\NormalTok{(MES, }\AttributeTok{levels =} \FunctionTok{sort}\NormalTok{(}\FunctionTok{unique}\NormalTok{(}\FunctionTok{as.numeric}\NormalTok{(MES)))), }\AttributeTok{y =}\NormalTok{ n)) }\SpecialCharTok{+}
+    \FunctionTok{geom\_col}\NormalTok{() }\SpecialCharTok{+}
+    \FunctionTok{labs}\NormalTok{(}
+      \AttributeTok{title =} \StringTok{"Número de accidentes por mes"}\NormalTok{,}
+      \AttributeTok{x =} \StringTok{"Mes"}\NormalTok{,}
+      \AttributeTok{y =} \StringTok{"Número de accidentes"}
+\NormalTok{    )}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Interpretación de accidentes por
+mes}\label{interpretaciuxf3n-de-accidentes-por-mes}
+
+La gráfica de accidentes por mes permite identificar si existen meses
+con mayor número de accidentes.
+
+En la tabla se observa que mayo presenta el mayor número de accidentes,
+con 34,665 registros, mientras que julio presenta el menor número, con
+30,062 registros. La variación mensual existe, aunque no es extrema.
+
+En un análisis más profundo podríamos preguntarnos:
+
+\begin{itemize}
+\tightlist
+\item
+  ¿hay meses con más movilidad?
+\item
+  ¿hay relación con vacaciones?
+\item
+  ¿hay relación con temporadas de lluvia?
+\item
+  ¿hay diferencias por entidad federativa?
+\item
+  ¿hay diferencias entre accidentes con víctimas y solo daños?
+\end{itemize}
+
+Por ahora, nuestro objetivo es observar patrones generales.
+
+\section{Accidentes por hora del
+día}\label{accidentes-por-hora-del-duxeda}
+
+La variable \texttt{ID\_HORA} indica la hora en la que ocurrió el
+accidente.
+
+Como esta variable puede leerse como texto, usaremos la variable
+numérica \texttt{ID\_HORA\_NUM}, creada previamente.
+
+Primero construimos una tabla de frecuencias:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(atus\_ml)) \{}
+\NormalTok{  accidentes\_hora }\OtherTok{\textless{}{-}}\NormalTok{ atus\_ml }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{count}\NormalTok{(ID\_HORA\_NUM) }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{arrange}\NormalTok{(ID\_HORA\_NUM)}
+
+\NormalTok{  accidentes\_hora}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Ahora graficamos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(atus\_ml)) \{}
+  \FunctionTok{ggplot}\NormalTok{(accidentes\_hora, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ ID\_HORA\_NUM, }\AttributeTok{y =}\NormalTok{ n)) }\SpecialCharTok{+}
+    \FunctionTok{geom\_col}\NormalTok{() }\SpecialCharTok{+}
+    \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{breaks =} \DecValTok{0}\SpecialCharTok{:}\DecValTok{23}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{labs}\NormalTok{(}
+      \AttributeTok{title =} \StringTok{"Número de accidentes por hora del día"}\NormalTok{,}
+      \AttributeTok{x =} \StringTok{"Hora del día"}\NormalTok{,}
+      \AttributeTok{y =} \StringTok{"Número de accidentes"}
+\NormalTok{    )}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Interpretación de accidentes por
+hora}\label{interpretaciuxf3n-de-accidentes-por-hora}
+
+El análisis por hora puede revelar patrones asociados con la movilidad
+diaria.
+
+Por ejemplo, podrían aparecer más accidentes:
+
+\begin{itemize}
+\tightlist
+\item
+  en horas de entrada al trabajo o escuela,
+\item
+  en horas de salida,
+\item
+  durante la noche,
+\item
+  en horarios de mayor tráfico.
+\end{itemize}
+
+Este tipo de análisis es útil porque algunas variables temporales pueden
+ayudar a clasificar la severidad o el tipo de accidente.
+
+\section{Accidentes por día de la
+semana}\label{accidentes-por-duxeda-de-la-semana}
+
+Ahora analizamos la variable \texttt{DIASEMANA}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(atus\_ml)) \{}
+\NormalTok{  accidentes\_dia }\OtherTok{\textless{}{-}}\NormalTok{ atus\_ml }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{count}\NormalTok{(DIASEMANA) }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{arrange}\NormalTok{(DIASEMANA)}
+
+\NormalTok{  accidentes\_dia}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Graficamos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(atus\_ml)) \{}
+  \FunctionTok{ggplot}\NormalTok{(accidentes\_dia, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ DIASEMANA, }\AttributeTok{y =}\NormalTok{ n)) }\SpecialCharTok{+}
+    \FunctionTok{geom\_col}\NormalTok{() }\SpecialCharTok{+}
+    \FunctionTok{coord\_flip}\NormalTok{() }\SpecialCharTok{+}
+    \FunctionTok{labs}\NormalTok{(}
+      \AttributeTok{title =} \StringTok{"Número de accidentes por día de la semana"}\NormalTok{,}
+      \AttributeTok{x =} \StringTok{"Día de la semana"}\NormalTok{,}
+      \AttributeTok{y =} \StringTok{"Número de accidentes"}
+\NormalTok{    )}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Interpretación de accidentes por día de la
+semana}\label{interpretaciuxf3n-de-accidentes-por-duxeda-de-la-semana}
+
+El día de la semana puede ser una variable importante.
+
+Podemos preguntarnos:
+
+\begin{itemize}
+\tightlist
+\item
+  ¿ocurren más accidentes entre semana o en fin de semana?
+\item
+  ¿el patrón cambia para accidentes con víctimas?
+\item
+  ¿hay más accidentes graves en viernes, sábado o domingo?
+\item
+  ¿el comportamiento es distinto por hora?
+\end{itemize}
+
+Estas preguntas serán útiles cuando construyamos modelos de
+clasificación.
+
+\section{Accidentes por tipo de
+accidente}\label{accidentes-por-tipo-de-accidente}
+
+Ahora revisamos la variable \texttt{TIPACCID}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(atus\_ml)) \{}
+\NormalTok{  accidentes\_tipo }\OtherTok{\textless{}{-}}\NormalTok{ atus\_ml }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{count}\NormalTok{(TIPACCID) }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(n))}
+
+\NormalTok{  accidentes\_tipo}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Graficamos los tipos de accidente más frecuentes:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(atus\_ml)) \{}
+\NormalTok{  accidentes\_tipo\_top }\OtherTok{\textless{}{-}}\NormalTok{ accidentes\_tipo }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{slice\_max}\NormalTok{(n, }\AttributeTok{n =} \DecValTok{10}\NormalTok{)}
+
+  \FunctionTok{ggplot}\NormalTok{(accidentes\_tipo\_top, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =} \FunctionTok{reorder}\NormalTok{(TIPACCID, n), }\AttributeTok{y =}\NormalTok{ n)) }\SpecialCharTok{+}
+    \FunctionTok{geom\_col}\NormalTok{() }\SpecialCharTok{+}
+    \FunctionTok{coord\_flip}\NormalTok{() }\SpecialCharTok{+}
+    \FunctionTok{labs}\NormalTok{(}
+      \AttributeTok{title =} \StringTok{"Tipos de accidente más frecuentes"}\NormalTok{,}
+      \AttributeTok{x =} \StringTok{"Tipo de accidente"}\NormalTok{,}
+      \AttributeTok{y =} \StringTok{"Número de accidentes"}
+\NormalTok{    )}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Interpretación por tipo de
+accidente}\label{interpretaciuxf3n-por-tipo-de-accidente}
+
+El tipo de accidente puede estar relacionado con la presencia de
+víctimas.
+
+El tipo de accidente más frecuente es la colisión con vehículo
+automotor, con 224,720 casos. Le siguen la colisión con motocicleta, con
+61,869 casos, y la colisión con objeto fijo, con 43,119 casos.
+
+Esto sugiere que las colisiones entre vehículos concentran una parte muy
+importante del fenómeno.
+
+Sin embargo, frecuencia no significa necesariamente mayor gravedad. Un
+tipo de accidente puede ser muy frecuente, pero tener baja proporción de
+víctimas; otro puede ser menos frecuente, pero más grave en términos
+relativos.
+
+Por eso más adelante analizaremos proporciones, no solo cantidades
+absolutas.
+
+\section{Accidentes por causa
+presunta}\label{accidentes-por-causa-presunta}
+
+Ahora analizamos la variable \texttt{CAUSAACCI}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(atus\_ml)) \{}
+\NormalTok{  accidentes\_causa }\OtherTok{\textless{}{-}}\NormalTok{ atus\_ml }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{count}\NormalTok{(CAUSAACCI) }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(n))}
+
+\NormalTok{  accidentes\_causa}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Graficamos las causas más frecuentes:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(atus\_ml)) \{}
+\NormalTok{  accidentes\_causa\_top }\OtherTok{\textless{}{-}}\NormalTok{ accidentes\_causa }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{slice\_max}\NormalTok{(n, }\AttributeTok{n =} \DecValTok{10}\NormalTok{)}
+
+  \FunctionTok{ggplot}\NormalTok{(accidentes\_causa\_top, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =} \FunctionTok{reorder}\NormalTok{(CAUSAACCI, n), }\AttributeTok{y =}\NormalTok{ n)) }\SpecialCharTok{+}
+    \FunctionTok{geom\_col}\NormalTok{() }\SpecialCharTok{+}
+    \FunctionTok{coord\_flip}\NormalTok{() }\SpecialCharTok{+}
+    \FunctionTok{labs}\NormalTok{(}
+      \AttributeTok{title =} \StringTok{"Causas presuntas más frecuentes"}\NormalTok{,}
+      \AttributeTok{x =} \StringTok{"Causa presunta"}\NormalTok{,}
+      \AttributeTok{y =} \StringTok{"Número de accidentes"}
+\NormalTok{    )}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Interpretación por causa
+presunta}\label{interpretaciuxf3n-por-causa-presunta}
+
+La causa presunta del accidente puede aportar información importante
+para el modelo.
+
+Sin embargo, también debemos tener cuidado: algunas variables pueden
+estar codificadas de manera muy general o depender del registro
+administrativo.
+
+Por eso, antes de usar una variable en un modelo, conviene revisar:
+
+\begin{itemize}
+\tightlist
+\item
+  cuántas categorías tiene,
+\item
+  si hay categorías muy poco frecuentes,
+\item
+  si contiene valores faltantes,
+\item
+  si su interpretación es clara.
+\end{itemize}
+
+Nota didáctica: la categoría ``Certificado cero'' aparece en algunas
+variables del conjunto de datos. Antes de usarla en un modelo
+predictivo, conviene revisar la documentación oficial de la base para
+entender exactamente qué representa. En esta primera exploración la
+conservamos, pero en un análisis más cuidadoso podríamos tratarla como
+una categoría especial.
+
+\section{Relación entre tipo de accidente y presencia de
+víctimas}\label{relaciuxf3n-entre-tipo-de-accidente-y-presencia-de-vuxedctimas}
+
+Ahora cruzamos dos variables:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TIPACCID}
+\NormalTok{accidente\_con\_victimas}
+\end{Highlighting}
+\end{Shaded}
+
+Primero hacemos una tabla de contingencia:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(atus\_ml)) \{}
+\NormalTok{  tabla\_tipo\_victimas }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(}
+    \AttributeTok{Tipo =}\NormalTok{ atus\_ml}\SpecialCharTok{$}\NormalTok{TIPACCID,}
+    \AttributeTok{Clase =}\NormalTok{ atus\_ml}\SpecialCharTok{$}\NormalTok{accidente\_con\_victimas}
+\NormalTok{  )}
+
+\NormalTok{  tabla\_tipo\_victimas}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Esta tabla puede ser grande. Para visualizar mejor, trabajamos con los
+tipos de accidente más frecuentes.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(atus\_ml)) \{}
+\NormalTok{  tipos\_top }\OtherTok{\textless{}{-}}\NormalTok{ atus\_ml }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{count}\NormalTok{(TIPACCID) }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{slice\_max}\NormalTok{(n, }\AttributeTok{n =} \DecValTok{10}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{pull}\NormalTok{(TIPACCID)}
+
+\NormalTok{  atus\_tipo\_top }\OtherTok{\textless{}{-}}\NormalTok{ atus\_ml }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{filter}\NormalTok{(TIPACCID }\SpecialCharTok{\%in\%}\NormalTok{ tipos\_top)}
+
+  \FunctionTok{ggplot}\NormalTok{(atus\_tipo\_top, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ TIPACCID, }\AttributeTok{fill =}\NormalTok{ accidente\_con\_victimas)) }\SpecialCharTok{+}
+    \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{position =} \StringTok{"fill"}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{coord\_flip}\NormalTok{() }\SpecialCharTok{+}
+    \FunctionTok{labs}\NormalTok{(}
+      \AttributeTok{title =} \StringTok{"Proporción de accidentes con víctimas según tipo de accidente"}\NormalTok{,}
+      \AttributeTok{x =} \StringTok{"Tipo de accidente"}\NormalTok{,}
+      \AttributeTok{y =} \StringTok{"Proporción"}\NormalTok{,}
+      \AttributeTok{fill =} \StringTok{"Clase"}
+\NormalTok{    )}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Interpretación de la relación entre tipo de accidente y
+víctimas}\label{interpretaciuxf3n-de-la-relaciuxf3n-entre-tipo-de-accidente-y-vuxedctimas}
+
+La gráfica anterior no muestra cantidades absolutas, sino proporciones.
+
+Esto permite comparar tipos de accidente aunque algunos sean mucho más
+frecuentes que otros.
+
+Por ejemplo, si un tipo de accidente tiene una proporción alta de ``Con
+víctimas'', podría ser una variable importante para el modelo.
+
+Esta es una de las ideas centrales del análisis exploratorio:
+
+\begin{quote}
+No solo queremos contar datos; queremos encontrar relaciones que ayuden
+a entender el problema.
+\end{quote}
+
+\section{Relación entre hora y presencia de
+víctimas}\label{relaciuxf3n-entre-hora-y-presencia-de-vuxedctimas}
+
+Ahora analizamos si la proporción de accidentes con víctimas cambia
+según la hora.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(atus\_ml)) \{}
+  \FunctionTok{ggplot}\NormalTok{(atus\_ml, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ ID\_HORA\_NUM, }\AttributeTok{fill =}\NormalTok{ accidente\_con\_victimas)) }\SpecialCharTok{+}
+    \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{position =} \StringTok{"fill"}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{breaks =} \DecValTok{0}\SpecialCharTok{:}\DecValTok{23}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{labs}\NormalTok{(}
+      \AttributeTok{title =} \StringTok{"Proporción de accidentes con víctimas por hora"}\NormalTok{,}
+      \AttributeTok{x =} \StringTok{"Hora del día"}\NormalTok{,}
+      \AttributeTok{y =} \StringTok{"Proporción"}\NormalTok{,}
+      \AttributeTok{fill =} \StringTok{"Clase"}
+\NormalTok{    )}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Interpretación de la relación entre hora y
+víctimas}\label{interpretaciuxf3n-de-la-relaciuxf3n-entre-hora-y-vuxedctimas}
+
+Esta gráfica ayuda a identificar si algunas horas tienen mayor
+proporción de accidentes con víctimas.
+
+Es importante distinguir entre:
+
+\begin{itemize}
+\tightlist
+\item
+  número total de accidentes,
+\item
+  proporción de accidentes con víctimas.
+\end{itemize}
+
+Una hora puede tener muchos accidentes, pero una proporción baja de
+accidentes graves.
+
+Otra hora puede tener menos accidentes, pero una proporción mayor de
+accidentes con víctimas.
+
+Ambas interpretaciones son útiles.
+
+\section{Relación entre día de la semana y presencia de
+víctimas}\label{relaciuxf3n-entre-duxeda-de-la-semana-y-presencia-de-vuxedctimas}
+
+Ahora hacemos algo similar con \texttt{DIASEMANA}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(atus\_ml)) \{}
+  \FunctionTok{ggplot}\NormalTok{(atus\_ml, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ DIASEMANA, }\AttributeTok{fill =}\NormalTok{ accidente\_con\_victimas)) }\SpecialCharTok{+}
+    \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{position =} \StringTok{"fill"}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{coord\_flip}\NormalTok{() }\SpecialCharTok{+}
+    \FunctionTok{labs}\NormalTok{(}
+      \AttributeTok{title =} \StringTok{"Proporción de accidentes con víctimas por día de la semana"}\NormalTok{,}
+      \AttributeTok{x =} \StringTok{"Día de la semana"}\NormalTok{,}
+      \AttributeTok{y =} \StringTok{"Proporción"}\NormalTok{,}
+      \AttributeTok{fill =} \StringTok{"Clase"}
+\NormalTok{    )}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Interpretación de la relación entre día de la semana y
+víctimas}\label{interpretaciuxf3n-de-la-relaciuxf3n-entre-duxeda-de-la-semana-y-vuxedctimas}
+
+Esta gráfica permite observar si los accidentes con víctimas son
+proporcionalmente más frecuentes en algunos días.
+
+Este análisis puede sugerir hipótesis, por ejemplo:
+
+\begin{itemize}
+\tightlist
+\item
+  mayor riesgo en fines de semana,
+\item
+  mayor riesgo en días laborales,
+\item
+  relación con horarios de movilidad,
+\item
+  relación con actividades recreativas o laborales.
+\end{itemize}
+
+Estas hipótesis deberán evaluarse con modelos y análisis más formales.
+
+\section{Tabla resumen por clase}\label{tabla-resumen-por-clase}
+
+Ahora calculamos un resumen general por clase de accidente.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(atus\_ml)) \{}
+\NormalTok{  resumen\_clase }\OtherTok{\textless{}{-}}\NormalTok{ atus\_ml }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{group\_by}\NormalTok{(accidente\_con\_victimas) }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{summarise}\NormalTok{(}
+      \AttributeTok{total =} \FunctionTok{n}\NormalTok{(),}
+      \AttributeTok{hora\_promedio =} \FunctionTok{mean}\NormalTok{(ID\_HORA\_NUM, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{),}
+      \AttributeTok{hora\_minima =} \FunctionTok{min}\NormalTok{(ID\_HORA\_NUM, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{),}
+      \AttributeTok{hora\_maxima =} \FunctionTok{max}\NormalTok{(ID\_HORA\_NUM, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{),}
+      \AttributeTok{.groups =} \StringTok{"drop"}
+\NormalTok{    )}
+
+\NormalTok{  resumen\_clase}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Interpretación de la tabla
+resumen}\label{interpretaciuxf3n-de-la-tabla-resumen}
+
+Esta tabla resume algunas diferencias básicas entre los accidentes con
+víctimas y los accidentes de solo daños.
+
+La hora promedio no debe interpretarse de forma aislada, porque la hora
+del día es una variable circular: después de las 23 horas vuelve la hora
+0. Sin embargo, puede servir como una primera descripción general.
+
+En análisis posteriores podríamos comparar distribuciones completas, no
+solo promedios.
+
+También podríamos crear variables derivadas como:
+
+\begin{itemize}
+\tightlist
+\item
+  madrugada,
+\item
+  mañana,
+\item
+  tarde,
+\item
+  noche.
+\end{itemize}
+
+Este tipo de transformación puede mejorar la interpretación y
+eventualmente el desempeño de algunos modelos.
+
+\section{¿Qué aprendimos de los
+datos?}\label{quuxe9-aprendimos-de-los-datos}
+
+Después de este análisis exploratorio podemos resumir algunas ideas:
+
+\begin{itemize}
+\tightlist
+\item
+  La base contiene accidentes clasificados en dos categorías.
+\item
+  La variable respuesta está desbalanceada.
+\item
+  El mes, la hora y el día de la semana permiten observar patrones
+  temporales.
+\item
+  El tipo de accidente puede estar relacionado con la presencia de
+  víctimas.
+\item
+  La causa presunta puede ser una variable predictora útil.
+\item
+  Las gráficas ayudan a detectar relaciones antes de construir modelos.
+\end{itemize}
+
+Este análisis no sustituye al modelado, pero lo orienta.
+
+\section{Importancia del análisis exploratorio antes de
+modelar}\label{importancia-del-anuxe1lisis-exploratorio-antes-de-modelar}
+
+El análisis exploratorio cumple varias funciones:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Ayuda a detectar errores en los datos.
+\item
+  Permite entender la distribución de las variables.
+\item
+  Muestra posibles relaciones entre variables.
+\item
+  Ayuda a decidir qué variables usar.
+\item
+  Permite anticipar problemas como clases desbalanceadas.
+\item
+  Facilita la interpretación posterior de los modelos.
+\end{enumerate}
+
+En aprendizaje automático, construir modelos sin explorar los datos es
+como manejar de noche sin luces.
+
+Puede que avancemos, pero no sabemos bien hacia dónde vamos.
+
+\section{Conclusión}\label{conclusiuxf3n-1}
+
+En este capítulo realizamos un primer análisis exploratorio de la base
+preparada de accidentes de tránsito.
+
+Aprendimos a:
+
+\begin{itemize}
+\tightlist
+\item
+  cargar una base preparada;
+\item
+  revisar dimensiones, nombres y estructura;
+\item
+  analizar la variable respuesta;
+\item
+  construir tablas de frecuencia;
+\item
+  graficar accidentes por mes, hora, día, tipo y causa;
+\item
+  comparar proporciones de accidentes con víctimas;
+\item
+  interpretar patrones iniciales.
+\end{itemize}
+
+En el siguiente capítulo construiremos nuestro primer modelo supervisado
+para clasificación: una \textbf{regresión logística}.
+
+\bookmarksetup{startatroot}
+
+\chapter{Regresión logística para
+clasificación}\label{regresiuxf3n-loguxedstica-para-clasificaciuxf3n}
+
+\section{Objetivos del capítulo}\label{objetivos-del-capuxedtulo-3}
+
+Al finalizar este capítulo, el lector será capaz de:
+
+\begin{itemize}
+\tightlist
+\item
+  Explicar qué es un problema de clasificación binaria.
+\item
+  Comprender la idea intuitiva de la regresión logística.
+\item
+  Diferenciar entre probabilidad predicha y clase predicha.
+\item
+  Dividir una base de datos en entrenamiento y prueba.
+\item
+  Ajustar un modelo de regresión logística en R.
+\item
+  Construir una matriz de confusión.
+\item
+  Calcular exactitud, sensibilidad y especificidad.
+\item
+  Interpretar los resultados básicos de un modelo logístico.
+\item
+  Reconocer algunas limitaciones de la regresión logística.
+\end{itemize}
+
+\section{Introducción}\label{introducciuxf3n-3}
+
+En los capítulos anteriores preparamos y exploramos una base real de
+accidentes de tránsito.
+
+Ahora daremos un paso importante: construiremos nuestro primer modelo
+supervisado de clasificación.
+
+El problema que vamos a estudiar es el siguiente:
+
+\begin{quote}
+¿Podemos estimar la probabilidad de que un accidente de tránsito tenga
+víctimas?
+\end{quote}
+
+La variable que queremos predecir es:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{accidente\_con\_victimas}
+\end{Highlighting}
+\end{Shaded}
+
+Esta variable tiene dos categorías:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Con víctimas}
+\NormalTok{Solo daños}
+\end{Highlighting}
+\end{Shaded}
+
+Por lo tanto, estamos frente a un problema de \textbf{clasificación
+binaria}.
+
+La regresión logística es uno de los modelos más utilizados para este
+tipo de problemas. Aunque tiene la palabra ``regresión'' en su nombre,
+se usa frecuentemente para clasificación.
+
+\section{Clasificación binaria}\label{clasificaciuxf3n-binaria}
+
+Un problema de clasificación binaria es aquel donde la variable
+respuesta tiene solo dos posibles clases.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Problema & Clase 1 & Clase 2 \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Accidente de tránsito & Con víctimas & Solo daños \\
+Diagnóstico médico & Enfermo & Sano \\
+Crédito bancario & Incumple & No incumple \\
+Correo electrónico & Spam & No spam \\
+\end{longtable}
+}
+
+En nuestro caso, la clase de interés será:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Con víctimas}
+\end{Highlighting}
+\end{Shaded}
+
+\section{¿Por qué no usar regresión
+lineal?}\label{por-quuxe9-no-usar-regresiuxf3n-lineal}
+
+Si codificamos la variable respuesta como (1) para ``Con víctimas'' y
+(0) para ``Solo daños'', podríamos pensar en usar regresión lineal.
+
+Pero la regresión lineal puede producir predicciones menores que 0 o
+mayores que 1, y una probabilidad debe estar entre 0 y 1.
+
+Para evitar este problema usamos la \textbf{regresión logística}, que
+transforma la salida del modelo para obtener valores entre 0 y 1.
+
+\section{Idea intuitiva de la regresión
+logística}\label{idea-intuitiva-de-la-regresiuxf3n-loguxedstica}
+
+La regresión logística no predice directamente una clase.
+
+Primero predice una probabilidad.
+
+Después usamos un punto de corte para convertir esa probabilidad en una
+clase.
+
+Por ejemplo, si usamos un punto de corte de 0.5:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Si probabilidad \textgreater{}= 0.5 → Con víctimas}
+\NormalTok{Si probabilidad \textless{}  0.5 → Solo daños}
+\end{Highlighting}
+\end{Shaded}
+
+Esta distinción es muy importante:
+
+\begin{quote}
+La regresión logística produce probabilidades; la clasificación final
+depende del punto de corte elegido.
+\end{quote}
+
+\section{La función logística}\label{la-funciuxf3n-loguxedstica}
+
+La regresión logística utiliza una función especial llamada
+\textbf{función logística}.
+
+Esta función tiene forma de ``S'' y convierte cualquier número real en
+un valor entre 0 y 1.
+
+{[} p = \frac{1}{1 + e^{-z}} {]}
+
+donde:
+
+{[} z = \beta\_0 + \beta\_1x\_1 + \beta\_2x\_2 + \cdots + \beta\_px\_p
+{]}
+
+\section{Fundamento matemático de la regresión
+logística}\label{fundamento-matemuxe1tico-de-la-regresiuxf3n-loguxedstica}
+
+En clasificación binaria, la variable respuesta puede representarse
+como:
+
+{[} Y\_i =
+
+\begin{cases}
+1, & \text{si el accidente tiene víctimas} \\
+0, & \text{si el accidente es de solo daños}
+\end{cases}
+
+{]}
+
+La regresión logística estima la probabilidad de que (Y\_i = 1) dado un
+conjunto de variables predictoras (X\_i):
+
+{[} P(Y\_i = 1 \mid X\_i) = \hat{p}\_i {]}
+
+La probabilidad estimada se calcula mediante:
+
+{[} \hat{p}\_i = \frac{1}{1 + e^{-z_i}} {]}
+
+donde:
+
+{[} z\_i = \beta\_0 + \beta\emph{1x}\{i1\} + \beta\emph{2x}\{i2\} +
+\cdots + \beta\emph{px}\{ip\} {]}
+
+La función logística garantiza que:
+
+{[} 0 \leq \hat{p}\_i \leq 1 {]}
+
+por lo tanto, (\hat{p}\_i) puede interpretarse como una probabilidad.
+
+\section{Logit y razón de momios}\label{logit-y-razuxf3n-de-momios}
+
+La regresión logística también puede escribirse mediante la función
+logit:
+
+{[} \log \left( \frac{p_i}{1 - p_i} \right) = \beta\_0 +
+\beta\emph{1x}\{i1\} + \cdots + \beta\emph{px}\{ip\} {]}
+
+La expresión:
+
+{[} \frac{p_i}{1 - p_i} {]}
+
+se conoce como \textbf{momios} u \textbf{odds}.
+
+Cuando aplicamos la función exponencial a un coeficiente, obtenemos un
+\textbf{odds ratio}:
+
+{[} OR\_j = e\^{}\{\beta\_j\} {]}
+
+\section{Regla de clasificación}\label{regla-de-clasificaciuxf3n}
+
+Una vez estimada la probabilidad (\hat{p}\_i), se elige un punto de
+corte (c).
+
+{[} \hat{Y}\_i =
+
+\begin{cases}
+1, & \text{si } \hat{p}_i \geq c \\
+0, & \text{si } \hat{p}_i < c
+\end{cases}
+
+{]}
+
+\section{Algoritmo de regresión
+logística}\label{algoritmo-de-regresiuxf3n-loguxedstica}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Algoritmo: Regresión logística para clasificación binaria}
+
+\NormalTok{Entrada:}
+\NormalTok{  {-} Matriz de variables predictoras X}
+\NormalTok{  {-} Variable respuesta binaria Y}
+\NormalTok{  {-} Punto de corte c}
+
+\NormalTok{Proceso:}
+\NormalTok{  1. Codificar la variable respuesta como 0 y 1.}
+\NormalTok{  2. Estimar los coeficientes beta del modelo logístico.}
+\NormalTok{  3. Calcular z = beta\_0 + beta\_1 x\_1 + ... + beta\_p x\_p.}
+\NormalTok{  4. Transformar z mediante la función logística.}
+\NormalTok{  5. Obtener la probabilidad estimada p.}
+\NormalTok{  6. Comparar p contra el punto de corte c.}
+\NormalTok{  7. Si p \textgreater{}= c, clasificar como clase positiva.}
+\NormalTok{  8. Si p \textless{} c, clasificar como clase negativa.}
+\NormalTok{  9. Comparar las clases predichas contra las clases reales.}
+\NormalTok{  10. Calcular matriz de confusión y métricas.}
+
+\NormalTok{Salida:}
+\NormalTok{  {-} Probabilidades predichas}
+\NormalTok{  {-} Clases predichas}
+\NormalTok{  {-} Matriz de confusión}
+\NormalTok{  {-} Exactitud, sensibilidad y especificidad}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Visualización de la función
+logística}\label{visualizaciuxf3n-de-la-funciuxf3n-loguxedstica}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{z }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{10}\NormalTok{, }\DecValTok{10}\NormalTok{, }\AttributeTok{length.out =} \DecValTok{200}\NormalTok{)}
+\NormalTok{p }\OtherTok{\textless{}{-}} \DecValTok{1} \SpecialCharTok{/}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{+} \FunctionTok{exp}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{z))}
+\NormalTok{datos\_logistica }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{z =}\NormalTok{ z, }\AttributeTok{p =}\NormalTok{ p)}
+
+\FunctionTok{library}\NormalTok{(ggplot2)}
+
+\FunctionTok{ggplot}\NormalTok{(datos\_logistica, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ z, }\AttributeTok{y =}\NormalTok{ p)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{(}\AttributeTok{linewidth =} \DecValTok{1}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"Función logística"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{"z"}\NormalTok{,}
+    \AttributeTok{y =} \StringTok{"Probabilidad"}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Cargar paquetes}\label{cargar-paquetes-2}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(readr)}
+\FunctionTok{library}\NormalTok{(dplyr)}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\end{Highlighting}
+\end{Shaded}
+
+Si alguno no está instalado, puedes instalarlo con:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{install.packages}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"readr"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{, }\StringTok{"ggplot2"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Cargar la base preparada}\label{cargar-la-base-preparada-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ruta\_atus\_ml }\OtherTok{\textless{}{-}} \StringTok{"datos/atus\_ml\_preparado.csv"}
+\FunctionTok{file.exists}\NormalTok{(ruta\_atus\_ml)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{file.exists}\NormalTok{(ruta\_atus\_ml)) \{}
+\NormalTok{  atus\_ml }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}
+\NormalTok{    ruta\_atus\_ml,}
+    \AttributeTok{show\_col\_types =} \ConstantTok{FALSE}
+\NormalTok{  )}
+  \FunctionTok{print}\NormalTok{(}\StringTok{"Base preparada cargada correctamente."}\NormalTok{)}
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{  atus\_ml }\OtherTok{\textless{}{-}} \ConstantTok{NULL}
+  \FunctionTok{print}\NormalTok{(}\StringTok{"No se encontró el archivo datos/atus\_ml\_preparado.csv. Ejecuta primero el capítulo 2."}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Preparar variables para el
+modelo}\label{preparar-variables-para-el-modelo}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(atus\_ml)) \{}
+\NormalTok{  atus\_modelo }\OtherTok{\textless{}{-}}\NormalTok{ atus\_ml }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{mutate}\NormalTok{(}
+      \AttributeTok{victimas\_binaria =} \FunctionTok{ifelse}\NormalTok{(accidente\_con\_victimas }\SpecialCharTok{==} \StringTok{"Con víctimas"}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{),}
+      \AttributeTok{MES =} \FunctionTok{as.factor}\NormalTok{(MES),}
+      \AttributeTok{DIASEMANA =} \FunctionTok{as.factor}\NormalTok{(DIASEMANA),}
+      \AttributeTok{TIPACCID =} \FunctionTok{as.factor}\NormalTok{(TIPACCID),}
+      \AttributeTok{CAUSAACCI =} \FunctionTok{as.factor}\NormalTok{(CAUSAACCI),}
+      \AttributeTok{ID\_HORA =} \FunctionTok{as.numeric}\NormalTok{(ID\_HORA),}
+      \AttributeTok{accidente\_con\_victimas =} \FunctionTok{factor}\NormalTok{(}
+\NormalTok{        accidente\_con\_victimas,}
+        \AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Con víctimas"}\NormalTok{, }\StringTok{"Solo daños"}\NormalTok{)}
+\NormalTok{      )}
+\NormalTok{    )}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"atus\_modelo"}\NormalTok{)) \{}
+  \FunctionTok{head}\NormalTok{(atus\_modelo)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"atus\_modelo"}\NormalTok{)) \{}
+  \FunctionTok{table}\NormalTok{(atus\_modelo}\SpecialCharTok{$}\NormalTok{victimas\_binaria)}
+  \FunctionTok{table}\NormalTok{(atus\_modelo}\SpecialCharTok{$}\NormalTok{accidente\_con\_victimas)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Selección inicial de variables
+predictoras}\label{selecciuxf3n-inicial-de-variables-predictoras}
+
+Usaremos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{MES}
+\NormalTok{ID\_HORA}
+\NormalTok{DIASEMANA}
+\NormalTok{TIPACCID}
+\NormalTok{CAUSAACCI}
+\end{Highlighting}
+\end{Shaded}
+
+La fórmula del modelo será:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{victimas\_binaria \textasciitilde{} MES + ID\_HORA + DIASEMANA + TIPACCID + CAUSAACCI}
+\end{Highlighting}
+\end{Shaded}
+
+\section{División en entrenamiento y
+prueba}\label{divisiuxf3n-en-entrenamiento-y-prueba}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"atus\_modelo"}\NormalTok{)) \{}
+  \FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+\NormalTok{  n }\OtherTok{\textless{}{-}} \FunctionTok{nrow}\NormalTok{(atus\_modelo)}
+
+\NormalTok{  indices\_entrenamiento }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(}
+    \DecValTok{1}\SpecialCharTok{:}\NormalTok{n,}
+    \AttributeTok{size =} \FunctionTok{round}\NormalTok{(}\FloatTok{0.7} \SpecialCharTok{*}\NormalTok{ n)}
+\NormalTok{  )}
+
+\NormalTok{  entrenamiento }\OtherTok{\textless{}{-}}\NormalTok{ atus\_modelo[indices\_entrenamiento, ]}
+\NormalTok{  prueba }\OtherTok{\textless{}{-}}\NormalTok{ atus\_modelo[}\SpecialCharTok{{-}}\NormalTok{indices\_entrenamiento, ]}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"entrenamiento"}\NormalTok{) }\SpecialCharTok{\&\&} \FunctionTok{exists}\NormalTok{(}\StringTok{"prueba"}\NormalTok{)) \{}
+  \FunctionTok{data.frame}\NormalTok{(}
+    \AttributeTok{conjunto =} \FunctionTok{c}\NormalTok{(}\StringTok{"Entrenamiento"}\NormalTok{, }\StringTok{"Prueba"}\NormalTok{),}
+    \AttributeTok{registros =} \FunctionTok{c}\NormalTok{(}\FunctionTok{nrow}\NormalTok{(entrenamiento), }\FunctionTok{nrow}\NormalTok{(prueba)),}
+    \AttributeTok{porcentaje =} \FunctionTok{c}\NormalTok{(}
+      \FunctionTok{round}\NormalTok{(}\DecValTok{100} \SpecialCharTok{*} \FunctionTok{nrow}\NormalTok{(entrenamiento) }\SpecialCharTok{/} \FunctionTok{nrow}\NormalTok{(atus\_modelo), }\DecValTok{2}\NormalTok{),}
+      \FunctionTok{round}\NormalTok{(}\DecValTok{100} \SpecialCharTok{*} \FunctionTok{nrow}\NormalTok{(prueba) }\SpecialCharTok{/} \FunctionTok{nrow}\NormalTok{(atus\_modelo), }\DecValTok{2}\NormalTok{)}
+\NormalTok{    )}
+\NormalTok{  )}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"entrenamiento"}\NormalTok{) }\SpecialCharTok{\&\&} \FunctionTok{exists}\NormalTok{(}\StringTok{"prueba"}\NormalTok{)) \{}
+\NormalTok{  prop\_entrenamiento }\OtherTok{\textless{}{-}} \FunctionTok{round}\NormalTok{(}
+    \DecValTok{100} \SpecialCharTok{*} \FunctionTok{prop.table}\NormalTok{(}\FunctionTok{table}\NormalTok{(entrenamiento}\SpecialCharTok{$}\NormalTok{accidente\_con\_victimas)),}
+    \DecValTok{2}
+\NormalTok{  )}
+
+\NormalTok{  prop\_prueba }\OtherTok{\textless{}{-}} \FunctionTok{round}\NormalTok{(}
+    \DecValTok{100} \SpecialCharTok{*} \FunctionTok{prop.table}\NormalTok{(}\FunctionTok{table}\NormalTok{(prueba}\SpecialCharTok{$}\NormalTok{accidente\_con\_victimas)),}
+    \DecValTok{2}
+\NormalTok{  )}
+
+  \FunctionTok{data.frame}\NormalTok{(}
+    \AttributeTok{clase =} \FunctionTok{names}\NormalTok{(prop\_entrenamiento),}
+    \AttributeTok{entrenamiento =} \FunctionTok{as.numeric}\NormalTok{(prop\_entrenamiento),}
+    \AttributeTok{prueba =} \FunctionTok{as.numeric}\NormalTok{(prop\_prueba)}
+\NormalTok{  )}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Ajustar el modelo de regresión
+logística}\label{ajustar-el-modelo-de-regresiuxf3n-loguxedstica}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"entrenamiento"}\NormalTok{)) \{}
+\NormalTok{  modelo\_logistico }\OtherTok{\textless{}{-}} \FunctionTok{glm}\NormalTok{(}
+\NormalTok{    victimas\_binaria }\SpecialCharTok{\textasciitilde{}}\NormalTok{ MES }\SpecialCharTok{+}\NormalTok{ ID\_HORA }\SpecialCharTok{+}\NormalTok{ DIASEMANA }\SpecialCharTok{+}\NormalTok{ TIPACCID }\SpecialCharTok{+}\NormalTok{ CAUSAACCI,}
+    \AttributeTok{data =}\NormalTok{ entrenamiento,}
+    \AttributeTok{family =}\NormalTok{ binomial}
+\NormalTok{  )}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"modelo\_logistico"}\NormalTok{)) \{}
+  \FunctionTok{summary}\NormalTok{(modelo\_logistico)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Nota didáctica: si aparece el mensaje ``1 not defined because of
+singularities'', significa que una categoría no pudo estimarse de forma
+independiente, posiblemente por redundancia o falta de variación
+suficiente respecto a otras variables. En esta primera aproximación no
+lo trataremos como un error fatal, pero en un análisis profesional
+convendría revisar las categorías y simplificar algunas variables.
+
+\section{Predicción de
+probabilidades}\label{predicciuxf3n-de-probabilidades}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"modelo\_logistico"}\NormalTok{) }\SpecialCharTok{\&\&} \FunctionTok{exists}\NormalTok{(}\StringTok{"prueba"}\NormalTok{)) \{}
+\NormalTok{  prueba}\SpecialCharTok{$}\NormalTok{probabilidad\_victimas }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(}
+\NormalTok{    modelo\_logistico,}
+    \AttributeTok{newdata =}\NormalTok{ prueba,}
+    \AttributeTok{type =} \StringTok{"response"}
+\NormalTok{  )}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"prueba"}\NormalTok{)) \{}
+  \FunctionTok{head}\NormalTok{(}
+\NormalTok{    prueba }\SpecialCharTok{|\textgreater{}}
+      \FunctionTok{select}\NormalTok{(accidente\_con\_victimas, victimas\_binaria, probabilidad\_victimas)}
+\NormalTok{  )}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\section{De probabilidades a clases}\label{de-probabilidades-a-clases}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"prueba"}\NormalTok{)) \{}
+\NormalTok{  prueba}\SpecialCharTok{$}\NormalTok{prediccion\_05 }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(}
+\NormalTok{    prueba}\SpecialCharTok{$}\NormalTok{probabilidad\_victimas }\SpecialCharTok{\textgreater{}=} \FloatTok{0.5}\NormalTok{,}
+    \StringTok{"Con víctimas"}\NormalTok{,}
+    \StringTok{"Solo daños"}
+\NormalTok{  )}
+
+\NormalTok{  prueba}\SpecialCharTok{$}\NormalTok{prediccion\_05 }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(}
+\NormalTok{    prueba}\SpecialCharTok{$}\NormalTok{prediccion\_05,}
+    \AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Con víctimas"}\NormalTok{, }\StringTok{"Solo daños"}\NormalTok{)}
+\NormalTok{  )}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Matriz de confusión}\label{matriz-de-confusiuxf3n}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"prueba"}\NormalTok{)) \{}
+\NormalTok{  matriz\_confusion\_05 }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(}
+    \AttributeTok{Real =}\NormalTok{ prueba}\SpecialCharTok{$}\NormalTok{accidente\_con\_victimas,}
+    \AttributeTok{Predicho =}\NormalTok{ prueba}\SpecialCharTok{$}\NormalTok{prediccion\_05}
+\NormalTok{  )}
+
+\NormalTok{  matriz\_confusion\_05}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Métricas de evaluación}\label{muxe9tricas-de-evaluaciuxf3n}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"matriz\_confusion\_05"}\NormalTok{)) \{}
+\NormalTok{  VP }\OtherTok{\textless{}{-}}\NormalTok{ matriz\_confusion\_05[}\StringTok{"Con víctimas"}\NormalTok{, }\StringTok{"Con víctimas"}\NormalTok{]}
+\NormalTok{  FN }\OtherTok{\textless{}{-}}\NormalTok{ matriz\_confusion\_05[}\StringTok{"Con víctimas"}\NormalTok{, }\StringTok{"Solo daños"}\NormalTok{]}
+\NormalTok{  FP }\OtherTok{\textless{}{-}}\NormalTok{ matriz\_confusion\_05[}\StringTok{"Solo daños"}\NormalTok{, }\StringTok{"Con víctimas"}\NormalTok{]}
+\NormalTok{  VN }\OtherTok{\textless{}{-}}\NormalTok{ matriz\_confusion\_05[}\StringTok{"Solo daños"}\NormalTok{, }\StringTok{"Solo daños"}\NormalTok{]}
+
+  \FunctionTok{data.frame}\NormalTok{(}
+    \AttributeTok{medida =} \FunctionTok{c}\NormalTok{(}\StringTok{"VP"}\NormalTok{, }\StringTok{"FN"}\NormalTok{, }\StringTok{"FP"}\NormalTok{, }\StringTok{"VN"}\NormalTok{),}
+    \AttributeTok{nombre =} \FunctionTok{c}\NormalTok{(}
+      \StringTok{"Verdaderos positivos"}\NormalTok{,}
+      \StringTok{"Falsos negativos"}\NormalTok{,}
+      \StringTok{"Falsos positivos"}\NormalTok{,}
+      \StringTok{"Verdaderos negativos"}
+\NormalTok{    ),}
+    \AttributeTok{descripcion =} \FunctionTok{c}\NormalTok{(}
+      \StringTok{"Con víctimas clasificado como Con víctimas"}\NormalTok{,}
+      \StringTok{"Con víctimas clasificado como Solo daños"}\NormalTok{,}
+      \StringTok{"Solo daños clasificado como Con víctimas"}\NormalTok{,}
+      \StringTok{"Solo daños clasificado como Solo daños"}
+\NormalTok{    ),}
+    \AttributeTok{valor =} \FunctionTok{c}\NormalTok{(VP, FN, FP, VN)}
+\NormalTok{  )}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Fórmulas de evaluación para clasificación
+binaria}\label{fuxf3rmulas-de-evaluaciuxf3n-para-clasificaciuxf3n-binaria}
+
+A partir de la matriz de confusión podemos definir las siguientes
+cantidades:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Símbolo
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Nombre
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Descripción
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+(VP) & Verdaderos positivos & Casos positivos clasificados
+correctamente \\
+(FN) & Falsos negativos & Casos positivos clasificados como negativos \\
+(FP) & Falsos positivos & Casos negativos clasificados como positivos \\
+(VN) & Verdaderos negativos & Casos negativos clasificados
+correctamente \\
+\end{longtable}
+}
+
+La exactitud se calcula como:
+
+{[} \text{Exactitud} = \frac{VP + VN}{VP + FN + FP + VN} {]}
+
+La sensibilidad se calcula como:
+
+{[} \text{Sensibilidad} = \frac{VP}{VP + FN} {]}
+
+La especificidad se calcula como:
+
+{[} \text{Especificidad} = \frac{VN}{VN + FP} {]}
+
+La precisión se calcula como:
+
+{[} \text{Precisión} = \frac{VP}{VP + FP} {]}
+
+En problemas desbalanceados, la exactitud puede ser engañosa. Por eso es
+importante revisar también sensibilidad, especificidad y precisión.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"VP"}\NormalTok{)) \{}
+\NormalTok{  exactitud }\OtherTok{\textless{}{-}}\NormalTok{ (VP }\SpecialCharTok{+}\NormalTok{ VN) }\SpecialCharTok{/}\NormalTok{ (VP }\SpecialCharTok{+}\NormalTok{ FN }\SpecialCharTok{+}\NormalTok{ FP }\SpecialCharTok{+}\NormalTok{ VN)}
+\NormalTok{  sensibilidad }\OtherTok{\textless{}{-}}\NormalTok{ VP }\SpecialCharTok{/}\NormalTok{ (VP }\SpecialCharTok{+}\NormalTok{ FN)}
+\NormalTok{  especificidad }\OtherTok{\textless{}{-}}\NormalTok{ VN }\SpecialCharTok{/}\NormalTok{ (VN }\SpecialCharTok{+}\NormalTok{ FP)}
+
+  \FunctionTok{data.frame}\NormalTok{(}
+    \AttributeTok{punto\_corte =} \FloatTok{0.5}\NormalTok{,}
+    \AttributeTok{exactitud =}\NormalTok{ exactitud,}
+    \AttributeTok{sensibilidad =}\NormalTok{ sensibilidad,}
+    \AttributeTok{especificidad =}\NormalTok{ especificidad}
+\NormalTok{  )}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Problema del punto de corte
+0.5}\label{problema-del-punto-de-corte-0.5}
+
+En muchos problemas desbalanceados, usar un punto de corte de 0.5 puede
+no ser adecuado.
+
+Si la clase positiva es poco frecuente, muchas probabilidades predichas
+pueden quedar por debajo de 0.5. Esto puede provocar que el modelo
+prediga casi siempre la clase mayoritaria.
+
+\section{Clasificación con punto de corte
+0.3}\label{clasificaciuxf3n-con-punto-de-corte-0.3}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"prueba"}\NormalTok{)) \{}
+\NormalTok{  prueba}\SpecialCharTok{$}\NormalTok{prediccion\_03 }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(}
+\NormalTok{    prueba}\SpecialCharTok{$}\NormalTok{probabilidad\_victimas }\SpecialCharTok{\textgreater{}=} \FloatTok{0.3}\NormalTok{,}
+    \StringTok{"Con víctimas"}\NormalTok{,}
+    \StringTok{"Solo daños"}
+\NormalTok{  )}
+
+\NormalTok{  prueba}\SpecialCharTok{$}\NormalTok{prediccion\_03 }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(}
+\NormalTok{    prueba}\SpecialCharTok{$}\NormalTok{prediccion\_03,}
+    \AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Con víctimas"}\NormalTok{, }\StringTok{"Solo daños"}\NormalTok{)}
+\NormalTok{  )}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"prueba"}\NormalTok{)) \{}
+\NormalTok{  matriz\_confusion\_03 }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(}
+    \AttributeTok{Real =}\NormalTok{ prueba}\SpecialCharTok{$}\NormalTok{accidente\_con\_victimas,}
+    \AttributeTok{Predicho =}\NormalTok{ prueba}\SpecialCharTok{$}\NormalTok{prediccion\_03}
+\NormalTok{  )}
+
+\NormalTok{  matriz\_confusion\_03}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"matriz\_confusion\_03"}\NormalTok{)) \{}
+\NormalTok{  VP\_03 }\OtherTok{\textless{}{-}}\NormalTok{ matriz\_confusion\_03[}\StringTok{"Con víctimas"}\NormalTok{, }\StringTok{"Con víctimas"}\NormalTok{]}
+\NormalTok{  FN\_03 }\OtherTok{\textless{}{-}}\NormalTok{ matriz\_confusion\_03[}\StringTok{"Con víctimas"}\NormalTok{, }\StringTok{"Solo daños"}\NormalTok{]}
+\NormalTok{  FP\_03 }\OtherTok{\textless{}{-}}\NormalTok{ matriz\_confusion\_03[}\StringTok{"Solo daños"}\NormalTok{, }\StringTok{"Con víctimas"}\NormalTok{]}
+\NormalTok{  VN\_03 }\OtherTok{\textless{}{-}}\NormalTok{ matriz\_confusion\_03[}\StringTok{"Solo daños"}\NormalTok{, }\StringTok{"Solo daños"}\NormalTok{]}
+
+\NormalTok{  exactitud\_03 }\OtherTok{\textless{}{-}}\NormalTok{ (VP\_03 }\SpecialCharTok{+}\NormalTok{ VN\_03) }\SpecialCharTok{/}\NormalTok{ (VP\_03 }\SpecialCharTok{+}\NormalTok{ FN\_03 }\SpecialCharTok{+}\NormalTok{ FP\_03 }\SpecialCharTok{+}\NormalTok{ VN\_03)}
+\NormalTok{  sensibilidad\_03 }\OtherTok{\textless{}{-}}\NormalTok{ VP\_03 }\SpecialCharTok{/}\NormalTok{ (VP\_03 }\SpecialCharTok{+}\NormalTok{ FN\_03)}
+\NormalTok{  especificidad\_03 }\OtherTok{\textless{}{-}}\NormalTok{ VN\_03 }\SpecialCharTok{/}\NormalTok{ (VN\_03 }\SpecialCharTok{+}\NormalTok{ FP\_03)}
+
+  \FunctionTok{data.frame}\NormalTok{(}
+    \AttributeTok{punto\_corte =} \FloatTok{0.3}\NormalTok{,}
+    \AttributeTok{exactitud =}\NormalTok{ exactitud\_03,}
+    \AttributeTok{sensibilidad =}\NormalTok{ sensibilidad\_03,}
+    \AttributeTok{especificidad =}\NormalTok{ especificidad\_03}
+\NormalTok{  )}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Comparación de puntos de
+corte}\label{comparaciuxf3n-de-puntos-de-corte}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"exactitud"}\NormalTok{) }\SpecialCharTok{\&\&} \FunctionTok{exists}\NormalTok{(}\StringTok{"exactitud\_03"}\NormalTok{)) \{}
+\NormalTok{  comparacion\_cortes }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+    \AttributeTok{punto\_corte =} \FunctionTok{c}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\FloatTok{0.3}\NormalTok{),}
+    \AttributeTok{exactitud =} \FunctionTok{c}\NormalTok{(exactitud, exactitud\_03),}
+    \AttributeTok{sensibilidad =} \FunctionTok{c}\NormalTok{(sensibilidad, sensibilidad\_03),}
+    \AttributeTok{especificidad =} \FunctionTok{c}\NormalTok{(especificidad, especificidad\_03)}
+\NormalTok{  )}
+
+\NormalTok{  comparacion\_cortes}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+En este ejemplo, el punto de corte 0.5 produce mayor exactitud, pero
+detecta pocos accidentes con víctimas. En cambio, el punto de corte 0.3
+reduce la exactitud global, pero mejora considerablemente la
+sensibilidad.
+
+Desde una perspectiva de seguridad vial, podría ser más útil detectar
+una mayor proporción de accidentes con víctimas, aunque eso implique
+aceptar más falsos positivos.
+
+\section{Distribución de probabilidades
+predichas}\label{distribuciuxf3n-de-probabilidades-predichas}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"prueba"}\NormalTok{)) \{}
+  \FunctionTok{ggplot}\NormalTok{(prueba, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ probabilidad\_victimas, }\AttributeTok{fill =}\NormalTok{ accidente\_con\_victimas)) }\SpecialCharTok{+}
+    \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{bins =} \DecValTok{30}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.7}\NormalTok{, }\AttributeTok{position =} \StringTok{"identity"}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{labs}\NormalTok{(}
+      \AttributeTok{title =} \StringTok{"Distribución de probabilidades predichas"}\NormalTok{,}
+      \AttributeTok{x =} \StringTok{"Probabilidad predicha de accidente con víctimas"}\NormalTok{,}
+      \AttributeTok{y =} \StringTok{"Frecuencia"}\NormalTok{,}
+      \AttributeTok{fill =} \StringTok{"Clase real"}
+\NormalTok{    )}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Odds ratios}\label{odds-ratios}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"modelo\_logistico"}\NormalTok{)) \{}
+\NormalTok{  odds\_ratios }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+    \AttributeTok{variable =} \FunctionTok{names}\NormalTok{(}\FunctionTok{coef}\NormalTok{(modelo\_logistico)),}
+    \AttributeTok{odds\_ratio =} \FunctionTok{exp}\NormalTok{(}\FunctionTok{coef}\NormalTok{(modelo\_logistico))}
+\NormalTok{  )}
+
+  \FunctionTok{head}\NormalTok{(odds\_ratios, }\DecValTok{15}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+En modelos con muchas variables categóricas, los odds ratios pueden ser
+numerosos y algunos pueden tomar valores extremos. Por eso, en esta
+primera lectura los usamos solo como introducción conceptual.
+
+\section{Limitaciones del modelo}\label{limitaciones-del-modelo}
+
+La regresión logística es un modelo muy útil, pero tiene limitaciones.
+
+Algunas de ellas son:
+
+\begin{itemize}
+\tightlist
+\item
+  supone una relación lineal entre las variables predictoras y el logit;
+\item
+  puede verse afectada por variables categóricas con muchas categorías;
+\item
+  puede tener dificultades con relaciones complejas o no lineales;
+\item
+  requiere cuidado cuando las clases están muy desbalanceadas;
+\item
+  no captura automáticamente interacciones complejas entre variables.
+\end{itemize}
+
+En nuestro caso, el modelo usa pocas variables y no incluye información
+espacial, condiciones del camino, tipo de vehículo, edad de conductores
+ni otros factores que podrían ser relevantes.
+
+Por lo tanto, este modelo debe verse como un primer modelo base, no como
+un modelo definitivo.
+
+\section{¿Qué aprendimos?}\label{quuxe9-aprendimos}
+
+En este capítulo construimos nuestro primer modelo supervisado de
+clasificación.
+
+Aprendimos que:
+
+\begin{itemize}
+\tightlist
+\item
+  la regresión logística se usa para problemas de clasificación binaria;
+\item
+  el modelo produce probabilidades;
+\item
+  las probabilidades se convierten en clases usando un punto de corte;
+\item
+  el punto de corte afecta las métricas;
+\item
+  la matriz de confusión permite evaluar el desempeño;
+\item
+  la exactitud puede ser engañosa en bases desbalanceadas;
+\item
+  la sensibilidad y la especificidad ayudan a entender mejor el modelo;
+\item
+  los odds ratios permiten interpretar coeficientes en términos de
+  momios.
+\end{itemize}
+
+\section{Conclusión}\label{conclusiuxf3n-2}
+
+La regresión logística es uno de los modelos más importantes en
+aprendizaje automático aplicado.
+
+Aunque es relativamente simple, permite construir modelos interpretables
+y útiles para problemas de clasificación binaria.
+
+En este capítulo la usamos para estimar la probabilidad de que un
+accidente tenga víctimas.
+
+En el siguiente capítulo estudiaremos otro método de clasificación muy
+intuitivo: \textbf{k vecinos más cercanos}, conocido como \textbf{k-NN}.
+
+\bookmarksetup{startatroot}
+
+\chapter{k vecinos más cercanos,
+k-NN}\label{k-vecinos-muxe1s-cercanos-k-nn}
+
+\section{Objetivos del capítulo}\label{objetivos-del-capuxedtulo-4}
+
+Al finalizar este capítulo, el lector será capaz de:
+
+\begin{itemize}
+\tightlist
+\item
+  Explicar la idea intuitiva del método k vecinos más cercanos.
+\item
+  Comprender el papel de la distancia en k-NN.
+\item
+  Calcular distancias entre observaciones.
+\item
+  Explicar por qué es necesario escalar las variables numéricas.
+\item
+  Aplicar k-NN en R para un problema de clasificación.
+\item
+  Construir una matriz de confusión.
+\item
+  Calcular exactitud, sensibilidad y especificidad.
+\item
+  Comparar el efecto de distintos valores de (k).
+\item
+  Reconocer ventajas y limitaciones del método k-NN.
+\end{itemize}
+
+\section{Introducción}\label{introducciuxf3n-4}
+
+En el capítulo anterior estudiamos la regresión logística, un modelo
+supervisado que estima probabilidades para resolver problemas de
+clasificación binaria.
+
+En este capítulo estudiaremos otro método de clasificación muy
+intuitivo: \textbf{k vecinos más cercanos}, conocido como \textbf{k-NN}
+por sus siglas en inglés: \emph{k-Nearest Neighbors}.
+
+La idea básica de k-NN es sencilla:
+
+\begin{quote}
+Para clasificar una nueva observación, buscamos las observaciones más
+parecidas a ella y le asignamos la clase más frecuente entre sus
+vecinos.
+\end{quote}
+
+\section{Idea intuitiva del método}\label{idea-intuitiva-del-muxe9todo}
+
+Supongamos que tenemos un nuevo accidente que queremos clasificar.
+
+El algoritmo k-NN hace lo siguiente:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Calcula la distancia entre el nuevo accidente y los accidentes
+  históricos.
+\item
+  Encuentra los (k) accidentes más cercanos.
+\item
+  Revisa la clase de esos vecinos.
+\item
+  Asigna la clase más frecuente.
+\end{enumerate}
+
+Si usamos (k = 5) y los cinco vecinos más cercanos tienen estas clases:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Solo daños}
+\NormalTok{Solo daños}
+\NormalTok{Con víctimas}
+\NormalTok{Solo daños}
+\NormalTok{Solo daños}
+\end{Highlighting}
+\end{Shaded}
+
+entonces la clase más frecuente es:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Solo daños}
+\end{Highlighting}
+\end{Shaded}
+
+\section{¿Qué significa k?}\label{quuxe9-significa-k}
+
+La letra (k) indica cuántos vecinos se usarán para clasificar una
+observación.
+
+Algunos ejemplos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{k = 1   → se usa el vecino más cercano}
+\NormalTok{k = 3   → se usan los 3 vecinos más cercanos}
+\NormalTok{k = 5   → se usan los 5 vecinos más cercanos}
+\NormalTok{k = 11  → se usan los 11 vecinos más cercanos}
+\end{Highlighting}
+\end{Shaded}
+
+El valor de (k) es importante.
+
+Si (k) es muy pequeño, el modelo puede ser muy sensible al ruido.
+
+Si (k) es muy grande, el modelo puede volverse demasiado general y
+perder detalles locales.
+
+\section{Ejemplo sencillo con puntos}\label{ejemplo-sencillo-con-puntos}
+
+Antes de usar la base real de accidentes, construiremos un ejemplo
+pequeño.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{datos\_ejemplo }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{hora =} \FunctionTok{c}\NormalTok{(}\DecValTok{8}\NormalTok{, }\DecValTok{9}\NormalTok{, }\DecValTok{10}\NormalTok{, }\DecValTok{18}\NormalTok{, }\DecValTok{19}\NormalTok{, }\DecValTok{20}\NormalTok{, }\DecValTok{22}\NormalTok{, }\DecValTok{23}\NormalTok{),}
+  \AttributeTok{mes =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{7}\NormalTok{, }\DecValTok{12}\NormalTok{, }\DecValTok{12}\NormalTok{),}
+  \AttributeTok{clase =} \FunctionTok{c}\NormalTok{(}
+    \StringTok{"Solo daños"}\NormalTok{, }\StringTok{"Solo daños"}\NormalTok{, }\StringTok{"Solo daños"}\NormalTok{,}
+    \StringTok{"Con víctimas"}\NormalTok{, }\StringTok{"Con víctimas"}\NormalTok{, }\StringTok{"Con víctimas"}\NormalTok{,}
+    \StringTok{"Con víctimas"}\NormalTok{, }\StringTok{"Con víctimas"}
+\NormalTok{  )}
+\NormalTok{)}
+
+\NormalTok{datos\_ejemplo}
+\end{Highlighting}
+\end{Shaded}
+
+Graficamos estos puntos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+
+\FunctionTok{ggplot}\NormalTok{(datos\_ejemplo, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ hora, }\AttributeTok{y =}\NormalTok{ mes, }\AttributeTok{color =}\NormalTok{ clase)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{size =} \DecValTok{4}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"Ejemplo intuitivo de k{-}NN"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{"Hora"}\NormalTok{,}
+    \AttributeTok{y =} \StringTok{"Mes"}\NormalTok{,}
+    \AttributeTok{color =} \StringTok{"Clase"}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Distancia euclidiana}\label{distancia-euclidiana}
+
+k-NN necesita medir qué tan parecidas son dos observaciones.
+
+Una forma común de hacerlo es mediante la \textbf{distancia euclidiana}.
+
+Para dos puntos:
+
+{[} A = (x\_1, y\_1) {]}
+
+y
+
+{[} B = (x\_2, y\_2) {]}
+
+la distancia euclidiana es:
+
+{[} d(A,B) = \sqrt{(x_1 - x_2)^2 + (y_1 - y_2)^2} {]}
+
+\section{Fundamento matemático de
+k-NN}\label{fundamento-matemuxe1tico-de-k-nn}
+
+Sea (x\_0) una nueva observación que queremos clasificar.
+
+Sea (x\_i) una observación del conjunto de entrenamiento.
+
+Si tenemos (p) variables predictoras, podemos escribir:
+
+{[} x\_0 = (x\_\{01\}, x\_\{02\}, \ldots, x\_\{0p\}) {]}
+
+y
+
+{[} x\_i = (x\_\{i1\}, x\_\{i2\}, \ldots, x\_\{ip\}) {]}
+
+La distancia euclidiana entre (x\_0) y (x\_i) se define como:
+
+{[} d(x\_0, x\_i) = \sqrt{
+\sum_{j=1}^{p}
+(x_{0j} - x_{ij})^2
+} {]}
+
+El método k-NN calcula esta distancia entre (x\_0) y todas las
+observaciones de entrenamiento.
+
+Después selecciona las (k) observaciones con menor distancia.
+
+Si las clases de los (k) vecinos más cercanos son:
+
+{[} y\_\{(1)\}, y\_\{(2)\}, \ldots, y\_\{(k)\} {]}
+
+entonces la clase predicha se obtiene por mayoría de votos:
+
+{[} \hat{y}\emph{0 = \operatorname{moda} \left( y}\{(1)\}, y\_\{(2)\},
+\ldots, y\_\{(k)\} \right) {]}
+
+donde:
+
+\begin{itemize}
+\tightlist
+\item
+  (y\_\{(1)\}) es la clase del vecino más cercano;
+\item
+  (y\_\{(2)\}) es la clase del segundo vecino más cercano;
+\item
+  (y\_\{(k)\}) es la clase del vecino (k)-ésimo más cercano.
+\end{itemize}
+
+\section{Ejemplo de cálculo de
+distancia}\label{ejemplo-de-cuxe1lculo-de-distancia}
+
+Calculemos la distancia entre dos accidentes.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x1 }\OtherTok{\textless{}{-}} \DecValTok{8}
+\NormalTok{y1 }\OtherTok{\textless{}{-}} \DecValTok{1}
+
+\NormalTok{x2 }\OtherTok{\textless{}{-}} \DecValTok{10}
+\NormalTok{y2 }\OtherTok{\textless{}{-}} \DecValTok{2}
+
+\NormalTok{distancia }\OtherTok{\textless{}{-}} \FunctionTok{sqrt}\NormalTok{((x1 }\SpecialCharTok{{-}}\NormalTok{ x2)}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+}\NormalTok{ (y1 }\SpecialCharTok{{-}}\NormalTok{ y2)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+
+\NormalTok{distancia}
+\end{Highlighting}
+\end{Shaded}
+
+La distancia indica qué tan separados están los dos accidentes en el
+espacio definido por las variables hora y mes.
+
+\section{Estandarización de
+variables}\label{estandarizaciuxf3n-de-variables}
+
+Como k-NN depende de distancias, es importante que las variables estén
+en escalas comparables.
+
+Una forma común de estandarizar una variable (X\_j) es:
+
+{[} z\_\{ij\} = \frac{x_{ij} - \bar{x}_j}{s_j} {]}
+
+donde:
+
+\begin{itemize}
+\tightlist
+\item
+  (x\_\{ij\}) es el valor original de la variable (j) en la observación
+  (i);
+\item
+  (\bar\{x\}\_j) es la media de la variable (j);
+\item
+  (s\_j) es la desviación estándar de la variable (j);
+\item
+  (z\_\{ij\}) es el valor estandarizado.
+\end{itemize}
+
+Después de esta transformación, la variable tiene media aproximadamente
+0 y desviación estándar aproximadamente 1.
+
+Esto evita que una variable con valores grandes domine artificialmente
+el cálculo de distancias.
+
+\section{k-NN con variables
+categóricas}\label{k-nn-con-variables-categuxf3ricas}
+
+El método k-NN funciona naturalmente con variables numéricas, porque se
+basa en distancias.
+
+Pero muchas bases reales, como ATUS, tienen variables categóricas:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DIASEMANA}
+\NormalTok{TIPACCID}
+\NormalTok{CAUSAACCI}
+\end{Highlighting}
+\end{Shaded}
+
+Para usar k-NN con estas variables, necesitamos transformarlas en
+variables numéricas.
+
+Una estrategia común es crear variables indicadoras, también llamadas
+variables \emph{dummy}.
+
+\section{Algoritmo k-NN}\label{algoritmo-k-nn}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Algoritmo: k vecinos más cercanos}
+
+\NormalTok{Entrada:}
+\NormalTok{  {-} Matriz de entrenamiento X}
+\NormalTok{  {-} Clases de entrenamiento Y}
+\NormalTok{  {-} Nueva observación x\_0}
+\NormalTok{  {-} Número de vecinos k}
+
+\NormalTok{Proceso:}
+\NormalTok{  1. Estandarizar las variables predictoras.}
+\NormalTok{  2. Calcular la distancia entre x\_0 y cada observación de entrenamiento.}
+\NormalTok{  3. Ordenar las distancias de menor a mayor.}
+\NormalTok{  4. Seleccionar los k vecinos más cercanos.}
+\NormalTok{  5. Revisar las clases de esos k vecinos.}
+\NormalTok{  6. Contar cuántas veces aparece cada clase.}
+\NormalTok{  7. Asignar a x\_0 la clase más frecuente.}
+
+\NormalTok{Salida:}
+\NormalTok{  {-} Clase predicha para x\_0}
+\end{Highlighting}
+\end{Shaded}
+
+k-NN es conceptualmente sencillo, pero computacionalmente puede ser
+costoso cuando la base es grande, porque necesita calcular muchas
+distancias.
+
+\section{Cargar paquetes}\label{cargar-paquetes-3}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(readr)}
+\FunctionTok{library}\NormalTok{(dplyr)}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{library}\NormalTok{(class)}
+\end{Highlighting}
+\end{Shaded}
+
+Si alguno no está instalado, puedes instalarlo con:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{install.packages}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"readr"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{, }\StringTok{"ggplot2"}\NormalTok{, }\StringTok{"class"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Cargar la base preparada}\label{cargar-la-base-preparada-2}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ruta\_atus\_ml }\OtherTok{\textless{}{-}} \StringTok{"datos/atus\_ml\_preparado.csv"}
+\FunctionTok{file.exists}\NormalTok{(ruta\_atus\_ml)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{file.exists}\NormalTok{(ruta\_atus\_ml)) \{}
+\NormalTok{  atus\_ml }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}
+\NormalTok{    ruta\_atus\_ml,}
+    \AttributeTok{show\_col\_types =} \ConstantTok{FALSE}
+\NormalTok{  )}
+
+  \FunctionTok{print}\NormalTok{(}\StringTok{"Base preparada cargada correctamente."}\NormalTok{)}
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{  atus\_ml }\OtherTok{\textless{}{-}} \ConstantTok{NULL}
+  \FunctionTok{print}\NormalTok{(}\StringTok{"No se encontró el archivo datos/atus\_ml\_preparado.csv. Ejecuta primero el capítulo 2."}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Selección de una muestra para
+k-NN}\label{selecciuxf3n-de-una-muestra-para-k-nn}
+
+La base ATUS contiene muchos registros. k-NN puede volverse lento porque
+calcula distancias entre observaciones.
+
+Para mantener el capítulo didáctico y permitir que el libro se renderice
+con rapidez, trabajaremos con una muestra aleatoria de la base.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(atus\_ml)) \{}
+  \FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\NormalTok{  tamano\_muestra }\OtherTok{\textless{}{-}} \FunctionTok{min}\NormalTok{(}\DecValTok{12000}\NormalTok{, }\FunctionTok{nrow}\NormalTok{(atus\_ml))}
+
+\NormalTok{  atus\_knn\_base }\OtherTok{\textless{}{-}}\NormalTok{ atus\_ml }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{sample\_n}\NormalTok{(tamano\_muestra)}
+
+  \FunctionTok{dim}\NormalTok{(atus\_knn\_base)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Preparar variables para
+k-NN}\label{preparar-variables-para-k-nn}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"atus\_knn\_base"}\NormalTok{)) \{}
+\NormalTok{  atus\_knn\_base }\OtherTok{\textless{}{-}}\NormalTok{ atus\_knn\_base }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{mutate}\NormalTok{(}
+      \AttributeTok{accidente\_con\_victimas =} \FunctionTok{factor}\NormalTok{(}
+\NormalTok{        accidente\_con\_victimas,}
+        \AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Con víctimas"}\NormalTok{, }\StringTok{"Solo daños"}\NormalTok{)}
+\NormalTok{      ),}
+      \AttributeTok{MES =} \FunctionTok{as.factor}\NormalTok{(MES),}
+      \AttributeTok{ID\_HORA =} \FunctionTok{as.numeric}\NormalTok{(ID\_HORA),}
+      \AttributeTok{DIASEMANA =} \FunctionTok{as.factor}\NormalTok{(DIASEMANA),}
+      \AttributeTok{TIPACCID =} \FunctionTok{as.factor}\NormalTok{(TIPACCID),}
+      \AttributeTok{CAUSAACCI =} \FunctionTok{as.factor}\NormalTok{(CAUSAACCI)}
+\NormalTok{    ) }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{na.omit}\NormalTok{()}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"atus\_knn\_base"}\NormalTok{)) \{}
+  \FunctionTok{table}\NormalTok{(atus\_knn\_base}\SpecialCharTok{$}\NormalTok{accidente\_con\_victimas)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"atus\_knn\_base"}\NormalTok{)) \{}
+  \FunctionTok{round}\NormalTok{(}\DecValTok{100} \SpecialCharTok{*} \FunctionTok{prop.table}\NormalTok{(}\FunctionTok{table}\NormalTok{(atus\_knn\_base}\SpecialCharTok{$}\NormalTok{accidente\_con\_victimas)), }\DecValTok{2}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Crear variables dummy}\label{crear-variables-dummy}
+
+Para usar k-NN necesitamos una matriz numérica de variables predictoras.
+
+Usaremos \texttt{model.matrix()} para convertir variables categóricas en
+variables dummy.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"atus\_knn\_base"}\NormalTok{)) \{}
+\NormalTok{  matriz\_predictoras }\OtherTok{\textless{}{-}} \FunctionTok{model.matrix}\NormalTok{(}
+    \SpecialCharTok{\textasciitilde{}}\NormalTok{ ID\_HORA }\SpecialCharTok{+}\NormalTok{ MES }\SpecialCharTok{+}\NormalTok{ DIASEMANA }\SpecialCharTok{+}\NormalTok{ TIPACCID }\SpecialCharTok{+}\NormalTok{ CAUSAACCI }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{,}
+    \AttributeTok{data =}\NormalTok{ atus\_knn\_base}
+\NormalTok{  )}
+
+  \FunctionTok{dim}\NormalTok{(matriz\_predictoras)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Variable respuesta}\label{variable-respuesta-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"atus\_knn\_base"}\NormalTok{)) \{}
+\NormalTok{  y }\OtherTok{\textless{}{-}}\NormalTok{ atus\_knn\_base}\SpecialCharTok{$}\NormalTok{accidente\_con\_victimas}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\section{División en entrenamiento y
+prueba}\label{divisiuxf3n-en-entrenamiento-y-prueba-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"matriz\_predictoras"}\NormalTok{) }\SpecialCharTok{\&\&} \FunctionTok{exists}\NormalTok{(}\StringTok{"y"}\NormalTok{)) \{}
+  \FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\NormalTok{  n }\OtherTok{\textless{}{-}} \FunctionTok{nrow}\NormalTok{(matriz\_predictoras)}
+
+\NormalTok{  indices\_entrenamiento }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(}
+    \DecValTok{1}\SpecialCharTok{:}\NormalTok{n,}
+    \AttributeTok{size =} \FunctionTok{round}\NormalTok{(}\FloatTok{0.7} \SpecialCharTok{*}\NormalTok{ n)}
+\NormalTok{  )}
+
+\NormalTok{  x\_entrenamiento }\OtherTok{\textless{}{-}}\NormalTok{ matriz\_predictoras[indices\_entrenamiento, ]}
+\NormalTok{  x\_prueba }\OtherTok{\textless{}{-}}\NormalTok{ matriz\_predictoras[}\SpecialCharTok{{-}}\NormalTok{indices\_entrenamiento, ]}
+
+\NormalTok{  y\_entrenamiento }\OtherTok{\textless{}{-}}\NormalTok{ y[indices\_entrenamiento]}
+\NormalTok{  y\_prueba }\OtherTok{\textless{}{-}}\NormalTok{ y[}\SpecialCharTok{{-}}\NormalTok{indices\_entrenamiento]}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"x\_entrenamiento"}\NormalTok{) }\SpecialCharTok{\&\&} \FunctionTok{exists}\NormalTok{(}\StringTok{"x\_prueba"}\NormalTok{)) \{}
+  \FunctionTok{data.frame}\NormalTok{(}
+    \AttributeTok{conjunto =} \FunctionTok{c}\NormalTok{(}\StringTok{"Entrenamiento"}\NormalTok{, }\StringTok{"Prueba"}\NormalTok{),}
+    \AttributeTok{registros =} \FunctionTok{c}\NormalTok{(}\FunctionTok{nrow}\NormalTok{(x\_entrenamiento), }\FunctionTok{nrow}\NormalTok{(x\_prueba)),}
+    \AttributeTok{porcentaje =} \FunctionTok{c}\NormalTok{(}
+      \FunctionTok{round}\NormalTok{(}\DecValTok{100} \SpecialCharTok{*} \FunctionTok{nrow}\NormalTok{(x\_entrenamiento) }\SpecialCharTok{/} \FunctionTok{nrow}\NormalTok{(matriz\_predictoras), }\DecValTok{2}\NormalTok{),}
+      \FunctionTok{round}\NormalTok{(}\DecValTok{100} \SpecialCharTok{*} \FunctionTok{nrow}\NormalTok{(x\_prueba) }\SpecialCharTok{/} \FunctionTok{nrow}\NormalTok{(matriz\_predictoras), }\DecValTok{2}\NormalTok{)}
+\NormalTok{    )}
+\NormalTok{  )}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Estandarización de
+variables}\label{estandarizaciuxf3n-de-variables-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"x\_entrenamiento"}\NormalTok{) }\SpecialCharTok{\&\&} \FunctionTok{exists}\NormalTok{(}\StringTok{"x\_prueba"}\NormalTok{)) \{}
+\NormalTok{  medias }\OtherTok{\textless{}{-}} \FunctionTok{apply}\NormalTok{(x\_entrenamiento, }\DecValTok{2}\NormalTok{, mean)}
+\NormalTok{  desviaciones }\OtherTok{\textless{}{-}} \FunctionTok{apply}\NormalTok{(x\_entrenamiento, }\DecValTok{2}\NormalTok{, sd)}
+
+\NormalTok{  desviaciones[desviaciones }\SpecialCharTok{==} \DecValTok{0}\NormalTok{] }\OtherTok{\textless{}{-}} \DecValTok{1}
+
+\NormalTok{  x\_entrenamiento\_esc }\OtherTok{\textless{}{-}} \FunctionTok{scale}\NormalTok{(}
+\NormalTok{    x\_entrenamiento,}
+    \AttributeTok{center =}\NormalTok{ medias,}
+    \AttributeTok{scale =}\NormalTok{ desviaciones}
+\NormalTok{  )}
+
+\NormalTok{  x\_prueba\_esc }\OtherTok{\textless{}{-}} \FunctionTok{scale}\NormalTok{(}
+\NormalTok{    x\_prueba,}
+    \AttributeTok{center =}\NormalTok{ medias,}
+    \AttributeTok{scale =}\NormalTok{ desviaciones}
+\NormalTok{  )}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Esta forma de escalar evita que usemos información del conjunto de
+prueba durante el entrenamiento.
+
+\section{Ajuste del modelo k-NN con k =
+5}\label{ajuste-del-modelo-k-nn-con-k-5}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"x\_entrenamiento\_esc"}\NormalTok{) }\SpecialCharTok{\&\&} \FunctionTok{exists}\NormalTok{(}\StringTok{"x\_prueba\_esc"}\NormalTok{)) \{}
+\NormalTok{  pred\_knn\_5 }\OtherTok{\textless{}{-}} \FunctionTok{knn}\NormalTok{(}
+    \AttributeTok{train =}\NormalTok{ x\_entrenamiento\_esc,}
+    \AttributeTok{test =}\NormalTok{ x\_prueba\_esc,}
+    \AttributeTok{cl =}\NormalTok{ y\_entrenamiento,}
+    \AttributeTok{k =} \DecValTok{5}
+\NormalTok{  )}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"pred\_knn\_5"}\NormalTok{)) \{}
+  \FunctionTok{head}\NormalTok{(}
+    \FunctionTok{data.frame}\NormalTok{(}
+      \AttributeTok{real =}\NormalTok{ y\_prueba,}
+      \AttributeTok{predicho =}\NormalTok{ pred\_knn\_5}
+\NormalTok{    )}
+\NormalTok{  )}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Matriz de confusión}\label{matriz-de-confusiuxf3n-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"pred\_knn\_5"}\NormalTok{)) \{}
+\NormalTok{  pred\_knn\_5 }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(}
+\NormalTok{    pred\_knn\_5,}
+    \AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Con víctimas"}\NormalTok{, }\StringTok{"Solo daños"}\NormalTok{)}
+\NormalTok{  )}
+
+\NormalTok{  y\_prueba }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(}
+\NormalTok{    y\_prueba,}
+    \AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Con víctimas"}\NormalTok{, }\StringTok{"Solo daños"}\NormalTok{)}
+\NormalTok{  )}
+
+\NormalTok{  matriz\_confusion\_knn\_5 }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(}
+    \AttributeTok{Real =}\NormalTok{ y\_prueba,}
+    \AttributeTok{Predicho =}\NormalTok{ pred\_knn\_5}
+\NormalTok{  )}
+
+\NormalTok{  matriz\_confusion\_knn\_5}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Métricas de evaluación}\label{muxe9tricas-de-evaluaciuxf3n-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"matriz\_confusion\_knn\_5"}\NormalTok{)) \{}
+\NormalTok{  VP }\OtherTok{\textless{}{-}}\NormalTok{ matriz\_confusion\_knn\_5[}\StringTok{"Con víctimas"}\NormalTok{, }\StringTok{"Con víctimas"}\NormalTok{]}
+\NormalTok{  FN }\OtherTok{\textless{}{-}}\NormalTok{ matriz\_confusion\_knn\_5[}\StringTok{"Con víctimas"}\NormalTok{, }\StringTok{"Solo daños"}\NormalTok{]}
+\NormalTok{  FP }\OtherTok{\textless{}{-}}\NormalTok{ matriz\_confusion\_knn\_5[}\StringTok{"Solo daños"}\NormalTok{, }\StringTok{"Con víctimas"}\NormalTok{]}
+\NormalTok{  VN }\OtherTok{\textless{}{-}}\NormalTok{ matriz\_confusion\_knn\_5[}\StringTok{"Solo daños"}\NormalTok{, }\StringTok{"Solo daños"}\NormalTok{]}
+
+  \FunctionTok{data.frame}\NormalTok{(}
+    \AttributeTok{medida =} \FunctionTok{c}\NormalTok{(}\StringTok{"VP"}\NormalTok{, }\StringTok{"FN"}\NormalTok{, }\StringTok{"FP"}\NormalTok{, }\StringTok{"VN"}\NormalTok{),}
+    \AttributeTok{nombre =} \FunctionTok{c}\NormalTok{(}
+      \StringTok{"Verdaderos positivos"}\NormalTok{,}
+      \StringTok{"Falsos negativos"}\NormalTok{,}
+      \StringTok{"Falsos positivos"}\NormalTok{,}
+      \StringTok{"Verdaderos negativos"}
+\NormalTok{    ),}
+    \AttributeTok{descripcion =} \FunctionTok{c}\NormalTok{(}
+      \StringTok{"Con víctimas clasificado como Con víctimas"}\NormalTok{,}
+      \StringTok{"Con víctimas clasificado como Solo daños"}\NormalTok{,}
+      \StringTok{"Solo daños clasificado como Con víctimas"}\NormalTok{,}
+      \StringTok{"Solo daños clasificado como Solo daños"}
+\NormalTok{    ),}
+    \AttributeTok{valor =} \FunctionTok{c}\NormalTok{(VP, FN, FP, VN)}
+\NormalTok{  )}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"VP"}\NormalTok{)) \{}
+\NormalTok{  exactitud\_knn\_5 }\OtherTok{\textless{}{-}}\NormalTok{ (VP }\SpecialCharTok{+}\NormalTok{ VN) }\SpecialCharTok{/}\NormalTok{ (VP }\SpecialCharTok{+}\NormalTok{ FN }\SpecialCharTok{+}\NormalTok{ FP }\SpecialCharTok{+}\NormalTok{ VN)}
+\NormalTok{  sensibilidad\_knn\_5 }\OtherTok{\textless{}{-}}\NormalTok{ VP }\SpecialCharTok{/}\NormalTok{ (VP }\SpecialCharTok{+}\NormalTok{ FN)}
+\NormalTok{  especificidad\_knn\_5 }\OtherTok{\textless{}{-}}\NormalTok{ VN }\SpecialCharTok{/}\NormalTok{ (VN }\SpecialCharTok{+}\NormalTok{ FP)}
+
+  \FunctionTok{data.frame}\NormalTok{(}
+    \AttributeTok{k =} \DecValTok{5}\NormalTok{,}
+    \AttributeTok{exactitud =}\NormalTok{ exactitud\_knn\_5,}
+    \AttributeTok{sensibilidad =}\NormalTok{ sensibilidad\_knn\_5,}
+    \AttributeTok{especificidad =}\NormalTok{ especificidad\_knn\_5}
+\NormalTok{  )}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Interpretación de las
+métricas}\label{interpretaciuxf3n-de-las-muxe9tricas}
+
+La exactitud indica la proporción total de clasificaciones correctas.
+
+La sensibilidad indica qué proporción de accidentes con víctimas fueron
+detectados correctamente.
+
+La especificidad indica qué proporción de accidentes de solo daños
+fueron clasificados correctamente.
+
+Como ya vimos en el capítulo anterior, esta base está desbalanceada. Por
+eso no debemos evaluar el modelo solo con exactitud.
+
+\section{Comparación con distintos valores de
+k}\label{comparaciuxf3n-con-distintos-valores-de-k}
+
+El valor de (k) puede afectar los resultados.
+
+Probaremos tres valores:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{k = 3}
+\NormalTok{k = 5}
+\NormalTok{k = 11}
+\end{Highlighting}
+\end{Shaded}
+
+Primero creamos una función para calcular métricas.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{calcular\_metricas }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(real, predicho) \{}
+
+\NormalTok{  real }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(real, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Con víctimas"}\NormalTok{, }\StringTok{"Solo daños"}\NormalTok{))}
+\NormalTok{  predicho }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(predicho, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Con víctimas"}\NormalTok{, }\StringTok{"Solo daños"}\NormalTok{))}
+
+\NormalTok{  matriz }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(}
+    \AttributeTok{Real =}\NormalTok{ real,}
+    \AttributeTok{Predicho =}\NormalTok{ predicho}
+\NormalTok{  )}
+
+\NormalTok{  VP }\OtherTok{\textless{}{-}}\NormalTok{ matriz[}\StringTok{"Con víctimas"}\NormalTok{, }\StringTok{"Con víctimas"}\NormalTok{]}
+\NormalTok{  FN }\OtherTok{\textless{}{-}}\NormalTok{ matriz[}\StringTok{"Con víctimas"}\NormalTok{, }\StringTok{"Solo daños"}\NormalTok{]}
+\NormalTok{  FP }\OtherTok{\textless{}{-}}\NormalTok{ matriz[}\StringTok{"Solo daños"}\NormalTok{, }\StringTok{"Con víctimas"}\NormalTok{]}
+\NormalTok{  VN }\OtherTok{\textless{}{-}}\NormalTok{ matriz[}\StringTok{"Solo daños"}\NormalTok{, }\StringTok{"Solo daños"}\NormalTok{]}
+
+\NormalTok{  exactitud }\OtherTok{\textless{}{-}}\NormalTok{ (VP }\SpecialCharTok{+}\NormalTok{ VN) }\SpecialCharTok{/}\NormalTok{ (VP }\SpecialCharTok{+}\NormalTok{ FN }\SpecialCharTok{+}\NormalTok{ FP }\SpecialCharTok{+}\NormalTok{ VN)}
+\NormalTok{  sensibilidad }\OtherTok{\textless{}{-}}\NormalTok{ VP }\SpecialCharTok{/}\NormalTok{ (VP }\SpecialCharTok{+}\NormalTok{ FN)}
+\NormalTok{  especificidad }\OtherTok{\textless{}{-}}\NormalTok{ VN }\SpecialCharTok{/}\NormalTok{ (VN }\SpecialCharTok{+}\NormalTok{ FP)}
+
+  \FunctionTok{data.frame}\NormalTok{(}
+    \AttributeTok{exactitud =}\NormalTok{ exactitud,}
+    \AttributeTok{sensibilidad =}\NormalTok{ sensibilidad,}
+    \AttributeTok{especificidad =}\NormalTok{ especificidad}
+\NormalTok{  )}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"x\_entrenamiento\_esc"}\NormalTok{) }\SpecialCharTok{\&\&} \FunctionTok{exists}\NormalTok{(}\StringTok{"x\_prueba\_esc"}\NormalTok{)) \{}
+
+\NormalTok{  valores\_k }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{11}\NormalTok{)}
+
+\NormalTok{  resultados\_knn }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{()}
+
+  \ControlFlowTok{for}\NormalTok{ (k\_actual }\ControlFlowTok{in}\NormalTok{ valores\_k) \{}
+
+\NormalTok{    pred\_actual }\OtherTok{\textless{}{-}} \FunctionTok{knn}\NormalTok{(}
+      \AttributeTok{train =}\NormalTok{ x\_entrenamiento\_esc,}
+      \AttributeTok{test =}\NormalTok{ x\_prueba\_esc,}
+      \AttributeTok{cl =}\NormalTok{ y\_entrenamiento,}
+      \AttributeTok{k =}\NormalTok{ k\_actual}
+\NormalTok{    )}
+
+\NormalTok{    metricas\_actuales }\OtherTok{\textless{}{-}} \FunctionTok{calcular\_metricas}\NormalTok{(}
+      \AttributeTok{real =}\NormalTok{ y\_prueba,}
+      \AttributeTok{predicho =}\NormalTok{ pred\_actual}
+\NormalTok{    )}
+
+\NormalTok{    metricas\_actuales}\SpecialCharTok{$}\NormalTok{k }\OtherTok{\textless{}{-}}\NormalTok{ k\_actual}
+
+\NormalTok{    resultados\_knn }\OtherTok{\textless{}{-}} \FunctionTok{rbind}\NormalTok{(}
+\NormalTok{      resultados\_knn,}
+\NormalTok{      metricas\_actuales}
+\NormalTok{    )}
+\NormalTok{  \}}
+
+\NormalTok{  resultados\_knn }\OtherTok{\textless{}{-}}\NormalTok{ resultados\_knn }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{select}\NormalTok{(k, exactitud, sensibilidad, especificidad)}
+
+\NormalTok{  resultados\_knn}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Gráfica de comparación}\label{gruxe1fica-de-comparaciuxf3n}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"resultados\_knn"}\NormalTok{)) \{}
+
+\NormalTok{  resultados\_largos }\OtherTok{\textless{}{-}}\NormalTok{ resultados\_knn }\SpecialCharTok{|\textgreater{}}
+\NormalTok{    tidyr}\SpecialCharTok{::}\FunctionTok{pivot\_longer}\NormalTok{(}
+      \AttributeTok{cols =} \FunctionTok{c}\NormalTok{(exactitud, sensibilidad, especificidad),}
+      \AttributeTok{names\_to =} \StringTok{"metrica"}\NormalTok{,}
+      \AttributeTok{values\_to =} \StringTok{"valor"}
+\NormalTok{    )}
+
+  \FunctionTok{ggplot}\NormalTok{(resultados\_largos, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ k, }\AttributeTok{y =}\NormalTok{ valor, }\AttributeTok{group =}\NormalTok{ metrica)) }\SpecialCharTok{+}
+    \FunctionTok{geom\_line}\NormalTok{() }\SpecialCharTok{+}
+    \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{size =} \DecValTok{3}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{breaks =}\NormalTok{ valores\_k) }\SpecialCharTok{+}
+    \FunctionTok{labs}\NormalTok{(}
+      \AttributeTok{title =} \StringTok{"Comparación de métricas para distintos valores de k"}\NormalTok{,}
+      \AttributeTok{x =} \StringTok{"Valor de k"}\NormalTok{,}
+      \AttributeTok{y =} \StringTok{"Valor de la métrica"}\NormalTok{,}
+      \AttributeTok{group =} \StringTok{"Métrica"}
+\NormalTok{    )}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Interpretación de la
+comparación}\label{interpretaciuxf3n-de-la-comparaciuxf3n}
+
+El valor de (k) influye en el comportamiento del modelo.
+
+Con valores pequeños de (k), el modelo puede reaccionar mucho a
+observaciones individuales. Esto puede hacerlo sensible al ruido.
+
+Con valores grandes de (k), el modelo toma decisiones más suaves, pero
+puede perder capacidad para detectar patrones locales.
+
+No existe un valor de (k) universalmente mejor. Debe elegirse evaluando
+el desempeño del modelo y considerando el objetivo del problema.
+
+\section{Comparación conceptual con regresión
+logística}\label{comparaciuxf3n-conceptual-con-regresiuxf3n-loguxedstica}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Aspecto
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Regresión logística
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+k-NN
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Tipo de modelo & Paramétrico & No paramétrico \\
+Produce modelo explícito & Sí & No en el mismo sentido \\
+Usa distancias & No & Sí \\
+Requiere escalamiento & No siempre & Sí \\
+Interpretable & Alta & Media o baja \\
+Sensible a muchas variables & Moderadamente & Sí \\
+Costo de predicción & Bajo & Puede ser alto \\
+Manejo natural de categóricas & Sí, con factores & Requiere
+transformación \\
+\end{longtable}
+}
+
+\section{Ventajas de k-NN}\label{ventajas-de-k-nn}
+
+Algunas ventajas de k-NN son:
+
+\begin{itemize}
+\tightlist
+\item
+  es fácil de entender;
+\item
+  no requiere asumir una forma funcional específica;
+\item
+  puede capturar fronteras de decisión no lineales;
+\item
+  es útil como método introductorio de clasificación;
+\item
+  permite explicar visualmente la idea de cercanía y similitud.
+\end{itemize}
+
+\section{Limitaciones de k-NN}\label{limitaciones-de-k-nn}
+
+k-NN también tiene limitaciones importantes:
+
+\begin{itemize}
+\tightlist
+\item
+  puede ser lento con bases grandes;
+\item
+  depende mucho de la escala de las variables;
+\item
+  puede verse afectado por variables irrelevantes;
+\item
+  no maneja variables categóricas directamente;
+\item
+  requiere elegir el valor de (k);
+\item
+  puede tener dificultades en espacios de muchas dimensiones;
+\item
+  no produce una ecuación interpretable como la regresión logística.
+\end{itemize}
+
+\section{¿Qué aprendimos?}\label{quuxe9-aprendimos-1}
+
+En este capítulo aprendimos que:
+
+\begin{itemize}
+\tightlist
+\item
+  k-NN clasifica una observación según sus vecinos más cercanos;
+\item
+  el parámetro (k) indica cuántos vecinos se consideran;
+\item
+  el método depende de una medida de distancia;
+\item
+  las variables deben estar en una escala comparable;
+\item
+  las variables categóricas deben transformarse antes de usar k-NN;
+\item
+  el desempeño cambia según el valor de (k);
+\item
+  en bases desbalanceadas debemos revisar más que la exactitud.
+\end{itemize}
+
+\section{Conclusión}\label{conclusiuxf3n-3}
+
+k-NN es uno de los métodos más intuitivos del aprendizaje automático.
+
+Aunque es sencillo de explicar, requiere cuidado en la preparación de
+los datos, especialmente en el escalamiento y en el tratamiento de
+variables categóricas.
+
+En este capítulo usamos k-NN para clasificar accidentes de tránsito
+según la presencia de víctimas.
+
+En el siguiente capítulo estudiaremos un método muy importante por su
+interpretabilidad: \textbf{árboles de decisión}.
+
+
+\backmatter
+
+
+\end{document}

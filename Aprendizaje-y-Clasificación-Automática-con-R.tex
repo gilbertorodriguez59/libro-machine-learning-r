@@ -311,6 +311,14 @@ libro}\label{estructura-inicial-del-libro}
 \chapter{¿Qué es el aprendizaje
 automático?}\label{quuxe9-es-el-aprendizaje-automuxe1tico}
 
+\textbf{Explicación del código.}\\
+Este bloque muestra una operación básica en R para construir, revisar o
+transformar datos.
+
+\textbf{Interpretación del resultado.}\\
+La salida ayuda a verificar que el procedimiento se realizó
+correctamente y prepara el camino para el análisis posterior.
+
 \section{Objetivos del capítulo}\label{objetivos-del-capuxedtulo}
 
 Al finalizar este capítulo, el lector será capaz de:
@@ -360,6 +368,18 @@ En la programación tradicional, una persona escribe reglas explícitas.
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+[1] "Contaminación alta"
+\end{verbatim}
+
+\textbf{Explicación del código.}\\
+Este bloque muestra una operación básica en R para construir, revisar o
+transformar datos.
+
+\textbf{Interpretación del resultado.}\\
+La salida ayuda a verificar que el procedimiento se realizó
+correctamente y prepara el camino para el análisis posterior.
+
 En aprendizaje automático no le damos al sistema una regla fija. Le
 damos datos.
 
@@ -376,6 +396,30 @@ damos datos.
 \NormalTok{datos}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+   dia pm10 temperatura humedad clase
+1    1   42          25      40  Baja
+2    2   88          28      35  Alta
+3    3   55          22      60  Baja
+4    4  120          30      30  Alta
+5    5   63          24      55  Baja
+6    6   95          29      33  Alta
+7    7   38          21      65  Baja
+8    8  110          31      29  Alta
+9    9   72          27      42  Baja
+10  10  130          32      28  Alta
+11  11   47          23      62  Baja
+12  12   99          30      34  Alta
+\end{verbatim}
+
+\textbf{Explicación del código.}\\
+Este bloque muestra una operación básica en R para construir, revisar o
+transformar datos.
+
+\textbf{Interpretación del resultado.}\\
+La salida ayuda a verificar que el procedimiento se realizó
+correctamente y prepara el camino para el análisis posterior.
 
 \section{Variables predictoras y variable
 respuesta}\label{variables-predictoras-y-variable-respuesta}
@@ -552,6 +596,16 @@ automático}\label{flujo-general-de-un-proyecto-de-aprendizaje-automuxe1tico}
 \end{Highlighting}
 \end{Shaded}
 
+\pandocbounded{\includegraphics[keepaspectratio]{01-introduccion_files/figure-pdf/unnamed-chunk-4-1.png}}
+
+\textbf{Explicación del código.}\\
+Este bloque muestra una operación básica en R para construir, revisar o
+transformar datos.
+
+\textbf{Interpretación del resultado.}\\
+La salida ayuda a verificar que el procedimiento se realizó
+correctamente y prepara el camino para el análisis posterior.
+
 \section{División entre entrenamiento y
 prueba}\label{divisiuxf3n-entre-entrenamiento-y-prueba}
 
@@ -566,9 +620,42 @@ prueba}\label{divisiuxf3n-entre-entrenamiento-y-prueba}
 \NormalTok{prueba }\OtherTok{\textless{}{-}}\NormalTok{ datos[}\SpecialCharTok{{-}}\NormalTok{indices\_entrenamiento, ]}
 
 \NormalTok{entrenamiento}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+   dia pm10 temperatura humedad clase
+3    3   55          22      60  Baja
+12  12   99          30      34  Alta
+10  10  130          32      28  Alta
+2    2   88          28      35  Alta
+6    6   95          29      33  Alta
+11  11   47          23      62  Baja
+5    5   63          24      55  Baja
+4    4  120          30      30  Alta
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \NormalTok{prueba}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+  dia pm10 temperatura humedad clase
+1   1   42          25      40  Baja
+7   7   38          21      65  Baja
+8   8  110          31      29  Alta
+9   9   72          27      42  Baja
+\end{verbatim}
+
+\textbf{Explicación del código.}\\
+Este bloque muestra una operación básica en R para construir, revisar o
+transformar datos.
+
+\textbf{Interpretación del resultado.}\\
+La salida ayuda a verificar que el procedimiento se realizó
+correctamente y prepara el camino para el análisis posterior.
 
 \section{Primer clasificador sencillo basado en una
 regla}\label{primer-clasificador-sencillo-basado-en-una-regla}
@@ -579,6 +666,30 @@ regla}\label{primer-clasificador-sencillo-basado-en-una-regla}
 \NormalTok{datos[, }\FunctionTok{c}\NormalTok{(}\StringTok{"pm10"}\NormalTok{, }\StringTok{"clase"}\NormalTok{, }\StringTok{"prediccion\_regla"}\NormalTok{)]}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+   pm10 clase prediccion_regla
+1    42  Baja             Baja
+2    88  Alta             Alta
+3    55  Baja             Baja
+4   120  Alta             Alta
+5    63  Baja             Baja
+6    95  Alta             Alta
+7    38  Baja             Baja
+8   110  Alta             Alta
+9    72  Baja             Baja
+10  130  Alta             Alta
+11   47  Baja             Baja
+12   99  Alta             Alta
+\end{verbatim}
+
+\textbf{Explicación del código.}\\
+Este bloque muestra una operación básica en R para construir, revisar o
+transformar datos.
+
+\textbf{Interpretación del resultado.}\\
+La salida ayuda a verificar que el procedimiento se realizó
+correctamente y prepara el camino para el análisis posterior.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -591,12 +702,39 @@ regla}\label{primer-clasificador-sencillo-basado-en-una-regla}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+      Predicho
+Real   Alta Baja
+  Alta    6    0
+  Baja    0    6
+\end{verbatim}
+
+\textbf{Explicación del código.}\\
+Este bloque muestra una operación básica en R para construir, revisar o
+transformar datos.
+
+\textbf{Interpretación del resultado.}\\
+La salida ayuda a verificar que el procedimiento se realizó
+correctamente y prepara el camino para el análisis posterior.
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{exactitud }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{clase }\SpecialCharTok{==}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{prediccion\_regla)}
 \NormalTok{exactitud}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+[1] 1
+\end{verbatim}
+
+\textbf{Explicación del código.}\\
+Este bloque muestra una operación básica en R para construir, revisar o
+transformar datos.
+
+\textbf{Interpretación del resultado.}\\
+La salida ayuda a verificar que el procedimiento se realizó
+correctamente y prepara el camino para el análisis posterior.
 
 \section{Conclusión}\label{conclusiuxf3n}
 
@@ -608,6 +746,14 @@ una parte fundamental: la preparación de datos reales.
 
 \chapter{Preparación de datos
 reales}\label{preparaciuxf3n-de-datos-reales}
+
+\textbf{Explicación del código.}\\
+Este bloque muestra una operación básica en R para construir, revisar o
+transformar datos.
+
+\textbf{Interpretación del resultado.}\\
+La salida ayuda a verificar que el procedimiento se realizó
+correctamente y prepara el camino para el análisis posterior.
 
 \section{Objetivos del capítulo}\label{objetivos-del-capuxedtulo-1}
 
@@ -749,6 +895,14 @@ El archivo de datos debe llamarse:
 \end{Highlighting}
 \end{Shaded}
 
+\textbf{Explicación del código.}\\
+Este bloque muestra una operación básica en R para construir, revisar o
+transformar datos.
+
+\textbf{Interpretación del resultado.}\\
+La salida ayuda a verificar que el procedimiento se realizó
+correctamente y prepara el camino para el análisis posterior.
+
 Si alguno no está instalado:
 
 \begin{Shaded}
@@ -756,6 +910,14 @@ Si alguno no está instalado:
 \FunctionTok{install.packages}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"readr"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{, }\StringTok{"ggplot2"}\NormalTok{, }\StringTok{"stringr"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
+
+\textbf{Explicación del código.}\\
+Este bloque muestra una operación básica en R para construir, revisar o
+transformar datos.
+
+\textbf{Interpretación del resultado.}\\
+La salida ayuda a verificar que el procedimiento se realizó
+correctamente y prepara el camino para el análisis posterior.
 
 \section{Leer el archivo CSV}\label{leer-el-archivo-csv}
 
@@ -765,6 +927,18 @@ Si alguno no está instalado:
 \FunctionTok{file.exists}\NormalTok{(ruta\_atus)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+[1] TRUE
+\end{verbatim}
+
+\textbf{Explicación del código.}\\
+Este bloque muestra una operación básica en R para construir, revisar o
+transformar datos.
+
+\textbf{Interpretación del resultado.}\\
+La salida ayuda a verificar que el procedimiento se realizó
+correctamente y prepara el camino para el análisis posterior.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -782,6 +956,18 @@ Si alguno no está instalado:
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+[1] "Archivo leído correctamente."
+\end{verbatim}
+
+\textbf{Explicación del código.}\\
+Este bloque muestra una operación básica en R para construir, revisar o
+transformar datos.
+
+\textbf{Interpretación del resultado.}\\
+La salida ayuda a verificar que el procedimiento se realizó
+correctamente y prepara el camino para el análisis posterior.
+
 \section{Primer vistazo a los datos}\label{primer-vistazo-a-los-datos}
 
 \begin{Shaded}
@@ -793,6 +979,26 @@ Si alguno no está instalado:
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+ [1] "COBERTURA"    "ID_ENTIDAD"   "ID_MUNICIPIO" "ANIO"         "MES"         
+ [6] "ID_HORA"      "ID_MINUTO"    "ID_DIA"       "DIASEMANA"    "URBANA"      
+[11] "SUBURBANA"    "TIPACCID"     "AUTOMOVIL"    "CAMPASAJ"     "MICROBUS"    
+[16] "PASCAMION"    "OMNIBUS"      "TRANVIA"      "CAMIONETA"    "CAMION"      
+[21] "TRACTOR"      "FERROCARRI"   "MOTOCICLET"   "BICICLETA"    "OTROVEHIC"   
+[26] "CAUSAACCI"    "CAPAROD"      "SEXO"         "ALIENTO"      "CINTURON"    
+[31] "ID_EDAD"      "CONDMUERTO"   "CONDHERIDO"   "PASAMUERTO"   "PASAHERIDO"  
+[36] "PEATMUERTO"   "PEATHERIDO"   "CICLMUERTO"   "CICLHERIDO"   "OTROMUERTO"  
+[41] "OTROHERIDO"   "NEMUERTO"     "NEHERIDO"     "CLASACC"      "ESTATUS"     
+\end{verbatim}
+
+\textbf{Explicación del código.}\\
+Este bloque muestra una operación básica en R para construir, revisar o
+transformar datos.
+
+\textbf{Interpretación del resultado.}\\
+La salida ayuda a verificar que el procedimiento se realizó
+correctamente y prepara el camino para el análisis posterior.
 
 \section{Estandarizar nombres de
 variables}\label{estandarizar-nombres-de-variables}
@@ -806,6 +1012,26 @@ variables}\label{estandarizar-nombres-de-variables}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+ [1] "COBERTURA"    "ID_ENTIDAD"   "ID_MUNICIPIO" "ANIO"         "MES"         
+ [6] "ID_HORA"      "ID_MINUTO"    "ID_DIA"       "DIASEMANA"    "URBANA"      
+[11] "SUBURBANA"    "TIPACCID"     "AUTOMOVIL"    "CAMPASAJ"     "MICROBUS"    
+[16] "PASCAMION"    "OMNIBUS"      "TRANVIA"      "CAMIONETA"    "CAMION"      
+[21] "TRACTOR"      "FERROCARRI"   "MOTOCICLET"   "BICICLETA"    "OTROVEHIC"   
+[26] "CAUSAACCI"    "CAPAROD"      "SEXO"         "ALIENTO"      "CINTURON"    
+[31] "ID_EDAD"      "CONDMUERTO"   "CONDHERIDO"   "PASAMUERTO"   "PASAHERIDO"  
+[36] "PEATMUERTO"   "PEATHERIDO"   "CICLMUERTO"   "CICLHERIDO"   "OTROMUERTO"  
+[41] "OTROHERIDO"   "NEMUERTO"     "NEHERIDO"     "CLASACC"      "ESTATUS"     
+\end{verbatim}
+
+\textbf{Explicación del código.}\\
+Este bloque muestra una operación básica en R para construir, revisar o
+transformar datos.
+
+\textbf{Interpretación del resultado.}\\
+La salida ayuda a verificar que el procedimiento se realizó
+correctamente y prepara el camino para el análisis posterior.
+
 \section{Variables de interés}\label{variables-de-interuxe9s}
 
 \begin{Shaded}
@@ -818,6 +1044,14 @@ variables}\label{estandarizar-nombres-de-variables}
 \end{Highlighting}
 \end{Shaded}
 
+\textbf{Explicación del código.}\\
+Este bloque muestra una operación básica en R para construir, revisar o
+transformar datos.
+
+\textbf{Interpretación del resultado.}\\
+La salida ayuda a verificar que el procedimiento se realizó
+correctamente y prepara el camino para el análisis posterior.
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(atus)) \{}
@@ -826,6 +1060,19 @@ variables}\label{estandarizar-nombres-de-variables}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+ [1] "ANIO"         "MES"          "ID_ENTIDAD"   "ID_MUNICIPIO" "ID_HORA"     
+ [6] "ID_DIA"       "DIASEMANA"    "TIPACCID"     "CAUSAACCI"    "CLASACC"     
+\end{verbatim}
+
+\textbf{Explicación del código.}\\
+Este bloque muestra una operación básica en R para construir, revisar o
+transformar datos.
+
+\textbf{Interpretación del resultado.}\\
+La salida ayuda a verificar que el procedimiento se realizó
+correctamente y prepara el camino para el análisis posterior.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -837,6 +1084,27 @@ variables}\label{estandarizar-nombres-de-variables}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+# A tibble: 6 x 10
+   ANIO MES   ID_ENTIDAD ID_MUNICIPIO ID_HORA ID_DIA DIASEMANA TIPACCID         
+  <dbl> <chr> <chr>      <chr>        <chr>   <chr>  <chr>     <chr>            
+1  2024 01    01         001          02      01     lunes     Colisión con veh~
+2  2024 01    01         001          03      01     lunes     Colisión con obj~
+3  2024 01    01         001          04      01     lunes     Colisión con pea~
+4  2024 01    01         001          05      01     lunes     Colisión con obj~
+5  2024 01    01         001          06      01     lunes     Colisión con obj~
+6  2024 01    01         001          07      01     lunes     Colisión con veh~
+# i 2 more variables: CAUSAACCI <chr>, CLASACC <chr>
+\end{verbatim}
+
+\textbf{Explicación del código.}\\
+Este bloque muestra una operación básica en R para construir, revisar o
+transformar datos.
+
+\textbf{Interpretación del resultado.}\\
+La salida ayuda a verificar que el procedimiento se realizó
+correctamente y prepara el camino para el análisis posterior.
 
 \section{Diccionario inicial de
 variables}\label{diccionario-inicial-de-variables}
@@ -873,6 +1141,20 @@ Variable & Descripción didáctica \\
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+
+     Fatal   No fatal Sólo daños 
+      4188      63920     322519 
+\end{verbatim}
+
+\textbf{Explicación del código.}\\
+Este bloque muestra una operación básica en R para construir, revisar o
+transformar datos.
+
+\textbf{Interpretación del resultado.}\\
+La salida ayuda a verificar que el procedimiento se realizó
+correctamente y prepara el camino para el análisis posterior.
+
 \section{Crear una variable
 respuesta}\label{crear-una-variable-respuesta}
 
@@ -898,6 +1180,14 @@ respuesta}\label{crear-una-variable-respuesta}
 \end{Highlighting}
 \end{Shaded}
 
+\textbf{Explicación del código.}\\
+Este bloque muestra una operación básica en R para construir, revisar o
+transformar datos.
+
+\textbf{Interpretación del resultado.}\\
+La salida ayuda a verificar que el procedimiento se realizó
+correctamente y prepara el camino para el análisis posterior.
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"atus\_modelo"}\NormalTok{)) \{}
@@ -905,6 +1195,20 @@ respuesta}\label{crear-una-variable-respuesta}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+
+Con víctimas   Solo daños 
+       68108       322519 
+\end{verbatim}
+
+\textbf{Explicación del código.}\\
+Este bloque muestra una operación básica en R para construir, revisar o
+transformar datos.
+
+\textbf{Interpretación del resultado.}\\
+La salida ayuda a verificar que el procedimiento se realizó
+correctamente y prepara el camino para el análisis posterior.
 
 \section{Eliminar registros sin variable
 respuesta}\label{eliminar-registros-sin-variable-respuesta}
@@ -919,6 +1223,20 @@ respuesta}\label{eliminar-registros-sin-variable-respuesta}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+
+Con víctimas   Solo daños 
+       68108       322519 
+\end{verbatim}
+
+\textbf{Explicación del código.}\\
+Este bloque muestra una operación básica en R para construir, revisar o
+transformar datos.
+
+\textbf{Interpretación del resultado.}\\
+La salida ayuda a verificar que el procedimiento se realizó
+correctamente y prepara el camino para el análisis posterior.
 
 \section{Convertir variables
 categóricas}\label{convertir-variables-categuxf3ricas}
@@ -942,6 +1260,30 @@ categóricas}\label{convertir-variables-categuxf3ricas}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+tibble [390,627 x 12] (S3: tbl_df/tbl/data.frame)
+ $ ANIO                  : num [1:390627] 2024 2024 2024 2024 2024 ...
+ $ MES                   : Factor w/ 12 levels "01","02","03",..: 1 1 1 1 1 1 1 1 1 1 ...
+ $ ID_ENTIDAD            : Factor w/ 32 levels "01","02","03",..: 1 1 1 1 1 1 1 1 1 1 ...
+ $ ID_MUNICIPIO          : Factor w/ 570 levels "001","002","003",..: 1 1 1 1 1 1 1 1 1 1 ...
+ $ ID_HORA               : chr [1:390627] "02" "03" "04" "05" ...
+ $ ID_DIA                : chr [1:390627] "01" "01" "01" "01" ...
+ $ DIASEMANA             : Factor w/ 7 levels "Domingo","Jueves",..: 3 3 3 3 3 3 3 3 3 3 ...
+ $ TIPACCID              : Factor w/ 13 levels "Caída de pasajero",..: 9 7 8 7 7 9 7 9 7 9 ...
+ $ CAUSAACCI             : Factor w/ 6 levels "Certificado cero",..: 2 2 2 2 2 2 2 2 2 2 ...
+ $ CLASACC               : chr [1:390627] "Sólo daños" "Sólo daños" "No fatal" "Sólo daños" ...
+ $ CLASACC_TXT           : chr [1:390627] "sólo daños" "sólo daños" "no fatal" "sólo daños" ...
+ $ accidente_con_victimas: Factor w/ 2 levels "Con víctimas",..: 2 2 1 2 2 1 1 2 2 2 ...
+\end{verbatim}
+
+\textbf{Explicación del código.}\\
+Este bloque muestra una operación básica en R para construir, revisar o
+transformar datos.
+
+\textbf{Interpretación del resultado.}\\
+La salida ayuda a verificar que el procedimiento se realizó
+correctamente y prepara el camino para el análisis posterior.
+
 \section{Revisión de datos
 faltantes}\label{revisiuxf3n-de-datos-faltantes}
 
@@ -953,6 +1295,25 @@ faltantes}\label{revisiuxf3n-de-datos-faltantes}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+                  ANIO                    MES             ID_ENTIDAD 
+                     0                      0                      0 
+          ID_MUNICIPIO                ID_HORA                 ID_DIA 
+                     0                      0                      0 
+             DIASEMANA               TIPACCID              CAUSAACCI 
+                     0                      0                      0 
+               CLASACC            CLASACC_TXT accidente_con_victimas 
+                     0                      0                      0 
+\end{verbatim}
+
+\textbf{Explicación del código.}\\
+Este bloque muestra una operación básica en R para construir, revisar o
+transformar datos.
+
+\textbf{Interpretación del resultado.}\\
+La salida ayuda a verificar que el procedimiento se realizó
+correctamente y prepara el camino para el análisis posterior.
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"atus\_modelo"}\NormalTok{)) \{}
@@ -960,6 +1321,25 @@ faltantes}\label{revisiuxf3n-de-datos-faltantes}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+                  ANIO                    MES             ID_ENTIDAD 
+                     0                      0                      0 
+          ID_MUNICIPIO                ID_HORA                 ID_DIA 
+                     0                      0                      0 
+             DIASEMANA               TIPACCID              CAUSAACCI 
+                     0                      0                      0 
+               CLASACC            CLASACC_TXT accidente_con_victimas 
+                     0                      0                      0 
+\end{verbatim}
+
+\textbf{Explicación del código.}\\
+Este bloque muestra una operación básica en R para construir, revisar o
+transformar datos.
+
+\textbf{Interpretación del resultado.}\\
+La salida ayuda a verificar que el procedimiento se realizó
+correctamente y prepara el camino para el análisis posterior.
 
 \section{Selección final de variables para el primer
 modelo}\label{selecciuxf3n-final-de-variables-para-el-primer-modelo}
@@ -982,6 +1362,26 @@ modelo}\label{selecciuxf3n-final-de-variables-para-el-primer-modelo}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+# A tibble: 6 x 6
+  accidente_con_victimas MES   ID_HORA DIASEMANA TIPACCID              CAUSAACCI
+  <fct>                  <fct> <chr>   <fct>     <fct>                 <fct>    
+1 Solo daños             01    02      lunes     Colisión con vehícul~ Conductor
+2 Solo daños             01    03      lunes     Colisión con objeto ~ Conductor
+3 Con víctimas           01    04      lunes     Colisión con peatón ~ Conductor
+4 Solo daños             01    05      lunes     Colisión con objeto ~ Conductor
+5 Solo daños             01    06      lunes     Colisión con objeto ~ Conductor
+6 Con víctimas           01    07      lunes     Colisión con vehícul~ Conductor
+\end{verbatim}
+
+\textbf{Explicación del código.}\\
+Este bloque muestra una operación básica en R para construir, revisar o
+transformar datos.
+
+\textbf{Interpretación del resultado.}\\
+La salida ayuda a verificar que el procedimiento se realizó
+correctamente y prepara el camino para el análisis posterior.
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"atus\_ml"}\NormalTok{)) \{}
@@ -990,6 +1390,18 @@ modelo}\label{selecciuxf3n-final-de-variables-para-el-primer-modelo}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+[1] 390627      6
+\end{verbatim}
+
+\textbf{Explicación del código.}\\
+Este bloque muestra una operación básica en R para construir, revisar o
+transformar datos.
+
+\textbf{Interpretación del resultado.}\\
+La salida ayuda a verificar que el procedimiento se realizó
+correctamente y prepara el camino para el análisis posterior.
 
 \section{Guardar la base preparada}\label{guardar-la-base-preparada}
 
@@ -1001,6 +1413,14 @@ modelo}\label{selecciuxf3n-final-de-variables-para-el-primer-modelo}
 \end{Highlighting}
 \end{Shaded}
 
+\textbf{Explicación del código.}\\
+Este bloque muestra una operación básica en R para construir, revisar o
+transformar datos.
+
+\textbf{Interpretación del resultado.}\\
+La salida ayuda a verificar que el procedimiento se realizó
+correctamente y prepara el camino para el análisis posterior.
+
 \section{Resumen del capítulo}\label{resumen-del-capuxedtulo}
 
 En este capítulo aprendimos a leer una base CSV, seleccionar variables,
@@ -1011,6 +1431,17 @@ aprendizaje automático.
 
 \chapter{Análisis exploratorio de
 datos}\label{anuxe1lisis-exploratorio-de-datos}
+
+\textbf{Explicación del código.}\\
+Este bloque realiza una operación de análisis exploratorio: carga datos,
+transforma variables, calcula frecuencias o construye una gráfica. La
+finalidad es conocer mejor la estructura de la base antes de modelar.
+
+\textbf{Interpretación del resultado.}\\
+La salida debe leerse como una evidencia descriptiva: ayuda a
+identificar patrones, desbalances, categorías frecuentes o relaciones
+preliminares entre variables. No implica causalidad, pero orienta el
+análisis posterior.
 
 \section{Objetivos del capítulo}\label{objetivos-del-capuxedtulo-2}
 
@@ -1140,6 +1571,17 @@ exploratorio}\label{algoritmo-general-del-anuxe1lisis-exploratorio}
 \end{Highlighting}
 \end{Shaded}
 
+\textbf{Explicación del código.}\\
+Este bloque realiza una operación de análisis exploratorio: carga datos,
+transforma variables, calcula frecuencias o construye una gráfica. La
+finalidad es conocer mejor la estructura de la base antes de modelar.
+
+\textbf{Interpretación del resultado.}\\
+La salida debe leerse como una evidencia descriptiva: ayuda a
+identificar patrones, desbalances, categorías frecuentes o relaciones
+preliminares entre variables. No implica causalidad, pero orienta el
+análisis posterior.
+
 \section{Cargar la base preparada}\label{cargar-la-base-preparada}
 
 \begin{Shaded}
@@ -1148,6 +1590,21 @@ exploratorio}\label{algoritmo-general-del-anuxe1lisis-exploratorio}
 \FunctionTok{file.exists}\NormalTok{(ruta\_atus\_ml)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+[1] TRUE
+\end{verbatim}
+
+\textbf{Explicación del código.}\\
+Este bloque realiza una operación de análisis exploratorio: carga datos,
+transforma variables, calcula frecuencias o construye una gráfica. La
+finalidad es conocer mejor la estructura de la base antes de modelar.
+
+\textbf{Interpretación del resultado.}\\
+La salida debe leerse como una evidencia descriptiva: ayuda a
+identificar patrones, desbalances, categorías frecuentes o relaciones
+preliminares entre variables. No implica causalidad, pero orienta el
+análisis posterior.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1160,6 +1617,21 @@ exploratorio}\label{algoritmo-general-del-anuxe1lisis-exploratorio}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+[1] "Base preparada cargada correctamente."
+\end{verbatim}
+
+\textbf{Explicación del código.}\\
+Este bloque realiza una operación de análisis exploratorio: carga datos,
+transforma variables, calcula frecuencias o construye una gráfica. La
+finalidad es conocer mejor la estructura de la base antes de modelar.
+
+\textbf{Interpretación del resultado.}\\
+La salida debe leerse como una evidencia descriptiva: ayuda a
+identificar patrones, desbalances, categorías frecuentes o relaciones
+preliminares entre variables. No implica causalidad, pero orienta el
+análisis posterior.
 
 \section{Preparar variables para el análisis
 exploratorio}\label{preparar-variables-para-el-anuxe1lisis-exploratorio}
@@ -1183,6 +1655,17 @@ exploratorio}\label{preparar-variables-para-el-anuxe1lisis-exploratorio}
 \end{Highlighting}
 \end{Shaded}
 
+\textbf{Explicación del código.}\\
+Este bloque realiza una operación de análisis exploratorio: carga datos,
+transforma variables, calcula frecuencias o construye una gráfica. La
+finalidad es conocer mejor la estructura de la base antes de modelar.
+
+\textbf{Interpretación del resultado.}\\
+La salida debe leerse como una evidencia descriptiva: ayuda a
+identificar patrones, desbalances, categorías frecuentes o relaciones
+preliminares entre variables. No implica causalidad, pero orienta el
+análisis posterior.
+
 \section{Primer vistazo a la base}\label{primer-vistazo-a-la-base}
 
 \begin{Shaded}
@@ -1195,6 +1678,23 @@ exploratorio}\label{preparar-variables-para-el-anuxe1lisis-exploratorio}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+[1] "accidente_con_victimas" "MES"                    "ID_HORA"               
+[4] "DIASEMANA"              "TIPACCID"               "CAUSAACCI"             
+[7] "ID_HORA_NUM"           
+\end{verbatim}
+
+\textbf{Explicación del código.}\\
+Este bloque realiza una operación de análisis exploratorio: carga datos,
+transforma variables, calcula frecuencias o construye una gráfica. La
+finalidad es conocer mejor la estructura de la base antes de modelar.
+
+\textbf{Interpretación del resultado.}\\
+La salida debe leerse como una evidencia descriptiva: ayuda a
+identificar patrones, desbalances, categorías frecuentes o relaciones
+preliminares entre variables. No implica causalidad, pero orienta el
+análisis posterior.
+
 \section{Estructura de los datos}\label{estructura-de-los-datos}
 
 \begin{Shaded}
@@ -1204,6 +1704,28 @@ exploratorio}\label{preparar-variables-para-el-anuxe1lisis-exploratorio}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+tibble [390,627 x 7] (S3: tbl_df/tbl/data.frame)
+ $ accidente_con_victimas: Factor w/ 2 levels "Con víctimas",..: 2 2 1 2 2 1 1 2 2 2 ...
+ $ MES                   : chr [1:390627] "01" "01" "01" "01" ...
+ $ ID_HORA               : chr [1:390627] "02" "03" "04" "05" ...
+ $ DIASEMANA             : Factor w/ 7 levels "lunes","Martes",..: 1 1 1 1 1 1 1 1 1 1 ...
+ $ TIPACCID              : chr [1:390627] "Colisión con vehículo automotor" "Colisión con objeto fijo" "Colisión con peatón (atropellamiento)" "Colisión con objeto fijo" ...
+ $ CAUSAACCI             : chr [1:390627] "Conductor" "Conductor" "Conductor" "Conductor" ...
+ $ ID_HORA_NUM           : num [1:390627] 2 3 4 5 6 7 12 13 18 20 ...
+\end{verbatim}
+
+\textbf{Explicación del código.}\\
+Este bloque realiza una operación de análisis exploratorio: carga datos,
+transforma variables, calcula frecuencias o construye una gráfica. La
+finalidad es conocer mejor la estructura de la base antes de modelar.
+
+\textbf{Interpretación del resultado.}\\
+La salida debe leerse como una evidencia descriptiva: ayuda a
+identificar patrones, desbalances, categorías frecuentes o relaciones
+preliminares entre variables. No implica causalidad, pero orienta el
+análisis posterior.
 
 \section{Distribución de la variable
 respuesta}\label{distribuciuxf3n-de-la-variable-respuesta}
@@ -1216,6 +1738,23 @@ respuesta}\label{distribuciuxf3n-de-la-variable-respuesta}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+
+Con víctimas   Solo daños 
+       68108       322519 
+\end{verbatim}
+
+\textbf{Explicación del código.}\\
+Este bloque realiza una operación de análisis exploratorio: carga datos,
+transforma variables, calcula frecuencias o construye una gráfica. La
+finalidad es conocer mejor la estructura de la base antes de modelar.
+
+\textbf{Interpretación del resultado.}\\
+La salida debe leerse como una evidencia descriptiva: ayuda a
+identificar patrones, desbalances, categorías frecuentes o relaciones
+preliminares entre variables. No implica causalidad, pero orienta el
+análisis posterior.
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(atus\_ml)) \{}
@@ -1223,6 +1762,23 @@ respuesta}\label{distribuciuxf3n-de-la-variable-respuesta}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+
+Con víctimas   Solo daños 
+       17.44        82.56 
+\end{verbatim}
+
+\textbf{Explicación del código.}\\
+Este bloque realiza una operación de análisis exploratorio: carga datos,
+transforma variables, calcula frecuencias o construye una gráfica. La
+finalidad es conocer mejor la estructura de la base antes de modelar.
+
+\textbf{Interpretación del resultado.}\\
+La salida debe leerse como una evidencia descriptiva: ayuda a
+identificar patrones, desbalances, categorías frecuentes o relaciones
+preliminares entre variables. No implica causalidad, pero orienta el
+análisis posterior.
 
 \section{Interpretación de la variable
 respuesta}\label{interpretaciuxf3n-de-la-variable-respuesta}
@@ -1248,6 +1804,19 @@ respuesta}\label{gruxe1fica-de-la-variable-respuesta}
 \end{Highlighting}
 \end{Shaded}
 
+\pandocbounded{\includegraphics[keepaspectratio]{03-analisis-exploratorio_files/figure-pdf/unnamed-chunk-10-1.png}}
+
+\textbf{Explicación del código.}\\
+Este bloque realiza una operación de análisis exploratorio: carga datos,
+transforma variables, calcula frecuencias o construye una gráfica. La
+finalidad es conocer mejor la estructura de la base antes de modelar.
+
+\textbf{Interpretación del resultado.}\\
+La salida debe leerse como una evidencia descriptiva: ayuda a
+identificar patrones, desbalances, categorías frecuentes o relaciones
+preliminares entre variables. No implica causalidad, pero orienta el
+análisis posterior.
+
 \section{Accidentes por mes}\label{accidentes-por-mes}
 
 \begin{Shaded}
@@ -1262,6 +1831,35 @@ respuesta}\label{gruxe1fica-de-la-variable-respuesta}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+# A tibble: 12 x 2
+   MES       n
+   <chr> <int>
+ 1 01    31600
+ 2 02    32208
+ 3 03    33237
+ 4 04    32666
+ 5 05    34665
+ 6 06    31737
+ 7 07    30062
+ 8 08    31800
+ 9 09    31351
+10 10    33771
+11 11    34047
+12 12    33483
+\end{verbatim}
+
+\textbf{Explicación del código.}\\
+Este bloque realiza una operación de análisis exploratorio: carga datos,
+transforma variables, calcula frecuencias o construye una gráfica. La
+finalidad es conocer mejor la estructura de la base antes de modelar.
+
+\textbf{Interpretación del resultado.}\\
+La salida debe leerse como una evidencia descriptiva: ayuda a
+identificar patrones, desbalances, categorías frecuentes o relaciones
+preliminares entre variables. No implica causalidad, pero orienta el
+análisis posterior.
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(atus\_ml)) \{}
@@ -1275,6 +1873,19 @@ respuesta}\label{gruxe1fica-de-la-variable-respuesta}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{03-analisis-exploratorio_files/figure-pdf/unnamed-chunk-12-1.png}}
+
+\textbf{Explicación del código.}\\
+Este bloque realiza una operación de análisis exploratorio: carga datos,
+transforma variables, calcula frecuencias o construye una gráfica. La
+finalidad es conocer mejor la estructura de la base antes de modelar.
+
+\textbf{Interpretación del resultado.}\\
+La salida debe leerse como una evidencia descriptiva: ayuda a
+identificar patrones, desbalances, categorías frecuentes o relaciones
+preliminares entre variables. No implica causalidad, pero orienta el
+análisis posterior.
 
 \section{Accidentes por hora del
 día}\label{accidentes-por-hora-del-duxeda}
@@ -1291,6 +1902,34 @@ día}\label{accidentes-por-hora-del-duxeda}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+# A tibble: 24 x 2
+   ID_HORA_NUM     n
+         <dbl> <int>
+ 1           0  9143
+ 2           1  7400
+ 3           2  6594
+ 4           3  5694
+ 5           4  4880
+ 6           5  4986
+ 7           6  8034
+ 8           7 15159
+ 9           8 20666
+10           9 19486
+# i 14 more rows
+\end{verbatim}
+
+\textbf{Explicación del código.}\\
+Este bloque realiza una operación de análisis exploratorio: carga datos,
+transforma variables, calcula frecuencias o construye una gráfica. La
+finalidad es conocer mejor la estructura de la base antes de modelar.
+
+\textbf{Interpretación del resultado.}\\
+La salida debe leerse como una evidencia descriptiva: ayuda a
+identificar patrones, desbalances, categorías frecuentes o relaciones
+preliminares entre variables. No implica causalidad, pero orienta el
+análisis posterior.
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(atus\_ml)) \{}
@@ -1305,6 +1944,19 @@ día}\label{accidentes-por-hora-del-duxeda}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{03-analisis-exploratorio_files/figure-pdf/unnamed-chunk-14-1.png}}
+
+\textbf{Explicación del código.}\\
+Este bloque realiza una operación de análisis exploratorio: carga datos,
+transforma variables, calcula frecuencias o construye una gráfica. La
+finalidad es conocer mejor la estructura de la base antes de modelar.
+
+\textbf{Interpretación del resultado.}\\
+La salida debe leerse como una evidencia descriptiva: ayuda a
+identificar patrones, desbalances, categorías frecuentes o relaciones
+preliminares entre variables. No implica causalidad, pero orienta el
+análisis posterior.
 
 \section{Accidentes por día de la
 semana}\label{accidentes-por-duxeda-de-la-semana}
@@ -1321,6 +1973,30 @@ semana}\label{accidentes-por-duxeda-de-la-semana}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+# A tibble: 7 x 2
+  DIASEMANA     n
+  <fct>     <int>
+1 lunes     69412
+2 Martes    51215
+3 Miercoles 51580
+4 Jueves    50954
+5 Viernes   56708
+6 Sabado    58321
+7 Domingo   52437
+\end{verbatim}
+
+\textbf{Explicación del código.}\\
+Este bloque realiza una operación de análisis exploratorio: carga datos,
+transforma variables, calcula frecuencias o construye una gráfica. La
+finalidad es conocer mejor la estructura de la base antes de modelar.
+
+\textbf{Interpretación del resultado.}\\
+La salida debe leerse como una evidencia descriptiva: ayuda a
+identificar patrones, desbalances, categorías frecuentes o relaciones
+preliminares entre variables. No implica causalidad, pero orienta el
+análisis posterior.
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(atus\_ml)) \{}
@@ -1336,6 +2012,19 @@ semana}\label{accidentes-por-duxeda-de-la-semana}
 \end{Highlighting}
 \end{Shaded}
 
+\pandocbounded{\includegraphics[keepaspectratio]{03-analisis-exploratorio_files/figure-pdf/unnamed-chunk-16-1.png}}
+
+\textbf{Explicación del código.}\\
+Este bloque realiza una operación de análisis exploratorio: carga datos,
+transforma variables, calcula frecuencias o construye una gráfica. La
+finalidad es conocer mejor la estructura de la base antes de modelar.
+
+\textbf{Interpretación del resultado.}\\
+La salida debe leerse como una evidencia descriptiva: ayuda a
+identificar patrones, desbalances, categorías frecuentes o relaciones
+preliminares entre variables. No implica causalidad, pero orienta el
+análisis posterior.
+
 \section{Accidentes por tipo de
 accidente}\label{accidentes-por-tipo-de-accidente}
 
@@ -1350,6 +2039,36 @@ accidente}\label{accidentes-por-tipo-de-accidente}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+# A tibble: 13 x 2
+   TIPACCID                                   n
+   <chr>                                  <int>
+ 1 Colisión con vehículo automotor       224720
+ 2 Colisión con motocicleta               61869
+ 3 Colisión con objeto fijo               43119
+ 4 Certificado cero                       15678
+ 5 Volcadura                              13371
+ 6 Colisión con peatón (atropellamiento)  11052
+ 7 Salida del camino                      10067
+ 8 Colisión con ciclista                   4033
+ 9 Otro                                    2934
+10 Caída de pasajero                       2153
+11 Colisión con animal                      884
+12 Incendio                                 455
+13 Colisión con ferrocarril                 292
+\end{verbatim}
+
+\textbf{Explicación del código.}\\
+Este bloque realiza una operación de análisis exploratorio: carga datos,
+transforma variables, calcula frecuencias o construye una gráfica. La
+finalidad es conocer mejor la estructura de la base antes de modelar.
+
+\textbf{Interpretación del resultado.}\\
+La salida debe leerse como una evidencia descriptiva: ayuda a
+identificar patrones, desbalances, categorías frecuentes o relaciones
+preliminares entre variables. No implica causalidad, pero orienta el
+análisis posterior.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1369,6 +2088,19 @@ accidente}\label{accidentes-por-tipo-de-accidente}
 \end{Highlighting}
 \end{Shaded}
 
+\pandocbounded{\includegraphics[keepaspectratio]{03-analisis-exploratorio_files/figure-pdf/unnamed-chunk-18-1.png}}
+
+\textbf{Explicación del código.}\\
+Este bloque realiza una operación de análisis exploratorio: carga datos,
+transforma variables, calcula frecuencias o construye una gráfica. La
+finalidad es conocer mejor la estructura de la base antes de modelar.
+
+\textbf{Interpretación del resultado.}\\
+La salida debe leerse como una evidencia descriptiva: ayuda a
+identificar patrones, desbalances, categorías frecuentes o relaciones
+preliminares entre variables. No implica causalidad, pero orienta el
+análisis posterior.
+
 \section{Accidentes por causa
 presunta}\label{accidentes-por-causa-presunta}
 
@@ -1383,6 +2115,29 @@ presunta}\label{accidentes-por-causa-presunta}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+# A tibble: 6 x 2
+  CAUSAACCI                      n
+  <chr>                      <int>
+1 Conductor                 360051
+2 Certificado cero           15678
+3 Mala condición del camino   5991
+4 Falla del vehículo          3978
+5 Otra                        2639
+6 Peatón o pasajero           2290
+\end{verbatim}
+
+\textbf{Explicación del código.}\\
+Este bloque realiza una operación de análisis exploratorio: carga datos,
+transforma variables, calcula frecuencias o construye una gráfica. La
+finalidad es conocer mejor la estructura de la base antes de modelar.
+
+\textbf{Interpretación del resultado.}\\
+La salida debe leerse como una evidencia descriptiva: ayuda a
+identificar patrones, desbalances, categorías frecuentes o relaciones
+preliminares entre variables. No implica causalidad, pero orienta el
+análisis posterior.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1401,6 +2156,19 @@ presunta}\label{accidentes-por-causa-presunta}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{03-analisis-exploratorio_files/figure-pdf/unnamed-chunk-20-1.png}}
+
+\textbf{Explicación del código.}\\
+Este bloque realiza una operación de análisis exploratorio: carga datos,
+transforma variables, calcula frecuencias o construye una gráfica. La
+finalidad es conocer mejor la estructura de la base antes de modelar.
+
+\textbf{Interpretación del resultado.}\\
+La salida debe leerse como una evidencia descriptiva: ayuda a
+identificar patrones, desbalances, categorías frecuentes o relaciones
+preliminares entre variables. No implica causalidad, pero orienta el
+análisis posterior.
 
 \section{Relación entre tipo de accidente y presencia de
 víctimas}\label{relaciuxf3n-entre-tipo-de-accidente-y-presencia-de-vuxedctimas}
@@ -1429,6 +2197,19 @@ víctimas}\label{relaciuxf3n-entre-tipo-de-accidente-y-presencia-de-vuxedctimas}
 \end{Highlighting}
 \end{Shaded}
 
+\pandocbounded{\includegraphics[keepaspectratio]{03-analisis-exploratorio_files/figure-pdf/unnamed-chunk-21-1.png}}
+
+\textbf{Explicación del código.}\\
+Este bloque realiza una operación de análisis exploratorio: carga datos,
+transforma variables, calcula frecuencias o construye una gráfica. La
+finalidad es conocer mejor la estructura de la base antes de modelar.
+
+\textbf{Interpretación del resultado.}\\
+La salida debe leerse como una evidencia descriptiva: ayuda a
+identificar patrones, desbalances, categorías frecuentes o relaciones
+preliminares entre variables. No implica causalidad, pero orienta el
+análisis posterior.
+
 \section{Relación entre hora y presencia de
 víctimas}\label{relaciuxf3n-entre-hora-y-presencia-de-vuxedctimas}
 
@@ -1448,6 +2229,19 @@ víctimas}\label{relaciuxf3n-entre-hora-y-presencia-de-vuxedctimas}
 \end{Highlighting}
 \end{Shaded}
 
+\pandocbounded{\includegraphics[keepaspectratio]{03-analisis-exploratorio_files/figure-pdf/unnamed-chunk-22-1.png}}
+
+\textbf{Explicación del código.}\\
+Este bloque realiza una operación de análisis exploratorio: carga datos,
+transforma variables, calcula frecuencias o construye una gráfica. La
+finalidad es conocer mejor la estructura de la base antes de modelar.
+
+\textbf{Interpretación del resultado.}\\
+La salida debe leerse como una evidencia descriptiva: ayuda a
+identificar patrones, desbalances, categorías frecuentes o relaciones
+preliminares entre variables. No implica causalidad, pero orienta el
+análisis posterior.
+
 \section{Relación entre día de la semana y presencia de
 víctimas}\label{relaciuxf3n-entre-duxeda-de-la-semana-y-presencia-de-vuxedctimas}
 
@@ -1466,6 +2260,19 @@ víctimas}\label{relaciuxf3n-entre-duxeda-de-la-semana-y-presencia-de-vuxedctima
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{03-analisis-exploratorio_files/figure-pdf/unnamed-chunk-23-1.png}}
+
+\textbf{Explicación del código.}\\
+Este bloque realiza una operación de análisis exploratorio: carga datos,
+transforma variables, calcula frecuencias o construye una gráfica. La
+finalidad es conocer mejor la estructura de la base antes de modelar.
+
+\textbf{Interpretación del resultado.}\\
+La salida debe leerse como una evidencia descriptiva: ayuda a
+identificar patrones, desbalances, categorías frecuentes o relaciones
+preliminares entre variables. No implica causalidad, pero orienta el
+análisis posterior.
 
 \section{Tabla resumen por clase}\label{tabla-resumen-por-clase}
 
@@ -1487,6 +2294,25 @@ víctimas}\label{relaciuxf3n-entre-duxeda-de-la-semana-y-presencia-de-vuxedctima
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+# A tibble: 2 x 5
+  accidente_con_victimas  total hora_promedio hora_minima hora_maxima
+  <fct>                   <int>         <dbl>       <dbl>       <dbl>
+1 Con víctimas            68108          13.6           0          23
+2 Solo daños             322519          13.7           0          23
+\end{verbatim}
+
+\textbf{Explicación del código.}\\
+Este bloque realiza una operación de análisis exploratorio: carga datos,
+transforma variables, calcula frecuencias o construye una gráfica. La
+finalidad es conocer mejor la estructura de la base antes de modelar.
+
+\textbf{Interpretación del resultado.}\\
+La salida debe leerse como una evidencia descriptiva: ayuda a
+identificar patrones, desbalances, categorías frecuentes o relaciones
+preliminares entre variables. No implica causalidad, pero orienta el
+análisis posterior.
+
 \section{Conclusión}\label{conclusiuxf3n-1}
 
 En este capítulo aprendimos a cargar una base preparada, revisar
@@ -1501,6 +2327,17 @@ para clasificación: una \textbf{regresión logística}.
 
 \chapter{Regresión logística para
 clasificación}\label{regresiuxf3n-loguxedstica-para-clasificaciuxf3n}
+
+\textbf{Explicación del código.}\\
+Este bloque forma parte del flujo de modelado con regresión logística:
+prepara variables, ajusta el modelo, predice probabilidades, convierte
+probabilidades en clases o calcula métricas de evaluación.
+
+\textbf{Interpretación del resultado.}\\
+El resultado debe interpretarse en función del problema de
+clasificación: detectar accidentes con víctimas. Por ello no basta con
+mirar la exactitud; también son importantes la sensibilidad, la
+especificidad y la matriz de confusión.
 
 \section{Objetivos del capítulo}\label{objetivos-del-capuxedtulo-3}
 
@@ -1680,6 +2517,19 @@ logística}\label{visualizaciuxf3n-de-la-funciuxf3n-loguxedstica}
 \end{Highlighting}
 \end{Shaded}
 
+\pandocbounded{\includegraphics[keepaspectratio]{04-regresion-logistica_files/figure-pdf/unnamed-chunk-2-1.png}}
+
+\textbf{Explicación del código.}\\
+Este bloque forma parte del flujo de modelado con regresión logística:
+prepara variables, ajusta el modelo, predice probabilidades, convierte
+probabilidades en clases o calcula métricas de evaluación.
+
+\textbf{Interpretación del resultado.}\\
+El resultado debe interpretarse en función del problema de
+clasificación: detectar accidentes con víctimas. Por ello no basta con
+mirar la exactitud; también son importantes la sensibilidad, la
+especificidad y la matriz de confusión.
+
 \section{Cargar paquetes}\label{cargar-paquetes-2}
 
 \begin{Shaded}
@@ -1690,6 +2540,17 @@ logística}\label{visualizaciuxf3n-de-la-funciuxf3n-loguxedstica}
 \end{Highlighting}
 \end{Shaded}
 
+\textbf{Explicación del código.}\\
+Este bloque forma parte del flujo de modelado con regresión logística:
+prepara variables, ajusta el modelo, predice probabilidades, convierte
+probabilidades en clases o calcula métricas de evaluación.
+
+\textbf{Interpretación del resultado.}\\
+El resultado debe interpretarse en función del problema de
+clasificación: detectar accidentes con víctimas. Por ello no basta con
+mirar la exactitud; también son importantes la sensibilidad, la
+especificidad y la matriz de confusión.
+
 \section{Cargar la base preparada}\label{cargar-la-base-preparada-1}
 
 \begin{Shaded}
@@ -1698,6 +2559,21 @@ logística}\label{visualizaciuxf3n-de-la-funciuxf3n-loguxedstica}
 \FunctionTok{file.exists}\NormalTok{(ruta\_atus\_ml)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+[1] TRUE
+\end{verbatim}
+
+\textbf{Explicación del código.}\\
+Este bloque forma parte del flujo de modelado con regresión logística:
+prepara variables, ajusta el modelo, predice probabilidades, convierte
+probabilidades en clases o calcula métricas de evaluación.
+
+\textbf{Interpretación del resultado.}\\
+El resultado debe interpretarse en función del problema de
+clasificación: detectar accidentes con víctimas. Por ello no basta con
+mirar la exactitud; también son importantes la sensibilidad, la
+especificidad y la matriz de confusión.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1710,6 +2586,21 @@ logística}\label{visualizaciuxf3n-de-la-funciuxf3n-loguxedstica}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+[1] "Base preparada cargada correctamente."
+\end{verbatim}
+
+\textbf{Explicación del código.}\\
+Este bloque forma parte del flujo de modelado con regresión logística:
+prepara variables, ajusta el modelo, predice probabilidades, convierte
+probabilidades en clases o calcula métricas de evaluación.
+
+\textbf{Interpretación del resultado.}\\
+El resultado debe interpretarse en función del problema de
+clasificación: detectar accidentes con víctimas. Por ello no basta con
+mirar la exactitud; también son importantes la sensibilidad, la
+especificidad y la matriz de confusión.
 
 \section{Preparar variables para el
 modelo}\label{preparar-variables-para-el-modelo}
@@ -1731,6 +2622,17 @@ modelo}\label{preparar-variables-para-el-modelo}
 \end{Highlighting}
 \end{Shaded}
 
+\textbf{Explicación del código.}\\
+Este bloque forma parte del flujo de modelado con regresión logística:
+prepara variables, ajusta el modelo, predice probabilidades, convierte
+probabilidades en clases o calcula métricas de evaluación.
+
+\textbf{Interpretación del resultado.}\\
+El resultado debe interpretarse en función del problema de
+clasificación: detectar accidentes con víctimas. Por ello no basta con
+mirar la exactitud; también son importantes la sensibilidad, la
+especificidad y la matriz de confusión.
+
 \section{División en entrenamiento y
 prueba}\label{divisiuxf3n-en-entrenamiento-y-prueba}
 
@@ -1745,6 +2647,17 @@ prueba}\label{divisiuxf3n-en-entrenamiento-y-prueba}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
+
+\textbf{Explicación del código.}\\
+Este bloque forma parte del flujo de modelado con regresión logística:
+prepara variables, ajusta el modelo, predice probabilidades, convierte
+probabilidades en clases o calcula métricas de evaluación.
+
+\textbf{Interpretación del resultado.}\\
+El resultado debe interpretarse en función del problema de
+clasificación: detectar accidentes con víctimas. Por ello no basta con
+mirar la exactitud; también son importantes la sensibilidad, la
+especificidad y la matriz de confusión.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1761,6 +2674,23 @@ prueba}\label{divisiuxf3n-en-entrenamiento-y-prueba}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+       conjunto registros porcentaje
+1 Entrenamiento    273439         70
+2        Prueba    117188         30
+\end{verbatim}
+
+\textbf{Explicación del código.}\\
+Este bloque forma parte del flujo de modelado con regresión logística:
+prepara variables, ajusta el modelo, predice probabilidades, convierte
+probabilidades en clases o calcula métricas de evaluación.
+
+\textbf{Interpretación del resultado.}\\
+El resultado debe interpretarse en función del problema de
+clasificación: detectar accidentes con víctimas. Por ello no basta con
+mirar la exactitud; también son importantes la sensibilidad, la
+especificidad y la matriz de confusión.
+
 \section{Ajustar el modelo de regresión
 logística}\label{ajustar-el-modelo-de-regresiuxf3n-loguxedstica}
 
@@ -1776,6 +2706,17 @@ logística}\label{ajustar-el-modelo-de-regresiuxf3n-loguxedstica}
 \end{Highlighting}
 \end{Shaded}
 
+\textbf{Explicación del código.}\\
+Este bloque forma parte del flujo de modelado con regresión logística:
+prepara variables, ajusta el modelo, predice probabilidades, convierte
+probabilidades en clases o calcula métricas de evaluación.
+
+\textbf{Interpretación del resultado.}\\
+El resultado debe interpretarse en función del problema de
+clasificación: detectar accidentes con víctimas. Por ello no basta con
+mirar la exactitud; también son importantes la sensibilidad, la
+especificidad y la matriz de confusión.
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"modelo\_logistico"}\NormalTok{)) \{}
@@ -1783,6 +2724,110 @@ logística}\label{ajustar-el-modelo-de-regresiuxf3n-loguxedstica}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+
+Call:
+glm(formula = victimas_binaria ~ MES + ID_HORA + DIASEMANA + 
+    TIPACCID + CAUSAACCI, family = binomial, data = entrenamiento)
+
+Coefficients: (1 not defined because of singularities)
+                                                Estimate Std. Error z value
+(Intercept)                                    18.107257 101.847193   0.178
+MES02                                          -0.045766   0.029756  -1.538
+MES03                                          -0.032191   0.029273  -1.100
+MES04                                          -0.002838   0.029455  -0.096
+MES05                                          -0.015409   0.029067  -0.530
+MES06                                          -0.054753   0.029837  -1.835
+MES07                                          -0.076297   0.030352  -2.514
+MES08                                          -0.094050   0.029971  -3.138
+MES09                                          -0.077109   0.030150  -2.557
+MES10                                          -0.154152   0.029797  -5.173
+MES11                                          -0.106385   0.029508  -3.605
+MES12                                          -0.111889   0.029593  -3.781
+ID_HORA                                        -0.001039   0.001025  -1.015
+DIASEMANAJueves                                -0.248317   0.022530 -11.022
+DIASEMANAlunes                                 -0.219442   0.022072  -9.942
+DIASEMANAMartes                                -0.266295   0.022564 -11.801
+DIASEMANAMiercoles                             -0.297457   0.022631 -13.144
+DIASEMANASabado                                -0.145669   0.021142  -6.890
+DIASEMANAViernes                               -0.234956   0.021860 -10.748
+TIPACCIDCertificado cero                      -35.365952 108.599964  -0.326
+TIPACCIDColisión con animal                   -18.408433 101.847115  -0.181
+TIPACCIDColisión con ciclista                 -17.466499 101.847083  -0.171
+TIPACCIDColisión con ferrocarril              -18.516007 101.847193  -0.182
+TIPACCIDColisión con motocicleta              -17.993904 101.847076  -0.177
+TIPACCIDColisión con objeto fijo              -19.631828 101.847078  -0.193
+TIPACCIDColisión con peatón (atropellamiento)  -0.014823 111.314486   0.000
+TIPACCIDColisión con vehículo automotor       -20.213142 101.847076  -0.198
+TIPACCIDIncendio                              -21.789442 101.848323  -0.214
+TIPACCIDOtro                                  -19.371321 101.847096  -0.190
+TIPACCIDSalida del camino                     -18.895003 101.847080  -0.186
+TIPACCIDVolcadura                             -17.704426 101.847078  -0.174
+CAUSAACCIConductor                             -0.282824   0.157369  -1.797
+CAUSAACCIFalla del vehículo                    -0.547420   0.167821  -3.262
+CAUSAACCIMala condición del camino             -0.097472   0.162233  -0.601
+CAUSAACCIOtra                                  -0.093819   0.169144  -0.555
+CAUSAACCIPeatón o pasajero                            NA         NA      NA
+                                              Pr(>|z|)    
+(Intercept)                                   0.858889    
+MES02                                         0.124035    
+MES03                                         0.271467    
+MES04                                         0.923240    
+MES05                                         0.596036    
+MES06                                         0.066492 .  
+MES07                                         0.011946 *  
+MES08                                         0.001701 ** 
+MES09                                         0.010543 *  
+MES10                                         2.30e-07 ***
+MES11                                         0.000312 ***
+MES12                                         0.000156 ***
+ID_HORA                                       0.310343    
+DIASEMANAJueves                                < 2e-16 ***
+DIASEMANAlunes                                 < 2e-16 ***
+DIASEMANAMartes                                < 2e-16 ***
+DIASEMANAMiercoles                             < 2e-16 ***
+DIASEMANASabado                               5.58e-12 ***
+DIASEMANAViernes                               < 2e-16 ***
+TIPACCIDCertificado cero                      0.744687    
+TIPACCIDColisión con animal                   0.856567    
+TIPACCIDColisión con ciclista                 0.863833    
+TIPACCIDColisión con ferrocarril              0.855738    
+TIPACCIDColisión con motocicleta              0.859763    
+TIPACCIDColisión con objeto fijo              0.847149    
+TIPACCIDColisión con peatón (atropellamiento) 0.999894    
+TIPACCIDColisión con vehículo automotor       0.842681    
+TIPACCIDIncendio                              0.830594    
+TIPACCIDOtro                                  0.849152    
+TIPACCIDSalida del camino                     0.852819    
+TIPACCIDVolcadura                             0.861996    
+CAUSAACCIConductor                            0.072303 .  
+CAUSAACCIFalla del vehículo                   0.001107 ** 
+CAUSAACCIMala condición del camino            0.547964    
+CAUSAACCIOtra                                 0.579123    
+CAUSAACCIPeatón o pasajero                          NA    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 252832  on 273438  degrees of freedom
+Residual deviance: 181229  on 273404  degrees of freedom
+AIC: 181299
+
+Number of Fisher Scoring iterations: 16
+\end{verbatim}
+
+\textbf{Explicación del código.}\\
+Este bloque forma parte del flujo de modelado con regresión logística:
+prepara variables, ajusta el modelo, predice probabilidades, convierte
+probabilidades en clases o calcula métricas de evaluación.
+
+\textbf{Interpretación del resultado.}\\
+El resultado debe interpretarse en función del problema de
+clasificación: detectar accidentes con víctimas. Por ello no basta con
+mirar la exactitud; también son importantes la sensibilidad, la
+especificidad y la matriz de confusión.
 
 Nota didáctica: si aparece el mensaje ``1 not defined because of
 singularities'', significa que una categoría no pudo estimarse de forma
@@ -1803,6 +2848,17 @@ probabilidades}\label{predicciuxf3n-de-probabilidades}
 \end{Highlighting}
 \end{Shaded}
 
+\textbf{Explicación del código.}\\
+Este bloque forma parte del flujo de modelado con regresión logística:
+prepara variables, ajusta el modelo, predice probabilidades, convierte
+probabilidades en clases o calcula métricas de evaluación.
+
+\textbf{Interpretación del resultado.}\\
+El resultado debe interpretarse en función del problema de
+clasificación: detectar accidentes con víctimas. Por ello no basta con
+mirar la exactitud; también son importantes la sensibilidad, la
+especificidad y la matriz de confusión.
+
 \section{De probabilidades a clases}\label{de-probabilidades-a-clases}
 
 \begin{Shaded}
@@ -1819,6 +2875,17 @@ probabilidades}\label{predicciuxf3n-de-probabilidades}
 \end{Highlighting}
 \end{Shaded}
 
+\textbf{Explicación del código.}\\
+Este bloque forma parte del flujo de modelado con regresión logística:
+prepara variables, ajusta el modelo, predice probabilidades, convierte
+probabilidades en clases o calcula métricas de evaluación.
+
+\textbf{Interpretación del resultado.}\\
+El resultado debe interpretarse en función del problema de
+clasificación: detectar accidentes con víctimas. Por ello no basta con
+mirar la exactitud; también son importantes la sensibilidad, la
+especificidad y la matriz de confusión.
+
 \section{Matriz de confusión}\label{matriz-de-confusiuxf3n}
 
 \begin{Shaded}
@@ -1833,6 +2900,24 @@ probabilidades}\label{predicciuxf3n-de-probabilidades}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+              Predicho
+Real           Con víctimas Solo daños
+  Con víctimas         4886      15618
+  Solo daños            807      95877
+\end{verbatim}
+
+\textbf{Explicación del código.}\\
+Este bloque forma parte del flujo de modelado con regresión logística:
+prepara variables, ajusta el modelo, predice probabilidades, convierte
+probabilidades en clases o calcula métricas de evaluación.
+
+\textbf{Interpretación del resultado.}\\
+El resultado debe interpretarse en función del problema de
+clasificación: detectar accidentes con víctimas. Por ello no basta con
+mirar la exactitud; también son importantes la sensibilidad, la
+especificidad y la matriz de confusión.
 
 \section{Métricas de evaluación}\label{muxe9tricas-de-evaluaciuxf3n}
 
@@ -1852,6 +2937,25 @@ probabilidades}\label{predicciuxf3n-de-probabilidades}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+  medida               nombre valor
+1     VP Verdaderos positivos  4886
+2     FN     Falsos negativos 15618
+3     FP     Falsos positivos   807
+4     VN Verdaderos negativos 95877
+\end{verbatim}
+
+\textbf{Explicación del código.}\\
+Este bloque forma parte del flujo de modelado con regresión logística:
+prepara variables, ajusta el modelo, predice probabilidades, convierte
+probabilidades en clases o calcula métricas de evaluación.
+
+\textbf{Interpretación del resultado.}\\
+El resultado debe interpretarse en función del problema de
+clasificación: detectar accidentes con víctimas. Por ello no basta con
+mirar la exactitud; también son importantes la sensibilidad, la
+especificidad y la matriz de confusión.
 
 \section{Fórmulas de evaluación para clasificación
 binaria}\label{fuxf3rmulas-de-evaluaciuxf3n-para-clasificaciuxf3n-binaria}
@@ -1905,6 +3009,22 @@ La precisión se calcula como:
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+  punto_corte exactitud sensibilidad especificidad
+1         0.5 0.8598406     0.238295     0.9916532
+\end{verbatim}
+
+\textbf{Explicación del código.}\\
+Este bloque forma parte del flujo de modelado con regresión logística:
+prepara variables, ajusta el modelo, predice probabilidades, convierte
+probabilidades en clases o calcula métricas de evaluación.
+
+\textbf{Interpretación del resultado.}\\
+El resultado debe interpretarse en función del problema de
+clasificación: detectar accidentes con víctimas. Por ello no basta con
+mirar la exactitud; también son importantes la sensibilidad, la
+especificidad y la matriz de confusión.
+
 \section{Clasificación con punto de corte
 0.3}\label{clasificaciuxf3n-con-punto-de-corte-0.3}
 
@@ -1921,6 +3041,17 @@ La precisión se calcula como:
 \end{Highlighting}
 \end{Shaded}
 
+\textbf{Explicación del código.}\\
+Este bloque forma parte del flujo de modelado con regresión logística:
+prepara variables, ajusta el modelo, predice probabilidades, convierte
+probabilidades en clases o calcula métricas de evaluación.
+
+\textbf{Interpretación del resultado.}\\
+El resultado debe interpretarse en función del problema de
+clasificación: detectar accidentes con víctimas. Por ello no basta con
+mirar la exactitud; también son importantes la sensibilidad, la
+especificidad y la matriz de confusión.
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"prueba"}\NormalTok{)) \{}
@@ -1932,6 +3063,24 @@ La precisión se calcula como:
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+              Predicho
+Real           Con víctimas Solo daños
+  Con víctimas        13765       6739
+  Solo daños          14302      82382
+\end{verbatim}
+
+\textbf{Explicación del código.}\\
+Este bloque forma parte del flujo de modelado con regresión logística:
+prepara variables, ajusta el modelo, predice probabilidades, convierte
+probabilidades en clases o calcula métricas de evaluación.
+
+\textbf{Interpretación del resultado.}\\
+El resultado debe interpretarse en función del problema de
+clasificación: detectar accidentes con víctimas. Por ello no basta con
+mirar la exactitud; también son importantes la sensibilidad, la
+especificidad y la matriz de confusión.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1955,6 +3104,22 @@ La precisión se calcula como:
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+  punto_corte exactitud sensibilidad especificidad
+1         0.3 0.8204509    0.6713324     0.8520748
+\end{verbatim}
+
+\textbf{Explicación del código.}\\
+Este bloque forma parte del flujo de modelado con regresión logística:
+prepara variables, ajusta el modelo, predice probabilidades, convierte
+probabilidades en clases o calcula métricas de evaluación.
+
+\textbf{Interpretación del resultado.}\\
+El resultado debe interpretarse en función del problema de
+clasificación: detectar accidentes con víctimas. Por ello no basta con
+mirar la exactitud; también son importantes la sensibilidad, la
+especificidad y la matriz de confusión.
+
 \section{Comparación de puntos de
 corte}\label{comparaciuxf3n-de-puntos-de-corte}
 
@@ -1970,6 +3135,23 @@ corte}\label{comparaciuxf3n-de-puntos-de-corte}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+  punto_corte exactitud sensibilidad especificidad
+1         0.5 0.8598406    0.2382950     0.9916532
+2         0.3 0.8204509    0.6713324     0.8520748
+\end{verbatim}
+
+\textbf{Explicación del código.}\\
+Este bloque forma parte del flujo de modelado con regresión logística:
+prepara variables, ajusta el modelo, predice probabilidades, convierte
+probabilidades en clases o calcula métricas de evaluación.
+
+\textbf{Interpretación del resultado.}\\
+El resultado debe interpretarse en función del problema de
+clasificación: detectar accidentes con víctimas. Por ello no basta con
+mirar la exactitud; también son importantes la sensibilidad, la
+especificidad y la matriz de confusión.
 
 \section{Distribución de probabilidades
 predichas}\label{distribuciuxf3n-de-probabilidades-predichas}
@@ -1989,6 +3171,19 @@ predichas}\label{distribuciuxf3n-de-probabilidades-predichas}
 \end{Highlighting}
 \end{Shaded}
 
+\pandocbounded{\includegraphics[keepaspectratio]{04-regresion-logistica_files/figure-pdf/unnamed-chunk-20-1.png}}
+
+\textbf{Explicación del código.}\\
+Este bloque forma parte del flujo de modelado con regresión logística:
+prepara variables, ajusta el modelo, predice probabilidades, convierte
+probabilidades en clases o calcula métricas de evaluación.
+
+\textbf{Interpretación del resultado.}\\
+El resultado debe interpretarse en función del problema de
+clasificación: detectar accidentes con víctimas. Por ello no basta con
+mirar la exactitud; también son importantes la sensibilidad, la
+especificidad y la matriz de confusión.
+
 \section{Odds ratios}\label{odds-ratios}
 
 \begin{Shaded}
@@ -2004,6 +3199,36 @@ predichas}\label{distribuciuxf3n-de-probabilidades-predichas}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+                       variable   odds_ratio
+(Intercept)         (Intercept) 7.309402e+07
+MES02                     MES02 9.552658e-01
+MES03                     MES03 9.683213e-01
+MES04                     MES04 9.971660e-01
+MES05                     MES05 9.847096e-01
+MES06                     MES06 9.467188e-01
+MES07                     MES07 9.265412e-01
+MES08                     MES08 9.102377e-01
+MES09                     MES09 9.257885e-01
+MES10                     MES10 8.571414e-01
+MES11                     MES11 8.990784e-01
+MES12                     MES12 8.941439e-01
+ID_HORA                 ID_HORA 9.989611e-01
+DIASEMANAJueves DIASEMANAJueves 7.801123e-01
+DIASEMANAlunes   DIASEMANAlunes 8.029666e-01
+\end{verbatim}
+
+\textbf{Explicación del código.}\\
+Este bloque forma parte del flujo de modelado con regresión logística:
+prepara variables, ajusta el modelo, predice probabilidades, convierte
+probabilidades en clases o calcula métricas de evaluación.
+
+\textbf{Interpretación del resultado.}\\
+El resultado debe interpretarse en función del problema de
+clasificación: detectar accidentes con víctimas. Por ello no basta con
+mirar la exactitud; también son importantes la sensibilidad, la
+especificidad y la matriz de confusión.
+
 \section{Conclusión}\label{conclusiuxf3n-2}
 
 La regresión logística es uno de los modelos más importantes para
@@ -2014,6 +3239,16 @@ vecinos más cercanos}, conocido como \textbf{k-NN}.
 
 \chapter{k vecinos más cercanos,
 k-NN}\label{k-vecinos-muxe1s-cercanos-k-nn}
+
+\textbf{Explicación del código.}\\
+Este bloque aplica el flujo de k-NN: prepara variables numéricas,
+estandariza, calcula vecinos cercanos, genera predicciones o evalúa el
+desempeño del clasificador.
+
+\textbf{Interpretación del resultado.}\\
+El resultado muestra cómo se comporta k-NN con los datos. En este método
+son clave la escala de las variables, el valor de \(k\) y el equilibrio
+entre exactitud, sensibilidad y especificidad.
 
 \section{Objetivos del capítulo}\label{objetivos-del-capuxedtulo-4}
 
@@ -2094,6 +3329,28 @@ Si \(k\) es muy pequeño, el modelo puede ser muy sensible al ruido. Si
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+  hora mes        clase
+1    8   1   Solo daños
+2    9   1   Solo daños
+3   10   2   Solo daños
+4   18   6 Con víctimas
+5   19   6 Con víctimas
+6   20   7 Con víctimas
+7   22  12 Con víctimas
+8   23  12 Con víctimas
+\end{verbatim}
+
+\textbf{Explicación del código.}\\
+Este bloque aplica el flujo de k-NN: prepara variables numéricas,
+estandariza, calcula vecinos cercanos, genera predicciones o evalúa el
+desempeño del clasificador.
+
+\textbf{Interpretación del resultado.}\\
+El resultado muestra cómo se comporta k-NN con los datos. En este método
+son clave la escala de las variables, el valor de \(k\) y el equilibrio
+entre exactitud, sensibilidad y especificidad.
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(ggplot2)}
@@ -2108,6 +3365,18 @@ Si \(k\) es muy pequeño, el modelo puede ser muy sensible al ruido. Si
 \NormalTok{  )}
 \end{Highlighting}
 \end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{05-knn_files/figure-pdf/unnamed-chunk-3-1.png}}
+
+\textbf{Explicación del código.}\\
+Este bloque aplica el flujo de k-NN: prepara variables numéricas,
+estandariza, calcula vecinos cercanos, genera predicciones o evalúa el
+desempeño del clasificador.
+
+\textbf{Interpretación del resultado.}\\
+El resultado muestra cómo se comporta k-NN con los datos. En este método
+son clave la escala de las variables, el valor de \(k\) y el equilibrio
+entre exactitud, sensibilidad y especificidad.
 
 \section{Distancia euclidiana}\label{distancia-euclidiana}
 
@@ -2192,6 +3461,20 @@ distancia}\label{ejemplo-de-cuxe1lculo-de-distancia}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+[1] 2.236068
+\end{verbatim}
+
+\textbf{Explicación del código.}\\
+Este bloque aplica el flujo de k-NN: prepara variables numéricas,
+estandariza, calcula vecinos cercanos, genera predicciones o evalúa el
+desempeño del clasificador.
+
+\textbf{Interpretación del resultado.}\\
+El resultado muestra cómo se comporta k-NN con los datos. En este método
+son clave la escala de las variables, el valor de \(k\) y el equilibrio
+entre exactitud, sensibilidad y especificidad.
+
 \section{Estandarización de
 variables}\label{estandarizaciuxf3n-de-variables}
 
@@ -2247,6 +3530,16 @@ desviación estándar.
 \end{Highlighting}
 \end{Shaded}
 
+\textbf{Explicación del código.}\\
+Este bloque aplica el flujo de k-NN: prepara variables numéricas,
+estandariza, calcula vecinos cercanos, genera predicciones o evalúa el
+desempeño del clasificador.
+
+\textbf{Interpretación del resultado.}\\
+El resultado muestra cómo se comporta k-NN con los datos. En este método
+son clave la escala de las variables, el valor de \(k\) y el equilibrio
+entre exactitud, sensibilidad y especificidad.
+
 \section{Cargar la base preparada}\label{cargar-la-base-preparada-2}
 
 \begin{Shaded}
@@ -2255,6 +3548,20 @@ desviación estándar.
 \FunctionTok{file.exists}\NormalTok{(ruta\_atus\_ml)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+[1] TRUE
+\end{verbatim}
+
+\textbf{Explicación del código.}\\
+Este bloque aplica el flujo de k-NN: prepara variables numéricas,
+estandariza, calcula vecinos cercanos, genera predicciones o evalúa el
+desempeño del clasificador.
+
+\textbf{Interpretación del resultado.}\\
+El resultado muestra cómo se comporta k-NN con los datos. En este método
+son clave la escala de las variables, el valor de \(k\) y el equilibrio
+entre exactitud, sensibilidad y especificidad.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2267,6 +3574,20 @@ desviación estándar.
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+[1] "Base preparada cargada correctamente."
+\end{verbatim}
+
+\textbf{Explicación del código.}\\
+Este bloque aplica el flujo de k-NN: prepara variables numéricas,
+estandariza, calcula vecinos cercanos, genera predicciones o evalúa el
+desempeño del clasificador.
+
+\textbf{Interpretación del resultado.}\\
+El resultado muestra cómo se comporta k-NN con los datos. En este método
+son clave la escala de las variables, el valor de \(k\) y el equilibrio
+entre exactitud, sensibilidad y especificidad.
 
 \section{Selección de una muestra para
 k-NN}\label{selecciuxf3n-de-una-muestra-para-k-nn}
@@ -2282,6 +3603,20 @@ k-NN}\label{selecciuxf3n-de-una-muestra-para-k-nn}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+[1] 12000     6
+\end{verbatim}
+
+\textbf{Explicación del código.}\\
+Este bloque aplica el flujo de k-NN: prepara variables numéricas,
+estandariza, calcula vecinos cercanos, genera predicciones o evalúa el
+desempeño del clasificador.
+
+\textbf{Interpretación del resultado.}\\
+El resultado muestra cómo se comporta k-NN con los datos. En este método
+son clave la escala de las variables, el valor de \(k\) y el equilibrio
+entre exactitud, sensibilidad y especificidad.
 
 \section{Preparar variables para
 k-NN}\label{preparar-variables-para-k-nn}
@@ -2303,6 +3638,16 @@ k-NN}\label{preparar-variables-para-k-nn}
 \end{Highlighting}
 \end{Shaded}
 
+\textbf{Explicación del código.}\\
+Este bloque aplica el flujo de k-NN: prepara variables numéricas,
+estandariza, calcula vecinos cercanos, genera predicciones o evalúa el
+desempeño del clasificador.
+
+\textbf{Interpretación del resultado.}\\
+El resultado muestra cómo se comporta k-NN con los datos. En este método
+son clave la escala de las variables, el valor de \(k\) y el equilibrio
+entre exactitud, sensibilidad y especificidad.
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"atus\_knn\_base"}\NormalTok{)) \{}
@@ -2311,6 +3656,22 @@ k-NN}\label{preparar-variables-para-k-nn}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+
+Con víctimas   Solo daños 
+       17.36        82.64 
+\end{verbatim}
+
+\textbf{Explicación del código.}\\
+Este bloque aplica el flujo de k-NN: prepara variables numéricas,
+estandariza, calcula vecinos cercanos, genera predicciones o evalúa el
+desempeño del clasificador.
+
+\textbf{Interpretación del resultado.}\\
+El resultado muestra cómo se comporta k-NN con los datos. En este método
+son clave la escala de las variables, el valor de \(k\) y el equilibrio
+entre exactitud, sensibilidad y especificidad.
 
 \section{Crear variables dummy}\label{crear-variables-dummy}
 
@@ -2327,6 +3688,20 @@ k-NN}\label{preparar-variables-para-k-nn}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+[1] 12000    36
+\end{verbatim}
+
+\textbf{Explicación del código.}\\
+Este bloque aplica el flujo de k-NN: prepara variables numéricas,
+estandariza, calcula vecinos cercanos, genera predicciones o evalúa el
+desempeño del clasificador.
+
+\textbf{Interpretación del resultado.}\\
+El resultado muestra cómo se comporta k-NN con los datos. En este método
+son clave la escala de las variables, el valor de \(k\) y el equilibrio
+entre exactitud, sensibilidad y especificidad.
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"atus\_knn\_base"}\NormalTok{)) \{}
@@ -2334,6 +3709,16 @@ k-NN}\label{preparar-variables-para-k-nn}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
+
+\textbf{Explicación del código.}\\
+Este bloque aplica el flujo de k-NN: prepara variables numéricas,
+estandariza, calcula vecinos cercanos, genera predicciones o evalúa el
+desempeño del clasificador.
+
+\textbf{Interpretación del resultado.}\\
+El resultado muestra cómo se comporta k-NN con los datos. En este método
+son clave la escala de las variables, el valor de \(k\) y el equilibrio
+entre exactitud, sensibilidad y especificidad.
 
 \section{División en entrenamiento y
 prueba}\label{divisiuxf3n-en-entrenamiento-y-prueba-1}
@@ -2352,6 +3737,16 @@ prueba}\label{divisiuxf3n-en-entrenamiento-y-prueba-1}
 \end{Highlighting}
 \end{Shaded}
 
+\textbf{Explicación del código.}\\
+Este bloque aplica el flujo de k-NN: prepara variables numéricas,
+estandariza, calcula vecinos cercanos, genera predicciones o evalúa el
+desempeño del clasificador.
+
+\textbf{Interpretación del resultado.}\\
+El resultado muestra cómo se comporta k-NN con los datos. En este método
+son clave la escala de las variables, el valor de \(k\) y el equilibrio
+entre exactitud, sensibilidad y especificidad.
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"x\_entrenamiento"}\NormalTok{) }\SpecialCharTok{\&\&} \FunctionTok{exists}\NormalTok{(}\StringTok{"x\_prueba"}\NormalTok{)) \{}
@@ -2366,6 +3761,22 @@ prueba}\label{divisiuxf3n-en-entrenamiento-y-prueba-1}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+       conjunto registros porcentaje
+1 Entrenamiento      8400         70
+2        Prueba      3600         30
+\end{verbatim}
+
+\textbf{Explicación del código.}\\
+Este bloque aplica el flujo de k-NN: prepara variables numéricas,
+estandariza, calcula vecinos cercanos, genera predicciones o evalúa el
+desempeño del clasificador.
+
+\textbf{Interpretación del resultado.}\\
+El resultado muestra cómo se comporta k-NN con los datos. En este método
+son clave la escala de las variables, el valor de \(k\) y el equilibrio
+entre exactitud, sensibilidad y especificidad.
 
 \section{Estandarización de
 variables}\label{estandarizaciuxf3n-de-variables-1}
@@ -2383,6 +3794,16 @@ variables}\label{estandarizaciuxf3n-de-variables-1}
 \end{Highlighting}
 \end{Shaded}
 
+\textbf{Explicación del código.}\\
+Este bloque aplica el flujo de k-NN: prepara variables numéricas,
+estandariza, calcula vecinos cercanos, genera predicciones o evalúa el
+desempeño del clasificador.
+
+\textbf{Interpretación del resultado.}\\
+El resultado muestra cómo se comporta k-NN con los datos. En este método
+son clave la escala de las variables, el valor de \(k\) y el equilibrio
+entre exactitud, sensibilidad y especificidad.
+
 \section{Ajuste del modelo k-NN con k =
 5}\label{ajuste-del-modelo-k-nn-con-k-5}
 
@@ -2398,6 +3819,16 @@ variables}\label{estandarizaciuxf3n-de-variables-1}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
+
+\textbf{Explicación del código.}\\
+Este bloque aplica el flujo de k-NN: prepara variables numéricas,
+estandariza, calcula vecinos cercanos, genera predicciones o evalúa el
+desempeño del clasificador.
+
+\textbf{Interpretación del resultado.}\\
+El resultado muestra cómo se comporta k-NN con los datos. En este método
+son clave la escala de las variables, el valor de \(k\) y el equilibrio
+entre exactitud, sensibilidad y especificidad.
 
 \section{Matriz de confusión}\label{matriz-de-confusiuxf3n-1}
 
@@ -2416,6 +3847,23 @@ variables}\label{estandarizaciuxf3n-de-variables-1}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+              Predicho
+Real           Con víctimas Solo daños
+  Con víctimas          211        399
+  Solo daños            144       2846
+\end{verbatim}
+
+\textbf{Explicación del código.}\\
+Este bloque aplica el flujo de k-NN: prepara variables numéricas,
+estandariza, calcula vecinos cercanos, genera predicciones o evalúa el
+desempeño del clasificador.
+
+\textbf{Interpretación del resultado.}\\
+El resultado muestra cómo se comporta k-NN con los datos. En este método
+son clave la escala de las variables, el valor de \(k\) y el equilibrio
+entre exactitud, sensibilidad y especificidad.
 
 \section{Métricas de evaluación}\label{muxe9tricas-de-evaluaciuxf3n-1}
 
@@ -2441,6 +3889,21 @@ variables}\label{estandarizaciuxf3n-de-variables-1}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+  k exactitud sensibilidad especificidad
+1 5 0.8491667    0.3459016     0.9518395
+\end{verbatim}
+
+\textbf{Explicación del código.}\\
+Este bloque aplica el flujo de k-NN: prepara variables numéricas,
+estandariza, calcula vecinos cercanos, genera predicciones o evalúa el
+desempeño del clasificador.
+
+\textbf{Interpretación del resultado.}\\
+El resultado muestra cómo se comporta k-NN con los datos. En este método
+son clave la escala de las variables, el valor de \(k\) y el equilibrio
+entre exactitud, sensibilidad y especificidad.
+
 \section{Comparación con distintos valores de
 k}\label{comparaciuxf3n-con-distintos-valores-de-k}
 
@@ -2465,6 +3928,16 @@ k}\label{comparaciuxf3n-con-distintos-valores-de-k}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
+
+\textbf{Explicación del código.}\\
+Este bloque aplica el flujo de k-NN: prepara variables numéricas,
+estandariza, calcula vecinos cercanos, genera predicciones o evalúa el
+desempeño del clasificador.
+
+\textbf{Interpretación del resultado.}\\
+El resultado muestra cómo se comporta k-NN con los datos. En este método
+son clave la escala de las variables, el valor de \(k\) y el equilibrio
+entre exactitud, sensibilidad y especificidad.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2493,6 +3966,23 @@ k}\label{comparaciuxf3n-con-distintos-valores-de-k}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+   k exactitud sensibilidad especificidad
+1  3 0.8433333    0.3770492     0.9384615
+2  5 0.8480556    0.3491803     0.9498328
+3 11 0.8558333    0.3377049     0.9615385
+\end{verbatim}
+
+\textbf{Explicación del código.}\\
+Este bloque aplica el flujo de k-NN: prepara variables numéricas,
+estandariza, calcula vecinos cercanos, genera predicciones o evalúa el
+desempeño del clasificador.
+
+\textbf{Interpretación del resultado.}\\
+El resultado muestra cómo se comporta k-NN con los datos. En este método
+son clave la escala de las variables, el valor de \(k\) y el equilibrio
+entre exactitud, sensibilidad y especificidad.
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"resultados\_knn"}\NormalTok{)) \{}
@@ -2515,6 +4005,18 @@ k}\label{comparaciuxf3n-con-distintos-valores-de-k}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{05-knn_files/figure-pdf/unnamed-chunk-21-1.png}}
+
+\textbf{Explicación del código.}\\
+Este bloque aplica el flujo de k-NN: prepara variables numéricas,
+estandariza, calcula vecinos cercanos, genera predicciones o evalúa el
+desempeño del clasificador.
+
+\textbf{Interpretación del resultado.}\\
+El resultado muestra cómo se comporta k-NN con los datos. En este método
+son clave la escala de las variables, el valor de \(k\) y el equilibrio
+entre exactitud, sensibilidad y especificidad.
 
 \section{Comparación conceptual con regresión
 logística}\label{comparaciuxf3n-conceptual-con-regresiuxf3n-loguxedstica}

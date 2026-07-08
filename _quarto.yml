@@ -36,6 +36,7 @@ format:
 
   pdf:
     documentclass: book
+    output-file: libro-machine-learning-r.pdf
     toc: true
     toc-title: "Índice general"
     number-sections: true

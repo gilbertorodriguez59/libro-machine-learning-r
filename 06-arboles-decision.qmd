@@ -6,44 +6,40 @@ Al finalizar este capítulo, el lector será capaz de:
 
 - Explicar la idea básica de un árbol de decisión.
 - Interpretar reglas de clasificación tipo “si-entonces”.
-- Entrenar un árbol de decisión en R.
+- Entrenar un árbol de decisión en R usando datos reales.
 - Generar predicciones sobre un conjunto de prueba.
 - Construir una matriz de confusión.
-- Calcular métricas de evaluación como exactitud, sensibilidad y especificidad.
-- Comparar conceptualmente árboles de decisión con regresión logística y k-NN.
+- Calcular exactitud, sensibilidad y especificidad.
+- Comparar árboles de decisión con regresión logística y k-NN.
 
 ## Introducción
 
-Los árboles de decisión son modelos de aprendizaje supervisado que permiten clasificar observaciones mediante una secuencia de preguntas.
+Los árboles de decisión son modelos de aprendizaje supervisado que clasifican observaciones mediante una secuencia de preguntas.
 
-Por ejemplo, en nuestro problema de accidentes de tránsito podríamos tener preguntas como:
+En nuestro problema de accidentes de tránsito, un árbol puede formular preguntas como:
 
-- ¿El accidente fue una colisión con motocicleta?
-- ¿Ocurrió de noche?
-- ¿La causa presunta fue el conductor?
-- ¿El día fue fin de semana?
+- ¿Cuál fue el tipo de accidente?
+- ¿A qué hora ocurrió?
+- ¿Cuál fue la causa presunta?
+- ¿En qué día de la semana ocurrió?
 
-Cada pregunta divide los datos en grupos más pequeños. Al final del camino, el árbol asigna una clase, por ejemplo:
+Cada pregunta divide los datos en grupos más pequeños. Al final de cada camino, el árbol asigna una clase:
 
 - `Con víctimas`
 - `Solo daños`
 
-La principal ventaja de los árboles de decisión es que son fáciles de interpretar. Su estructura se parece a un conjunto de reglas lógicas.
+La principal ventaja de los árboles de decisión es su interpretabilidad. Su estructura puede leerse como un conjunto de reglas.
 
 ## Idea intuitiva
 
-Un árbol de decisión se parece a un diagrama de flujo.
-
-Cada nodo interno contiene una pregunta sobre una variable. Cada rama representa una posible respuesta. Cada nodo final, llamado hoja, contiene una predicción.
-
-Por ejemplo:
+Un árbol de decisión se parece a un diagrama de flujo. Cada nodo interno contiene una pregunta, cada rama representa una respuesta posible y cada hoja contiene una predicción.
 
 ```{r}
 reglas_ejemplo <- data.frame(
   pregunta = c(
     "¿El accidente fue con peatón?",
     "¿La hora fue nocturna?",
-    "¿La causa fue el conductor?"
+    "¿La causa presunta fue el conductor?"
   ),
   posible_decision = c(
     "Mayor riesgo de víctimas",
@@ -60,40 +56,35 @@ La tabla muestra ejemplos de preguntas que un árbol podría usar para separar a
 
 ## Árboles como reglas si-entonces
 
-Un árbol puede traducirse como un conjunto de reglas.
-
-Por ejemplo:
+Un árbol puede traducirse como reglas de decisión.
 
 ```text
 Si el tipo de accidente es colisión con peatón,
-entonces clasificar como accidente con víctimas.
+entonces puede aumentar la probabilidad de accidente con víctimas.
 
-Si el tipo de accidente es colisión con vehículo automotor
-y la causa presunta es conductor,
-entonces clasificar según la proporción observada en los datos.
+Si el accidente fue de solo daños en condiciones similares a muchos casos anteriores,
+entonces el árbol puede clasificarlo como Solo daños.
 ```
 
-Esta característica hace que los árboles sean útiles cuando queremos explicar el modelo a estudiantes, autoridades, tomadores de decisión o personas no especialistas.
+Esta característica hace que los árboles sean útiles cuando se desea explicar el modelo a estudiantes, autoridades o personas no especialistas.
 
 ## Fundamento matemático
 
 Un árbol de decisión busca dividir los datos en grupos cada vez más homogéneos.
 
-Si una variable respuesta tiene dos clases, por ejemplo:
+Si la variable respuesta tiene dos clases, podemos representarla como:
 
 \[
-Y =
-\left\{
-\begin{array}{ll}
+Y_i =
+\begin{cases}
 1, & \text{si el accidente tiene víctimas} \\
 0, & \text{si el accidente es de solo daños}
-\end{array}
-\right.
+\end{cases}
 \]
 
-entonces el árbol busca particiones donde las observaciones dentro de cada grupo sean lo más parecidas posible respecto a \(Y\).
+El árbol busca particiones donde las observaciones dentro de cada grupo sean lo más parecidas posible respecto a \(Y\).
 
-Una medida común para evaluar la impureza de un nodo es el índice de Gini:
+Una medida común de impureza es el índice de Gini:
 
 \[
 Gini = 1 - \sum_{k=1}^{K} p_k^2
@@ -122,7 +113,7 @@ gini
 ```
 
 **Interpretación del resultado.**  
-El índice de Gini mide qué tan mezcladas están las clases dentro de un nodo. Un valor cercano a cero indica un nodo más puro.
+El índice de Gini mide qué tan mezcladas están las clases dentro de un nodo. Un valor cercano a cero indica mayor pureza.
 
 ## Algoritmo general
 
@@ -135,7 +126,7 @@ Entrada:
 
 Proceso:
 1. Elegir una variable para dividir los datos.
-2. Seleccionar el punto o categoría que produce grupos más homogéneos.
+2. Seleccionar la división que produzca grupos más homogéneos.
 3. Repetir el proceso en cada nuevo grupo.
 4. Detener el crecimiento del árbol según ciertos criterios.
 5. Asignar una clase a cada hoja.
@@ -159,7 +150,6 @@ library(rpart)
 
 ```{r}
 ruta_atus_ml <- "datos/atus_ml_preparado.csv"
-
 file.exists(ruta_atus_ml)
 ```
 
@@ -176,18 +166,13 @@ if (file.exists(ruta_atus_ml)) {
 **Interpretación del resultado.**  
 Si aparece el mensaje de carga correcta, podemos continuar con el entrenamiento del árbol de decisión.
 
-## Selección de una muestra
+## Uso de la base completa
 
-Para que el capítulo compile rápido en HTML y PDF, usaremos una muestra pequeña de la base. Esto es suficiente para fines didácticos.
+En este capítulo usaremos la base completa preparada en capítulos anteriores. Para evitar que el árbol crezca demasiado, controlaremos su profundidad y el tamaño mínimo de los nodos.
 
 ```{r}
 if (!is.null(atus_ml)) {
-  set.seed(123)
-  
-  tamano_muestra <- min(5000, nrow(atus_ml))
-  
-  atus_arbol_base <- atus_ml |>
-    sample_n(tamano_muestra)
+  atus_arbol_base <- atus_ml
   
   data.frame(
     filas = nrow(atus_arbol_base),
@@ -197,7 +182,7 @@ if (!is.null(atus_ml)) {
 ```
 
 **Interpretación del resultado.**  
-Trabajamos con una muestra para evitar que el árbol sea demasiado grande y para que el PDF se genere sin problemas.
+La tabla muestra el número de registros y columnas disponibles para entrenar el modelo.
 
 ## Preparar variables
 
@@ -228,7 +213,7 @@ if (exists("atus_arbol_base")) {
 ```
 
 **Interpretación del resultado.**  
-La base está desbalanceada: la mayoría de los accidentes corresponden a solo daños. Por eso, además de exactitud, es importante revisar sensibilidad y especificidad.
+La base está desbalanceada: la mayoría de los accidentes corresponden a solo daños. Por eso es importante revisar sensibilidad y especificidad, no solamente exactitud.
 
 ## División en entrenamiento y prueba
 
@@ -254,11 +239,11 @@ if (exists("atus_arbol_base")) {
 ```
 
 **Interpretación del resultado.**  
-El conjunto de entrenamiento se usa para construir el árbol. El conjunto de prueba se usa para evaluar el desempeño con datos no utilizados durante el entrenamiento.
+El conjunto de entrenamiento se usa para construir el árbol. El conjunto de prueba se usa para evaluar el desempeño con datos no usados durante el entrenamiento.
 
 ## Ajustar el árbol de decisión
 
-Aquí controlamos el tamaño del árbol para evitar que crezca demasiado.
+Aunque usamos toda la base, limitamos el crecimiento del árbol para evitar sobreajuste y para facilitar la generación del libro en HTML y PDF.
 
 ```{r}
 if (exists("entrenamiento")) {
@@ -267,9 +252,10 @@ if (exists("entrenamiento")) {
     data = entrenamiento,
     method = "class",
     control = rpart.control(
-      cp = 0.01,
-      minsplit = 100,
-      maxdepth = 4
+      cp = 0.005,
+      minsplit = 1000,
+      minbucket = 300,
+      maxdepth = 5
     )
   )
 }
@@ -277,14 +263,14 @@ if (exists("entrenamiento")) {
 
 ```{r}
 if (exists("modelo_arbol")) {
-  modelo_arbol
+  print(modelo_arbol)
 }
 ```
 
 **Interpretación del resultado.**  
 El modelo muestra las divisiones principales del árbol. Cada división representa una pregunta que ayuda a separar las clases.
 
-## Tabla de complejidad del árbol
+## Tabla de complejidad
 
 ```{r}
 if (exists("modelo_arbol")) {
@@ -293,7 +279,7 @@ if (exists("modelo_arbol")) {
 ```
 
 **Interpretación del resultado.**  
-La tabla de complejidad ayuda a identificar qué tan grande es el árbol y cómo cambia el error conforme se agregan más divisiones.
+La tabla de complejidad resume el tamaño del árbol y el error relativo asociado. Es útil para decidir si conviene podar el árbol.
 
 ## Importancia de variables
 
@@ -304,16 +290,17 @@ if (exists("modelo_arbol")) {
   if (!is.null(importancia)) {
     importancia_df <- data.frame(
       variable = names(importancia),
-      importancia = as.numeric(importancia)
-    ) |>
-      arrange(desc(importancia))
+      importancia = as.numeric(importancia),
+      row.names = NULL
+    )
     
+    importancia_df <- importancia_df[order(-importancia_df$importancia), ]
     importancia_df
   }
 }
 ```
 
-```{r}
+```{r, fig.width=7, fig.height=4}
 if (exists("importancia_df")) {
   ggplot(importancia_df, aes(x = reorder(variable, importancia), y = importancia)) +
     geom_col() +
@@ -329,19 +316,35 @@ if (exists("importancia_df")) {
 **Interpretación del resultado.**  
 Las variables con mayor importancia son las que más ayudan al árbol a separar accidentes con víctimas de accidentes de solo daños.
 
-## Gráfica sencilla del árbol
+## Gráfica del árbol como código opcional
 
-Para evitar que el PDF se atore, usamos una gráfica base de R. Es menos vistosa que `rpart.plot`, pero es más ligera y segura.
+La gráfica completa de un árbol puede ser pesada para PDF cuando se trabaja con muchos datos. Por eso se deja como código opcional. El estudiante puede ejecutarlo en RStudio si desea visualizar el árbol.
 
-```{r, fig.width=8, fig.height=5}
+```{r eval=FALSE}
+plot(modelo_arbol, uniform = TRUE, margin = 0.1)
+text(modelo_arbol, use.n = TRUE, cex = 0.7)
+```
+
+**Interpretación del resultado.**  
+La gráfica del árbol permite observar los nodos y reglas principales, pero en documentos PDF grandes puede volver lenta la compilación.
+
+## Resumen seguro de nodos del árbol
+
+En lugar de usar `dplyr` directamente sobre la estructura interna del árbol, convertimos el marco del árbol a un `data.frame` normal. Esto evita errores al generar HTML o PDF.
+
+```{r}
 if (exists("modelo_arbol")) {
-  plot(modelo_arbol, uniform = TRUE, margin = 0.1)
-  text(modelo_arbol, use.n = TRUE, cex = 0.7)
+  resumen_nodos <- as.data.frame(modelo_arbol$frame)
+  resumen_nodos$nodo <- row.names(resumen_nodos)
+  row.names(resumen_nodos) <- NULL
+  
+  resumen_nodos <- resumen_nodos[, c("nodo", "var", "n", "dev", "yval")]
+  head(resumen_nodos, 12)
 }
 ```
 
 **Interpretación del resultado.**  
-La gráfica muestra la estructura del árbol. Cada nodo representa una regla de decisión y cada hoja representa una clase predicha.
+La tabla muestra los primeros nodos del árbol. La columna `var` indica la variable usada para dividir; cuando aparece `<leaf>`, se trata de una hoja final.
 
 ## Predicción sobre el conjunto de prueba
 
@@ -409,12 +412,7 @@ if (exists("pred_arbol")) {
 ```
 
 **Interpretación del resultado.**  
-
-- La exactitud mide la proporción total de clasificaciones correctas.
-- La sensibilidad mide qué proporción de accidentes con víctimas fueron detectados correctamente.
-- La especificidad mide qué proporción de accidentes de solo daños fueron detectados correctamente.
-
-En problemas desbalanceados, la exactitud puede ser engañosa. Por eso conviene analizar las tres métricas.
+La exactitud mide la proporción total de clasificaciones correctas. La sensibilidad mide qué proporción de accidentes con víctimas fueron detectados correctamente. La especificidad mide qué proporción de accidentes de solo daños fueron detectados correctamente.
 
 ## Probabilidades predichas
 
@@ -437,7 +435,7 @@ Las probabilidades indican qué tan probable considera el árbol que cada observ
 
 ## Distribución de probabilidades para accidentes con víctimas
 
-```{r}
+```{r, fig.width=7, fig.height=4}
 if (exists("probabilidades_arbol")) {
   prueba$probabilidad_con_victimas <- probabilidades_arbol[, "Con víctimas"]
   
@@ -453,7 +451,7 @@ if (exists("probabilidades_arbol")) {
 ```
 
 **Interpretación del resultado.**  
-Esta gráfica permite observar cómo el árbol distribuye las probabilidades predichas para cada clase real.
+La gráfica permite observar cómo el árbol distribuye las probabilidades predichas para cada clase real.
 
 ## Comparación conceptual con otros métodos
 

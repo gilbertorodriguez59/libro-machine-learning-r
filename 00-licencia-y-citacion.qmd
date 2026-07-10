@@ -1,0 +1,44 @@
+# Licencia, autoría y forma de citar {.unnumbered}
+
+## Autor {.unnumbered}
+
+**MI Jesús Gilberto Rodríguez Escobedo**
+
+## Licencia de uso {.unnumbered}
+
+Este libro se publica como recurso educativo abierto bajo la licencia:
+
+**Creative Commons Atribución-NoComercial-CompartirIgual 4.0 Internacional  
+(CC BY-NC-SA 4.0)**
+
+Esto significa que puedes:
+
+- **Compartir** el material.
+- **Adaptar** el contenido para fines educativos.
+- **Usarlo en cursos, clases, talleres y actividades académicas.**
+
+Siempre que se cumplan estas condiciones:
+
+- Dar crédito al autor.
+- No utilizar el material con fines comerciales sin autorización.
+- Compartir obras derivadas bajo una licencia compatible.
+
+::: {.callout-note title="Nota sobre uso educativo"}
+Este material puede utilizarse libremente como apoyo didáctico en cursos universitarios, siempre citando la fuente y respetando la licencia.
+:::
+
+## Cita sugerida {.unnumbered}
+
+Rodríguez Escobedo, J. G. (2026). *Aprendizaje y Clasificación Automática con R: Un enfoque práctico con datos abiertos reales*. Libro abierto publicado en GitHub Pages.
+
+## Sitio web del libro {.unnumbered}
+
+<https://gilbertorodriguez59.github.io/libro-machine-learning-r/>
+
+## Repositorio {.unnumbered}
+
+<https://github.com/gilbertorodriguez59/libro-machine-learning-r>
+
+## Aviso académico {.unnumbered}
+
+Los ejemplos, códigos y resultados se presentan con fines educativos. El lector debe revisar, adaptar y validar los análisis antes de utilizarlos en contextos profesionales, institucionales o de toma de decisiones.

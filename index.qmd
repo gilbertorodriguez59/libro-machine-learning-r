@@ -1,20 +1,40 @@
+---
+title: "Aprendizaje y Clasificación Automática con R"
+subtitle: "Un enfoque práctico con datos abiertos reales"
+author: "MI Jesús Gilberto Rodríguez Escobedo"
+---
+
+::: {.hero}
+# Aprendizaje y Clasificación Automática con R
+
+## Un enfoque práctico con datos abiertos reales
+
+**Autor:** MI Jesús Gilberto Rodríguez Escobedo  
+**Versión:** 0.3  
+**Modalidad:** Libro abierto, práctico e interactivo
+:::
+
 # Presentación {.unnumbered}
 
-Este libro introduce el aprendizaje automático (*Machine Learning*) mediante ejemplos claros, didácticos y prácticos desarrollados principalmente en R.
+Este libro introduce el aprendizaje automático (*Machine Learning*) mediante ejemplos claros, didácticos y prácticos desarrollados principalmente en **R**.
 
-La intención no es escribir un tratado matemático extenso, sino construir una guía aplicada para aprender haciendo con datos abiertos reales. En esta primera versión trabajaremos con datos de accidentes de tránsito de México y los usaremos como hilo conductor para explicar preparación de datos, análisis exploratorio y modelos de clasificación.
+La intención no es escribir un tratado matemático extenso, sino construir una guía aplicada para aprender haciendo con datos abiertos reales. En esta versión trabajamos con datos de accidentes de tránsito de México y los usamos como hilo conductor para explicar preparación de datos, análisis exploratorio y modelos de clasificación.
 
-## Objetivo general
+::: {.callout-tip title="Enfoque del libro"}
+El libro combina tres elementos: **fundamento conceptual**, **código reproducible en R** e **interpretación didáctica de los resultados**.
+:::
+
+## Objetivo general {.unnumbered}
 
 Desarrollar competencias básicas e intermedias en aprendizaje automático mediante el análisis, modelado e interpretación de datos reales.
 
-## Público al que va dirigido
+## Público al que va dirigido {.unnumbered}
 
 Este libro está dirigido a estudiantes de ingeniería, ciencias, ciencia de datos, estadística aplicada y áreas afines que desean iniciar en aprendizaje automático con un enfoque práctico.
 
-## Software utilizado
+## Software utilizado {.unnumbered}
 
-Los ejemplos se desarrollan principalmente en R, usando RStudio y Quarto. También se mencionan herramientas útiles para publicar y compartir resultados:
+Los ejemplos se desarrollan principalmente en **R**, usando **RStudio** y **Quarto**. También se mencionan herramientas útiles para publicar y compartir resultados:
 
 - RStudio
 - Consola de R
@@ -23,14 +43,15 @@ Los ejemplos se desarrollan principalmente en R, usando RStudio y Quarto. Tambi�
 - GitHub Pages
 - Quarto Pub
 
-## Estructura inicial del libro
+## Estructura inicial del libro {.unnumbered}
 
 1. Introducción al aprendizaje automático.
 2. Preparación de datos reales.
 3. Análisis exploratorio de datos.
 4. Regresión logística.
 5. k vecinos más cercanos.
+6. Árboles de decisión.
 
-## Nota para el lector
+## Nota para el lector {.unnumbered}
 
-Los capítulos incluyen tres elementos: fundamento conceptual, código reproducible en R e interpretación didáctica de los resultados.
+Los capítulos están diseñados para leerse y ejecutarse paso a paso. Cada bloque de código busca responder una pregunta concreta y cada resultado se acompaña de una interpretación didáctica.

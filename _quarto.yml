@@ -7,11 +7,18 @@ lang: es
 book:
   title: "Aprendizaje y Clasificación Automática con R"
   subtitle: "Un enfoque práctico con datos abiertos reales"
-  author: "MI. Gilberto Rodríguez"
+  author: "MI Jesús Gilberto Rodríguez Escobedo"
   date: today
+  site-url: "https://gilbertorodriguez59.github.io/libro-machine-learning-r/"
+  repo-url: "https://github.com/gilbertorodriguez59/libro-machine-learning-r"
   downloads: [pdf]
+  page-footer:
+    left: "© MI Jesús Gilberto Rodríguez Escobedo"
+    center: "Aprendizaje y Clasificación Automática con R"
+    right: "Licencia CC BY-NC-SA 4.0"
   chapters:
     - index.qmd
+    - 00-licencia-y-citacion.qmd
     - 01-introduccion.qmd
     - 02-preparacion-datos.qmd
     - 03-analisis-exploratorio.qmd
@@ -28,16 +35,19 @@ execute:
 
 format:
   html:
-    theme: cosmo
+    theme:
+      - cosmo
+      - styles.css
     toc: true
     number-sections: true
     code-fold: true
     code-tools: true
     html-math-method: mathjax
+    smooth-scroll: true
+    link-external-newwindow: true
 
   pdf:
     documentclass: book
-    output-file: Aprendizaje-y-Clasificación-Automática-con-R.pdf
     toc: true
     toc-title: "Índice general"
     number-sections: true
@@ -49,5 +59,16 @@ format:
     pdf-engine: lualatex
     include-in-header:
       text: |
+        \usepackage{xcolor}
+        \definecolor{azulLibro}{HTML}{0B3D91}
+        \definecolor{turquesaLibro}{HTML}{00A6A6}
         \renewcommand{\contentsname}{Índice general}
         \renewcommand{\chaptername}{Capítulo}
+        \usepackage{fancyhdr}
+        \pagestyle{fancy}
+        \fancyhf{}
+        \fancyhead[LE,RO]{\textcolor{azulLibro}{\thepage}}
+        \fancyhead[LO]{\textcolor{azulLibro}{Aprendizaje y Clasificación Automática con R}}
+        \fancyhead[RE]{\textcolor{azulLibro}{MI Jesús Gilberto Rodríguez Escobedo}}
+        \renewcommand{\headrulewidth}{0.4pt}
+        \renewcommand{\headrule}{\hbox to\headwidth{\color{turquesaLibro}\leaders\hrule height \headrulewidth\hfill}}

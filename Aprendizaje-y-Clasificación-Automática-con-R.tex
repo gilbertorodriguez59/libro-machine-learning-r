@@ -227,7 +227,7 @@
 \makeatother
 \subtitle{Un enfoque práctico con datos abiertos reales}
 \author{MI. Gilberto Rodríguez}
-\date{2026-07-08}
+\date{2026-07-09}
 \begin{document}
 \frontmatter
 \maketitle
@@ -2872,183 +2872,175 @@ Al finalizar este capítulo, el lector será capaz de:
 \item
   Explicar la idea básica de un árbol de decisión.
 \item
-  Identificar nodos, ramas, reglas de decisión y hojas terminales.
+  Interpretar reglas de clasificación tipo ``si-entonces''.
 \item
-  Comprender el papel de la impureza de Gini en problemas de
-  clasificación.
+  Entrenar un árbol de decisión en R usando una base real.
 \item
-  Ajustar un árbol de clasificación en R usando datos reales.
+  Generar predicciones sobre un conjunto de prueba.
 \item
-  Evaluar el desempeño del árbol mediante matriz de confusión,
-  exactitud, sensibilidad y especificidad.
+  Construir una matriz de confusión.
 \item
-  Interpretar las reglas más importantes del modelo.
+  Calcular exactitud, sensibilidad y especificidad.
+\item
+  Comparar conceptualmente árboles de decisión con regresión logística y
+  k-NN.
 \end{itemize}
 
 \section{Introducción}\label{introducciuxf3n-5}
 
-Un árbol de decisión es un modelo de aprendizaje supervisado que
-clasifica observaciones mediante una secuencia de preguntas.
+Los árboles de decisión son modelos de aprendizaje supervisado que
+clasifican observaciones mediante una secuencia de preguntas.
 
-En lugar de usar una sola ecuación, como en la regresión logística, un
-árbol va dividiendo los datos en grupos cada vez más homogéneos. Cada
-división se basa en una variable predictora.
+En este capítulo continuaremos con la base de accidentes de tránsito
+preparada en los capítulos anteriores. La variable que queremos predecir
+es:
 
-En este capítulo seguiremos con la misma pregunta práctica:
+\texttt{accidente\_con\_victimas}
 
-\begin{quote}
-¿Podemos clasificar si un accidente de tránsito tendrá víctimas o será
-solo de daños materiales?
-\end{quote}
+Esta variable tiene dos clases:
 
-La variable respuesta será nuevamente \texttt{accidente\_con\_victimas}.
+\begin{itemize}
+\tightlist
+\item
+  \texttt{Con\ víctimas}
+\item
+  \texttt{Solo\ daños}
+\end{itemize}
 
-\section{Idea intuitiva del árbol de
-decisión}\label{idea-intuitiva-del-uxe1rbol-de-decisiuxf3n}
+La idea central es construir reglas de decisión que permitan clasificar
+un accidente a partir de variables como mes, hora, día de la semana,
+tipo de accidente y causa presunta.
 
-Un árbol de decisión funciona como una serie de preguntas del tipo:
+\section{Idea intuitiva}\label{idea-intuitiva}
+
+Un árbol de decisión se parece a un diagrama de flujo. Cada nodo interno
+contiene una pregunta. Cada rama representa una posible respuesta. Cada
+hoja contiene una predicción.
+
+Por ejemplo, un árbol podría formular preguntas como:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{¿El accidente fue colisión con peatón?}
-\NormalTok{  Sí  {-}\textgreater{} mayor probabilidad de víctimas}
-\NormalTok{  No  {-}\textgreater{} hacer otra pregunta}
+\NormalTok{reglas\_ejemplo }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{pregunta =} \FunctionTok{c}\NormalTok{(}
+    \StringTok{"¿El accidente fue con peatón?"}\NormalTok{,}
+    \StringTok{"¿Ocurrió de noche?"}\NormalTok{,}
+    \StringTok{"¿La causa presunta fue el conductor?"}
+\NormalTok{  ),}
+  \AttributeTok{posible\_decision =} \FunctionTok{c}\NormalTok{(}
+    \StringTok{"Mayor posibilidad de víctimas"}\NormalTok{,}
+    \StringTok{"Revisar el patrón horario"}\NormalTok{,}
+    \StringTok{"Analizar junto con el tipo de accidente"}
+\NormalTok{  )}
+\NormalTok{)}
 
-\NormalTok{¿La causa presunta fue conductor?}
-\NormalTok{  Sí  {-}\textgreater{} hacer otra pregunta}
-\NormalTok{  No  {-}\textgreater{} clasificar según el grupo observado}
+\NormalTok{reglas\_ejemplo}
 \end{Highlighting}
 \end{Shaded}
 
-Cada pregunta divide los datos en subconjuntos. El objetivo es que, al
-final del proceso, las hojas del árbol contengan observaciones lo más
-parecidas posible entre sí.
+\begin{verbatim}
+                              pregunta                        posible_decision
+1        ¿El accidente fue con peatón?           Mayor posibilidad de víctimas
+2                   ¿Ocurrió de noche?               Revisar el patrón horario
+3 ¿La causa presunta fue el conductor? Analizar junto con el tipo de accidente
+\end{verbatim}
 
-\section{Elementos de un árbol de
-decisión}\label{elementos-de-un-uxe1rbol-de-decisiuxf3n}
+\textbf{Interpretación del resultado.}\\
+La tabla muestra ejemplos de preguntas que un árbol de decisión podría
+utilizar para separar accidentes con víctimas de accidentes de solo
+daños.
 
-Los principales elementos son:
+\section{Reglas tipo si-entonces}\label{reglas-tipo-si-entonces}
 
-{\def\LTcaptype{none} % do not increment counter
-\begin{longtable}[]{@{}ll@{}}
-\toprule\noalign{}
-Elemento & Descripción \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-Nodo raíz & Primera división del árbol \\
-Nodo interno & Pregunta intermedia usada para seguir dividiendo \\
-Rama & Camino que se sigue dependiendo de la respuesta \\
-Hoja terminal & Resultado final de clasificación \\
-Profundidad & Número de niveles del árbol \\
-\end{longtable}
-}
+Una ventaja de los árboles de decisión es que pueden expresarse como
+reglas sencillas.
 
-\section{Fundamento matemático: impureza de
-Gini}\label{fundamento-matemuxe1tico-impureza-de-gini}
-
-En clasificación, un árbol busca dividir los datos para formar grupos
-cada vez más puros.
-
-Una medida común de impureza es el índice de Gini:
-
-\[
-Gini(t) = 1 - \sum_{k=1}^{K} p_{k}^{2}
-\]
-
-Donde:
-
-\begin{itemize}
-\tightlist
-\item
-  \(t\) representa un nodo del árbol.
-\item
-  \(K\) es el número de clases.
-\item
-  \(p_k\) es la proporción de observaciones de la clase \(k\) dentro del
-  nodo.
-\end{itemize}
-
-Si un nodo contiene observaciones muy mezcladas, su impureza es alta. Si
-casi todas las observaciones pertenecen a una sola clase, su impureza es
-baja.
-
-\section{Ejemplo sencillo de
-impureza}\label{ejemplo-sencillo-de-impureza}
-
-Supongamos un nodo con 10 accidentes:
-
-\begin{itemize}
-\tightlist
-\item
-  7 son de solo daños.
-\item
-  3 son con víctimas.
-\end{itemize}
-
-Entonces:
-
-\[
-p_{solo\ daños} = 0.7
-\]
-
-\[
-p_{con\ víctimas} = 0.3
-\]
-
-La impureza de Gini es:
-
-\[
-Gini = 1 - (0.7^2 + 0.3^2) = 1 - (0.49 + 0.09) = 0.42
-\]
-
-En R:
+Por ejemplo:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{p\_solo\_danos }\OtherTok{\textless{}{-}} \FloatTok{0.7}
-\NormalTok{p\_con\_victimas }\OtherTok{\textless{}{-}} \FloatTok{0.3}
+\NormalTok{Si el tipo de accidente es colisión con peatón,}
+\NormalTok{entonces aumenta la posibilidad de que el accidente tenga víctimas.}
 
-\NormalTok{gini }\OtherTok{\textless{}{-}} \DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ (p\_solo\_danos}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+}\NormalTok{ p\_con\_victimas}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+\NormalTok{Si el accidente es una colisión con objeto fijo,}
+\NormalTok{entonces el árbol revisa otras variables como la hora o la causa presunta.}
+\end{Highlighting}
+\end{Shaded}
+
+Estas reglas hacen que los árboles sean útiles en contextos educativos,
+porque el estudiante puede seguir el razonamiento del modelo paso a
+paso.
+
+\section{Fundamento matemático}\label{fundamento-matemuxe1tico-1}
+
+Un árbol de decisión busca dividir los datos en grupos más homogéneos.
+Para clasificación, una medida común de impureza es el índice de Gini.
+
+\[
+Gini = 1 - \sum_{k=1}^{K} p_k^2
+\]
+
+donde \texttt{p\_k} representa la proporción de observaciones de la
+clase \texttt{k} dentro de un nodo.
+
+En clasificación binaria, si un nodo contiene dos clases, el índice de
+Gini puede escribirse como:
+
+\[
+Gini = 1 - p_1^2 - p_2^2
+\]
+
+Un valor pequeño indica que el nodo es más puro. Un valor mayor indica
+que las clases están más mezcladas.
+
+\section{Ejemplo sencillo del índice de
+Gini}\label{ejemplo-sencillo-del-uxedndice-de-gini}
+
+Supongamos que un nodo contiene 80 accidentes de solo daños y 20
+accidentes con víctimas.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p\_solo\_danios }\OtherTok{\textless{}{-}} \DecValTok{80} \SpecialCharTok{/} \DecValTok{100}
+\NormalTok{p\_con\_victimas }\OtherTok{\textless{}{-}} \DecValTok{20} \SpecialCharTok{/} \DecValTok{100}
+
+\NormalTok{gini }\OtherTok{\textless{}{-}} \DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ p\_solo\_danios}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{{-}}\NormalTok{ p\_con\_victimas}\SpecialCharTok{\^{}}\DecValTok{2}
 \NormalTok{gini}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-[1] 0.42
+[1] 0.32
 \end{verbatim}
 
-Interpretación del resultado.
+\textbf{Interpretación del resultado.}\\
+El índice de Gini mide qué tan mezcladas están las clases dentro de un
+nodo. Si todas las observaciones fueran de una sola clase, el valor
+sería cero.
 
-El valor 0.42 indica que el nodo todavía tiene mezcla entre clases. Un
-árbol buscaría una división que reduzca esa impureza.
-
-\section{Algoritmo general de un árbol de
-decisión}\label{algoritmo-general-de-un-uxe1rbol-de-decisiuxf3n}
+\section{Algoritmo general}\label{algoritmo-general-1}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{Algoritmo: Árbol de decisión para clasificación}
 
 \NormalTok{Entrada:}
-\NormalTok{{-} Base de datos de entrenamiento}
-\NormalTok{{-} Variable respuesta}
-\NormalTok{{-} Variables predictoras}
+\NormalTok{{-} Base de datos con variables predictoras.}
+\NormalTok{{-} Variable respuesta categórica.}
 
 \NormalTok{Proceso:}
-\NormalTok{1. Iniciar con todos los datos en el nodo raíz.}
-\NormalTok{2. Evaluar posibles divisiones usando las variables predictoras.}
-\NormalTok{3. Elegir la división que reduzca más la impureza.}
-\NormalTok{4. Repetir el proceso en cada nuevo nodo.}
-\NormalTok{5. Detener el crecimiento del árbol según criterios de control.}
-\NormalTok{6. Clasificar cada hoja según la clase mayoritaria.}
+\NormalTok{1. Elegir una variable para dividir los datos.}
+\NormalTok{2. Seleccionar la división que produce grupos más homogéneos.}
+\NormalTok{3. Repetir el proceso en cada nuevo grupo.}
+\NormalTok{4. Detener el crecimiento del árbol mediante criterios de control.}
+\NormalTok{5. Asignar una clase a cada hoja.}
+\NormalTok{6. Evaluar el modelo con datos de prueba.}
 
 \NormalTok{Salida:}
-\NormalTok{{-} Árbol entrenado}
-\NormalTok{{-} Reglas de decisión}
-\NormalTok{{-} Predicciones}
-\NormalTok{{-} Métricas de evaluación}
+\NormalTok{{-} Árbol entrenado.}
+\NormalTok{{-} Reglas de decisión.}
+\NormalTok{{-} Predicciones.}
+\NormalTok{{-} Métricas de evaluación.}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3058,9 +3050,12 @@ decisión}\label{algoritmo-general-de-un-uxe1rbol-de-decisiuxf3n}
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(readr)}
 \FunctionTok{library}\NormalTok{(dplyr)}
-\FunctionTok{library}\NormalTok{(ggplot2)}
 \FunctionTok{library}\NormalTok{(rpart)}
+\end{Highlighting}
+\end{Shaded}
 
+\begin{Shaded}
+\begin{Highlighting}[]
 \NormalTok{ruta\_atus\_ml }\OtherTok{\textless{}{-}} \StringTok{"datos/atus\_ml\_preparado.csv"}
 \FunctionTok{file.exists}\NormalTok{(ruta\_atus\_ml)}
 \end{Highlighting}
@@ -3086,49 +3081,43 @@ decisión}\label{algoritmo-general-de-un-uxe1rbol-de-decisiuxf3n}
 [1] "Base preparada cargada correctamente."
 \end{verbatim}
 
-Interpretación del resultado.
+\textbf{Interpretación del resultado.}\\
+Si aparece el mensaje de carga correcta, podemos continuar con el
+entrenamiento del árbol de decisión.
 
-Si el archivo existe, se carga la base preparada. Esta base contiene la
-variable respuesta y las variables predictoras que hemos utilizado en
-capítulos anteriores.
+\section{Usar la base completa}\label{usar-la-base-completa}
 
-\section{Selección de una muestra}\label{selecciuxf3n-de-una-muestra-1}
-
-Para que el capítulo pueda ejecutarse con rapidez en cualquier
-computadora, usaremos una muestra de la base.
+En este capítulo usaremos la base completa. Para evitar que el árbol
+crezca demasiado, controlaremos su complejidad durante el entrenamiento.
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(atus\_ml)) \{}
-  \FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
-\NormalTok{  tamano\_muestra }\OtherTok{\textless{}{-}} \FunctionTok{min}\NormalTok{(}\DecValTok{20000}\NormalTok{, }\FunctionTok{nrow}\NormalTok{(atus\_ml))}
-\NormalTok{  atus\_arbol }\OtherTok{\textless{}{-}}\NormalTok{ atus\_ml }\SpecialCharTok{|\textgreater{}}
-    \FunctionTok{sample\_n}\NormalTok{(tamano\_muestra)}
-
+\NormalTok{  atus\_arbol\_base }\OtherTok{\textless{}{-}}\NormalTok{ atus\_ml}
   \FunctionTok{data.frame}\NormalTok{(}
-    \AttributeTok{filas =} \FunctionTok{nrow}\NormalTok{(atus\_arbol),}
-    \AttributeTok{columnas =} \FunctionTok{ncol}\NormalTok{(atus\_arbol)}
+    \AttributeTok{filas =} \FunctionTok{nrow}\NormalTok{(atus\_arbol\_base),}
+    \AttributeTok{columnas =} \FunctionTok{ncol}\NormalTok{(atus\_arbol\_base)}
 \NormalTok{  )}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-  filas columnas
-1 20000        6
+   filas columnas
+1 390627        6
 \end{verbatim}
 
-Explicación del código.
-
-\texttt{sample\_n()} selecciona una muestra aleatoria. Esto hace más
-ágil el entrenamiento del árbol y evita saturar el PDF.
+\textbf{Interpretación del resultado.}\\
+Se conserva toda la base preparada. El control del tamaño del árbol se
+realizará mediante parámetros del modelo, no reduciendo el número de
+registros.
 
 \section{Preparar variables}\label{preparar-variables-1}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"atus\_arbol"}\NormalTok{)) \{}
-\NormalTok{  atus\_arbol }\OtherTok{\textless{}{-}}\NormalTok{ atus\_arbol }\SpecialCharTok{|\textgreater{}}
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"atus\_arbol\_base"}\NormalTok{)) \{}
+\NormalTok{  atus\_arbol\_base }\OtherTok{\textless{}{-}}\NormalTok{ atus\_arbol\_base }\SpecialCharTok{|\textgreater{}}
     \FunctionTok{mutate}\NormalTok{(}
       \AttributeTok{accidente\_con\_victimas =} \FunctionTok{factor}\NormalTok{(}
 \NormalTok{        accidente\_con\_victimas,}
@@ -3142,7 +3131,7 @@ Explicación del código.
 \NormalTok{    ) }\SpecialCharTok{|\textgreater{}}
     \FunctionTok{na.omit}\NormalTok{()}
 
-  \FunctionTok{round}\NormalTok{(}\DecValTok{100} \SpecialCharTok{*} \FunctionTok{prop.table}\NormalTok{(}\FunctionTok{table}\NormalTok{(atus\_arbol}\SpecialCharTok{$}\NormalTok{accidente\_con\_victimas)), }\DecValTok{2}\NormalTok{)}
+  \FunctionTok{table}\NormalTok{(atus\_arbol\_base}\SpecialCharTok{$}\NormalTok{accidente\_con\_victimas)}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
@@ -3150,34 +3139,47 @@ Explicación del código.
 \begin{verbatim}
 
 Con víctimas   Solo daños 
-        17.2         82.8 
+       68108       322519 
 \end{verbatim}
 
-Interpretación del resultado.
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"atus\_arbol\_base"}\NormalTok{)) \{}
+  \FunctionTok{round}\NormalTok{(}\DecValTok{100} \SpecialCharTok{*} \FunctionTok{prop.table}\NormalTok{(}\FunctionTok{table}\NormalTok{(atus\_arbol\_base}\SpecialCharTok{$}\NormalTok{accidente\_con\_victimas)), }\DecValTok{2}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
 
-La tabla muestra el porcentaje de accidentes con víctimas y de solo
-daños dentro de la muestra. Como en los capítulos anteriores, la clase
-``Solo daños'' suele ser mayoritaria.
+\begin{verbatim}
+
+Con víctimas   Solo daños 
+       17.44        82.56 
+\end{verbatim}
+
+\textbf{Interpretación del resultado.}\\
+La base está desbalanceada: la clase \texttt{Solo\ daños} es
+mayoritaria. Por eso no conviene evaluar el modelo solo con exactitud.
 
 \section{División en entrenamiento y
 prueba}\label{divisiuxf3n-en-entrenamiento-y-prueba-2}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"atus\_arbol"}\NormalTok{)) \{}
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"atus\_arbol\_base"}\NormalTok{)) \{}
   \FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
-\NormalTok{  n }\OtherTok{\textless{}{-}} \FunctionTok{nrow}\NormalTok{(atus\_arbol)}
+
+\NormalTok{  n }\OtherTok{\textless{}{-}} \FunctionTok{nrow}\NormalTok{(atus\_arbol\_base)}
 \NormalTok{  indices\_entrenamiento }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\NormalTok{n, }\AttributeTok{size =} \FunctionTok{round}\NormalTok{(}\FloatTok{0.7} \SpecialCharTok{*}\NormalTok{ n))}
 
-\NormalTok{  entrenamiento }\OtherTok{\textless{}{-}}\NormalTok{ atus\_arbol[indices\_entrenamiento, ]}
-\NormalTok{  prueba }\OtherTok{\textless{}{-}}\NormalTok{ atus\_arbol[}\SpecialCharTok{{-}}\NormalTok{indices\_entrenamiento, ]}
+\NormalTok{  entrenamiento }\OtherTok{\textless{}{-}}\NormalTok{ atus\_arbol\_base[indices\_entrenamiento, ]}
+\NormalTok{  prueba }\OtherTok{\textless{}{-}}\NormalTok{ atus\_arbol\_base[}\SpecialCharTok{{-}}\NormalTok{indices\_entrenamiento, ]}
 
   \FunctionTok{data.frame}\NormalTok{(}
     \AttributeTok{conjunto =} \FunctionTok{c}\NormalTok{(}\StringTok{"Entrenamiento"}\NormalTok{, }\StringTok{"Prueba"}\NormalTok{),}
     \AttributeTok{registros =} \FunctionTok{c}\NormalTok{(}\FunctionTok{nrow}\NormalTok{(entrenamiento), }\FunctionTok{nrow}\NormalTok{(prueba)),}
     \AttributeTok{porcentaje =} \FunctionTok{c}\NormalTok{(}
-      \FunctionTok{round}\NormalTok{(}\DecValTok{100} \SpecialCharTok{*} \FunctionTok{nrow}\NormalTok{(entrenamiento) }\SpecialCharTok{/} \FunctionTok{nrow}\NormalTok{(atus\_arbol), }\DecValTok{2}\NormalTok{),}
-      \FunctionTok{round}\NormalTok{(}\DecValTok{100} \SpecialCharTok{*} \FunctionTok{nrow}\NormalTok{(prueba) }\SpecialCharTok{/} \FunctionTok{nrow}\NormalTok{(atus\_arbol), }\DecValTok{2}\NormalTok{)}
+      \FunctionTok{round}\NormalTok{(}\DecValTok{100} \SpecialCharTok{*} \FunctionTok{nrow}\NormalTok{(entrenamiento) }\SpecialCharTok{/} \FunctionTok{nrow}\NormalTok{(atus\_arbol\_base), }\DecValTok{2}\NormalTok{),}
+      \FunctionTok{round}\NormalTok{(}\DecValTok{100} \SpecialCharTok{*} \FunctionTok{nrow}\NormalTok{(prueba) }\SpecialCharTok{/} \FunctionTok{nrow}\NormalTok{(atus\_arbol\_base), }\DecValTok{2}\NormalTok{)}
 \NormalTok{    )}
 \NormalTok{  )}
 \NormalTok{\}}
@@ -3186,18 +3188,21 @@ prueba}\label{divisiuxf3n-en-entrenamiento-y-prueba-2}
 
 \begin{verbatim}
        conjunto registros porcentaje
-1 Entrenamiento     14000         70
-2        Prueba      6000         30
+1 Entrenamiento    273439         70
+2        Prueba    117188         30
 \end{verbatim}
 
-Interpretación del resultado.
-
+\textbf{Interpretación del resultado.}\\
 El conjunto de entrenamiento se usa para construir el árbol. El conjunto
-de prueba se reserva para evaluar qué tan bien clasifica datos no usados
+de prueba se usa para evaluar el desempeño con datos no utilizados
 durante el entrenamiento.
 
 \section{Ajustar el árbol de
-clasificación}\label{ajustar-el-uxe1rbol-de-clasificaciuxf3n}
+decisión}\label{ajustar-el-uxe1rbol-de-decisiuxf3n}
+
+El árbol se ajusta con toda la base de entrenamiento, pero se limita su
+crecimiento para evitar sobreajuste y para facilitar la generación del
+libro en HTML y PDF.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3207,55 +3212,21 @@ clasificación}\label{ajustar-el-uxe1rbol-de-clasificaciuxf3n}
     \AttributeTok{data =}\NormalTok{ entrenamiento,}
     \AttributeTok{method =} \StringTok{"class"}\NormalTok{,}
     \AttributeTok{control =} \FunctionTok{rpart.control}\NormalTok{(}
-      \AttributeTok{cp =} \FloatTok{0.001}\NormalTok{,}
-      \AttributeTok{minsplit =} \DecValTok{50}\NormalTok{,}
+      \AttributeTok{cp =} \FloatTok{0.005}\NormalTok{,}
+      \AttributeTok{minsplit =} \DecValTok{1000}\NormalTok{,}
+      \AttributeTok{minbucket =} \DecValTok{300}\NormalTok{,}
       \AttributeTok{maxdepth =} \DecValTok{5}
 \NormalTok{    )}
 \NormalTok{  )}
-
-\NormalTok{  modelo\_arbol}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-n= 14000 
+\textbf{Interpretación del resultado.}\\
+El modelo queda entrenado. Los parámetros de control impiden que el
+árbol crezca de forma excesiva.
 
-node), split, n, loss, yval, (yprob)
-      * denotes terminal node
-
- 1) root 14000 2405 Solo daños (0.17178571 0.82821429)  
-   2) TIPACCID=Caída de pasajero,Colisión con animal,Colisión con ciclista,Colisión con ferrocarril,Colisión con motocicleta,Colisión con peatón (atropellamiento),Volcadura 3321 1614 Solo daños (0.48599819 0.51400181)  
-     4) TIPACCID=Caída de pasajero,Colisión con peatón (atropellamiento) 447    0 Con víctimas (1.00000000 0.00000000) *
-     5) TIPACCID=Colisión con animal,Colisión con ciclista,Colisión con ferrocarril,Colisión con motocicleta,Volcadura 2874 1167 Solo daños (0.40605428 0.59394572)  
-      10) TIPACCID=Colisión con ciclista 117   39 Con víctimas (0.66666667 0.33333333)  
-        20) DIASEMANA=Miercoles,Viernes 24    1 Con víctimas (0.95833333 0.04166667) *
-        21) DIASEMANA=Domingo,Jueves,lunes,Martes,Sabado 93   38 Con víctimas (0.59139785 0.40860215)  
-          42) MES=01,02,03,04,05,08,11 57   16 Con víctimas (0.71929825 0.28070175) *
-          43) MES=06,07,09,10,12 36   14 Solo daños (0.38888889 0.61111111) *
-      11) TIPACCID=Colisión con animal,Colisión con ferrocarril,Colisión con motocicleta,Volcadura 2757 1089 Solo daños (0.39499456 0.60500544)  
-        22) MES=01,02,03,04,05,06,08,10,12 2084  855 Solo daños (0.41026871 0.58973129) *
-        23) MES=07,09,11 673  234 Solo daños (0.34769688 0.65230312)  
-          46) CAUSAACCI=Falla del vehículo,Mala condición del camino,Otra 36   15 Con víctimas (0.58333333 0.41666667) *
-          47) CAUSAACCI=Conductor,Peatón o pasajero 637  213 Solo daños (0.33437991 0.66562009) *
-   3) TIPACCID=Certificado cero,Colisión con objeto fijo,Colisión con vehículo automotor,Incendio,Otro,Salida del camino 10679  791 Solo daños (0.07407061 0.92592939) *
-\end{verbatim}
-
-Explicación del código.
-
-La función \texttt{rpart()} ajusta un árbol de clasificación. El
-argumento \texttt{method\ =\ "class"} indica que la variable respuesta
-es categórica. Los parámetros de control ayudan a evitar un árbol
-demasiado grande.
-
-Interpretación del resultado.
-
-El objeto \texttt{modelo\_arbol} contiene las reglas aprendidas por el
-árbol. Cada división intenta separar mejor los accidentes con víctimas
-de los accidentes de solo daños.
-
-\section{Tabla de complejidad del
-árbol}\label{tabla-de-complejidad-del-uxe1rbol}
+\section{Tabla de complejidad}\label{tabla-de-complejidad}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3270,52 +3241,24 @@ de los accidentes de solo daños.
 Classification tree:
 rpart(formula = accidente_con_victimas ~ MES + ID_HORA + DIASEMANA + 
     TIPACCID + CAUSAACCI, data = entrenamiento, method = "class", 
-    control = rpart.control(cp = 0.001, minsplit = 50, maxdepth = 5))
+    control = rpart.control(cp = 0.005, minsplit = 1000, minbucket = 300, 
+        maxdepth = 5))
 
 Variables actually used in tree construction:
-[1] CAUSAACCI DIASEMANA MES       TIPACCID 
+[1] TIPACCID
 
-Root node error: 2405/14000 = 0.17179
+Root node error: 47604/273439 = 0.17409
 
-n= 14000 
+n= 273439 
 
-         CP nsplit rel error  xerror     xstd
-1 0.0929314      0   1.00000 1.00000 0.018557
-2 0.0162162      2   0.81414 0.81538 0.017075
-3 0.0016632      3   0.79792 0.79709 0.016913
-4 0.0012474      5   0.79459 0.80915 0.017020
-5 0.0010000      7   0.79210 0.80748 0.017005
+        CP nsplit rel error xerror      xstd
+1 0.097051      0    1.0000 1.0000 0.0041653
+2 0.005000      2    0.8059 0.8059 0.0038150
 \end{verbatim}
 
-Explicación del código.
-
-\texttt{printcp()} muestra una tabla de complejidad. Esta tabla ayuda a
-identificar si el árbol puede simplificarse mediante poda.
-
-Interpretación del resultado.
-
-Un árbol muy grande puede memorizar patrones del conjunto de
-entrenamiento y generalizar mal. La tabla de complejidad permite
-observar el equilibrio entre tamaño del árbol y error estimado.
-
-\section{Visualizar el árbol}\label{visualizar-el-uxe1rbol}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"modelo\_arbol"}\NormalTok{)) \{}
-  \FunctionTok{plot}\NormalTok{(modelo\_arbol, }\AttributeTok{uniform =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{margin =} \FloatTok{0.1}\NormalTok{)}
-  \FunctionTok{text}\NormalTok{(modelo\_arbol, }\AttributeTok{use.n =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{all =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{cex =} \FloatTok{0.7}\NormalTok{)}
-\NormalTok{\}}
-\end{Highlighting}
-\end{Shaded}
-
-\pandocbounded{\includegraphics[keepaspectratio]{06-arboles-decision_files/figure-pdf/unnamed-chunk-9-1.pdf}}
-
-Interpretación del resultado.
-
-La figura muestra las reglas principales del árbol. En cada nodo se
-observa una condición de decisión y en las hojas aparece la clase final
-asignada.
+\textbf{Interpretación del resultado.}\\
+La tabla de complejidad muestra cómo cambia el error del árbol conforme
+se permiten más divisiones.
 
 \section{Importancia de variables}\label{importancia-de-variables}
 
@@ -3325,95 +3268,81 @@ asignada.
 \NormalTok{  importancia }\OtherTok{\textless{}{-}}\NormalTok{ modelo\_arbol}\SpecialCharTok{$}\NormalTok{variable.importance}
 
   \ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(importancia)) \{}
-\NormalTok{    importancia\_variables }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+\NormalTok{    importancia\_df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
       \AttributeTok{variable =} \FunctionTok{names}\NormalTok{(importancia),}
-      \AttributeTok{importancia =} \FunctionTok{as.numeric}\NormalTok{(importancia)}
-\NormalTok{    ) }\SpecialCharTok{|\textgreater{}}
-      \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(importancia))}
+      \AttributeTok{importancia =} \FunctionTok{as.numeric}\NormalTok{(importancia),}
+      \AttributeTok{row.names =} \ConstantTok{NULL}
+\NormalTok{    )}
 
-\NormalTok{    importancia\_variables}
+\NormalTok{    importancia\_df }\OtherTok{\textless{}{-}}\NormalTok{ importancia\_df[}\FunctionTok{order}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{importancia\_df}\SpecialCharTok{$}\NormalTok{importancia), ]}
+\NormalTok{    importancia\_df}
 \NormalTok{  \}}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-   variable  importancia
-1  TIPACCID 1149.1885629
-2 CAUSAACCI   47.5833732
-3       MES    8.8010721
-4 DIASEMANA    5.1370968
-5   ID_HORA    0.2676434
+   variable importancia
+1  TIPACCID   22919.330
+2 CAUSAACCI    1093.984
 \end{verbatim}
+
+\textbf{Interpretación del resultado.}\\
+Las variables con mayor importancia son las que más contribuyen a
+separar las clases dentro del árbol.
+
+\section{Gráfica opcional del
+árbol}\label{gruxe1fica-opcional-del-uxe1rbol}
+
+La gráfica completa del árbol puede ser pesada al generar PDF. Por eso
+se deja como código opcional. El lector puede ejecutarla manualmente en
+RStudio.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"importancia\_variables"}\NormalTok{)) \{}
-  \FunctionTok{ggplot}\NormalTok{(importancia\_variables, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =} \FunctionTok{reorder}\NormalTok{(variable, importancia), }\AttributeTok{y =}\NormalTok{ importancia)) }\SpecialCharTok{+}
-    \FunctionTok{geom\_col}\NormalTok{() }\SpecialCharTok{+}
-    \FunctionTok{coord\_flip}\NormalTok{() }\SpecialCharTok{+}
-    \FunctionTok{labs}\NormalTok{(}
-      \AttributeTok{title =} \StringTok{"Importancia de variables en el árbol de decisión"}\NormalTok{,}
-      \AttributeTok{x =} \StringTok{"Variable"}\NormalTok{,}
-      \AttributeTok{y =} \StringTok{"Importancia"}
-\NormalTok{    )}
-\NormalTok{\}}
+\FunctionTok{plot}\NormalTok{(modelo\_arbol, }\AttributeTok{uniform =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{margin =} \FloatTok{0.1}\NormalTok{)}
+\FunctionTok{text}\NormalTok{(modelo\_arbol, }\AttributeTok{use.n =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{cex =} \FloatTok{0.7}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{06-arboles-decision_files/figure-pdf/unnamed-chunk-11-1.pdf}}
-
-Interpretación del resultado.
-
-Las variables con mayor importancia son las que más ayudaron al árbol a
-separar las clases. Esta información facilita explicar el modelo a
-estudiantes, tomadores de decisiones o usuarios no técnicos.
-
-\section{Predicción de clases}\label{predicciuxf3n-de-clases}
+\section{Predicción sobre el conjunto de
+prueba}\label{predicciuxf3n-sobre-el-conjunto-de-prueba}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"modelo\_arbol"}\NormalTok{) }\SpecialCharTok{\&\&} \FunctionTok{exists}\NormalTok{(}\StringTok{"prueba"}\NormalTok{)) \{}
-\NormalTok{  pred\_arbol\_clase }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(}
+\NormalTok{  pred\_arbol }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(}
 \NormalTok{    modelo\_arbol,}
     \AttributeTok{newdata =}\NormalTok{ prueba,}
     \AttributeTok{type =} \StringTok{"class"}
 \NormalTok{  )}
 
-  \FunctionTok{head}\NormalTok{(}\FunctionTok{data.frame}\NormalTok{(}
-    \AttributeTok{real =}\NormalTok{ prueba}\SpecialCharTok{$}\NormalTok{accidente\_con\_victimas,}
-    \AttributeTok{predicho =}\NormalTok{ pred\_arbol\_clase}
-\NormalTok{  ))}
+  \FunctionTok{head}\NormalTok{(pred\_arbol)}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-        real   predicho
-1 Solo daños Solo daños
-2 Solo daños Solo daños
-3 Solo daños Solo daños
-4 Solo daños Solo daños
-5 Solo daños Solo daños
-6 Solo daños Solo daños
+           1            2            3            4            5            6 
+  Solo daños   Solo daños Con víctimas   Solo daños   Solo daños   Solo daños 
+Levels: Con víctimas Solo daños
 \end{verbatim}
 
-Interpretación del resultado.
-
-La tabla compara algunas clases reales contra las clases predichas por
-el árbol.
+\textbf{Interpretación del resultado.}\\
+Cada valor predicho corresponde a la clase que el árbol asigna a una
+observación del conjunto de prueba.
 
 \section{Matriz de confusión}\label{matriz-de-confusiuxf3n-2}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"pred\_arbol\_clase"}\NormalTok{)) \{}
-\NormalTok{  pred\_arbol\_clase }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(pred\_arbol\_clase, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Con víctimas"}\NormalTok{, }\StringTok{"Solo daños"}\NormalTok{))}
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"pred\_arbol"}\NormalTok{)) \{}
+\NormalTok{  pred\_arbol }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(pred\_arbol, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Con víctimas"}\NormalTok{, }\StringTok{"Solo daños"}\NormalTok{))}
 \NormalTok{  real\_arbol }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(prueba}\SpecialCharTok{$}\NormalTok{accidente\_con\_victimas, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Con víctimas"}\NormalTok{, }\StringTok{"Solo daños"}\NormalTok{))}
 
 \NormalTok{  matriz\_confusion\_arbol }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(}
     \AttributeTok{Real =}\NormalTok{ real\_arbol,}
-    \AttributeTok{Predicho =}\NormalTok{ pred\_arbol\_clase}
+    \AttributeTok{Predicho =}\NormalTok{ pred\_arbol}
 \NormalTok{  )}
 
 \NormalTok{  matriz\_confusion\_arbol}
@@ -3424,12 +3353,11 @@ el árbol.
 \begin{verbatim}
               Predicho
 Real           Con víctimas Solo daños
-  Con víctimas          220        814
-  Solo daños             25       4941
+  Con víctimas         3965      16539
+  Solo daños              0      96684
 \end{verbatim}
 
-Interpretación del resultado.
-
+\textbf{Interpretación del resultado.}\\
 La diagonal principal contiene los aciertos. Los valores fuera de la
 diagonal representan errores de clasificación.
 
@@ -3437,7 +3365,7 @@ diagonal representan errores de clasificación.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{calcular\_metricas }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(real, predicho) \{}
+\NormalTok{calcular\_metricas\_arbol }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(real, predicho) \{}
 \NormalTok{  real }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(real, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Con víctimas"}\NormalTok{, }\StringTok{"Solo daños"}\NormalTok{))}
 \NormalTok{  predicho }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(predicho, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Con víctimas"}\NormalTok{, }\StringTok{"Solo daños"}\NormalTok{))}
 
@@ -3459,8 +3387,8 @@ diagonal representan errores de clasificación.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"pred\_arbol\_clase"}\NormalTok{)) \{}
-\NormalTok{  metricas\_arbol }\OtherTok{\textless{}{-}} \FunctionTok{calcular\_metricas}\NormalTok{(real\_arbol, pred\_arbol\_clase)}
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"pred\_arbol"}\NormalTok{)) \{}
+\NormalTok{  metricas\_arbol }\OtherTok{\textless{}{-}} \FunctionTok{calcular\_metricas\_arbol}\NormalTok{(real\_arbol, pred\_arbol)}
 \NormalTok{  metricas\_arbol}
 \NormalTok{\}}
 \end{Highlighting}
@@ -3468,185 +3396,146 @@ diagonal representan errores de clasificación.
 
 \begin{verbatim}
   exactitud sensibilidad especificidad
-1 0.8601667     0.212766     0.9949658
+1 0.8588678    0.1933769             1
 \end{verbatim}
 
-Interpretación del resultado.
+\textbf{Interpretación del resultado.}\\
+La exactitud mide la proporción total de clasificaciones correctas. La
+sensibilidad mide la capacidad para detectar accidentes con víctimas. La
+especificidad mide la capacidad para detectar accidentes de solo daños.
 
-La exactitud mide el porcentaje total de aciertos. La sensibilidad mide
-qué proporción de accidentes con víctimas fueron detectados
-correctamente. La especificidad mide qué proporción de accidentes de
-solo daños fueron identificados correctamente.
-
-\section{Predicción con
-probabilidades}\label{predicciuxf3n-con-probabilidades}
-
-Además de predecir una clase, el árbol puede estimar probabilidades.
+\section{Probabilidades predichas}\label{probabilidades-predichas}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"modelo\_arbol"}\NormalTok{) }\SpecialCharTok{\&\&} \FunctionTok{exists}\NormalTok{(}\StringTok{"prueba"}\NormalTok{)) \{}
-\NormalTok{  pred\_arbol\_prob }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(}
+\NormalTok{  probabilidades\_arbol }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(}
 \NormalTok{    modelo\_arbol,}
     \AttributeTok{newdata =}\NormalTok{ prueba,}
     \AttributeTok{type =} \StringTok{"prob"}
 \NormalTok{  )}
 
-  \FunctionTok{head}\NormalTok{(pred\_arbol\_prob)}
+  \FunctionTok{head}\NormalTok{(probabilidades\_arbol)}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
   Con víctimas Solo daños
-1   0.07407061  0.9259294
-2   0.41026871  0.5897313
-3   0.07407061  0.9259294
-4   0.07407061  0.9259294
-5   0.33437991  0.6656201
-6   0.07407061  0.9259294
+1   0.07433786  0.9256621
+2   0.07433786  0.9256621
+3   1.00000000  0.0000000
+4   0.07433786  0.9256621
+5   0.07433786  0.9256621
+6   0.07433786  0.9256621
 \end{verbatim}
 
-Interpretación del resultado.
+\textbf{Interpretación del resultado.}\\
+El árbol también puede producir probabilidades estimadas de pertenencia
+a cada clase.
 
-Cada fila contiene la probabilidad estimada de pertenecer a cada clase.
-Esto permite modificar el punto de corte, como hicimos con la regresión
-logística.
+\section{Resumen de nodos del
+árbol}\label{resumen-de-nodos-del-uxe1rbol}
 
-\section{Cambiar el punto de corte}\label{cambiar-el-punto-de-corte-1}
-
-Si queremos detectar más accidentes con víctimas, podemos usar un punto
-de corte menor que 0.5.
+Para evitar salidas demasiado largas, mostramos solo los primeros nodos
+del árbol.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"pred\_arbol\_prob"}\NormalTok{)) \{}
-\NormalTok{  prob\_victimas }\OtherTok{\textless{}{-}}\NormalTok{ pred\_arbol\_prob[, }\StringTok{"Con víctimas"}\NormalTok{]}
-
-\NormalTok{  pred\_arbol\_03 }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(}
-\NormalTok{    prob\_victimas }\SpecialCharTok{\textgreater{}=} \FloatTok{0.3}\NormalTok{,}
-    \StringTok{"Con víctimas"}\NormalTok{,}
-    \StringTok{"Solo daños"}
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"modelo\_arbol"}\NormalTok{)) \{}
+\NormalTok{  frame\_arbol }\OtherTok{\textless{}{-}}\NormalTok{ modelo\_arbol}\SpecialCharTok{$}\NormalTok{frame}
+\NormalTok{  resumen\_nodos }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+    \AttributeTok{nodo =} \FunctionTok{row.names}\NormalTok{(frame\_arbol),}
+    \AttributeTok{variable =}\NormalTok{ frame\_arbol}\SpecialCharTok{$}\NormalTok{var,}
+    \AttributeTok{n =}\NormalTok{ frame\_arbol}\SpecialCharTok{$}\NormalTok{n,}
+    \AttributeTok{perdida =}\NormalTok{ frame\_arbol}\SpecialCharTok{$}\NormalTok{dev,}
+    \AttributeTok{yval =}\NormalTok{ frame\_arbol}\SpecialCharTok{$}\NormalTok{yval,}
+    \AttributeTok{row.names =} \ConstantTok{NULL}
 \NormalTok{  )}
 
-\NormalTok{  pred\_arbol\_03 }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(pred\_arbol\_03, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Con víctimas"}\NormalTok{, }\StringTok{"Solo daños"}\NormalTok{))}
-
-\NormalTok{  matriz\_confusion\_arbol\_03 }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(}
-    \AttributeTok{Real =}\NormalTok{ real\_arbol,}
-    \AttributeTok{Predicho =}\NormalTok{ pred\_arbol\_03}
-\NormalTok{  )}
-
-\NormalTok{  matriz\_confusion\_arbol\_03}
+  \FunctionTok{head}\NormalTok{(resumen\_nodos, }\DecValTok{10}\NormalTok{)}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-              Predicho
-Real           Con víctimas Solo daños
-  Con víctimas          683        351
-  Solo daños            742       4224
+  nodo variable      n perdida yval
+1    1 TIPACCID 273439   47604    2
+2    2 TIPACCID  65214   32125    2
+3    4   <leaf>   9240       0    1
+4    5   <leaf>  55974   22885    2
+5    3   <leaf> 208225   15479    2
 \end{verbatim}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"pred\_arbol\_03"}\NormalTok{)) \{}
-\NormalTok{  metricas\_arbol\_03 }\OtherTok{\textless{}{-}} \FunctionTok{calcular\_metricas}\NormalTok{(real\_arbol, pred\_arbol\_03)}
+\textbf{Interpretación del resultado.}\\
+La tabla muestra algunos nodos del árbol. Los nodos marcados como
+\texttt{\textless{}leaf\textgreater{}} son hojas, es decir, puntos
+finales donde se asigna una clase.
 
-\NormalTok{  comparacion\_cortes }\OtherTok{\textless{}{-}} \FunctionTok{rbind}\NormalTok{(}
-    \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{punto\_corte =} \FloatTok{0.5}\NormalTok{, metricas\_arbol),}
-    \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{punto\_corte =} \FloatTok{0.3}\NormalTok{, metricas\_arbol\_03)}
-\NormalTok{  )}
-
-\NormalTok{  comparacion\_cortes}
-\NormalTok{\}}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-  punto_corte exactitud sensibilidad especificidad
-1         0.5 0.8601667    0.2127660     0.9949658
-2         0.3 0.8178333    0.6605416     0.8505840
-\end{verbatim}
-
-Interpretación del resultado.
-
-Reducir el punto de corte puede aumentar la sensibilidad, aunque
-normalmente disminuye la especificidad. En problemas de seguridad vial,
-este intercambio debe analizarse con cuidado.
-
-\section{Comparación conceptual con modelos
-anteriores}\label{comparaciuxf3n-conceptual-con-modelos-anteriores}
+\section{Comparación conceptual con otros
+métodos}\label{comparaciuxf3n-conceptual-con-otros-muxe9todos}
 
 {\def\LTcaptype{none} % do not increment counter
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\begin{longtable}[]{@{}llll@{}}
 \toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedright
-Aspecto
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Regresión logística
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-k-NN
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Árbol de decisión
-\end{minipage} \\
+Aspecto & Regresión logística & k-NN & Árbol de decisión \\
 \midrule\noalign{}
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
 Tipo de modelo & Paramétrico & No paramétrico & No paramétrico \\
-Produce reglas explícitas & Parcialmente & No & Sí \\
+Interpretabilidad & Alta & Media o baja & Alta \\
 Usa distancias & No & Sí & No \\
 Requiere escalamiento & No siempre & Sí & No \\
-Interpretabilidad & Alta & Media o baja & Alta \\
-Maneja variables categóricas & Sí, con codificación & Requiere dummies &
-Sí \\
+Produce reglas explícitas & Parcialmente & No & Sí \\
+Maneja no linealidad & Limitado & Sí & Sí \\
 \end{longtable}
 }
 
-\section{Ventajas y limitaciones}\label{ventajas-y-limitaciones}
+\section{Ventajas y desventajas}\label{ventajas-y-desventajas}
 
-Los árboles de decisión tienen ventajas importantes:
+\subsection{Ventajas}\label{ventajas}
 
 \begin{itemize}
 \tightlist
 \item
   Son fáciles de explicar.
 \item
-  Producen reglas interpretables.
-\item
-  Pueden trabajar con variables numéricas y categóricas.
+  Generan reglas claras.
 \item
   No requieren estandarizar variables.
+\item
+  Pueden manejar relaciones no lineales.
+\item
+  Funcionan con variables numéricas y categóricas.
 \end{itemize}
 
-Pero también tienen limitaciones:
+\subsection{Desventajas}\label{desventajas}
 
 \begin{itemize}
 \tightlist
 \item
   Pueden sobreajustarse si crecen demasiado.
 \item
-  Son sensibles a cambios pequeños en los datos.
+  Pequeños cambios en los datos pueden modificar la estructura del
+  árbol.
 \item
-  Un solo árbol puede ser menos preciso que métodos de ensamble como
+  Un solo árbol puede tener menor desempeño que métodos de ensamble como
   Random Forest.
 \end{itemize}
 
 \section{Conclusión}\label{conclusiuxf3n-4}
 
-Los árboles de decisión son modelos muy útiles para introducir
-clasificación interpretable. A diferencia de k-NN, no dependen de
-distancias ni requieren escalamiento. Además, permiten obtener reglas de
-decisión fáciles de comunicar.
+Los árboles de decisión son modelos intuitivos, visuales e
+interpretables. Permiten clasificar observaciones mediante reglas tipo
+si-entonces.
 
-En el siguiente capítulo se puede extender esta idea hacia métodos de
-ensamble, especialmente Random Forest, que combina muchos árboles para
-mejorar la estabilidad y el desempeño predictivo.
+En este capítulo usamos un árbol de decisión para clasificar accidentes
+de tránsito según la presencia de víctimas. También calculamos una
+matriz de confusión y métricas de evaluación.
+
+Este capítulo prepara el camino para estudiar modelos más potentes
+basados en muchos árboles, como Random Forest.
 
 
 \backmatter

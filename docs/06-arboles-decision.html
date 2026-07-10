@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>7&nbsp; Árboles de decisión para clasificación – Aprendizaje y Clasificación Automática con R</title>
+<title>6&nbsp; Árboles de decisión para clasificación – Aprendizaje y Clasificación Automática con R</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -150,7 +150,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./06-arboles-decision.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Árboles de decisión para clasificación</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./06-arboles-decision.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Árboles de decisión para clasificación</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
@@ -181,7 +181,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Aprendizaje y Clasificación Automática con R</span></span></a>
+ <span class="menu-text">Presentación</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -193,43 +193,43 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./01-introduccion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">¿Qué es el aprendizaje automático?</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">¿Qué es el aprendizaje automático?</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./02-preparacion-datos.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Preparación de datos reales</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Preparación de datos reales</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03-analisis-exploratorio.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Análisis exploratorio de datos</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Análisis exploratorio de datos</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04-regresion-logistica.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regresión logística para clasificación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regresión logística para clasificación</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05-knn.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">k vecinos más cercanos, k-NN</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">k vecinos más cercanos, k-NN</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./06-arboles-decision.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Árboles de decisión para clasificación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Árboles de decisión para clasificación</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07-random-forest.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Random Forest para clasificación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Random Forest para clasificación</span></span></a>
   </div>
 </li>
     </ul>
@@ -242,28 +242,28 @@ window.Quarto = {
     <h2 id="toc-title">Tabla de contenidos</h2>
    
   <ul>
-  <li><a href="#objetivos-del-capítulo" id="toc-objetivos-del-capítulo" class="nav-link active" data-scroll-target="#objetivos-del-capítulo"><span class="header-section-number">7.1</span> Objetivos del capítulo</a></li>
-  <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción"><span class="header-section-number">7.2</span> Introducción</a></li>
-  <li><a href="#idea-intuitiva" id="toc-idea-intuitiva" class="nav-link" data-scroll-target="#idea-intuitiva"><span class="header-section-number">7.3</span> Idea intuitiva</a></li>
-  <li><a href="#reglas-tipo-si-entonces" id="toc-reglas-tipo-si-entonces" class="nav-link" data-scroll-target="#reglas-tipo-si-entonces"><span class="header-section-number">7.4</span> Reglas tipo si-entonces</a></li>
-  <li><a href="#fundamento-matemático" id="toc-fundamento-matemático" class="nav-link" data-scroll-target="#fundamento-matemático"><span class="header-section-number">7.5</span> Fundamento matemático</a></li>
-  <li><a href="#ejemplo-sencillo-del-índice-de-gini" id="toc-ejemplo-sencillo-del-índice-de-gini" class="nav-link" data-scroll-target="#ejemplo-sencillo-del-índice-de-gini"><span class="header-section-number">7.6</span> Ejemplo sencillo del índice de Gini</a></li>
-  <li><a href="#algoritmo-general" id="toc-algoritmo-general" class="nav-link" data-scroll-target="#algoritmo-general"><span class="header-section-number">7.7</span> Algoritmo general</a></li>
-  <li><a href="#cargar-paquetes-y-datos" id="toc-cargar-paquetes-y-datos" class="nav-link" data-scroll-target="#cargar-paquetes-y-datos"><span class="header-section-number">7.8</span> Cargar paquetes y datos</a></li>
-  <li><a href="#usar-la-base-completa" id="toc-usar-la-base-completa" class="nav-link" data-scroll-target="#usar-la-base-completa"><span class="header-section-number">7.9</span> Usar la base completa</a></li>
-  <li><a href="#preparar-variables" id="toc-preparar-variables" class="nav-link" data-scroll-target="#preparar-variables"><span class="header-section-number">7.10</span> Preparar variables</a></li>
-  <li><a href="#división-en-entrenamiento-y-prueba" id="toc-división-en-entrenamiento-y-prueba" class="nav-link" data-scroll-target="#división-en-entrenamiento-y-prueba"><span class="header-section-number">7.11</span> División en entrenamiento y prueba</a></li>
-  <li><a href="#ajustar-el-árbol-de-decisión" id="toc-ajustar-el-árbol-de-decisión" class="nav-link" data-scroll-target="#ajustar-el-árbol-de-decisión"><span class="header-section-number">7.12</span> Ajustar el árbol de decisión</a></li>
-  <li><a href="#tabla-de-complejidad" id="toc-tabla-de-complejidad" class="nav-link" data-scroll-target="#tabla-de-complejidad"><span class="header-section-number">7.13</span> Tabla de complejidad</a></li>
-  <li><a href="#importancia-de-variables" id="toc-importancia-de-variables" class="nav-link" data-scroll-target="#importancia-de-variables"><span class="header-section-number">7.14</span> Importancia de variables</a></li>
-  <li><a href="#gráfica-opcional-del-árbol" id="toc-gráfica-opcional-del-árbol" class="nav-link" data-scroll-target="#gráfica-opcional-del-árbol"><span class="header-section-number">7.15</span> Gráfica opcional del árbol</a></li>
-  <li><a href="#predicción-sobre-el-conjunto-de-prueba" id="toc-predicción-sobre-el-conjunto-de-prueba" class="nav-link" data-scroll-target="#predicción-sobre-el-conjunto-de-prueba"><span class="header-section-number">7.16</span> Predicción sobre el conjunto de prueba</a></li>
-  <li><a href="#matriz-de-confusión" id="toc-matriz-de-confusión" class="nav-link" data-scroll-target="#matriz-de-confusión"><span class="header-section-number">7.17</span> Matriz de confusión</a></li>
-  <li><a href="#métricas-de-evaluación" id="toc-métricas-de-evaluación" class="nav-link" data-scroll-target="#métricas-de-evaluación"><span class="header-section-number">7.18</span> Métricas de evaluación</a></li>
-  <li><a href="#probabilidades-predichas" id="toc-probabilidades-predichas" class="nav-link" data-scroll-target="#probabilidades-predichas"><span class="header-section-number">7.19</span> Probabilidades predichas</a></li>
-  <li><a href="#resumen-de-nodos-del-árbol" id="toc-resumen-de-nodos-del-árbol" class="nav-link" data-scroll-target="#resumen-de-nodos-del-árbol"><span class="header-section-number">7.20</span> Resumen de nodos del árbol</a></li>
-  <li><a href="#comparación-conceptual-con-otros-métodos" id="toc-comparación-conceptual-con-otros-métodos" class="nav-link" data-scroll-target="#comparación-conceptual-con-otros-métodos"><span class="header-section-number">7.21</span> Comparación conceptual con otros métodos</a></li>
-  <li><a href="#conclusión" id="toc-conclusión" class="nav-link" data-scroll-target="#conclusión"><span class="header-section-number">7.22</span> Conclusión</a></li>
+  <li><a href="#objetivos-del-capítulo" id="toc-objetivos-del-capítulo" class="nav-link active" data-scroll-target="#objetivos-del-capítulo"><span class="header-section-number">6.1</span> Objetivos del capítulo</a></li>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción"><span class="header-section-number">6.2</span> Introducción</a></li>
+  <li><a href="#idea-intuitiva" id="toc-idea-intuitiva" class="nav-link" data-scroll-target="#idea-intuitiva"><span class="header-section-number">6.3</span> Idea intuitiva</a></li>
+  <li><a href="#reglas-tipo-si-entonces" id="toc-reglas-tipo-si-entonces" class="nav-link" data-scroll-target="#reglas-tipo-si-entonces"><span class="header-section-number">6.4</span> Reglas tipo si-entonces</a></li>
+  <li><a href="#fundamento-matemático" id="toc-fundamento-matemático" class="nav-link" data-scroll-target="#fundamento-matemático"><span class="header-section-number">6.5</span> Fundamento matemático</a></li>
+  <li><a href="#ejemplo-sencillo-del-índice-de-gini" id="toc-ejemplo-sencillo-del-índice-de-gini" class="nav-link" data-scroll-target="#ejemplo-sencillo-del-índice-de-gini"><span class="header-section-number">6.6</span> Ejemplo sencillo del índice de Gini</a></li>
+  <li><a href="#algoritmo-general" id="toc-algoritmo-general" class="nav-link" data-scroll-target="#algoritmo-general"><span class="header-section-number">6.7</span> Algoritmo general</a></li>
+  <li><a href="#cargar-paquetes-y-datos" id="toc-cargar-paquetes-y-datos" class="nav-link" data-scroll-target="#cargar-paquetes-y-datos"><span class="header-section-number">6.8</span> Cargar paquetes y datos</a></li>
+  <li><a href="#usar-la-base-completa" id="toc-usar-la-base-completa" class="nav-link" data-scroll-target="#usar-la-base-completa"><span class="header-section-number">6.9</span> Usar la base completa</a></li>
+  <li><a href="#preparar-variables" id="toc-preparar-variables" class="nav-link" data-scroll-target="#preparar-variables"><span class="header-section-number">6.10</span> Preparar variables</a></li>
+  <li><a href="#división-en-entrenamiento-y-prueba" id="toc-división-en-entrenamiento-y-prueba" class="nav-link" data-scroll-target="#división-en-entrenamiento-y-prueba"><span class="header-section-number">6.11</span> División en entrenamiento y prueba</a></li>
+  <li><a href="#ajustar-el-árbol-de-decisión" id="toc-ajustar-el-árbol-de-decisión" class="nav-link" data-scroll-target="#ajustar-el-árbol-de-decisión"><span class="header-section-number">6.12</span> Ajustar el árbol de decisión</a></li>
+  <li><a href="#tabla-de-complejidad" id="toc-tabla-de-complejidad" class="nav-link" data-scroll-target="#tabla-de-complejidad"><span class="header-section-number">6.13</span> Tabla de complejidad</a></li>
+  <li><a href="#importancia-de-variables" id="toc-importancia-de-variables" class="nav-link" data-scroll-target="#importancia-de-variables"><span class="header-section-number">6.14</span> Importancia de variables</a></li>
+  <li><a href="#gráfica-opcional-del-árbol" id="toc-gráfica-opcional-del-árbol" class="nav-link" data-scroll-target="#gráfica-opcional-del-árbol"><span class="header-section-number">6.15</span> Gráfica opcional del árbol</a></li>
+  <li><a href="#predicción-sobre-el-conjunto-de-prueba" id="toc-predicción-sobre-el-conjunto-de-prueba" class="nav-link" data-scroll-target="#predicción-sobre-el-conjunto-de-prueba"><span class="header-section-number">6.16</span> Predicción sobre el conjunto de prueba</a></li>
+  <li><a href="#matriz-de-confusión" id="toc-matriz-de-confusión" class="nav-link" data-scroll-target="#matriz-de-confusión"><span class="header-section-number">6.17</span> Matriz de confusión</a></li>
+  <li><a href="#métricas-de-evaluación" id="toc-métricas-de-evaluación" class="nav-link" data-scroll-target="#métricas-de-evaluación"><span class="header-section-number">6.18</span> Métricas de evaluación</a></li>
+  <li><a href="#probabilidades-predichas" id="toc-probabilidades-predichas" class="nav-link" data-scroll-target="#probabilidades-predichas"><span class="header-section-number">6.19</span> Probabilidades predichas</a></li>
+  <li><a href="#resumen-de-nodos-del-árbol" id="toc-resumen-de-nodos-del-árbol" class="nav-link" data-scroll-target="#resumen-de-nodos-del-árbol"><span class="header-section-number">6.20</span> Resumen de nodos del árbol</a></li>
+  <li><a href="#comparación-conceptual-con-otros-métodos" id="toc-comparación-conceptual-con-otros-métodos" class="nav-link" data-scroll-target="#comparación-conceptual-con-otros-métodos"><span class="header-section-number">6.21</span> Comparación conceptual con otros métodos</a></li>
+  <li><a href="#conclusión" id="toc-conclusión" class="nav-link" data-scroll-target="#conclusión"><span class="header-section-number">6.22</span> Conclusión</a></li>
   </ul>
 </nav>
     </div>
@@ -272,7 +272,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Árboles de decisión para clasificación</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Código</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Mostrar todo el código</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Ocultar todo el código</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">Ver el código fuente</a></li></ul></div></div>
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Árboles de decisión para clasificación</span></h1>
 </div>
 
 
@@ -289,17 +289,17 @@ window.Quarto = {
 </header>
 
 
-<section id="objetivos-del-capítulo" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="objetivos-del-capítulo"><span class="header-section-number">7.1</span> Objetivos del capítulo</h2>
+<section id="objetivos-del-capítulo" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="objetivos-del-capítulo"><span class="header-section-number">6.1</span> Objetivos del capítulo</h2>
 <p>Al finalizar este capítulo, el lector será capaz de explicar la idea básica de un árbol de decisión, interpretar reglas tipo si-entonces, entrenar un árbol en R y evaluar su desempeño.</p>
 </section>
-<section id="introducción" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="introducción"><span class="header-section-number">7.2</span> Introducción</h2>
+<section id="introducción" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="introducción"><span class="header-section-number">6.2</span> Introducción</h2>
 <p>Los árboles de decisión son modelos de aprendizaje supervisado que clasifican observaciones mediante una secuencia de preguntas.</p>
 <p>En este capítulo continuaremos con la base de accidentes de tránsito preparada en los capítulos anteriores. La variable que queremos predecir es <code>accidente_con_victimas</code>.</p>
 </section>
-<section id="idea-intuitiva" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="idea-intuitiva"><span class="header-section-number">7.3</span> Idea intuitiva</h2>
+<section id="idea-intuitiva" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="idea-intuitiva"><span class="header-section-number">6.3</span> Idea intuitiva</h2>
 <p>Un árbol de decisión se parece a un diagrama de flujo. Cada nodo interno contiene una pregunta, cada rama representa una posible respuesta y cada hoja contiene una predicción.</p>
 <div class="cell">
 <details class="code-fold">
@@ -327,16 +327,16 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="reglas-tipo-si-entonces" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="reglas-tipo-si-entonces"><span class="header-section-number">7.4</span> Reglas tipo si-entonces</h2>
+<section id="reglas-tipo-si-entonces" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="reglas-tipo-si-entonces"><span class="header-section-number">6.4</span> Reglas tipo si-entonces</h2>
 <pre class="text"><code>Si el tipo de accidente es colisión con peatón,
 entonces aumenta la posibilidad de que el accidente tenga víctimas.
 
 Si el accidente es una colisión con objeto fijo,
 entonces el árbol revisa otras variables como la hora o la causa presunta.</code></pre>
 </section>
-<section id="fundamento-matemático" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="fundamento-matemático"><span class="header-section-number">7.5</span> Fundamento matemático</h2>
+<section id="fundamento-matemático" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="fundamento-matemático"><span class="header-section-number">6.5</span> Fundamento matemático</h2>
 <p>Un árbol de decisión busca dividir los datos en grupos más homogéneos. Para clasificación, una medida común de impureza es el índice de Gini.</p>
 <p><span class="math display">\[
 Gini = 1 - \sum_{k=1}^{K} p_k^2
@@ -347,8 +347,8 @@ Gini = 1 - p_1^2 - p_2^2
 \]</span></p>
 <p>Un valor pequeño indica que el nodo es más puro.</p>
 </section>
-<section id="ejemplo-sencillo-del-índice-de-gini" class="level2" data-number="7.6">
-<h2 data-number="7.6" class="anchored" data-anchor-id="ejemplo-sencillo-del-índice-de-gini"><span class="header-section-number">7.6</span> Ejemplo sencillo del índice de Gini</h2>
+<section id="ejemplo-sencillo-del-índice-de-gini" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="ejemplo-sencillo-del-índice-de-gini"><span class="header-section-number">6.6</span> Ejemplo sencillo del índice de Gini</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -363,8 +363,8 @@ Gini = 1 - p_1^2 - p_2^2
 </div>
 </div>
 </section>
-<section id="algoritmo-general" class="level2" data-number="7.7">
-<h2 data-number="7.7" class="anchored" data-anchor-id="algoritmo-general"><span class="header-section-number">7.7</span> Algoritmo general</h2>
+<section id="algoritmo-general" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="algoritmo-general"><span class="header-section-number">6.7</span> Algoritmo general</h2>
 <pre class="text"><code>Entrada:
 - Base de datos con variables predictoras.
 - Variable respuesta categórica.
@@ -377,8 +377,8 @@ Proceso:
 5. Asignar una clase a cada hoja.
 6. Evaluar el modelo con datos de prueba.</code></pre>
 </section>
-<section id="cargar-paquetes-y-datos" class="level2" data-number="7.8">
-<h2 data-number="7.8" class="anchored" data-anchor-id="cargar-paquetes-y-datos"><span class="header-section-number">7.8</span> Cargar paquetes y datos</h2>
+<section id="cargar-paquetes-y-datos" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="cargar-paquetes-y-datos"><span class="header-section-number">6.8</span> Cargar paquetes y datos</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -411,8 +411,8 @@ Proceso:
 </div>
 </div>
 </section>
-<section id="usar-la-base-completa" class="level2" data-number="7.9">
-<h2 data-number="7.9" class="anchored" data-anchor-id="usar-la-base-completa"><span class="header-section-number">7.9</span> Usar la base completa</h2>
+<section id="usar-la-base-completa" class="level2" data-number="6.9">
+<h2 data-number="6.9" class="anchored" data-anchor-id="usar-la-base-completa"><span class="header-section-number">6.9</span> Usar la base completa</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -430,8 +430,8 @@ Proceso:
 </div>
 </div>
 </section>
-<section id="preparar-variables" class="level2" data-number="7.10">
-<h2 data-number="7.10" class="anchored" data-anchor-id="preparar-variables"><span class="header-section-number">7.10</span> Preparar variables</h2>
+<section id="preparar-variables" class="level2" data-number="6.10">
+<h2 data-number="6.10" class="anchored" data-anchor-id="preparar-variables"><span class="header-section-number">6.10</span> Preparar variables</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -460,8 +460,8 @@ Con víctimas   Solo daños
 </div>
 </div>
 </section>
-<section id="división-en-entrenamiento-y-prueba" class="level2" data-number="7.11">
-<h2 data-number="7.11" class="anchored" data-anchor-id="división-en-entrenamiento-y-prueba"><span class="header-section-number">7.11</span> División en entrenamiento y prueba</h2>
+<section id="división-en-entrenamiento-y-prueba" class="level2" data-number="6.11">
+<h2 data-number="6.11" class="anchored" data-anchor-id="división-en-entrenamiento-y-prueba"><span class="header-section-number">6.11</span> División en entrenamiento y prueba</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -490,8 +490,8 @@ Con víctimas   Solo daños
 </div>
 </div>
 </section>
-<section id="ajustar-el-árbol-de-decisión" class="level2" data-number="7.12">
-<h2 data-number="7.12" class="anchored" data-anchor-id="ajustar-el-árbol-de-decisión"><span class="header-section-number">7.12</span> Ajustar el árbol de decisión</h2>
+<section id="ajustar-el-árbol-de-decisión" class="level2" data-number="6.12">
+<h2 data-number="6.12" class="anchored" data-anchor-id="ajustar-el-árbol-de-decisión"><span class="header-section-number">6.12</span> Ajustar el árbol de decisión</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -511,8 +511,8 @@ Con víctimas   Solo daños
 </details>
 </div>
 </section>
-<section id="tabla-de-complejidad" class="level2" data-number="7.13">
-<h2 data-number="7.13" class="anchored" data-anchor-id="tabla-de-complejidad"><span class="header-section-number">7.13</span> Tabla de complejidad</h2>
+<section id="tabla-de-complejidad" class="level2" data-number="6.13">
+<h2 data-number="6.13" class="anchored" data-anchor-id="tabla-de-complejidad"><span class="header-section-number">6.13</span> Tabla de complejidad</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -541,8 +541,8 @@ n= 273439
 </div>
 </div>
 </section>
-<section id="importancia-de-variables" class="level2" data-number="7.14">
-<h2 data-number="7.14" class="anchored" data-anchor-id="importancia-de-variables"><span class="header-section-number">7.14</span> Importancia de variables</h2>
+<section id="importancia-de-variables" class="level2" data-number="6.14">
+<h2 data-number="6.14" class="anchored" data-anchor-id="importancia-de-variables"><span class="header-section-number">6.14</span> Importancia de variables</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -591,8 +591,8 @@ n= 273439
 </div>
 </div>
 </section>
-<section id="gráfica-opcional-del-árbol" class="level2" data-number="7.15">
-<h2 data-number="7.15" class="anchored" data-anchor-id="gráfica-opcional-del-árbol"><span class="header-section-number">7.15</span> Gráfica opcional del árbol</h2>
+<section id="gráfica-opcional-del-árbol" class="level2" data-number="6.15">
+<h2 data-number="6.15" class="anchored" data-anchor-id="gráfica-opcional-del-árbol"><span class="header-section-number">6.15</span> Gráfica opcional del árbol</h2>
 <p>La gráfica completa del árbol puede ser pesada al generar PDF. Por eso se deja como código opcional para ejecutar manualmente en RStudio.</p>
 <div class="cell">
 <details class="code-fold">
@@ -602,8 +602,8 @@ n= 273439
 </details>
 </div>
 </section>
-<section id="predicción-sobre-el-conjunto-de-prueba" class="level2" data-number="7.16">
-<h2 data-number="7.16" class="anchored" data-anchor-id="predicción-sobre-el-conjunto-de-prueba"><span class="header-section-number">7.16</span> Predicción sobre el conjunto de prueba</h2>
+<section id="predicción-sobre-el-conjunto-de-prueba" class="level2" data-number="6.16">
+<h2 data-number="6.16" class="anchored" data-anchor-id="predicción-sobre-el-conjunto-de-prueba"><span class="header-section-number">6.16</span> Predicción sobre el conjunto de prueba</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -624,8 +624,8 @@ Levels: Con víctimas Solo daños</code></pre>
 </div>
 </div>
 </section>
-<section id="matriz-de-confusión" class="level2" data-number="7.17">
-<h2 data-number="7.17" class="anchored" data-anchor-id="matriz-de-confusión"><span class="header-section-number">7.17</span> Matriz de confusión</h2>
+<section id="matriz-de-confusión" class="level2" data-number="6.17">
+<h2 data-number="6.17" class="anchored" data-anchor-id="matriz-de-confusión"><span class="header-section-number">6.17</span> Matriz de confusión</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -649,8 +649,8 @@ Real           Con víctimas Solo daños
 </div>
 </div>
 </section>
-<section id="métricas-de-evaluación" class="level2" data-number="7.18">
-<h2 data-number="7.18" class="anchored" data-anchor-id="métricas-de-evaluación"><span class="header-section-number">7.18</span> Métricas de evaluación</h2>
+<section id="métricas-de-evaluación" class="level2" data-number="6.18">
+<h2 data-number="6.18" class="anchored" data-anchor-id="métricas-de-evaluación"><span class="header-section-number">6.18</span> Métricas de evaluación</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -683,8 +683,8 @@ Real           Con víctimas Solo daños
 </div>
 </div>
 </section>
-<section id="probabilidades-predichas" class="level2" data-number="7.19">
-<h2 data-number="7.19" class="anchored" data-anchor-id="probabilidades-predichas"><span class="header-section-number">7.19</span> Probabilidades predichas</h2>
+<section id="probabilidades-predichas" class="level2" data-number="6.19">
+<h2 data-number="6.19" class="anchored" data-anchor-id="probabilidades-predichas"><span class="header-section-number">6.19</span> Probabilidades predichas</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -709,8 +709,8 @@ Real           Con víctimas Solo daños
 </div>
 </div>
 </section>
-<section id="resumen-de-nodos-del-árbol" class="level2" data-number="7.20">
-<h2 data-number="7.20" class="anchored" data-anchor-id="resumen-de-nodos-del-árbol"><span class="header-section-number">7.20</span> Resumen de nodos del árbol</h2>
+<section id="resumen-de-nodos-del-árbol" class="level2" data-number="6.20">
+<h2 data-number="6.20" class="anchored" data-anchor-id="resumen-de-nodos-del-árbol"><span class="header-section-number">6.20</span> Resumen de nodos del árbol</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -738,8 +738,8 @@ Real           Con víctimas Solo daños
 </div>
 </div>
 </section>
-<section id="comparación-conceptual-con-otros-métodos" class="level2" data-number="7.21">
-<h2 data-number="7.21" class="anchored" data-anchor-id="comparación-conceptual-con-otros-métodos"><span class="header-section-number">7.21</span> Comparación conceptual con otros métodos</h2>
+<section id="comparación-conceptual-con-otros-métodos" class="level2" data-number="6.21">
+<h2 data-number="6.21" class="anchored" data-anchor-id="comparación-conceptual-con-otros-métodos"><span class="header-section-number">6.21</span> Comparación conceptual con otros métodos</h2>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -789,12 +789,10 @@ Real           Con víctimas Solo daños
 </tbody>
 </table>
 </section>
-<section id="conclusión" class="level2" data-number="7.22">
-<h2 data-number="7.22" class="anchored" data-anchor-id="conclusión"><span class="header-section-number">7.22</span> Conclusión</h2>
+<section id="conclusión" class="level2" data-number="6.22">
+<h2 data-number="6.22" class="anchored" data-anchor-id="conclusión"><span class="header-section-number">6.22</span> Conclusión</h2>
 <p>Los árboles de decisión son modelos intuitivos, visuales e interpretables. Permiten clasificar observaciones mediante reglas tipo si-entonces. Este capítulo prepara el camino para estudiar modelos más potentes basados en muchos árboles, como Random Forest.</p>
 
-
-<!-- -->
 
 </section>
 
@@ -870,60 +868,9 @@ Real           Con víctimas Solo daños
       });
       clipboardModal.on('success', onCopySuccess);
     }
-    const viewSource = window.document.getElementById('quarto-view-source') ||
-                       window.document.getElementById('quarto-code-tools-source');
-    if (viewSource) {
-      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
-      viewSource.addEventListener("click", function(e) {
-        if (sourceUrl) {
-          // rstudio viewer pane
-          if (/\bcapabilities=\b/.test(window.location)) {
-            window.open(sourceUrl);
-          } else {
-            window.location.href = sourceUrl;
-          }
-        } else {
-          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
-          modal.show();
-        }
-        return false;
-      });
-    }
-    function toggleCodeHandler(show) {
-      return function(e) {
-        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-        for (let i=0; i<detailsSrc.length; i++) {
-          const details = detailsSrc[i].parentElement;
-          if (show) {
-            details.open = true;
-          } else {
-            details.removeAttribute("open");
-          }
-        }
-        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
-        const fromCls = show ? "hidden" : "unhidden";
-        const toCls = show ? "unhidden" : "hidden";
-        for (let i=0; i<cellCodeDivs.length; i++) {
-          const codeDiv = cellCodeDivs[i];
-          if (codeDiv.classList.contains(fromCls)) {
-            codeDiv.classList.remove(fromCls);
-            codeDiv.classList.add(toCls);
-          } 
-        }
-        return false;
-      }
-    }
-    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
-    if (hideAllCode) {
-      hideAllCode.addEventListener("click", toggleCodeHandler(false));
-    }
-    const showAllCode = window.document.getElementById("quarto-show-all-code");
-    if (showAllCode) {
-      showAllCode.addEventListener("click", toggleCodeHandler(true));
-    }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/gilbertorodriguez59\.github\.io\/libro-machine-learning-r\/");
+        var filterRegex = new RegExp('/' + window.location.host + '/');
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -1253,355 +1200,29 @@ Real           Con víctimas Solo daños
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./05-knn.html" class="pagination-link" aria-label="k vecinos más cercanos, k-NN">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">k vecinos más cercanos, k-NN</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">k vecinos más cercanos, k-NN</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./07-random-forest.html" class="pagination-link" aria-label="Random Forest para clasificación">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Random Forest para clasificación</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Random Forest para clasificación</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
-</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Ejecutar el código</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Árboles de decisión para clasificación</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Objetivos del capítulo</span></span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>Al finalizar este capítulo, el lector será capaz de explicar la idea básica de un árbol de decisión, interpretar reglas tipo si-entonces, entrenar un árbol en R y evaluar su desempeño.</span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="fu">## Introducción</span></span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>Los árboles de decisión son modelos de aprendizaje supervisado que clasifican observaciones mediante una secuencia de preguntas.</span>
-<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>En este capítulo continuaremos con la base de accidentes de tránsito preparada en los capítulos anteriores. La variable que queremos predecir es <span class="in">`accidente_con_victimas`</span>.</span>
-<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a><span class="fu">## Idea intuitiva</span></span>
-<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a>Un árbol de decisión se parece a un diagrama de flujo. Cada nodo interno contiene una pregunta, cada rama representa una posible respuesta y cada hoja contiene una predicción.</span>
-<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a>reglas_ejemplo <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">pregunta =</span> <span class="fu">c</span>(</span>
-<span id="cb34-22"><a href="#cb34-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">"¿El accidente fue con peatón?"</span>,</span>
-<span id="cb34-23"><a href="#cb34-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">"¿Ocurrió de noche?"</span>,</span>
-<span id="cb34-24"><a href="#cb34-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">"¿La causa presunta fue el conductor?"</span></span>
-<span id="cb34-25"><a href="#cb34-25" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb34-26"><a href="#cb34-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">posible_decision =</span> <span class="fu">c</span>(</span>
-<span id="cb34-27"><a href="#cb34-27" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Mayor posibilidad de víctimas"</span>,</span>
-<span id="cb34-28"><a href="#cb34-28" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Revisar el patrón horario"</span>,</span>
-<span id="cb34-29"><a href="#cb34-29" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Analizar junto con el tipo de accidente"</span></span>
-<span id="cb34-30"><a href="#cb34-30" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb34-31"><a href="#cb34-31" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb34-32"><a href="#cb34-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-33"><a href="#cb34-33" aria-hidden="true" tabindex="-1"></a>reglas_ejemplo</span>
-<span id="cb34-34"><a href="#cb34-34" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb34-35"><a href="#cb34-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-36"><a href="#cb34-36" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reglas tipo si-entonces</span></span>
-<span id="cb34-37"><a href="#cb34-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-38"><a href="#cb34-38" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
-<span id="cb34-39"><a href="#cb34-39" aria-hidden="true" tabindex="-1"></a><span class="in">Si el tipo de accidente es colisión con peatón,</span></span>
-<span id="cb34-40"><a href="#cb34-40" aria-hidden="true" tabindex="-1"></a><span class="in">entonces aumenta la posibilidad de que el accidente tenga víctimas.</span></span>
-<span id="cb34-41"><a href="#cb34-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-42"><a href="#cb34-42" aria-hidden="true" tabindex="-1"></a><span class="in">Si el accidente es una colisión con objeto fijo,</span></span>
-<span id="cb34-43"><a href="#cb34-43" aria-hidden="true" tabindex="-1"></a><span class="in">entonces el árbol revisa otras variables como la hora o la causa presunta.</span></span>
-<span id="cb34-44"><a href="#cb34-44" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb34-45"><a href="#cb34-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-46"><a href="#cb34-46" aria-hidden="true" tabindex="-1"></a><span class="fu">## Fundamento matemático</span></span>
-<span id="cb34-47"><a href="#cb34-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-48"><a href="#cb34-48" aria-hidden="true" tabindex="-1"></a>Un árbol de decisión busca dividir los datos en grupos más homogéneos. Para clasificación, una medida común de impureza es el índice de Gini.</span>
-<span id="cb34-49"><a href="#cb34-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-50"><a href="#cb34-50" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb34-51"><a href="#cb34-51" aria-hidden="true" tabindex="-1"></a>Gini = 1 - \sum_{k=1}^{K} p_k^2</span>
-<span id="cb34-52"><a href="#cb34-52" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb34-53"><a href="#cb34-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-54"><a href="#cb34-54" aria-hidden="true" tabindex="-1"></a>En clasificación binaria:</span>
-<span id="cb34-55"><a href="#cb34-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-56"><a href="#cb34-56" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb34-57"><a href="#cb34-57" aria-hidden="true" tabindex="-1"></a>Gini = 1 - p_1^2 - p_2^2</span>
-<span id="cb34-58"><a href="#cb34-58" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb34-59"><a href="#cb34-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-60"><a href="#cb34-60" aria-hidden="true" tabindex="-1"></a>Un valor pequeño indica que el nodo es más puro.</span>
-<span id="cb34-61"><a href="#cb34-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-62"><a href="#cb34-62" aria-hidden="true" tabindex="-1"></a><span class="fu">## Ejemplo sencillo del índice de Gini</span></span>
-<span id="cb34-63"><a href="#cb34-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-66"><a href="#cb34-66" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb34-67"><a href="#cb34-67" aria-hidden="true" tabindex="-1"></a>p_solo_danios <span class="ot">&lt;-</span> <span class="dv">80</span> <span class="sc">/</span> <span class="dv">100</span></span>
-<span id="cb34-68"><a href="#cb34-68" aria-hidden="true" tabindex="-1"></a>p_con_victimas <span class="ot">&lt;-</span> <span class="dv">20</span> <span class="sc">/</span> <span class="dv">100</span></span>
-<span id="cb34-69"><a href="#cb34-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-70"><a href="#cb34-70" aria-hidden="true" tabindex="-1"></a>gini <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> p_solo_danios<span class="sc">^</span><span class="dv">2</span> <span class="sc">-</span> p_con_victimas<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb34-71"><a href="#cb34-71" aria-hidden="true" tabindex="-1"></a>gini</span>
-<span id="cb34-72"><a href="#cb34-72" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb34-73"><a href="#cb34-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-74"><a href="#cb34-74" aria-hidden="true" tabindex="-1"></a><span class="fu">## Algoritmo general</span></span>
-<span id="cb34-75"><a href="#cb34-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-76"><a href="#cb34-76" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
-<span id="cb34-77"><a href="#cb34-77" aria-hidden="true" tabindex="-1"></a><span class="in">Entrada:</span></span>
-<span id="cb34-78"><a href="#cb34-78" aria-hidden="true" tabindex="-1"></a><span class="in">- Base de datos con variables predictoras.</span></span>
-<span id="cb34-79"><a href="#cb34-79" aria-hidden="true" tabindex="-1"></a><span class="in">- Variable respuesta categórica.</span></span>
-<span id="cb34-80"><a href="#cb34-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-81"><a href="#cb34-81" aria-hidden="true" tabindex="-1"></a><span class="in">Proceso:</span></span>
-<span id="cb34-82"><a href="#cb34-82" aria-hidden="true" tabindex="-1"></a><span class="in">1. Elegir una variable para dividir los datos.</span></span>
-<span id="cb34-83"><a href="#cb34-83" aria-hidden="true" tabindex="-1"></a><span class="in">2. Seleccionar la división que produce grupos más homogéneos.</span></span>
-<span id="cb34-84"><a href="#cb34-84" aria-hidden="true" tabindex="-1"></a><span class="in">3. Repetir el proceso en cada nuevo grupo.</span></span>
-<span id="cb34-85"><a href="#cb34-85" aria-hidden="true" tabindex="-1"></a><span class="in">4. Detener el crecimiento del árbol mediante criterios de control.</span></span>
-<span id="cb34-86"><a href="#cb34-86" aria-hidden="true" tabindex="-1"></a><span class="in">5. Asignar una clase a cada hoja.</span></span>
-<span id="cb34-87"><a href="#cb34-87" aria-hidden="true" tabindex="-1"></a><span class="in">6. Evaluar el modelo con datos de prueba.</span></span>
-<span id="cb34-88"><a href="#cb34-88" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb34-89"><a href="#cb34-89" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-90"><a href="#cb34-90" aria-hidden="true" tabindex="-1"></a><span class="fu">## Cargar paquetes y datos</span></span>
-<span id="cb34-91"><a href="#cb34-91" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-94"><a href="#cb34-94" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb34-95"><a href="#cb34-95" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb34-96"><a href="#cb34-96" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb34-97"><a href="#cb34-97" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb34-98"><a href="#cb34-98" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb34-99"><a href="#cb34-99" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rpart)</span>
-<span id="cb34-100"><a href="#cb34-100" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb34-101"><a href="#cb34-101" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"util_graficas.R"</span>)</span>
-<span id="cb34-102"><a href="#cb34-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-103"><a href="#cb34-103" aria-hidden="true" tabindex="-1"></a>ruta_atus_ml <span class="ot">&lt;-</span> <span class="st">"datos/atus_ml_preparado.csv"</span></span>
-<span id="cb34-104"><a href="#cb34-104" aria-hidden="true" tabindex="-1"></a><span class="fu">file.exists</span>(ruta_atus_ml)</span>
-<span id="cb34-105"><a href="#cb34-105" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb34-106"><a href="#cb34-106" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-109"><a href="#cb34-109" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb34-110"><a href="#cb34-110" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">file.exists</span>(ruta_atus_ml)) {</span>
-<span id="cb34-111"><a href="#cb34-111" aria-hidden="true" tabindex="-1"></a>  atus_ml <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(ruta_atus_ml, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb34-112"><a href="#cb34-112" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Base preparada cargada correctamente."</span>)</span>
-<span id="cb34-113"><a href="#cb34-113" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb34-114"><a href="#cb34-114" aria-hidden="true" tabindex="-1"></a>  atus_ml <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb34-115"><a href="#cb34-115" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"No se encontró el archivo datos/atus_ml_preparado.csv. Ejecuta primero el capítulo 2."</span>)</span>
-<span id="cb34-116"><a href="#cb34-116" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb34-117"><a href="#cb34-117" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb34-118"><a href="#cb34-118" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-119"><a href="#cb34-119" aria-hidden="true" tabindex="-1"></a><span class="fu">## Usar la base completa</span></span>
-<span id="cb34-120"><a href="#cb34-120" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-123"><a href="#cb34-123" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb34-124"><a href="#cb34-124" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(atus_ml)) {</span>
-<span id="cb34-125"><a href="#cb34-125" aria-hidden="true" tabindex="-1"></a>  atus_arbol_base <span class="ot">&lt;-</span> atus_ml</span>
-<span id="cb34-126"><a href="#cb34-126" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(</span>
-<span id="cb34-127"><a href="#cb34-127" aria-hidden="true" tabindex="-1"></a>    <span class="at">filas =</span> <span class="fu">nrow</span>(atus_arbol_base),</span>
-<span id="cb34-128"><a href="#cb34-128" aria-hidden="true" tabindex="-1"></a>    <span class="at">columnas =</span> <span class="fu">ncol</span>(atus_arbol_base)</span>
-<span id="cb34-129"><a href="#cb34-129" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb34-130"><a href="#cb34-130" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb34-131"><a href="#cb34-131" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb34-132"><a href="#cb34-132" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-133"><a href="#cb34-133" aria-hidden="true" tabindex="-1"></a><span class="fu">## Preparar variables</span></span>
-<span id="cb34-134"><a href="#cb34-134" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-137"><a href="#cb34-137" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb34-138"><a href="#cb34-138" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"atus_arbol_base"</span>)) {</span>
-<span id="cb34-139"><a href="#cb34-139" aria-hidden="true" tabindex="-1"></a>  atus_arbol_base <span class="ot">&lt;-</span> atus_arbol_base <span class="sc">|&gt;</span></span>
-<span id="cb34-140"><a href="#cb34-140" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
-<span id="cb34-141"><a href="#cb34-141" aria-hidden="true" tabindex="-1"></a>      <span class="at">accidente_con_victimas =</span> <span class="fu">factor</span>(</span>
-<span id="cb34-142"><a href="#cb34-142" aria-hidden="true" tabindex="-1"></a>        accidente_con_victimas,</span>
-<span id="cb34-143"><a href="#cb34-143" aria-hidden="true" tabindex="-1"></a>        <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Con víctimas"</span>, <span class="st">"Solo daños"</span>)</span>
-<span id="cb34-144"><a href="#cb34-144" aria-hidden="true" tabindex="-1"></a>      ),</span>
-<span id="cb34-145"><a href="#cb34-145" aria-hidden="true" tabindex="-1"></a>      <span class="at">MES =</span> <span class="fu">as.factor</span>(MES),</span>
-<span id="cb34-146"><a href="#cb34-146" aria-hidden="true" tabindex="-1"></a>      <span class="at">ID_HORA =</span> <span class="fu">as.numeric</span>(ID_HORA),</span>
-<span id="cb34-147"><a href="#cb34-147" aria-hidden="true" tabindex="-1"></a>      <span class="at">DIASEMANA =</span> <span class="fu">as.factor</span>(DIASEMANA),</span>
-<span id="cb34-148"><a href="#cb34-148" aria-hidden="true" tabindex="-1"></a>      <span class="at">TIPACCID =</span> <span class="fu">as.factor</span>(TIPACCID),</span>
-<span id="cb34-149"><a href="#cb34-149" aria-hidden="true" tabindex="-1"></a>      <span class="at">CAUSAACCI =</span> <span class="fu">as.factor</span>(CAUSAACCI)</span>
-<span id="cb34-150"><a href="#cb34-150" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span></span>
-<span id="cb34-151"><a href="#cb34-151" aria-hidden="true" tabindex="-1"></a>    <span class="fu">na.omit</span>()</span>
-<span id="cb34-152"><a href="#cb34-152" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-153"><a href="#cb34-153" aria-hidden="true" tabindex="-1"></a>  <span class="fu">table</span>(atus_arbol_base<span class="sc">$</span>accidente_con_victimas)</span>
-<span id="cb34-154"><a href="#cb34-154" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb34-155"><a href="#cb34-155" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb34-156"><a href="#cb34-156" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-157"><a href="#cb34-157" aria-hidden="true" tabindex="-1"></a><span class="fu">## División en entrenamiento y prueba</span></span>
-<span id="cb34-158"><a href="#cb34-158" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-161"><a href="#cb34-161" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb34-162"><a href="#cb34-162" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"atus_arbol_base"</span>)) {</span>
-<span id="cb34-163"><a href="#cb34-163" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb34-164"><a href="#cb34-164" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(atus_arbol_base)</span>
-<span id="cb34-165"><a href="#cb34-165" aria-hidden="true" tabindex="-1"></a>  indices_entrenamiento <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>n, <span class="at">size =</span> <span class="fu">round</span>(<span class="fl">0.7</span> <span class="sc">*</span> n))</span>
-<span id="cb34-166"><a href="#cb34-166" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-167"><a href="#cb34-167" aria-hidden="true" tabindex="-1"></a>  entrenamiento <span class="ot">&lt;-</span> atus_arbol_base[indices_entrenamiento, ]</span>
-<span id="cb34-168"><a href="#cb34-168" aria-hidden="true" tabindex="-1"></a>  prueba <span class="ot">&lt;-</span> atus_arbol_base[<span class="sc">-</span>indices_entrenamiento, ]</span>
-<span id="cb34-169"><a href="#cb34-169" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-170"><a href="#cb34-170" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(</span>
-<span id="cb34-171"><a href="#cb34-171" aria-hidden="true" tabindex="-1"></a>    <span class="at">conjunto =</span> <span class="fu">c</span>(<span class="st">"Entrenamiento"</span>, <span class="st">"Prueba"</span>),</span>
-<span id="cb34-172"><a href="#cb34-172" aria-hidden="true" tabindex="-1"></a>    <span class="at">registros =</span> <span class="fu">c</span>(<span class="fu">nrow</span>(entrenamiento), <span class="fu">nrow</span>(prueba)),</span>
-<span id="cb34-173"><a href="#cb34-173" aria-hidden="true" tabindex="-1"></a>    <span class="at">porcentaje =</span> <span class="fu">c</span>(</span>
-<span id="cb34-174"><a href="#cb34-174" aria-hidden="true" tabindex="-1"></a>      <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> <span class="fu">nrow</span>(entrenamiento) <span class="sc">/</span> <span class="fu">nrow</span>(atus_arbol_base), <span class="dv">2</span>),</span>
-<span id="cb34-175"><a href="#cb34-175" aria-hidden="true" tabindex="-1"></a>      <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> <span class="fu">nrow</span>(prueba) <span class="sc">/</span> <span class="fu">nrow</span>(atus_arbol_base), <span class="dv">2</span>)</span>
-<span id="cb34-176"><a href="#cb34-176" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb34-177"><a href="#cb34-177" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb34-178"><a href="#cb34-178" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb34-179"><a href="#cb34-179" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb34-180"><a href="#cb34-180" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-181"><a href="#cb34-181" aria-hidden="true" tabindex="-1"></a><span class="fu">## Ajustar el árbol de decisión</span></span>
-<span id="cb34-182"><a href="#cb34-182" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-185"><a href="#cb34-185" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb34-186"><a href="#cb34-186" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"entrenamiento"</span>)) {</span>
-<span id="cb34-187"><a href="#cb34-187" aria-hidden="true" tabindex="-1"></a>  modelo_arbol <span class="ot">&lt;-</span> <span class="fu">rpart</span>(</span>
-<span id="cb34-188"><a href="#cb34-188" aria-hidden="true" tabindex="-1"></a>    accidente_con_victimas <span class="sc">~</span> MES <span class="sc">+</span> ID_HORA <span class="sc">+</span> DIASEMANA <span class="sc">+</span> TIPACCID <span class="sc">+</span> CAUSAACCI,</span>
-<span id="cb34-189"><a href="#cb34-189" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> entrenamiento,</span>
-<span id="cb34-190"><a href="#cb34-190" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">"class"</span>,</span>
-<span id="cb34-191"><a href="#cb34-191" aria-hidden="true" tabindex="-1"></a>    <span class="at">control =</span> <span class="fu">rpart.control</span>(</span>
-<span id="cb34-192"><a href="#cb34-192" aria-hidden="true" tabindex="-1"></a>      <span class="at">cp =</span> <span class="fl">0.005</span>,</span>
-<span id="cb34-193"><a href="#cb34-193" aria-hidden="true" tabindex="-1"></a>      <span class="at">minsplit =</span> <span class="dv">1000</span>,</span>
-<span id="cb34-194"><a href="#cb34-194" aria-hidden="true" tabindex="-1"></a>      <span class="at">minbucket =</span> <span class="dv">300</span>,</span>
-<span id="cb34-195"><a href="#cb34-195" aria-hidden="true" tabindex="-1"></a>      <span class="at">maxdepth =</span> <span class="dv">5</span></span>
-<span id="cb34-196"><a href="#cb34-196" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb34-197"><a href="#cb34-197" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb34-198"><a href="#cb34-198" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb34-199"><a href="#cb34-199" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb34-200"><a href="#cb34-200" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-201"><a href="#cb34-201" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tabla de complejidad</span></span>
-<span id="cb34-202"><a href="#cb34-202" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-205"><a href="#cb34-205" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb34-206"><a href="#cb34-206" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"modelo_arbol"</span>)) {</span>
-<span id="cb34-207"><a href="#cb34-207" aria-hidden="true" tabindex="-1"></a>  <span class="fu">printcp</span>(modelo_arbol)</span>
-<span id="cb34-208"><a href="#cb34-208" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb34-209"><a href="#cb34-209" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb34-210"><a href="#cb34-210" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-211"><a href="#cb34-211" aria-hidden="true" tabindex="-1"></a><span class="fu">## Importancia de variables</span></span>
-<span id="cb34-212"><a href="#cb34-212" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-215"><a href="#cb34-215" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb34-216"><a href="#cb34-216" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"modelo_arbol"</span>)) {</span>
-<span id="cb34-217"><a href="#cb34-217" aria-hidden="true" tabindex="-1"></a>  importancia <span class="ot">&lt;-</span> modelo_arbol<span class="sc">$</span>variable.importance</span>
-<span id="cb34-218"><a href="#cb34-218" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-219"><a href="#cb34-219" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(importancia)) {</span>
-<span id="cb34-220"><a href="#cb34-220" aria-hidden="true" tabindex="-1"></a>    importancia_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb34-221"><a href="#cb34-221" aria-hidden="true" tabindex="-1"></a>      <span class="at">variable =</span> <span class="fu">names</span>(importancia),</span>
-<span id="cb34-222"><a href="#cb34-222" aria-hidden="true" tabindex="-1"></a>      <span class="at">importancia =</span> <span class="fu">as.numeric</span>(importancia),</span>
-<span id="cb34-223"><a href="#cb34-223" aria-hidden="true" tabindex="-1"></a>      <span class="at">row.names =</span> <span class="cn">NULL</span></span>
-<span id="cb34-224"><a href="#cb34-224" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb34-225"><a href="#cb34-225" aria-hidden="true" tabindex="-1"></a>    importancia_df <span class="ot">&lt;-</span> importancia_df[<span class="fu">order</span>(<span class="sc">-</span>importancia_df<span class="sc">$</span>importancia), ]</span>
-<span id="cb34-226"><a href="#cb34-226" aria-hidden="true" tabindex="-1"></a>    importancia_df</span>
-<span id="cb34-227"><a href="#cb34-227" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb34-228"><a href="#cb34-228" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb34-229"><a href="#cb34-229" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb34-230"><a href="#cb34-230" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-233"><a href="#cb34-233" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb34-234"><a href="#cb34-234" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"importancia_df"</span>)) {</span>
-<span id="cb34-235"><a href="#cb34-235" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(importancia_df, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(variable, importancia), <span class="at">y =</span> importancia)) <span class="sc">+</span></span>
-<span id="cb34-236"><a href="#cb34-236" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_col</span>(<span class="at">fill =</span> col_azul, <span class="at">width =</span> <span class="fl">0.75</span>) <span class="sc">+</span></span>
-<span id="cb34-237"><a href="#cb34-237" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb34-238"><a href="#cb34-238" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
-<span id="cb34-239"><a href="#cb34-239" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> <span class="st">"Importancia de variables en el árbol de decisión"</span>,</span>
-<span id="cb34-240"><a href="#cb34-240" aria-hidden="true" tabindex="-1"></a>      <span class="at">subtitle =</span> <span class="st">"Variables más útiles para separar clases"</span>,</span>
-<span id="cb34-241"><a href="#cb34-241" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="st">"Variable"</span>,</span>
-<span id="cb34-242"><a href="#cb34-242" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="st">"Importancia"</span></span>
-<span id="cb34-243"><a href="#cb34-243" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb34-244"><a href="#cb34-244" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tema_libro</span>()</span>
-<span id="cb34-245"><a href="#cb34-245" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb34-246"><a href="#cb34-246" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb34-247"><a href="#cb34-247" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-248"><a href="#cb34-248" aria-hidden="true" tabindex="-1"></a><span class="fu">## Gráfica opcional del árbol</span></span>
-<span id="cb34-249"><a href="#cb34-249" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-250"><a href="#cb34-250" aria-hidden="true" tabindex="-1"></a>La gráfica completa del árbol puede ser pesada al generar PDF. Por eso se deja como código opcional para ejecutar manualmente en RStudio.</span>
-<span id="cb34-251"><a href="#cb34-251" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-252"><a href="#cb34-252" aria-hidden="true" tabindex="-1"></a><span class="in">```{r eval=FALSE}</span></span>
-<span id="cb34-253"><a href="#cb34-253" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(modelo_arbol, <span class="at">uniform =</span> <span class="cn">TRUE</span>, <span class="at">margin =</span> <span class="fl">0.1</span>)</span>
-<span id="cb34-254"><a href="#cb34-254" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(modelo_arbol, <span class="at">use.n =</span> <span class="cn">TRUE</span>, <span class="at">cex =</span> <span class="fl">0.7</span>)</span>
-<span id="cb34-255"><a href="#cb34-255" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb34-256"><a href="#cb34-256" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-257"><a href="#cb34-257" aria-hidden="true" tabindex="-1"></a><span class="fu">## Predicción sobre el conjunto de prueba</span></span>
-<span id="cb34-258"><a href="#cb34-258" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-261"><a href="#cb34-261" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb34-262"><a href="#cb34-262" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"modelo_arbol"</span>) <span class="sc">&amp;&amp;</span> <span class="fu">exists</span>(<span class="st">"prueba"</span>)) {</span>
-<span id="cb34-263"><a href="#cb34-263" aria-hidden="true" tabindex="-1"></a>  pred_arbol <span class="ot">&lt;-</span> <span class="fu">predict</span>(</span>
-<span id="cb34-264"><a href="#cb34-264" aria-hidden="true" tabindex="-1"></a>    modelo_arbol,</span>
-<span id="cb34-265"><a href="#cb34-265" aria-hidden="true" tabindex="-1"></a>    <span class="at">newdata =</span> prueba,</span>
-<span id="cb34-266"><a href="#cb34-266" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">"class"</span></span>
-<span id="cb34-267"><a href="#cb34-267" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb34-268"><a href="#cb34-268" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-269"><a href="#cb34-269" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(pred_arbol)</span>
-<span id="cb34-270"><a href="#cb34-270" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb34-271"><a href="#cb34-271" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb34-272"><a href="#cb34-272" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-273"><a href="#cb34-273" aria-hidden="true" tabindex="-1"></a><span class="fu">## Matriz de confusión</span></span>
-<span id="cb34-274"><a href="#cb34-274" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-277"><a href="#cb34-277" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb34-278"><a href="#cb34-278" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"pred_arbol"</span>)) {</span>
-<span id="cb34-279"><a href="#cb34-279" aria-hidden="true" tabindex="-1"></a>  pred_arbol <span class="ot">&lt;-</span> <span class="fu">factor</span>(pred_arbol, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Con víctimas"</span>, <span class="st">"Solo daños"</span>))</span>
-<span id="cb34-280"><a href="#cb34-280" aria-hidden="true" tabindex="-1"></a>  real_arbol <span class="ot">&lt;-</span> <span class="fu">factor</span>(prueba<span class="sc">$</span>accidente_con_victimas, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Con víctimas"</span>, <span class="st">"Solo daños"</span>))</span>
-<span id="cb34-281"><a href="#cb34-281" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-282"><a href="#cb34-282" aria-hidden="true" tabindex="-1"></a>  matriz_confusion_arbol <span class="ot">&lt;-</span> <span class="fu">table</span>(</span>
-<span id="cb34-283"><a href="#cb34-283" aria-hidden="true" tabindex="-1"></a>    <span class="at">Real =</span> real_arbol,</span>
-<span id="cb34-284"><a href="#cb34-284" aria-hidden="true" tabindex="-1"></a>    <span class="at">Predicho =</span> pred_arbol</span>
-<span id="cb34-285"><a href="#cb34-285" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb34-286"><a href="#cb34-286" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-287"><a href="#cb34-287" aria-hidden="true" tabindex="-1"></a>  matriz_confusion_arbol</span>
-<span id="cb34-288"><a href="#cb34-288" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb34-289"><a href="#cb34-289" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb34-290"><a href="#cb34-290" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-291"><a href="#cb34-291" aria-hidden="true" tabindex="-1"></a><span class="fu">## Métricas de evaluación</span></span>
-<span id="cb34-292"><a href="#cb34-292" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-295"><a href="#cb34-295" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb34-296"><a href="#cb34-296" aria-hidden="true" tabindex="-1"></a>calcular_metricas_arbol <span class="ot">&lt;-</span> <span class="cf">function</span>(real, predicho) {</span>
-<span id="cb34-297"><a href="#cb34-297" aria-hidden="true" tabindex="-1"></a>  real <span class="ot">&lt;-</span> <span class="fu">factor</span>(real, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Con víctimas"</span>, <span class="st">"Solo daños"</span>))</span>
-<span id="cb34-298"><a href="#cb34-298" aria-hidden="true" tabindex="-1"></a>  predicho <span class="ot">&lt;-</span> <span class="fu">factor</span>(predicho, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Con víctimas"</span>, <span class="st">"Solo daños"</span>))</span>
-<span id="cb34-299"><a href="#cb34-299" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-300"><a href="#cb34-300" aria-hidden="true" tabindex="-1"></a>  matriz <span class="ot">&lt;-</span> <span class="fu">table</span>(<span class="at">Real =</span> real, <span class="at">Predicho =</span> predicho)</span>
-<span id="cb34-301"><a href="#cb34-301" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-302"><a href="#cb34-302" aria-hidden="true" tabindex="-1"></a>  VP <span class="ot">&lt;-</span> matriz[<span class="st">"Con víctimas"</span>, <span class="st">"Con víctimas"</span>]</span>
-<span id="cb34-303"><a href="#cb34-303" aria-hidden="true" tabindex="-1"></a>  FN <span class="ot">&lt;-</span> matriz[<span class="st">"Con víctimas"</span>, <span class="st">"Solo daños"</span>]</span>
-<span id="cb34-304"><a href="#cb34-304" aria-hidden="true" tabindex="-1"></a>  FP <span class="ot">&lt;-</span> matriz[<span class="st">"Solo daños"</span>, <span class="st">"Con víctimas"</span>]</span>
-<span id="cb34-305"><a href="#cb34-305" aria-hidden="true" tabindex="-1"></a>  VN <span class="ot">&lt;-</span> matriz[<span class="st">"Solo daños"</span>, <span class="st">"Solo daños"</span>]</span>
-<span id="cb34-306"><a href="#cb34-306" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-307"><a href="#cb34-307" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(</span>
-<span id="cb34-308"><a href="#cb34-308" aria-hidden="true" tabindex="-1"></a>    <span class="at">exactitud =</span> (VP <span class="sc">+</span> VN) <span class="sc">/</span> (VP <span class="sc">+</span> FN <span class="sc">+</span> FP <span class="sc">+</span> VN),</span>
-<span id="cb34-309"><a href="#cb34-309" aria-hidden="true" tabindex="-1"></a>    <span class="at">sensibilidad =</span> VP <span class="sc">/</span> (VP <span class="sc">+</span> FN),</span>
-<span id="cb34-310"><a href="#cb34-310" aria-hidden="true" tabindex="-1"></a>    <span class="at">especificidad =</span> VN <span class="sc">/</span> (VN <span class="sc">+</span> FP)</span>
-<span id="cb34-311"><a href="#cb34-311" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb34-312"><a href="#cb34-312" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb34-313"><a href="#cb34-313" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-314"><a href="#cb34-314" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"pred_arbol"</span>)) {</span>
-<span id="cb34-315"><a href="#cb34-315" aria-hidden="true" tabindex="-1"></a>  metricas_arbol <span class="ot">&lt;-</span> <span class="fu">calcular_metricas_arbol</span>(real_arbol, pred_arbol)</span>
-<span id="cb34-316"><a href="#cb34-316" aria-hidden="true" tabindex="-1"></a>  metricas_arbol</span>
-<span id="cb34-317"><a href="#cb34-317" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb34-318"><a href="#cb34-318" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb34-319"><a href="#cb34-319" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-320"><a href="#cb34-320" aria-hidden="true" tabindex="-1"></a><span class="fu">## Probabilidades predichas</span></span>
-<span id="cb34-321"><a href="#cb34-321" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-324"><a href="#cb34-324" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb34-325"><a href="#cb34-325" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"modelo_arbol"</span>) <span class="sc">&amp;&amp;</span> <span class="fu">exists</span>(<span class="st">"prueba"</span>)) {</span>
-<span id="cb34-326"><a href="#cb34-326" aria-hidden="true" tabindex="-1"></a>  probabilidades_arbol <span class="ot">&lt;-</span> <span class="fu">predict</span>(</span>
-<span id="cb34-327"><a href="#cb34-327" aria-hidden="true" tabindex="-1"></a>    modelo_arbol,</span>
-<span id="cb34-328"><a href="#cb34-328" aria-hidden="true" tabindex="-1"></a>    <span class="at">newdata =</span> prueba,</span>
-<span id="cb34-329"><a href="#cb34-329" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">"prob"</span></span>
-<span id="cb34-330"><a href="#cb34-330" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb34-331"><a href="#cb34-331" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-332"><a href="#cb34-332" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(probabilidades_arbol)</span>
-<span id="cb34-333"><a href="#cb34-333" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb34-334"><a href="#cb34-334" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb34-335"><a href="#cb34-335" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-336"><a href="#cb34-336" aria-hidden="true" tabindex="-1"></a><span class="fu">## Resumen de nodos del árbol</span></span>
-<span id="cb34-337"><a href="#cb34-337" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-340"><a href="#cb34-340" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb34-341"><a href="#cb34-341" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"modelo_arbol"</span>)) {</span>
-<span id="cb34-342"><a href="#cb34-342" aria-hidden="true" tabindex="-1"></a>  frame_arbol <span class="ot">&lt;-</span> modelo_arbol<span class="sc">$</span>frame</span>
-<span id="cb34-343"><a href="#cb34-343" aria-hidden="true" tabindex="-1"></a>  resumen_nodos <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb34-344"><a href="#cb34-344" aria-hidden="true" tabindex="-1"></a>    <span class="at">nodo =</span> <span class="fu">row.names</span>(frame_arbol),</span>
-<span id="cb34-345"><a href="#cb34-345" aria-hidden="true" tabindex="-1"></a>    <span class="at">variable =</span> frame_arbol<span class="sc">$</span>var,</span>
-<span id="cb34-346"><a href="#cb34-346" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> frame_arbol<span class="sc">$</span>n,</span>
-<span id="cb34-347"><a href="#cb34-347" aria-hidden="true" tabindex="-1"></a>    <span class="at">perdida =</span> frame_arbol<span class="sc">$</span>dev,</span>
-<span id="cb34-348"><a href="#cb34-348" aria-hidden="true" tabindex="-1"></a>    <span class="at">yval =</span> frame_arbol<span class="sc">$</span>yval,</span>
-<span id="cb34-349"><a href="#cb34-349" aria-hidden="true" tabindex="-1"></a>    <span class="at">row.names =</span> <span class="cn">NULL</span></span>
-<span id="cb34-350"><a href="#cb34-350" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb34-351"><a href="#cb34-351" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-352"><a href="#cb34-352" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(resumen_nodos, <span class="dv">10</span>)</span>
-<span id="cb34-353"><a href="#cb34-353" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb34-354"><a href="#cb34-354" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb34-355"><a href="#cb34-355" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-356"><a href="#cb34-356" aria-hidden="true" tabindex="-1"></a><span class="fu">## Comparación conceptual con otros métodos</span></span>
-<span id="cb34-357"><a href="#cb34-357" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-358"><a href="#cb34-358" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Aspecto <span class="pp">|</span> Regresión logística <span class="pp">|</span> k-NN <span class="pp">|</span> Árbol de decisión <span class="pp">|</span></span>
-<span id="cb34-359"><a href="#cb34-359" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|---|</span></span>
-<span id="cb34-360"><a href="#cb34-360" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Tipo de modelo <span class="pp">|</span> Paramétrico <span class="pp">|</span> No paramétrico <span class="pp">|</span> No paramétrico <span class="pp">|</span></span>
-<span id="cb34-361"><a href="#cb34-361" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Interpretabilidad <span class="pp">|</span> Alta <span class="pp">|</span> Media o baja <span class="pp">|</span> Alta <span class="pp">|</span></span>
-<span id="cb34-362"><a href="#cb34-362" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Usa distancias <span class="pp">|</span> No <span class="pp">|</span> Sí <span class="pp">|</span> No <span class="pp">|</span></span>
-<span id="cb34-363"><a href="#cb34-363" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Requiere escalamiento <span class="pp">|</span> No siempre <span class="pp">|</span> Sí <span class="pp">|</span> No <span class="pp">|</span></span>
-<span id="cb34-364"><a href="#cb34-364" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Produce reglas explícitas <span class="pp">|</span> Parcialmente <span class="pp">|</span> No <span class="pp">|</span> Sí <span class="pp">|</span></span>
-<span id="cb34-365"><a href="#cb34-365" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Maneja no linealidad <span class="pp">|</span> Limitado <span class="pp">|</span> Sí <span class="pp">|</span> Sí <span class="pp">|</span></span>
-<span id="cb34-366"><a href="#cb34-366" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-367"><a href="#cb34-367" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conclusión</span></span>
-<span id="cb34-368"><a href="#cb34-368" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-369"><a href="#cb34-369" aria-hidden="true" tabindex="-1"></a>Los árboles de decisión son modelos intuitivos, visuales e interpretables. Permiten clasificar observaciones mediante reglas tipo si-entonces. Este capítulo prepara el camino para estudiar modelos más potentes basados en muchos árboles, como Random Forest.</span>
-</code></pre></div><button title="Copiar al portapapeles" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
-</div></div></div></div></div>
+</nav>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026 MI Jesús Gilberto Rodríguez Escobedo</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Libro abierto elaborado con Quarto y R</p>
+</div>
+  </div>
+</footer>
 
 
 

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3&nbsp; Preparación de datos reales – Aprendizaje y Clasificación Automática con R</title>
+<title>2&nbsp; Preparación de datos reales – Aprendizaje y Clasificación Automática con R</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -121,7 +121,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02-preparacion-datos.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Preparación de datos reales</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02-preparacion-datos.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Preparación de datos reales</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
@@ -152,7 +152,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Aprendizaje y Clasificación Automática con R</span></span></a>
+ <span class="menu-text">Presentación</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -164,43 +164,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./01-introduccion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">¿Qué es el aprendizaje automático?</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">¿Qué es el aprendizaje automático?</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./02-preparacion-datos.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Preparación de datos reales</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Preparación de datos reales</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03-analisis-exploratorio.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Análisis exploratorio de datos</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Análisis exploratorio de datos</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04-regresion-logistica.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regresión logística para clasificación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regresión logística para clasificación</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05-knn.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">k vecinos más cercanos, k-NN</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">k vecinos más cercanos, k-NN</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./06-arboles-decision.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Árboles de decisión para clasificación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Árboles de decisión para clasificación</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07-random-forest.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Random Forest para clasificación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Random Forest para clasificación</span></span></a>
   </div>
 </li>
     </ul>
@@ -213,26 +213,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Tabla de contenidos</h2>
    
   <ul>
-  <li><a href="#objetivos-del-capítulo" id="toc-objetivos-del-capítulo" class="nav-link active" data-scroll-target="#objetivos-del-capítulo"><span class="header-section-number">3.1</span> Objetivos del capítulo</a></li>
-  <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción"><span class="header-section-number">3.2</span> Introducción</a></li>
-  <li><a href="#datos-crudos-y-datos-preparados" id="toc-datos-crudos-y-datos-preparados" class="nav-link" data-scroll-target="#datos-crudos-y-datos-preparados"><span class="header-section-number">3.3</span> Datos crudos y datos preparados</a></li>
-  <li><a href="#representación-matemática-de-una-base-preparada" id="toc-representación-matemática-de-una-base-preparada" class="nav-link" data-scroll-target="#representación-matemática-de-una-base-preparada"><span class="header-section-number">3.4</span> Representación matemática de una base preparada</a></li>
-  <li><a href="#algoritmo-general-de-preparación-de-datos" id="toc-algoritmo-general-de-preparación-de-datos" class="nav-link" data-scroll-target="#algoritmo-general-de-preparación-de-datos"><span class="header-section-number">3.5</span> Algoritmo general de preparación de datos</a></li>
-  <li><a href="#conjunto-de-datos-de-trabajo-atus" id="toc-conjunto-de-datos-de-trabajo-atus" class="nav-link" data-scroll-target="#conjunto-de-datos-de-trabajo-atus"><span class="header-section-number">3.6</span> Conjunto de datos de trabajo: ATUS</a></li>
-  <li><a href="#crear-la-carpeta-de-datos" id="toc-crear-la-carpeta-de-datos" class="nav-link" data-scroll-target="#crear-la-carpeta-de-datos"><span class="header-section-number">3.7</span> Crear la carpeta de datos</a></li>
-  <li><a href="#cargar-paquetes" id="toc-cargar-paquetes" class="nav-link" data-scroll-target="#cargar-paquetes"><span class="header-section-number">3.8</span> Cargar paquetes</a></li>
-  <li><a href="#leer-el-archivo-csv" id="toc-leer-el-archivo-csv" class="nav-link" data-scroll-target="#leer-el-archivo-csv"><span class="header-section-number">3.9</span> Leer el archivo CSV</a></li>
-  <li><a href="#primer-vistazo-a-los-datos" id="toc-primer-vistazo-a-los-datos" class="nav-link" data-scroll-target="#primer-vistazo-a-los-datos"><span class="header-section-number">3.10</span> Primer vistazo a los datos</a></li>
-  <li><a href="#estandarizar-nombres-de-variables" id="toc-estandarizar-nombres-de-variables" class="nav-link" data-scroll-target="#estandarizar-nombres-de-variables"><span class="header-section-number">3.11</span> Estandarizar nombres de variables</a></li>
-  <li><a href="#variables-de-interés" id="toc-variables-de-interés" class="nav-link" data-scroll-target="#variables-de-interés"><span class="header-section-number">3.12</span> Variables de interés</a></li>
-  <li><a href="#diccionario-inicial-de-variables" id="toc-diccionario-inicial-de-variables" class="nav-link" data-scroll-target="#diccionario-inicial-de-variables"><span class="header-section-number">3.13</span> Diccionario inicial de variables</a></li>
-  <li><a href="#revisión-de-la-variable-clasacc" id="toc-revisión-de-la-variable-clasacc" class="nav-link" data-scroll-target="#revisión-de-la-variable-clasacc"><span class="header-section-number">3.14</span> Revisión de la variable CLASACC</a></li>
-  <li><a href="#crear-una-variable-respuesta" id="toc-crear-una-variable-respuesta" class="nav-link" data-scroll-target="#crear-una-variable-respuesta"><span class="header-section-number">3.15</span> Crear una variable respuesta</a></li>
-  <li><a href="#convertir-variables-categóricas" id="toc-convertir-variables-categóricas" class="nav-link" data-scroll-target="#convertir-variables-categóricas"><span class="header-section-number">3.16</span> Convertir variables categóricas</a></li>
-  <li><a href="#revisión-de-datos-faltantes" id="toc-revisión-de-datos-faltantes" class="nav-link" data-scroll-target="#revisión-de-datos-faltantes"><span class="header-section-number">3.17</span> Revisión de datos faltantes</a></li>
-  <li><a href="#selección-final-de-variables-para-el-primer-modelo" id="toc-selección-final-de-variables-para-el-primer-modelo" class="nav-link" data-scroll-target="#selección-final-de-variables-para-el-primer-modelo"><span class="header-section-number">3.18</span> Selección final de variables para el primer modelo</a></li>
-  <li><a href="#guardar-la-base-preparada" id="toc-guardar-la-base-preparada" class="nav-link" data-scroll-target="#guardar-la-base-preparada"><span class="header-section-number">3.19</span> Guardar la base preparada</a></li>
-  <li><a href="#resumen-del-capítulo" id="toc-resumen-del-capítulo" class="nav-link" data-scroll-target="#resumen-del-capítulo"><span class="header-section-number">3.20</span> Resumen del capítulo</a></li>
+  <li><a href="#objetivos-del-capítulo" id="toc-objetivos-del-capítulo" class="nav-link active" data-scroll-target="#objetivos-del-capítulo"><span class="header-section-number">2.1</span> Objetivos del capítulo</a></li>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción"><span class="header-section-number">2.2</span> Introducción</a></li>
+  <li><a href="#datos-crudos-y-datos-preparados" id="toc-datos-crudos-y-datos-preparados" class="nav-link" data-scroll-target="#datos-crudos-y-datos-preparados"><span class="header-section-number">2.3</span> Datos crudos y datos preparados</a></li>
+  <li><a href="#representación-matemática-de-una-base-preparada" id="toc-representación-matemática-de-una-base-preparada" class="nav-link" data-scroll-target="#representación-matemática-de-una-base-preparada"><span class="header-section-number">2.4</span> Representación matemática de una base preparada</a></li>
+  <li><a href="#algoritmo-general-de-preparación-de-datos" id="toc-algoritmo-general-de-preparación-de-datos" class="nav-link" data-scroll-target="#algoritmo-general-de-preparación-de-datos"><span class="header-section-number">2.5</span> Algoritmo general de preparación de datos</a></li>
+  <li><a href="#conjunto-de-datos-de-trabajo-atus" id="toc-conjunto-de-datos-de-trabajo-atus" class="nav-link" data-scroll-target="#conjunto-de-datos-de-trabajo-atus"><span class="header-section-number">2.6</span> Conjunto de datos de trabajo: ATUS</a></li>
+  <li><a href="#crear-la-carpeta-de-datos" id="toc-crear-la-carpeta-de-datos" class="nav-link" data-scroll-target="#crear-la-carpeta-de-datos"><span class="header-section-number">2.7</span> Crear la carpeta de datos</a></li>
+  <li><a href="#cargar-paquetes" id="toc-cargar-paquetes" class="nav-link" data-scroll-target="#cargar-paquetes"><span class="header-section-number">2.8</span> Cargar paquetes</a></li>
+  <li><a href="#leer-el-archivo-csv" id="toc-leer-el-archivo-csv" class="nav-link" data-scroll-target="#leer-el-archivo-csv"><span class="header-section-number">2.9</span> Leer el archivo CSV</a></li>
+  <li><a href="#primer-vistazo-a-los-datos" id="toc-primer-vistazo-a-los-datos" class="nav-link" data-scroll-target="#primer-vistazo-a-los-datos"><span class="header-section-number">2.10</span> Primer vistazo a los datos</a></li>
+  <li><a href="#estandarizar-nombres-de-variables" id="toc-estandarizar-nombres-de-variables" class="nav-link" data-scroll-target="#estandarizar-nombres-de-variables"><span class="header-section-number">2.11</span> Estandarizar nombres de variables</a></li>
+  <li><a href="#variables-de-interés" id="toc-variables-de-interés" class="nav-link" data-scroll-target="#variables-de-interés"><span class="header-section-number">2.12</span> Variables de interés</a></li>
+  <li><a href="#diccionario-inicial-de-variables" id="toc-diccionario-inicial-de-variables" class="nav-link" data-scroll-target="#diccionario-inicial-de-variables"><span class="header-section-number">2.13</span> Diccionario inicial de variables</a></li>
+  <li><a href="#revisión-de-la-variable-clasacc" id="toc-revisión-de-la-variable-clasacc" class="nav-link" data-scroll-target="#revisión-de-la-variable-clasacc"><span class="header-section-number">2.14</span> Revisión de la variable CLASACC</a></li>
+  <li><a href="#crear-una-variable-respuesta" id="toc-crear-una-variable-respuesta" class="nav-link" data-scroll-target="#crear-una-variable-respuesta"><span class="header-section-number">2.15</span> Crear una variable respuesta</a></li>
+  <li><a href="#convertir-variables-categóricas" id="toc-convertir-variables-categóricas" class="nav-link" data-scroll-target="#convertir-variables-categóricas"><span class="header-section-number">2.16</span> Convertir variables categóricas</a></li>
+  <li><a href="#revisión-de-datos-faltantes" id="toc-revisión-de-datos-faltantes" class="nav-link" data-scroll-target="#revisión-de-datos-faltantes"><span class="header-section-number">2.17</span> Revisión de datos faltantes</a></li>
+  <li><a href="#selección-final-de-variables-para-el-primer-modelo" id="toc-selección-final-de-variables-para-el-primer-modelo" class="nav-link" data-scroll-target="#selección-final-de-variables-para-el-primer-modelo"><span class="header-section-number">2.18</span> Selección final de variables para el primer modelo</a></li>
+  <li><a href="#guardar-la-base-preparada" id="toc-guardar-la-base-preparada" class="nav-link" data-scroll-target="#guardar-la-base-preparada"><span class="header-section-number">2.19</span> Guardar la base preparada</a></li>
+  <li><a href="#resumen-del-capítulo" id="toc-resumen-del-capítulo" class="nav-link" data-scroll-target="#resumen-del-capítulo"><span class="header-section-number">2.20</span> Resumen del capítulo</a></li>
   </ul>
 </nav>
     </div>
@@ -241,7 +241,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Preparación de datos reales</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Código</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Mostrar todo el código</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Ocultar todo el código</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">Ver el código fuente</a></li></ul></div></div>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Preparación de datos reales</span></h1>
 </div>
 
 
@@ -258,27 +258,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="objetivos-del-capítulo" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="objetivos-del-capítulo"><span class="header-section-number">3.1</span> Objetivos del capítulo</h2>
+<section id="objetivos-del-capítulo" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="objetivos-del-capítulo"><span class="header-section-number">2.1</span> Objetivos del capítulo</h2>
 <p>Al finalizar este capítulo, el lector será capaz de leer una base real, seleccionar variables, construir una variable respuesta y guardar una base preparada para modelado.</p>
 </section>
-<section id="introducción" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="introducción"><span class="header-section-number">3.2</span> Introducción</h2>
+<section id="introducción" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="introducción"><span class="header-section-number">2.2</span> Introducción</h2>
 <p>En la práctica profesional, los datos reales casi nunca vienen preparados. Antes de aplicar un algoritmo necesitamos revisar, limpiar, transformar y documentar los datos.</p>
 </section>
-<section id="datos-crudos-y-datos-preparados" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="datos-crudos-y-datos-preparados"><span class="header-section-number">3.3</span> Datos crudos y datos preparados</h2>
+<section id="datos-crudos-y-datos-preparados" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="datos-crudos-y-datos-preparados"><span class="header-section-number">2.3</span> Datos crudos y datos preparados</h2>
 <p>Llamaremos <strong>datos crudos</strong> a la base tal como se obtiene de la fuente original. Llamaremos <strong>datos preparados</strong> a la base que ya fue revisada, transformada y organizada para un propósito específico.</p>
 </section>
-<section id="representación-matemática-de-una-base-preparada" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="representación-matemática-de-una-base-preparada"><span class="header-section-number">3.4</span> Representación matemática de una base preparada</h2>
+<section id="representación-matemática-de-una-base-preparada" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="representación-matemática-de-una-base-preparada"><span class="header-section-number">2.4</span> Representación matemática de una base preparada</h2>
 <p>Una base de datos para aprendizaje automático puede representarse como una matriz de variables predictoras (X) y una variable respuesta (Y).</p>
 <p>En nuestro caso, (Y) representa la variable <code>accidente_con_victimas</code>.</p>
 <pre class="text"><code>Y_i = 1 si el accidente tiene víctimas.
 Y_i = 0 si el accidente es de solo daños.</code></pre>
 </section>
-<section id="algoritmo-general-de-preparación-de-datos" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="algoritmo-general-de-preparación-de-datos"><span class="header-section-number">3.5</span> Algoritmo general de preparación de datos</h2>
+<section id="algoritmo-general-de-preparación-de-datos" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="algoritmo-general-de-preparación-de-datos"><span class="header-section-number">2.5</span> Algoritmo general de preparación de datos</h2>
 <pre class="text"><code>Entrada:
 - Base de datos cruda.
 - Diccionario de variables.
@@ -296,21 +296,21 @@ Proceso:
 Salida:
 - Base limpia y lista para análisis exploratorio y modelado.</code></pre>
 </section>
-<section id="conjunto-de-datos-de-trabajo-atus" class="level2" data-number="3.6">
-<h2 data-number="3.6" class="anchored" data-anchor-id="conjunto-de-datos-de-trabajo-atus"><span class="header-section-number">3.6</span> Conjunto de datos de trabajo: ATUS</h2>
+<section id="conjunto-de-datos-de-trabajo-atus" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="conjunto-de-datos-de-trabajo-atus"><span class="header-section-number">2.6</span> Conjunto de datos de trabajo: ATUS</h2>
 <p>Trabajaremos con <strong>Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas</strong>, conocido como <strong>ATUS</strong>, publicado por INEGI.</p>
 <p>La pregunta práctica será:</p>
 <blockquote class="blockquote">
 <p>¿Podemos clasificar si un accidente tendrá víctimas o será solo de daños materiales?</p>
 </blockquote>
 </section>
-<section id="crear-la-carpeta-de-datos" class="level2" data-number="3.7">
-<h2 data-number="3.7" class="anchored" data-anchor-id="crear-la-carpeta-de-datos"><span class="header-section-number">3.7</span> Crear la carpeta de datos</h2>
+<section id="crear-la-carpeta-de-datos" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="crear-la-carpeta-de-datos"><span class="header-section-number">2.7</span> Crear la carpeta de datos</h2>
 <p>Dentro de la carpeta del libro crea una carpeta llamada <code>datos</code>. El archivo de datos debe llamarse:</p>
 <pre class="text"><code>datos/atus_2024.csv</code></pre>
 </section>
-<section id="cargar-paquetes" class="level2" data-number="3.8">
-<h2 data-number="3.8" class="anchored" data-anchor-id="cargar-paquetes"><span class="header-section-number">3.8</span> Cargar paquetes</h2>
+<section id="cargar-paquetes" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="cargar-paquetes"><span class="header-section-number">2.8</span> Cargar paquetes</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -322,8 +322,8 @@ Salida:
 </details>
 </div>
 </section>
-<section id="leer-el-archivo-csv" class="level2" data-number="3.9">
-<h2 data-number="3.9" class="anchored" data-anchor-id="leer-el-archivo-csv"><span class="header-section-number">3.9</span> Leer el archivo CSV</h2>
+<section id="leer-el-archivo-csv" class="level2" data-number="2.9">
+<h2 data-number="2.9" class="anchored" data-anchor-id="leer-el-archivo-csv"><span class="header-section-number">2.9</span> Leer el archivo CSV</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -354,8 +354,8 @@ Salida:
 </div>
 </div>
 </section>
-<section id="primer-vistazo-a-los-datos" class="level2" data-number="3.10">
-<h2 data-number="3.10" class="anchored" data-anchor-id="primer-vistazo-a-los-datos"><span class="header-section-number">3.10</span> Primer vistazo a los datos</h2>
+<section id="primer-vistazo-a-los-datos" class="level2" data-number="2.10">
+<h2 data-number="2.10" class="anchored" data-anchor-id="primer-vistazo-a-los-datos"><span class="header-section-number">2.10</span> Primer vistazo a los datos</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -395,8 +395,8 @@ Salida:
 </div>
 </div>
 </section>
-<section id="estandarizar-nombres-de-variables" class="level2" data-number="3.11">
-<h2 data-number="3.11" class="anchored" data-anchor-id="estandarizar-nombres-de-variables"><span class="header-section-number">3.11</span> Estandarizar nombres de variables</h2>
+<section id="estandarizar-nombres-de-variables" class="level2" data-number="2.11">
+<h2 data-number="2.11" class="anchored" data-anchor-id="estandarizar-nombres-de-variables"><span class="header-section-number">2.11</span> Estandarizar nombres de variables</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -418,8 +418,8 @@ Salida:
 </div>
 </div>
 </section>
-<section id="variables-de-interés" class="level2" data-number="3.12">
-<h2 data-number="3.12" class="anchored" data-anchor-id="variables-de-interés"><span class="header-section-number">3.12</span> Variables de interés</h2>
+<section id="variables-de-interés" class="level2" data-number="2.12">
+<h2 data-number="2.12" class="anchored" data-anchor-id="variables-de-interés"><span class="header-section-number">2.12</span> Variables de interés</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -462,8 +462,8 @@ Salida:
 </div>
 </div>
 </section>
-<section id="diccionario-inicial-de-variables" class="level2" data-number="3.13">
-<h2 data-number="3.13" class="anchored" data-anchor-id="diccionario-inicial-de-variables"><span class="header-section-number">3.13</span> Diccionario inicial de variables</h2>
+<section id="diccionario-inicial-de-variables" class="level2" data-number="2.13">
+<h2 data-number="2.13" class="anchored" data-anchor-id="diccionario-inicial-de-variables"><span class="header-section-number">2.13</span> Diccionario inicial de variables</h2>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -515,8 +515,8 @@ Salida:
 </tbody>
 </table>
 </section>
-<section id="revisión-de-la-variable-clasacc" class="level2" data-number="3.14">
-<h2 data-number="3.14" class="anchored" data-anchor-id="revisión-de-la-variable-clasacc"><span class="header-section-number">3.14</span> Revisión de la variable CLASACC</h2>
+<section id="revisión-de-la-variable-clasacc" class="level2" data-number="2.14">
+<h2 data-number="2.14" class="anchored" data-anchor-id="revisión-de-la-variable-clasacc"><span class="header-section-number">2.14</span> Revisión de la variable CLASACC</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -531,8 +531,8 @@ Salida:
 </div>
 </div>
 </section>
-<section id="crear-una-variable-respuesta" class="level2" data-number="3.15">
-<h2 data-number="3.15" class="anchored" data-anchor-id="crear-una-variable-respuesta"><span class="header-section-number">3.15</span> Crear una variable respuesta</h2>
+<section id="crear-una-variable-respuesta" class="level2" data-number="2.15">
+<h2 data-number="2.15" class="anchored" data-anchor-id="crear-una-variable-respuesta"><span class="header-section-number">2.15</span> Crear una variable respuesta</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -565,8 +565,8 @@ Con víctimas   Solo daños
 </div>
 </div>
 </section>
-<section id="convertir-variables-categóricas" class="level2" data-number="3.16">
-<h2 data-number="3.16" class="anchored" data-anchor-id="convertir-variables-categóricas"><span class="header-section-number">3.16</span> Convertir variables categóricas</h2>
+<section id="convertir-variables-categóricas" class="level2" data-number="2.16">
+<h2 data-number="2.16" class="anchored" data-anchor-id="convertir-variables-categóricas"><span class="header-section-number">2.16</span> Convertir variables categóricas</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -602,8 +602,8 @@ Con víctimas   Solo daños
 </div>
 </div>
 </section>
-<section id="revisión-de-datos-faltantes" class="level2" data-number="3.17">
-<h2 data-number="3.17" class="anchored" data-anchor-id="revisión-de-datos-faltantes"><span class="header-section-number">3.17</span> Revisión de datos faltantes</h2>
+<section id="revisión-de-datos-faltantes" class="level2" data-number="2.17">
+<h2 data-number="2.17" class="anchored" data-anchor-id="revisión-de-datos-faltantes"><span class="header-section-number">2.17</span> Revisión de datos faltantes</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -623,8 +623,8 @@ Con víctimas   Solo daños
 </div>
 </div>
 </section>
-<section id="selección-final-de-variables-para-el-primer-modelo" class="level2" data-number="3.18">
-<h2 data-number="3.18" class="anchored" data-anchor-id="selección-final-de-variables-para-el-primer-modelo"><span class="header-section-number">3.18</span> Selección final de variables para el primer modelo</h2>
+<section id="selección-final-de-variables-para-el-primer-modelo" class="level2" data-number="2.18">
+<h2 data-number="2.18" class="anchored" data-anchor-id="selección-final-de-variables-para-el-primer-modelo"><span class="header-section-number">2.18</span> Selección final de variables para el primer modelo</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -668,8 +668,8 @@ Con víctimas   Solo daños
 </div>
 </div>
 </section>
-<section id="guardar-la-base-preparada" class="level2" data-number="3.19">
-<h2 data-number="3.19" class="anchored" data-anchor-id="guardar-la-base-preparada"><span class="header-section-number">3.19</span> Guardar la base preparada</h2>
+<section id="guardar-la-base-preparada" class="level2" data-number="2.19">
+<h2 data-number="2.19" class="anchored" data-anchor-id="guardar-la-base-preparada"><span class="header-section-number">2.19</span> Guardar la base preparada</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -679,12 +679,10 @@ Con víctimas   Solo daños
 </details>
 </div>
 </section>
-<section id="resumen-del-capítulo" class="level2" data-number="3.20">
-<h2 data-number="3.20" class="anchored" data-anchor-id="resumen-del-capítulo"><span class="header-section-number">3.20</span> Resumen del capítulo</h2>
+<section id="resumen-del-capítulo" class="level2" data-number="2.20">
+<h2 data-number="2.20" class="anchored" data-anchor-id="resumen-del-capítulo"><span class="header-section-number">2.20</span> Resumen del capítulo</h2>
 <p>En este capítulo leímos una base real, seleccionamos variables, construimos una variable respuesta y guardamos una base preparada para aprendizaje automático.</p>
 
-
-<!-- -->
 
 </section>
 
@@ -760,60 +758,9 @@ Con víctimas   Solo daños
       });
       clipboardModal.on('success', onCopySuccess);
     }
-    const viewSource = window.document.getElementById('quarto-view-source') ||
-                       window.document.getElementById('quarto-code-tools-source');
-    if (viewSource) {
-      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
-      viewSource.addEventListener("click", function(e) {
-        if (sourceUrl) {
-          // rstudio viewer pane
-          if (/\bcapabilities=\b/.test(window.location)) {
-            window.open(sourceUrl);
-          } else {
-            window.location.href = sourceUrl;
-          }
-        } else {
-          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
-          modal.show();
-        }
-        return false;
-      });
-    }
-    function toggleCodeHandler(show) {
-      return function(e) {
-        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-        for (let i=0; i<detailsSrc.length; i++) {
-          const details = detailsSrc[i].parentElement;
-          if (show) {
-            details.open = true;
-          } else {
-            details.removeAttribute("open");
-          }
-        }
-        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
-        const fromCls = show ? "hidden" : "unhidden";
-        const toCls = show ? "unhidden" : "hidden";
-        for (let i=0; i<cellCodeDivs.length; i++) {
-          const codeDiv = cellCodeDivs[i];
-          if (codeDiv.classList.contains(fromCls)) {
-            codeDiv.classList.remove(fromCls);
-            codeDiv.classList.add(toCls);
-          } 
-        }
-        return false;
-      }
-    }
-    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
-    if (hideAllCode) {
-      hideAllCode.addEventListener("click", toggleCodeHandler(false));
-    }
-    const showAllCode = window.document.getElementById("quarto-show-all-code");
-    if (showAllCode) {
-      showAllCode.addEventListener("click", toggleCodeHandler(true));
-    }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/gilbertorodriguez59\.github\.io\/libro-machine-learning-r\/");
+        var filterRegex = new RegExp('/' + window.location.host + '/');
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -1143,271 +1090,29 @@ Con víctimas   Solo daños
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./01-introduccion.html" class="pagination-link" aria-label="¿Qué es el aprendizaje automático?">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">¿Qué es el aprendizaje automático?</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">¿Qué es el aprendizaje automático?</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./03-analisis-exploratorio.html" class="pagination-link" aria-label="Análisis exploratorio de datos">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Análisis exploratorio de datos</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Análisis exploratorio de datos</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
-</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Ejecutar el código</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Preparación de datos reales</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Objetivos del capítulo</span></span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>Al finalizar este capítulo, el lector será capaz de leer una base real, seleccionar variables, construir una variable respuesta y guardar una base preparada para modelado.</span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="fu">## Introducción</span></span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>En la práctica profesional, los datos reales casi nunca vienen preparados. Antes de aplicar un algoritmo necesitamos revisar, limpiar, transformar y documentar los datos.</span>
-<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a><span class="fu">## Datos crudos y datos preparados</span></span>
-<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>Llamaremos **datos crudos** a la base tal como se obtiene de la fuente original. Llamaremos **datos preparados** a la base que ya fue revisada, transformada y organizada para un propósito específico.</span>
-<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a><span class="fu">## Representación matemática de una base preparada</span></span>
-<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a>Una base de datos para aprendizaje automático puede representarse como una matriz de variables predictoras <span class="sc">\(</span>X<span class="sc">\)</span> y una variable respuesta <span class="sc">\(</span>Y<span class="sc">\)</span>.</span>
-<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a>En nuestro caso, <span class="sc">\(</span>Y<span class="sc">\)</span> representa la variable <span class="in">`accidente_con_victimas`</span>.</span>
-<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-21"><a href="#cb32-21" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
-<span id="cb32-22"><a href="#cb32-22" aria-hidden="true" tabindex="-1"></a><span class="in">Y_i = 1 si el accidente tiene víctimas.</span></span>
-<span id="cb32-23"><a href="#cb32-23" aria-hidden="true" tabindex="-1"></a><span class="in">Y_i = 0 si el accidente es de solo daños.</span></span>
-<span id="cb32-24"><a href="#cb32-24" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb32-25"><a href="#cb32-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-26"><a href="#cb32-26" aria-hidden="true" tabindex="-1"></a><span class="fu">## Algoritmo general de preparación de datos</span></span>
-<span id="cb32-27"><a href="#cb32-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-28"><a href="#cb32-28" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
-<span id="cb32-29"><a href="#cb32-29" aria-hidden="true" tabindex="-1"></a><span class="in">Entrada:</span></span>
-<span id="cb32-30"><a href="#cb32-30" aria-hidden="true" tabindex="-1"></a><span class="in">- Base de datos cruda.</span></span>
-<span id="cb32-31"><a href="#cb32-31" aria-hidden="true" tabindex="-1"></a><span class="in">- Diccionario de variables.</span></span>
-<span id="cb32-32"><a href="#cb32-32" aria-hidden="true" tabindex="-1"></a><span class="in">- Pregunta de predicción.</span></span>
-<span id="cb32-33"><a href="#cb32-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-34"><a href="#cb32-34" aria-hidden="true" tabindex="-1"></a><span class="in">Proceso:</span></span>
-<span id="cb32-35"><a href="#cb32-35" aria-hidden="true" tabindex="-1"></a><span class="in">1. Leer la base de datos.</span></span>
-<span id="cb32-36"><a href="#cb32-36" aria-hidden="true" tabindex="-1"></a><span class="in">2. Revisar dimensiones, nombres y tipos de variables.</span></span>
-<span id="cb32-37"><a href="#cb32-37" aria-hidden="true" tabindex="-1"></a><span class="in">3. Seleccionar variables relevantes.</span></span>
-<span id="cb32-38"><a href="#cb32-38" aria-hidden="true" tabindex="-1"></a><span class="in">4. Identificar la variable respuesta.</span></span>
-<span id="cb32-39"><a href="#cb32-39" aria-hidden="true" tabindex="-1"></a><span class="in">5. Transformar variables cuando sea necesario.</span></span>
-<span id="cb32-40"><a href="#cb32-40" aria-hidden="true" tabindex="-1"></a><span class="in">6. Revisar datos faltantes.</span></span>
-<span id="cb32-41"><a href="#cb32-41" aria-hidden="true" tabindex="-1"></a><span class="in">7. Guardar una base preparada.</span></span>
-<span id="cb32-42"><a href="#cb32-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-43"><a href="#cb32-43" aria-hidden="true" tabindex="-1"></a><span class="in">Salida:</span></span>
-<span id="cb32-44"><a href="#cb32-44" aria-hidden="true" tabindex="-1"></a><span class="in">- Base limpia y lista para análisis exploratorio y modelado.</span></span>
-<span id="cb32-45"><a href="#cb32-45" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb32-46"><a href="#cb32-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-47"><a href="#cb32-47" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conjunto de datos de trabajo: ATUS</span></span>
-<span id="cb32-48"><a href="#cb32-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-49"><a href="#cb32-49" aria-hidden="true" tabindex="-1"></a>Trabajaremos con **Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas**, conocido como **ATUS**, publicado por INEGI.</span>
-<span id="cb32-50"><a href="#cb32-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-51"><a href="#cb32-51" aria-hidden="true" tabindex="-1"></a>La pregunta práctica será:</span>
-<span id="cb32-52"><a href="#cb32-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-53"><a href="#cb32-53" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; ¿Podemos clasificar si un accidente tendrá víctimas o será solo de daños materiales?</span></span>
-<span id="cb32-54"><a href="#cb32-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-55"><a href="#cb32-55" aria-hidden="true" tabindex="-1"></a><span class="fu">## Crear la carpeta de datos</span></span>
-<span id="cb32-56"><a href="#cb32-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-57"><a href="#cb32-57" aria-hidden="true" tabindex="-1"></a>Dentro de la carpeta del libro crea una carpeta llamada <span class="in">`datos`</span>. El archivo de datos debe llamarse:</span>
-<span id="cb32-58"><a href="#cb32-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-59"><a href="#cb32-59" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
-<span id="cb32-60"><a href="#cb32-60" aria-hidden="true" tabindex="-1"></a><span class="in">datos/atus_2024.csv</span></span>
-<span id="cb32-61"><a href="#cb32-61" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb32-62"><a href="#cb32-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-63"><a href="#cb32-63" aria-hidden="true" tabindex="-1"></a><span class="fu">## Cargar paquetes</span></span>
-<span id="cb32-64"><a href="#cb32-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-67"><a href="#cb32-67" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb32-68"><a href="#cb32-68" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb32-69"><a href="#cb32-69" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb32-70"><a href="#cb32-70" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb32-71"><a href="#cb32-71" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb32-72"><a href="#cb32-72" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb32-73"><a href="#cb32-73" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
-<span id="cb32-74"><a href="#cb32-74" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"util_graficas.R"</span>)</span>
-<span id="cb32-75"><a href="#cb32-75" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb32-76"><a href="#cb32-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-77"><a href="#cb32-77" aria-hidden="true" tabindex="-1"></a><span class="fu">## Leer el archivo CSV</span></span>
-<span id="cb32-78"><a href="#cb32-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-81"><a href="#cb32-81" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb32-82"><a href="#cb32-82" aria-hidden="true" tabindex="-1"></a>ruta_atus <span class="ot">&lt;-</span> <span class="st">"datos/atus_2024.csv"</span></span>
-<span id="cb32-83"><a href="#cb32-83" aria-hidden="true" tabindex="-1"></a><span class="fu">file.exists</span>(ruta_atus)</span>
-<span id="cb32-84"><a href="#cb32-84" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb32-85"><a href="#cb32-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-88"><a href="#cb32-88" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb32-89"><a href="#cb32-89" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">file.exists</span>(ruta_atus)) {</span>
-<span id="cb32-90"><a href="#cb32-90" aria-hidden="true" tabindex="-1"></a>  atus <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
-<span id="cb32-91"><a href="#cb32-91" aria-hidden="true" tabindex="-1"></a>    <span class="at">file =</span> ruta_atus,</span>
-<span id="cb32-92"><a href="#cb32-92" aria-hidden="true" tabindex="-1"></a>    <span class="at">show_col_types =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb32-93"><a href="#cb32-93" aria-hidden="true" tabindex="-1"></a>    <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">"UTF-8"</span>)</span>
-<span id="cb32-94"><a href="#cb32-94" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb32-95"><a href="#cb32-95" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Archivo leído correctamente."</span>)</span>
-<span id="cb32-96"><a href="#cb32-96" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb32-97"><a href="#cb32-97" aria-hidden="true" tabindex="-1"></a>  atus <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb32-98"><a href="#cb32-98" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"El archivo atus_2024.csv todavía no está disponible en la carpeta datos."</span>)</span>
-<span id="cb32-99"><a href="#cb32-99" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb32-100"><a href="#cb32-100" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb32-101"><a href="#cb32-101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-102"><a href="#cb32-102" aria-hidden="true" tabindex="-1"></a><span class="fu">## Primer vistazo a los datos</span></span>
-<span id="cb32-103"><a href="#cb32-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-106"><a href="#cb32-106" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb32-107"><a href="#cb32-107" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(atus)) {</span>
-<span id="cb32-108"><a href="#cb32-108" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="at">filas =</span> <span class="fu">nrow</span>(atus), <span class="at">columnas =</span> <span class="fu">ncol</span>(atus))</span>
-<span id="cb32-109"><a href="#cb32-109" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb32-110"><a href="#cb32-110" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb32-111"><a href="#cb32-111" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-114"><a href="#cb32-114" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb32-115"><a href="#cb32-115" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(atus)) {</span>
-<span id="cb32-116"><a href="#cb32-116" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(atus)</span>
-<span id="cb32-117"><a href="#cb32-117" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb32-118"><a href="#cb32-118" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb32-119"><a href="#cb32-119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-120"><a href="#cb32-120" aria-hidden="true" tabindex="-1"></a><span class="fu">## Estandarizar nombres de variables</span></span>
-<span id="cb32-121"><a href="#cb32-121" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-124"><a href="#cb32-124" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb32-125"><a href="#cb32-125" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(atus)) {</span>
-<span id="cb32-126"><a href="#cb32-126" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(atus) <span class="ot">&lt;-</span> <span class="fu">toupper</span>(<span class="fu">names</span>(atus))</span>
-<span id="cb32-127"><a href="#cb32-127" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(atus)</span>
-<span id="cb32-128"><a href="#cb32-128" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb32-129"><a href="#cb32-129" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb32-130"><a href="#cb32-130" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-131"><a href="#cb32-131" aria-hidden="true" tabindex="-1"></a><span class="fu">## Variables de interés</span></span>
-<span id="cb32-132"><a href="#cb32-132" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-135"><a href="#cb32-135" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb32-136"><a href="#cb32-136" aria-hidden="true" tabindex="-1"></a>variables_interes <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb32-137"><a href="#cb32-137" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ANIO"</span>, <span class="st">"MES"</span>, <span class="st">"ID_ENTIDAD"</span>, <span class="st">"ID_MUNICIPIO"</span>,</span>
-<span id="cb32-138"><a href="#cb32-138" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ID_HORA"</span>, <span class="st">"ID_DIA"</span>, <span class="st">"DIASEMANA"</span>,</span>
-<span id="cb32-139"><a href="#cb32-139" aria-hidden="true" tabindex="-1"></a>  <span class="st">"TIPACCID"</span>, <span class="st">"CAUSAACCI"</span>, <span class="st">"CLASACC"</span></span>
-<span id="cb32-140"><a href="#cb32-140" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb32-141"><a href="#cb32-141" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-142"><a href="#cb32-142" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(atus)) {</span>
-<span id="cb32-143"><a href="#cb32-143" aria-hidden="true" tabindex="-1"></a>  variables_existentes <span class="ot">&lt;-</span> <span class="fu">intersect</span>(variables_interes, <span class="fu">names</span>(atus))</span>
-<span id="cb32-144"><a href="#cb32-144" aria-hidden="true" tabindex="-1"></a>  variables_existentes</span>
-<span id="cb32-145"><a href="#cb32-145" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb32-146"><a href="#cb32-146" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb32-147"><a href="#cb32-147" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-150"><a href="#cb32-150" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb32-151"><a href="#cb32-151" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(atus)) {</span>
-<span id="cb32-152"><a href="#cb32-152" aria-hidden="true" tabindex="-1"></a>  atus_base <span class="ot">&lt;-</span> atus <span class="sc">|&gt;</span></span>
-<span id="cb32-153"><a href="#cb32-153" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="fu">all_of</span>(variables_existentes))</span>
-<span id="cb32-154"><a href="#cb32-154" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(atus_base)</span>
-<span id="cb32-155"><a href="#cb32-155" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb32-156"><a href="#cb32-156" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb32-157"><a href="#cb32-157" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-158"><a href="#cb32-158" aria-hidden="true" tabindex="-1"></a><span class="fu">## Diccionario inicial de variables</span></span>
-<span id="cb32-159"><a href="#cb32-159" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-160"><a href="#cb32-160" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Variable <span class="pp">|</span> Descripción didáctica <span class="pp">|</span></span>
-<span id="cb32-161"><a href="#cb32-161" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|</span></span>
-<span id="cb32-162"><a href="#cb32-162" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ANIO <span class="pp">|</span> Año del accidente <span class="pp">|</span></span>
-<span id="cb32-163"><a href="#cb32-163" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> MES <span class="pp">|</span> Mes del accidente <span class="pp">|</span></span>
-<span id="cb32-164"><a href="#cb32-164" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ID_ENTIDAD <span class="pp">|</span> Clave de la entidad federativa <span class="pp">|</span></span>
-<span id="cb32-165"><a href="#cb32-165" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ID_MUNICIPIO <span class="pp">|</span> Clave del municipio <span class="pp">|</span></span>
-<span id="cb32-166"><a href="#cb32-166" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ID_HORA <span class="pp">|</span> Hora del accidente <span class="pp">|</span></span>
-<span id="cb32-167"><a href="#cb32-167" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ID_DIA <span class="pp">|</span> Día del mes <span class="pp">|</span></span>
-<span id="cb32-168"><a href="#cb32-168" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> DIASEMANA <span class="pp">|</span> Día de la semana <span class="pp">|</span></span>
-<span id="cb32-169"><a href="#cb32-169" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> TIPACCID <span class="pp">|</span> Tipo de accidente <span class="pp">|</span></span>
-<span id="cb32-170"><a href="#cb32-170" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> CAUSAACCI <span class="pp">|</span> Causa presunta del accidente <span class="pp">|</span></span>
-<span id="cb32-171"><a href="#cb32-171" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> CLASACC <span class="pp">|</span> Clase del accidente <span class="pp">|</span></span>
-<span id="cb32-172"><a href="#cb32-172" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-173"><a href="#cb32-173" aria-hidden="true" tabindex="-1"></a><span class="fu">## Revisión de la variable CLASACC</span></span>
-<span id="cb32-174"><a href="#cb32-174" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-177"><a href="#cb32-177" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb32-178"><a href="#cb32-178" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"atus_base"</span>) <span class="sc">&amp;&amp;</span> <span class="st">"CLASACC"</span> <span class="sc">%in%</span> <span class="fu">names</span>(atus_base)) {</span>
-<span id="cb32-179"><a href="#cb32-179" aria-hidden="true" tabindex="-1"></a>  <span class="fu">table</span>(atus_base<span class="sc">$</span>CLASACC, <span class="at">useNA =</span> <span class="st">"ifany"</span>)</span>
-<span id="cb32-180"><a href="#cb32-180" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb32-181"><a href="#cb32-181" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb32-182"><a href="#cb32-182" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-183"><a href="#cb32-183" aria-hidden="true" tabindex="-1"></a><span class="fu">## Crear una variable respuesta</span></span>
-<span id="cb32-184"><a href="#cb32-184" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-187"><a href="#cb32-187" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb32-188"><a href="#cb32-188" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"atus_base"</span>) <span class="sc">&amp;&amp;</span> <span class="st">"CLASACC"</span> <span class="sc">%in%</span> <span class="fu">names</span>(atus_base)) {</span>
-<span id="cb32-189"><a href="#cb32-189" aria-hidden="true" tabindex="-1"></a>  atus_modelo <span class="ot">&lt;-</span> atus_base <span class="sc">|&gt;</span></span>
-<span id="cb32-190"><a href="#cb32-190" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
-<span id="cb32-191"><a href="#cb32-191" aria-hidden="true" tabindex="-1"></a>      <span class="at">CLASACC_TXT =</span> <span class="fu">as.character</span>(CLASACC),</span>
-<span id="cb32-192"><a href="#cb32-192" aria-hidden="true" tabindex="-1"></a>      <span class="at">CLASACC_TXT =</span> <span class="fu">str_to_lower</span>(CLASACC_TXT),</span>
-<span id="cb32-193"><a href="#cb32-193" aria-hidden="true" tabindex="-1"></a>      <span class="at">accidente_con_victimas =</span> <span class="fu">case_when</span>(</span>
-<span id="cb32-194"><a href="#cb32-194" aria-hidden="true" tabindex="-1"></a>        <span class="fu">str_detect</span>(CLASACC_TXT, <span class="st">"sólo daños"</span>) <span class="sc">~</span> <span class="st">"Solo daños"</span>,</span>
-<span id="cb32-195"><a href="#cb32-195" aria-hidden="true" tabindex="-1"></a>        <span class="fu">str_detect</span>(CLASACC_TXT, <span class="st">"solo daños"</span>) <span class="sc">~</span> <span class="st">"Solo daños"</span>,</span>
-<span id="cb32-196"><a href="#cb32-196" aria-hidden="true" tabindex="-1"></a>        <span class="fu">str_detect</span>(CLASACC_TXT, <span class="st">"daños"</span>) <span class="sc">~</span> <span class="st">"Solo daños"</span>,</span>
-<span id="cb32-197"><a href="#cb32-197" aria-hidden="true" tabindex="-1"></a>        <span class="fu">str_detect</span>(CLASACC_TXT, <span class="st">"no fatal"</span>) <span class="sc">~</span> <span class="st">"Con víctimas"</span>,</span>
-<span id="cb32-198"><a href="#cb32-198" aria-hidden="true" tabindex="-1"></a>        <span class="fu">str_detect</span>(CLASACC_TXT, <span class="st">"fatal"</span>) <span class="sc">~</span> <span class="st">"Con víctimas"</span>,</span>
-<span id="cb32-199"><a href="#cb32-199" aria-hidden="true" tabindex="-1"></a>        CLASACC_TXT <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"1"</span>, <span class="st">"2"</span>) <span class="sc">~</span> <span class="st">"Con víctimas"</span>,</span>
-<span id="cb32-200"><a href="#cb32-200" aria-hidden="true" tabindex="-1"></a>        CLASACC_TXT <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"3"</span>) <span class="sc">~</span> <span class="st">"Solo daños"</span>,</span>
-<span id="cb32-201"><a href="#cb32-201" aria-hidden="true" tabindex="-1"></a>        <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_character_</span></span>
-<span id="cb32-202"><a href="#cb32-202" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb32-203"><a href="#cb32-203" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb32-204"><a href="#cb32-204" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb32-205"><a href="#cb32-205" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-206"><a href="#cb32-206" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"atus_modelo"</span>)) {</span>
-<span id="cb32-207"><a href="#cb32-207" aria-hidden="true" tabindex="-1"></a>  <span class="fu">table</span>(atus_modelo<span class="sc">$</span>accidente_con_victimas, <span class="at">useNA =</span> <span class="st">"ifany"</span>)</span>
-<span id="cb32-208"><a href="#cb32-208" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb32-209"><a href="#cb32-209" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb32-210"><a href="#cb32-210" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-211"><a href="#cb32-211" aria-hidden="true" tabindex="-1"></a><span class="fu">## Convertir variables categóricas</span></span>
-<span id="cb32-212"><a href="#cb32-212" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-215"><a href="#cb32-215" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb32-216"><a href="#cb32-216" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"atus_modelo"</span>)) {</span>
-<span id="cb32-217"><a href="#cb32-217" aria-hidden="true" tabindex="-1"></a>  atus_modelo <span class="ot">&lt;-</span> atus_modelo <span class="sc">|&gt;</span></span>
-<span id="cb32-218"><a href="#cb32-218" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(accidente_con_victimas)) <span class="sc">|&gt;</span></span>
-<span id="cb32-219"><a href="#cb32-219" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
-<span id="cb32-220"><a href="#cb32-220" aria-hidden="true" tabindex="-1"></a>      <span class="at">ID_ENTIDAD =</span> <span class="fu">as.factor</span>(ID_ENTIDAD),</span>
-<span id="cb32-221"><a href="#cb32-221" aria-hidden="true" tabindex="-1"></a>      <span class="at">ID_MUNICIPIO =</span> <span class="fu">as.factor</span>(ID_MUNICIPIO),</span>
-<span id="cb32-222"><a href="#cb32-222" aria-hidden="true" tabindex="-1"></a>      <span class="at">MES =</span> <span class="fu">as.factor</span>(MES),</span>
-<span id="cb32-223"><a href="#cb32-223" aria-hidden="true" tabindex="-1"></a>      <span class="at">DIASEMANA =</span> <span class="fu">as.factor</span>(DIASEMANA),</span>
-<span id="cb32-224"><a href="#cb32-224" aria-hidden="true" tabindex="-1"></a>      <span class="at">TIPACCID =</span> <span class="fu">as.factor</span>(TIPACCID),</span>
-<span id="cb32-225"><a href="#cb32-225" aria-hidden="true" tabindex="-1"></a>      <span class="at">CAUSAACCI =</span> <span class="fu">as.factor</span>(CAUSAACCI),</span>
-<span id="cb32-226"><a href="#cb32-226" aria-hidden="true" tabindex="-1"></a>      <span class="at">accidente_con_victimas =</span> <span class="fu">as.factor</span>(accidente_con_victimas)</span>
-<span id="cb32-227"><a href="#cb32-227" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb32-228"><a href="#cb32-228" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str</span>(atus_modelo)</span>
-<span id="cb32-229"><a href="#cb32-229" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb32-230"><a href="#cb32-230" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb32-231"><a href="#cb32-231" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-232"><a href="#cb32-232" aria-hidden="true" tabindex="-1"></a><span class="fu">## Revisión de datos faltantes</span></span>
-<span id="cb32-233"><a href="#cb32-233" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-236"><a href="#cb32-236" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb32-237"><a href="#cb32-237" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"atus_modelo"</span>)) {</span>
-<span id="cb32-238"><a href="#cb32-238" aria-hidden="true" tabindex="-1"></a>  <span class="fu">colSums</span>(<span class="fu">is.na</span>(atus_modelo))</span>
-<span id="cb32-239"><a href="#cb32-239" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb32-240"><a href="#cb32-240" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb32-241"><a href="#cb32-241" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-242"><a href="#cb32-242" aria-hidden="true" tabindex="-1"></a><span class="fu">## Selección final de variables para el primer modelo</span></span>
-<span id="cb32-243"><a href="#cb32-243" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-246"><a href="#cb32-246" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb32-247"><a href="#cb32-247" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"atus_modelo"</span>)) {</span>
-<span id="cb32-248"><a href="#cb32-248" aria-hidden="true" tabindex="-1"></a>  atus_ml <span class="ot">&lt;-</span> atus_modelo <span class="sc">|&gt;</span></span>
-<span id="cb32-249"><a href="#cb32-249" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(</span>
-<span id="cb32-250"><a href="#cb32-250" aria-hidden="true" tabindex="-1"></a>      accidente_con_victimas,</span>
-<span id="cb32-251"><a href="#cb32-251" aria-hidden="true" tabindex="-1"></a>      MES,</span>
-<span id="cb32-252"><a href="#cb32-252" aria-hidden="true" tabindex="-1"></a>      ID_HORA,</span>
-<span id="cb32-253"><a href="#cb32-253" aria-hidden="true" tabindex="-1"></a>      DIASEMANA,</span>
-<span id="cb32-254"><a href="#cb32-254" aria-hidden="true" tabindex="-1"></a>      TIPACCID,</span>
-<span id="cb32-255"><a href="#cb32-255" aria-hidden="true" tabindex="-1"></a>      CAUSAACCI</span>
-<span id="cb32-256"><a href="#cb32-256" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span></span>
-<span id="cb32-257"><a href="#cb32-257" aria-hidden="true" tabindex="-1"></a>    <span class="fu">na.omit</span>()</span>
-<span id="cb32-258"><a href="#cb32-258" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-259"><a href="#cb32-259" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(atus_ml)</span>
-<span id="cb32-260"><a href="#cb32-260" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb32-261"><a href="#cb32-261" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb32-262"><a href="#cb32-262" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-265"><a href="#cb32-265" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb32-266"><a href="#cb32-266" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"atus_ml"</span>)) {</span>
-<span id="cb32-267"><a href="#cb32-267" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="at">filas =</span> <span class="fu">nrow</span>(atus_ml), <span class="at">columnas =</span> <span class="fu">ncol</span>(atus_ml))</span>
-<span id="cb32-268"><a href="#cb32-268" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb32-269"><a href="#cb32-269" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb32-270"><a href="#cb32-270" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-271"><a href="#cb32-271" aria-hidden="true" tabindex="-1"></a><span class="fu">## Guardar la base preparada</span></span>
-<span id="cb32-272"><a href="#cb32-272" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-275"><a href="#cb32-275" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb32-276"><a href="#cb32-276" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"atus_ml"</span>)) {</span>
-<span id="cb32-277"><a href="#cb32-277" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write_csv</span>(atus_ml, <span class="st">"datos/atus_ml_preparado.csv"</span>)</span>
-<span id="cb32-278"><a href="#cb32-278" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb32-279"><a href="#cb32-279" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb32-280"><a href="#cb32-280" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-281"><a href="#cb32-281" aria-hidden="true" tabindex="-1"></a><span class="fu">## Resumen del capítulo</span></span>
-<span id="cb32-282"><a href="#cb32-282" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-283"><a href="#cb32-283" aria-hidden="true" tabindex="-1"></a>En este capítulo leímos una base real, seleccionamos variables, construimos una variable respuesta y guardamos una base preparada para aprendizaje automático.</span>
-</code></pre></div><button title="Copiar al portapapeles" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
-</div></div></div></div></div>
+</nav>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026 MI Jesús Gilberto Rodríguez Escobedo</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Libro abierto elaborado con Quarto y R</p>
+</div>
+  </div>
+</footer>
 
 
 

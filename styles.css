@@ -1,9 +1,11 @@
-/* Estilo visual profesional para el libro web */
+/* Estilo visual profesional para el libro */
+
 :root {
-  --azul-libro: #1F4E79;
+  --azul: #1F4E79;
   --azul-oscuro: #16324F;
-  --turquesa-libro: #19A7AE;
-  --coral-libro: #D95D39;
+  --turquesa: #19A7AE;
+  --turquesa-suave: #E6FAF9;
+  --coral: #D95D39;
   --gris-texto: #374151;
   --gris-suave: #F3F6FA;
 }
@@ -12,36 +14,76 @@ body {
   color: var(--gris-texto);
 }
 
-h1, h2, h3 {
-  color: var(--azul-libro);
+h1, h2, h3, h4 {
+  color: var(--azul);
   font-weight: 700;
 }
 
-a {
-  color: var(--turquesa-libro);
+.sidebar-title, .navbar-title {
+  color: var(--azul-oscuro) !important;
+  font-weight: 700;
 }
 
-.sidebar-title {
+.hero-box {
+  border-left: 8px solid var(--turquesa);
+  background: linear-gradient(135deg, #F7FBFF 0%, #E6FAF9 100%);
+  padding: 1.5rem 1.75rem;
+  margin: 1.2rem 0 1.8rem 0;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(31, 78, 121, 0.12);
+}
+
+.hero-box h2 {
+  margin-top: 0;
   color: var(--azul-oscuro);
-  font-weight: 700;
 }
 
-.callout-note, .callout-tip, .callout-important {
-  border-left-color: var(--turquesa-libro) !important;
+.hero-box h3 {
+  color: var(--turquesa);
+  font-weight: 600;
 }
 
-.cell-output, pre.sourceCode {
+.nota-azul {
+  border-left: 6px solid var(--azul);
+  background: #EEF6FF;
+  padding: 1rem 1.25rem;
+  margin: 1rem 0 1.4rem 0;
   border-radius: 10px;
 }
 
-.table, table {
-  font-size: 0.95rem;
+.callout.callout-style-default {
+  border-radius: 10px;
 }
 
-.title {
-  color: var(--azul-libro);
+.sourceCode, pre.sourceCode, div.sourceCode {
+  border-radius: 10px;
+  background-color: #F8FAFC !important;
+  border: 1px solid #E5E7EB;
 }
 
-.subtitle {
-  color: var(--turquesa-libro);
+.cell-output, .cell-output-display {
+  border-radius: 8px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table thead th {
+  background-color: var(--azul);
+  color: white;
+}
+
+table tbody tr:nth-child(even) {
+  background-color: var(--gris-suave);
+}
+
+.figure-caption, figcaption {
+  color: #6B7280;
+  font-size: 0.92rem;
+}
+
+.quarto-title-banner {
+  background: linear-gradient(135deg, var(--azul) 0%, var(--turquesa) 100%);
 }

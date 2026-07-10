@@ -9,9 +9,7 @@ book:
   subtitle: "Un enfoque práctico con datos abiertos reales"
   author: "MI Jesús Gilberto Rodríguez Escobedo"
   date: today
-  version: "0.4"
   downloads: [pdf]
-  site-url: "https://gilbertorodriguez59.github.io/libro-machine-learning-r/"
   chapters:
     - index.qmd
     - 00-licencia-y-citacion.qmd
@@ -22,6 +20,9 @@ book:
     - 05-knn.qmd
     - 06-arboles-decision.qmd
     - 07-random-forest.qmd
+  page-footer:
+    left: "© 2026 MI Jesús Gilberto Rodríguez Escobedo"
+    right: "Libro abierto elaborado con Quarto y R"
 
 execute:
   echo: true
@@ -37,11 +38,10 @@ format:
     toc: true
     number-sections: true
     code-fold: true
-    code-tools: true
+    code-tools: false
     html-math-method: mathjax
     fig-width: 8
     fig-height: 5
-    fig-align: center
 
   pdf:
     documentclass: book
@@ -54,16 +54,7 @@ format:
     fontsize: 11pt
     keep-tex: true
     pdf-engine: lualatex
-    fig-width: 7
-    fig-height: 4.5
     include-in-header:
       text: |
         \renewcommand{\contentsname}{Índice general}
         \renewcommand{\chaptername}{Capítulo}
-        \usepackage{xcolor}
-        \definecolor{azulLibro}{HTML}{1F4E79}
-        \definecolor{turquesaLibro}{HTML}{19A7AE}
-        \usepackage{sectsty}
-        \chapterfont{\color{azulLibro}}
-        \sectionfont{\color{azulLibro}}
-        \subsectionfont{\color{turquesaLibro}}

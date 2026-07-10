@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>6&nbsp; k vecinos más cercanos, k-NN – Aprendizaje y Clasificación Automática con R</title>
+<title>5&nbsp; k vecinos más cercanos, k-NN – Aprendizaje y Clasificación Automática con R</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -150,7 +150,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./05-knn.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">k vecinos más cercanos, k-NN</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./05-knn.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">k vecinos más cercanos, k-NN</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
@@ -181,7 +181,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Aprendizaje y Clasificación Automática con R</span></span></a>
+ <span class="menu-text">Presentación</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -193,43 +193,43 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./01-introduccion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">¿Qué es el aprendizaje automático?</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">¿Qué es el aprendizaje automático?</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./02-preparacion-datos.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Preparación de datos reales</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Preparación de datos reales</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03-analisis-exploratorio.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Análisis exploratorio de datos</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Análisis exploratorio de datos</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04-regresion-logistica.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regresión logística para clasificación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regresión logística para clasificación</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05-knn.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">k vecinos más cercanos, k-NN</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">k vecinos más cercanos, k-NN</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./06-arboles-decision.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Árboles de decisión para clasificación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Árboles de decisión para clasificación</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07-random-forest.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Random Forest para clasificación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Random Forest para clasificación</span></span></a>
   </div>
 </li>
     </ul>
@@ -242,25 +242,25 @@ window.Quarto = {
     <h2 id="toc-title">Tabla de contenidos</h2>
    
   <ul>
-  <li><a href="#objetivos-del-capítulo" id="toc-objetivos-del-capítulo" class="nav-link active" data-scroll-target="#objetivos-del-capítulo"><span class="header-section-number">6.1</span> Objetivos del capítulo</a></li>
-  <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción"><span class="header-section-number">6.2</span> Introducción</a></li>
-  <li><a href="#idea-intuitiva-del-método" id="toc-idea-intuitiva-del-método" class="nav-link" data-scroll-target="#idea-intuitiva-del-método"><span class="header-section-number">6.3</span> Idea intuitiva del método</a></li>
-  <li><a href="#ejemplo-sencillo-con-puntos" id="toc-ejemplo-sencillo-con-puntos" class="nav-link" data-scroll-target="#ejemplo-sencillo-con-puntos"><span class="header-section-number">6.4</span> Ejemplo sencillo con puntos</a></li>
-  <li><a href="#distancia-euclidiana" id="toc-distancia-euclidiana" class="nav-link" data-scroll-target="#distancia-euclidiana"><span class="header-section-number">6.5</span> Distancia euclidiana</a></li>
-  <li><a href="#ejemplo-de-cálculo-de-distancia" id="toc-ejemplo-de-cálculo-de-distancia" class="nav-link" data-scroll-target="#ejemplo-de-cálculo-de-distancia"><span class="header-section-number">6.6</span> Ejemplo de cálculo de distancia</a></li>
-  <li><a href="#estandarización-de-variables" id="toc-estandarización-de-variables" class="nav-link" data-scroll-target="#estandarización-de-variables"><span class="header-section-number">6.7</span> Estandarización de variables</a></li>
-  <li><a href="#cargar-datos" id="toc-cargar-datos" class="nav-link" data-scroll-target="#cargar-datos"><span class="header-section-number">6.8</span> Cargar datos</a></li>
-  <li><a href="#selección-de-una-muestra" id="toc-selección-de-una-muestra" class="nav-link" data-scroll-target="#selección-de-una-muestra"><span class="header-section-number">6.9</span> Selección de una muestra</a></li>
-  <li><a href="#preparar-variables" id="toc-preparar-variables" class="nav-link" data-scroll-target="#preparar-variables"><span class="header-section-number">6.10</span> Preparar variables</a></li>
-  <li><a href="#crear-variables-dummy" id="toc-crear-variables-dummy" class="nav-link" data-scroll-target="#crear-variables-dummy"><span class="header-section-number">6.11</span> Crear variables dummy</a></li>
-  <li><a href="#división-en-entrenamiento-y-prueba" id="toc-división-en-entrenamiento-y-prueba" class="nav-link" data-scroll-target="#división-en-entrenamiento-y-prueba"><span class="header-section-number">6.12</span> División en entrenamiento y prueba</a></li>
-  <li><a href="#estandarización" id="toc-estandarización" class="nav-link" data-scroll-target="#estandarización"><span class="header-section-number">6.13</span> Estandarización</a></li>
-  <li><a href="#modelo-k-nn-con-k-5" id="toc-modelo-k-nn-con-k-5" class="nav-link" data-scroll-target="#modelo-k-nn-con-k-5"><span class="header-section-number">6.14</span> Modelo k-NN con k = 5</a></li>
-  <li><a href="#matriz-de-confusión" id="toc-matriz-de-confusión" class="nav-link" data-scroll-target="#matriz-de-confusión"><span class="header-section-number">6.15</span> Matriz de confusión</a></li>
-  <li><a href="#métricas-de-evaluación" id="toc-métricas-de-evaluación" class="nav-link" data-scroll-target="#métricas-de-evaluación"><span class="header-section-number">6.16</span> Métricas de evaluación</a></li>
-  <li><a href="#comparación-con-distintos-valores-de-k" id="toc-comparación-con-distintos-valores-de-k" class="nav-link" data-scroll-target="#comparación-con-distintos-valores-de-k"><span class="header-section-number">6.17</span> Comparación con distintos valores de k</a></li>
-  <li><a href="#comparación-conceptual-con-regresión-logística" id="toc-comparación-conceptual-con-regresión-logística" class="nav-link" data-scroll-target="#comparación-conceptual-con-regresión-logística"><span class="header-section-number">6.18</span> Comparación conceptual con regresión logística</a></li>
-  <li><a href="#conclusión" id="toc-conclusión" class="nav-link" data-scroll-target="#conclusión"><span class="header-section-number">6.19</span> Conclusión</a></li>
+  <li><a href="#objetivos-del-capítulo" id="toc-objetivos-del-capítulo" class="nav-link active" data-scroll-target="#objetivos-del-capítulo"><span class="header-section-number">5.1</span> Objetivos del capítulo</a></li>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción"><span class="header-section-number">5.2</span> Introducción</a></li>
+  <li><a href="#idea-intuitiva-del-método" id="toc-idea-intuitiva-del-método" class="nav-link" data-scroll-target="#idea-intuitiva-del-método"><span class="header-section-number">5.3</span> Idea intuitiva del método</a></li>
+  <li><a href="#ejemplo-sencillo-con-puntos" id="toc-ejemplo-sencillo-con-puntos" class="nav-link" data-scroll-target="#ejemplo-sencillo-con-puntos"><span class="header-section-number">5.4</span> Ejemplo sencillo con puntos</a></li>
+  <li><a href="#distancia-euclidiana" id="toc-distancia-euclidiana" class="nav-link" data-scroll-target="#distancia-euclidiana"><span class="header-section-number">5.5</span> Distancia euclidiana</a></li>
+  <li><a href="#ejemplo-de-cálculo-de-distancia" id="toc-ejemplo-de-cálculo-de-distancia" class="nav-link" data-scroll-target="#ejemplo-de-cálculo-de-distancia"><span class="header-section-number">5.6</span> Ejemplo de cálculo de distancia</a></li>
+  <li><a href="#estandarización-de-variables" id="toc-estandarización-de-variables" class="nav-link" data-scroll-target="#estandarización-de-variables"><span class="header-section-number">5.7</span> Estandarización de variables</a></li>
+  <li><a href="#cargar-datos" id="toc-cargar-datos" class="nav-link" data-scroll-target="#cargar-datos"><span class="header-section-number">5.8</span> Cargar datos</a></li>
+  <li><a href="#selección-de-una-muestra" id="toc-selección-de-una-muestra" class="nav-link" data-scroll-target="#selección-de-una-muestra"><span class="header-section-number">5.9</span> Selección de una muestra</a></li>
+  <li><a href="#preparar-variables" id="toc-preparar-variables" class="nav-link" data-scroll-target="#preparar-variables"><span class="header-section-number">5.10</span> Preparar variables</a></li>
+  <li><a href="#crear-variables-dummy" id="toc-crear-variables-dummy" class="nav-link" data-scroll-target="#crear-variables-dummy"><span class="header-section-number">5.11</span> Crear variables dummy</a></li>
+  <li><a href="#división-en-entrenamiento-y-prueba" id="toc-división-en-entrenamiento-y-prueba" class="nav-link" data-scroll-target="#división-en-entrenamiento-y-prueba"><span class="header-section-number">5.12</span> División en entrenamiento y prueba</a></li>
+  <li><a href="#estandarización" id="toc-estandarización" class="nav-link" data-scroll-target="#estandarización"><span class="header-section-number">5.13</span> Estandarización</a></li>
+  <li><a href="#modelo-k-nn-con-k-5" id="toc-modelo-k-nn-con-k-5" class="nav-link" data-scroll-target="#modelo-k-nn-con-k-5"><span class="header-section-number">5.14</span> Modelo k-NN con k = 5</a></li>
+  <li><a href="#matriz-de-confusión" id="toc-matriz-de-confusión" class="nav-link" data-scroll-target="#matriz-de-confusión"><span class="header-section-number">5.15</span> Matriz de confusión</a></li>
+  <li><a href="#métricas-de-evaluación" id="toc-métricas-de-evaluación" class="nav-link" data-scroll-target="#métricas-de-evaluación"><span class="header-section-number">5.16</span> Métricas de evaluación</a></li>
+  <li><a href="#comparación-con-distintos-valores-de-k" id="toc-comparación-con-distintos-valores-de-k" class="nav-link" data-scroll-target="#comparación-con-distintos-valores-de-k"><span class="header-section-number">5.17</span> Comparación con distintos valores de k</a></li>
+  <li><a href="#comparación-conceptual-con-regresión-logística" id="toc-comparación-conceptual-con-regresión-logística" class="nav-link" data-scroll-target="#comparación-conceptual-con-regresión-logística"><span class="header-section-number">5.18</span> Comparación conceptual con regresión logística</a></li>
+  <li><a href="#conclusión" id="toc-conclusión" class="nav-link" data-scroll-target="#conclusión"><span class="header-section-number">5.19</span> Conclusión</a></li>
   </ul>
 </nav>
     </div>
@@ -269,7 +269,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">k vecinos más cercanos, k-NN</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Código</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Mostrar todo el código</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Ocultar todo el código</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">Ver el código fuente</a></li></ul></div></div>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">k vecinos más cercanos, k-NN</span></h1>
 </div>
 
 
@@ -286,20 +286,20 @@ window.Quarto = {
 </header>
 
 
-<section id="objetivos-del-capítulo" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="objetivos-del-capítulo"><span class="header-section-number">6.1</span> Objetivos del capítulo</h2>
+<section id="objetivos-del-capítulo" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="objetivos-del-capítulo"><span class="header-section-number">5.1</span> Objetivos del capítulo</h2>
 <p>Al finalizar este capítulo, el lector será capaz de explicar k-NN, preparar datos para este método, estandarizar variables, construir una matriz de confusión y evaluar el desempeño.</p>
 </section>
-<section id="introducción" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="introducción"><span class="header-section-number">6.2</span> Introducción</h2>
+<section id="introducción" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="introducción"><span class="header-section-number">5.2</span> Introducción</h2>
 <p>k-NN significa <em>k-Nearest Neighbors</em> o k vecinos más cercanos. Para clasificar una nueva observación, buscamos las observaciones más parecidas a ella y le asignamos la clase más frecuente entre sus vecinos.</p>
 </section>
-<section id="idea-intuitiva-del-método" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="idea-intuitiva-del-método"><span class="header-section-number">6.3</span> Idea intuitiva del método</h2>
+<section id="idea-intuitiva-del-método" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="idea-intuitiva-del-método"><span class="header-section-number">5.3</span> Idea intuitiva del método</h2>
 <p>El algoritmo k-NN calcula distancias, encuentra los (k) vecinos más cercanos, revisa sus clases y asigna la clase más frecuente.</p>
 </section>
-<section id="ejemplo-sencillo-con-puntos" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="ejemplo-sencillo-con-puntos"><span class="header-section-number">6.4</span> Ejemplo sencillo con puntos</h2>
+<section id="ejemplo-sencillo-con-puntos" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="ejemplo-sencillo-con-puntos"><span class="header-section-number">5.4</span> Ejemplo sencillo con puntos</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -358,8 +358,8 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="distancia-euclidiana" class="level2" data-number="6.5">
-<h2 data-number="6.5" class="anchored" data-anchor-id="distancia-euclidiana"><span class="header-section-number">6.5</span> Distancia euclidiana</h2>
+<section id="distancia-euclidiana" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="distancia-euclidiana"><span class="header-section-number">5.5</span> Distancia euclidiana</h2>
 <p>Para dos puntos (A=(x_1,y_1)) y (B=(x_2,y_2)), la distancia euclidiana es:</p>
 <p><span class="math display">\[
 d(A,B)=\sqrt{(x_1-x_2)^2+(y_1-y_2)^2}
@@ -369,8 +369,8 @@ d(A,B)=\sqrt{(x_1-x_2)^2+(y_1-y_2)^2}
 d(x_0,x_i)=\sqrt{\sum_{j=1}^{p}(x_{0j}-x_{ij})^2}
 \]</span></p>
 </section>
-<section id="ejemplo-de-cálculo-de-distancia" class="level2" data-number="6.6">
-<h2 data-number="6.6" class="anchored" data-anchor-id="ejemplo-de-cálculo-de-distancia"><span class="header-section-number">6.6</span> Ejemplo de cálculo de distancia</h2>
+<section id="ejemplo-de-cálculo-de-distancia" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="ejemplo-de-cálculo-de-distancia"><span class="header-section-number">5.6</span> Ejemplo de cálculo de distancia</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -387,15 +387,15 @@ d(x_0,x_i)=\sqrt{\sum_{j=1}^{p}(x_{0j}-x_{ij})^2}
 </div>
 </div>
 </section>
-<section id="estandarización-de-variables" class="level2" data-number="6.7">
-<h2 data-number="6.7" class="anchored" data-anchor-id="estandarización-de-variables"><span class="header-section-number">6.7</span> Estandarización de variables</h2>
+<section id="estandarización-de-variables" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="estandarización-de-variables"><span class="header-section-number">5.7</span> Estandarización de variables</h2>
 <p>Como k-NN depende de distancias, las variables deben estar en escalas comparables.</p>
 <p><span class="math display">\[
 z_{ij}=\frac{x_{ij}-\bar{x}_j}{s_j}
 \]</span></p>
 </section>
-<section id="cargar-datos" class="level2" data-number="6.8">
-<h2 data-number="6.8" class="anchored" data-anchor-id="cargar-datos"><span class="header-section-number">6.8</span> Cargar datos</h2>
+<section id="cargar-datos" class="level2" data-number="5.8">
+<h2 data-number="5.8" class="anchored" data-anchor-id="cargar-datos"><span class="header-section-number">5.8</span> Cargar datos</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -422,8 +422,8 @@ z_{ij}=\frac{x_{ij}-\bar{x}_j}{s_j}
 </div>
 </div>
 </section>
-<section id="selección-de-una-muestra" class="level2" data-number="6.9">
-<h2 data-number="6.9" class="anchored" data-anchor-id="selección-de-una-muestra"><span class="header-section-number">6.9</span> Selección de una muestra</h2>
+<section id="selección-de-una-muestra" class="level2" data-number="5.9">
+<h2 data-number="5.9" class="anchored" data-anchor-id="selección-de-una-muestra"><span class="header-section-number">5.9</span> Selección de una muestra</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -445,8 +445,8 @@ z_{ij}=\frac{x_{ij}-\bar{x}_j}{s_j}
 </div>
 </div>
 </section>
-<section id="preparar-variables" class="level2" data-number="6.10">
-<h2 data-number="6.10" class="anchored" data-anchor-id="preparar-variables"><span class="header-section-number">6.10</span> Preparar variables</h2>
+<section id="preparar-variables" class="level2" data-number="5.10">
+<h2 data-number="5.10" class="anchored" data-anchor-id="preparar-variables"><span class="header-section-number">5.10</span> Preparar variables</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -472,8 +472,8 @@ Con víctimas   Solo daños
 </div>
 </div>
 </section>
-<section id="crear-variables-dummy" class="level2" data-number="6.11">
-<h2 data-number="6.11" class="anchored" data-anchor-id="crear-variables-dummy"><span class="header-section-number">6.11</span> Crear variables dummy</h2>
+<section id="crear-variables-dummy" class="level2" data-number="5.11">
+<h2 data-number="5.11" class="anchored" data-anchor-id="crear-variables-dummy"><span class="header-section-number">5.11</span> Crear variables dummy</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -497,8 +497,8 @@ Con víctimas   Solo daños
 </div>
 </div>
 </section>
-<section id="división-en-entrenamiento-y-prueba" class="level2" data-number="6.12">
-<h2 data-number="6.12" class="anchored" data-anchor-id="división-en-entrenamiento-y-prueba"><span class="header-section-number">6.12</span> División en entrenamiento y prueba</h2>
+<section id="división-en-entrenamiento-y-prueba" class="level2" data-number="5.12">
+<h2 data-number="5.12" class="anchored" data-anchor-id="división-en-entrenamiento-y-prueba"><span class="header-section-number">5.12</span> División en entrenamiento y prueba</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -525,8 +525,8 @@ Con víctimas   Solo daños
 </div>
 </div>
 </section>
-<section id="estandarización" class="level2" data-number="6.13">
-<h2 data-number="6.13" class="anchored" data-anchor-id="estandarización"><span class="header-section-number">6.13</span> Estandarización</h2>
+<section id="estandarización" class="level2" data-number="5.13">
+<h2 data-number="5.13" class="anchored" data-anchor-id="estandarización"><span class="header-section-number">5.13</span> Estandarización</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -541,8 +541,8 @@ Con víctimas   Solo daños
 </details>
 </div>
 </section>
-<section id="modelo-k-nn-con-k-5" class="level2" data-number="6.14">
-<h2 data-number="6.14" class="anchored" data-anchor-id="modelo-k-nn-con-k-5"><span class="header-section-number">6.14</span> Modelo k-NN con k = 5</h2>
+<section id="modelo-k-nn-con-k-5" class="level2" data-number="5.14">
+<h2 data-number="5.14" class="anchored" data-anchor-id="modelo-k-nn-con-k-5"><span class="header-section-number">5.14</span> Modelo k-NN con k = 5</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -557,8 +557,8 @@ Con víctimas   Solo daños
 </details>
 </div>
 </section>
-<section id="matriz-de-confusión" class="level2" data-number="6.15">
-<h2 data-number="6.15" class="anchored" data-anchor-id="matriz-de-confusión"><span class="header-section-number">6.15</span> Matriz de confusión</h2>
+<section id="matriz-de-confusión" class="level2" data-number="5.15">
+<h2 data-number="5.15" class="anchored" data-anchor-id="matriz-de-confusión"><span class="header-section-number">5.15</span> Matriz de confusión</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -582,8 +582,8 @@ Real           Con víctimas Solo daños
 </div>
 </div>
 </section>
-<section id="métricas-de-evaluación" class="level2" data-number="6.16">
-<h2 data-number="6.16" class="anchored" data-anchor-id="métricas-de-evaluación"><span class="header-section-number">6.16</span> Métricas de evaluación</h2>
+<section id="métricas-de-evaluación" class="level2" data-number="5.16">
+<h2 data-number="5.16" class="anchored" data-anchor-id="métricas-de-evaluación"><span class="header-section-number">5.16</span> Métricas de evaluación</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -616,8 +616,8 @@ Real           Con víctimas Solo daños
 </div>
 </div>
 </section>
-<section id="comparación-con-distintos-valores-de-k" class="level2" data-number="6.17">
-<h2 data-number="6.17" class="anchored" data-anchor-id="comparación-con-distintos-valores-de-k"><span class="header-section-number">6.17</span> Comparación con distintos valores de k</h2>
+<section id="comparación-con-distintos-valores-de-k" class="level2" data-number="5.17">
+<h2 data-number="5.17" class="anchored" data-anchor-id="comparación-con-distintos-valores-de-k"><span class="header-section-number">5.17</span> Comparación con distintos valores de k</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -685,8 +685,8 @@ Real           Con víctimas Solo daños
 </div>
 </div>
 </section>
-<section id="comparación-conceptual-con-regresión-logística" class="level2" data-number="6.18">
-<h2 data-number="6.18" class="anchored" data-anchor-id="comparación-conceptual-con-regresión-logística"><span class="header-section-number">6.18</span> Comparación conceptual con regresión logística</h2>
+<section id="comparación-conceptual-con-regresión-logística" class="level2" data-number="5.18">
+<h2 data-number="5.18" class="anchored" data-anchor-id="comparación-conceptual-con-regresión-logística"><span class="header-section-number">5.18</span> Comparación conceptual con regresión logística</h2>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -724,12 +724,10 @@ Real           Con víctimas Solo daños
 </tbody>
 </table>
 </section>
-<section id="conclusión" class="level2" data-number="6.19">
-<h2 data-number="6.19" class="anchored" data-anchor-id="conclusión"><span class="header-section-number">6.19</span> Conclusión</h2>
+<section id="conclusión" class="level2" data-number="5.19">
+<h2 data-number="5.19" class="anchored" data-anchor-id="conclusión"><span class="header-section-number">5.19</span> Conclusión</h2>
 <p>k-NN es un método intuitivo y útil para introducir clasificación basada en similitud. Su desempeño depende del valor de (k), del escalamiento de las variables y de la calidad de las variables predictoras.</p>
 
-
-<!-- -->
 
 </section>
 
@@ -805,60 +803,9 @@ Real           Con víctimas Solo daños
       });
       clipboardModal.on('success', onCopySuccess);
     }
-    const viewSource = window.document.getElementById('quarto-view-source') ||
-                       window.document.getElementById('quarto-code-tools-source');
-    if (viewSource) {
-      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
-      viewSource.addEventListener("click", function(e) {
-        if (sourceUrl) {
-          // rstudio viewer pane
-          if (/\bcapabilities=\b/.test(window.location)) {
-            window.open(sourceUrl);
-          } else {
-            window.location.href = sourceUrl;
-          }
-        } else {
-          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
-          modal.show();
-        }
-        return false;
-      });
-    }
-    function toggleCodeHandler(show) {
-      return function(e) {
-        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-        for (let i=0; i<detailsSrc.length; i++) {
-          const details = detailsSrc[i].parentElement;
-          if (show) {
-            details.open = true;
-          } else {
-            details.removeAttribute("open");
-          }
-        }
-        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
-        const fromCls = show ? "hidden" : "unhidden";
-        const toCls = show ? "unhidden" : "hidden";
-        for (let i=0; i<cellCodeDivs.length; i++) {
-          const codeDiv = cellCodeDivs[i];
-          if (codeDiv.classList.contains(fromCls)) {
-            codeDiv.classList.remove(fromCls);
-            codeDiv.classList.add(toCls);
-          } 
-        }
-        return false;
-      }
-    }
-    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
-    if (hideAllCode) {
-      hideAllCode.addEventListener("click", toggleCodeHandler(false));
-    }
-    const showAllCode = window.document.getElementById("quarto-show-all-code");
-    if (showAllCode) {
-      showAllCode.addEventListener("click", toggleCodeHandler(true));
-    }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/gilbertorodriguez59\.github\.io\/libro-machine-learning-r\/");
+        var filterRegex = new RegExp('/' + window.location.host + '/');
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -1188,328 +1135,29 @@ Real           Con víctimas Solo daños
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./04-regresion-logistica.html" class="pagination-link" aria-label="Regresión logística para clasificación">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regresión logística para clasificación</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regresión logística para clasificación</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./06-arboles-decision.html" class="pagination-link" aria-label="Árboles de decisión para clasificación">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Árboles de decisión para clasificación</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Árboles de decisión para clasificación</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
-</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Ejecutar el código</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># k vecinos más cercanos, k-NN</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Objetivos del capítulo</span></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>Al finalizar este capítulo, el lector será capaz de explicar k-NN, preparar datos para este método, estandarizar variables, construir una matriz de confusión y evaluar el desempeño.</span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="fu">## Introducción</span></span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>k-NN significa *k-Nearest Neighbors* o k vecinos más cercanos. Para clasificar una nueva observación, buscamos las observaciones más parecidas a ella y le asignamos la clase más frecuente entre sus vecinos.</span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a><span class="fu">## Idea intuitiva del método</span></span>
-<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>El algoritmo k-NN calcula distancias, encuentra los <span class="sc">\(</span>k<span class="sc">\)</span> vecinos más cercanos, revisa sus clases y asigna la clase más frecuente.</span>
-<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a><span class="fu">## Ejemplo sencillo con puntos</span></span>
-<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(class)</span>
-<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"util_graficas.R"</span>)</span>
-<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a>datos_ejemplo <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb27-30"><a href="#cb27-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">hora =</span> <span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">18</span>, <span class="dv">19</span>, <span class="dv">20</span>, <span class="dv">22</span>, <span class="dv">23</span>),</span>
-<span id="cb27-31"><a href="#cb27-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">mes =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">12</span>, <span class="dv">12</span>),</span>
-<span id="cb27-32"><a href="#cb27-32" aria-hidden="true" tabindex="-1"></a>  <span class="at">clase =</span> <span class="fu">c</span>(</span>
-<span id="cb27-33"><a href="#cb27-33" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Solo daños"</span>, <span class="st">"Solo daños"</span>, <span class="st">"Solo daños"</span>,</span>
-<span id="cb27-34"><a href="#cb27-34" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Con víctimas"</span>, <span class="st">"Con víctimas"</span>, <span class="st">"Con víctimas"</span>,</span>
-<span id="cb27-35"><a href="#cb27-35" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Con víctimas"</span>, <span class="st">"Con víctimas"</span></span>
-<span id="cb27-36"><a href="#cb27-36" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb27-37"><a href="#cb27-37" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb27-38"><a href="#cb27-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-39"><a href="#cb27-39" aria-hidden="true" tabindex="-1"></a>datos_ejemplo</span>
-<span id="cb27-40"><a href="#cb27-40" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb27-41"><a href="#cb27-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-44"><a href="#cb27-44" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb27-45"><a href="#cb27-45" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos_ejemplo, <span class="fu">aes</span>(<span class="at">x =</span> hora, <span class="at">y =</span> mes, <span class="at">color =</span> clase)) <span class="sc">+</span></span>
-<span id="cb27-46"><a href="#cb27-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span>, <span class="at">alpha =</span> <span class="fl">0.9</span>) <span class="sc">+</span></span>
-<span id="cb27-47"><a href="#cb27-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">escala_clases_color</span>() <span class="sc">+</span></span>
-<span id="cb27-48"><a href="#cb27-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb27-49"><a href="#cb27-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Ejemplo intuitivo de k-NN"</span>,</span>
-<span id="cb27-50"><a href="#cb27-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Clasificación mediante cercanía entre observaciones"</span>,</span>
-<span id="cb27-51"><a href="#cb27-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Hora"</span>,</span>
-<span id="cb27-52"><a href="#cb27-52" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Mes"</span>,</span>
-<span id="cb27-53"><a href="#cb27-53" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Clase"</span></span>
-<span id="cb27-54"><a href="#cb27-54" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb27-55"><a href="#cb27-55" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tema_libro</span>()</span>
-<span id="cb27-56"><a href="#cb27-56" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb27-57"><a href="#cb27-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-58"><a href="#cb27-58" aria-hidden="true" tabindex="-1"></a><span class="fu">## Distancia euclidiana</span></span>
-<span id="cb27-59"><a href="#cb27-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-60"><a href="#cb27-60" aria-hidden="true" tabindex="-1"></a>Para dos puntos <span class="sc">\(</span>A=(x_1,y_1)<span class="sc">\)</span> y <span class="sc">\(</span>B=(x_2,y_2)<span class="sc">\)</span>, la distancia euclidiana es:</span>
-<span id="cb27-61"><a href="#cb27-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-62"><a href="#cb27-62" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb27-63"><a href="#cb27-63" aria-hidden="true" tabindex="-1"></a>d(A,B)=\sqrt{(x_1-x_2)^2+(y_1-y_2)^2}</span>
-<span id="cb27-64"><a href="#cb27-64" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb27-65"><a href="#cb27-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-66"><a href="#cb27-66" aria-hidden="true" tabindex="-1"></a>En general, para <span class="sc">\(</span>p<span class="sc">\)</span> variables:</span>
-<span id="cb27-67"><a href="#cb27-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-68"><a href="#cb27-68" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb27-69"><a href="#cb27-69" aria-hidden="true" tabindex="-1"></a>d(x_0,x_i)=\sqrt{\sum_{j=1}^{p}(x_{0j}-x_{ij})^2}</span>
-<span id="cb27-70"><a href="#cb27-70" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb27-71"><a href="#cb27-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-72"><a href="#cb27-72" aria-hidden="true" tabindex="-1"></a><span class="fu">## Ejemplo de cálculo de distancia</span></span>
-<span id="cb27-73"><a href="#cb27-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-76"><a href="#cb27-76" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb27-77"><a href="#cb27-77" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="dv">8</span></span>
-<span id="cb27-78"><a href="#cb27-78" aria-hidden="true" tabindex="-1"></a>y1 <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb27-79"><a href="#cb27-79" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb27-80"><a href="#cb27-80" aria-hidden="true" tabindex="-1"></a>y2 <span class="ot">&lt;-</span> <span class="dv">2</span></span>
-<span id="cb27-81"><a href="#cb27-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-82"><a href="#cb27-82" aria-hidden="true" tabindex="-1"></a>distancia <span class="ot">&lt;-</span> <span class="fu">sqrt</span>((x1 <span class="sc">-</span> x2)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> (y1 <span class="sc">-</span> y2)<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb27-83"><a href="#cb27-83" aria-hidden="true" tabindex="-1"></a>distancia</span>
-<span id="cb27-84"><a href="#cb27-84" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb27-85"><a href="#cb27-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-86"><a href="#cb27-86" aria-hidden="true" tabindex="-1"></a><span class="fu">## Estandarización de variables</span></span>
-<span id="cb27-87"><a href="#cb27-87" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-88"><a href="#cb27-88" aria-hidden="true" tabindex="-1"></a>Como k-NN depende de distancias, las variables deben estar en escalas comparables.</span>
-<span id="cb27-89"><a href="#cb27-89" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-90"><a href="#cb27-90" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb27-91"><a href="#cb27-91" aria-hidden="true" tabindex="-1"></a>z_{ij}=\frac{x_{ij}-\bar{x}_j}{s_j}</span>
-<span id="cb27-92"><a href="#cb27-92" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb27-93"><a href="#cb27-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-94"><a href="#cb27-94" aria-hidden="true" tabindex="-1"></a><span class="fu">## Cargar datos</span></span>
-<span id="cb27-95"><a href="#cb27-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-98"><a href="#cb27-98" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb27-99"><a href="#cb27-99" aria-hidden="true" tabindex="-1"></a>ruta_atus_ml <span class="ot">&lt;-</span> <span class="st">"datos/atus_ml_preparado.csv"</span></span>
-<span id="cb27-100"><a href="#cb27-100" aria-hidden="true" tabindex="-1"></a><span class="fu">file.exists</span>(ruta_atus_ml)</span>
-<span id="cb27-101"><a href="#cb27-101" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb27-102"><a href="#cb27-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-105"><a href="#cb27-105" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb27-106"><a href="#cb27-106" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">file.exists</span>(ruta_atus_ml)) {</span>
-<span id="cb27-107"><a href="#cb27-107" aria-hidden="true" tabindex="-1"></a>  atus_ml <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(ruta_atus_ml, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb27-108"><a href="#cb27-108" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Base preparada cargada correctamente."</span>)</span>
-<span id="cb27-109"><a href="#cb27-109" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb27-110"><a href="#cb27-110" aria-hidden="true" tabindex="-1"></a>  atus_ml <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb27-111"><a href="#cb27-111" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"No se encontró el archivo datos/atus_ml_preparado.csv. Ejecuta primero el capítulo 2."</span>)</span>
-<span id="cb27-112"><a href="#cb27-112" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb27-113"><a href="#cb27-113" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb27-114"><a href="#cb27-114" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-115"><a href="#cb27-115" aria-hidden="true" tabindex="-1"></a><span class="fu">## Selección de una muestra</span></span>
-<span id="cb27-116"><a href="#cb27-116" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-119"><a href="#cb27-119" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb27-120"><a href="#cb27-120" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(atus_ml)) {</span>
-<span id="cb27-121"><a href="#cb27-121" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb27-122"><a href="#cb27-122" aria-hidden="true" tabindex="-1"></a>  tamano_muestra <span class="ot">&lt;-</span> <span class="fu">min</span>(<span class="dv">12000</span>, <span class="fu">nrow</span>(atus_ml))</span>
-<span id="cb27-123"><a href="#cb27-123" aria-hidden="true" tabindex="-1"></a>  atus_knn_base <span class="ot">&lt;-</span> atus_ml <span class="sc">|&gt;</span></span>
-<span id="cb27-124"><a href="#cb27-124" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sample_n</span>(tamano_muestra)</span>
-<span id="cb27-125"><a href="#cb27-125" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-126"><a href="#cb27-126" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(</span>
-<span id="cb27-127"><a href="#cb27-127" aria-hidden="true" tabindex="-1"></a>    <span class="at">filas =</span> <span class="fu">nrow</span>(atus_knn_base),</span>
-<span id="cb27-128"><a href="#cb27-128" aria-hidden="true" tabindex="-1"></a>    <span class="at">columnas =</span> <span class="fu">ncol</span>(atus_knn_base)</span>
-<span id="cb27-129"><a href="#cb27-129" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb27-130"><a href="#cb27-130" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb27-131"><a href="#cb27-131" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb27-132"><a href="#cb27-132" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-133"><a href="#cb27-133" aria-hidden="true" tabindex="-1"></a><span class="fu">## Preparar variables</span></span>
-<span id="cb27-134"><a href="#cb27-134" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-137"><a href="#cb27-137" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb27-138"><a href="#cb27-138" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"atus_knn_base"</span>)) {</span>
-<span id="cb27-139"><a href="#cb27-139" aria-hidden="true" tabindex="-1"></a>  atus_knn_base <span class="ot">&lt;-</span> atus_knn_base <span class="sc">|&gt;</span></span>
-<span id="cb27-140"><a href="#cb27-140" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
-<span id="cb27-141"><a href="#cb27-141" aria-hidden="true" tabindex="-1"></a>      <span class="at">accidente_con_victimas =</span> <span class="fu">factor</span>(accidente_con_victimas, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Con víctimas"</span>, <span class="st">"Solo daños"</span>)),</span>
-<span id="cb27-142"><a href="#cb27-142" aria-hidden="true" tabindex="-1"></a>      <span class="at">MES =</span> <span class="fu">as.factor</span>(MES),</span>
-<span id="cb27-143"><a href="#cb27-143" aria-hidden="true" tabindex="-1"></a>      <span class="at">ID_HORA =</span> <span class="fu">as.numeric</span>(ID_HORA),</span>
-<span id="cb27-144"><a href="#cb27-144" aria-hidden="true" tabindex="-1"></a>      <span class="at">DIASEMANA =</span> <span class="fu">as.factor</span>(DIASEMANA),</span>
-<span id="cb27-145"><a href="#cb27-145" aria-hidden="true" tabindex="-1"></a>      <span class="at">TIPACCID =</span> <span class="fu">as.factor</span>(TIPACCID),</span>
-<span id="cb27-146"><a href="#cb27-146" aria-hidden="true" tabindex="-1"></a>      <span class="at">CAUSAACCI =</span> <span class="fu">as.factor</span>(CAUSAACCI)</span>
-<span id="cb27-147"><a href="#cb27-147" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span></span>
-<span id="cb27-148"><a href="#cb27-148" aria-hidden="true" tabindex="-1"></a>    <span class="fu">na.omit</span>()</span>
-<span id="cb27-149"><a href="#cb27-149" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-150"><a href="#cb27-150" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> <span class="fu">prop.table</span>(<span class="fu">table</span>(atus_knn_base<span class="sc">$</span>accidente_con_victimas)), <span class="dv">2</span>)</span>
-<span id="cb27-151"><a href="#cb27-151" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb27-152"><a href="#cb27-152" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb27-153"><a href="#cb27-153" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-154"><a href="#cb27-154" aria-hidden="true" tabindex="-1"></a><span class="fu">## Crear variables dummy</span></span>
-<span id="cb27-155"><a href="#cb27-155" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-158"><a href="#cb27-158" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb27-159"><a href="#cb27-159" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"atus_knn_base"</span>)) {</span>
-<span id="cb27-160"><a href="#cb27-160" aria-hidden="true" tabindex="-1"></a>  matriz_predictoras <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(</span>
-<span id="cb27-161"><a href="#cb27-161" aria-hidden="true" tabindex="-1"></a>    <span class="sc">~</span> ID_HORA <span class="sc">+</span> MES <span class="sc">+</span> DIASEMANA <span class="sc">+</span> TIPACCID <span class="sc">+</span> CAUSAACCI <span class="sc">-</span> <span class="dv">1</span>,</span>
-<span id="cb27-162"><a href="#cb27-162" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> atus_knn_base</span>
-<span id="cb27-163"><a href="#cb27-163" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb27-164"><a href="#cb27-164" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-165"><a href="#cb27-165" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> atus_knn_base<span class="sc">$</span>accidente_con_victimas</span>
-<span id="cb27-166"><a href="#cb27-166" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-167"><a href="#cb27-167" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(</span>
-<span id="cb27-168"><a href="#cb27-168" aria-hidden="true" tabindex="-1"></a>    <span class="at">filas =</span> <span class="fu">nrow</span>(matriz_predictoras),</span>
-<span id="cb27-169"><a href="#cb27-169" aria-hidden="true" tabindex="-1"></a>    <span class="at">columnas =</span> <span class="fu">ncol</span>(matriz_predictoras)</span>
-<span id="cb27-170"><a href="#cb27-170" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb27-171"><a href="#cb27-171" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb27-172"><a href="#cb27-172" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb27-173"><a href="#cb27-173" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-174"><a href="#cb27-174" aria-hidden="true" tabindex="-1"></a><span class="fu">## División en entrenamiento y prueba</span></span>
-<span id="cb27-175"><a href="#cb27-175" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-178"><a href="#cb27-178" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb27-179"><a href="#cb27-179" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"matriz_predictoras"</span>) <span class="sc">&amp;&amp;</span> <span class="fu">exists</span>(<span class="st">"y"</span>)) {</span>
-<span id="cb27-180"><a href="#cb27-180" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb27-181"><a href="#cb27-181" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(matriz_predictoras)</span>
-<span id="cb27-182"><a href="#cb27-182" aria-hidden="true" tabindex="-1"></a>  indices_entrenamiento <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>n, <span class="at">size =</span> <span class="fu">round</span>(<span class="fl">0.7</span> <span class="sc">*</span> n))</span>
-<span id="cb27-183"><a href="#cb27-183" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-184"><a href="#cb27-184" aria-hidden="true" tabindex="-1"></a>  x_entrenamiento <span class="ot">&lt;-</span> matriz_predictoras[indices_entrenamiento, ]</span>
-<span id="cb27-185"><a href="#cb27-185" aria-hidden="true" tabindex="-1"></a>  x_prueba <span class="ot">&lt;-</span> matriz_predictoras[<span class="sc">-</span>indices_entrenamiento, ]</span>
-<span id="cb27-186"><a href="#cb27-186" aria-hidden="true" tabindex="-1"></a>  y_entrenamiento <span class="ot">&lt;-</span> y[indices_entrenamiento]</span>
-<span id="cb27-187"><a href="#cb27-187" aria-hidden="true" tabindex="-1"></a>  y_prueba <span class="ot">&lt;-</span> y[<span class="sc">-</span>indices_entrenamiento]</span>
-<span id="cb27-188"><a href="#cb27-188" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-189"><a href="#cb27-189" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(</span>
-<span id="cb27-190"><a href="#cb27-190" aria-hidden="true" tabindex="-1"></a>    <span class="at">conjunto =</span> <span class="fu">c</span>(<span class="st">"Entrenamiento"</span>, <span class="st">"Prueba"</span>),</span>
-<span id="cb27-191"><a href="#cb27-191" aria-hidden="true" tabindex="-1"></a>    <span class="at">registros =</span> <span class="fu">c</span>(<span class="fu">nrow</span>(x_entrenamiento), <span class="fu">nrow</span>(x_prueba))</span>
-<span id="cb27-192"><a href="#cb27-192" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb27-193"><a href="#cb27-193" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb27-194"><a href="#cb27-194" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb27-195"><a href="#cb27-195" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-196"><a href="#cb27-196" aria-hidden="true" tabindex="-1"></a><span class="fu">## Estandarización</span></span>
-<span id="cb27-197"><a href="#cb27-197" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-200"><a href="#cb27-200" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb27-201"><a href="#cb27-201" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"x_entrenamiento"</span>) <span class="sc">&amp;&amp;</span> <span class="fu">exists</span>(<span class="st">"x_prueba"</span>)) {</span>
-<span id="cb27-202"><a href="#cb27-202" aria-hidden="true" tabindex="-1"></a>  medias <span class="ot">&lt;-</span> <span class="fu">apply</span>(x_entrenamiento, <span class="dv">2</span>, mean)</span>
-<span id="cb27-203"><a href="#cb27-203" aria-hidden="true" tabindex="-1"></a>  desviaciones <span class="ot">&lt;-</span> <span class="fu">apply</span>(x_entrenamiento, <span class="dv">2</span>, sd)</span>
-<span id="cb27-204"><a href="#cb27-204" aria-hidden="true" tabindex="-1"></a>  desviaciones[desviaciones <span class="sc">==</span> <span class="dv">0</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb27-205"><a href="#cb27-205" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-206"><a href="#cb27-206" aria-hidden="true" tabindex="-1"></a>  x_entrenamiento_esc <span class="ot">&lt;-</span> <span class="fu">scale</span>(x_entrenamiento, <span class="at">center =</span> medias, <span class="at">scale =</span> desviaciones)</span>
-<span id="cb27-207"><a href="#cb27-207" aria-hidden="true" tabindex="-1"></a>  x_prueba_esc <span class="ot">&lt;-</span> <span class="fu">scale</span>(x_prueba, <span class="at">center =</span> medias, <span class="at">scale =</span> desviaciones)</span>
-<span id="cb27-208"><a href="#cb27-208" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb27-209"><a href="#cb27-209" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb27-210"><a href="#cb27-210" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-211"><a href="#cb27-211" aria-hidden="true" tabindex="-1"></a><span class="fu">## Modelo k-NN con k = 5</span></span>
-<span id="cb27-212"><a href="#cb27-212" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-215"><a href="#cb27-215" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb27-216"><a href="#cb27-216" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"x_entrenamiento_esc"</span>) <span class="sc">&amp;&amp;</span> <span class="fu">exists</span>(<span class="st">"x_prueba_esc"</span>)) {</span>
-<span id="cb27-217"><a href="#cb27-217" aria-hidden="true" tabindex="-1"></a>  pred_knn_5 <span class="ot">&lt;-</span> <span class="fu">knn</span>(</span>
-<span id="cb27-218"><a href="#cb27-218" aria-hidden="true" tabindex="-1"></a>    <span class="at">train =</span> x_entrenamiento_esc,</span>
-<span id="cb27-219"><a href="#cb27-219" aria-hidden="true" tabindex="-1"></a>    <span class="at">test =</span> x_prueba_esc,</span>
-<span id="cb27-220"><a href="#cb27-220" aria-hidden="true" tabindex="-1"></a>    <span class="at">cl =</span> y_entrenamiento,</span>
-<span id="cb27-221"><a href="#cb27-221" aria-hidden="true" tabindex="-1"></a>    <span class="at">k =</span> <span class="dv">5</span></span>
-<span id="cb27-222"><a href="#cb27-222" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb27-223"><a href="#cb27-223" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb27-224"><a href="#cb27-224" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb27-225"><a href="#cb27-225" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-226"><a href="#cb27-226" aria-hidden="true" tabindex="-1"></a><span class="fu">## Matriz de confusión</span></span>
-<span id="cb27-227"><a href="#cb27-227" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-230"><a href="#cb27-230" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb27-231"><a href="#cb27-231" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"pred_knn_5"</span>)) {</span>
-<span id="cb27-232"><a href="#cb27-232" aria-hidden="true" tabindex="-1"></a>  pred_knn_5 <span class="ot">&lt;-</span> <span class="fu">factor</span>(pred_knn_5, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Con víctimas"</span>, <span class="st">"Solo daños"</span>))</span>
-<span id="cb27-233"><a href="#cb27-233" aria-hidden="true" tabindex="-1"></a>  y_prueba <span class="ot">&lt;-</span> <span class="fu">factor</span>(y_prueba, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Con víctimas"</span>, <span class="st">"Solo daños"</span>))</span>
-<span id="cb27-234"><a href="#cb27-234" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-235"><a href="#cb27-235" aria-hidden="true" tabindex="-1"></a>  matriz_confusion_knn_5 <span class="ot">&lt;-</span> <span class="fu">table</span>(</span>
-<span id="cb27-236"><a href="#cb27-236" aria-hidden="true" tabindex="-1"></a>    <span class="at">Real =</span> y_prueba,</span>
-<span id="cb27-237"><a href="#cb27-237" aria-hidden="true" tabindex="-1"></a>    <span class="at">Predicho =</span> pred_knn_5</span>
-<span id="cb27-238"><a href="#cb27-238" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb27-239"><a href="#cb27-239" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-240"><a href="#cb27-240" aria-hidden="true" tabindex="-1"></a>  matriz_confusion_knn_5</span>
-<span id="cb27-241"><a href="#cb27-241" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb27-242"><a href="#cb27-242" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb27-243"><a href="#cb27-243" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-244"><a href="#cb27-244" aria-hidden="true" tabindex="-1"></a><span class="fu">## Métricas de evaluación</span></span>
-<span id="cb27-245"><a href="#cb27-245" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-248"><a href="#cb27-248" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb27-249"><a href="#cb27-249" aria-hidden="true" tabindex="-1"></a>calcular_metricas <span class="ot">&lt;-</span> <span class="cf">function</span>(real, predicho) {</span>
-<span id="cb27-250"><a href="#cb27-250" aria-hidden="true" tabindex="-1"></a>  real <span class="ot">&lt;-</span> <span class="fu">factor</span>(real, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Con víctimas"</span>, <span class="st">"Solo daños"</span>))</span>
-<span id="cb27-251"><a href="#cb27-251" aria-hidden="true" tabindex="-1"></a>  predicho <span class="ot">&lt;-</span> <span class="fu">factor</span>(predicho, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Con víctimas"</span>, <span class="st">"Solo daños"</span>))</span>
-<span id="cb27-252"><a href="#cb27-252" aria-hidden="true" tabindex="-1"></a>  matriz <span class="ot">&lt;-</span> <span class="fu">table</span>(<span class="at">Real =</span> real, <span class="at">Predicho =</span> predicho)</span>
-<span id="cb27-253"><a href="#cb27-253" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-254"><a href="#cb27-254" aria-hidden="true" tabindex="-1"></a>  VP <span class="ot">&lt;-</span> matriz[<span class="st">"Con víctimas"</span>, <span class="st">"Con víctimas"</span>]</span>
-<span id="cb27-255"><a href="#cb27-255" aria-hidden="true" tabindex="-1"></a>  FN <span class="ot">&lt;-</span> matriz[<span class="st">"Con víctimas"</span>, <span class="st">"Solo daños"</span>]</span>
-<span id="cb27-256"><a href="#cb27-256" aria-hidden="true" tabindex="-1"></a>  FP <span class="ot">&lt;-</span> matriz[<span class="st">"Solo daños"</span>, <span class="st">"Con víctimas"</span>]</span>
-<span id="cb27-257"><a href="#cb27-257" aria-hidden="true" tabindex="-1"></a>  VN <span class="ot">&lt;-</span> matriz[<span class="st">"Solo daños"</span>, <span class="st">"Solo daños"</span>]</span>
-<span id="cb27-258"><a href="#cb27-258" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-259"><a href="#cb27-259" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(</span>
-<span id="cb27-260"><a href="#cb27-260" aria-hidden="true" tabindex="-1"></a>    <span class="at">exactitud =</span> (VP <span class="sc">+</span> VN) <span class="sc">/</span> (VP <span class="sc">+</span> FN <span class="sc">+</span> FP <span class="sc">+</span> VN),</span>
-<span id="cb27-261"><a href="#cb27-261" aria-hidden="true" tabindex="-1"></a>    <span class="at">sensibilidad =</span> VP <span class="sc">/</span> (VP <span class="sc">+</span> FN),</span>
-<span id="cb27-262"><a href="#cb27-262" aria-hidden="true" tabindex="-1"></a>    <span class="at">especificidad =</span> VN <span class="sc">/</span> (VN <span class="sc">+</span> FP)</span>
-<span id="cb27-263"><a href="#cb27-263" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb27-264"><a href="#cb27-264" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb27-265"><a href="#cb27-265" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-266"><a href="#cb27-266" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"matriz_confusion_knn_5"</span>)) {</span>
-<span id="cb27-267"><a href="#cb27-267" aria-hidden="true" tabindex="-1"></a>  metricas_knn_5 <span class="ot">&lt;-</span> <span class="fu">calcular_metricas</span>(y_prueba, pred_knn_5)</span>
-<span id="cb27-268"><a href="#cb27-268" aria-hidden="true" tabindex="-1"></a>  metricas_knn_5<span class="sc">$</span>k <span class="ot">&lt;-</span> <span class="dv">5</span></span>
-<span id="cb27-269"><a href="#cb27-269" aria-hidden="true" tabindex="-1"></a>  metricas_knn_5 <span class="sc">|&gt;</span> <span class="fu">select</span>(k, exactitud, sensibilidad, especificidad)</span>
-<span id="cb27-270"><a href="#cb27-270" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb27-271"><a href="#cb27-271" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb27-272"><a href="#cb27-272" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-273"><a href="#cb27-273" aria-hidden="true" tabindex="-1"></a><span class="fu">## Comparación con distintos valores de k</span></span>
-<span id="cb27-274"><a href="#cb27-274" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-277"><a href="#cb27-277" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb27-278"><a href="#cb27-278" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"x_entrenamiento_esc"</span>) <span class="sc">&amp;&amp;</span> <span class="fu">exists</span>(<span class="st">"x_prueba_esc"</span>)) {</span>
-<span id="cb27-279"><a href="#cb27-279" aria-hidden="true" tabindex="-1"></a>  valores_k <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">11</span>)</span>
-<span id="cb27-280"><a href="#cb27-280" aria-hidden="true" tabindex="-1"></a>  resultados_knn <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
-<span id="cb27-281"><a href="#cb27-281" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-282"><a href="#cb27-282" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (k_actual <span class="cf">in</span> valores_k) {</span>
-<span id="cb27-283"><a href="#cb27-283" aria-hidden="true" tabindex="-1"></a>    pred_actual <span class="ot">&lt;-</span> <span class="fu">knn</span>(</span>
-<span id="cb27-284"><a href="#cb27-284" aria-hidden="true" tabindex="-1"></a>      <span class="at">train =</span> x_entrenamiento_esc,</span>
-<span id="cb27-285"><a href="#cb27-285" aria-hidden="true" tabindex="-1"></a>      <span class="at">test =</span> x_prueba_esc,</span>
-<span id="cb27-286"><a href="#cb27-286" aria-hidden="true" tabindex="-1"></a>      <span class="at">cl =</span> y_entrenamiento,</span>
-<span id="cb27-287"><a href="#cb27-287" aria-hidden="true" tabindex="-1"></a>      <span class="at">k =</span> k_actual</span>
-<span id="cb27-288"><a href="#cb27-288" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb27-289"><a href="#cb27-289" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-290"><a href="#cb27-290" aria-hidden="true" tabindex="-1"></a>    metricas_actuales <span class="ot">&lt;-</span> <span class="fu">calcular_metricas</span>(y_prueba, pred_actual)</span>
-<span id="cb27-291"><a href="#cb27-291" aria-hidden="true" tabindex="-1"></a>    metricas_actuales<span class="sc">$</span>k <span class="ot">&lt;-</span> k_actual</span>
-<span id="cb27-292"><a href="#cb27-292" aria-hidden="true" tabindex="-1"></a>    resultados_knn <span class="ot">&lt;-</span> <span class="fu">rbind</span>(resultados_knn, metricas_actuales)</span>
-<span id="cb27-293"><a href="#cb27-293" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb27-294"><a href="#cb27-294" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-295"><a href="#cb27-295" aria-hidden="true" tabindex="-1"></a>  resultados_knn <span class="ot">&lt;-</span> resultados_knn <span class="sc">|&gt;</span></span>
-<span id="cb27-296"><a href="#cb27-296" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(k, exactitud, sensibilidad, especificidad)</span>
-<span id="cb27-297"><a href="#cb27-297" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-298"><a href="#cb27-298" aria-hidden="true" tabindex="-1"></a>  resultados_knn</span>
-<span id="cb27-299"><a href="#cb27-299" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb27-300"><a href="#cb27-300" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb27-301"><a href="#cb27-301" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-304"><a href="#cb27-304" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb27-305"><a href="#cb27-305" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"resultados_knn"</span>)) {</span>
-<span id="cb27-306"><a href="#cb27-306" aria-hidden="true" tabindex="-1"></a>  resultados_largos <span class="ot">&lt;-</span> resultados_knn <span class="sc">|&gt;</span></span>
-<span id="cb27-307"><a href="#cb27-307" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(</span>
-<span id="cb27-308"><a href="#cb27-308" aria-hidden="true" tabindex="-1"></a>      <span class="at">cols =</span> <span class="fu">c</span>(exactitud, sensibilidad, especificidad),</span>
-<span id="cb27-309"><a href="#cb27-309" aria-hidden="true" tabindex="-1"></a>      <span class="at">names_to =</span> <span class="st">"metrica"</span>,</span>
-<span id="cb27-310"><a href="#cb27-310" aria-hidden="true" tabindex="-1"></a>      <span class="at">values_to =</span> <span class="st">"valor"</span></span>
-<span id="cb27-311"><a href="#cb27-311" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb27-312"><a href="#cb27-312" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-313"><a href="#cb27-313" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(resultados_largos, <span class="fu">aes</span>(<span class="at">x =</span> k, <span class="at">y =</span> valor, <span class="at">color =</span> metrica, <span class="at">group =</span> metrica)) <span class="sc">+</span></span>
-<span id="cb27-314"><a href="#cb27-314" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb27-315"><a href="#cb27-315" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb27-316"><a href="#cb27-316" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> valores_k) <span class="sc">+</span></span>
-<span id="cb27-317"><a href="#cb27-317" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
-<span id="cb27-318"><a href="#cb27-318" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> <span class="st">"Comparación de métricas para distintos valores de k"</span>,</span>
-<span id="cb27-319"><a href="#cb27-319" aria-hidden="true" tabindex="-1"></a>      <span class="at">subtitle =</span> <span class="st">"Exactitud, sensibilidad y especificidad"</span>,</span>
-<span id="cb27-320"><a href="#cb27-320" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="st">"Valor de k"</span>,</span>
-<span id="cb27-321"><a href="#cb27-321" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="st">"Valor de la métrica"</span>,</span>
-<span id="cb27-322"><a href="#cb27-322" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> <span class="st">"Métrica"</span></span>
-<span id="cb27-323"><a href="#cb27-323" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb27-324"><a href="#cb27-324" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tema_libro</span>()</span>
-<span id="cb27-325"><a href="#cb27-325" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb27-326"><a href="#cb27-326" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb27-327"><a href="#cb27-327" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-328"><a href="#cb27-328" aria-hidden="true" tabindex="-1"></a><span class="fu">## Comparación conceptual con regresión logística</span></span>
-<span id="cb27-329"><a href="#cb27-329" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-330"><a href="#cb27-330" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Aspecto <span class="pp">|</span> Regresión logística <span class="pp">|</span> k-NN <span class="pp">|</span></span>
-<span id="cb27-331"><a href="#cb27-331" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|</span></span>
-<span id="cb27-332"><a href="#cb27-332" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Tipo de modelo <span class="pp">|</span> Paramétrico <span class="pp">|</span> No paramétrico <span class="pp">|</span></span>
-<span id="cb27-333"><a href="#cb27-333" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Produce modelo explícito <span class="pp">|</span> Sí <span class="pp">|</span> No en el mismo sentido <span class="pp">|</span></span>
-<span id="cb27-334"><a href="#cb27-334" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Usa distancias <span class="pp">|</span> No <span class="pp">|</span> Sí <span class="pp">|</span></span>
-<span id="cb27-335"><a href="#cb27-335" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Requiere escalamiento <span class="pp">|</span> No siempre <span class="pp">|</span> Sí <span class="pp">|</span></span>
-<span id="cb27-336"><a href="#cb27-336" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Interpretable <span class="pp">|</span> Alta <span class="pp">|</span> Media o baja <span class="pp">|</span></span>
-<span id="cb27-337"><a href="#cb27-337" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-338"><a href="#cb27-338" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conclusión</span></span>
-<span id="cb27-339"><a href="#cb27-339" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-340"><a href="#cb27-340" aria-hidden="true" tabindex="-1"></a>k-NN es un método intuitivo y útil para introducir clasificación basada en similitud. Su desempeño depende del valor de <span class="sc">\(</span>k<span class="sc">\)</span>, del escalamiento de las variables y de la calidad de las variables predictoras.</span>
-</code></pre></div><button title="Copiar al portapapeles" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
-</div></div></div></div></div>
+</nav>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026 MI Jesús Gilberto Rodríguez Escobedo</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Libro abierto elaborado con Quarto y R</p>
+</div>
+  </div>
+</footer>
 
 
 

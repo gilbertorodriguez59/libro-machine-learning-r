@@ -1,29 +1,29 @@
 {
-  "01-introduccion.qmd": {
-    "01-introduccion.html": "f15f1b3b"
-  },
   "index.qmd": {
-    "index.html": "923efeab"
+    "index.html": "45db9746"
   },
   "00-licencia-y-citacion.qmd": {
-    "00-licencia-y-citacion.html": "16b89a88"
+    "00-licencia-y-citacion.html": "3ca5b716"
+  },
+  "01-introduccion.qmd": {
+    "01-introduccion.html": "3bfa79e9"
   },
   "02-preparacion-datos.qmd": {
-    "02-preparacion-datos.html": "89a7ad2a"
+    "02-preparacion-datos.html": "ed430353"
   },
   "03-analisis-exploratorio.qmd": {
-    "03-analisis-exploratorio.html": "9a54bc23"
+    "03-analisis-exploratorio.html": "6e8aa144"
   },
   "04-regresion-logistica.qmd": {
-    "04-regresion-logistica.html": "8c9e5b2c"
+    "04-regresion-logistica.html": "dc4f49c2"
   },
   "05-knn.qmd": {
-    "05-knn.html": "e5ba6e09"
+    "05-knn.html": "961bbd7c"
   },
   "06-arboles-decision.qmd": {
-    "06-arboles-decision.html": "b012047b"
+    "06-arboles-decision.html": "c8672eb3"
   },
   "07-random-forest.qmd": {
-    "07-random-forest.html": "fe53e491"
+    "07-random-forest.html": "6a3a21d6"
   }
 }

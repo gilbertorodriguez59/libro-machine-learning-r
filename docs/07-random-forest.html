@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>8&nbsp; Random Forest para clasificación – Aprendizaje y Clasificación Automática con R</title>
+<title>7&nbsp; Random Forest para clasificación – Aprendizaje y Clasificación Automática con R</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -149,7 +149,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./07-random-forest.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Random Forest para clasificación</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./07-random-forest.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Random Forest para clasificación</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
@@ -180,7 +180,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Aprendizaje y Clasificación Automática con R</span></span></a>
+ <span class="menu-text">Presentación</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -192,43 +192,43 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./01-introduccion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">¿Qué es el aprendizaje automático?</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">¿Qué es el aprendizaje automático?</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./02-preparacion-datos.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Preparación de datos reales</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Preparación de datos reales</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03-analisis-exploratorio.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Análisis exploratorio de datos</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Análisis exploratorio de datos</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04-regresion-logistica.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regresión logística para clasificación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regresión logística para clasificación</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05-knn.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">k vecinos más cercanos, k-NN</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">k vecinos más cercanos, k-NN</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./06-arboles-decision.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Árboles de decisión para clasificación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Árboles de decisión para clasificación</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07-random-forest.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Random Forest para clasificación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Random Forest para clasificación</span></span></a>
   </div>
 </li>
     </ul>
@@ -241,30 +241,30 @@ window.Quarto = {
     <h2 id="toc-title">Tabla de contenidos</h2>
    
   <ul>
-  <li><a href="#objetivos-del-capítulo" id="toc-objetivos-del-capítulo" class="nav-link active" data-scroll-target="#objetivos-del-capítulo"><span class="header-section-number">8.1</span> Objetivos del capítulo</a></li>
-  <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción"><span class="header-section-number">8.2</span> Introducción</a></li>
-  <li><a href="#idea-intuitiva" id="toc-idea-intuitiva" class="nav-link" data-scroll-target="#idea-intuitiva"><span class="header-section-number">8.3</span> Idea intuitiva</a></li>
-  <li><a href="#fundamento-matemático" id="toc-fundamento-matemático" class="nav-link" data-scroll-target="#fundamento-matemático"><span class="header-section-number">8.4</span> Fundamento matemático</a></li>
-  <li><a href="#por-qué-funciona-mejor-que-un-solo-árbol" id="toc-por-qué-funciona-mejor-que-un-solo-árbol" class="nav-link" data-scroll-target="#por-qué-funciona-mejor-que-un-solo-árbol"><span class="header-section-number">8.5</span> ¿Por qué funciona mejor que un solo árbol?</a></li>
-  <li><a href="#algoritmo-general" id="toc-algoritmo-general" class="nav-link" data-scroll-target="#algoritmo-general"><span class="header-section-number">8.6</span> Algoritmo general</a></li>
-  <li><a href="#cargar-paquetes-y-datos" id="toc-cargar-paquetes-y-datos" class="nav-link" data-scroll-target="#cargar-paquetes-y-datos"><span class="header-section-number">8.7</span> Cargar paquetes y datos</a></li>
-  <li><a href="#selección-de-una-muestra-de-trabajo" id="toc-selección-de-una-muestra-de-trabajo" class="nav-link" data-scroll-target="#selección-de-una-muestra-de-trabajo"><span class="header-section-number">8.8</span> Selección de una muestra de trabajo</a></li>
-  <li><a href="#preparar-variables" id="toc-preparar-variables" class="nav-link" data-scroll-target="#preparar-variables"><span class="header-section-number">8.9</span> Preparar variables</a></li>
-  <li><a href="#distribución-de-la-variable-respuesta" id="toc-distribución-de-la-variable-respuesta" class="nav-link" data-scroll-target="#distribución-de-la-variable-respuesta"><span class="header-section-number">8.10</span> Distribución de la variable respuesta</a></li>
-  <li><a href="#división-en-entrenamiento-y-prueba" id="toc-división-en-entrenamiento-y-prueba" class="nav-link" data-scroll-target="#división-en-entrenamiento-y-prueba"><span class="header-section-number">8.11</span> División en entrenamiento y prueba</a></li>
-  <li><a href="#ajustar-el-modelo-random-forest" id="toc-ajustar-el-modelo-random-forest" class="nav-link" data-scroll-target="#ajustar-el-modelo-random-forest"><span class="header-section-number">8.12</span> Ajustar el modelo Random Forest</a></li>
-  <li><a href="#importancia-de-variables" id="toc-importancia-de-variables" class="nav-link" data-scroll-target="#importancia-de-variables"><span class="header-section-number">8.13</span> Importancia de variables</a></li>
-  <li><a href="#predicción-en-el-conjunto-de-prueba" id="toc-predicción-en-el-conjunto-de-prueba" class="nav-link" data-scroll-target="#predicción-en-el-conjunto-de-prueba"><span class="header-section-number">8.14</span> Predicción en el conjunto de prueba</a></li>
-  <li><a href="#matriz-de-confusión" id="toc-matriz-de-confusión" class="nav-link" data-scroll-target="#matriz-de-confusión"><span class="header-section-number">8.15</span> Matriz de confusión</a></li>
-  <li><a href="#métricas-de-evaluación" id="toc-métricas-de-evaluación" class="nav-link" data-scroll-target="#métricas-de-evaluación"><span class="header-section-number">8.16</span> Métricas de evaluación</a></li>
-  <li><a href="#distribución-de-probabilidades-predichas" id="toc-distribución-de-probabilidades-predichas" class="nav-link" data-scroll-target="#distribución-de-probabilidades-predichas"><span class="header-section-number">8.17</span> Distribución de probabilidades predichas</a></li>
-  <li><a href="#comparación-conceptual-con-otros-métodos" id="toc-comparación-conceptual-con-otros-métodos" class="nav-link" data-scroll-target="#comparación-conceptual-con-otros-métodos"><span class="header-section-number">8.18</span> Comparación conceptual con otros métodos</a></li>
-  <li><a href="#ventajas-y-desventajas" id="toc-ventajas-y-desventajas" class="nav-link" data-scroll-target="#ventajas-y-desventajas"><span class="header-section-number">8.19</span> Ventajas y desventajas</a>
+  <li><a href="#objetivos-del-capítulo" id="toc-objetivos-del-capítulo" class="nav-link active" data-scroll-target="#objetivos-del-capítulo"><span class="header-section-number">7.1</span> Objetivos del capítulo</a></li>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción"><span class="header-section-number">7.2</span> Introducción</a></li>
+  <li><a href="#idea-intuitiva" id="toc-idea-intuitiva" class="nav-link" data-scroll-target="#idea-intuitiva"><span class="header-section-number">7.3</span> Idea intuitiva</a></li>
+  <li><a href="#fundamento-matemático" id="toc-fundamento-matemático" class="nav-link" data-scroll-target="#fundamento-matemático"><span class="header-section-number">7.4</span> Fundamento matemático</a></li>
+  <li><a href="#por-qué-funciona-mejor-que-un-solo-árbol" id="toc-por-qué-funciona-mejor-que-un-solo-árbol" class="nav-link" data-scroll-target="#por-qué-funciona-mejor-que-un-solo-árbol"><span class="header-section-number">7.5</span> ¿Por qué funciona mejor que un solo árbol?</a></li>
+  <li><a href="#algoritmo-general" id="toc-algoritmo-general" class="nav-link" data-scroll-target="#algoritmo-general"><span class="header-section-number">7.6</span> Algoritmo general</a></li>
+  <li><a href="#cargar-paquetes-y-datos" id="toc-cargar-paquetes-y-datos" class="nav-link" data-scroll-target="#cargar-paquetes-y-datos"><span class="header-section-number">7.7</span> Cargar paquetes y datos</a></li>
+  <li><a href="#selección-de-una-muestra-de-trabajo" id="toc-selección-de-una-muestra-de-trabajo" class="nav-link" data-scroll-target="#selección-de-una-muestra-de-trabajo"><span class="header-section-number">7.8</span> Selección de una muestra de trabajo</a></li>
+  <li><a href="#preparar-variables" id="toc-preparar-variables" class="nav-link" data-scroll-target="#preparar-variables"><span class="header-section-number">7.9</span> Preparar variables</a></li>
+  <li><a href="#distribución-de-la-variable-respuesta" id="toc-distribución-de-la-variable-respuesta" class="nav-link" data-scroll-target="#distribución-de-la-variable-respuesta"><span class="header-section-number">7.10</span> Distribución de la variable respuesta</a></li>
+  <li><a href="#división-en-entrenamiento-y-prueba" id="toc-división-en-entrenamiento-y-prueba" class="nav-link" data-scroll-target="#división-en-entrenamiento-y-prueba"><span class="header-section-number">7.11</span> División en entrenamiento y prueba</a></li>
+  <li><a href="#ajustar-el-modelo-random-forest" id="toc-ajustar-el-modelo-random-forest" class="nav-link" data-scroll-target="#ajustar-el-modelo-random-forest"><span class="header-section-number">7.12</span> Ajustar el modelo Random Forest</a></li>
+  <li><a href="#importancia-de-variables" id="toc-importancia-de-variables" class="nav-link" data-scroll-target="#importancia-de-variables"><span class="header-section-number">7.13</span> Importancia de variables</a></li>
+  <li><a href="#predicción-en-el-conjunto-de-prueba" id="toc-predicción-en-el-conjunto-de-prueba" class="nav-link" data-scroll-target="#predicción-en-el-conjunto-de-prueba"><span class="header-section-number">7.14</span> Predicción en el conjunto de prueba</a></li>
+  <li><a href="#matriz-de-confusión" id="toc-matriz-de-confusión" class="nav-link" data-scroll-target="#matriz-de-confusión"><span class="header-section-number">7.15</span> Matriz de confusión</a></li>
+  <li><a href="#métricas-de-evaluación" id="toc-métricas-de-evaluación" class="nav-link" data-scroll-target="#métricas-de-evaluación"><span class="header-section-number">7.16</span> Métricas de evaluación</a></li>
+  <li><a href="#distribución-de-probabilidades-predichas" id="toc-distribución-de-probabilidades-predichas" class="nav-link" data-scroll-target="#distribución-de-probabilidades-predichas"><span class="header-section-number">7.17</span> Distribución de probabilidades predichas</a></li>
+  <li><a href="#comparación-conceptual-con-otros-métodos" id="toc-comparación-conceptual-con-otros-métodos" class="nav-link" data-scroll-target="#comparación-conceptual-con-otros-métodos"><span class="header-section-number">7.18</span> Comparación conceptual con otros métodos</a></li>
+  <li><a href="#ventajas-y-desventajas" id="toc-ventajas-y-desventajas" class="nav-link" data-scroll-target="#ventajas-y-desventajas"><span class="header-section-number">7.19</span> Ventajas y desventajas</a>
   <ul class="collapse">
-  <li><a href="#ventajas" id="toc-ventajas" class="nav-link" data-scroll-target="#ventajas"><span class="header-section-number">8.19.1</span> Ventajas</a></li>
-  <li><a href="#desventajas" id="toc-desventajas" class="nav-link" data-scroll-target="#desventajas"><span class="header-section-number">8.19.2</span> Desventajas</a></li>
+  <li><a href="#ventajas" id="toc-ventajas" class="nav-link" data-scroll-target="#ventajas"><span class="header-section-number">7.19.1</span> Ventajas</a></li>
+  <li><a href="#desventajas" id="toc-desventajas" class="nav-link" data-scroll-target="#desventajas"><span class="header-section-number">7.19.2</span> Desventajas</a></li>
   </ul></li>
-  <li><a href="#conclusión" id="toc-conclusión" class="nav-link" data-scroll-target="#conclusión"><span class="header-section-number">8.20</span> Conclusión</a></li>
+  <li><a href="#conclusión" id="toc-conclusión" class="nav-link" data-scroll-target="#conclusión"><span class="header-section-number">7.20</span> Conclusión</a></li>
   </ul>
 </nav>
     </div>
@@ -273,7 +273,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Random Forest para clasificación</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Código</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Mostrar todo el código</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Ocultar todo el código</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">Ver el código fuente</a></li></ul></div></div>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Random Forest para clasificación</span></h1>
 </div>
 
 
@@ -290,18 +290,18 @@ window.Quarto = {
 </header>
 
 
-<section id="objetivos-del-capítulo" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="objetivos-del-capítulo"><span class="header-section-number">8.1</span> Objetivos del capítulo</h2>
+<section id="objetivos-del-capítulo" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="objetivos-del-capítulo"><span class="header-section-number">7.1</span> Objetivos del capítulo</h2>
 <p>Al finalizar este capítulo, el lector será capaz de explicar la idea básica de Random Forest, comprender por qué combinar muchos árboles mejora la clasificación, entrenar un modelo en R, interpretar importancia de variables, generar predicciones y evaluar el modelo.</p>
 </section>
-<section id="introducción" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="introducción"><span class="header-section-number">8.2</span> Introducción</h2>
+<section id="introducción" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="introducción"><span class="header-section-number">7.2</span> Introducción</h2>
 <p>En el capítulo anterior estudiamos árboles de decisión. Aunque son fáciles de interpretar, un solo árbol puede ser inestable: pequeños cambios en los datos pueden producir un árbol distinto.</p>
 <p><strong>Random Forest</strong> resuelve este problema combinando muchos árboles de decisión. Cada árbol aprende sobre una muestra aleatoria de los datos y usando subconjuntos aleatorios de variables. Después, las predicciones individuales se combinan.</p>
 <p>En clasificación, la idea es que la clase final se determina por votación mayoritaria entre los árboles.</p>
 </section>
-<section id="idea-intuitiva" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="idea-intuitiva"><span class="header-section-number">8.3</span> Idea intuitiva</h2>
+<section id="idea-intuitiva" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="idea-intuitiva"><span class="header-section-number">7.3</span> Idea intuitiva</h2>
 <p>Podemos pensar en Random Forest como un comité de expertos.</p>
 <ul>
 <li>Cada árbol es un experto.</li>
@@ -310,8 +310,8 @@ window.Quarto = {
 <li>La decisión final surge de combinar todas las predicciones.</li>
 </ul>
 </section>
-<section id="fundamento-matemático" class="level2" data-number="8.4">
-<h2 data-number="8.4" class="anchored" data-anchor-id="fundamento-matemático"><span class="header-section-number">8.4</span> Fundamento matemático</h2>
+<section id="fundamento-matemático" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="fundamento-matemático"><span class="header-section-number">7.4</span> Fundamento matemático</h2>
 <p>Supongamos que construimos (B) árboles. Si el árbol (b) predice una clase (^{(b)}(x)) para la observación (x), la predicción final del bosque es:</p>
 <p><span class="math display">\[
 \hat{y}(x) = \text{moda}\{\hat{y}^{(1)}(x), \hat{y}^{(2)}(x), \ldots, \hat{y}^{(B)}(x)\}
@@ -321,8 +321,8 @@ window.Quarto = {
 \hat{p}(x) = \frac{1}{B} \sum_{b=1}^{B} I(\hat{y}^{(b)}(x)=1)
 \]</span></p>
 </section>
-<section id="por-qué-funciona-mejor-que-un-solo-árbol" class="level2" data-number="8.5">
-<h2 data-number="8.5" class="anchored" data-anchor-id="por-qué-funciona-mejor-que-un-solo-árbol"><span class="header-section-number">8.5</span> ¿Por qué funciona mejor que un solo árbol?</h2>
+<section id="por-qué-funciona-mejor-que-un-solo-árbol" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="por-qué-funciona-mejor-que-un-solo-árbol"><span class="header-section-number">7.5</span> ¿Por qué funciona mejor que un solo árbol?</h2>
 <p>Random Forest introduce dos fuentes de aleatoriedad:</p>
 <ol type="1">
 <li><strong>Bootstrap</strong>: cada árbol se entrena con una muestra aleatoria con reemplazo.</li>
@@ -330,8 +330,8 @@ window.Quarto = {
 </ol>
 <p>Esto hace que los árboles sean distintos entre sí. Al combinar muchos árboles, el modelo final suele generalizar mejor.</p>
 </section>
-<section id="algoritmo-general" class="level2" data-number="8.6">
-<h2 data-number="8.6" class="anchored" data-anchor-id="algoritmo-general"><span class="header-section-number">8.6</span> Algoritmo general</h2>
+<section id="algoritmo-general" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="algoritmo-general"><span class="header-section-number">7.6</span> Algoritmo general</h2>
 <pre class="text"><code>Entrada:
 - Base de datos con variables predictoras.
 - Variable respuesta categórica.
@@ -346,8 +346,8 @@ Proceso:
 5. Combinar las predicciones por votación mayoritaria.
 6. Evaluar el modelo en datos de prueba.</code></pre>
 </section>
-<section id="cargar-paquetes-y-datos" class="level2" data-number="8.7">
-<h2 data-number="8.7" class="anchored" data-anchor-id="cargar-paquetes-y-datos"><span class="header-section-number">8.7</span> Cargar paquetes y datos</h2>
+<section id="cargar-paquetes-y-datos" class="level2" data-number="7.7">
+<h2 data-number="7.7" class="anchored" data-anchor-id="cargar-paquetes-y-datos"><span class="header-section-number">7.7</span> Cargar paquetes y datos</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -380,8 +380,8 @@ Proceso:
 </div>
 </div>
 </section>
-<section id="selección-de-una-muestra-de-trabajo" class="level2" data-number="8.8">
-<h2 data-number="8.8" class="anchored" data-anchor-id="selección-de-una-muestra-de-trabajo"><span class="header-section-number">8.8</span> Selección de una muestra de trabajo</h2>
+<section id="selección-de-una-muestra-de-trabajo" class="level2" data-number="7.8">
+<h2 data-number="7.8" class="anchored" data-anchor-id="selección-de-una-muestra-de-trabajo"><span class="header-section-number">7.8</span> Selección de una muestra de trabajo</h2>
 <p>Random Forest puede entrenarse con bases grandes, pero para que el libro sea reproducible y rápido de generar en HTML y PDF, trabajaremos con una muestra amplia y controlada.</p>
 <div class="cell">
 <details class="code-fold">
@@ -404,8 +404,8 @@ Proceso:
 </div>
 </div>
 </section>
-<section id="preparar-variables" class="level2" data-number="8.9">
-<h2 data-number="8.9" class="anchored" data-anchor-id="preparar-variables"><span class="header-section-number">8.9</span> Preparar variables</h2>
+<section id="preparar-variables" class="level2" data-number="7.9">
+<h2 data-number="7.9" class="anchored" data-anchor-id="preparar-variables"><span class="header-section-number">7.9</span> Preparar variables</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -438,8 +438,8 @@ Proceso:
 </div>
 </div>
 </section>
-<section id="distribución-de-la-variable-respuesta" class="level2" data-number="8.10">
-<h2 data-number="8.10" class="anchored" data-anchor-id="distribución-de-la-variable-respuesta"><span class="header-section-number">8.10</span> Distribución de la variable respuesta</h2>
+<section id="distribución-de-la-variable-respuesta" class="level2" data-number="7.10">
+<h2 data-number="7.10" class="anchored" data-anchor-id="distribución-de-la-variable-respuesta"><span class="header-section-number">7.10</span> Distribución de la variable respuesta</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -495,8 +495,8 @@ Con víctimas   Solo daños
 </div>
 </div>
 </section>
-<section id="división-en-entrenamiento-y-prueba" class="level2" data-number="8.11">
-<h2 data-number="8.11" class="anchored" data-anchor-id="división-en-entrenamiento-y-prueba"><span class="header-section-number">8.11</span> División en entrenamiento y prueba</h2>
+<section id="división-en-entrenamiento-y-prueba" class="level2" data-number="7.11">
+<h2 data-number="7.11" class="anchored" data-anchor-id="división-en-entrenamiento-y-prueba"><span class="header-section-number">7.11</span> División en entrenamiento y prueba</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -525,8 +525,8 @@ Con víctimas   Solo daños
 </div>
 </div>
 </section>
-<section id="ajustar-el-modelo-random-forest" class="level2" data-number="8.12">
-<h2 data-number="8.12" class="anchored" data-anchor-id="ajustar-el-modelo-random-forest"><span class="header-section-number">8.12</span> Ajustar el modelo Random Forest</h2>
+<section id="ajustar-el-modelo-random-forest" class="level2" data-number="7.12">
+<h2 data-number="7.12" class="anchored" data-anchor-id="ajustar-el-modelo-random-forest"><span class="header-section-number">7.12</span> Ajustar el modelo Random Forest</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -572,8 +572,8 @@ OOB prediction error (Brier s.):  0.1066668 </code></pre>
 </div>
 </div>
 </section>
-<section id="importancia-de-variables" class="level2" data-number="8.13">
-<h2 data-number="8.13" class="anchored" data-anchor-id="importancia-de-variables"><span class="header-section-number">8.13</span> Importancia de variables</h2>
+<section id="importancia-de-variables" class="level2" data-number="7.13">
+<h2 data-number="7.13" class="anchored" data-anchor-id="importancia-de-variables"><span class="header-section-number">7.13</span> Importancia de variables</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -624,8 +624,8 @@ OOB prediction error (Brier s.):  0.1066668 </code></pre>
 </div>
 </div>
 </section>
-<section id="predicción-en-el-conjunto-de-prueba" class="level2" data-number="8.14">
-<h2 data-number="8.14" class="anchored" data-anchor-id="predicción-en-el-conjunto-de-prueba"><span class="header-section-number">8.14</span> Predicción en el conjunto de prueba</h2>
+<section id="predicción-en-el-conjunto-de-prueba" class="level2" data-number="7.14">
+<h2 data-number="7.14" class="anchored" data-anchor-id="predicción-en-el-conjunto-de-prueba"><span class="header-section-number">7.14</span> Predicción en el conjunto de prueba</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -658,8 +658,8 @@ OOB prediction error (Brier s.):  0.1066668 </code></pre>
 </div>
 </div>
 </section>
-<section id="matriz-de-confusión" class="level2" data-number="8.15">
-<h2 data-number="8.15" class="anchored" data-anchor-id="matriz-de-confusión"><span class="header-section-number">8.15</span> Matriz de confusión</h2>
+<section id="matriz-de-confusión" class="level2" data-number="7.15">
+<h2 data-number="7.15" class="anchored" data-anchor-id="matriz-de-confusión"><span class="header-section-number">7.15</span> Matriz de confusión</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -682,8 +682,8 @@ Real           Con víctimas Solo daños
 </div>
 </div>
 </section>
-<section id="métricas-de-evaluación" class="level2" data-number="8.16">
-<h2 data-number="8.16" class="anchored" data-anchor-id="métricas-de-evaluación"><span class="header-section-number">8.16</span> Métricas de evaluación</h2>
+<section id="métricas-de-evaluación" class="level2" data-number="7.16">
+<h2 data-number="7.16" class="anchored" data-anchor-id="métricas-de-evaluación"><span class="header-section-number">7.16</span> Métricas de evaluación</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -716,8 +716,8 @@ Real           Con víctimas Solo daños
 </div>
 </div>
 </section>
-<section id="distribución-de-probabilidades-predichas" class="level2" data-number="8.17">
-<h2 data-number="8.17" class="anchored" data-anchor-id="distribución-de-probabilidades-predichas"><span class="header-section-number">8.17</span> Distribución de probabilidades predichas</h2>
+<section id="distribución-de-probabilidades-predichas" class="level2" data-number="7.17">
+<h2 data-number="7.17" class="anchored" data-anchor-id="distribución-de-probabilidades-predichas"><span class="header-section-number">7.17</span> Distribución de probabilidades predichas</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -748,8 +748,8 @@ Real           Con víctimas Solo daños
 </div>
 </div>
 </section>
-<section id="comparación-conceptual-con-otros-métodos" class="level2" data-number="8.18">
-<h2 data-number="8.18" class="anchored" data-anchor-id="comparación-conceptual-con-otros-métodos"><span class="header-section-number">8.18</span> Comparación conceptual con otros métodos</h2>
+<section id="comparación-conceptual-con-otros-métodos" class="level2" data-number="7.18">
+<h2 data-number="7.18" class="anchored" data-anchor-id="comparación-conceptual-con-otros-métodos"><span class="header-section-number">7.18</span> Comparación conceptual con otros métodos</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 20%">
@@ -813,10 +813,10 @@ Real           Con víctimas Solo daños
 </tbody>
 </table>
 </section>
-<section id="ventajas-y-desventajas" class="level2" data-number="8.19">
-<h2 data-number="8.19" class="anchored" data-anchor-id="ventajas-y-desventajas"><span class="header-section-number">8.19</span> Ventajas y desventajas</h2>
-<section id="ventajas" class="level3" data-number="8.19.1">
-<h3 data-number="8.19.1" class="anchored" data-anchor-id="ventajas"><span class="header-section-number">8.19.1</span> Ventajas</h3>
+<section id="ventajas-y-desventajas" class="level2" data-number="7.19">
+<h2 data-number="7.19" class="anchored" data-anchor-id="ventajas-y-desventajas"><span class="header-section-number">7.19</span> Ventajas y desventajas</h2>
+<section id="ventajas" class="level3" data-number="7.19.1">
+<h3 data-number="7.19.1" class="anchored" data-anchor-id="ventajas"><span class="header-section-number">7.19.1</span> Ventajas</h3>
 <ul>
 <li>Suele tener muy buen desempeño predictivo.</li>
 <li>Reduce el sobreajuste de un árbol individual.</li>
@@ -825,8 +825,8 @@ Real           Con víctimas Solo daños
 <li>Proporciona importancia de variables.</li>
 </ul>
 </section>
-<section id="desventajas" class="level3" data-number="8.19.2">
-<h3 data-number="8.19.2" class="anchored" data-anchor-id="desventajas"><span class="header-section-number">8.19.2</span> Desventajas</h3>
+<section id="desventajas" class="level3" data-number="7.19.2">
+<h3 data-number="7.19.2" class="anchored" data-anchor-id="desventajas"><span class="header-section-number">7.19.2</span> Desventajas</h3>
 <ul>
 <li>Es menos interpretable que un árbol simple.</li>
 <li>Puede requerir más tiempo de cómputo.</li>
@@ -835,12 +835,10 @@ Real           Con víctimas Solo daños
 </ul>
 </section>
 </section>
-<section id="conclusión" class="level2" data-number="8.20">
-<h2 data-number="8.20" class="anchored" data-anchor-id="conclusión"><span class="header-section-number">8.20</span> Conclusión</h2>
+<section id="conclusión" class="level2" data-number="7.20">
+<h2 data-number="7.20" class="anchored" data-anchor-id="conclusión"><span class="header-section-number">7.20</span> Conclusión</h2>
 <p>Random Forest es uno de los métodos más potentes y versátiles de clasificación. Conserva la intuición básica de los árboles de decisión, pero mejora la estabilidad y la capacidad predictiva al combinar muchos árboles.</p>
 
-
-<!-- -->
 
 </section>
 
@@ -916,60 +914,9 @@ Real           Con víctimas Solo daños
       });
       clipboardModal.on('success', onCopySuccess);
     }
-    const viewSource = window.document.getElementById('quarto-view-source') ||
-                       window.document.getElementById('quarto-code-tools-source');
-    if (viewSource) {
-      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
-      viewSource.addEventListener("click", function(e) {
-        if (sourceUrl) {
-          // rstudio viewer pane
-          if (/\bcapabilities=\b/.test(window.location)) {
-            window.open(sourceUrl);
-          } else {
-            window.location.href = sourceUrl;
-          }
-        } else {
-          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
-          modal.show();
-        }
-        return false;
-      });
-    }
-    function toggleCodeHandler(show) {
-      return function(e) {
-        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-        for (let i=0; i<detailsSrc.length; i++) {
-          const details = detailsSrc[i].parentElement;
-          if (show) {
-            details.open = true;
-          } else {
-            details.removeAttribute("open");
-          }
-        }
-        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
-        const fromCls = show ? "hidden" : "unhidden";
-        const toCls = show ? "unhidden" : "hidden";
-        for (let i=0; i<cellCodeDivs.length; i++) {
-          const codeDiv = cellCodeDivs[i];
-          if (codeDiv.classList.contains(fromCls)) {
-            codeDiv.classList.remove(fromCls);
-            codeDiv.classList.add(toCls);
-          } 
-        }
-        return false;
-      }
-    }
-    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
-    if (hideAllCode) {
-      hideAllCode.addEventListener("click", toggleCodeHandler(false));
-    }
-    const showAllCode = window.document.getElementById("quarto-show-all-code");
-    if (showAllCode) {
-      showAllCode.addEventListener("click", toggleCodeHandler(true));
-    }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/gilbertorodriguez59\.github\.io\/libro-machine-learning-r\/");
+        var filterRegex = new RegExp('/' + window.location.host + '/');
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -1299,376 +1246,26 @@ Real           Con víctimas Solo daños
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./06-arboles-decision.html" class="pagination-link" aria-label="Árboles de decisión para clasificación">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Árboles de decisión para clasificación</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Árboles de decisión para clasificación</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
   </div>
-</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Ejecutar el código</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Random Forest para clasificación</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Objetivos del capítulo</span></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>Al finalizar este capítulo, el lector será capaz de explicar la idea básica de Random Forest, comprender por qué combinar muchos árboles mejora la clasificación, entrenar un modelo en R, interpretar importancia de variables, generar predicciones y evaluar el modelo.</span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="fu">## Introducción</span></span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>En el capítulo anterior estudiamos árboles de decisión. Aunque son fáciles de interpretar, un solo árbol puede ser inestable: pequeños cambios en los datos pueden producir un árbol distinto.</span>
-<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>**Random Forest** resuelve este problema combinando muchos árboles de decisión. Cada árbol aprende sobre una muestra aleatoria de los datos y usando subconjuntos aleatorios de variables. Después, las predicciones individuales se combinan.</span>
-<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>En clasificación, la idea es que la clase final se determina por votación mayoritaria entre los árboles.</span>
-<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a><span class="fu">## Idea intuitiva</span></span>
-<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a>Podemos pensar en Random Forest como un comité de expertos.</span>
-<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Cada árbol es un experto.</span>
-<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Cada experto observa una parte aleatoria de los datos.</span>
-<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Cada experto genera una predicción.</span>
-<span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>La decisión final surge de combinar todas las predicciones.</span>
-<span id="cb30-23"><a href="#cb30-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-24"><a href="#cb30-24" aria-hidden="true" tabindex="-1"></a><span class="fu">## Fundamento matemático</span></span>
-<span id="cb30-25"><a href="#cb30-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-26"><a href="#cb30-26" aria-hidden="true" tabindex="-1"></a>Supongamos que construimos <span class="sc">\(</span>B<span class="sc">\)</span> árboles. Si el árbol <span class="sc">\(</span>b<span class="sc">\)</span> predice una clase <span class="sc">\(</span>\hat{y}^{(b)}(x)<span class="sc">\)</span> para la observación <span class="sc">\(</span>x<span class="sc">\)</span>, la predicción final del bosque es:</span>
-<span id="cb30-27"><a href="#cb30-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-28"><a href="#cb30-28" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb30-29"><a href="#cb30-29" aria-hidden="true" tabindex="-1"></a>\hat{y}(x) = \text{moda}<span class="sc">\{</span>\hat{y}^{(1)}(x), \hat{y}^{(2)}(x), \ldots, \hat{y}^{(B)}(x)<span class="sc">\}</span></span>
-<span id="cb30-30"><a href="#cb30-30" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb30-31"><a href="#cb30-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-32"><a href="#cb30-32" aria-hidden="true" tabindex="-1"></a>Si queremos una probabilidad estimada para la clase "Con víctimas", podemos usar la proporción de árboles que votan por esa clase:</span>
-<span id="cb30-33"><a href="#cb30-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-34"><a href="#cb30-34" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb30-35"><a href="#cb30-35" aria-hidden="true" tabindex="-1"></a>\hat{p}(x) = \frac{1}{B} \sum_{b=1}^{B} I(\hat{y}^{(b)}(x)=1)</span>
-<span id="cb30-36"><a href="#cb30-36" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb30-37"><a href="#cb30-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-38"><a href="#cb30-38" aria-hidden="true" tabindex="-1"></a><span class="fu">## ¿Por qué funciona mejor que un solo árbol?</span></span>
-<span id="cb30-39"><a href="#cb30-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-40"><a href="#cb30-40" aria-hidden="true" tabindex="-1"></a>Random Forest introduce dos fuentes de aleatoriedad:</span>
-<span id="cb30-41"><a href="#cb30-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-42"><a href="#cb30-42" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Bootstrap**: cada árbol se entrena con una muestra aleatoria con reemplazo.</span>
-<span id="cb30-43"><a href="#cb30-43" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Selección aleatoria de variables**: en cada división del árbol solo se considera un subconjunto aleatorio de variables.</span>
-<span id="cb30-44"><a href="#cb30-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-45"><a href="#cb30-45" aria-hidden="true" tabindex="-1"></a>Esto hace que los árboles sean distintos entre sí. Al combinar muchos árboles, el modelo final suele generalizar mejor.</span>
-<span id="cb30-46"><a href="#cb30-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-47"><a href="#cb30-47" aria-hidden="true" tabindex="-1"></a><span class="fu">## Algoritmo general</span></span>
-<span id="cb30-48"><a href="#cb30-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-49"><a href="#cb30-49" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
-<span id="cb30-50"><a href="#cb30-50" aria-hidden="true" tabindex="-1"></a><span class="in">Entrada:</span></span>
-<span id="cb30-51"><a href="#cb30-51" aria-hidden="true" tabindex="-1"></a><span class="in">- Base de datos con variables predictoras.</span></span>
-<span id="cb30-52"><a href="#cb30-52" aria-hidden="true" tabindex="-1"></a><span class="in">- Variable respuesta categórica.</span></span>
-<span id="cb30-53"><a href="#cb30-53" aria-hidden="true" tabindex="-1"></a><span class="in">- Número de árboles B.</span></span>
-<span id="cb30-54"><a href="#cb30-54" aria-hidden="true" tabindex="-1"></a><span class="in">- Número de variables candidatas por división mtry.</span></span>
-<span id="cb30-55"><a href="#cb30-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-56"><a href="#cb30-56" aria-hidden="true" tabindex="-1"></a><span class="in">Proceso:</span></span>
-<span id="cb30-57"><a href="#cb30-57" aria-hidden="true" tabindex="-1"></a><span class="in">1. Tomar una muestra bootstrap de los datos.</span></span>
-<span id="cb30-58"><a href="#cb30-58" aria-hidden="true" tabindex="-1"></a><span class="in">2. Construir un árbol de decisión.</span></span>
-<span id="cb30-59"><a href="#cb30-59" aria-hidden="true" tabindex="-1"></a><span class="in">3. En cada división, considerar solo un subconjunto aleatorio de variables.</span></span>
-<span id="cb30-60"><a href="#cb30-60" aria-hidden="true" tabindex="-1"></a><span class="in">4. Repetir el proceso para construir muchos árboles.</span></span>
-<span id="cb30-61"><a href="#cb30-61" aria-hidden="true" tabindex="-1"></a><span class="in">5. Combinar las predicciones por votación mayoritaria.</span></span>
-<span id="cb30-62"><a href="#cb30-62" aria-hidden="true" tabindex="-1"></a><span class="in">6. Evaluar el modelo en datos de prueba.</span></span>
-<span id="cb30-63"><a href="#cb30-63" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb30-64"><a href="#cb30-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-65"><a href="#cb30-65" aria-hidden="true" tabindex="-1"></a><span class="fu">## Cargar paquetes y datos</span></span>
-<span id="cb30-66"><a href="#cb30-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-69"><a href="#cb30-69" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb30-70"><a href="#cb30-70" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb30-71"><a href="#cb30-71" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb30-72"><a href="#cb30-72" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb30-73"><a href="#cb30-73" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb30-74"><a href="#cb30-74" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb30-75"><a href="#cb30-75" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ranger)</span>
-<span id="cb30-76"><a href="#cb30-76" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"util_graficas.R"</span>)</span>
-<span id="cb30-77"><a href="#cb30-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-78"><a href="#cb30-78" aria-hidden="true" tabindex="-1"></a>ruta_atus_ml <span class="ot">&lt;-</span> <span class="st">"datos/atus_ml_preparado.csv"</span></span>
-<span id="cb30-79"><a href="#cb30-79" aria-hidden="true" tabindex="-1"></a><span class="fu">file.exists</span>(ruta_atus_ml)</span>
-<span id="cb30-80"><a href="#cb30-80" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb30-81"><a href="#cb30-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-84"><a href="#cb30-84" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb30-85"><a href="#cb30-85" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">file.exists</span>(ruta_atus_ml)) {</span>
-<span id="cb30-86"><a href="#cb30-86" aria-hidden="true" tabindex="-1"></a>  atus_ml <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(ruta_atus_ml, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb30-87"><a href="#cb30-87" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Base preparada cargada correctamente."</span>)</span>
-<span id="cb30-88"><a href="#cb30-88" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb30-89"><a href="#cb30-89" aria-hidden="true" tabindex="-1"></a>  atus_ml <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb30-90"><a href="#cb30-90" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"No se encontró el archivo datos/atus_ml_preparado.csv. Ejecuta primero el capítulo 2."</span>)</span>
-<span id="cb30-91"><a href="#cb30-91" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb30-92"><a href="#cb30-92" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb30-93"><a href="#cb30-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-94"><a href="#cb30-94" aria-hidden="true" tabindex="-1"></a><span class="fu">## Selección de una muestra de trabajo</span></span>
-<span id="cb30-95"><a href="#cb30-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-96"><a href="#cb30-96" aria-hidden="true" tabindex="-1"></a>Random Forest puede entrenarse con bases grandes, pero para que el libro sea reproducible y rápido de generar en HTML y PDF, trabajaremos con una muestra amplia y controlada.</span>
-<span id="cb30-97"><a href="#cb30-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-100"><a href="#cb30-100" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb30-101"><a href="#cb30-101" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(atus_ml)) {</span>
-<span id="cb30-102"><a href="#cb30-102" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb30-103"><a href="#cb30-103" aria-hidden="true" tabindex="-1"></a>  tamano_muestra <span class="ot">&lt;-</span> <span class="fu">min</span>(<span class="dv">30000</span>, <span class="fu">nrow</span>(atus_ml))</span>
-<span id="cb30-104"><a href="#cb30-104" aria-hidden="true" tabindex="-1"></a>  atus_rf_base <span class="ot">&lt;-</span> atus_ml <span class="sc">|&gt;</span></span>
-<span id="cb30-105"><a href="#cb30-105" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sample_n</span>(tamano_muestra)</span>
-<span id="cb30-106"><a href="#cb30-106" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-107"><a href="#cb30-107" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(</span>
-<span id="cb30-108"><a href="#cb30-108" aria-hidden="true" tabindex="-1"></a>    <span class="at">filas =</span> <span class="fu">nrow</span>(atus_rf_base),</span>
-<span id="cb30-109"><a href="#cb30-109" aria-hidden="true" tabindex="-1"></a>    <span class="at">columnas =</span> <span class="fu">ncol</span>(atus_rf_base)</span>
-<span id="cb30-110"><a href="#cb30-110" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb30-111"><a href="#cb30-111" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb30-112"><a href="#cb30-112" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb30-113"><a href="#cb30-113" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-114"><a href="#cb30-114" aria-hidden="true" tabindex="-1"></a><span class="fu">## Preparar variables</span></span>
-<span id="cb30-115"><a href="#cb30-115" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-118"><a href="#cb30-118" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb30-119"><a href="#cb30-119" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"atus_rf_base"</span>)) {</span>
-<span id="cb30-120"><a href="#cb30-120" aria-hidden="true" tabindex="-1"></a>  atus_rf_base <span class="ot">&lt;-</span> atus_rf_base <span class="sc">|&gt;</span></span>
-<span id="cb30-121"><a href="#cb30-121" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
-<span id="cb30-122"><a href="#cb30-122" aria-hidden="true" tabindex="-1"></a>      <span class="at">accidente_con_victimas =</span> <span class="fu">factor</span>(</span>
-<span id="cb30-123"><a href="#cb30-123" aria-hidden="true" tabindex="-1"></a>        accidente_con_victimas,</span>
-<span id="cb30-124"><a href="#cb30-124" aria-hidden="true" tabindex="-1"></a>        <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Con víctimas"</span>, <span class="st">"Solo daños"</span>)</span>
-<span id="cb30-125"><a href="#cb30-125" aria-hidden="true" tabindex="-1"></a>      ),</span>
-<span id="cb30-126"><a href="#cb30-126" aria-hidden="true" tabindex="-1"></a>      <span class="at">MES =</span> <span class="fu">as.factor</span>(MES),</span>
-<span id="cb30-127"><a href="#cb30-127" aria-hidden="true" tabindex="-1"></a>      <span class="at">ID_HORA =</span> <span class="fu">as.numeric</span>(ID_HORA),</span>
-<span id="cb30-128"><a href="#cb30-128" aria-hidden="true" tabindex="-1"></a>      <span class="at">DIASEMANA =</span> <span class="fu">as.factor</span>(DIASEMANA),</span>
-<span id="cb30-129"><a href="#cb30-129" aria-hidden="true" tabindex="-1"></a>      <span class="at">TIPACCID =</span> <span class="fu">as.factor</span>(TIPACCID),</span>
-<span id="cb30-130"><a href="#cb30-130" aria-hidden="true" tabindex="-1"></a>      <span class="at">CAUSAACCI =</span> <span class="fu">as.factor</span>(CAUSAACCI)</span>
-<span id="cb30-131"><a href="#cb30-131" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span></span>
-<span id="cb30-132"><a href="#cb30-132" aria-hidden="true" tabindex="-1"></a>    <span class="fu">na.omit</span>()</span>
-<span id="cb30-133"><a href="#cb30-133" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-134"><a href="#cb30-134" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str</span>(atus_rf_base)</span>
-<span id="cb30-135"><a href="#cb30-135" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb30-136"><a href="#cb30-136" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb30-137"><a href="#cb30-137" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-138"><a href="#cb30-138" aria-hidden="true" tabindex="-1"></a><span class="fu">## Distribución de la variable respuesta</span></span>
-<span id="cb30-139"><a href="#cb30-139" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-142"><a href="#cb30-142" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb30-143"><a href="#cb30-143" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"atus_rf_base"</span>)) {</span>
-<span id="cb30-144"><a href="#cb30-144" aria-hidden="true" tabindex="-1"></a>  tabla_clases_rf <span class="ot">&lt;-</span> <span class="fu">table</span>(atus_rf_base<span class="sc">$</span>accidente_con_victimas)</span>
-<span id="cb30-145"><a href="#cb30-145" aria-hidden="true" tabindex="-1"></a>  tabla_clases_rf</span>
-<span id="cb30-146"><a href="#cb30-146" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb30-147"><a href="#cb30-147" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb30-148"><a href="#cb30-148" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-151"><a href="#cb30-151" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb30-152"><a href="#cb30-152" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"tabla_clases_rf"</span>)) {</span>
-<span id="cb30-153"><a href="#cb30-153" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> <span class="fu">prop.table</span>(tabla_clases_rf), <span class="dv">2</span>)</span>
-<span id="cb30-154"><a href="#cb30-154" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb30-155"><a href="#cb30-155" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb30-156"><a href="#cb30-156" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-159"><a href="#cb30-159" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb30-160"><a href="#cb30-160" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"atus_rf_base"</span>)) {</span>
-<span id="cb30-161"><a href="#cb30-161" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(atus_rf_base, <span class="fu">aes</span>(<span class="at">x =</span> accidente_con_victimas, <span class="at">fill =</span> accidente_con_victimas)) <span class="sc">+</span></span>
-<span id="cb30-162"><a href="#cb30-162" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">width =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb30-163"><a href="#cb30-163" aria-hidden="true" tabindex="-1"></a>    <span class="fu">escala_clases_fill</span>() <span class="sc">+</span></span>
-<span id="cb30-164"><a href="#cb30-164" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> etiqueta_numero) <span class="sc">+</span></span>
-<span id="cb30-165"><a href="#cb30-165" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
-<span id="cb30-166"><a href="#cb30-166" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> <span class="st">"Distribución de la variable respuesta"</span>,</span>
-<span id="cb30-167"><a href="#cb30-167" aria-hidden="true" tabindex="-1"></a>      <span class="at">subtitle =</span> <span class="st">"Muestra de trabajo para Random Forest"</span>,</span>
-<span id="cb30-168"><a href="#cb30-168" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="st">"Clase"</span>,</span>
-<span id="cb30-169"><a href="#cb30-169" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="st">"Número de accidentes"</span>,</span>
-<span id="cb30-170"><a href="#cb30-170" aria-hidden="true" tabindex="-1"></a>      <span class="at">fill =</span> <span class="st">"Clase"</span></span>
-<span id="cb30-171"><a href="#cb30-171" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb30-172"><a href="#cb30-172" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tema_libro</span>() <span class="sc">+</span></span>
-<span id="cb30-173"><a href="#cb30-173" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span>
-<span id="cb30-174"><a href="#cb30-174" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb30-175"><a href="#cb30-175" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb30-176"><a href="#cb30-176" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-177"><a href="#cb30-177" aria-hidden="true" tabindex="-1"></a><span class="fu">## División en entrenamiento y prueba</span></span>
-<span id="cb30-178"><a href="#cb30-178" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-181"><a href="#cb30-181" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb30-182"><a href="#cb30-182" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"atus_rf_base"</span>)) {</span>
-<span id="cb30-183"><a href="#cb30-183" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb30-184"><a href="#cb30-184" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(atus_rf_base)</span>
-<span id="cb30-185"><a href="#cb30-185" aria-hidden="true" tabindex="-1"></a>  indices_entrenamiento <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>n, <span class="at">size =</span> <span class="fu">round</span>(<span class="fl">0.7</span> <span class="sc">*</span> n))</span>
-<span id="cb30-186"><a href="#cb30-186" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-187"><a href="#cb30-187" aria-hidden="true" tabindex="-1"></a>  entrenamiento <span class="ot">&lt;-</span> atus_rf_base[indices_entrenamiento, ]</span>
-<span id="cb30-188"><a href="#cb30-188" aria-hidden="true" tabindex="-1"></a>  prueba <span class="ot">&lt;-</span> atus_rf_base[<span class="sc">-</span>indices_entrenamiento, ]</span>
-<span id="cb30-189"><a href="#cb30-189" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-190"><a href="#cb30-190" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(</span>
-<span id="cb30-191"><a href="#cb30-191" aria-hidden="true" tabindex="-1"></a>    <span class="at">conjunto =</span> <span class="fu">c</span>(<span class="st">"Entrenamiento"</span>, <span class="st">"Prueba"</span>),</span>
-<span id="cb30-192"><a href="#cb30-192" aria-hidden="true" tabindex="-1"></a>    <span class="at">registros =</span> <span class="fu">c</span>(<span class="fu">nrow</span>(entrenamiento), <span class="fu">nrow</span>(prueba)),</span>
-<span id="cb30-193"><a href="#cb30-193" aria-hidden="true" tabindex="-1"></a>    <span class="at">porcentaje =</span> <span class="fu">c</span>(</span>
-<span id="cb30-194"><a href="#cb30-194" aria-hidden="true" tabindex="-1"></a>      <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> <span class="fu">nrow</span>(entrenamiento) <span class="sc">/</span> <span class="fu">nrow</span>(atus_rf_base), <span class="dv">2</span>),</span>
-<span id="cb30-195"><a href="#cb30-195" aria-hidden="true" tabindex="-1"></a>      <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> <span class="fu">nrow</span>(prueba) <span class="sc">/</span> <span class="fu">nrow</span>(atus_rf_base), <span class="dv">2</span>)</span>
-<span id="cb30-196"><a href="#cb30-196" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb30-197"><a href="#cb30-197" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb30-198"><a href="#cb30-198" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb30-199"><a href="#cb30-199" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb30-200"><a href="#cb30-200" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-201"><a href="#cb30-201" aria-hidden="true" tabindex="-1"></a><span class="fu">## Ajustar el modelo Random Forest</span></span>
-<span id="cb30-202"><a href="#cb30-202" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-205"><a href="#cb30-205" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb30-206"><a href="#cb30-206" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb30-207"><a href="#cb30-207" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb30-208"><a href="#cb30-208" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"entrenamiento"</span>)) {</span>
-<span id="cb30-209"><a href="#cb30-209" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb30-210"><a href="#cb30-210" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-211"><a href="#cb30-211" aria-hidden="true" tabindex="-1"></a>  modelo_rf <span class="ot">&lt;-</span> <span class="fu">ranger</span>(</span>
-<span id="cb30-212"><a href="#cb30-212" aria-hidden="true" tabindex="-1"></a>    <span class="at">formula =</span> accidente_con_victimas <span class="sc">~</span> MES <span class="sc">+</span> ID_HORA <span class="sc">+</span> DIASEMANA <span class="sc">+</span> TIPACCID <span class="sc">+</span> CAUSAACCI,</span>
-<span id="cb30-213"><a href="#cb30-213" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> entrenamiento,</span>
-<span id="cb30-214"><a href="#cb30-214" aria-hidden="true" tabindex="-1"></a>    <span class="at">num.trees =</span> <span class="dv">200</span>,</span>
-<span id="cb30-215"><a href="#cb30-215" aria-hidden="true" tabindex="-1"></a>    <span class="at">mtry =</span> <span class="dv">3</span>,</span>
-<span id="cb30-216"><a href="#cb30-216" aria-hidden="true" tabindex="-1"></a>    <span class="at">min.node.size =</span> <span class="dv">20</span>,</span>
-<span id="cb30-217"><a href="#cb30-217" aria-hidden="true" tabindex="-1"></a>    <span class="at">importance =</span> <span class="st">"impurity"</span>,</span>
-<span id="cb30-218"><a href="#cb30-218" aria-hidden="true" tabindex="-1"></a>    <span class="at">probability =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb30-219"><a href="#cb30-219" aria-hidden="true" tabindex="-1"></a>    <span class="at">classification =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb30-220"><a href="#cb30-220" aria-hidden="true" tabindex="-1"></a>    <span class="at">seed =</span> <span class="dv">123</span></span>
-<span id="cb30-221"><a href="#cb30-221" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb30-222"><a href="#cb30-222" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb30-223"><a href="#cb30-223" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb30-224"><a href="#cb30-224" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-227"><a href="#cb30-227" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb30-228"><a href="#cb30-228" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"modelo_rf"</span>)) {</span>
-<span id="cb30-229"><a href="#cb30-229" aria-hidden="true" tabindex="-1"></a>  modelo_rf</span>
-<span id="cb30-230"><a href="#cb30-230" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb30-231"><a href="#cb30-231" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb30-232"><a href="#cb30-232" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-233"><a href="#cb30-233" aria-hidden="true" tabindex="-1"></a><span class="fu">## Importancia de variables</span></span>
-<span id="cb30-234"><a href="#cb30-234" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-237"><a href="#cb30-237" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb30-238"><a href="#cb30-238" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"modelo_rf"</span>)) {</span>
-<span id="cb30-239"><a href="#cb30-239" aria-hidden="true" tabindex="-1"></a>  importancia_rf <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb30-240"><a href="#cb30-240" aria-hidden="true" tabindex="-1"></a>    <span class="at">variable =</span> <span class="fu">names</span>(modelo_rf<span class="sc">$</span>variable.importance),</span>
-<span id="cb30-241"><a href="#cb30-241" aria-hidden="true" tabindex="-1"></a>    <span class="at">importancia =</span> <span class="fu">as.numeric</span>(modelo_rf<span class="sc">$</span>variable.importance)</span>
-<span id="cb30-242"><a href="#cb30-242" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb30-243"><a href="#cb30-243" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(importancia))</span>
-<span id="cb30-244"><a href="#cb30-244" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-245"><a href="#cb30-245" aria-hidden="true" tabindex="-1"></a>  importancia_rf</span>
-<span id="cb30-246"><a href="#cb30-246" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb30-247"><a href="#cb30-247" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb30-248"><a href="#cb30-248" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-251"><a href="#cb30-251" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb30-252"><a href="#cb30-252" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"importancia_rf"</span>)) {</span>
-<span id="cb30-253"><a href="#cb30-253" aria-hidden="true" tabindex="-1"></a>  importancia_top <span class="ot">&lt;-</span> importancia_rf <span class="sc">|&gt;</span></span>
-<span id="cb30-254"><a href="#cb30-254" aria-hidden="true" tabindex="-1"></a>    <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>)</span>
-<span id="cb30-255"><a href="#cb30-255" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-256"><a href="#cb30-256" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(importancia_top, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(variable, importancia), <span class="at">y =</span> importancia)) <span class="sc">+</span></span>
-<span id="cb30-257"><a href="#cb30-257" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_col</span>(<span class="at">fill =</span> col_azul, <span class="at">width =</span> <span class="fl">0.75</span>) <span class="sc">+</span></span>
-<span id="cb30-258"><a href="#cb30-258" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb30-259"><a href="#cb30-259" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
-<span id="cb30-260"><a href="#cb30-260" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> <span class="st">"Importancia de variables en Random Forest"</span>,</span>
-<span id="cb30-261"><a href="#cb30-261" aria-hidden="true" tabindex="-1"></a>      <span class="at">subtitle =</span> <span class="st">"Variables más influyentes en la clasificación"</span>,</span>
-<span id="cb30-262"><a href="#cb30-262" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="st">"Variable"</span>,</span>
-<span id="cb30-263"><a href="#cb30-263" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="st">"Importancia"</span></span>
-<span id="cb30-264"><a href="#cb30-264" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb30-265"><a href="#cb30-265" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tema_libro</span>()</span>
-<span id="cb30-266"><a href="#cb30-266" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb30-267"><a href="#cb30-267" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb30-268"><a href="#cb30-268" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-269"><a href="#cb30-269" aria-hidden="true" tabindex="-1"></a><span class="fu">## Predicción en el conjunto de prueba</span></span>
-<span id="cb30-270"><a href="#cb30-270" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-273"><a href="#cb30-273" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb30-274"><a href="#cb30-274" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"modelo_rf"</span>) <span class="sc">&amp;&amp;</span> <span class="fu">exists</span>(<span class="st">"prueba"</span>)) {</span>
-<span id="cb30-275"><a href="#cb30-275" aria-hidden="true" tabindex="-1"></a>  predicciones_rf <span class="ot">&lt;-</span> <span class="fu">predict</span>(modelo_rf, <span class="at">data =</span> prueba)</span>
-<span id="cb30-276"><a href="#cb30-276" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-277"><a href="#cb30-277" aria-hidden="true" tabindex="-1"></a>  probabilidades_rf <span class="ot">&lt;-</span> predicciones_rf<span class="sc">$</span>predictions[, <span class="st">"Con víctimas"</span>]</span>
-<span id="cb30-278"><a href="#cb30-278" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-279"><a href="#cb30-279" aria-hidden="true" tabindex="-1"></a>  clases_rf <span class="ot">&lt;-</span> <span class="fu">colnames</span>(predicciones_rf<span class="sc">$</span>predictions)[</span>
-<span id="cb30-280"><a href="#cb30-280" aria-hidden="true" tabindex="-1"></a>    <span class="fu">max.col</span>(predicciones_rf<span class="sc">$</span>predictions, <span class="at">ties.method =</span> <span class="st">"first"</span>)</span>
-<span id="cb30-281"><a href="#cb30-281" aria-hidden="true" tabindex="-1"></a>  ]</span>
-<span id="cb30-282"><a href="#cb30-282" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-283"><a href="#cb30-283" aria-hidden="true" tabindex="-1"></a>  clases_rf <span class="ot">&lt;-</span> <span class="fu">factor</span>(clases_rf, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Con víctimas"</span>, <span class="st">"Solo daños"</span>))</span>
-<span id="cb30-284"><a href="#cb30-284" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-285"><a href="#cb30-285" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="fu">data.frame</span>(</span>
-<span id="cb30-286"><a href="#cb30-286" aria-hidden="true" tabindex="-1"></a>    <span class="at">real =</span> prueba<span class="sc">$</span>accidente_con_victimas,</span>
-<span id="cb30-287"><a href="#cb30-287" aria-hidden="true" tabindex="-1"></a>    <span class="at">probabilidad_con_victimas =</span> probabilidades_rf,</span>
-<span id="cb30-288"><a href="#cb30-288" aria-hidden="true" tabindex="-1"></a>    <span class="at">clase_predicha =</span> clases_rf</span>
-<span id="cb30-289"><a href="#cb30-289" aria-hidden="true" tabindex="-1"></a>  ))</span>
-<span id="cb30-290"><a href="#cb30-290" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb30-291"><a href="#cb30-291" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb30-292"><a href="#cb30-292" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-293"><a href="#cb30-293" aria-hidden="true" tabindex="-1"></a><span class="fu">## Matriz de confusión</span></span>
-<span id="cb30-294"><a href="#cb30-294" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-297"><a href="#cb30-297" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb30-298"><a href="#cb30-298" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"clases_rf"</span>)) {</span>
-<span id="cb30-299"><a href="#cb30-299" aria-hidden="true" tabindex="-1"></a>  real_rf <span class="ot">&lt;-</span> <span class="fu">factor</span>(prueba<span class="sc">$</span>accidente_con_victimas, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Con víctimas"</span>, <span class="st">"Solo daños"</span>))</span>
-<span id="cb30-300"><a href="#cb30-300" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-301"><a href="#cb30-301" aria-hidden="true" tabindex="-1"></a>  matriz_confusion_rf <span class="ot">&lt;-</span> <span class="fu">table</span>(</span>
-<span id="cb30-302"><a href="#cb30-302" aria-hidden="true" tabindex="-1"></a>    <span class="at">Real =</span> real_rf,</span>
-<span id="cb30-303"><a href="#cb30-303" aria-hidden="true" tabindex="-1"></a>    <span class="at">Predicho =</span> clases_rf</span>
-<span id="cb30-304"><a href="#cb30-304" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb30-305"><a href="#cb30-305" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-306"><a href="#cb30-306" aria-hidden="true" tabindex="-1"></a>  matriz_confusion_rf</span>
-<span id="cb30-307"><a href="#cb30-307" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb30-308"><a href="#cb30-308" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb30-309"><a href="#cb30-309" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-310"><a href="#cb30-310" aria-hidden="true" tabindex="-1"></a><span class="fu">## Métricas de evaluación</span></span>
-<span id="cb30-311"><a href="#cb30-311" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-314"><a href="#cb30-314" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb30-315"><a href="#cb30-315" aria-hidden="true" tabindex="-1"></a>calcular_metricas_rf <span class="ot">&lt;-</span> <span class="cf">function</span>(real, predicho) {</span>
-<span id="cb30-316"><a href="#cb30-316" aria-hidden="true" tabindex="-1"></a>  real <span class="ot">&lt;-</span> <span class="fu">factor</span>(real, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Con víctimas"</span>, <span class="st">"Solo daños"</span>))</span>
-<span id="cb30-317"><a href="#cb30-317" aria-hidden="true" tabindex="-1"></a>  predicho <span class="ot">&lt;-</span> <span class="fu">factor</span>(predicho, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Con víctimas"</span>, <span class="st">"Solo daños"</span>))</span>
-<span id="cb30-318"><a href="#cb30-318" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-319"><a href="#cb30-319" aria-hidden="true" tabindex="-1"></a>  matriz <span class="ot">&lt;-</span> <span class="fu">table</span>(<span class="at">Real =</span> real, <span class="at">Predicho =</span> predicho)</span>
-<span id="cb30-320"><a href="#cb30-320" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-321"><a href="#cb30-321" aria-hidden="true" tabindex="-1"></a>  VP <span class="ot">&lt;-</span> matriz[<span class="st">"Con víctimas"</span>, <span class="st">"Con víctimas"</span>]</span>
-<span id="cb30-322"><a href="#cb30-322" aria-hidden="true" tabindex="-1"></a>  FN <span class="ot">&lt;-</span> matriz[<span class="st">"Con víctimas"</span>, <span class="st">"Solo daños"</span>]</span>
-<span id="cb30-323"><a href="#cb30-323" aria-hidden="true" tabindex="-1"></a>  FP <span class="ot">&lt;-</span> matriz[<span class="st">"Solo daños"</span>, <span class="st">"Con víctimas"</span>]</span>
-<span id="cb30-324"><a href="#cb30-324" aria-hidden="true" tabindex="-1"></a>  VN <span class="ot">&lt;-</span> matriz[<span class="st">"Solo daños"</span>, <span class="st">"Solo daños"</span>]</span>
-<span id="cb30-325"><a href="#cb30-325" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-326"><a href="#cb30-326" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(</span>
-<span id="cb30-327"><a href="#cb30-327" aria-hidden="true" tabindex="-1"></a>    <span class="at">exactitud =</span> (VP <span class="sc">+</span> VN) <span class="sc">/</span> (VP <span class="sc">+</span> FN <span class="sc">+</span> FP <span class="sc">+</span> VN),</span>
-<span id="cb30-328"><a href="#cb30-328" aria-hidden="true" tabindex="-1"></a>    <span class="at">sensibilidad =</span> VP <span class="sc">/</span> (VP <span class="sc">+</span> FN),</span>
-<span id="cb30-329"><a href="#cb30-329" aria-hidden="true" tabindex="-1"></a>    <span class="at">especificidad =</span> VN <span class="sc">/</span> (VN <span class="sc">+</span> FP)</span>
-<span id="cb30-330"><a href="#cb30-330" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb30-331"><a href="#cb30-331" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb30-332"><a href="#cb30-332" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-333"><a href="#cb30-333" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"real_rf"</span>) <span class="sc">&amp;&amp;</span> <span class="fu">exists</span>(<span class="st">"clases_rf"</span>)) {</span>
-<span id="cb30-334"><a href="#cb30-334" aria-hidden="true" tabindex="-1"></a>  metricas_rf <span class="ot">&lt;-</span> <span class="fu">calcular_metricas_rf</span>(real_rf, clases_rf)</span>
-<span id="cb30-335"><a href="#cb30-335" aria-hidden="true" tabindex="-1"></a>  metricas_rf</span>
-<span id="cb30-336"><a href="#cb30-336" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb30-337"><a href="#cb30-337" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb30-338"><a href="#cb30-338" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-339"><a href="#cb30-339" aria-hidden="true" tabindex="-1"></a><span class="fu">## Distribución de probabilidades predichas</span></span>
-<span id="cb30-340"><a href="#cb30-340" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-343"><a href="#cb30-343" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb30-344"><a href="#cb30-344" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"probabilidades_rf"</span>)) {</span>
-<span id="cb30-345"><a href="#cb30-345" aria-hidden="true" tabindex="-1"></a>  datos_prob_rf <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb30-346"><a href="#cb30-346" aria-hidden="true" tabindex="-1"></a>    <span class="at">probabilidad =</span> probabilidades_rf,</span>
-<span id="cb30-347"><a href="#cb30-347" aria-hidden="true" tabindex="-1"></a>    <span class="at">clase_real =</span> real_rf</span>
-<span id="cb30-348"><a href="#cb30-348" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb30-349"><a href="#cb30-349" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-350"><a href="#cb30-350" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(datos_prob_rf, <span class="fu">aes</span>(<span class="at">x =</span> probabilidad, <span class="at">fill =</span> clase_real)) <span class="sc">+</span></span>
-<span id="cb30-351"><a href="#cb30-351" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">30</span>, <span class="at">alpha =</span> <span class="fl">0.75</span>, <span class="at">position =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
-<span id="cb30-352"><a href="#cb30-352" aria-hidden="true" tabindex="-1"></a>    <span class="fu">escala_clases_fill</span>(<span class="at">name =</span> <span class="st">"Clase real"</span>) <span class="sc">+</span></span>
-<span id="cb30-353"><a href="#cb30-353" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
-<span id="cb30-354"><a href="#cb30-354" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> <span class="st">"Distribución de probabilidades predichas"</span>,</span>
-<span id="cb30-355"><a href="#cb30-355" aria-hidden="true" tabindex="-1"></a>      <span class="at">subtitle =</span> <span class="st">"Random Forest"</span>,</span>
-<span id="cb30-356"><a href="#cb30-356" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="st">"Probabilidad predicha de 'Con víctimas'"</span>,</span>
-<span id="cb30-357"><a href="#cb30-357" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="st">"Frecuencia"</span></span>
-<span id="cb30-358"><a href="#cb30-358" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb30-359"><a href="#cb30-359" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tema_libro</span>()</span>
-<span id="cb30-360"><a href="#cb30-360" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb30-361"><a href="#cb30-361" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb30-362"><a href="#cb30-362" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-363"><a href="#cb30-363" aria-hidden="true" tabindex="-1"></a><span class="fu">## Comparación conceptual con otros métodos</span></span>
-<span id="cb30-364"><a href="#cb30-364" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-365"><a href="#cb30-365" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Aspecto <span class="pp">|</span> Regresión logística <span class="pp">|</span> k-NN <span class="pp">|</span> Árbol de decisión <span class="pp">|</span> Random Forest <span class="pp">|</span></span>
-<span id="cb30-366"><a href="#cb30-366" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|---|---|</span></span>
-<span id="cb30-367"><a href="#cb30-367" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Tipo de modelo <span class="pp">|</span> Paramétrico <span class="pp">|</span> No paramétrico <span class="pp">|</span> No paramétrico <span class="pp">|</span> Ensamble <span class="pp">|</span></span>
-<span id="cb30-368"><a href="#cb30-368" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Interpretabilidad <span class="pp">|</span> Alta <span class="pp">|</span> Media o baja <span class="pp">|</span> Alta <span class="pp">|</span> Media <span class="pp">|</span></span>
-<span id="cb30-369"><a href="#cb30-369" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Usa distancias <span class="pp">|</span> No <span class="pp">|</span> Sí <span class="pp">|</span> No <span class="pp">|</span> No <span class="pp">|</span></span>
-<span id="cb30-370"><a href="#cb30-370" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Requiere escalamiento <span class="pp">|</span> No siempre <span class="pp">|</span> Sí <span class="pp">|</span> No <span class="pp">|</span> No <span class="pp">|</span></span>
-<span id="cb30-371"><a href="#cb30-371" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Produce reglas explícitas <span class="pp">|</span> Parcialmente <span class="pp">|</span> No <span class="pp">|</span> Sí <span class="pp">|</span> No directamente <span class="pp">|</span></span>
-<span id="cb30-372"><a href="#cb30-372" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Desempeño predictivo <span class="pp">|</span> Bueno <span class="pp">|</span> Variable <span class="pp">|</span> Bueno <span class="pp">|</span> Muy bueno <span class="pp">|</span></span>
-<span id="cb30-373"><a href="#cb30-373" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-374"><a href="#cb30-374" aria-hidden="true" tabindex="-1"></a><span class="fu">## Ventajas y desventajas</span></span>
-<span id="cb30-375"><a href="#cb30-375" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-376"><a href="#cb30-376" aria-hidden="true" tabindex="-1"></a><span class="fu">### Ventajas</span></span>
-<span id="cb30-377"><a href="#cb30-377" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-378"><a href="#cb30-378" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Suele tener muy buen desempeño predictivo.</span>
-<span id="cb30-379"><a href="#cb30-379" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Reduce el sobreajuste de un árbol individual.</span>
-<span id="cb30-380"><a href="#cb30-380" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Puede manejar relaciones no lineales.</span>
-<span id="cb30-381"><a href="#cb30-381" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Funciona con variables numéricas y categóricas.</span>
-<span id="cb30-382"><a href="#cb30-382" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Proporciona importancia de variables.</span>
-<span id="cb30-383"><a href="#cb30-383" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-384"><a href="#cb30-384" aria-hidden="true" tabindex="-1"></a><span class="fu">### Desventajas</span></span>
-<span id="cb30-385"><a href="#cb30-385" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-386"><a href="#cb30-386" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Es menos interpretable que un árbol simple.</span>
-<span id="cb30-387"><a href="#cb30-387" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Puede requerir más tiempo de cómputo.</span>
-<span id="cb30-388"><a href="#cb30-388" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>El ajuste de hiperparámetros puede influir en el desempeño.</span>
-<span id="cb30-389"><a href="#cb30-389" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Un bosque grande puede ser pesado para algunos equipos.</span>
-<span id="cb30-390"><a href="#cb30-390" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-391"><a href="#cb30-391" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conclusión</span></span>
-<span id="cb30-392"><a href="#cb30-392" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-393"><a href="#cb30-393" aria-hidden="true" tabindex="-1"></a>Random Forest es uno de los métodos más potentes y versátiles de clasificación. Conserva la intuición básica de los árboles de decisión, pero mejora la estabilidad y la capacidad predictiva al combinar muchos árboles.</span>
-</code></pre></div><button title="Copiar al portapapeles" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
-</div></div></div></div></div>
+</nav>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026 MI Jesús Gilberto Rodríguez Escobedo</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Libro abierto elaborado con Quarto y R</p>
+</div>
+  </div>
+</footer>
 
 
 

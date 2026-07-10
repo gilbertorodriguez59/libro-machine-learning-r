@@ -1,30 +1,35 @@
----
-title: "Aprendizaje y Clasificación Automática con R"
-subtitle: "Un enfoque práctico con datos abiertos reales"
-author: "MI Jesús Gilberto Rodríguez Escobedo"
----
+# Presentación {.unnumbered}
 
-## Presentación
+::: {.hero-box}
+## Aprendizaje y Clasificación Automática con R {.unnumbered}
+
+### Un enfoque práctico con datos abiertos reales {.unnumbered}
+
+**Autor:** MI Jesús Gilberto Rodríguez Escobedo  
+**Versión:** 0.4  
+**Modalidad:** Libro abierto, práctico e interactivo  
+:::
 
 Este libro introduce el aprendizaje automático (*Machine Learning*) mediante ejemplos claros, didácticos y prácticos desarrollados principalmente en **R**.
 
 La intención no es escribir un tratado matemático extenso, sino construir una guía aplicada para aprender haciendo con datos abiertos reales. En esta versión trabajamos con datos de accidentes de tránsito de México y los usamos como hilo conductor para explicar preparación de datos, análisis exploratorio y modelos de clasificación.
 
-::: {.callout-tip title="Enfoque del libro"}
+::: {.nota-azul}
+**Enfoque del libro.**  
 El libro combina tres elementos: fundamento conceptual, código reproducible en R e interpretación didáctica de los resultados.
 :::
 
-## Objetivo general
+## Objetivo general {.unnumbered}
 
 Desarrollar competencias básicas e intermedias en aprendizaje automático mediante el análisis, modelado e interpretación de datos reales.
 
-## Público al que va dirigido
+## Público al que va dirigido {.unnumbered}
 
 Este libro está dirigido a estudiantes de ingeniería, ciencias, ciencia de datos, estadística aplicada y áreas afines que desean iniciar en aprendizaje automático con un enfoque práctico.
 
-## Software utilizado
+## Software utilizado {.unnumbered}
 
-Los ejemplos se desarrollan principalmente en R, usando RStudio y Quarto. También se mencionan herramientas útiles para publicar y compartir resultados:
+Los ejemplos se desarrollan principalmente en **R**, usando RStudio y Quarto. También se mencionan herramientas útiles para publicar y compartir resultados:
 
 - RStudio
 - Consola de R
@@ -33,7 +38,7 @@ Los ejemplos se desarrollan principalmente en R, usando RStudio y Quarto. Tambi�
 - GitHub Pages
 - Quarto Pub
 
-## Estructura actual del libro
+## Estructura del libro {.unnumbered}
 
 1. Introducción al aprendizaje automático.
 2. Preparación de datos reales.
@@ -43,6 +48,6 @@ Los ejemplos se desarrollan principalmente en R, usando RStudio y Quarto. Tambi�
 6. Árboles de decisión.
 7. Random Forest.
 
-## Nota para el lector
+## Nota para el lector {.unnumbered}
 
 Los capítulos están diseñados para leerse y ejecutarse paso a paso. Cada bloque de código busca responder una pregunta concreta y cada resultado se acompaña de una interpretación didáctica.

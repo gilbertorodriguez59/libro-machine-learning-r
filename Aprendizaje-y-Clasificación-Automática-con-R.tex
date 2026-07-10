@@ -157,21 +157,21 @@
  
 
 
-\renewcommand{\contentsname}{Índice general}
-\renewcommand{\chaptername}{Capítulo}
 \usepackage{xcolor}
-\definecolor{azulLibro}{HTML}{0B3D91}
-\definecolor{turquesaLibro}{HTML}{00A6A6}
+\definecolor{azulprofundo}{HTML}{0B3C5D}
+\definecolor{turquesa}{HTML}{00A6A6}
 \usepackage{titlesec}
 \titleformat{\chapter}[display]
-  {\normalfont\huge\bfseries\color{azulLibro}}
-  {\chaptertitlename\ \thechapter}{20pt}{\Huge}
+  {\normalfont\huge\bfseries\color{azulprofundo}}
+  {\chaptertitlename\ \thechapter}{18pt}{\Huge}
 \titleformat{\section}
-  {\normalfont\Large\bfseries\color{azulLibro}}
+  {\normalfont\Large\bfseries\color{azulprofundo}}
   {\thesection}{1em}{}
 \titleformat{\subsection}
-  {\normalfont\large\bfseries\color{turquesaLibro}}
+  {\normalfont\large\bfseries\color{turquesa}}
   {\thesubsection}{1em}{}
+\renewcommand{\contentsname}{Índice general}
+\renewcommand{\chaptername}{Capítulo}
 \makeatletter
 \@ifpackageloaded{tcolorbox}{}{\usepackage[skins,breakable]{tcolorbox}}
 \@ifpackageloaded{fontawesome5}{}{\usepackage{fontawesome5}}
@@ -270,27 +270,6 @@
 \mainmatter
 \bookmarksetup{startatroot}
 
-\chapter{Aprendizaje y Clasificación Automática con
-R}\label{aprendizaje-y-clasificaciuxf3n-automuxe1tica-con-r}
-
-Un enfoque práctico con datos abiertos reales
-
-\hfill\break
-
-\bookmarksetup{startatroot}
-
-\chapter{Aprendizaje y Clasificación Automática con
-R}\label{aprendizaje-y-clasificaciuxf3n-automuxe1tica-con-r-1}
-
-\section{Un enfoque práctico con datos abiertos
-reales}\label{un-enfoque-pruxe1ctico-con-datos-abiertos-reales}
-
-\textbf{Autor:} MI Jesús Gilberto Rodríguez Escobedo\\
-\textbf{Versión:} 0.3\\
-\textbf{Modalidad:} Libro abierto, práctico e interactivo
-
-\bookmarksetup{startatroot}
-
 \chapter*{Presentación}\label{presentaciuxf3n}
 \addcontentsline{toc}{chapter}{Presentación}
 
@@ -306,11 +285,10 @@ reales. En esta versión trabajamos con datos de accidentes de tránsito
 de México y los usamos como hilo conductor para explicar preparación de
 datos, análisis exploratorio y modelos de clasificación.
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Enfoque del libro}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-note-color!10!white, colframe=quarto-callout-note-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Enfoque del libro}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
 
-El libro combina tres elementos: \textbf{fundamento conceptual},
-\textbf{código reproducible en R} e \textbf{interpretación didáctica de
-los resultados}.
+El libro combina tres elementos: fundamento conceptual, código
+reproducible en R e interpretación didáctica de los resultados.
 
 \end{tcolorbox}
 
@@ -391,14 +369,24 @@ se acompaña de una interpretación didáctica.
 
 \bookmarksetup{startatroot}
 
-\chapter{Licencia, autoría y forma de
+\chapter*{Licencia, autoría y forma de
 citar}\label{licencia-autoruxeda-y-forma-de-citar}
+\addcontentsline{toc}{chapter}{Licencia, autoría y forma de citar}
 
-\section{Autor}\label{autor}
+\markboth{Licencia, autoría y forma de citar}{Licencia, autoría y forma
+de citar}
+
+\section*{Autor}\label{autor}
+\addcontentsline{toc}{section}{Autor}
+
+\markright{Autor}
 
 \textbf{MI Jesús Gilberto Rodríguez Escobedo}
 
-\section{Licencia}\label{licencia}
+\section*{Licencia}\label{licencia}
+\addcontentsline{toc}{section}{Licencia}
+
+\markright{Licencia}
 
 Este libro se distribuye bajo la licencia \textbf{Creative Commons
 Atribución-NoComercial-CompartirIgual 4.0 Internacional (CC BY-NC-SA
@@ -409,13 +397,19 @@ educativos y no comerciales, siempre que se otorgue el crédito
 correspondiente al autor y las obras derivadas se compartan bajo una
 licencia compatible.
 
-\section{Cita sugerida}\label{cita-sugerida}
+\section*{Cita sugerida}\label{cita-sugerida}
+\addcontentsline{toc}{section}{Cita sugerida}
+
+\markright{Cita sugerida}
 
 Rodríguez Escobedo, J. G. (2026). \emph{Aprendizaje y Clasificación
 Automática con R: Un enfoque práctico con datos abiertos reales}. Libro
 web publicado con Quarto y GitHub Pages.
 
-\section{Uso educativo}\label{uso-educativo}
+\section*{Uso educativo}\label{uso-educativo}
+\addcontentsline{toc}{section}{Uso educativo}
+
+\markright{Uso educativo}
 
 El propósito de este libro es apoyar la enseñanza y el aprendizaje de
 técnicas de aprendizaje automático con R, usando datos reales y un

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>6&nbsp; Regresión logística para clasificación – Aprendizaje y Clasificación Automática con R</title>
+<title>4&nbsp; Regresión logística para clasificación – Aprendizaje y Clasificación Automática con R</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -150,7 +150,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04-regresion-logistica.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Regresión logística para clasificación</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04-regresion-logistica.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regresión logística para clasificación</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
@@ -181,49 +181,49 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Aprendizaje y Clasificación Automática con R</span></span></a>
+ <span class="menu-text">Presentación</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./00-licencia-y-citacion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Licencia, autoría y forma de citar</span></span></a>
+ <span class="menu-text">Licencia, autoría y forma de citar</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./01-introduccion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">¿Qué es el aprendizaje automático?</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">¿Qué es el aprendizaje automático?</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./02-preparacion-datos.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Preparación de datos reales</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Preparación de datos reales</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03-analisis-exploratorio.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Análisis exploratorio de datos</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Análisis exploratorio de datos</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04-regresion-logistica.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Regresión logística para clasificación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regresión logística para clasificación</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05-knn.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">k vecinos más cercanos, k-NN</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">k vecinos más cercanos, k-NN</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./06-arboles-decision.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Árboles de decisión para clasificación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Árboles de decisión para clasificación</span></span></a>
   </div>
 </li>
     </ul>
@@ -236,24 +236,24 @@ window.Quarto = {
     <h2 id="toc-title">Tabla de contenidos</h2>
    
   <ul>
-  <li><a href="#objetivos-del-capítulo" id="toc-objetivos-del-capítulo" class="nav-link active" data-scroll-target="#objetivos-del-capítulo"><span class="header-section-number">6.1</span> Objetivos del capítulo</a></li>
-  <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción"><span class="header-section-number">6.2</span> Introducción</a></li>
-  <li><a href="#la-función-logística" id="toc-la-función-logística" class="nav-link" data-scroll-target="#la-función-logística"><span class="header-section-number">6.3</span> La función logística</a></li>
-  <li><a href="#fundamento-matemático" id="toc-fundamento-matemático" class="nav-link" data-scroll-target="#fundamento-matemático"><span class="header-section-number">6.4</span> Fundamento matemático</a></li>
-  <li><a href="#algoritmo-de-regresión-logística" id="toc-algoritmo-de-regresión-logística" class="nav-link" data-scroll-target="#algoritmo-de-regresión-logística"><span class="header-section-number">6.5</span> Algoritmo de regresión logística</a></li>
-  <li><a href="#visualización-de-la-función-logística" id="toc-visualización-de-la-función-logística" class="nav-link" data-scroll-target="#visualización-de-la-función-logística"><span class="header-section-number">6.6</span> Visualización de la función logística</a></li>
-  <li><a href="#cargar-paquetes-y-datos" id="toc-cargar-paquetes-y-datos" class="nav-link" data-scroll-target="#cargar-paquetes-y-datos"><span class="header-section-number">6.7</span> Cargar paquetes y datos</a></li>
-  <li><a href="#preparar-variables-para-el-modelo" id="toc-preparar-variables-para-el-modelo" class="nav-link" data-scroll-target="#preparar-variables-para-el-modelo"><span class="header-section-number">6.8</span> Preparar variables para el modelo</a></li>
-  <li><a href="#división-en-entrenamiento-y-prueba" id="toc-división-en-entrenamiento-y-prueba" class="nav-link" data-scroll-target="#división-en-entrenamiento-y-prueba"><span class="header-section-number">6.9</span> División en entrenamiento y prueba</a></li>
-  <li><a href="#ajustar-el-modelo" id="toc-ajustar-el-modelo" class="nav-link" data-scroll-target="#ajustar-el-modelo"><span class="header-section-number">6.10</span> Ajustar el modelo</a></li>
-  <li><a href="#predicción-de-probabilidades" id="toc-predicción-de-probabilidades" class="nav-link" data-scroll-target="#predicción-de-probabilidades"><span class="header-section-number">6.11</span> Predicción de probabilidades</a></li>
-  <li><a href="#de-probabilidades-a-clases" id="toc-de-probabilidades-a-clases" class="nav-link" data-scroll-target="#de-probabilidades-a-clases"><span class="header-section-number">6.12</span> De probabilidades a clases</a></li>
-  <li><a href="#matriz-de-confusión" id="toc-matriz-de-confusión" class="nav-link" data-scroll-target="#matriz-de-confusión"><span class="header-section-number">6.13</span> Matriz de confusión</a></li>
-  <li><a href="#métricas-de-evaluación" id="toc-métricas-de-evaluación" class="nav-link" data-scroll-target="#métricas-de-evaluación"><span class="header-section-number">6.14</span> Métricas de evaluación</a></li>
-  <li><a href="#cambiar-el-punto-de-corte" id="toc-cambiar-el-punto-de-corte" class="nav-link" data-scroll-target="#cambiar-el-punto-de-corte"><span class="header-section-number">6.15</span> Cambiar el punto de corte</a></li>
-  <li><a href="#distribución-de-probabilidades-predichas" id="toc-distribución-de-probabilidades-predichas" class="nav-link" data-scroll-target="#distribución-de-probabilidades-predichas"><span class="header-section-number">6.16</span> Distribución de probabilidades predichas</a></li>
-  <li><a href="#odds-ratios" id="toc-odds-ratios" class="nav-link" data-scroll-target="#odds-ratios"><span class="header-section-number">6.17</span> Odds ratios</a></li>
-  <li><a href="#conclusión" id="toc-conclusión" class="nav-link" data-scroll-target="#conclusión"><span class="header-section-number">6.18</span> Conclusión</a></li>
+  <li><a href="#objetivos-del-capítulo" id="toc-objetivos-del-capítulo" class="nav-link active" data-scroll-target="#objetivos-del-capítulo"><span class="header-section-number">4.1</span> Objetivos del capítulo</a></li>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción"><span class="header-section-number">4.2</span> Introducción</a></li>
+  <li><a href="#la-función-logística" id="toc-la-función-logística" class="nav-link" data-scroll-target="#la-función-logística"><span class="header-section-number">4.3</span> La función logística</a></li>
+  <li><a href="#fundamento-matemático" id="toc-fundamento-matemático" class="nav-link" data-scroll-target="#fundamento-matemático"><span class="header-section-number">4.4</span> Fundamento matemático</a></li>
+  <li><a href="#algoritmo-de-regresión-logística" id="toc-algoritmo-de-regresión-logística" class="nav-link" data-scroll-target="#algoritmo-de-regresión-logística"><span class="header-section-number">4.5</span> Algoritmo de regresión logística</a></li>
+  <li><a href="#visualización-de-la-función-logística" id="toc-visualización-de-la-función-logística" class="nav-link" data-scroll-target="#visualización-de-la-función-logística"><span class="header-section-number">4.6</span> Visualización de la función logística</a></li>
+  <li><a href="#cargar-paquetes-y-datos" id="toc-cargar-paquetes-y-datos" class="nav-link" data-scroll-target="#cargar-paquetes-y-datos"><span class="header-section-number">4.7</span> Cargar paquetes y datos</a></li>
+  <li><a href="#preparar-variables-para-el-modelo" id="toc-preparar-variables-para-el-modelo" class="nav-link" data-scroll-target="#preparar-variables-para-el-modelo"><span class="header-section-number">4.8</span> Preparar variables para el modelo</a></li>
+  <li><a href="#división-en-entrenamiento-y-prueba" id="toc-división-en-entrenamiento-y-prueba" class="nav-link" data-scroll-target="#división-en-entrenamiento-y-prueba"><span class="header-section-number">4.9</span> División en entrenamiento y prueba</a></li>
+  <li><a href="#ajustar-el-modelo" id="toc-ajustar-el-modelo" class="nav-link" data-scroll-target="#ajustar-el-modelo"><span class="header-section-number">4.10</span> Ajustar el modelo</a></li>
+  <li><a href="#predicción-de-probabilidades" id="toc-predicción-de-probabilidades" class="nav-link" data-scroll-target="#predicción-de-probabilidades"><span class="header-section-number">4.11</span> Predicción de probabilidades</a></li>
+  <li><a href="#de-probabilidades-a-clases" id="toc-de-probabilidades-a-clases" class="nav-link" data-scroll-target="#de-probabilidades-a-clases"><span class="header-section-number">4.12</span> De probabilidades a clases</a></li>
+  <li><a href="#matriz-de-confusión" id="toc-matriz-de-confusión" class="nav-link" data-scroll-target="#matriz-de-confusión"><span class="header-section-number">4.13</span> Matriz de confusión</a></li>
+  <li><a href="#métricas-de-evaluación" id="toc-métricas-de-evaluación" class="nav-link" data-scroll-target="#métricas-de-evaluación"><span class="header-section-number">4.14</span> Métricas de evaluación</a></li>
+  <li><a href="#cambiar-el-punto-de-corte" id="toc-cambiar-el-punto-de-corte" class="nav-link" data-scroll-target="#cambiar-el-punto-de-corte"><span class="header-section-number">4.15</span> Cambiar el punto de corte</a></li>
+  <li><a href="#distribución-de-probabilidades-predichas" id="toc-distribución-de-probabilidades-predichas" class="nav-link" data-scroll-target="#distribución-de-probabilidades-predichas"><span class="header-section-number">4.16</span> Distribución de probabilidades predichas</a></li>
+  <li><a href="#odds-ratios" id="toc-odds-ratios" class="nav-link" data-scroll-target="#odds-ratios"><span class="header-section-number">4.17</span> Odds ratios</a></li>
+  <li><a href="#conclusión" id="toc-conclusión" class="nav-link" data-scroll-target="#conclusión"><span class="header-section-number">4.18</span> Conclusión</a></li>
   </ul>
 </nav>
     </div>
@@ -262,7 +262,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Regresión logística para clasificación</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Código</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Mostrar todo el código</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Ocultar todo el código</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">Ver el código fuente</a></li></ul></div></div>
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regresión logística para clasificación</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Código</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Mostrar todo el código</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Ocultar todo el código</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">Ver el código fuente</a></li></ul></div></div>
 </div>
 
 
@@ -279,20 +279,20 @@ window.Quarto = {
 </header>
 
 
-<section id="objetivos-del-capítulo" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="objetivos-del-capítulo"><span class="header-section-number">6.1</span> Objetivos del capítulo</h2>
+<section id="objetivos-del-capítulo" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="objetivos-del-capítulo"><span class="header-section-number">4.1</span> Objetivos del capítulo</h2>
 <p>Al finalizar este capítulo, el lector será capaz de ajustar una regresión logística, predecir probabilidades, construir una matriz de confusión e interpretar métricas de clasificación.</p>
 </section>
-<section id="introducción" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="introducción"><span class="header-section-number">6.2</span> Introducción</h2>
+<section id="introducción" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="introducción"><span class="header-section-number">4.2</span> Introducción</h2>
 <p>El problema que estudiaremos es:</p>
 <blockquote class="blockquote">
 <p>¿Podemos estimar la probabilidad de que un accidente de tránsito tenga víctimas?</p>
 </blockquote>
 <p>La variable que queremos predecir es <code>accidente_con_victimas</code>.</p>
 </section>
-<section id="la-función-logística" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="la-función-logística"><span class="header-section-number">6.3</span> La función logística</h2>
+<section id="la-función-logística" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="la-función-logística"><span class="header-section-number">4.3</span> La función logística</h2>
 <p>La regresión logística utiliza una función que convierte cualquier valor real en una probabilidad entre 0 y 1:</p>
 <p><span class="math display">\[
 p =
@@ -303,8 +303,8 @@ p =
 z = \beta_0 + \beta_1x_1 + \beta_2x_2 + \cdots + \beta_px_p
 \]</span></p>
 </section>
-<section id="fundamento-matemático" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="fundamento-matemático"><span class="header-section-number">6.4</span> Fundamento matemático</h2>
+<section id="fundamento-matemático" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="fundamento-matemático"><span class="header-section-number">4.4</span> Fundamento matemático</h2>
 <p>En clasificación binaria, la respuesta puede representarse como:</p>
 <p><span class="math display">\[
 Y_i =
@@ -317,8 +317,8 @@ Y_i =
 \]</span></p>
 <p>La regresión logística estima <span class="math inline">\(P(Y_i = 1 \mid X_i) = \hat{p}_i\)</span> y clasifica con un punto de corte <span class="math inline">\(c\)</span>.</p>
 </section>
-<section id="algoritmo-de-regresión-logística" class="level2" data-number="6.5">
-<h2 data-number="6.5" class="anchored" data-anchor-id="algoritmo-de-regresión-logística"><span class="header-section-number">6.5</span> Algoritmo de regresión logística</h2>
+<section id="algoritmo-de-regresión-logística" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="algoritmo-de-regresión-logística"><span class="header-section-number">4.5</span> Algoritmo de regresión logística</h2>
 <pre class="text"><code>Algoritmo: Regresión logística para clasificación binaria
 
 Entrada:
@@ -338,8 +338,8 @@ Salida:
   - Clases predichas
   - Métricas de evaluación</code></pre>
 </section>
-<section id="visualización-de-la-función-logística" class="level2" data-number="6.6">
-<h2 data-number="6.6" class="anchored" data-anchor-id="visualización-de-la-función-logística"><span class="header-section-number">6.6</span> Visualización de la función logística</h2>
+<section id="visualización-de-la-función-logística" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="visualización-de-la-función-logística"><span class="header-section-number">4.6</span> Visualización de la función logística</h2>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Código</summary>
@@ -364,8 +364,8 @@ Salida:
 <p><strong>Interpretación del resultado.</strong><br>
 La curva tiene forma de “S”. Para valores muy negativos de <span class="math inline">\(z\)</span>, la probabilidad se acerca a 0. Para valores muy positivos, se acerca a 1.</p>
 </section>
-<section id="cargar-paquetes-y-datos" class="level2" data-number="6.7">
-<h2 data-number="6.7" class="anchored" data-anchor-id="cargar-paquetes-y-datos"><span class="header-section-number">6.7</span> Cargar paquetes y datos</h2>
+<section id="cargar-paquetes-y-datos" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="cargar-paquetes-y-datos"><span class="header-section-number">4.7</span> Cargar paquetes y datos</h2>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Código</summary>
@@ -396,8 +396,8 @@ La curva tiene forma de “S”. Para valores muy negativos de <span class="math
 </div>
 </div>
 </section>
-<section id="preparar-variables-para-el-modelo" class="level2" data-number="6.8">
-<h2 data-number="6.8" class="anchored" data-anchor-id="preparar-variables-para-el-modelo"><span class="header-section-number">6.8</span> Preparar variables para el modelo</h2>
+<section id="preparar-variables-para-el-modelo" class="level2" data-number="4.8">
+<h2 data-number="4.8" class="anchored" data-anchor-id="preparar-variables-para-el-modelo"><span class="header-section-number">4.8</span> Preparar variables para el modelo</h2>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Código</summary>
@@ -423,8 +423,8 @@ Con víctimas   Solo daños
 </div>
 </div>
 </section>
-<section id="división-en-entrenamiento-y-prueba" class="level2" data-number="6.9">
-<h2 data-number="6.9" class="anchored" data-anchor-id="división-en-entrenamiento-y-prueba"><span class="header-section-number">6.9</span> División en entrenamiento y prueba</h2>
+<section id="división-en-entrenamiento-y-prueba" class="level2" data-number="4.9">
+<h2 data-number="4.9" class="anchored" data-anchor-id="división-en-entrenamiento-y-prueba"><span class="header-section-number">4.9</span> División en entrenamiento y prueba</h2>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Código</summary>
@@ -452,8 +452,8 @@ Con víctimas   Solo daños
 </div>
 </div>
 </section>
-<section id="ajustar-el-modelo" class="level2" data-number="6.10">
-<h2 data-number="6.10" class="anchored" data-anchor-id="ajustar-el-modelo"><span class="header-section-number">6.10</span> Ajustar el modelo</h2>
+<section id="ajustar-el-modelo" class="level2" data-number="4.10">
+<h2 data-number="4.10" class="anchored" data-anchor-id="ajustar-el-modelo"><span class="header-section-number">4.10</span> Ajustar el modelo</h2>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Código</summary>
@@ -493,8 +493,8 @@ MES12       -0.111888509   0.02959338 -3.78086333 1.562855e-04</code></pre>
 <p><strong>Interpretación del resultado.</strong><br>
 Se muestran solo los primeros coeficientes para no saturar el PDF. Los coeficientes indican cambios en el logit respecto a categorías de referencia.</p>
 </section>
-<section id="predicción-de-probabilidades" class="level2" data-number="6.11">
-<h2 data-number="6.11" class="anchored" data-anchor-id="predicción-de-probabilidades"><span class="header-section-number">6.11</span> Predicción de probabilidades</h2>
+<section id="predicción-de-probabilidades" class="level2" data-number="4.11">
+<h2 data-number="4.11" class="anchored" data-anchor-id="predicción-de-probabilidades"><span class="header-section-number">4.11</span> Predicción de probabilidades</h2>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Código</summary>
@@ -523,8 +523,8 @@ Se muestran solo los primeros coeficientes para no saturar el PDF. Los coeficien
 <p><strong>Interpretación del resultado.</strong><br>
 Cada valor de <code>probabilidad_victimas</code> estima la probabilidad de que el accidente tenga víctimas.</p>
 </section>
-<section id="de-probabilidades-a-clases" class="level2" data-number="6.12">
-<h2 data-number="6.12" class="anchored" data-anchor-id="de-probabilidades-a-clases"><span class="header-section-number">6.12</span> De probabilidades a clases</h2>
+<section id="de-probabilidades-a-clases" class="level2" data-number="4.12">
+<h2 data-number="4.12" class="anchored" data-anchor-id="de-probabilidades-a-clases"><span class="header-section-number">4.12</span> De probabilidades a clases</h2>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Código</summary>
@@ -540,8 +540,8 @@ Cada valor de <code>probabilidad_victimas</code> estima la probabilidad de que e
 </details>
 </div>
 </section>
-<section id="matriz-de-confusión" class="level2" data-number="6.13">
-<h2 data-number="6.13" class="anchored" data-anchor-id="matriz-de-confusión"><span class="header-section-number">6.13</span> Matriz de confusión</h2>
+<section id="matriz-de-confusión" class="level2" data-number="4.13">
+<h2 data-number="4.13" class="anchored" data-anchor-id="matriz-de-confusión"><span class="header-section-number">4.13</span> Matriz de confusión</h2>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Código</summary>
@@ -564,8 +564,8 @@ Real           Con víctimas Solo daños
 <p><strong>Interpretación del resultado.</strong><br>
 La diagonal contiene clasificaciones correctas. Los falsos negativos son accidentes con víctimas predichos como solo daños.</p>
 </section>
-<section id="métricas-de-evaluación" class="level2" data-number="6.14">
-<h2 data-number="6.14" class="anchored" data-anchor-id="métricas-de-evaluación"><span class="header-section-number">6.14</span> Métricas de evaluación</h2>
+<section id="métricas-de-evaluación" class="level2" data-number="4.14">
+<h2 data-number="4.14" class="anchored" data-anchor-id="métricas-de-evaluación"><span class="header-section-number">4.14</span> Métricas de evaluación</h2>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Código</summary>
@@ -591,8 +591,8 @@ La diagonal contiene clasificaciones correctas. Los falsos negativos son acciden
 </div>
 </div>
 </section>
-<section id="cambiar-el-punto-de-corte" class="level2" data-number="6.15">
-<h2 data-number="6.15" class="anchored" data-anchor-id="cambiar-el-punto-de-corte"><span class="header-section-number">6.15</span> Cambiar el punto de corte</h2>
+<section id="cambiar-el-punto-de-corte" class="level2" data-number="4.15">
+<h2 data-number="4.15" class="anchored" data-anchor-id="cambiar-el-punto-de-corte"><span class="header-section-number">4.15</span> Cambiar el punto de corte</h2>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Código</summary>
@@ -643,8 +643,8 @@ Real           Con víctimas Solo daños
 <p><strong>Interpretación del resultado.</strong><br>
 Bajar el punto de corte suele aumentar la sensibilidad, aunque puede disminuir la especificidad. En seguridad vial, detectar más accidentes con víctimas puede ser más importante que maximizar la exactitud.</p>
 </section>
-<section id="distribución-de-probabilidades-predichas" class="level2" data-number="6.16">
-<h2 data-number="6.16" class="anchored" data-anchor-id="distribución-de-probabilidades-predichas"><span class="header-section-number">6.16</span> Distribución de probabilidades predichas</h2>
+<section id="distribución-de-probabilidades-predichas" class="level2" data-number="4.16">
+<h2 data-number="4.16" class="anchored" data-anchor-id="distribución-de-probabilidades-predichas"><span class="header-section-number">4.16</span> Distribución de probabilidades predichas</h2>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Código</summary>
@@ -668,8 +668,8 @@ Bajar el punto de corte suele aumentar la sensibilidad, aunque puede disminuir l
 </div>
 </div>
 </section>
-<section id="odds-ratios" class="level2" data-number="6.17">
-<h2 data-number="6.17" class="anchored" data-anchor-id="odds-ratios"><span class="header-section-number">6.17</span> Odds ratios</h2>
+<section id="odds-ratios" class="level2" data-number="4.17">
+<h2 data-number="4.17" class="anchored" data-anchor-id="odds-ratios"><span class="header-section-number">4.17</span> Odds ratios</h2>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Código</summary>
@@ -699,8 +699,8 @@ MES12             MES12 8.941439e-01</code></pre>
 </div>
 </div>
 </section>
-<section id="conclusión" class="level2" data-number="6.18">
-<h2 data-number="6.18" class="anchored" data-anchor-id="conclusión"><span class="header-section-number">6.18</span> Conclusión</h2>
+<section id="conclusión" class="level2" data-number="4.18">
+<h2 data-number="4.18" class="anchored" data-anchor-id="conclusión"><span class="header-section-number">4.18</span> Conclusión</h2>
 <p>La regresión logística es un modelo útil, interpretable y adecuado para clasificación binaria. En este capítulo vimos que el punto de corte modifica el balance entre sensibilidad y especificidad.</p>
 
 
@@ -1163,12 +1163,12 @@ MES12             MES12 8.941439e-01</code></pre>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./03-analisis-exploratorio.html" class="pagination-link" aria-label="Análisis exploratorio de datos">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Análisis exploratorio de datos</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Análisis exploratorio de datos</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./05-knn.html" class="pagination-link" aria-label="k vecinos más cercanos, k-NN">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">k vecinos más cercanos, k-NN</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">k vecinos más cercanos, k-NN</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Ejecutar el código</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
@@ -1497,13 +1497,13 @@ MES12             MES12 8.941439e-01</code></pre>
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Aprendizaje y Clasificación Automática con R</p>
+<p>MI Jesús Gilberto Rodríguez Escobedo</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>
     <div class="nav-footer-right">
-<p>MI Jesús Gilberto Rodríguez Escobedo</p>
+<p>Aprendizaje y Clasificación Automática con R</p>
 </div>
   </div>
 </footer>

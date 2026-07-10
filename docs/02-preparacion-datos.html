@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; Preparación de datos reales – Aprendizaje y Clasificación Automática con R</title>
+<title>2&nbsp; Preparación de datos reales – Aprendizaje y Clasificación Automática con R</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -150,7 +150,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02-preparacion-datos.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Preparación de datos reales</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02-preparacion-datos.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Preparación de datos reales</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
@@ -181,49 +181,49 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Aprendizaje y Clasificación Automática con R</span></span></a>
+ <span class="menu-text">Presentación</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./00-licencia-y-citacion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Licencia, autoría y forma de citar</span></span></a>
+ <span class="menu-text">Licencia, autoría y forma de citar</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./01-introduccion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">¿Qué es el aprendizaje automático?</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">¿Qué es el aprendizaje automático?</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./02-preparacion-datos.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Preparación de datos reales</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Preparación de datos reales</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03-analisis-exploratorio.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Análisis exploratorio de datos</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Análisis exploratorio de datos</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04-regresion-logistica.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Regresión logística para clasificación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regresión logística para clasificación</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05-knn.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">k vecinos más cercanos, k-NN</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">k vecinos más cercanos, k-NN</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./06-arboles-decision.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Árboles de decisión para clasificación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Árboles de decisión para clasificación</span></span></a>
   </div>
 </li>
     </ul>
@@ -236,27 +236,27 @@ window.Quarto = {
     <h2 id="toc-title">Tabla de contenidos</h2>
    
   <ul>
-  <li><a href="#objetivos-del-capítulo" id="toc-objetivos-del-capítulo" class="nav-link active" data-scroll-target="#objetivos-del-capítulo"><span class="header-section-number">4.1</span> Objetivos del capítulo</a></li>
-  <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción"><span class="header-section-number">4.2</span> Introducción</a></li>
-  <li><a href="#datos-crudos-y-datos-preparados" id="toc-datos-crudos-y-datos-preparados" class="nav-link" data-scroll-target="#datos-crudos-y-datos-preparados"><span class="header-section-number">4.3</span> Datos crudos y datos preparados</a></li>
-  <li><a href="#representación-matemática-de-una-base-preparada" id="toc-representación-matemática-de-una-base-preparada" class="nav-link" data-scroll-target="#representación-matemática-de-una-base-preparada"><span class="header-section-number">4.4</span> Representación matemática de una base preparada</a></li>
-  <li><a href="#algoritmo-general-de-preparación-de-datos" id="toc-algoritmo-general-de-preparación-de-datos" class="nav-link" data-scroll-target="#algoritmo-general-de-preparación-de-datos"><span class="header-section-number">4.5</span> Algoritmo general de preparación de datos</a></li>
-  <li><a href="#conjunto-de-datos-de-trabajo-atus" id="toc-conjunto-de-datos-de-trabajo-atus" class="nav-link" data-scroll-target="#conjunto-de-datos-de-trabajo-atus"><span class="header-section-number">4.6</span> Conjunto de datos de trabajo: ATUS</a></li>
-  <li><a href="#crear-la-carpeta-de-datos" id="toc-crear-la-carpeta-de-datos" class="nav-link" data-scroll-target="#crear-la-carpeta-de-datos"><span class="header-section-number">4.7</span> Crear la carpeta de datos</a></li>
-  <li><a href="#cargar-paquetes" id="toc-cargar-paquetes" class="nav-link" data-scroll-target="#cargar-paquetes"><span class="header-section-number">4.8</span> Cargar paquetes</a></li>
-  <li><a href="#leer-el-archivo-csv" id="toc-leer-el-archivo-csv" class="nav-link" data-scroll-target="#leer-el-archivo-csv"><span class="header-section-number">4.9</span> Leer el archivo CSV</a></li>
-  <li><a href="#primer-vistazo-a-los-datos" id="toc-primer-vistazo-a-los-datos" class="nav-link" data-scroll-target="#primer-vistazo-a-los-datos"><span class="header-section-number">4.10</span> Primer vistazo a los datos</a></li>
-  <li><a href="#estandarizar-nombres-de-variables" id="toc-estandarizar-nombres-de-variables" class="nav-link" data-scroll-target="#estandarizar-nombres-de-variables"><span class="header-section-number">4.11</span> Estandarizar nombres de variables</a></li>
-  <li><a href="#variables-de-interés" id="toc-variables-de-interés" class="nav-link" data-scroll-target="#variables-de-interés"><span class="header-section-number">4.12</span> Variables de interés</a></li>
-  <li><a href="#diccionario-inicial-de-variables" id="toc-diccionario-inicial-de-variables" class="nav-link" data-scroll-target="#diccionario-inicial-de-variables"><span class="header-section-number">4.13</span> Diccionario inicial de variables</a></li>
-  <li><a href="#revisión-de-la-variable-clasacc" id="toc-revisión-de-la-variable-clasacc" class="nav-link" data-scroll-target="#revisión-de-la-variable-clasacc"><span class="header-section-number">4.14</span> Revisión de la variable <code>CLASACC</code></a></li>
-  <li><a href="#crear-una-variable-respuesta" id="toc-crear-una-variable-respuesta" class="nav-link" data-scroll-target="#crear-una-variable-respuesta"><span class="header-section-number">4.15</span> Crear una variable respuesta</a></li>
-  <li><a href="#eliminar-registros-sin-variable-respuesta" id="toc-eliminar-registros-sin-variable-respuesta" class="nav-link" data-scroll-target="#eliminar-registros-sin-variable-respuesta"><span class="header-section-number">4.16</span> Eliminar registros sin variable respuesta</a></li>
-  <li><a href="#convertir-variables-categóricas" id="toc-convertir-variables-categóricas" class="nav-link" data-scroll-target="#convertir-variables-categóricas"><span class="header-section-number">4.17</span> Convertir variables categóricas</a></li>
-  <li><a href="#revisión-de-datos-faltantes" id="toc-revisión-de-datos-faltantes" class="nav-link" data-scroll-target="#revisión-de-datos-faltantes"><span class="header-section-number">4.18</span> Revisión de datos faltantes</a></li>
-  <li><a href="#selección-final-de-variables-para-el-primer-modelo" id="toc-selección-final-de-variables-para-el-primer-modelo" class="nav-link" data-scroll-target="#selección-final-de-variables-para-el-primer-modelo"><span class="header-section-number">4.19</span> Selección final de variables para el primer modelo</a></li>
-  <li><a href="#guardar-la-base-preparada" id="toc-guardar-la-base-preparada" class="nav-link" data-scroll-target="#guardar-la-base-preparada"><span class="header-section-number">4.20</span> Guardar la base preparada</a></li>
-  <li><a href="#resumen-del-capítulo" id="toc-resumen-del-capítulo" class="nav-link" data-scroll-target="#resumen-del-capítulo"><span class="header-section-number">4.21</span> Resumen del capítulo</a></li>
+  <li><a href="#objetivos-del-capítulo" id="toc-objetivos-del-capítulo" class="nav-link active" data-scroll-target="#objetivos-del-capítulo"><span class="header-section-number">2.1</span> Objetivos del capítulo</a></li>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción"><span class="header-section-number">2.2</span> Introducción</a></li>
+  <li><a href="#datos-crudos-y-datos-preparados" id="toc-datos-crudos-y-datos-preparados" class="nav-link" data-scroll-target="#datos-crudos-y-datos-preparados"><span class="header-section-number">2.3</span> Datos crudos y datos preparados</a></li>
+  <li><a href="#representación-matemática-de-una-base-preparada" id="toc-representación-matemática-de-una-base-preparada" class="nav-link" data-scroll-target="#representación-matemática-de-una-base-preparada"><span class="header-section-number">2.4</span> Representación matemática de una base preparada</a></li>
+  <li><a href="#algoritmo-general-de-preparación-de-datos" id="toc-algoritmo-general-de-preparación-de-datos" class="nav-link" data-scroll-target="#algoritmo-general-de-preparación-de-datos"><span class="header-section-number">2.5</span> Algoritmo general de preparación de datos</a></li>
+  <li><a href="#conjunto-de-datos-de-trabajo-atus" id="toc-conjunto-de-datos-de-trabajo-atus" class="nav-link" data-scroll-target="#conjunto-de-datos-de-trabajo-atus"><span class="header-section-number">2.6</span> Conjunto de datos de trabajo: ATUS</a></li>
+  <li><a href="#crear-la-carpeta-de-datos" id="toc-crear-la-carpeta-de-datos" class="nav-link" data-scroll-target="#crear-la-carpeta-de-datos"><span class="header-section-number">2.7</span> Crear la carpeta de datos</a></li>
+  <li><a href="#cargar-paquetes" id="toc-cargar-paquetes" class="nav-link" data-scroll-target="#cargar-paquetes"><span class="header-section-number">2.8</span> Cargar paquetes</a></li>
+  <li><a href="#leer-el-archivo-csv" id="toc-leer-el-archivo-csv" class="nav-link" data-scroll-target="#leer-el-archivo-csv"><span class="header-section-number">2.9</span> Leer el archivo CSV</a></li>
+  <li><a href="#primer-vistazo-a-los-datos" id="toc-primer-vistazo-a-los-datos" class="nav-link" data-scroll-target="#primer-vistazo-a-los-datos"><span class="header-section-number">2.10</span> Primer vistazo a los datos</a></li>
+  <li><a href="#estandarizar-nombres-de-variables" id="toc-estandarizar-nombres-de-variables" class="nav-link" data-scroll-target="#estandarizar-nombres-de-variables"><span class="header-section-number">2.11</span> Estandarizar nombres de variables</a></li>
+  <li><a href="#variables-de-interés" id="toc-variables-de-interés" class="nav-link" data-scroll-target="#variables-de-interés"><span class="header-section-number">2.12</span> Variables de interés</a></li>
+  <li><a href="#diccionario-inicial-de-variables" id="toc-diccionario-inicial-de-variables" class="nav-link" data-scroll-target="#diccionario-inicial-de-variables"><span class="header-section-number">2.13</span> Diccionario inicial de variables</a></li>
+  <li><a href="#revisión-de-la-variable-clasacc" id="toc-revisión-de-la-variable-clasacc" class="nav-link" data-scroll-target="#revisión-de-la-variable-clasacc"><span class="header-section-number">2.14</span> Revisión de la variable <code>CLASACC</code></a></li>
+  <li><a href="#crear-una-variable-respuesta" id="toc-crear-una-variable-respuesta" class="nav-link" data-scroll-target="#crear-una-variable-respuesta"><span class="header-section-number">2.15</span> Crear una variable respuesta</a></li>
+  <li><a href="#eliminar-registros-sin-variable-respuesta" id="toc-eliminar-registros-sin-variable-respuesta" class="nav-link" data-scroll-target="#eliminar-registros-sin-variable-respuesta"><span class="header-section-number">2.16</span> Eliminar registros sin variable respuesta</a></li>
+  <li><a href="#convertir-variables-categóricas" id="toc-convertir-variables-categóricas" class="nav-link" data-scroll-target="#convertir-variables-categóricas"><span class="header-section-number">2.17</span> Convertir variables categóricas</a></li>
+  <li><a href="#revisión-de-datos-faltantes" id="toc-revisión-de-datos-faltantes" class="nav-link" data-scroll-target="#revisión-de-datos-faltantes"><span class="header-section-number">2.18</span> Revisión de datos faltantes</a></li>
+  <li><a href="#selección-final-de-variables-para-el-primer-modelo" id="toc-selección-final-de-variables-para-el-primer-modelo" class="nav-link" data-scroll-target="#selección-final-de-variables-para-el-primer-modelo"><span class="header-section-number">2.19</span> Selección final de variables para el primer modelo</a></li>
+  <li><a href="#guardar-la-base-preparada" id="toc-guardar-la-base-preparada" class="nav-link" data-scroll-target="#guardar-la-base-preparada"><span class="header-section-number">2.20</span> Guardar la base preparada</a></li>
+  <li><a href="#resumen-del-capítulo" id="toc-resumen-del-capítulo" class="nav-link" data-scroll-target="#resumen-del-capítulo"><span class="header-section-number">2.21</span> Resumen del capítulo</a></li>
   </ul>
 </nav>
     </div>
@@ -265,7 +265,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Preparación de datos reales</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Código</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Mostrar todo el código</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Ocultar todo el código</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">Ver el código fuente</a></li></ul></div></div>
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Preparación de datos reales</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Código</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Mostrar todo el código</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Ocultar todo el código</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">Ver el código fuente</a></li></ul></div></div>
 </div>
 
 
@@ -282,20 +282,20 @@ window.Quarto = {
 </header>
 
 
-<section id="objetivos-del-capítulo" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="objetivos-del-capítulo"><span class="header-section-number">4.1</span> Objetivos del capítulo</h2>
+<section id="objetivos-del-capítulo" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="objetivos-del-capítulo"><span class="header-section-number">2.1</span> Objetivos del capítulo</h2>
 <p>Al finalizar este capítulo, el lector será capaz de leer una base real, seleccionar variables, construir una variable respuesta y guardar una base preparada para modelado.</p>
 </section>
-<section id="introducción" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="introducción"><span class="header-section-number">4.2</span> Introducción</h2>
+<section id="introducción" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="introducción"><span class="header-section-number">2.2</span> Introducción</h2>
 <p>En la práctica profesional, los datos reales casi nunca vienen preparados. Antes de aplicar un algoritmo necesitamos revisar, limpiar, transformar y documentar los datos.</p>
 </section>
-<section id="datos-crudos-y-datos-preparados" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="datos-crudos-y-datos-preparados"><span class="header-section-number">4.3</span> Datos crudos y datos preparados</h2>
+<section id="datos-crudos-y-datos-preparados" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="datos-crudos-y-datos-preparados"><span class="header-section-number">2.3</span> Datos crudos y datos preparados</h2>
 <p>Llamaremos <strong>datos crudos</strong> a la base tal como se obtiene de la fuente original. Llamaremos <strong>datos preparados</strong> a la base que ya fue revisada, transformada y organizada para un propósito específico.</p>
 </section>
-<section id="representación-matemática-de-una-base-preparada" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="representación-matemática-de-una-base-preparada"><span class="header-section-number">4.4</span> Representación matemática de una base preparada</h2>
+<section id="representación-matemática-de-una-base-preparada" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="representación-matemática-de-una-base-preparada"><span class="header-section-number">2.4</span> Representación matemática de una base preparada</h2>
 <p>Una base de datos para aprendizaje automático puede representarse como una matriz de variables predictoras <span class="math inline">\(X\)</span> y una variable respuesta <span class="math inline">\(Y\)</span>.</p>
 <p><span class="math display">\[
 X =
@@ -330,8 +330,8 @@ Y_i =
 \right.
 \]</span></p>
 </section>
-<section id="algoritmo-general-de-preparación-de-datos" class="level2" data-number="4.5">
-<h2 data-number="4.5" class="anchored" data-anchor-id="algoritmo-general-de-preparación-de-datos"><span class="header-section-number">4.5</span> Algoritmo general de preparación de datos</h2>
+<section id="algoritmo-general-de-preparación-de-datos" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="algoritmo-general-de-preparación-de-datos"><span class="header-section-number">2.5</span> Algoritmo general de preparación de datos</h2>
 <pre class="text"><code>Algoritmo: Preparación de datos para aprendizaje automático
 
 Entrada:
@@ -351,20 +351,20 @@ Proceso:
 Salida:
   - Base limpia y lista para análisis exploratorio y modelado</code></pre>
 </section>
-<section id="conjunto-de-datos-de-trabajo-atus" class="level2" data-number="4.6">
-<h2 data-number="4.6" class="anchored" data-anchor-id="conjunto-de-datos-de-trabajo-atus"><span class="header-section-number">4.6</span> Conjunto de datos de trabajo: ATUS</h2>
+<section id="conjunto-de-datos-de-trabajo-atus" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="conjunto-de-datos-de-trabajo-atus"><span class="header-section-number">2.6</span> Conjunto de datos de trabajo: ATUS</h2>
 <p>Trabajaremos con <strong>Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas</strong>, conocido como ATUS, publicado por INEGI.</p>
 <p>La pregunta práctica será:</p>
 <blockquote class="blockquote">
 <p>¿Podemos clasificar si un accidente tendrá víctimas o será solo de daños materiales?</p>
 </blockquote>
 </section>
-<section id="crear-la-carpeta-de-datos" class="level2" data-number="4.7">
-<h2 data-number="4.7" class="anchored" data-anchor-id="crear-la-carpeta-de-datos"><span class="header-section-number">4.7</span> Crear la carpeta de datos</h2>
+<section id="crear-la-carpeta-de-datos" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="crear-la-carpeta-de-datos"><span class="header-section-number">2.7</span> Crear la carpeta de datos</h2>
 <p>Dentro de la carpeta del libro crea una carpeta llamada <code>datos</code>. El archivo de datos debe llamarse <code>datos/atus_2024.csv</code>.</p>
 </section>
-<section id="cargar-paquetes" class="level2" data-number="4.8">
-<h2 data-number="4.8" class="anchored" data-anchor-id="cargar-paquetes"><span class="header-section-number">4.8</span> Cargar paquetes</h2>
+<section id="cargar-paquetes" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="cargar-paquetes"><span class="header-section-number">2.8</span> Cargar paquetes</h2>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Código</summary>
@@ -377,8 +377,8 @@ Salida:
 <p><strong>Explicación del código.</strong><br>
 <code>readr</code> permite leer archivos CSV, <code>dplyr</code> permite transformar tablas, <code>ggplot2</code> permite graficar y <code>stringr</code> facilita trabajar con texto.</p>
 </section>
-<section id="leer-el-archivo-csv" class="level2" data-number="4.9">
-<h2 data-number="4.9" class="anchored" data-anchor-id="leer-el-archivo-csv"><span class="header-section-number">4.9</span> Leer el archivo CSV</h2>
+<section id="leer-el-archivo-csv" class="level2" data-number="2.9">
+<h2 data-number="2.9" class="anchored" data-anchor-id="leer-el-archivo-csv"><span class="header-section-number">2.9</span> Leer el archivo CSV</h2>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Código</summary>
@@ -411,8 +411,8 @@ Salida:
 <p><strong>Interpretación del resultado.</strong><br>
 Si aparece el mensaje de carga correcta, se creó el objeto <code>atus</code> y podemos continuar.</p>
 </section>
-<section id="primer-vistazo-a-los-datos" class="level2" data-number="4.10">
-<h2 data-number="4.10" class="anchored" data-anchor-id="primer-vistazo-a-los-datos"><span class="header-section-number">4.10</span> Primer vistazo a los datos</h2>
+<section id="primer-vistazo-a-los-datos" class="level2" data-number="2.10">
+<h2 data-number="2.10" class="anchored" data-anchor-id="primer-vistazo-a-los-datos"><span class="header-section-number">2.10</span> Primer vistazo a los datos</h2>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Código</summary>
@@ -473,8 +473,8 @@ Si aparece el mensaje de carga correcta, se creó el objeto <code>atus</code> y 
 <p><strong>Interpretación del resultado.</strong><br>
 Este paso permite confirmar que la base fue cargada correctamente y que contiene las variables necesarias.</p>
 </section>
-<section id="estandarizar-nombres-de-variables" class="level2" data-number="4.11">
-<h2 data-number="4.11" class="anchored" data-anchor-id="estandarizar-nombres-de-variables"><span class="header-section-number">4.11</span> Estandarizar nombres de variables</h2>
+<section id="estandarizar-nombres-de-variables" class="level2" data-number="2.11">
+<h2 data-number="2.11" class="anchored" data-anchor-id="estandarizar-nombres-de-variables"><span class="header-section-number">2.11</span> Estandarizar nombres de variables</h2>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Código</summary>
@@ -498,8 +498,8 @@ Este paso permite confirmar que la base fue cargada correctamente y que contiene
 <p><strong>Explicación del código.</strong><br>
 <code>toupper()</code> convierte los nombres de las columnas a mayúsculas. Esto ayuda a evitar errores por diferencias entre mayúsculas y minúsculas.</p>
 </section>
-<section id="variables-de-interés" class="level2" data-number="4.12">
-<h2 data-number="4.12" class="anchored" data-anchor-id="variables-de-interés"><span class="header-section-number">4.12</span> Variables de interés</h2>
+<section id="variables-de-interés" class="level2" data-number="2.12">
+<h2 data-number="2.12" class="anchored" data-anchor-id="variables-de-interés"><span class="header-section-number">2.12</span> Variables de interés</h2>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Código</summary>
@@ -545,8 +545,8 @@ Este paso permite confirmar que la base fue cargada correctamente y que contiene
 <p><strong>Interpretación del resultado.</strong><br>
 La base queda más manejable y enfocada en el problema de clasificación.</p>
 </section>
-<section id="diccionario-inicial-de-variables" class="level2" data-number="4.13">
-<h2 data-number="4.13" class="anchored" data-anchor-id="diccionario-inicial-de-variables"><span class="header-section-number">4.13</span> Diccionario inicial de variables</h2>
+<section id="diccionario-inicial-de-variables" class="level2" data-number="2.13">
+<h2 data-number="2.13" class="anchored" data-anchor-id="diccionario-inicial-de-variables"><span class="header-section-number">2.13</span> Diccionario inicial de variables</h2>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -598,8 +598,8 @@ La base queda más manejable y enfocada en el problema de clasificación.</p>
 </tbody>
 </table>
 </section>
-<section id="revisión-de-la-variable-clasacc" class="level2" data-number="4.14">
-<h2 data-number="4.14" class="anchored" data-anchor-id="revisión-de-la-variable-clasacc"><span class="header-section-number">4.14</span> Revisión de la variable <code>CLASACC</code></h2>
+<section id="revisión-de-la-variable-clasacc" class="level2" data-number="2.14">
+<h2 data-number="2.14" class="anchored" data-anchor-id="revisión-de-la-variable-clasacc"><span class="header-section-number">2.14</span> Revisión de la variable <code>CLASACC</code></h2>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Código</summary>
@@ -616,8 +616,8 @@ La base queda más manejable y enfocada en el problema de clasificación.</p>
 <p><strong>Interpretación del resultado.</strong><br>
 <code>CLASACC</code> distingue accidentes fatales, no fatales y de solo daños. A partir de esta variable construiremos una respuesta binaria.</p>
 </section>
-<section id="crear-una-variable-respuesta" class="level2" data-number="4.15">
-<h2 data-number="4.15" class="anchored" data-anchor-id="crear-una-variable-respuesta"><span class="header-section-number">4.15</span> Crear una variable respuesta</h2>
+<section id="crear-una-variable-respuesta" class="level2" data-number="2.15">
+<h2 data-number="2.15" class="anchored" data-anchor-id="crear-una-variable-respuesta"><span class="header-section-number">2.15</span> Crear una variable respuesta</h2>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Código</summary>
@@ -652,8 +652,8 @@ Con víctimas   Solo daños
 <p><strong>Interpretación del resultado.</strong><br>
 La tabla muestra cuántos registros quedaron en cada clase. Esta será la variable respuesta del problema de clasificación.</p>
 </section>
-<section id="eliminar-registros-sin-variable-respuesta" class="level2" data-number="4.16">
-<h2 data-number="4.16" class="anchored" data-anchor-id="eliminar-registros-sin-variable-respuesta"><span class="header-section-number">4.16</span> Eliminar registros sin variable respuesta</h2>
+<section id="eliminar-registros-sin-variable-respuesta" class="level2" data-number="2.16">
+<h2 data-number="2.16" class="anchored" data-anchor-id="eliminar-registros-sin-variable-respuesta"><span class="header-section-number">2.16</span> Eliminar registros sin variable respuesta</h2>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Código</summary>
@@ -671,8 +671,8 @@ Con víctimas   Solo daños
 </div>
 </div>
 </section>
-<section id="convertir-variables-categóricas" class="level2" data-number="4.17">
-<h2 data-number="4.17" class="anchored" data-anchor-id="convertir-variables-categóricas"><span class="header-section-number">4.17</span> Convertir variables categóricas</h2>
+<section id="convertir-variables-categóricas" class="level2" data-number="2.17">
+<h2 data-number="2.17" class="anchored" data-anchor-id="convertir-variables-categóricas"><span class="header-section-number">2.17</span> Convertir variables categóricas</h2>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Código</summary>
@@ -710,8 +710,8 @@ Con víctimas   Solo daños
 <p><strong>Interpretación del resultado.</strong><br>
 Variables como entidad o municipio son claves de identificación; no deben interpretarse como cantidades numéricas.</p>
 </section>
-<section id="revisión-de-datos-faltantes" class="level2" data-number="4.18">
-<h2 data-number="4.18" class="anchored" data-anchor-id="revisión-de-datos-faltantes"><span class="header-section-number">4.18</span> Revisión de datos faltantes</h2>
+<section id="revisión-de-datos-faltantes" class="level2" data-number="2.18">
+<h2 data-number="2.18" class="anchored" data-anchor-id="revisión-de-datos-faltantes"><span class="header-section-number">2.18</span> Revisión de datos faltantes</h2>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Código</summary>
@@ -749,8 +749,8 @@ Variables como entidad o municipio son claves de identificación; no deben inter
 </div>
 </div>
 </section>
-<section id="selección-final-de-variables-para-el-primer-modelo" class="level2" data-number="4.19">
-<h2 data-number="4.19" class="anchored" data-anchor-id="selección-final-de-variables-para-el-primer-modelo"><span class="header-section-number">4.19</span> Selección final de variables para el primer modelo</h2>
+<section id="selección-final-de-variables-para-el-primer-modelo" class="level2" data-number="2.19">
+<h2 data-number="2.19" class="anchored" data-anchor-id="selección-final-de-variables-para-el-primer-modelo"><span class="header-section-number">2.19</span> Selección final de variables para el primer modelo</h2>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Código</summary>
@@ -794,8 +794,8 @@ Variables como entidad o municipio son claves de identificación; no deben inter
 </div>
 </div>
 </section>
-<section id="guardar-la-base-preparada" class="level2" data-number="4.20">
-<h2 data-number="4.20" class="anchored" data-anchor-id="guardar-la-base-preparada"><span class="header-section-number">4.20</span> Guardar la base preparada</h2>
+<section id="guardar-la-base-preparada" class="level2" data-number="2.20">
+<h2 data-number="2.20" class="anchored" data-anchor-id="guardar-la-base-preparada"><span class="header-section-number">2.20</span> Guardar la base preparada</h2>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Código</summary>
@@ -807,8 +807,8 @@ Variables como entidad o municipio son claves de identificación; no deben inter
 <p><strong>Interpretación del resultado.</strong><br>
 El archivo <code>atus_ml_preparado.csv</code> evita repetir todo el proceso de limpieza en los siguientes capítulos.</p>
 </section>
-<section id="resumen-del-capítulo" class="level2" data-number="4.21">
-<h2 data-number="4.21" class="anchored" data-anchor-id="resumen-del-capítulo"><span class="header-section-number">4.21</span> Resumen del capítulo</h2>
+<section id="resumen-del-capítulo" class="level2" data-number="2.21">
+<h2 data-number="2.21" class="anchored" data-anchor-id="resumen-del-capítulo"><span class="header-section-number">2.21</span> Resumen del capítulo</h2>
 <p>En este capítulo leímos una base real, seleccionamos variables, construimos una variable respuesta y guardamos una base preparada para aprendizaje automático.</p>
 
 
@@ -1271,12 +1271,12 @@ El archivo <code>atus_ml_preparado.csv</code> evita repetir todo el proceso de l
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./01-introduccion.html" class="pagination-link" aria-label="¿Qué es el aprendizaje automático?">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">¿Qué es el aprendizaje automático?</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">¿Qué es el aprendizaje automático?</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./03-analisis-exploratorio.html" class="pagination-link" aria-label="Análisis exploratorio de datos">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Análisis exploratorio de datos</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Análisis exploratorio de datos</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Ejecutar el código</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
@@ -1630,13 +1630,13 @@ El archivo <code>atus_ml_preparado.csv</code> evita repetir todo el proceso de l
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Aprendizaje y Clasificación Automática con R</p>
+<p>MI Jesús Gilberto Rodríguez Escobedo</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>
     <div class="nav-footer-right">
-<p>MI Jesús Gilberto Rodríguez Escobedo</p>
+<p>Aprendizaje y Clasificación Automática con R</p>
 </div>
   </div>
 </footer>

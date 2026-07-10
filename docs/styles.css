@@ -1,57 +1,48 @@
-/* Estilos visuales para la versión web del libro */
+/* Estilo visual para la versión web del libro */
 
 :root {
-  --color-azul-libro: #0b3d91;
-  --color-turquesa-libro: #00a6a6;
-  --color-fondo-suave: #f4fbfb;
-  --color-gris-texto: #333333;
+  --azul-profundo: #0b3c5d;
+  --azul-medio: #1f77b4;
+  --turquesa: #00a6a6;
+  --gris-suave: #f5f8fa;
+  --gris-borde: #d8e3ea;
 }
 
 body {
-  color: var(--color-gris-texto);
+  line-height: 1.65;
 }
 
-#title-block-header {
-  background: linear-gradient(135deg, #0b3d91, #00a6a6);
-  color: white;
-  padding: 2rem;
-  border-radius: 18px;
-  margin-bottom: 2rem;
-}
-
-#title-block-header h1,
-#title-block-header .subtitle,
-#title-block-header .author,
-#title-block-header .date {
+.quarto-title-banner {
+  background: linear-gradient(120deg, var(--azul-profundo), var(--turquesa));
   color: white;
 }
 
 h1, h2, h3 {
-  color: var(--color-azul-libro);
+  color: var(--azul-profundo);
 }
 
 h2 {
-  border-bottom: 3px solid var(--color-turquesa-libro);
+  border-bottom: 2px solid var(--turquesa);
   padding-bottom: 0.25rem;
-  margin-top: 2rem;
 }
 
 .sidebar-title {
-  color: var(--color-azul-libro);
+  color: var(--azul-profundo);
   font-weight: 700;
 }
 
 .callout-note {
-  border-left-color: var(--color-turquesa-libro);
+  border-left-color: var(--turquesa) !important;
 }
 
-div.sourceCode {
-  border-left: 5px solid var(--color-turquesa-libro);
-  border-radius: 10px;
+pre.sourceCode {
+  border-left: 4px solid var(--turquesa);
+  background-color: var(--gris-suave);
 }
 
-pre code {
-  font-size: 0.92rem;
+.cell-output, .cell-output-display {
+  border-left: 4px solid var(--azul-medio);
+  padding-left: 0.7rem;
 }
 
 table {
@@ -59,26 +50,17 @@ table {
   width: 100%;
 }
 
-table thead th {
-  background-color: var(--color-azul-libro);
+table th {
+  background-color: var(--azul-profundo);
   color: white;
 }
 
-table tbody tr:nth-child(even) {
-  background-color: var(--color-fondo-suave);
+table td, table th {
+  border: 1px solid var(--gris-borde);
+  padding: 0.45rem;
 }
 
-blockquote {
-  border-left: 5px solid var(--color-turquesa-libro);
-  background-color: var(--color-fondo-suave);
-  padding: 1rem 1.25rem;
-  border-radius: 10px;
-}
-
-.quarto-title-banner {
-  background: linear-gradient(135deg, #0b3d91, #00a6a6);
-}
-
-.nav-footer {
-  border-top: 1px solid #d9eeee;
+p.caption, figcaption {
+  color: #4a4a4a;
+  font-size: 0.92rem;
 }

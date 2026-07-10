@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>5&nbsp; Análisis exploratorio de datos – Aprendizaje y Clasificación Automática con R</title>
+<title>3&nbsp; Análisis exploratorio de datos – Aprendizaje y Clasificación Automática con R</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -150,7 +150,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03-analisis-exploratorio.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Análisis exploratorio de datos</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03-analisis-exploratorio.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Análisis exploratorio de datos</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
@@ -181,49 +181,49 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Aprendizaje y Clasificación Automática con R</span></span></a>
+ <span class="menu-text">Presentación</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./00-licencia-y-citacion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Licencia, autoría y forma de citar</span></span></a>
+ <span class="menu-text">Licencia, autoría y forma de citar</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./01-introduccion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">¿Qué es el aprendizaje automático?</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">¿Qué es el aprendizaje automático?</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./02-preparacion-datos.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Preparación de datos reales</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Preparación de datos reales</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03-analisis-exploratorio.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Análisis exploratorio de datos</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Análisis exploratorio de datos</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04-regresion-logistica.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Regresión logística para clasificación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regresión logística para clasificación</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05-knn.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">k vecinos más cercanos, k-NN</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">k vecinos más cercanos, k-NN</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./06-arboles-decision.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Árboles de decisión para clasificación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Árboles de decisión para clasificación</span></span></a>
   </div>
 </li>
     </ul>
@@ -236,24 +236,24 @@ window.Quarto = {
     <h2 id="toc-title">Tabla de contenidos</h2>
    
   <ul>
-  <li><a href="#objetivos-del-capítulo" id="toc-objetivos-del-capítulo" class="nav-link active" data-scroll-target="#objetivos-del-capítulo"><span class="header-section-number">5.1</span> Objetivos del capítulo</a></li>
-  <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción"><span class="header-section-number">5.2</span> Introducción</a></li>
-  <li><a href="#fundamento-matemático-del-análisis-exploratorio" id="toc-fundamento-matemático-del-análisis-exploratorio" class="nav-link" data-scroll-target="#fundamento-matemático-del-análisis-exploratorio"><span class="header-section-number">5.3</span> Fundamento matemático del análisis exploratorio</a></li>
-  <li><a href="#algoritmo-general" id="toc-algoritmo-general" class="nav-link" data-scroll-target="#algoritmo-general"><span class="header-section-number">5.4</span> Algoritmo general</a></li>
-  <li><a href="#cargar-paquetes-y-base" id="toc-cargar-paquetes-y-base" class="nav-link" data-scroll-target="#cargar-paquetes-y-base"><span class="header-section-number">5.5</span> Cargar paquetes y base</a></li>
-  <li><a href="#preparar-variables-para-el-análisis-exploratorio" id="toc-preparar-variables-para-el-análisis-exploratorio" class="nav-link" data-scroll-target="#preparar-variables-para-el-análisis-exploratorio"><span class="header-section-number">5.6</span> Preparar variables para el análisis exploratorio</a></li>
-  <li><a href="#primer-vistazo-a-la-base" id="toc-primer-vistazo-a-la-base" class="nav-link" data-scroll-target="#primer-vistazo-a-la-base"><span class="header-section-number">5.7</span> Primer vistazo a la base</a></li>
-  <li><a href="#distribución-de-la-variable-respuesta" id="toc-distribución-de-la-variable-respuesta" class="nav-link" data-scroll-target="#distribución-de-la-variable-respuesta"><span class="header-section-number">5.8</span> Distribución de la variable respuesta</a></li>
-  <li><a href="#accidentes-por-mes" id="toc-accidentes-por-mes" class="nav-link" data-scroll-target="#accidentes-por-mes"><span class="header-section-number">5.9</span> Accidentes por mes</a></li>
-  <li><a href="#accidentes-por-hora-del-día" id="toc-accidentes-por-hora-del-día" class="nav-link" data-scroll-target="#accidentes-por-hora-del-día"><span class="header-section-number">5.10</span> Accidentes por hora del día</a></li>
-  <li><a href="#accidentes-por-día-de-la-semana" id="toc-accidentes-por-día-de-la-semana" class="nav-link" data-scroll-target="#accidentes-por-día-de-la-semana"><span class="header-section-number">5.11</span> Accidentes por día de la semana</a></li>
-  <li><a href="#accidentes-por-tipo-de-accidente" id="toc-accidentes-por-tipo-de-accidente" class="nav-link" data-scroll-target="#accidentes-por-tipo-de-accidente"><span class="header-section-number">5.12</span> Accidentes por tipo de accidente</a></li>
-  <li><a href="#accidentes-por-causa-presunta" id="toc-accidentes-por-causa-presunta" class="nav-link" data-scroll-target="#accidentes-por-causa-presunta"><span class="header-section-number">5.13</span> Accidentes por causa presunta</a></li>
-  <li><a href="#relación-entre-tipo-de-accidente-y-presencia-de-víctimas" id="toc-relación-entre-tipo-de-accidente-y-presencia-de-víctimas" class="nav-link" data-scroll-target="#relación-entre-tipo-de-accidente-y-presencia-de-víctimas"><span class="header-section-number">5.14</span> Relación entre tipo de accidente y presencia de víctimas</a></li>
-  <li><a href="#relación-entre-hora-y-presencia-de-víctimas" id="toc-relación-entre-hora-y-presencia-de-víctimas" class="nav-link" data-scroll-target="#relación-entre-hora-y-presencia-de-víctimas"><span class="header-section-number">5.15</span> Relación entre hora y presencia de víctimas</a></li>
-  <li><a href="#relación-entre-día-de-la-semana-y-presencia-de-víctimas" id="toc-relación-entre-día-de-la-semana-y-presencia-de-víctimas" class="nav-link" data-scroll-target="#relación-entre-día-de-la-semana-y-presencia-de-víctimas"><span class="header-section-number">5.16</span> Relación entre día de la semana y presencia de víctimas</a></li>
-  <li><a href="#tabla-resumen-por-clase" id="toc-tabla-resumen-por-clase" class="nav-link" data-scroll-target="#tabla-resumen-por-clase"><span class="header-section-number">5.17</span> Tabla resumen por clase</a></li>
-  <li><a href="#conclusión" id="toc-conclusión" class="nav-link" data-scroll-target="#conclusión"><span class="header-section-number">5.18</span> Conclusión</a></li>
+  <li><a href="#objetivos-del-capítulo" id="toc-objetivos-del-capítulo" class="nav-link active" data-scroll-target="#objetivos-del-capítulo"><span class="header-section-number">3.1</span> Objetivos del capítulo</a></li>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción"><span class="header-section-number">3.2</span> Introducción</a></li>
+  <li><a href="#fundamento-matemático-del-análisis-exploratorio" id="toc-fundamento-matemático-del-análisis-exploratorio" class="nav-link" data-scroll-target="#fundamento-matemático-del-análisis-exploratorio"><span class="header-section-number">3.3</span> Fundamento matemático del análisis exploratorio</a></li>
+  <li><a href="#algoritmo-general" id="toc-algoritmo-general" class="nav-link" data-scroll-target="#algoritmo-general"><span class="header-section-number">3.4</span> Algoritmo general</a></li>
+  <li><a href="#cargar-paquetes-y-base" id="toc-cargar-paquetes-y-base" class="nav-link" data-scroll-target="#cargar-paquetes-y-base"><span class="header-section-number">3.5</span> Cargar paquetes y base</a></li>
+  <li><a href="#preparar-variables-para-el-análisis-exploratorio" id="toc-preparar-variables-para-el-análisis-exploratorio" class="nav-link" data-scroll-target="#preparar-variables-para-el-análisis-exploratorio"><span class="header-section-number">3.6</span> Preparar variables para el análisis exploratorio</a></li>
+  <li><a href="#primer-vistazo-a-la-base" id="toc-primer-vistazo-a-la-base" class="nav-link" data-scroll-target="#primer-vistazo-a-la-base"><span class="header-section-number">3.7</span> Primer vistazo a la base</a></li>
+  <li><a href="#distribución-de-la-variable-respuesta" id="toc-distribución-de-la-variable-respuesta" class="nav-link" data-scroll-target="#distribución-de-la-variable-respuesta"><span class="header-section-number">3.8</span> Distribución de la variable respuesta</a></li>
+  <li><a href="#accidentes-por-mes" id="toc-accidentes-por-mes" class="nav-link" data-scroll-target="#accidentes-por-mes"><span class="header-section-number">3.9</span> Accidentes por mes</a></li>
+  <li><a href="#accidentes-por-hora-del-día" id="toc-accidentes-por-hora-del-día" class="nav-link" data-scroll-target="#accidentes-por-hora-del-día"><span class="header-section-number">3.10</span> Accidentes por hora del día</a></li>
+  <li><a href="#accidentes-por-día-de-la-semana" id="toc-accidentes-por-día-de-la-semana" class="nav-link" data-scroll-target="#accidentes-por-día-de-la-semana"><span class="header-section-number">3.11</span> Accidentes por día de la semana</a></li>
+  <li><a href="#accidentes-por-tipo-de-accidente" id="toc-accidentes-por-tipo-de-accidente" class="nav-link" data-scroll-target="#accidentes-por-tipo-de-accidente"><span class="header-section-number">3.12</span> Accidentes por tipo de accidente</a></li>
+  <li><a href="#accidentes-por-causa-presunta" id="toc-accidentes-por-causa-presunta" class="nav-link" data-scroll-target="#accidentes-por-causa-presunta"><span class="header-section-number">3.13</span> Accidentes por causa presunta</a></li>
+  <li><a href="#relación-entre-tipo-de-accidente-y-presencia-de-víctimas" id="toc-relación-entre-tipo-de-accidente-y-presencia-de-víctimas" class="nav-link" data-scroll-target="#relación-entre-tipo-de-accidente-y-presencia-de-víctimas"><span class="header-section-number">3.14</span> Relación entre tipo de accidente y presencia de víctimas</a></li>
+  <li><a href="#relación-entre-hora-y-presencia-de-víctimas" id="toc-relación-entre-hora-y-presencia-de-víctimas" class="nav-link" data-scroll-target="#relación-entre-hora-y-presencia-de-víctimas"><span class="header-section-number">3.15</span> Relación entre hora y presencia de víctimas</a></li>
+  <li><a href="#relación-entre-día-de-la-semana-y-presencia-de-víctimas" id="toc-relación-entre-día-de-la-semana-y-presencia-de-víctimas" class="nav-link" data-scroll-target="#relación-entre-día-de-la-semana-y-presencia-de-víctimas"><span class="header-section-number">3.16</span> Relación entre día de la semana y presencia de víctimas</a></li>
+  <li><a href="#tabla-resumen-por-clase" id="toc-tabla-resumen-por-clase" class="nav-link" data-scroll-target="#tabla-resumen-por-clase"><span class="header-section-number">3.17</span> Tabla resumen por clase</a></li>
+  <li><a href="#conclusión" id="toc-conclusión" class="nav-link" data-scroll-target="#conclusión"><span class="header-section-number">3.18</span> Conclusión</a></li>
   </ul>
 </nav>
     </div>
@@ -262,7 +262,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Análisis exploratorio de datos</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Código</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Mostrar todo el código</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Ocultar todo el código</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">Ver el código fuente</a></li></ul></div></div>
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Análisis exploratorio de datos</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Código</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Mostrar todo el código</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Ocultar todo el código</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">Ver el código fuente</a></li></ul></div></div>
 </div>
 
 
@@ -279,16 +279,16 @@ window.Quarto = {
 </header>
 
 
-<section id="objetivos-del-capítulo" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="objetivos-del-capítulo"><span class="header-section-number">5.1</span> Objetivos del capítulo</h2>
+<section id="objetivos-del-capítulo" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="objetivos-del-capítulo"><span class="header-section-number">3.1</span> Objetivos del capítulo</h2>
 <p>Al finalizar este capítulo, el lector será capaz de cargar una base preparada, revisar su estructura, calcular frecuencias, construir gráficas e interpretar patrones iniciales.</p>
 </section>
-<section id="introducción" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="introducción"><span class="header-section-number">5.2</span> Introducción</h2>
+<section id="introducción" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="introducción"><span class="header-section-number">3.2</span> Introducción</h2>
 <p>El <strong>análisis exploratorio de datos</strong> permite revisar la estructura de la base, detectar patrones iniciales e identificar posibles problemas antes de construir modelos.</p>
 </section>
-<section id="fundamento-matemático-del-análisis-exploratorio" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="fundamento-matemático-del-análisis-exploratorio"><span class="header-section-number">5.3</span> Fundamento matemático del análisis exploratorio</h2>
+<section id="fundamento-matemático-del-análisis-exploratorio" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="fundamento-matemático-del-análisis-exploratorio"><span class="header-section-number">3.3</span> Fundamento matemático del análisis exploratorio</h2>
 <p>Si una variable categórica tiene categorías <span class="math inline">\(c_1, c_2, \ldots, c_k\)</span>, la frecuencia absoluta de una categoría <span class="math inline">\(c_j\)</span> se representa como:</p>
 <p><span class="math display">\[
 n_j = \sum_{i=1}^{n} I(y_i = c_j)
@@ -298,8 +298,8 @@ n_j = \sum_{i=1}^{n} I(y_i = c_j)
 p_j = \frac{n_j}{n}
 \]</span></p>
 </section>
-<section id="algoritmo-general" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="algoritmo-general"><span class="header-section-number">5.4</span> Algoritmo general</h2>
+<section id="algoritmo-general" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="algoritmo-general"><span class="header-section-number">3.4</span> Algoritmo general</h2>
 <pre class="text"><code>Algoritmo: Análisis exploratorio de datos
 
 Entrada:
@@ -320,8 +320,8 @@ Salida:
   - Gráficas exploratorias
   - Primeras hipótesis sobre los datos</code></pre>
 </section>
-<section id="cargar-paquetes-y-base" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="cargar-paquetes-y-base"><span class="header-section-number">5.5</span> Cargar paquetes y base</h2>
+<section id="cargar-paquetes-y-base" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="cargar-paquetes-y-base"><span class="header-section-number">3.5</span> Cargar paquetes y base</h2>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Código</summary>
@@ -352,8 +352,8 @@ Salida:
 </div>
 </div>
 </section>
-<section id="preparar-variables-para-el-análisis-exploratorio" class="level2" data-number="5.6">
-<h2 data-number="5.6" class="anchored" data-anchor-id="preparar-variables-para-el-análisis-exploratorio"><span class="header-section-number">5.6</span> Preparar variables para el análisis exploratorio</h2>
+<section id="preparar-variables-para-el-análisis-exploratorio" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="preparar-variables-para-el-análisis-exploratorio"><span class="header-section-number">3.6</span> Preparar variables para el análisis exploratorio</h2>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Código</summary>
@@ -378,8 +378,8 @@ Salida:
 <p><strong>Explicación del código.</strong><br>
 Se crean variables ordenadas para hora, mes y día de la semana. <code>MES_FACTOR</code> evita que la gráfica mensual genere una categoría <code>NA</code>.</p>
 </section>
-<section id="primer-vistazo-a-la-base" class="level2" data-number="5.7">
-<h2 data-number="5.7" class="anchored" data-anchor-id="primer-vistazo-a-la-base"><span class="header-section-number">5.7</span> Primer vistazo a la base</h2>
+<section id="primer-vistazo-a-la-base" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="primer-vistazo-a-la-base"><span class="header-section-number">3.7</span> Primer vistazo a la base</h2>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Código</summary>
@@ -433,8 +433,8 @@ Se crean variables ordenadas para hora, mes y día de la semana. <code>MES_FACTO
 </div>
 </div>
 </section>
-<section id="distribución-de-la-variable-respuesta" class="level2" data-number="5.8">
-<h2 data-number="5.8" class="anchored" data-anchor-id="distribución-de-la-variable-respuesta"><span class="header-section-number">5.8</span> Distribución de la variable respuesta</h2>
+<section id="distribución-de-la-variable-respuesta" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="distribución-de-la-variable-respuesta"><span class="header-section-number">3.8</span> Distribución de la variable respuesta</h2>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Código</summary>
@@ -486,8 +486,8 @@ La base está desbalanceada: hay muchos más accidentes de solo daños que accid
 </div>
 </div>
 </section>
-<section id="accidentes-por-mes" class="level2" data-number="5.9">
-<h2 data-number="5.9" class="anchored" data-anchor-id="accidentes-por-mes"><span class="header-section-number">5.9</span> Accidentes por mes</h2>
+<section id="accidentes-por-mes" class="level2" data-number="3.9">
+<h2 data-number="3.9" class="anchored" data-anchor-id="accidentes-por-mes"><span class="header-section-number">3.9</span> Accidentes por mes</h2>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Código</summary>
@@ -541,8 +541,8 @@ La base está desbalanceada: hay muchos más accidentes de solo daños que accid
 <p><strong>Interpretación del resultado.</strong><br>
 La gráfica muestra variaciones mensuales sin crear una categoría <code>NA</code>.</p>
 </section>
-<section id="accidentes-por-hora-del-día" class="level2" data-number="5.10">
-<h2 data-number="5.10" class="anchored" data-anchor-id="accidentes-por-hora-del-día"><span class="header-section-number">5.10</span> Accidentes por hora del día</h2>
+<section id="accidentes-por-hora-del-día" class="level2" data-number="3.10">
+<h2 data-number="3.10" class="anchored" data-anchor-id="accidentes-por-hora-del-día"><span class="header-section-number">3.10</span> Accidentes por hora del día</h2>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Código</summary>
@@ -594,8 +594,8 @@ La gráfica muestra variaciones mensuales sin crear una categoría <code>NA</cod
 </div>
 </div>
 </section>
-<section id="accidentes-por-día-de-la-semana" class="level2" data-number="5.11">
-<h2 data-number="5.11" class="anchored" data-anchor-id="accidentes-por-día-de-la-semana"><span class="header-section-number">5.11</span> Accidentes por día de la semana</h2>
+<section id="accidentes-por-día-de-la-semana" class="level2" data-number="3.11">
+<h2 data-number="3.11" class="anchored" data-anchor-id="accidentes-por-día-de-la-semana"><span class="header-section-number">3.11</span> Accidentes por día de la semana</h2>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Código</summary>
@@ -643,8 +643,8 @@ La gráfica muestra variaciones mensuales sin crear una categoría <code>NA</cod
 </div>
 </div>
 </section>
-<section id="accidentes-por-tipo-de-accidente" class="level2" data-number="5.12">
-<h2 data-number="5.12" class="anchored" data-anchor-id="accidentes-por-tipo-de-accidente"><span class="header-section-number">5.12</span> Accidentes por tipo de accidente</h2>
+<section id="accidentes-por-tipo-de-accidente" class="level2" data-number="3.12">
+<h2 data-number="3.12" class="anchored" data-anchor-id="accidentes-por-tipo-de-accidente"><span class="header-section-number">3.12</span> Accidentes por tipo de accidente</h2>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Código</summary>
@@ -698,8 +698,8 @@ La gráfica muestra variaciones mensuales sin crear una categoría <code>NA</cod
 </div>
 </div>
 </section>
-<section id="accidentes-por-causa-presunta" class="level2" data-number="5.13">
-<h2 data-number="5.13" class="anchored" data-anchor-id="accidentes-por-causa-presunta"><span class="header-section-number">5.13</span> Accidentes por causa presunta</h2>
+<section id="accidentes-por-causa-presunta" class="level2" data-number="3.13">
+<h2 data-number="3.13" class="anchored" data-anchor-id="accidentes-por-causa-presunta"><span class="header-section-number">3.13</span> Accidentes por causa presunta</h2>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Código</summary>
@@ -746,8 +746,8 @@ La gráfica muestra variaciones mensuales sin crear una categoría <code>NA</cod
 </div>
 </div>
 </section>
-<section id="relación-entre-tipo-de-accidente-y-presencia-de-víctimas" class="level2" data-number="5.14">
-<h2 data-number="5.14" class="anchored" data-anchor-id="relación-entre-tipo-de-accidente-y-presencia-de-víctimas"><span class="header-section-number">5.14</span> Relación entre tipo de accidente y presencia de víctimas</h2>
+<section id="relación-entre-tipo-de-accidente-y-presencia-de-víctimas" class="level2" data-number="3.14">
+<h2 data-number="3.14" class="anchored" data-anchor-id="relación-entre-tipo-de-accidente-y-presencia-de-víctimas"><span class="header-section-number">3.14</span> Relación entre tipo de accidente y presencia de víctimas</h2>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Código</summary>
@@ -782,8 +782,8 @@ La gráfica muestra variaciones mensuales sin crear una categoría <code>NA</cod
 <p><strong>Interpretación del resultado.</strong><br>
 Esta gráfica compara proporciones, no cantidades absolutas. Es útil para detectar tipos de accidente con mayor proporción relativa de víctimas.</p>
 </section>
-<section id="relación-entre-hora-y-presencia-de-víctimas" class="level2" data-number="5.15">
-<h2 data-number="5.15" class="anchored" data-anchor-id="relación-entre-hora-y-presencia-de-víctimas"><span class="header-section-number">5.15</span> Relación entre hora y presencia de víctimas</h2>
+<section id="relación-entre-hora-y-presencia-de-víctimas" class="level2" data-number="3.15">
+<h2 data-number="3.15" class="anchored" data-anchor-id="relación-entre-hora-y-presencia-de-víctimas"><span class="header-section-number">3.15</span> Relación entre hora y presencia de víctimas</h2>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Código</summary>
@@ -808,8 +808,8 @@ Esta gráfica compara proporciones, no cantidades absolutas. Es útil para detec
 </div>
 </div>
 </section>
-<section id="relación-entre-día-de-la-semana-y-presencia-de-víctimas" class="level2" data-number="5.16">
-<h2 data-number="5.16" class="anchored" data-anchor-id="relación-entre-día-de-la-semana-y-presencia-de-víctimas"><span class="header-section-number">5.16</span> Relación entre día de la semana y presencia de víctimas</h2>
+<section id="relación-entre-día-de-la-semana-y-presencia-de-víctimas" class="level2" data-number="3.16">
+<h2 data-number="3.16" class="anchored" data-anchor-id="relación-entre-día-de-la-semana-y-presencia-de-víctimas"><span class="header-section-number">3.16</span> Relación entre día de la semana y presencia de víctimas</h2>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Código</summary>
@@ -834,8 +834,8 @@ Esta gráfica compara proporciones, no cantidades absolutas. Es útil para detec
 </div>
 </div>
 </section>
-<section id="tabla-resumen-por-clase" class="level2" data-number="5.17">
-<h2 data-number="5.17" class="anchored" data-anchor-id="tabla-resumen-por-clase"><span class="header-section-number">5.17</span> Tabla resumen por clase</h2>
+<section id="tabla-resumen-por-clase" class="level2" data-number="3.17">
+<h2 data-number="3.17" class="anchored" data-anchor-id="tabla-resumen-por-clase"><span class="header-section-number">3.17</span> Tabla resumen por clase</h2>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Código</summary>
@@ -862,8 +862,8 @@ Esta gráfica compara proporciones, no cantidades absolutas. Es útil para detec
 </div>
 </div>
 </section>
-<section id="conclusión" class="level2" data-number="5.18">
-<h2 data-number="5.18" class="anchored" data-anchor-id="conclusión"><span class="header-section-number">5.18</span> Conclusión</h2>
+<section id="conclusión" class="level2" data-number="3.18">
+<h2 data-number="3.18" class="anchored" data-anchor-id="conclusión"><span class="header-section-number">3.18</span> Conclusión</h2>
 <p>En este capítulo aprendimos a cargar una base preparada, revisar su estructura, calcular frecuencias, construir gráficas y detectar patrones iniciales.</p>
 
 
@@ -1326,12 +1326,12 @@ Esta gráfica compara proporciones, no cantidades absolutas. Es útil para detec
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./02-preparacion-datos.html" class="pagination-link" aria-label="Preparación de datos reales">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Preparación de datos reales</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Preparación de datos reales</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./04-regresion-logistica.html" class="pagination-link" aria-label="Regresión logística para clasificación">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Regresión logística para clasificación</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regresión logística para clasificación</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Ejecutar el código</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
@@ -1710,13 +1710,13 @@ Esta gráfica compara proporciones, no cantidades absolutas. Es útil para detec
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Aprendizaje y Clasificación Automática con R</p>
+<p>MI Jesús Gilberto Rodríguez Escobedo</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>
     <div class="nav-footer-right">
-<p>MI Jesús Gilberto Rodríguez Escobedo</p>
+<p>Aprendizaje y Clasificación Automática con R</p>
 </div>
   </div>
 </footer>

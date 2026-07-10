@@ -20,8 +20,8 @@ book:
     - 05-knn.qmd
     - 06-arboles-decision.qmd
   page-footer:
-    left: "Aprendizaje y Clasificación Automática con R"
-    right: "MI Jesús Gilberto Rodríguez Escobedo"
+    left: "MI Jesús Gilberto Rodríguez Escobedo"
+    right: "Aprendizaje y Clasificación Automática con R"
 
 execute:
   echo: true
@@ -53,18 +53,18 @@ format:
     pdf-engine: lualatex
     include-in-header:
       text: |
-        \renewcommand{\contentsname}{Índice general}
-        \renewcommand{\chaptername}{Capítulo}
         \usepackage{xcolor}
-        \definecolor{azulLibro}{HTML}{0B3D91}
-        \definecolor{turquesaLibro}{HTML}{00A6A6}
+        \definecolor{azulprofundo}{HTML}{0B3C5D}
+        \definecolor{turquesa}{HTML}{00A6A6}
         \usepackage{titlesec}
         \titleformat{\chapter}[display]
-          {\normalfont\huge\bfseries\color{azulLibro}}
-          {\chaptertitlename\ \thechapter}{20pt}{\Huge}
+          {\normalfont\huge\bfseries\color{azulprofundo}}
+          {\chaptertitlename\ \thechapter}{18pt}{\Huge}
         \titleformat{\section}
-          {\normalfont\Large\bfseries\color{azulLibro}}
+          {\normalfont\Large\bfseries\color{azulprofundo}}
           {\thesection}{1em}{}
         \titleformat{\subsection}
-          {\normalfont\large\bfseries\color{turquesaLibro}}
+          {\normalfont\large\bfseries\color{turquesa}}
           {\thesubsection}{1em}{}
+        \renewcommand{\contentsname}{Índice general}
+        \renewcommand{\chaptername}{Capítulo}

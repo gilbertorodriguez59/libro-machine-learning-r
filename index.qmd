@@ -1,27 +1,12 @@
----
-title: "Aprendizaje y Clasificación Automática con R"
-subtitle: "Un enfoque práctico con datos abiertos reales"
-author: "MI Jesús Gilberto Rodríguez Escobedo"
----
-
-::: {.hero}
-# Aprendizaje y Clasificación Automática con R
-
-## Un enfoque práctico con datos abiertos reales
-
-**Autor:** MI Jesús Gilberto Rodríguez Escobedo  
-**Versión:** 0.3  
-**Modalidad:** Libro abierto, práctico e interactivo
-:::
-
 # Presentación {.unnumbered}
 
 Este libro introduce el aprendizaje automático (*Machine Learning*) mediante ejemplos claros, didácticos y prácticos desarrollados principalmente en **R**.
 
 La intención no es escribir un tratado matemático extenso, sino construir una guía aplicada para aprender haciendo con datos abiertos reales. En esta versión trabajamos con datos de accidentes de tránsito de México y los usamos como hilo conductor para explicar preparación de datos, análisis exploratorio y modelos de clasificación.
 
-::: {.callout-tip title="Enfoque del libro"}
-El libro combina tres elementos: **fundamento conceptual**, **código reproducible en R** e **interpretación didáctica de los resultados**.
+::: {.callout-note}
+## Enfoque del libro
+El libro combina tres elementos: fundamento conceptual, código reproducible en R e interpretación didáctica de los resultados.
 :::
 
 ## Objetivo general {.unnumbered}

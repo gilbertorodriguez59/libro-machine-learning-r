@@ -6,13 +6,14 @@ Al finalizar este capítulo, el lector será capaz de cargar una base preparada,
 
 ## Cargar paquetes y base
 
-```{r}
+```{r cargar-base-eda}
 library(readr)
 library(dplyr)
 library(ggplot2)
 source("util_graficas.R")
 
 ruta_atus_ml <- "datos/atus_ml_preparado.csv"
+
 if (file.exists(ruta_atus_ml)) {
   atus_ml <- read_csv(ruta_atus_ml, show_col_types = FALSE)
   print("Base preparada cargada correctamente.")
@@ -22,9 +23,14 @@ if (file.exists(ruta_atus_ml)) {
 }
 ```
 
+::: {.callout-note}
+## Explicación del código
+Se carga la base preparada en el capítulo anterior. Esto permite empezar directamente con el análisis exploratorio.
+:::
+
 ## Preparar variables
 
-```{r}
+```{r preparar-eda}
 if (!is.null(atus_ml)) {
   atus_ml <- atus_ml |>
     mutate(
@@ -36,90 +42,142 @@ if (!is.null(atus_ml)) {
 }
 ```
 
+::: {.callout-note}
+## Explicación del código
+Se crean variables numéricas y factores ordenados para facilitar tablas y gráficas.
+:::
+
 ## Distribución de la variable respuesta
 
-```{r}
+```{r distribucion-respuesta, fig.width=7, fig.height=4.5}
 if (!is.null(atus_ml)) {
   tabla_clase <- table(atus_ml$accidente_con_victimas)
-  tabla_clase
   round(100 * prop.table(tabla_clase), 2)
 }
-```
 
-```{r}
 if (!is.null(atus_ml)) {
   ggplot(atus_ml, aes(x = accidente_con_victimas, fill = accidente_con_victimas)) +
     geom_bar(width = 0.7) +
     escala_clases_fill() +
     scale_y_continuous(labels = etiqueta_numero) +
-    labs(title = "Distribución de accidentes según presencia de víctimas", subtitle = "Comparación entre clases", x = "Clase", y = "Número de accidentes", fill = "Clase") +
+    labs(
+      title = "Distribución de accidentes según presencia de víctimas",
+      subtitle = "Comparación entre clases",
+      x = "Clase",
+      y = "Número de accidentes",
+      fill = "Clase"
+    ) +
     tema_libro() +
     theme(legend.position = "none")
 }
 ```
 
+::: {.callout-tip}
+## Interpretación del resultado
+La base está desbalanceada: hay más accidentes de solo daños que accidentes con víctimas. Esto será importante al evaluar modelos.
+:::
+
 ## Accidentes por mes
 
-```{r}
+```{r accidentes-mes, fig.width=7, fig.height=4.5}
 if (!is.null(atus_ml)) {
   accidentes_mes <- atus_ml |> count(MES_FACTOR, name = "n") |> arrange(MES_FACTOR)
   accidentes_mes
 }
-```
 
-```{r}
 if (exists("accidentes_mes")) {
   ggplot(accidentes_mes, aes(x = MES_FACTOR, y = n)) +
     geom_col(fill = col_azul, width = 0.75) +
     scale_y_continuous(labels = etiqueta_numero) +
-    labs(title = "Número de accidentes por mes", subtitle = "Base ATUS preparada", x = "Mes", y = "Número de accidentes") +
+    labs(
+      title = "Número de accidentes por mes",
+      subtitle = "Base ATUS preparada",
+      x = "Mes",
+      y = "Número de accidentes"
+    ) +
     tema_libro()
 }
 ```
 
+::: {.callout-note}
+## Explicación del código
+Se cuentan los accidentes por mes y se visualizan con barras. El eje vertical usa separadores de miles para facilitar la lectura.
+:::
+
 ## Accidentes por hora del día
 
-```{r}
+```{r accidentes-hora, fig.width=7, fig.height=4.5}
 if (!is.null(atus_ml)) {
   accidentes_hora <- atus_ml |> count(ID_HORA_NUM, name = "n") |> arrange(ID_HORA_NUM)
+
   ggplot(accidentes_hora, aes(x = ID_HORA_NUM, y = n)) +
     geom_col(fill = col_turquesa, width = 0.75) +
     scale_x_continuous(breaks = 0:23) +
     scale_y_continuous(labels = etiqueta_numero) +
-    labs(title = "Número de accidentes por hora del día", x = "Hora del día", y = "Número de accidentes") +
+    labs(
+      title = "Número de accidentes por hora del día",
+      x = "Hora del día",
+      y = "Número de accidentes"
+    ) +
     tema_libro()
 }
 ```
 
+::: {.callout-tip}
+## Interpretación del resultado
+La gráfica permite detectar horas con mayor concentración de accidentes.
+:::
+
 ## Tipos de accidente más frecuentes
 
-```{r}
+```{r tipos-accidente, fig.width=7, fig.height=4.5}
 if (!is.null(atus_ml)) {
   accidentes_tipo_top <- atus_ml |> count(TIPACCID, name = "n") |> slice_max(n, n = 10)
+
   ggplot(accidentes_tipo_top, aes(x = reorder(TIPACCID, n), y = n)) +
     geom_col(fill = col_azul, width = 0.75) +
     coord_flip() +
     scale_y_continuous(labels = etiqueta_numero) +
-    labs(title = "Tipos de accidente más frecuentes", x = "Tipo de accidente", y = "Número de accidentes") +
+    labs(
+      title = "Tipos de accidente más frecuentes",
+      x = "Tipo de accidente",
+      y = "Número de accidentes"
+    ) +
     tema_libro()
 }
 ```
 
+::: {.callout-note}
+## Explicación del código
+Se seleccionan los diez tipos de accidente con mayor frecuencia para evitar una gráfica saturada.
+:::
+
 ## Proporción por tipo de accidente
 
-```{r}
+```{r proporcion-tipo, fig.width=7, fig.height=4.5}
 if (!is.null(atus_ml)) {
   tipos_top <- atus_ml |> count(TIPACCID) |> slice_max(n, n = 10) |> pull(TIPACCID)
   atus_tipo_top <- atus_ml |> filter(TIPACCID %in% tipos_top)
+
   ggplot(atus_tipo_top, aes(x = TIPACCID, fill = accidente_con_victimas)) +
     geom_bar(position = "fill") +
     coord_flip() +
     escala_clases_fill() +
     scale_y_continuous(labels = etiqueta_porcentaje) +
-    labs(title = "Proporción de accidentes con víctimas según tipo de accidente", x = "Tipo de accidente", y = "Proporción", fill = "Clase") +
+    labs(
+      title = "Proporción de accidentes con víctimas según tipo de accidente",
+      x = "Tipo de accidente",
+      y = "Proporción",
+      fill = "Clase"
+    ) +
     tema_libro()
 }
 ```
+
+::: {.callout-tip}
+## Interpretación del resultado
+Esta gráfica compara proporciones, no cantidades absolutas. Permite identificar tipos de accidente con mayor presencia relativa de víctimas.
+:::
 
 ## Conclusión
 

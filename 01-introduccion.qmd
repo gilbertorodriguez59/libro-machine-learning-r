@@ -6,14 +6,15 @@ Al finalizar este capítulo, el lector será capaz de explicar qué es el aprend
 
 ## Introducción
 
-El aprendizaje automático, también conocido como *Machine Learning*, es una rama de la inteligencia artificial que permite construir modelos capaces de aprender patrones a partir de datos.
+El aprendizaje automático, también conocido como *Machine Learning*, permite construir modelos capaces de aprender patrones a partir de datos.
 
 En la programación tradicional, una persona define reglas. En aprendizaje automático, proporcionamos ejemplos para que un algoritmo aprenda una relación entre variables de entrada y una salida esperada.
 
 ## Programación tradicional contra aprendizaje automático
 
-```{r}
+```{r regla-programacion-tradicional}
 pm10 <- 85
+
 if (pm10 > 75) {
   print("Contaminación alta")
 } else {
@@ -21,9 +22,17 @@ if (pm10 > 75) {
 }
 ```
 
-**Interpretación.** Este ejemplo muestra programación tradicional: la decisión depende de una regla escrita manualmente.
+::: {.callout-note}
+## Explicación del código
+Se define un valor de PM10 y después se aplica una regla fija. Si el valor es mayor que 75, el programa clasifica el día como de contaminación alta.
+:::
 
-```{r}
+::: {.callout-tip}
+## Interpretación del resultado
+Este ejemplo representa programación tradicional: la decisión depende de una regla escrita manualmente. En aprendizaje automático, la regla se aprende a partir de ejemplos.
+:::
+
+```{r datos-ejemplo-introduccion}
 datos <- data.frame(
   dia = 1:12,
   pm10 = c(42, 88, 55, 120, 63, 95, 38, 110, 72, 130, 47, 99),
@@ -31,12 +40,18 @@ datos <- data.frame(
   humedad = c(40, 35, 60, 30, 55, 33, 65, 29, 42, 28, 62, 34),
   clase = c("Baja", "Alta", "Baja", "Alta", "Baja", "Alta", "Baja", "Alta", "Baja", "Alta", "Baja", "Alta")
 )
+
 datos
 ```
 
+::: {.callout-note}
+## Explicación del código
+Se construye una pequeña base de datos con 12 días. Cada fila contiene variables ambientales y una clase conocida.
+:::
+
 ## Variables predictoras y variable respuesta
 
-La **variable respuesta** es la variable que queremos predecir. Las **variables predictoras** son las variables que usamos como entrada para el modelo.
+La variable respuesta es la variable que queremos predecir. Las variables predictoras son las variables que usamos como entrada para el modelo.
 
 ## Tipos principales de aprendizaje automático
 
@@ -49,12 +64,12 @@ La **variable respuesta** es la variable que queremos predecir. Las **variables 
 Supongamos que tenemos $n$ observaciones y $p$ variables predictoras. Podemos representar los datos mediante una matriz $X$ y una variable respuesta $Y$.
 
 $$
-\hat{y}=f(x_1,x_2,\ldots,x_p)
+\hat{y} = f(x_1, x_2, \ldots, x_p)
 $$
 
 ## Primer ejemplo visual en R
 
-```{r}
+```{r grafica-introduccion, fig.width=7, fig.height=4.5}
 library(ggplot2)
 source("util_graficas.R")
 
@@ -71,26 +86,53 @@ ggplot(datos, aes(x = pm10, y = temperatura, color = clase)) +
   tema_libro()
 ```
 
+::: {.callout-note}
+## Explicación del código
+La gráfica coloca PM10 en el eje horizontal, temperatura en el eje vertical y usa color para distinguir la clase.
+:::
+
+::: {.callout-tip}
+## Interpretación del resultado
+Los puntos permiten visualizar si las clases se separan. Esta es la idea básica detrás de muchos métodos de clasificación.
+:::
+
 ## División entre entrenamiento y prueba
 
-```{r}
+```{r division-entrenamiento-prueba}
 set.seed(123)
 n <- nrow(datos)
 indices_entrenamiento <- sample(1:n, size = round(0.7 * n))
+
 entrenamiento <- datos[indices_entrenamiento, ]
 prueba <- datos[-indices_entrenamiento, ]
+
 entrenamiento
 prueba
 ```
 
+::: {.callout-note}
+## Explicación del código
+Se divide la base en dos partes: una para entrenar el modelo y otra para evaluar cómo funciona con datos no usados durante el ajuste.
+:::
+
 ## Primer clasificador basado en una regla
 
-```{r}
+```{r clasificador-regla}
 datos$prediccion_regla <- ifelse(datos$pm10 > 75, "Alta", "Baja")
-tabla_confusion <- table(Real = datos$clase, Predicho = datos$prediccion_regla)
+
+tabla_confusion <- table(
+  Real = datos$clase,
+  Predicho = datos$prediccion_regla
+)
+
 tabla_confusion
 mean(datos$clase == datos$prediccion_regla)
 ```
+
+::: {.callout-tip}
+## Interpretación del resultado
+La matriz de confusión compara la clase real contra la clase predicha. La exactitud mide la proporción de aciertos.
+:::
 
 ## Conclusión
 

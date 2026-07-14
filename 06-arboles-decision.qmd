@@ -13,18 +13,19 @@ Los árboles de decisión clasifican observaciones mediante una secuencia de pre
 Una medida común de impureza es el índice de Gini:
 
 $$
-Gini=1-\sum_{k=1}^{K}p_k^2
+Gini = 1 - \sum_{k=1}^{K} p_k^2
 $$
 
 ## Cargar paquetes y datos
 
-```{r}
+```{r cargar-arbol}
 library(readr)
 library(dplyr)
 library(rpart)
 source("util_graficas.R")
 
 ruta_atus_ml <- "datos/atus_ml_preparado.csv"
+
 if (file.exists(ruta_atus_ml)) {
   atus_ml <- read_csv(ruta_atus_ml, show_col_types = FALSE)
   print("Base preparada cargada correctamente.")
@@ -36,25 +37,37 @@ if (file.exists(ruta_atus_ml)) {
 
 ## Usar la base completa
 
-```{r}
+```{r preparar-arbol}
 if (!is.null(atus_ml)) {
   atus_arbol_base <- atus_ml |>
     mutate(
       accidente_con_victimas = factor(accidente_con_victimas, levels = c("Con víctimas", "Solo daños")),
-      MES = as.factor(MES), ID_HORA = as.numeric(ID_HORA), DIASEMANA = as.factor(DIASEMANA), TIPACCID = as.factor(TIPACCID), CAUSAACCI = as.factor(CAUSAACCI)
-    ) |> na.omit()
+      MES = as.factor(MES),
+      ID_HORA = as.numeric(ID_HORA),
+      DIASEMANA = as.factor(DIASEMANA),
+      TIPACCID = as.factor(TIPACCID),
+      CAUSAACCI = as.factor(CAUSAACCI)
+    ) |>
+    na.omit()
+
   data.frame(filas = nrow(atus_arbol_base), columnas = ncol(atus_arbol_base))
 }
 ```
 
+::: {.callout-note}
+## Explicación del código
+Se usa la base completa, pero el crecimiento del árbol se controla mediante parámetros del modelo.
+:::
+
 ## División y entrenamiento
 
-```{r}
+```{r entrenar-arbol}
 if (exists("atus_arbol_base")) {
   set.seed(123)
-  idx <- sample(1:nrow(atus_arbol_base), size = round(0.7*nrow(atus_arbol_base)))
+  idx <- sample(1:nrow(atus_arbol_base), size = round(0.7 * nrow(atus_arbol_base)))
   entrenamiento <- atus_arbol_base[idx, ]
   prueba <- atus_arbol_base[-idx, ]
+
   modelo_arbol <- rpart(
     accidente_con_victimas ~ MES + ID_HORA + DIASEMANA + TIPACCID + CAUSAACCI,
     data = entrenamiento,
@@ -64,13 +77,16 @@ if (exists("atus_arbol_base")) {
 }
 ```
 
+::: {.callout-note}
+## Explicación del código
+Se ajusta un árbol de decisión controlado para evitar sobreajuste y salidas demasiado grandes.
+:::
+
 ## Complejidad e importancia
 
-```{r}
+```{r complejidad-arbol}
 if (exists("modelo_arbol")) printcp(modelo_arbol)
-```
 
-```{r}
 if (exists("modelo_arbol")) {
   importancia <- modelo_arbol$variable.importance
   if (!is.null(importancia)) {
@@ -81,36 +97,46 @@ if (exists("modelo_arbol")) {
 }
 ```
 
+::: {.callout-tip}
+## Interpretación del resultado
+La importancia de variables indica qué variables ayudan más a separar accidentes con víctimas de accidentes de solo daños.
+:::
+
 ## Gráfica opcional del árbol
 
 La gráfica completa del árbol puede ser pesada en PDF. El lector puede ejecutarla manualmente en RStudio.
 
-```{r eval=FALSE}
+```{r grafica-arbol-opcional, eval=FALSE}
 plot(modelo_arbol, uniform = TRUE, margin = 0.1)
 text(modelo_arbol, use.n = TRUE, cex = 0.7)
 ```
 
 ## Predicción y métricas
 
-```{r}
+```{r metricas-arbol}
 if (exists("modelo_arbol")) {
   pred_arbol <- predict(modelo_arbol, newdata = prueba, type = "class")
   real_arbol <- factor(prueba$accidente_con_victimas, levels = c("Con víctimas", "Solo daños"))
   pred_arbol <- factor(pred_arbol, levels = c("Con víctimas", "Solo daños"))
+
   matriz_confusion_arbol <- table(Real = real_arbol, Predicho = pred_arbol)
   matriz_confusion_arbol
 }
-```
 
-```{r}
 if (exists("matriz_confusion_arbol")) {
   VP <- matriz_confusion_arbol["Con víctimas", "Con víctimas"]
   FN <- matriz_confusion_arbol["Con víctimas", "Solo daños"]
   FP <- matriz_confusion_arbol["Solo daños", "Con víctimas"]
   VN <- matriz_confusion_arbol["Solo daños", "Solo daños"]
+
   data.frame(exactitud=(VP+VN)/(VP+FN+FP+VN), sensibilidad=VP/(VP+FN), especificidad=VN/(VN+FP))
 }
 ```
+
+::: {.callout-tip}
+## Interpretación del resultado
+La matriz de confusión y las métricas permiten evaluar el desempeño del árbol sobre datos de prueba.
+:::
 
 ## Conclusión
 

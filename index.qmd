@@ -1,25 +1,21 @@
 # Presentación {.unnumbered}
 
-::: {.hero}
+## Aprendizaje y Clasificación Automática con R {.unnumbered}
 
-## Aprendizaje y Clasificación Automática con R
-
-### Un enfoque práctico con datos abiertos reales
+### Un enfoque práctico con datos abiertos reales {.unnumbered}
 
 **Autor:** MI Jesús Gilberto Rodríguez Escobedo  
-**Versión:** 0.5  
-**Modalidad:** Libro abierto, práctico e interactivo
+**Versión:** 0.7 (desarrollo)  
+**Modalidad:** Libro abierto, práctico e interactivo  
+**Tecnologías:** R · Quarto · Machine Learning · Datos abiertos · GitHub Pages
 
-`R` · `Quarto` · `Machine Learning` · `Datos abiertos` · `GitHub Pages`
-
-:::
-
-Este libro introduce el aprendizaje automático (*Machine Learning*) mediante ejemplos claros, didácticos y prácticos desarrollados principalmente en R.
+Este libro introduce el aprendizaje automático (*Machine Learning*) mediante ejemplos claros, didácticos y prácticos desarrollados principalmente en **R**.
 
 La intención no es escribir un tratado matemático extenso, sino construir una guía aplicada para aprender haciendo con datos abiertos reales. En esta versión trabajamos con datos de accidentes de tránsito de México y los usamos como hilo conductor para explicar preparación de datos, análisis exploratorio y modelos de clasificación.
 
-::: {.callout-tip title="Enfoque del libro"}
-El libro combina fundamento conceptual, código reproducible en R, interpretación didáctica de resultados y visualizaciones profesionales.
+::: {.callout-note}
+## Enfoque del libro
+El libro combina fundamento conceptual, código reproducible en R, explicación breve del código, interpretación didáctica de resultados y visualizaciones profesionales.
 :::
 
 ## Objetivo general {.unnumbered}
@@ -31,8 +27,6 @@ Desarrollar competencias básicas e intermedias en aprendizaje automático media
 Este libro está dirigido a estudiantes de ingeniería, ciencias, ciencia de datos, estadística aplicada y áreas afines que desean iniciar en aprendizaje automático con un enfoque práctico.
 
 ## Software utilizado {.unnumbered}
-
-Los ejemplos se desarrollan principalmente en R, usando RStudio y Quarto. También se mencionan herramientas útiles para publicar y compartir resultados:
 
 - RStudio
 - Consola de R
@@ -50,7 +44,12 @@ Los ejemplos se desarrollan principalmente en R, usando RStudio y Quarto. Tambi�
 5. k vecinos más cercanos.
 6. Árboles de decisión.
 7. Random Forest.
+8. Evaluación, validación y comparación de modelos.
 
 ## Nota para el lector {.unnumbered}
 
 Los capítulos están diseñados para leerse y ejecutarse paso a paso. Cada bloque de código busca responder una pregunta concreta y cada resultado se acompaña de una interpretación didáctica.
+
+## Fuente principal de los datos {.unnumbered}
+
+Los ejemplos aplicados utilizan información de la Estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas del INEGI [@inegi_atus_2024]. Cuando una tabla o gráfica se elabora con estos datos, se indica expresamente la fuente y se distingue el procesamiento realizado por el autor.

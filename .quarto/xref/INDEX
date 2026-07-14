@@ -25,5 +25,11 @@
   },
   "07-random-forest.qmd": {
     "07-random-forest.html": "249d2aaa"
+  },
+  "08-evaluacion-modelos.qmd": {
+    "08-evaluacion-modelos.html": "6900dacc"
+  },
+  "referencias.qmd": {
+    "referencias.html": "56da0329"
   }
 }

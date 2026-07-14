@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Aprendizaje y Clasificación Automática con R",
     "section": "",
-    "text": "Presentación\nEste libro introduce el aprendizaje automático (Machine Learning) mediante ejemplos claros, didácticos y prácticos desarrollados principalmente en R.\nLa intención no es escribir un tratado matemático extenso, sino construir una guía aplicada para aprender haciendo con datos abiertos reales. En esta versión trabajamos con datos de accidentes de tránsito de México y los usamos como hilo conductor para explicar preparación de datos, análisis exploratorio y modelos de clasificación.",
+    "text": "Presentación",
     "crumbs": [
       "Presentación"
     ]
@@ -14,7 +14,7 @@
     "href": "index.html#aprendizaje-y-clasificación-automática-con-r",
     "title": "Aprendizaje y Clasificación Automática con R",
     "section": "Aprendizaje y Clasificación Automática con R",
-    "text": "Aprendizaje y Clasificación Automática con R\n\nUn enfoque práctico con datos abiertos reales\nAutor: MI Jesús Gilberto Rodríguez Escobedo\nVersión: 0.5\nModalidad: Libro abierto, práctico e interactivo\nR · Quarto · Machine Learning · Datos abiertos · GitHub Pages",
+    "text": "Aprendizaje y Clasificación Automática con R\n\nUn enfoque práctico con datos abiertos reales\nAutor: MI Jesús Gilberto Rodríguez Escobedo\nVersión: 0.7 (desarrollo)\nModalidad: Libro abierto, práctico e interactivo\nTecnologías: R · Quarto · Machine Learning · Datos abiertos · GitHub Pages\nEste libro introduce el aprendizaje automático (Machine Learning) mediante ejemplos claros, didácticos y prácticos desarrollados principalmente en R.\nLa intención no es escribir un tratado matemático extenso, sino construir una guía aplicada para aprender haciendo con datos abiertos reales. En esta versión trabajamos con datos de accidentes de tránsito de México y los usamos como hilo conductor para explicar preparación de datos, análisis exploratorio y modelos de clasificación.\n\n\n\n\n\n\nNotaEnfoque del libro\n\n\n\nEl libro combina fundamento conceptual, código reproducible en R, explicación breve del código, interpretación didáctica de resultados y visualizaciones profesionales.",
     "crumbs": [
       "Presentación"
     ]
@@ -44,7 +44,7 @@
     "href": "index.html#software-utilizado",
     "title": "Aprendizaje y Clasificación Automática con R",
     "section": "Software utilizado",
-    "text": "Software utilizado\nLos ejemplos se desarrollan principalmente en R, usando RStudio y Quarto. También se mencionan herramientas útiles para publicar y compartir resultados:\n\nRStudio\nConsola de R\nGoogle Colab\nGitHub\nGitHub Pages\nQuarto Pub",
+    "text": "Software utilizado\n\nRStudio\nConsola de R\nGoogle Colab\nGitHub\nGitHub Pages\nQuarto Pub",
     "crumbs": [
       "Presentación"
     ]
@@ -54,7 +54,7 @@
     "href": "index.html#estructura-actual-del-libro",
     "title": "Aprendizaje y Clasificación Automática con R",
     "section": "Estructura actual del libro",
-    "text": "Estructura actual del libro\n\nIntroducción al aprendizaje automático.\nPreparación de datos reales.\nAnálisis exploratorio de datos.\nRegresión logística.\nk vecinos más cercanos.\nÁrboles de decisión.\nRandom Forest.",
+    "text": "Estructura actual del libro\n\nIntroducción al aprendizaje automático.\nPreparación de datos reales.\nAnálisis exploratorio de datos.\nRegresión logística.\nk vecinos más cercanos.\nÁrboles de decisión.\nRandom Forest.\nEvaluación, validación y comparación de modelos.",
     "crumbs": [
       "Presentación"
     ]
@@ -65,6 +65,16 @@
     "title": "Aprendizaje y Clasificación Automática con R",
     "section": "Nota para el lector",
     "text": "Nota para el lector\nLos capítulos están diseñados para leerse y ejecutarse paso a paso. Cada bloque de código busca responder una pregunta concreta y cada resultado se acompaña de una interpretación didáctica.",
+    "crumbs": [
+      "Presentación"
+    ]
+  },
+  {
+    "objectID": "index.html#fuente-principal-de-los-datos",
+    "href": "index.html#fuente-principal-de-los-datos",
+    "title": "Aprendizaje y Clasificación Automática con R",
+    "section": "Fuente principal de los datos",
+    "text": "Fuente principal de los datos\nLos ejemplos aplicados utilizan información de la Estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas del INEGI (Instituto Nacional de Estadística y Geografía 2025). Cuando una tabla o gráfica se elabora con estos datos, se indica expresamente la fuente y se distingue el procesamiento realizado por el autor.\n\n\n\n\nInstituto Nacional de Estadística y Geografía. 2025. «Estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas (ATUS), 2024». Instituto Nacional de Estadística y Geografía. https://www.inegi.org.mx/programas/accidentes/.",
     "crumbs": [
       "Presentación"
     ]
@@ -124,7 +134,7 @@
     "href": "01-introduccion.html#introducción",
     "title": "1  ¿Qué es el aprendizaje automático?",
     "section": "1.2 Introducción",
-    "text": "1.2 Introducción\nEl aprendizaje automático, también conocido como Machine Learning, es una rama de la inteligencia artificial que permite construir modelos capaces de aprender patrones a partir de datos.\nEn la programación tradicional, una persona define reglas. En aprendizaje automático, proporcionamos ejemplos para que un algoritmo aprenda una relación entre variables de entrada y una salida esperada.",
+    "text": "1.2 Introducción\nEl aprendizaje automático, también conocido como Machine Learning, permite construir modelos capaces de aprender patrones a partir de datos.\nEn la programación tradicional, una persona define reglas. En aprendizaje automático, proporcionamos ejemplos para que un algoritmo aprenda una relación entre variables de entrada y una salida esperada.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>¿Qué es el aprendizaje automático?</span>"
     ]
@@ -134,7 +144,7 @@
     "href": "01-introduccion.html#programación-tradicional-contra-aprendizaje-automático",
     "title": "1  ¿Qué es el aprendizaje automático?",
     "section": "1.3 Programación tradicional contra aprendizaje automático",
-    "text": "1.3 Programación tradicional contra aprendizaje automático\n\n\nCódigo\npm10 &lt;- 85\nif (pm10 &gt; 75) {\n  print(\"Contaminación alta\")\n} else {\n  print(\"Contaminación baja\")\n}\n\n\n[1] \"Contaminación alta\"\n\n\nInterpretación. Este ejemplo muestra programación tradicional: la decisión depende de una regla escrita manualmente.\n\n\nCódigo\ndatos &lt;- data.frame(\n  dia = 1:12,\n  pm10 = c(42, 88, 55, 120, 63, 95, 38, 110, 72, 130, 47, 99),\n  temperatura = c(25, 28, 22, 30, 24, 29, 21, 31, 27, 32, 23, 30),\n  humedad = c(40, 35, 60, 30, 55, 33, 65, 29, 42, 28, 62, 34),\n  clase = c(\"Baja\", \"Alta\", \"Baja\", \"Alta\", \"Baja\", \"Alta\", \"Baja\", \"Alta\", \"Baja\", \"Alta\", \"Baja\", \"Alta\")\n)\ndatos\n\n\n   dia pm10 temperatura humedad clase\n1    1   42          25      40  Baja\n2    2   88          28      35  Alta\n3    3   55          22      60  Baja\n4    4  120          30      30  Alta\n5    5   63          24      55  Baja\n6    6   95          29      33  Alta\n7    7   38          21      65  Baja\n8    8  110          31      29  Alta\n9    9   72          27      42  Baja\n10  10  130          32      28  Alta\n11  11   47          23      62  Baja\n12  12   99          30      34  Alta",
+    "text": "1.3 Programación tradicional contra aprendizaje automático\n\n\nCódigo\npm10 &lt;- 85\n\nif (pm10 &gt; 75) {\n  print(\"Contaminación alta\")\n} else {\n  print(\"Contaminación baja\")\n}\n\n\n[1] \"Contaminación alta\"\n\n\n\n\n\n\n\n\nNotaExplicación del código\n\n\n\nSe define un valor de PM10 y después se aplica una regla fija. Si el valor es mayor que 75, el programa clasifica el día como de contaminación alta.\n\n\n\n\n\n\n\n\nTipInterpretación del resultado\n\n\n\nEste ejemplo representa programación tradicional: la decisión depende de una regla escrita manualmente. En aprendizaje automático, la regla se aprende a partir de ejemplos.\n\n\n\n\nCódigo\ndatos &lt;- data.frame(\n  dia = 1:12,\n  pm10 = c(42, 88, 55, 120, 63, 95, 38, 110, 72, 130, 47, 99),\n  temperatura = c(25, 28, 22, 30, 24, 29, 21, 31, 27, 32, 23, 30),\n  humedad = c(40, 35, 60, 30, 55, 33, 65, 29, 42, 28, 62, 34),\n  clase = c(\"Baja\", \"Alta\", \"Baja\", \"Alta\", \"Baja\", \"Alta\", \"Baja\", \"Alta\", \"Baja\", \"Alta\", \"Baja\", \"Alta\")\n)\n\ndatos\n\n\n   dia pm10 temperatura humedad clase\n1    1   42          25      40  Baja\n2    2   88          28      35  Alta\n3    3   55          22      60  Baja\n4    4  120          30      30  Alta\n5    5   63          24      55  Baja\n6    6   95          29      33  Alta\n7    7   38          21      65  Baja\n8    8  110          31      29  Alta\n9    9   72          27      42  Baja\n10  10  130          32      28  Alta\n11  11   47          23      62  Baja\n12  12   99          30      34  Alta\n\n\n\n\n\n\n\n\nNotaExplicación del código\n\n\n\nSe construye una pequeña base de datos con 12 días. Cada fila contiene variables ambientales y una clase conocida.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>¿Qué es el aprendizaje automático?</span>"
     ]
@@ -164,7 +174,7 @@
     "href": "01-introduccion.html#notación-básica",
     "title": "1  ¿Qué es el aprendizaje automático?",
     "section": "1.6 Notación básica",
-    "text": "1.6 Notación básica\nSupongamos que tenemos \\(n\\) observaciones y \\(p\\) variables predictoras. Podemos representar los datos mediante una matriz \\(X\\) y una variable respuesta \\(Y\\).\n\\[\n\\hat{y}=f(x_1,x_2,\\ldots,x_p)\n\\]",
+    "text": "1.6 Notación básica\nSupongamos que tenemos \\(n\\) observaciones y \\(p\\) variables predictoras. Podemos representar los datos mediante una matriz \\(X\\) y una variable respuesta \\(Y\\).\n\\[\n\\hat{y} = f(x_1, x_2, \\ldots, x_p)\n\\]",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>¿Qué es el aprendizaje automático?</span>"
     ]
@@ -174,7 +184,7 @@
     "href": "01-introduccion.html#primer-ejemplo-visual-en-r",
     "title": "1  ¿Qué es el aprendizaje automático?",
     "section": "1.7 Primer ejemplo visual en R",
-    "text": "1.7 Primer ejemplo visual en R\n\n\nCódigo\nlibrary(ggplot2)\nsource(\"util_graficas.R\")\n\nggplot(datos, aes(x = pm10, y = temperatura, color = clase)) +\n  geom_point(size = 4, alpha = 0.9) +\n  escala_clases_color() +\n  labs(\n    title = \"Ejemplo inicial de clasificación\",\n    subtitle = \"Clasificación de contaminación alta o baja\",\n    x = \"PM10\",\n    y = \"Temperatura\",\n    color = \"Clase\"\n  ) +\n  tema_libro()",
+    "text": "1.7 Primer ejemplo visual en R\n\n\nCódigo\nlibrary(ggplot2)\nsource(\"util_graficas.R\")\n\nggplot(datos, aes(x = pm10, y = temperatura, color = clase)) +\n  geom_point(size = 4, alpha = 0.9) +\n  escala_clases_color() +\n  labs(\n    title = \"Ejemplo inicial de clasificación\",\n    subtitle = \"Clasificación de contaminación alta o baja\",\n    x = \"PM10\",\n    y = \"Temperatura\",\n    color = \"Clase\"\n  ) +\n  tema_libro()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNotaExplicación del código\n\n\n\nLa gráfica coloca PM10 en el eje horizontal, temperatura en el eje vertical y usa color para distinguir la clase.\n\n\n\n\n\n\n\n\nTipInterpretación del resultado\n\n\n\nLos puntos permiten visualizar si las clases se separan. Esta es la idea básica detrás de muchos métodos de clasificación.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>¿Qué es el aprendizaje automático?</span>"
     ]
@@ -184,7 +194,7 @@
     "href": "01-introduccion.html#división-entre-entrenamiento-y-prueba",
     "title": "1  ¿Qué es el aprendizaje automático?",
     "section": "1.8 División entre entrenamiento y prueba",
-    "text": "1.8 División entre entrenamiento y prueba\n\n\nCódigo\nset.seed(123)\nn &lt;- nrow(datos)\nindices_entrenamiento &lt;- sample(1:n, size = round(0.7 * n))\nentrenamiento &lt;- datos[indices_entrenamiento, ]\nprueba &lt;- datos[-indices_entrenamiento, ]\nentrenamiento\n\n\n   dia pm10 temperatura humedad clase\n3    3   55          22      60  Baja\n12  12   99          30      34  Alta\n10  10  130          32      28  Alta\n2    2   88          28      35  Alta\n6    6   95          29      33  Alta\n11  11   47          23      62  Baja\n5    5   63          24      55  Baja\n4    4  120          30      30  Alta\n\n\nCódigo\nprueba\n\n\n  dia pm10 temperatura humedad clase\n1   1   42          25      40  Baja\n7   7   38          21      65  Baja\n8   8  110          31      29  Alta\n9   9   72          27      42  Baja",
+    "text": "1.8 División entre entrenamiento y prueba\n\n\nCódigo\nset.seed(123)\nn &lt;- nrow(datos)\nindices_entrenamiento &lt;- sample(1:n, size = round(0.7 * n))\n\nentrenamiento &lt;- datos[indices_entrenamiento, ]\nprueba &lt;- datos[-indices_entrenamiento, ]\n\nentrenamiento\n\n\n   dia pm10 temperatura humedad clase\n3    3   55          22      60  Baja\n12  12   99          30      34  Alta\n10  10  130          32      28  Alta\n2    2   88          28      35  Alta\n6    6   95          29      33  Alta\n11  11   47          23      62  Baja\n5    5   63          24      55  Baja\n4    4  120          30      30  Alta\n\n\nCódigo\nprueba\n\n\n  dia pm10 temperatura humedad clase\n1   1   42          25      40  Baja\n7   7   38          21      65  Baja\n8   8  110          31      29  Alta\n9   9   72          27      42  Baja\n\n\n\n\n\n\n\n\nNotaExplicación del código\n\n\n\nSe divide la base en dos partes: una para entrenar el modelo y otra para evaluar cómo funciona con datos no usados durante el ajuste.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>¿Qué es el aprendizaje automático?</span>"
     ]
@@ -194,7 +204,7 @@
     "href": "01-introduccion.html#primer-clasificador-basado-en-una-regla",
     "title": "1  ¿Qué es el aprendizaje automático?",
     "section": "1.9 Primer clasificador basado en una regla",
-    "text": "1.9 Primer clasificador basado en una regla\n\n\nCódigo\ndatos$prediccion_regla &lt;- ifelse(datos$pm10 &gt; 75, \"Alta\", \"Baja\")\ntabla_confusion &lt;- table(Real = datos$clase, Predicho = datos$prediccion_regla)\ntabla_confusion\n\n\n      Predicho\nReal   Alta Baja\n  Alta    6    0\n  Baja    0    6\n\n\nCódigo\nmean(datos$clase == datos$prediccion_regla)\n\n\n[1] 1",
+    "text": "1.9 Primer clasificador basado en una regla\n\n\nCódigo\ndatos$prediccion_regla &lt;- ifelse(datos$pm10 &gt; 75, \"Alta\", \"Baja\")\n\ntabla_confusion &lt;- table(\n  Real = datos$clase,\n  Predicho = datos$prediccion_regla\n)\n\ntabla_confusion\n\n\n      Predicho\nReal   Alta Baja\n  Alta    6    0\n  Baja    0    6\n\n\nCódigo\nmean(datos$clase == datos$prediccion_regla)\n\n\n[1] 1\n\n\n\n\n\n\n\n\nTipInterpretación del resultado\n\n\n\nLa matriz de confusión compara la clase real contra la clase predicha. La exactitud mide la proporción de aciertos.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>¿Qué es el aprendizaje automático?</span>"
     ]
@@ -214,7 +224,17 @@
     "href": "02-preparacion-datos.html",
     "title": "2  Preparación de datos reales",
     "section": "",
-    "text": "2.1 Objetivos del capítulo\nAl finalizar este capítulo, el lector será capaz de leer una base real, seleccionar variables, construir una variable respuesta y guardar una base preparada para modelado.",
+    "text": "2.1 Objetivos del capítulo\nAl finalizar este capítulo, el lector será capaz de:",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
+    ]
+  },
+  {
+    "objectID": "02-preparacion-datos.html#objetivos-del-capítulo",
+    "href": "02-preparacion-datos.html#objetivos-del-capítulo",
+    "title": "2  Preparación de datos reales",
+    "section": "",
+    "text": "localizar y descargar la base ATUS desde el portal oficial del INEGI;\norganizar los archivos dentro del proyecto Quarto;\nleer y revisar una base real en R;\nseleccionar y transformar variables;\nconstruir una variable respuesta binaria;\nguardar una base preparada para los capítulos de modelado;\ncitar correctamente la fuente de los datos.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
     ]
@@ -224,7 +244,27 @@
     "href": "02-preparacion-datos.html#introducción",
     "title": "2  Preparación de datos reales",
     "section": "2.2 Introducción",
-    "text": "2.2 Introducción\nEn la práctica profesional, los datos reales casi nunca vienen preparados. Antes de aplicar un algoritmo necesitamos revisar, limpiar, transformar y documentar los datos.",
+    "text": "2.2 Introducción\nEn la práctica profesional, los datos casi nunca llegan preparados para aplicar un algoritmo. Antes de modelar debemos conocer su procedencia, revisar su estructura, limpiar valores, transformar variables y documentar cada decisión.\nEn este libro utilizamos la Estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas (ATUS) del Instituto Nacional de Estadística y Geografía (Instituto Nacional de Estadística y Geografía 2025). Su objetivo es producir información anual sobre la siniestralidad del transporte terrestre en zonas de jurisdicción no federal, con desglose nacional, estatal y municipal.\n\n\n\n\n\n\nImportanteUso responsable de la información\n\n\n\nLos datos originales son del INEGI. La limpieza, transformación, selección de variables, gráficas, modelos e interpretaciones de este libro son elaboración del autor. No constituyen resultados oficiales ni implican el aval del Instituto.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
+    ]
+  },
+  {
+    "objectID": "02-preparacion-datos.html#descargar-la-base-atus-desde-el-inegi",
+    "href": "02-preparacion-datos.html#descargar-la-base-atus-desde-el-inegi",
+    "title": "2  Preparación de datos reales",
+    "section": "2.3 Descargar la base ATUS desde el INEGI",
+    "text": "2.3 Descargar la base ATUS desde el INEGI\nLa descarga debe realizarse desde el sitio oficial para conservar la procedencia y los metadatos del archivo.\n\nAbra en su navegador el portal de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas (ATUS):\nhttps://www.inegi.org.mx/programas/accidentes/\nLocalice el apartado Datos abiertos o la opción de descarga correspondiente.\nSeleccione el periodo anual que desea utilizar. Para reproducir los ejemplos de esta versión, elija 2024.\nDescargue el archivo en formato CSV. Es posible que el portal entregue un archivo comprimido en formato ZIP.\nDescomprima el archivo descargado.\nIdentifique el CSV anual y cópielo en la carpeta datos del proyecto.\nPara seguir exactamente los ejemplos, renómbrelo como:\n\natus_2024.csv\nLa estructura mínima del proyecto debe quedar así:\nlibro-machine-learning-r-dev/\n├── _quarto.yml\n├── index.qmd\n├── 02-preparacion-datos.qmd\n├── datos/\n│   └── atus_2024.csv\n└── referencias.bib\n\n\n\n\n\n\nTipOtro año de información\n\n\n\nPuede utilizar un año diferente. En ese caso, cambie el nombre del archivo o modifique la ruta utilizada en el código. Conviene anotar siempre el año de referencia porque los resultados pueden cambiar entre periodos.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
+    ]
+  },
+  {
+    "objectID": "02-preparacion-datos.html#cómo-citar-los-datos",
+    "href": "02-preparacion-datos.html#cómo-citar-los-datos",
+    "title": "2  Preparación de datos reales",
+    "section": "2.4 Cómo citar los datos",
+    "text": "2.4 Cómo citar los datos\nLos términos de libre uso del INEGI permiten utilizar, adaptar y publicar su información, pero requieren citar la fuente de origen (Instituto Nacional de Estadística y Geografía 2026).\nEn el texto puede utilizarse una cita como esta:\n\nLos datos proceden de la Estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas del INEGI (Instituto Nacional de Estadística y Geografía 2025).\n\nDebajo de una tabla o gráfica sin transformaciones importantes:\n\nFuente: INEGI, Estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas (ATUS), 2024.\n\nCuando exista procesamiento, agrupación, modelado o visualización propia:\n\nFuente: Elaboración propia con datos del INEGI, Estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas (ATUS), 2024.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
     ]
@@ -233,8 +273,18 @@
     "objectID": "02-preparacion-datos.html#cargar-paquetes",
     "href": "02-preparacion-datos.html#cargar-paquetes",
     "title": "2  Preparación de datos reales",
-    "section": "2.3 Cargar paquetes",
-    "text": "2.3 Cargar paquetes\n\n\nCódigo\nlibrary(readr)\nlibrary(dplyr)\nlibrary(ggplot2)\nlibrary(stringr)\nsource(\"util_graficas.R\")",
+    "section": "2.5 Cargar paquetes",
+    "text": "2.5 Cargar paquetes\n\n\nCódigo\nlibrary(readr)\nlibrary(dplyr)\nlibrary(ggplot2)\nlibrary(stringr)\nsource(\"util_graficas.R\")\n\n\n\n\n\n\n\n\nNotaExplicación del código\n\n\n\nSe cargan paquetes para leer archivos CSV, transformar datos, trabajar con texto y crear gráficas. El archivo util_graficas.R contiene funciones visuales comunes para mantener un estilo uniforme en todo el libro.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
+    ]
+  },
+  {
+    "objectID": "02-preparacion-datos.html#localizar-el-archivo",
+    "href": "02-preparacion-datos.html#localizar-el-archivo",
+    "title": "2  Preparación de datos reales",
+    "section": "2.6 Localizar el archivo",
+    "text": "2.6 Localizar el archivo\nEn lugar de depender únicamente de un nombre fijo, el siguiente código busca archivos cuyo nombre comience con atus y termine en .csv.\n\n\nCódigo\narchivos_atus &lt;- list.files(\n  path = \"datos\",\n  pattern = \"^atus.*\\\\.csv$\",\n  full.names = TRUE,\n  ignore.case = TRUE\n)\n\narchivos_atus\n\n\n[1] \"datos/atus_2024.csv\"         \"datos/atus_ml_preparado.csv\"\n\n\n\n\n\n\n\n\nTipInterpretación\n\n\n\nSi aparece al menos una ruta, R encontró un archivo ATUS. Si el resultado es character(0), revise que el archivo esté descomprimido y guardado dentro de la carpeta datos.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
     ]
@@ -243,8 +293,8 @@
     "objectID": "02-preparacion-datos.html#leer-el-archivo-csv",
     "href": "02-preparacion-datos.html#leer-el-archivo-csv",
     "title": "2  Preparación de datos reales",
-    "section": "2.4 Leer el archivo CSV",
-    "text": "2.4 Leer el archivo CSV\n\n\nCódigo\nruta_atus &lt;- \"datos/atus_2024.csv\"\nfile.exists(ruta_atus)\n\n\n[1] TRUE\n\n\nCódigo\nif (file.exists(ruta_atus)) {\n  atus &lt;- read_csv(file = ruta_atus, show_col_types = FALSE, locale = locale(encoding = \"UTF-8\"))\n  print(\"Archivo leído correctamente.\")\n} else {\n  atus &lt;- NULL\n  print(\"El archivo atus_2024.csv todavía no está disponible en la carpeta datos.\")\n}\n\n\n[1] \"Archivo leído correctamente.\"",
+    "section": "2.7 Leer el archivo CSV",
+    "text": "2.7 Leer el archivo CSV\n\n\nCódigo\nif (length(archivos_atus) == 0) {\n  stop(\n    paste(\n      \"No se encontró un archivo ATUS en la carpeta datos.\",\n      \"Descárguelo desde el portal oficial del INEGI y descomprímalo.\"\n    )\n  )\n}\n\nruta_atus &lt;- archivos_atus[1]\n\natus &lt;- read_csv(\n  file = ruta_atus,\n  show_col_types = FALSE,\n  locale = locale(encoding = \"UTF-8\")\n)\n\nmessage(\"Archivo leído: \", ruta_atus)\n\n\n\n\n\n\n\n\nNotaExplicación del código\n\n\n\nSe selecciona el primer archivo localizado y se lee con read_csv(). El argumento show_col_types = FALSE evita imprimir mensajes técnicos que distraen de los resultados principales.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
     ]
@@ -253,48 +303,68 @@
     "objectID": "02-preparacion-datos.html#primer-vistazo-a-los-datos",
     "href": "02-preparacion-datos.html#primer-vistazo-a-los-datos",
     "title": "2  Preparación de datos reales",
-    "section": "2.5 Primer vistazo a los datos",
-    "text": "2.5 Primer vistazo a los datos\n\n\nCódigo\nif (!is.null(atus)) {\n  data.frame(filas = nrow(atus), columnas = ncol(atus))\n  head(atus)\n}\n\n\n# A tibble: 6 × 45\n  COBERTURA ID_ENTIDAD ID_MUNICIPIO  ANIO MES   ID_HORA ID_MINUTO ID_DIA\n  &lt;chr&gt;     &lt;chr&gt;      &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt; \n1 Municipal 01         001           2024 01    02      25        01    \n2 Municipal 01         001           2024 01    03      40        01    \n3 Municipal 01         001           2024 01    04      37        01    \n4 Municipal 01         001           2024 01    05      00        01    \n5 Municipal 01         001           2024 01    06      45        01    \n6 Municipal 01         001           2024 01    07      30        01    \n# ℹ 37 more variables: DIASEMANA &lt;chr&gt;, URBANA &lt;chr&gt;, SUBURBANA &lt;chr&gt;,\n#   TIPACCID &lt;chr&gt;, AUTOMOVIL &lt;dbl&gt;, CAMPASAJ &lt;dbl&gt;, MICROBUS &lt;dbl&gt;,\n#   PASCAMION &lt;dbl&gt;, OMNIBUS &lt;dbl&gt;, TRANVIA &lt;dbl&gt;, CAMIONETA &lt;dbl&gt;,\n#   CAMION &lt;dbl&gt;, TRACTOR &lt;dbl&gt;, FERROCARRI &lt;dbl&gt;, MOTOCICLET &lt;dbl&gt;,\n#   BICICLETA &lt;dbl&gt;, OTROVEHIC &lt;dbl&gt;, CAUSAACCI &lt;chr&gt;, CAPAROD &lt;chr&gt;,\n#   SEXO &lt;chr&gt;, ALIENTO &lt;chr&gt;, CINTURON &lt;chr&gt;, ID_EDAD &lt;dbl&gt;, CONDMUERTO &lt;dbl&gt;,\n#   CONDHERIDO &lt;dbl&gt;, PASAMUERTO &lt;dbl&gt;, PASAHERIDO &lt;dbl&gt;, PEATMUERTO &lt;dbl&gt;, …",
+    "section": "2.8 Primer vistazo a los datos",
+    "text": "2.8 Primer vistazo a los datos\n\n\nCódigo\nresumen_dimensiones &lt;- data.frame(\n  filas = nrow(atus),\n  columnas = ncol(atus)\n)\n\nresumen_dimensiones\n\n\n   filas columnas\n1 390627       45\n\n\nCódigo\nhead(atus)\n\n\n# A tibble: 6 × 45\n  COBERTURA ID_ENTIDAD ID_MUNICIPIO  ANIO MES   ID_HORA ID_MINUTO ID_DIA\n  &lt;chr&gt;     &lt;chr&gt;      &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt; \n1 Municipal 01         001           2024 01    02      25        01    \n2 Municipal 01         001           2024 01    03      40        01    \n3 Municipal 01         001           2024 01    04      37        01    \n4 Municipal 01         001           2024 01    05      00        01    \n5 Municipal 01         001           2024 01    06      45        01    \n6 Municipal 01         001           2024 01    07      30        01    \n# ℹ 37 more variables: DIASEMANA &lt;chr&gt;, URBANA &lt;chr&gt;, SUBURBANA &lt;chr&gt;,\n#   TIPACCID &lt;chr&gt;, AUTOMOVIL &lt;dbl&gt;, CAMPASAJ &lt;dbl&gt;, MICROBUS &lt;dbl&gt;,\n#   PASCAMION &lt;dbl&gt;, OMNIBUS &lt;dbl&gt;, TRANVIA &lt;dbl&gt;, CAMIONETA &lt;dbl&gt;,\n#   CAMION &lt;dbl&gt;, TRACTOR &lt;dbl&gt;, FERROCARRI &lt;dbl&gt;, MOTOCICLET &lt;dbl&gt;,\n#   BICICLETA &lt;dbl&gt;, OTROVEHIC &lt;dbl&gt;, CAUSAACCI &lt;chr&gt;, CAPAROD &lt;chr&gt;,\n#   SEXO &lt;chr&gt;, ALIENTO &lt;chr&gt;, CINTURON &lt;chr&gt;, ID_EDAD &lt;dbl&gt;, CONDMUERTO &lt;dbl&gt;,\n#   CONDHERIDO &lt;dbl&gt;, PASAMUERTO &lt;dbl&gt;, PASAHERIDO &lt;dbl&gt;, PEATMUERTO &lt;dbl&gt;, …\n\n\n\n\n\n\n\n\nTipInterpretación\n\n\n\nLas filas representan registros de accidentes y las columnas describen sus características temporales, geográficas y operativas. Antes de modelar es indispensable confirmar que las variables esperadas estén disponibles.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
     ]
   },
   {
-    "objectID": "02-preparacion-datos.html#variables-de-interés",
-    "href": "02-preparacion-datos.html#variables-de-interés",
+    "objectID": "02-preparacion-datos.html#normalizar-los-nombres-de-variables",
+    "href": "02-preparacion-datos.html#normalizar-los-nombres-de-variables",
     "title": "2  Preparación de datos reales",
-    "section": "2.6 Variables de interés",
-    "text": "2.6 Variables de interés\n\n\nCódigo\nvariables_interes &lt;- c(\"ANIO\", \"MES\", \"ID_ENTIDAD\", \"ID_MUNICIPIO\", \"ID_HORA\", \"ID_DIA\", \"DIASEMANA\", \"TIPACCID\", \"CAUSAACCI\", \"CLASACC\")\n\nif (!is.null(atus)) {\n  names(atus) &lt;- toupper(names(atus))\n  variables_existentes &lt;- intersect(variables_interes, names(atus))\n  atus_base &lt;- atus |&gt; select(all_of(variables_existentes))\n  head(atus_base)\n}\n\n\n# A tibble: 6 × 10\n   ANIO MES   ID_ENTIDAD ID_MUNICIPIO ID_HORA ID_DIA DIASEMANA TIPACCID         \n  &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;        &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;            \n1  2024 01    01         001          02      01     lunes     Colisión con veh…\n2  2024 01    01         001          03      01     lunes     Colisión con obj…\n3  2024 01    01         001          04      01     lunes     Colisión con pea…\n4  2024 01    01         001          05      01     lunes     Colisión con obj…\n5  2024 01    01         001          06      01     lunes     Colisión con obj…\n6  2024 01    01         001          07      01     lunes     Colisión con veh…\n# ℹ 2 more variables: CAUSAACCI &lt;chr&gt;, CLASACC &lt;chr&gt;",
+    "section": "2.9 Normalizar los nombres de variables",
+    "text": "2.9 Normalizar los nombres de variables\n\n\nCódigo\nnames(atus) &lt;- toupper(names(atus))\nnames(atus)\n\n\n [1] \"COBERTURA\"    \"ID_ENTIDAD\"   \"ID_MUNICIPIO\" \"ANIO\"         \"MES\"         \n [6] \"ID_HORA\"      \"ID_MINUTO\"    \"ID_DIA\"       \"DIASEMANA\"    \"URBANA\"      \n[11] \"SUBURBANA\"    \"TIPACCID\"     \"AUTOMOVIL\"    \"CAMPASAJ\"     \"MICROBUS\"    \n[16] \"PASCAMION\"    \"OMNIBUS\"      \"TRANVIA\"      \"CAMIONETA\"    \"CAMION\"      \n[21] \"TRACTOR\"      \"FERROCARRI\"   \"MOTOCICLET\"   \"BICICLETA\"    \"OTROVEHIC\"   \n[26] \"CAUSAACCI\"    \"CAPAROD\"      \"SEXO\"         \"ALIENTO\"      \"CINTURON\"    \n[31] \"ID_EDAD\"      \"CONDMUERTO\"   \"CONDHERIDO\"   \"PASAMUERTO\"   \"PASAHERIDO\"  \n[36] \"PEATMUERTO\"   \"PEATHERIDO\"   \"CICLMUERTO\"   \"CICLHERIDO\"   \"OTROMUERTO\"  \n[41] \"OTROHERIDO\"   \"NEMUERTO\"     \"NEHERIDO\"     \"CLASACC\"      \"ESTATUS\"     \n\n\nSe convierten los nombres a mayúsculas para evitar errores por diferencias como Mes, MES o mes.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
     ]
   },
   {
-    "objectID": "02-preparacion-datos.html#crear-variable-respuesta",
-    "href": "02-preparacion-datos.html#crear-variable-respuesta",
+    "objectID": "02-preparacion-datos.html#seleccionar-variables-de-interés",
+    "href": "02-preparacion-datos.html#seleccionar-variables-de-interés",
     "title": "2  Preparación de datos reales",
-    "section": "2.7 Crear variable respuesta",
-    "text": "2.7 Crear variable respuesta\n\n\nCódigo\nif (exists(\"atus_base\") && \"CLASACC\" %in% names(atus_base)) {\n  atus_modelo &lt;- atus_base |&gt;\n    mutate(\n      CLASACC_TXT = str_to_lower(as.character(CLASACC)),\n      accidente_con_victimas = case_when(\n        str_detect(CLASACC_TXT, \"sólo daños\") ~ \"Solo daños\",\n        str_detect(CLASACC_TXT, \"solo daños\") ~ \"Solo daños\",\n        str_detect(CLASACC_TXT, \"daños\") ~ \"Solo daños\",\n        str_detect(CLASACC_TXT, \"no fatal\") ~ \"Con víctimas\",\n        str_detect(CLASACC_TXT, \"fatal\") ~ \"Con víctimas\",\n        TRUE ~ NA_character_\n      )\n    ) |&gt;\n    filter(!is.na(accidente_con_victimas))\n\n  table(atus_modelo$accidente_con_victimas)\n}\n\n\n\nCon víctimas   Solo daños \n       68108       322519",
+    "section": "2.10 Seleccionar variables de interés",
+    "text": "2.10 Seleccionar variables de interés\n\n\nCódigo\nvariables_interes &lt;- c(\n  \"ANIO\", \"MES\", \"ID_ENTIDAD\", \"ID_MUNICIPIO\",\n  \"ID_HORA\", \"ID_DIA\", \"DIASEMANA\", \"TIPACCID\",\n  \"CAUSAACCI\", \"CLASACC\"\n)\n\nvariables_existentes &lt;- intersect(\n  variables_interes,\n  names(atus)\n)\n\nvariables_faltantes &lt;- setdiff(\n  variables_interes,\n  names(atus)\n)\n\natus_base &lt;- atus |&gt;\n  select(all_of(variables_existentes))\n\nvariables_existentes\n\n\n [1] \"ANIO\"         \"MES\"          \"ID_ENTIDAD\"   \"ID_MUNICIPIO\" \"ID_HORA\"     \n [6] \"ID_DIA\"       \"DIASEMANA\"    \"TIPACCID\"     \"CAUSAACCI\"    \"CLASACC\"     \n\n\nCódigo\nvariables_faltantes\n\n\ncharacter(0)\n\n\n\n\n\n\n\n\nAdvertenciaCompruebe el diccionario de datos\n\n\n\nLos nombres y categorías pueden variar entre versiones. Si aparece una variable faltante, consulte los metadatos y el diccionario de datos descargados junto con la base antes de sustituirla.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
     ]
   },
   {
-    "objectID": "02-preparacion-datos.html#preparar-variables-finales",
-    "href": "02-preparacion-datos.html#preparar-variables-finales",
+    "objectID": "02-preparacion-datos.html#crear-la-variable-respuesta",
+    "href": "02-preparacion-datos.html#crear-la-variable-respuesta",
     "title": "2  Preparación de datos reales",
-    "section": "2.8 Preparar variables finales",
-    "text": "2.8 Preparar variables finales\n\n\nCódigo\nif (exists(\"atus_modelo\")) {\n  atus_ml &lt;- atus_modelo |&gt;\n    mutate(\n      MES = as.factor(MES),\n      ID_HORA = as.character(ID_HORA),\n      DIASEMANA = as.factor(DIASEMANA),\n      TIPACCID = as.factor(TIPACCID),\n      CAUSAACCI = as.factor(CAUSAACCI),\n      accidente_con_victimas = factor(accidente_con_victimas, levels = c(\"Con víctimas\", \"Solo daños\"))\n    ) |&gt;\n    select(accidente_con_victimas, MES, ID_HORA, DIASEMANA, TIPACCID, CAUSAACCI) |&gt;\n    na.omit()\n\n  data.frame(filas = nrow(atus_ml), columnas = ncol(atus_ml))\n}\n\n\n   filas columnas\n1 390627        6",
+    "section": "2.11 Crear la variable respuesta",
+    "text": "2.11 Crear la variable respuesta\nEl primer problema de clasificación distinguirá entre:\n\nCon víctimas: accidentes fatales o no fatales con personas lesionadas o fallecidas.\nSolo daños: accidentes con daños materiales sin víctimas registradas.\n\n\n\nCódigo\natus_modelo &lt;- atus_base |&gt;\n  mutate(\n    CLASACC_TXT = str_to_lower(as.character(CLASACC)),\n    accidente_con_victimas = case_when(\n      str_detect(CLASACC_TXT, \"sólo daños\") ~ \"Solo daños\",\n      str_detect(CLASACC_TXT, \"solo daños\") ~ \"Solo daños\",\n      str_detect(CLASACC_TXT, \"daños\") ~ \"Solo daños\",\n      str_detect(CLASACC_TXT, \"no fatal\") ~ \"Con víctimas\",\n      str_detect(CLASACC_TXT, \"fatal\") ~ \"Con víctimas\",\n      TRUE ~ NA_character_\n    )\n  ) |&gt;\n  filter(!is.na(accidente_con_victimas))\n\ntable(atus_modelo$accidente_con_victimas)\n\n\n\nCon víctimas   Solo daños \n       68108       322519 \n\n\n\n\n\n\n\n\nNotaExplicación del código\n\n\n\nLa variable CLASACC se transforma en una respuesta binaria. case_when() asigna una nueva categoría según el texto encontrado y los registros que no pueden clasificarse se excluyen temporalmente.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
     ]
   },
   {
-    "objectID": "02-preparacion-datos.html#guardar-base-preparada",
-    "href": "02-preparacion-datos.html#guardar-base-preparada",
+    "objectID": "02-preparacion-datos.html#preparar-las-variables-finales",
+    "href": "02-preparacion-datos.html#preparar-las-variables-finales",
     "title": "2  Preparación de datos reales",
-    "section": "2.9 Guardar base preparada",
-    "text": "2.9 Guardar base preparada\n\n\nCódigo\nif (exists(\"atus_ml\")) {\n  if (!dir.exists(\"datos\")) dir.create(\"datos\")\n  write_csv(atus_ml, \"datos/atus_ml_preparado.csv\")\n}",
+    "section": "2.12 Preparar las variables finales",
+    "text": "2.12 Preparar las variables finales\n\n\nCódigo\natus_ml &lt;- atus_modelo |&gt;\n  mutate(\n    MES = as.factor(MES),\n    ID_HORA = as.character(ID_HORA),\n    DIASEMANA = as.factor(DIASEMANA),\n    TIPACCID = as.factor(TIPACCID),\n    CAUSAACCI = as.factor(CAUSAACCI),\n    accidente_con_victimas = factor(\n      accidente_con_victimas,\n      levels = c(\"Con víctimas\", \"Solo daños\")\n    )\n  ) |&gt;\n  select(\n    accidente_con_victimas,\n    MES,\n    ID_HORA,\n    DIASEMANA,\n    TIPACCID,\n    CAUSAACCI\n  ) |&gt;\n  na.omit()\n\ndata.frame(\n  filas = nrow(atus_ml),\n  columnas = ncol(atus_ml)\n)\n\n\n   filas columnas\n1 390627        6\n\n\n\n\n\n\n\n\nTipInterpretación\n\n\n\nLa base final queda lista para el análisis exploratorio y el modelado. Cada fila representa un accidente y cada columna una variable predictora o la respuesta que se desea clasificar.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
+    ]
+  },
+  {
+    "objectID": "02-preparacion-datos.html#guardar-la-base-preparada",
+    "href": "02-preparacion-datos.html#guardar-la-base-preparada",
+    "title": "2  Preparación de datos reales",
+    "section": "2.13 Guardar la base preparada",
+    "text": "2.13 Guardar la base preparada\n\n\nCódigo\nif (!dir.exists(\"datos\")) {\n  dir.create(\"datos\")\n}\n\nwrite_csv(\n  atus_ml,\n  \"datos/atus_ml_preparado.csv\"\n)\n\n\n\n\n\n\n\n\nNotaExplicación del código\n\n\n\nGuardar la base preparada evita repetir toda la limpieza en los capítulos siguientes y ayuda a mantener reproducible el flujo de trabajo.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
+    ]
+  },
+  {
+    "objectID": "02-preparacion-datos.html#lista-de-comprobación",
+    "href": "02-preparacion-datos.html#lista-de-comprobación",
+    "title": "2  Preparación de datos reales",
+    "section": "2.14 Lista de comprobación",
+    "text": "2.14 Lista de comprobación\nAntes de continuar, verifique que:\n\nel archivo proviene del portal oficial del INEGI;\nel año de los datos está documentado;\nel CSV se encuentra dentro de datos;\nlas variables usadas existen en la versión descargada;\nla transformación de CLASACC corresponde con su diccionario;\nlas tablas y gráficas incluyen la fuente;\nel archivo atus_ml_preparado.csv se creó correctamente.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
     ]
@@ -303,8 +373,8 @@
     "objectID": "02-preparacion-datos.html#resumen-del-capítulo",
     "href": "02-preparacion-datos.html#resumen-del-capítulo",
     "title": "2  Preparación de datos reales",
-    "section": "2.10 Resumen del capítulo",
-    "text": "2.10 Resumen del capítulo\nEn este capítulo leímos una base real, seleccionamos variables, construimos una variable respuesta y guardamos una base preparada para aprendizaje automático.",
+    "section": "2.15 Resumen del capítulo",
+    "text": "2.15 Resumen del capítulo\nEn este capítulo descargamos y documentamos una base real del INEGI, verificamos su ubicación, seleccionamos variables, construimos una respuesta binaria y guardamos una base preparada para aprendizaje automático.\n\n\n\n\nInstituto Nacional de Estadística y Geografía. 2025. «Estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas (ATUS), 2024». Instituto Nacional de Estadística y Geografía. https://www.inegi.org.mx/programas/accidentes/.\n\n\nInstituto Nacional de Estadística y Geografía. 2026. «Términos de libre uso de la información del INEGI». https://www.inegi.org.mx/inegi/terminos.html.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
     ]
@@ -324,7 +394,7 @@
     "href": "03-analisis-exploratorio.html#cargar-paquetes-y-base",
     "title": "3  Análisis exploratorio de datos",
     "section": "3.2 Cargar paquetes y base",
-    "text": "3.2 Cargar paquetes y base\n\n\nCódigo\nlibrary(readr)\nlibrary(dplyr)\nlibrary(ggplot2)\nsource(\"util_graficas.R\")\n\nruta_atus_ml &lt;- \"datos/atus_ml_preparado.csv\"\nif (file.exists(ruta_atus_ml)) {\n  atus_ml &lt;- read_csv(ruta_atus_ml, show_col_types = FALSE)\n  print(\"Base preparada cargada correctamente.\")\n} else {\n  atus_ml &lt;- NULL\n  print(\"No se encontró el archivo datos/atus_ml_preparado.csv. Ejecuta primero el capítulo 2.\")\n}\n\n\n[1] \"Base preparada cargada correctamente.\"",
+    "text": "3.2 Cargar paquetes y base\n\n\nCódigo\nlibrary(readr)\nlibrary(dplyr)\nlibrary(ggplot2)\nsource(\"util_graficas.R\")\n\nruta_atus_ml &lt;- \"datos/atus_ml_preparado.csv\"\n\nif (file.exists(ruta_atus_ml)) {\n  atus_ml &lt;- read_csv(ruta_atus_ml, show_col_types = FALSE)\n  print(\"Base preparada cargada correctamente.\")\n} else {\n  atus_ml &lt;- NULL\n  print(\"No se encontró el archivo datos/atus_ml_preparado.csv. Ejecuta primero el capítulo 2.\")\n}\n\n\n[1] \"Base preparada cargada correctamente.\"\n\n\n\n\n\n\n\n\nNotaExplicación del código\n\n\n\nSe carga la base preparada en el capítulo anterior. Esto permite empezar directamente con el análisis exploratorio.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Análisis exploratorio de datos</span>"
     ]
@@ -334,7 +404,7 @@
     "href": "03-analisis-exploratorio.html#preparar-variables",
     "title": "3  Análisis exploratorio de datos",
     "section": "3.3 Preparar variables",
-    "text": "3.3 Preparar variables\n\n\nCódigo\nif (!is.null(atus_ml)) {\n  atus_ml &lt;- atus_ml |&gt;\n    mutate(\n      ID_HORA_NUM = as.numeric(ID_HORA),\n      MES_NUM = as.numeric(MES),\n      MES_FACTOR = factor(sprintf(\"%02d\", MES_NUM), levels = sprintf(\"%02d\", 1:12)),\n      accidente_con_victimas = factor(accidente_con_victimas, levels = c(\"Con víctimas\", \"Solo daños\"))\n    )\n}",
+    "text": "3.3 Preparar variables\n\n\nCódigo\nif (!is.null(atus_ml)) {\n  atus_ml &lt;- atus_ml |&gt;\n    mutate(\n      ID_HORA_NUM = as.numeric(ID_HORA),\n      MES_NUM = as.numeric(MES),\n      MES_FACTOR = factor(sprintf(\"%02d\", MES_NUM), levels = sprintf(\"%02d\", 1:12)),\n      accidente_con_victimas = factor(accidente_con_victimas, levels = c(\"Con víctimas\", \"Solo daños\"))\n    )\n}\n\n\n\n\n\n\n\n\nNotaExplicación del código\n\n\n\nSe crean variables numéricas y factores ordenados para facilitar tablas y gráficas.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Análisis exploratorio de datos</span>"
     ]
@@ -344,7 +414,7 @@
     "href": "03-analisis-exploratorio.html#distribución-de-la-variable-respuesta",
     "title": "3  Análisis exploratorio de datos",
     "section": "3.4 Distribución de la variable respuesta",
-    "text": "3.4 Distribución de la variable respuesta\n\n\nCódigo\nif (!is.null(atus_ml)) {\n  tabla_clase &lt;- table(atus_ml$accidente_con_victimas)\n  tabla_clase\n  round(100 * prop.table(tabla_clase), 2)\n}\n\n\n\nCon víctimas   Solo daños \n       17.44        82.56 \n\n\n\n\nCódigo\nif (!is.null(atus_ml)) {\n  ggplot(atus_ml, aes(x = accidente_con_victimas, fill = accidente_con_victimas)) +\n    geom_bar(width = 0.7) +\n    escala_clases_fill() +\n    scale_y_continuous(labels = etiqueta_numero) +\n    labs(title = \"Distribución de accidentes según presencia de víctimas\", subtitle = \"Comparación entre clases\", x = \"Clase\", y = \"Número de accidentes\", fill = \"Clase\") +\n    tema_libro() +\n    theme(legend.position = \"none\")\n}",
+    "text": "3.4 Distribución de la variable respuesta\n\n\nCódigo\nif (!is.null(atus_ml)) {\n  tabla_clase &lt;- table(atus_ml$accidente_con_victimas)\n  round(100 * prop.table(tabla_clase), 2)\n}\n\n\n\nCon víctimas   Solo daños \n       17.44        82.56 \n\n\nCódigo\nif (!is.null(atus_ml)) {\n  ggplot(atus_ml, aes(x = accidente_con_victimas, fill = accidente_con_victimas)) +\n    geom_bar(width = 0.7) +\n    escala_clases_fill() +\n    scale_y_continuous(labels = etiqueta_numero) +\n    labs(\n      title = \"Distribución de accidentes según presencia de víctimas\",\n      subtitle = \"Comparación entre clases\",\n      x = \"Clase\",\n      y = \"Número de accidentes\",\n      fill = \"Clase\"\n    ) +\n    tema_libro() +\n    theme(legend.position = \"none\")\n}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTipInterpretación del resultado\n\n\n\nLa base está desbalanceada: hay más accidentes de solo daños que accidentes con víctimas. Esto será importante al evaluar modelos.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Análisis exploratorio de datos</span>"
     ]
@@ -354,7 +424,7 @@
     "href": "03-analisis-exploratorio.html#accidentes-por-mes",
     "title": "3  Análisis exploratorio de datos",
     "section": "3.5 Accidentes por mes",
-    "text": "3.5 Accidentes por mes\n\n\nCódigo\nif (!is.null(atus_ml)) {\n  accidentes_mes &lt;- atus_ml |&gt; count(MES_FACTOR, name = \"n\") |&gt; arrange(MES_FACTOR)\n  accidentes_mes\n}\n\n\n# A tibble: 12 × 2\n   MES_FACTOR     n\n   &lt;fct&gt;      &lt;int&gt;\n 1 01         31600\n 2 02         32208\n 3 03         33237\n 4 04         32666\n 5 05         34665\n 6 06         31737\n 7 07         30062\n 8 08         31800\n 9 09         31351\n10 10         33771\n11 11         34047\n12 12         33483\n\n\n\n\nCódigo\nif (exists(\"accidentes_mes\")) {\n  ggplot(accidentes_mes, aes(x = MES_FACTOR, y = n)) +\n    geom_col(fill = col_azul, width = 0.75) +\n    scale_y_continuous(labels = etiqueta_numero) +\n    labs(title = \"Número de accidentes por mes\", subtitle = \"Base ATUS preparada\", x = \"Mes\", y = \"Número de accidentes\") +\n    tema_libro()\n}",
+    "text": "3.5 Accidentes por mes\n\n\nCódigo\nif (!is.null(atus_ml)) {\n  accidentes_mes &lt;- atus_ml |&gt; count(MES_FACTOR, name = \"n\") |&gt; arrange(MES_FACTOR)\n  accidentes_mes\n}\n\n\n# A tibble: 12 × 2\n   MES_FACTOR     n\n   &lt;fct&gt;      &lt;int&gt;\n 1 01         31600\n 2 02         32208\n 3 03         33237\n 4 04         32666\n 5 05         34665\n 6 06         31737\n 7 07         30062\n 8 08         31800\n 9 09         31351\n10 10         33771\n11 11         34047\n12 12         33483\n\n\nCódigo\nif (exists(\"accidentes_mes\")) {\n  ggplot(accidentes_mes, aes(x = MES_FACTOR, y = n)) +\n    geom_col(fill = col_azul, width = 0.75) +\n    scale_y_continuous(labels = etiqueta_numero) +\n    labs(\n      title = \"Número de accidentes por mes\",\n      subtitle = \"Base ATUS preparada\",\n      x = \"Mes\",\n      y = \"Número de accidentes\"\n    ) +\n    tema_libro()\n}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNotaExplicación del código\n\n\n\nSe cuentan los accidentes por mes y se visualizan con barras. El eje vertical usa separadores de miles para facilitar la lectura.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Análisis exploratorio de datos</span>"
     ]
@@ -364,7 +434,7 @@
     "href": "03-analisis-exploratorio.html#accidentes-por-hora-del-día",
     "title": "3  Análisis exploratorio de datos",
     "section": "3.6 Accidentes por hora del día",
-    "text": "3.6 Accidentes por hora del día\n\n\nCódigo\nif (!is.null(atus_ml)) {\n  accidentes_hora &lt;- atus_ml |&gt; count(ID_HORA_NUM, name = \"n\") |&gt; arrange(ID_HORA_NUM)\n  ggplot(accidentes_hora, aes(x = ID_HORA_NUM, y = n)) +\n    geom_col(fill = col_turquesa, width = 0.75) +\n    scale_x_continuous(breaks = 0:23) +\n    scale_y_continuous(labels = etiqueta_numero) +\n    labs(title = \"Número de accidentes por hora del día\", x = \"Hora del día\", y = \"Número de accidentes\") +\n    tema_libro()\n}",
+    "text": "3.6 Accidentes por hora del día\n\n\nCódigo\nif (!is.null(atus_ml)) {\n  accidentes_hora &lt;- atus_ml |&gt; count(ID_HORA_NUM, name = \"n\") |&gt; arrange(ID_HORA_NUM)\n\n  ggplot(accidentes_hora, aes(x = ID_HORA_NUM, y = n)) +\n    geom_col(fill = col_turquesa, width = 0.75) +\n    scale_x_continuous(breaks = 0:23) +\n    scale_y_continuous(labels = etiqueta_numero) +\n    labs(\n      title = \"Número de accidentes por hora del día\",\n      x = \"Hora del día\",\n      y = \"Número de accidentes\"\n    ) +\n    tema_libro()\n}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTipInterpretación del resultado\n\n\n\nLa gráfica permite detectar horas con mayor concentración de accidentes.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Análisis exploratorio de datos</span>"
     ]
@@ -374,7 +444,7 @@
     "href": "03-analisis-exploratorio.html#tipos-de-accidente-más-frecuentes",
     "title": "3  Análisis exploratorio de datos",
     "section": "3.7 Tipos de accidente más frecuentes",
-    "text": "3.7 Tipos de accidente más frecuentes\n\n\nCódigo\nif (!is.null(atus_ml)) {\n  accidentes_tipo_top &lt;- atus_ml |&gt; count(TIPACCID, name = \"n\") |&gt; slice_max(n, n = 10)\n  ggplot(accidentes_tipo_top, aes(x = reorder(TIPACCID, n), y = n)) +\n    geom_col(fill = col_azul, width = 0.75) +\n    coord_flip() +\n    scale_y_continuous(labels = etiqueta_numero) +\n    labs(title = \"Tipos de accidente más frecuentes\", x = \"Tipo de accidente\", y = \"Número de accidentes\") +\n    tema_libro()\n}",
+    "text": "3.7 Tipos de accidente más frecuentes\n\n\nCódigo\nif (!is.null(atus_ml)) {\n  accidentes_tipo_top &lt;- atus_ml |&gt; count(TIPACCID, name = \"n\") |&gt; slice_max(n, n = 10)\n\n  ggplot(accidentes_tipo_top, aes(x = reorder(TIPACCID, n), y = n)) +\n    geom_col(fill = col_azul, width = 0.75) +\n    coord_flip() +\n    scale_y_continuous(labels = etiqueta_numero) +\n    labs(\n      title = \"Tipos de accidente más frecuentes\",\n      x = \"Tipo de accidente\",\n      y = \"Número de accidentes\"\n    ) +\n    tema_libro()\n}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNotaExplicación del código\n\n\n\nSe seleccionan los diez tipos de accidente con mayor frecuencia para evitar una gráfica saturada.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Análisis exploratorio de datos</span>"
     ]
@@ -384,7 +454,7 @@
     "href": "03-analisis-exploratorio.html#proporción-por-tipo-de-accidente",
     "title": "3  Análisis exploratorio de datos",
     "section": "3.8 Proporción por tipo de accidente",
-    "text": "3.8 Proporción por tipo de accidente\n\n\nCódigo\nif (!is.null(atus_ml)) {\n  tipos_top &lt;- atus_ml |&gt; count(TIPACCID) |&gt; slice_max(n, n = 10) |&gt; pull(TIPACCID)\n  atus_tipo_top &lt;- atus_ml |&gt; filter(TIPACCID %in% tipos_top)\n  ggplot(atus_tipo_top, aes(x = TIPACCID, fill = accidente_con_victimas)) +\n    geom_bar(position = \"fill\") +\n    coord_flip() +\n    escala_clases_fill() +\n    scale_y_continuous(labels = etiqueta_porcentaje) +\n    labs(title = \"Proporción de accidentes con víctimas según tipo de accidente\", x = \"Tipo de accidente\", y = \"Proporción\", fill = \"Clase\") +\n    tema_libro()\n}",
+    "text": "3.8 Proporción por tipo de accidente\n\n\nCódigo\nif (!is.null(atus_ml)) {\n  tipos_top &lt;- atus_ml |&gt; count(TIPACCID) |&gt; slice_max(n, n = 10) |&gt; pull(TIPACCID)\n  atus_tipo_top &lt;- atus_ml |&gt; filter(TIPACCID %in% tipos_top)\n\n  ggplot(atus_tipo_top, aes(x = TIPACCID, fill = accidente_con_victimas)) +\n    geom_bar(position = \"fill\") +\n    coord_flip() +\n    escala_clases_fill() +\n    scale_y_continuous(labels = etiqueta_porcentaje) +\n    labs(\n      title = \"Proporción de accidentes con víctimas según tipo de accidente\",\n      x = \"Tipo de accidente\",\n      y = \"Proporción\",\n      fill = \"Clase\"\n    ) +\n    tema_libro()\n}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTipInterpretación del resultado\n\n\n\nEsta gráfica compara proporciones, no cantidades absolutas. Permite identificar tipos de accidente con mayor presencia relativa de víctimas.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Análisis exploratorio de datos</span>"
     ]
@@ -414,7 +484,7 @@
     "href": "04-regresion-logistica.html#fundamento-matemático",
     "title": "4  Regresión logística para clasificación",
     "section": "4.2 Fundamento matemático",
-    "text": "4.2 Fundamento matemático\nLa regresión logística utiliza la función:\n\\[\np=\\frac{1}{1+e^{-z}}\n\\]\ndonde \\(z=\\beta_0+\\beta_1x_1+\\cdots+\\beta_px_p\\).",
+    "text": "4.2 Fundamento matemático\nLa regresión logística utiliza la función:\n\\[\np = \\frac{1}{1 + e^{-z}}\n\\]\ndonde \\(z = \\beta_0 + \\beta_1x_1 + \\cdots + \\beta_px_p\\).",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresión logística para clasificación</span>"
     ]
@@ -424,7 +494,7 @@
     "href": "04-regresion-logistica.html#visualización-de-la-función-logística",
     "title": "4  Regresión logística para clasificación",
     "section": "4.3 Visualización de la función logística",
-    "text": "4.3 Visualización de la función logística\n\n\nCódigo\nlibrary(ggplot2)\nsource(\"util_graficas.R\")\nz &lt;- seq(-10, 10, length.out = 200)\ndatos_logistica &lt;- data.frame(z = z, p = 1 / (1 + exp(-z)))\n\nggplot(datos_logistica, aes(x = z, y = p)) +\n  geom_line(linewidth = 1.2, color = col_azul) +\n  labs(title = \"Función logística\", subtitle = \"Transforma valores reales en probabilidades\", x = \"z\", y = \"Probabilidad\") +\n  tema_libro()",
+    "text": "4.3 Visualización de la función logística\n\n\nCódigo\nlibrary(ggplot2)\nsource(\"util_graficas.R\")\n\nz &lt;- seq(-10, 10, length.out = 200)\ndatos_logistica &lt;- data.frame(z = z, p = 1 / (1 + exp(-z)))\n\nggplot(datos_logistica, aes(x = z, y = p)) +\n  geom_line(linewidth = 1.2, color = col_azul) +\n  labs(\n    title = \"Función logística\",\n    subtitle = \"Transforma valores reales en probabilidades\",\n    x = \"z\",\n    y = \"Probabilidad\"\n  ) +\n  tema_libro()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNotaExplicación del código\n\n\n\nSe genera una secuencia de valores para \\(z\\) y se calcula su probabilidad usando la función logística.\n\n\n\n\n\n\n\n\nTipInterpretación del resultado\n\n\n\nLa curva tiene forma de S. Valores negativos producen probabilidades cercanas a cero y valores positivos probabilidades cercanas a uno.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresión logística para clasificación</span>"
     ]
@@ -434,7 +504,7 @@
     "href": "04-regresion-logistica.html#cargar-paquetes-y-datos",
     "title": "4  Regresión logística para clasificación",
     "section": "4.4 Cargar paquetes y datos",
-    "text": "4.4 Cargar paquetes y datos\n\n\nCódigo\nlibrary(readr)\nlibrary(dplyr)\nsource(\"util_graficas.R\")\nruta_atus_ml &lt;- \"datos/atus_ml_preparado.csv\"\nif (file.exists(ruta_atus_ml)) {\n  atus_ml &lt;- read_csv(ruta_atus_ml, show_col_types = FALSE)\n  print(\"Base preparada cargada correctamente.\")\n} else {\n  atus_ml &lt;- NULL\n  print(\"No se encontró el archivo datos/atus_ml_preparado.csv. Ejecuta primero el capítulo 2.\")\n}\n\n\n[1] \"Base preparada cargada correctamente.\"",
+    "text": "4.4 Cargar paquetes y datos\n\n\nCódigo\nlibrary(readr)\nlibrary(dplyr)\nsource(\"util_graficas.R\")\n\nruta_atus_ml &lt;- \"datos/atus_ml_preparado.csv\"\n\nif (file.exists(ruta_atus_ml)) {\n  atus_ml &lt;- read_csv(ruta_atus_ml, show_col_types = FALSE)\n  print(\"Base preparada cargada correctamente.\")\n} else {\n  atus_ml &lt;- NULL\n  print(\"No se encontró el archivo datos/atus_ml_preparado.csv. Ejecuta primero el capítulo 2.\")\n}\n\n\n[1] \"Base preparada cargada correctamente.\"",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresión logística para clasificación</span>"
     ]
@@ -444,7 +514,7 @@
     "href": "04-regresion-logistica.html#preparar-y-dividir-datos",
     "title": "4  Regresión logística para clasificación",
     "section": "4.5 Preparar y dividir datos",
-    "text": "4.5 Preparar y dividir datos\n\n\nCódigo\nif (!is.null(atus_ml)) {\n  atus_modelo &lt;- atus_ml |&gt;\n    mutate(\n      victimas_binaria = ifelse(accidente_con_victimas == \"Con víctimas\", 1, 0),\n      MES = as.factor(MES), ID_HORA = as.numeric(ID_HORA), DIASEMANA = as.factor(DIASEMANA), TIPACCID = as.factor(TIPACCID), CAUSAACCI = as.factor(CAUSAACCI),\n      accidente_con_victimas = factor(accidente_con_victimas, levels = c(\"Con víctimas\", \"Solo daños\"))\n    )\n  set.seed(123)\n  idx &lt;- sample(1:nrow(atus_modelo), size = round(0.7*nrow(atus_modelo)))\n  entrenamiento &lt;- atus_modelo[idx, ]\n  prueba &lt;- atus_modelo[-idx, ]\n}",
+    "text": "4.5 Preparar y dividir datos\n\n\nCódigo\nif (!is.null(atus_ml)) {\n  atus_modelo &lt;- atus_ml |&gt;\n    mutate(\n      victimas_binaria = ifelse(accidente_con_victimas == \"Con víctimas\", 1, 0),\n      MES = as.factor(MES),\n      ID_HORA = as.numeric(ID_HORA),\n      DIASEMANA = as.factor(DIASEMANA),\n      TIPACCID = as.factor(TIPACCID),\n      CAUSAACCI = as.factor(CAUSAACCI),\n      accidente_con_victimas = factor(accidente_con_victimas, levels = c(\"Con víctimas\", \"Solo daños\"))\n    )\n\n  set.seed(123)\n  idx &lt;- sample(1:nrow(atus_modelo), size = round(0.7 * nrow(atus_modelo)))\n  entrenamiento &lt;- atus_modelo[idx, ]\n  prueba &lt;- atus_modelo[-idx, ]\n}\n\n\n\n\n\n\n\n\nNotaExplicación del código\n\n\n\nLa variable respuesta se transforma a binaria y la base se divide en entrenamiento y prueba.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresión logística para clasificación</span>"
     ]
@@ -454,7 +524,7 @@
     "href": "04-regresion-logistica.html#ajustar-modelo",
     "title": "4  Regresión logística para clasificación",
     "section": "4.6 Ajustar modelo",
-    "text": "4.6 Ajustar modelo\n\n\nCódigo\nif (exists(\"entrenamiento\")) {\n  modelo_logistico &lt;- glm(victimas_binaria ~ MES + ID_HORA + DIASEMANA + TIPACCID + CAUSAACCI, data = entrenamiento, family = binomial)\n  head(summary(modelo_logistico)$coefficients, 12)\n}\n\n\n                Estimate   Std. Error     z value     Pr(&gt;|z|)\n(Intercept) 18.107257168 101.84719297  0.17778848 8.588891e-01\nMES02       -0.045765700   0.02975556 -1.53805548 1.240350e-01\nMES03       -0.032191364   0.02927313 -1.09968980 2.714673e-01\nMES04       -0.002838049   0.02945462 -0.09635327 9.232400e-01\nMES05       -0.015408552   0.02906672 -0.53010979 5.960358e-01\nMES06       -0.054753129   0.02983667 -1.83509526 6.649158e-02\nMES07       -0.076296781   0.03035194 -2.51373620 1.194598e-02\nMES08       -0.094049541   0.02997105 -3.13801278 1.700975e-03\nMES09       -0.077109438   0.03015044 -2.55748998 1.054306e-02\nMES10       -0.154152374   0.02979697 -5.17342485 2.298416e-07\nMES11       -0.106385033   0.02950811 -3.60528073 3.118157e-04\nMES12       -0.111888509   0.02959338 -3.78086333 1.562855e-04",
+    "text": "4.6 Ajustar modelo\n\n\nCódigo\nif (exists(\"entrenamiento\")) {\n  modelo_logistico &lt;- glm(\n    victimas_binaria ~ MES + ID_HORA + DIASEMANA + TIPACCID + CAUSAACCI,\n    data = entrenamiento,\n    family = binomial\n  )\n\n  head(summary(modelo_logistico)$coefficients, 12)\n}\n\n\n                Estimate   Std. Error     z value     Pr(&gt;|z|)\n(Intercept) 18.107257168 101.84719297  0.17778848 8.588891e-01\nMES02       -0.045765700   0.02975556 -1.53805548 1.240350e-01\nMES03       -0.032191364   0.02927313 -1.09968980 2.714673e-01\nMES04       -0.002838049   0.02945462 -0.09635327 9.232400e-01\nMES05       -0.015408552   0.02906672 -0.53010979 5.960358e-01\nMES06       -0.054753129   0.02983667 -1.83509526 6.649158e-02\nMES07       -0.076296781   0.03035194 -2.51373620 1.194598e-02\nMES08       -0.094049541   0.02997105 -3.13801278 1.700975e-03\nMES09       -0.077109438   0.03015044 -2.55748998 1.054306e-02\nMES10       -0.154152374   0.02979697 -5.17342485 2.298416e-07\nMES11       -0.106385033   0.02950811 -3.60528073 3.118157e-04\nMES12       -0.111888509   0.02959338 -3.78086333 1.562855e-04\n\n\n\n\n\n\n\n\nTipInterpretación del resultado\n\n\n\nLos coeficientes estiman el efecto de cada variable sobre el logit de la probabilidad de accidente con víctimas.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresión logística para clasificación</span>"
     ]
@@ -464,7 +534,7 @@
     "href": "04-regresion-logistica.html#predicción-y-matriz-de-confusión",
     "title": "4  Regresión logística para clasificación",
     "section": "4.7 Predicción y matriz de confusión",
-    "text": "4.7 Predicción y matriz de confusión\n\n\nCódigo\nif (exists(\"modelo_logistico\")) {\n  prueba$probabilidad_victimas &lt;- predict(modelo_logistico, newdata = prueba, type = \"response\")\n  prueba$prediccion_03 &lt;- factor(ifelse(prueba$probabilidad_victimas &gt;= 0.3, \"Con víctimas\", \"Solo daños\"), levels = c(\"Con víctimas\", \"Solo daños\"))\n  matriz_confusion_03 &lt;- table(Real = prueba$accidente_con_victimas, Predicho = prueba$prediccion_03)\n  matriz_confusion_03\n}\n\n\n              Predicho\nReal           Con víctimas Solo daños\n  Con víctimas        13765       6739\n  Solo daños          14302      82382",
+    "text": "4.7 Predicción y matriz de confusión\n\n\nCódigo\nif (exists(\"modelo_logistico\")) {\n  prueba$probabilidad_victimas &lt;- predict(modelo_logistico, newdata = prueba, type = \"response\")\n  prueba$prediccion_03 &lt;- factor(\n    ifelse(prueba$probabilidad_victimas &gt;= 0.3, \"Con víctimas\", \"Solo daños\"),\n    levels = c(\"Con víctimas\", \"Solo daños\")\n  )\n\n  matriz_confusion_03 &lt;- table(\n    Real = prueba$accidente_con_victimas,\n    Predicho = prueba$prediccion_03\n  )\n\n  matriz_confusion_03\n}\n\n\n              Predicho\nReal           Con víctimas Solo daños\n  Con víctimas        13765       6739\n  Solo daños          14302      82382\n\n\n\n\n\n\n\n\nNotaExplicación del código\n\n\n\nLas probabilidades se convierten en clases usando un punto de corte de 0.3.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresión logística para clasificación</span>"
     ]
@@ -474,7 +544,7 @@
     "href": "04-regresion-logistica.html#métricas",
     "title": "4  Regresión logística para clasificación",
     "section": "4.8 Métricas",
-    "text": "4.8 Métricas\n\n\nCódigo\nif (exists(\"matriz_confusion_03\")) {\n  VP &lt;- matriz_confusion_03[\"Con víctimas\", \"Con víctimas\"]\n  FN &lt;- matriz_confusion_03[\"Con víctimas\", \"Solo daños\"]\n  FP &lt;- matriz_confusion_03[\"Solo daños\", \"Con víctimas\"]\n  VN &lt;- matriz_confusion_03[\"Solo daños\", \"Solo daños\"]\n  data.frame(exactitud = (VP+VN)/(VP+FN+FP+VN), sensibilidad = VP/(VP+FN), especificidad = VN/(VN+FP))\n}\n\n\n  exactitud sensibilidad especificidad\n1 0.8204509    0.6713324     0.8520748",
+    "text": "4.8 Métricas\n\n\nCódigo\nif (exists(\"matriz_confusion_03\")) {\n  VP &lt;- matriz_confusion_03[\"Con víctimas\", \"Con víctimas\"]\n  FN &lt;- matriz_confusion_03[\"Con víctimas\", \"Solo daños\"]\n  FP &lt;- matriz_confusion_03[\"Solo daños\", \"Con víctimas\"]\n  VN &lt;- matriz_confusion_03[\"Solo daños\", \"Solo daños\"]\n\n  data.frame(\n    exactitud = (VP + VN) / (VP + FN + FP + VN),\n    sensibilidad = VP / (VP + FN),\n    especificidad = VN / (VN + FP)\n  )\n}\n\n\n  exactitud sensibilidad especificidad\n1 0.8204509    0.6713324     0.8520748\n\n\n\n\n\n\n\n\nTipInterpretación del resultado\n\n\n\nLa sensibilidad mide la capacidad para detectar accidentes con víctimas; la especificidad mide la capacidad para detectar accidentes de solo daños.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresión logística para clasificación</span>"
     ]
@@ -484,7 +554,7 @@
     "href": "04-regresion-logistica.html#distribución-de-probabilidades",
     "title": "4  Regresión logística para clasificación",
     "section": "4.9 Distribución de probabilidades",
-    "text": "4.9 Distribución de probabilidades\n\n\nCódigo\nif (exists(\"prueba\")) {\n  ggplot(prueba, aes(x = probabilidad_victimas, fill = accidente_con_victimas)) +\n    geom_histogram(bins = 30, alpha = 0.75, position = \"identity\") +\n    escala_clases_fill(name = \"Clase real\") +\n    labs(title = \"Distribución de probabilidades predichas\", subtitle = \"Regresión logística\", x = \"Probabilidad predicha de accidente con víctimas\", y = \"Frecuencia\") +\n    tema_libro()\n}",
+    "text": "4.9 Distribución de probabilidades\n\n\nCódigo\nif (exists(\"prueba\")) {\n  ggplot(prueba, aes(x = probabilidad_victimas, fill = accidente_con_victimas)) +\n    geom_histogram(bins = 30, alpha = 0.75, position = \"identity\") +\n    escala_clases_fill(name = \"Clase real\") +\n    labs(\n      title = \"Distribución de probabilidades predichas\",\n      subtitle = \"Regresión logística\",\n      x = \"Probabilidad predicha de accidente con víctimas\",\n      y = \"Frecuencia\"\n    ) +\n    tema_libro()\n}",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresión logística para clasificación</span>"
     ]
@@ -514,7 +584,7 @@
     "href": "05-knn.html#idea-intuitiva",
     "title": "5  k vecinos más cercanos, k-NN",
     "section": "5.2 Idea intuitiva",
-    "text": "5.2 Idea intuitiva\nk-NN clasifica una nueva observación según la clase más común entre sus vecinos más cercanos.\n\n\nCódigo\nlibrary(ggplot2)\nlibrary(class)\nlibrary(dplyr)\nlibrary(tidyr)\nlibrary(readr)\nsource(\"util_graficas.R\")\n\ndatos_ejemplo &lt;- data.frame(\n  hora = c(8, 9, 10, 18, 19, 20, 22, 23),\n  mes = c(1, 1, 2, 6, 6, 7, 12, 12),\n  clase = c(\"Solo daños\", \"Solo daños\", \"Solo daños\", \"Con víctimas\", \"Con víctimas\", \"Con víctimas\", \"Con víctimas\", \"Con víctimas\")\n)\n\nggplot(datos_ejemplo, aes(x = hora, y = mes, color = clase)) +\n  geom_point(size = 4) +\n  escala_clases_color() +\n  labs(title = \"Ejemplo intuitivo de k-NN\", x = \"Hora\", y = \"Mes\", color = \"Clase\") +\n  tema_libro()",
+    "text": "5.2 Idea intuitiva\nk-NN clasifica una nueva observación según la clase más común entre sus vecinos más cercanos.\n\n\nCódigo\nlibrary(ggplot2)\nlibrary(class)\nlibrary(dplyr)\nlibrary(tidyr)\nlibrary(readr)\nsource(\"util_graficas.R\")\n\ndatos_ejemplo &lt;- data.frame(\n  hora = c(8, 9, 10, 18, 19, 20, 22, 23),\n  mes = c(1, 1, 2, 6, 6, 7, 12, 12),\n  clase = c(\"Solo daños\", \"Solo daños\", \"Solo daños\", \"Con víctimas\", \"Con víctimas\", \"Con víctimas\", \"Con víctimas\", \"Con víctimas\")\n)\n\nggplot(datos_ejemplo, aes(x = hora, y = mes, color = clase)) +\n  geom_point(size = 4) +\n  escala_clases_color() +\n  labs(title = \"Ejemplo intuitivo de k-NN\", x = \"Hora\", y = \"Mes\", color = \"Clase\") +\n  tema_libro()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNotaExplicación del código\n\n\n\nSe construyen puntos artificiales para visualizar la idea de vecinos cercanos.",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>k vecinos más cercanos, k-NN</span>"
     ]
@@ -524,7 +594,7 @@
     "href": "05-knn.html#distancia-euclidiana",
     "title": "5  k vecinos más cercanos, k-NN",
     "section": "5.3 Distancia euclidiana",
-    "text": "5.3 Distancia euclidiana\n\\[\nd(A,B)=\\sqrt{(x_1-x_2)^2+(y_1-y_2)^2}\n\\]\n\n\nCódigo\nsqrt((8 - 10)^2 + (1 - 2)^2)\n\n\n[1] 2.236068",
+    "text": "5.3 Distancia euclidiana\n\\[\nd(A,B) = \\sqrt{(x_1-x_2)^2 + (y_1-y_2)^2}\n\\]\n\n\nCódigo\nsqrt((8 - 10)^2 + (1 - 2)^2)\n\n\n[1] 2.236068\n\n\n\n\n\n\n\n\nTipInterpretación del resultado\n\n\n\nUna distancia menor indica mayor similitud entre dos observaciones.",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>k vecinos más cercanos, k-NN</span>"
     ]
@@ -534,7 +604,7 @@
     "href": "05-knn.html#cargar-y-preparar-datos",
     "title": "5  k vecinos más cercanos, k-NN",
     "section": "5.4 Cargar y preparar datos",
-    "text": "5.4 Cargar y preparar datos\n\n\nCódigo\nruta_atus_ml &lt;- \"datos/atus_ml_preparado.csv\"\nif (file.exists(ruta_atus_ml)) {\n  atus_ml &lt;- read_csv(ruta_atus_ml, show_col_types = FALSE)\n  set.seed(123)\n  atus_knn_base &lt;- atus_ml |&gt; sample_n(min(12000, nrow(atus_ml))) |&gt;\n    mutate(\n      accidente_con_victimas = factor(accidente_con_victimas, levels = c(\"Con víctimas\", \"Solo daños\")),\n      MES = as.factor(MES), ID_HORA = as.numeric(ID_HORA), DIASEMANA = as.factor(DIASEMANA), TIPACCID = as.factor(TIPACCID), CAUSAACCI = as.factor(CAUSAACCI)\n    ) |&gt; na.omit()\n}",
+    "text": "5.4 Cargar y preparar datos\n\n\nCódigo\nruta_atus_ml &lt;- \"datos/atus_ml_preparado.csv\"\n\nif (file.exists(ruta_atus_ml)) {\n  atus_ml &lt;- read_csv(ruta_atus_ml, show_col_types = FALSE)\n  set.seed(123)\n  atus_knn_base &lt;- atus_ml |&gt;\n    sample_n(min(12000, nrow(atus_ml))) |&gt;\n    mutate(\n      accidente_con_victimas = factor(accidente_con_victimas, levels = c(\"Con víctimas\", \"Solo daños\")),\n      MES = as.factor(MES),\n      ID_HORA = as.numeric(ID_HORA),\n      DIASEMANA = as.factor(DIASEMANA),\n      TIPACCID = as.factor(TIPACCID),\n      CAUSAACCI = as.factor(CAUSAACCI)\n    ) |&gt;\n    na.omit()\n}\n\n\n\n\n\n\n\n\nNotaExplicación del código\n\n\n\nSe toma una muestra para que k-NN sea rápido y reproducible. Este método puede ser costoso en bases grandes.",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>k vecinos más cercanos, k-NN</span>"
     ]
@@ -544,7 +614,7 @@
     "href": "05-knn.html#modelo-k-nn",
     "title": "5  k vecinos más cercanos, k-NN",
     "section": "5.5 Modelo k-NN",
-    "text": "5.5 Modelo k-NN\n\n\nCódigo\nif (exists(\"atus_knn_base\")) {\n  matriz_predictoras &lt;- model.matrix(~ ID_HORA + MES + DIASEMANA + TIPACCID + CAUSAACCI - 1, data = atus_knn_base)\n  y &lt;- atus_knn_base$accidente_con_victimas\n  set.seed(123)\n  idx &lt;- sample(1:nrow(matriz_predictoras), size = round(0.7*nrow(matriz_predictoras)))\n  x_entrenamiento &lt;- matriz_predictoras[idx, ]\n  x_prueba &lt;- matriz_predictoras[-idx, ]\n  y_entrenamiento &lt;- y[idx]\n  y_prueba &lt;- y[-idx]\n  medias &lt;- apply(x_entrenamiento, 2, mean)\n  desviaciones &lt;- apply(x_entrenamiento, 2, sd); desviaciones[desviaciones == 0] &lt;- 1\n  x_entrenamiento_esc &lt;- scale(x_entrenamiento, center = medias, scale = desviaciones)\n  x_prueba_esc &lt;- scale(x_prueba, center = medias, scale = desviaciones)\n  pred_knn_5 &lt;- knn(x_entrenamiento_esc, x_prueba_esc, y_entrenamiento, k = 5)\n  table(Real = y_prueba, Predicho = pred_knn_5)\n}\n\n\n              Predicho\nReal           Con víctimas Solo daños\n  Con víctimas          211        399\n  Solo daños            144       2846",
+    "text": "5.5 Modelo k-NN\n\n\nCódigo\nif (exists(\"atus_knn_base\")) {\n  matriz_predictoras &lt;- model.matrix(~ ID_HORA + MES + DIASEMANA + TIPACCID + CAUSAACCI - 1, data = atus_knn_base)\n  y &lt;- atus_knn_base$accidente_con_victimas\n\n  set.seed(123)\n  idx &lt;- sample(1:nrow(matriz_predictoras), size = round(0.7 * nrow(matriz_predictoras)))\n  x_entrenamiento &lt;- matriz_predictoras[idx, ]\n  x_prueba &lt;- matriz_predictoras[-idx, ]\n  y_entrenamiento &lt;- y[idx]\n  y_prueba &lt;- y[-idx]\n\n  medias &lt;- apply(x_entrenamiento, 2, mean)\n  desviaciones &lt;- apply(x_entrenamiento, 2, sd)\n  desviaciones[desviaciones == 0] &lt;- 1\n\n  x_entrenamiento_esc &lt;- scale(x_entrenamiento, center = medias, scale = desviaciones)\n  x_prueba_esc &lt;- scale(x_prueba, center = medias, scale = desviaciones)\n\n  pred_knn_5 &lt;- knn(x_entrenamiento_esc, x_prueba_esc, y_entrenamiento, k = 5)\n  table(Real = y_prueba, Predicho = pred_knn_5)\n}\n\n\n              Predicho\nReal           Con víctimas Solo daños\n  Con víctimas          211        399\n  Solo daños            144       2846\n\n\n\n\n\n\n\n\nNotaExplicación del código\n\n\n\nSe crean variables dummy, se estandarizan las columnas y se clasifica con k igual a 5.",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>k vecinos más cercanos, k-NN</span>"
     ]
@@ -554,7 +624,7 @@
     "href": "05-knn.html#comparación-de-valores-de-k",
     "title": "5  k vecinos más cercanos, k-NN",
     "section": "5.6 Comparación de valores de k",
-    "text": "5.6 Comparación de valores de k\n\n\nCódigo\ncalcular_metricas &lt;- function(real, predicho) {\n  real &lt;- factor(real, levels = c(\"Con víctimas\", \"Solo daños\")); predicho &lt;- factor(predicho, levels = c(\"Con víctimas\", \"Solo daños\"))\n  m &lt;- table(Real = real, Predicho = predicho)\n  VP &lt;- m[\"Con víctimas\", \"Con víctimas\"]; FN &lt;- m[\"Con víctimas\", \"Solo daños\"]; FP &lt;- m[\"Solo daños\", \"Con víctimas\"]; VN &lt;- m[\"Solo daños\", \"Solo daños\"]\n  data.frame(exactitud=(VP+VN)/(VP+FN+FP+VN), sensibilidad=VP/(VP+FN), especificidad=VN/(VN+FP))\n}\nif (exists(\"x_entrenamiento_esc\")) {\n  valores_k &lt;- c(3,5,11)\n  resultados_knn &lt;- data.frame()\n  for (k_actual in valores_k) {\n    pred_actual &lt;- knn(x_entrenamiento_esc, x_prueba_esc, y_entrenamiento, k = k_actual)\n    tmp &lt;- calcular_metricas(y_prueba, pred_actual); tmp$k &lt;- k_actual\n    resultados_knn &lt;- rbind(resultados_knn, tmp)\n  }\n  resultados_knn &lt;- resultados_knn |&gt; select(k, exactitud, sensibilidad, especificidad)\n  resultados_knn\n}\n\n\n   k exactitud sensibilidad especificidad\n1  3 0.8433333    0.3770492     0.9384615\n2  5 0.8480556    0.3491803     0.9498328\n3 11 0.8558333    0.3377049     0.9615385\n\n\n\n\nCódigo\nif (exists(\"resultados_knn\")) {\n  resultados_largos &lt;- resultados_knn |&gt; pivot_longer(cols = c(exactitud, sensibilidad, especificidad), names_to = \"metrica\", values_to = \"valor\")\n  ggplot(resultados_largos, aes(x = k, y = valor, color = metrica, group = metrica)) +\n    geom_line(linewidth = 1.1) + geom_point(size = 3) +\n    scale_color_manual(values = c(exactitud = col_azul, sensibilidad = col_coral, especificidad = col_turquesa)) +\n    labs(title = \"Comparación de métricas para distintos valores de k\", x = \"Valor de k\", y = \"Valor\") +\n    tema_libro()\n}",
+    "text": "5.6 Comparación de valores de k\n\n\nCódigo\ncalcular_metricas &lt;- function(real, predicho) {\n  real &lt;- factor(real, levels = c(\"Con víctimas\", \"Solo daños\"))\n  predicho &lt;- factor(predicho, levels = c(\"Con víctimas\", \"Solo daños\"))\n  m &lt;- table(Real = real, Predicho = predicho)\n  VP &lt;- m[\"Con víctimas\", \"Con víctimas\"]\n  FN &lt;- m[\"Con víctimas\", \"Solo daños\"]\n  FP &lt;- m[\"Solo daños\", \"Con víctimas\"]\n  VN &lt;- m[\"Solo daños\", \"Solo daños\"]\n  data.frame(exactitud=(VP+VN)/(VP+FN+FP+VN), sensibilidad=VP/(VP+FN), especificidad=VN/(VN+FP))\n}\n\nif (exists(\"x_entrenamiento_esc\")) {\n  valores_k &lt;- c(3, 5, 11)\n  resultados_knn &lt;- data.frame()\n\n  for (k_actual in valores_k) {\n    pred_actual &lt;- knn(x_entrenamiento_esc, x_prueba_esc, y_entrenamiento, k = k_actual)\n    tmp &lt;- calcular_metricas(y_prueba, pred_actual)\n    tmp$k &lt;- k_actual\n    resultados_knn &lt;- rbind(resultados_knn, tmp)\n  }\n\n  resultados_knn &lt;- resultados_knn |&gt; select(k, exactitud, sensibilidad, especificidad)\n  resultados_knn\n}\n\n\n   k exactitud sensibilidad especificidad\n1  3 0.8433333    0.3770492     0.9384615\n2  5 0.8480556    0.3491803     0.9498328\n3 11 0.8558333    0.3377049     0.9615385\n\n\nCódigo\nif (exists(\"resultados_knn\")) {\n  resultados_largos &lt;- resultados_knn |&gt;\n    pivot_longer(cols = c(exactitud, sensibilidad, especificidad), names_to = \"metrica\", values_to = \"valor\")\n\n  ggplot(resultados_largos, aes(x = k, y = valor, color = metrica, group = metrica)) +\n    geom_line(linewidth = 1.1) +\n    geom_point(size = 3) +\n    scale_color_manual(values = c(exactitud = col_azul, sensibilidad = col_coral, especificidad = col_turquesa)) +\n    labs(title = \"Comparación de métricas para distintos valores de k\", x = \"Valor de k\", y = \"Valor\") +\n    tema_libro()\n}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTipInterpretación del resultado\n\n\n\nCambiar k modifica el balance entre exactitud, sensibilidad y especificidad. No existe un k universalmente mejor.",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>k vecinos más cercanos, k-NN</span>"
     ]
@@ -594,7 +664,7 @@
     "href": "06-arboles-decision.html#fundamento-matemático",
     "title": "6  Árboles de decisión para clasificación",
     "section": "6.3 Fundamento matemático",
-    "text": "6.3 Fundamento matemático\nUna medida común de impureza es el índice de Gini:\n\\[\nGini=1-\\sum_{k=1}^{K}p_k^2\n\\]",
+    "text": "6.3 Fundamento matemático\nUna medida común de impureza es el índice de Gini:\n\\[\nGini = 1 - \\sum_{k=1}^{K} p_k^2\n\\]",
     "crumbs": [
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Árboles de decisión para clasificación</span>"
     ]
@@ -604,7 +674,7 @@
     "href": "06-arboles-decision.html#cargar-paquetes-y-datos",
     "title": "6  Árboles de decisión para clasificación",
     "section": "6.4 Cargar paquetes y datos",
-    "text": "6.4 Cargar paquetes y datos\n\n\nCódigo\nlibrary(readr)\nlibrary(dplyr)\nlibrary(rpart)\nsource(\"util_graficas.R\")\n\nruta_atus_ml &lt;- \"datos/atus_ml_preparado.csv\"\nif (file.exists(ruta_atus_ml)) {\n  atus_ml &lt;- read_csv(ruta_atus_ml, show_col_types = FALSE)\n  print(\"Base preparada cargada correctamente.\")\n} else {\n  atus_ml &lt;- NULL\n  print(\"No se encontró el archivo datos/atus_ml_preparado.csv. Ejecuta primero el capítulo 2.\")\n}\n\n\n[1] \"Base preparada cargada correctamente.\"",
+    "text": "6.4 Cargar paquetes y datos\n\n\nCódigo\nlibrary(readr)\nlibrary(dplyr)\nlibrary(rpart)\nsource(\"util_graficas.R\")\n\nruta_atus_ml &lt;- \"datos/atus_ml_preparado.csv\"\n\nif (file.exists(ruta_atus_ml)) {\n  atus_ml &lt;- read_csv(ruta_atus_ml, show_col_types = FALSE)\n  print(\"Base preparada cargada correctamente.\")\n} else {\n  atus_ml &lt;- NULL\n  print(\"No se encontró el archivo datos/atus_ml_preparado.csv. Ejecuta primero el capítulo 2.\")\n}\n\n\n[1] \"Base preparada cargada correctamente.\"",
     "crumbs": [
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Árboles de decisión para clasificación</span>"
     ]
@@ -614,7 +684,7 @@
     "href": "06-arboles-decision.html#usar-la-base-completa",
     "title": "6  Árboles de decisión para clasificación",
     "section": "6.5 Usar la base completa",
-    "text": "6.5 Usar la base completa\n\n\nCódigo\nif (!is.null(atus_ml)) {\n  atus_arbol_base &lt;- atus_ml |&gt;\n    mutate(\n      accidente_con_victimas = factor(accidente_con_victimas, levels = c(\"Con víctimas\", \"Solo daños\")),\n      MES = as.factor(MES), ID_HORA = as.numeric(ID_HORA), DIASEMANA = as.factor(DIASEMANA), TIPACCID = as.factor(TIPACCID), CAUSAACCI = as.factor(CAUSAACCI)\n    ) |&gt; na.omit()\n  data.frame(filas = nrow(atus_arbol_base), columnas = ncol(atus_arbol_base))\n}\n\n\n   filas columnas\n1 390627        6",
+    "text": "6.5 Usar la base completa\n\n\nCódigo\nif (!is.null(atus_ml)) {\n  atus_arbol_base &lt;- atus_ml |&gt;\n    mutate(\n      accidente_con_victimas = factor(accidente_con_victimas, levels = c(\"Con víctimas\", \"Solo daños\")),\n      MES = as.factor(MES),\n      ID_HORA = as.numeric(ID_HORA),\n      DIASEMANA = as.factor(DIASEMANA),\n      TIPACCID = as.factor(TIPACCID),\n      CAUSAACCI = as.factor(CAUSAACCI)\n    ) |&gt;\n    na.omit()\n\n  data.frame(filas = nrow(atus_arbol_base), columnas = ncol(atus_arbol_base))\n}\n\n\n   filas columnas\n1 390627        6\n\n\n\n\n\n\n\n\nNotaExplicación del código\n\n\n\nSe usa la base completa, pero el crecimiento del árbol se controla mediante parámetros del modelo.",
     "crumbs": [
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Árboles de decisión para clasificación</span>"
     ]
@@ -624,7 +694,7 @@
     "href": "06-arboles-decision.html#división-y-entrenamiento",
     "title": "6  Árboles de decisión para clasificación",
     "section": "6.6 División y entrenamiento",
-    "text": "6.6 División y entrenamiento\n\n\nCódigo\nif (exists(\"atus_arbol_base\")) {\n  set.seed(123)\n  idx &lt;- sample(1:nrow(atus_arbol_base), size = round(0.7*nrow(atus_arbol_base)))\n  entrenamiento &lt;- atus_arbol_base[idx, ]\n  prueba &lt;- atus_arbol_base[-idx, ]\n  modelo_arbol &lt;- rpart(\n    accidente_con_victimas ~ MES + ID_HORA + DIASEMANA + TIPACCID + CAUSAACCI,\n    data = entrenamiento,\n    method = \"class\",\n    control = rpart.control(cp = 0.005, minsplit = 1000, minbucket = 300, maxdepth = 5)\n  )\n}",
+    "text": "6.6 División y entrenamiento\n\n\nCódigo\nif (exists(\"atus_arbol_base\")) {\n  set.seed(123)\n  idx &lt;- sample(1:nrow(atus_arbol_base), size = round(0.7 * nrow(atus_arbol_base)))\n  entrenamiento &lt;- atus_arbol_base[idx, ]\n  prueba &lt;- atus_arbol_base[-idx, ]\n\n  modelo_arbol &lt;- rpart(\n    accidente_con_victimas ~ MES + ID_HORA + DIASEMANA + TIPACCID + CAUSAACCI,\n    data = entrenamiento,\n    method = \"class\",\n    control = rpart.control(cp = 0.005, minsplit = 1000, minbucket = 300, maxdepth = 5)\n  )\n}\n\n\n\n\n\n\n\n\nNotaExplicación del código\n\n\n\nSe ajusta un árbol de decisión controlado para evitar sobreajuste y salidas demasiado grandes.",
     "crumbs": [
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Árboles de decisión para clasificación</span>"
     ]
@@ -634,7 +704,7 @@
     "href": "06-arboles-decision.html#complejidad-e-importancia",
     "title": "6  Árboles de decisión para clasificación",
     "section": "6.7 Complejidad e importancia",
-    "text": "6.7 Complejidad e importancia\n\n\nCódigo\nif (exists(\"modelo_arbol\")) printcp(modelo_arbol)\n\n\n\nClassification tree:\nrpart(formula = accidente_con_victimas ~ MES + ID_HORA + DIASEMANA + \n    TIPACCID + CAUSAACCI, data = entrenamiento, method = \"class\", \n    control = rpart.control(cp = 0.005, minsplit = 1000, minbucket = 300, \n        maxdepth = 5))\n\nVariables actually used in tree construction:\n[1] TIPACCID\n\nRoot node error: 47604/273439 = 0.17409\n\nn= 273439 \n\n        CP nsplit rel error xerror      xstd\n1 0.097051      0    1.0000 1.0000 0.0041653\n2 0.005000      2    0.8059 0.8059 0.0038150\n\n\n\n\nCódigo\nif (exists(\"modelo_arbol\")) {\n  importancia &lt;- modelo_arbol$variable.importance\n  if (!is.null(importancia)) {\n    importancia_df &lt;- data.frame(variable = names(importancia), importancia = as.numeric(importancia), row.names = NULL)\n    importancia_df &lt;- importancia_df[order(-importancia_df$importancia), ]\n    importancia_df\n  }\n}\n\n\n   variable importancia\n1  TIPACCID   22919.330\n2 CAUSAACCI    1093.984",
+    "text": "6.7 Complejidad e importancia\n\n\nCódigo\nif (exists(\"modelo_arbol\")) printcp(modelo_arbol)\n\n\n\nClassification tree:\nrpart(formula = accidente_con_victimas ~ MES + ID_HORA + DIASEMANA + \n    TIPACCID + CAUSAACCI, data = entrenamiento, method = \"class\", \n    control = rpart.control(cp = 0.005, minsplit = 1000, minbucket = 300, \n        maxdepth = 5))\n\nVariables actually used in tree construction:\n[1] TIPACCID\n\nRoot node error: 47604/273439 = 0.17409\n\nn= 273439 \n\n        CP nsplit rel error xerror      xstd\n1 0.097051      0    1.0000 1.0000 0.0041653\n2 0.005000      2    0.8059 0.8059 0.0038150\n\n\nCódigo\nif (exists(\"modelo_arbol\")) {\n  importancia &lt;- modelo_arbol$variable.importance\n  if (!is.null(importancia)) {\n    importancia_df &lt;- data.frame(variable = names(importancia), importancia = as.numeric(importancia), row.names = NULL)\n    importancia_df &lt;- importancia_df[order(-importancia_df$importancia), ]\n    importancia_df\n  }\n}\n\n\n   variable importancia\n1  TIPACCID   22919.330\n2 CAUSAACCI    1093.984\n\n\n\n\n\n\n\n\nTipInterpretación del resultado\n\n\n\nLa importancia de variables indica qué variables ayudan más a separar accidentes con víctimas de accidentes de solo daños.",
     "crumbs": [
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Árboles de decisión para clasificación</span>"
     ]
@@ -654,7 +724,7 @@
     "href": "06-arboles-decision.html#predicción-y-métricas",
     "title": "6  Árboles de decisión para clasificación",
     "section": "6.9 Predicción y métricas",
-    "text": "6.9 Predicción y métricas\n\n\nCódigo\nif (exists(\"modelo_arbol\")) {\n  pred_arbol &lt;- predict(modelo_arbol, newdata = prueba, type = \"class\")\n  real_arbol &lt;- factor(prueba$accidente_con_victimas, levels = c(\"Con víctimas\", \"Solo daños\"))\n  pred_arbol &lt;- factor(pred_arbol, levels = c(\"Con víctimas\", \"Solo daños\"))\n  matriz_confusion_arbol &lt;- table(Real = real_arbol, Predicho = pred_arbol)\n  matriz_confusion_arbol\n}\n\n\n              Predicho\nReal           Con víctimas Solo daños\n  Con víctimas         3965      16539\n  Solo daños              0      96684\n\n\n\n\nCódigo\nif (exists(\"matriz_confusion_arbol\")) {\n  VP &lt;- matriz_confusion_arbol[\"Con víctimas\", \"Con víctimas\"]\n  FN &lt;- matriz_confusion_arbol[\"Con víctimas\", \"Solo daños\"]\n  FP &lt;- matriz_confusion_arbol[\"Solo daños\", \"Con víctimas\"]\n  VN &lt;- matriz_confusion_arbol[\"Solo daños\", \"Solo daños\"]\n  data.frame(exactitud=(VP+VN)/(VP+FN+FP+VN), sensibilidad=VP/(VP+FN), especificidad=VN/(VN+FP))\n}\n\n\n  exactitud sensibilidad especificidad\n1 0.8588678    0.1933769             1",
+    "text": "6.9 Predicción y métricas\n\n\nCódigo\nif (exists(\"modelo_arbol\")) {\n  pred_arbol &lt;- predict(modelo_arbol, newdata = prueba, type = \"class\")\n  real_arbol &lt;- factor(prueba$accidente_con_victimas, levels = c(\"Con víctimas\", \"Solo daños\"))\n  pred_arbol &lt;- factor(pred_arbol, levels = c(\"Con víctimas\", \"Solo daños\"))\n\n  matriz_confusion_arbol &lt;- table(Real = real_arbol, Predicho = pred_arbol)\n  matriz_confusion_arbol\n}\n\n\n              Predicho\nReal           Con víctimas Solo daños\n  Con víctimas         3965      16539\n  Solo daños              0      96684\n\n\nCódigo\nif (exists(\"matriz_confusion_arbol\")) {\n  VP &lt;- matriz_confusion_arbol[\"Con víctimas\", \"Con víctimas\"]\n  FN &lt;- matriz_confusion_arbol[\"Con víctimas\", \"Solo daños\"]\n  FP &lt;- matriz_confusion_arbol[\"Solo daños\", \"Con víctimas\"]\n  VN &lt;- matriz_confusion_arbol[\"Solo daños\", \"Solo daños\"]\n\n  data.frame(exactitud=(VP+VN)/(VP+FN+FP+VN), sensibilidad=VP/(VP+FN), especificidad=VN/(VN+FP))\n}\n\n\n  exactitud sensibilidad especificidad\n1 0.8588678    0.1933769             1\n\n\n\n\n\n\n\n\nTipInterpretación del resultado\n\n\n\nLa matriz de confusión y las métricas permiten evaluar el desempeño del árbol sobre datos de prueba.",
     "crumbs": [
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Árboles de decisión para clasificación</span>"
     ]
@@ -694,7 +764,7 @@
     "href": "07-random-forest.html#fundamento-matemático",
     "title": "7  Random Forest para clasificación",
     "section": "7.3 Fundamento matemático",
-    "text": "7.3 Fundamento matemático\nSi se construyen \\(B\\) árboles, la predicción final es:\n\\[\n\\hat{y}(x)=\\text{moda}\\{\\hat{y}^{(1)}(x),\\hat{y}^{(2)}(x),\\ldots,\\hat{y}^{(B)}(x)\\}\n\\]",
+    "text": "7.3 Fundamento matemático\nSi se construyen \\(B\\) árboles, la predicción final es:\n\\[\n\\hat{y}(x) = moda\\{\\hat{y}^{(1)}(x), \\hat{y}^{(2)}(x), \\ldots, \\hat{y}^{(B)}(x)\\}\n\\]",
     "crumbs": [
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Random Forest para clasificación</span>"
     ]
@@ -704,7 +774,7 @@
     "href": "07-random-forest.html#cargar-paquetes-y-datos",
     "title": "7  Random Forest para clasificación",
     "section": "7.4 Cargar paquetes y datos",
-    "text": "7.4 Cargar paquetes y datos\n\n\nCódigo\nlibrary(readr)\nlibrary(dplyr)\nlibrary(ggplot2)\nlibrary(ranger)\nsource(\"util_graficas.R\")\n\nruta_atus_ml &lt;- \"datos/atus_ml_preparado.csv\"\nif (file.exists(ruta_atus_ml)) {\n  atus_ml &lt;- read_csv(ruta_atus_ml, show_col_types = FALSE)\n  print(\"Base preparada cargada correctamente.\")\n} else {\n  atus_ml &lt;- NULL\n  print(\"No se encontró el archivo datos/atus_ml_preparado.csv. Ejecuta primero el capítulo 2.\")\n}\n\n\n[1] \"Base preparada cargada correctamente.\"",
+    "text": "7.4 Cargar paquetes y datos\n\n\nCódigo\nlibrary(readr)\nlibrary(dplyr)\nlibrary(ggplot2)\nlibrary(ranger)\nsource(\"util_graficas.R\")\n\nruta_atus_ml &lt;- \"datos/atus_ml_preparado.csv\"\n\nif (file.exists(ruta_atus_ml)) {\n  atus_ml &lt;- read_csv(ruta_atus_ml, show_col_types = FALSE)\n  print(\"Base preparada cargada correctamente.\")\n} else {\n  atus_ml &lt;- NULL\n  print(\"No se encontró el archivo datos/atus_ml_preparado.csv. Ejecuta primero el capítulo 2.\")\n}\n\n\n[1] \"Base preparada cargada correctamente.\"",
     "crumbs": [
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Random Forest para clasificación</span>"
     ]
@@ -714,7 +784,7 @@
     "href": "07-random-forest.html#muestra-de-trabajo",
     "title": "7  Random Forest para clasificación",
     "section": "7.5 Muestra de trabajo",
-    "text": "7.5 Muestra de trabajo\n\n\nCódigo\nif (!is.null(atus_ml)) {\n  set.seed(123)\n  atus_rf_base &lt;- atus_ml |&gt; sample_n(min(30000, nrow(atus_ml))) |&gt;\n    mutate(\n      accidente_con_victimas = factor(accidente_con_victimas, levels = c(\"Con víctimas\", \"Solo daños\")),\n      MES = as.factor(MES), ID_HORA = as.numeric(ID_HORA), DIASEMANA = as.factor(DIASEMANA), TIPACCID = as.factor(TIPACCID), CAUSAACCI = as.factor(CAUSAACCI)\n    ) |&gt; na.omit()\n  data.frame(filas = nrow(atus_rf_base), columnas = ncol(atus_rf_base))\n}\n\n\n  filas columnas\n1 30000        6\n\n\n\n\nCódigo\nif (exists(\"atus_rf_base\")) {\n  ggplot(atus_rf_base, aes(x = accidente_con_victimas, fill = accidente_con_victimas)) +\n    geom_bar(width = 0.7) +\n    escala_clases_fill() +\n    scale_y_continuous(labels = etiqueta_numero) +\n    labs(title = \"Distribución de la variable respuesta\", subtitle = \"Muestra para Random Forest\", x = \"Clase\", y = \"Número de accidentes\") +\n    tema_libro() + theme(legend.position = \"none\")\n}",
+    "text": "7.5 Muestra de trabajo\n\n\nCódigo\nif (!is.null(atus_ml)) {\n  set.seed(123)\n  atus_rf_base &lt;- atus_ml |&gt;\n    sample_n(min(30000, nrow(atus_ml))) |&gt;\n    mutate(\n      accidente_con_victimas = factor(accidente_con_victimas, levels = c(\"Con víctimas\", \"Solo daños\")),\n      MES = as.factor(MES),\n      ID_HORA = as.numeric(ID_HORA),\n      DIASEMANA = as.factor(DIASEMANA),\n      TIPACCID = as.factor(TIPACCID),\n      CAUSAACCI = as.factor(CAUSAACCI)\n    ) |&gt;\n    na.omit()\n\n  data.frame(filas = nrow(atus_rf_base), columnas = ncol(atus_rf_base))\n}\n\n\n  filas columnas\n1 30000        6\n\n\nCódigo\nif (exists(\"atus_rf_base\")) {\n  ggplot(atus_rf_base, aes(x = accidente_con_victimas, fill = accidente_con_victimas)) +\n    geom_bar(width = 0.7) +\n    escala_clases_fill() +\n    scale_y_continuous(labels = etiqueta_numero) +\n    labs(\n      title = \"Distribución de la variable respuesta\",\n      subtitle = \"Muestra para Random Forest\",\n      x = \"Clase\",\n      y = \"Número de accidentes\"\n    ) +\n    tema_libro() +\n    theme(legend.position = \"none\")\n}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNotaExplicación del código\n\n\n\nSe toma una muestra de trabajo para mantener el tiempo de ejecución razonable. El modelo Random Forest suele ser más pesado que un solo árbol.",
     "crumbs": [
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Random Forest para clasificación</span>"
     ]
@@ -724,7 +794,7 @@
     "href": "07-random-forest.html#división-en-entrenamiento-y-prueba",
     "title": "7  Random Forest para clasificación",
     "section": "7.6 División en entrenamiento y prueba",
-    "text": "7.6 División en entrenamiento y prueba\n\n\nCódigo\nif (exists(\"atus_rf_base\")) {\n  set.seed(123)\n  idx &lt;- sample(1:nrow(atus_rf_base), size = round(0.7*nrow(atus_rf_base)))\n  entrenamiento &lt;- atus_rf_base[idx, ]\n  prueba &lt;- atus_rf_base[-idx, ]\n  data.frame(conjunto=c(\"Entrenamiento\",\"Prueba\"), registros=c(nrow(entrenamiento), nrow(prueba)))\n}\n\n\n       conjunto registros\n1 Entrenamiento     21000\n2        Prueba      9000",
+    "text": "7.6 División en entrenamiento y prueba\n\n\nCódigo\nif (exists(\"atus_rf_base\")) {\n  set.seed(123)\n  idx &lt;- sample(1:nrow(atus_rf_base), size = round(0.7 * nrow(atus_rf_base)))\n  entrenamiento &lt;- atus_rf_base[idx, ]\n  prueba &lt;- atus_rf_base[-idx, ]\n\n  data.frame(conjunto = c(\"Entrenamiento\", \"Prueba\"), registros = c(nrow(entrenamiento), nrow(prueba)))\n}\n\n\n       conjunto registros\n1 Entrenamiento     21000\n2        Prueba      9000",
     "crumbs": [
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Random Forest para clasificación</span>"
     ]
@@ -734,7 +804,7 @@
     "href": "07-random-forest.html#ajustar-random-forest",
     "title": "7  Random Forest para clasificación",
     "section": "7.7 Ajustar Random Forest",
-    "text": "7.7 Ajustar Random Forest\n\n\nCódigo\nif (exists(\"entrenamiento\")) {\n  set.seed(123)\n  modelo_rf &lt;- ranger(\n    accidente_con_victimas ~ MES + ID_HORA + DIASEMANA + TIPACCID + CAUSAACCI,\n    data = entrenamiento,\n    num.trees = 200,\n    mtry = 3,\n    min.node.size = 20,\n    importance = \"impurity\",\n    probability = TRUE,\n    seed = 123\n  )\n  modelo_rf\n}\n\n\nRanger result\n\nCall:\n ranger(accidente_con_victimas ~ MES + ID_HORA + DIASEMANA + TIPACCID +      CAUSAACCI, data = entrenamiento, num.trees = 200, mtry = 3,      min.node.size = 20, importance = \"impurity\", probability = TRUE,      seed = 123) \n\nType:                             Probability estimation \nNumber of trees:                  200 \nSample size:                      21000 \nNumber of independent variables:  5 \nMtry:                             3 \nTarget node size:                 20 \nVariable importance mode:         impurity \nSplitrule:                        gini \nOOB prediction error (Brier s.):  0.1066668",
+    "text": "7.7 Ajustar Random Forest\n\n\nCódigo\nif (exists(\"entrenamiento\")) {\n  set.seed(123)\n\n  modelo_rf &lt;- ranger(\n    accidente_con_victimas ~ MES + ID_HORA + DIASEMANA + TIPACCID + CAUSAACCI,\n    data = entrenamiento,\n    num.trees = 200,\n    mtry = 3,\n    min.node.size = 20,\n    importance = \"impurity\",\n    probability = TRUE,\n    seed = 123\n  )\n\n  modelo_rf\n}\n\n\nRanger result\n\nCall:\n ranger(accidente_con_victimas ~ MES + ID_HORA + DIASEMANA + TIPACCID +      CAUSAACCI, data = entrenamiento, num.trees = 200, mtry = 3,      min.node.size = 20, importance = \"impurity\", probability = TRUE,      seed = 123) \n\nType:                             Probability estimation \nNumber of trees:                  200 \nSample size:                      21000 \nNumber of independent variables:  5 \nMtry:                             3 \nTarget node size:                 20 \nVariable importance mode:         impurity \nSplitrule:                        gini \nOOB prediction error (Brier s.):  0.1066668 \n\n\n\n\n\n\n\n\nTipInterpretación del resultado\n\n\n\nEl resumen del modelo muestra cuántos árboles se construyeron, cuántas variables se probaron en cada división y el error fuera de bolsa.",
     "crumbs": [
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Random Forest para clasificación</span>"
     ]
@@ -744,7 +814,7 @@
     "href": "07-random-forest.html#importancia-de-variables",
     "title": "7  Random Forest para clasificación",
     "section": "7.8 Importancia de variables",
-    "text": "7.8 Importancia de variables\n\n\nCódigo\nif (exists(\"modelo_rf\")) {\n  importancia_rf &lt;- data.frame(variable = names(modelo_rf$variable.importance), importancia = as.numeric(modelo_rf$variable.importance)) |&gt;\n    arrange(desc(importancia))\n  importancia_rf\n}\n\n\n   variable importancia\n1  TIPACCID   1608.8347\n2   ID_HORA    416.7870\n3       MES    324.9780\n4 DIASEMANA    234.4944\n5 CAUSAACCI    220.5923\n\n\n\n\nCódigo\nif (exists(\"importancia_rf\")) {\n  ggplot(importancia_rf, aes(x = reorder(variable, importancia), y = importancia)) +\n    geom_col(fill = col_azul, width = 0.75) +\n    coord_flip() +\n    labs(title = \"Importancia de variables en Random Forest\", x = \"Variable\", y = \"Importancia\") +\n    tema_libro()\n}",
+    "text": "7.8 Importancia de variables\n\n\nCódigo\nif (exists(\"modelo_rf\")) {\n  importancia_rf &lt;- data.frame(\n    variable = names(modelo_rf$variable.importance),\n    importancia = as.numeric(modelo_rf$variable.importance)\n  ) |&gt;\n    arrange(desc(importancia))\n\n  importancia_rf\n}\n\n\n   variable importancia\n1  TIPACCID   1608.8347\n2   ID_HORA    416.7870\n3       MES    324.9780\n4 DIASEMANA    234.4944\n5 CAUSAACCI    220.5923\n\n\nCódigo\nif (exists(\"importancia_rf\")) {\n  ggplot(importancia_rf, aes(x = reorder(variable, importancia), y = importancia)) +\n    geom_col(fill = col_azul, width = 0.75) +\n    coord_flip() +\n    labs(title = \"Importancia de variables en Random Forest\", x = \"Variable\", y = \"Importancia\") +\n    tema_libro()\n}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNotaExplicación del código\n\n\n\nLa importancia de variables muestra qué predictores aportan más a la reducción de impureza en los árboles del bosque.",
     "crumbs": [
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Random Forest para clasificación</span>"
     ]
@@ -754,7 +824,7 @@
     "href": "07-random-forest.html#predicción-y-métricas",
     "title": "7  Random Forest para clasificación",
     "section": "7.9 Predicción y métricas",
-    "text": "7.9 Predicción y métricas\n\n\nCódigo\nif (exists(\"modelo_rf\")) {\n  predicciones_rf &lt;- predict(modelo_rf, data = prueba)\n  probabilidades_rf &lt;- predicciones_rf$predictions[, \"Con víctimas\"]\n  clases_rf &lt;- colnames(predicciones_rf$predictions)[max.col(predicciones_rf$predictions, ties.method = \"first\")]\n  clases_rf &lt;- factor(clases_rf, levels = c(\"Con víctimas\", \"Solo daños\"))\n  real_rf &lt;- factor(prueba$accidente_con_victimas, levels = c(\"Con víctimas\", \"Solo daños\"))\n  matriz_confusion_rf &lt;- table(Real = real_rf, Predicho = clases_rf)\n  matriz_confusion_rf\n}\n\n\n              Predicho\nReal           Con víctimas Solo daños\n  Con víctimas          475        991\n  Solo daños            265       7269\n\n\n\n\nCódigo\nif (exists(\"matriz_confusion_rf\")) {\n  VP &lt;- matriz_confusion_rf[\"Con víctimas\", \"Con víctimas\"]\n  FN &lt;- matriz_confusion_rf[\"Con víctimas\", \"Solo daños\"]\n  FP &lt;- matriz_confusion_rf[\"Solo daños\", \"Con víctimas\"]\n  VN &lt;- matriz_confusion_rf[\"Solo daños\", \"Solo daños\"]\n  data.frame(exactitud=(VP+VN)/(VP+FN+FP+VN), sensibilidad=VP/(VP+FN), especificidad=VN/(VN+FP))\n}\n\n\n  exactitud sensibilidad especificidad\n1 0.8604444    0.3240109     0.9648261",
+    "text": "7.9 Predicción y métricas\n\n\nCódigo\nif (exists(\"modelo_rf\")) {\n  predicciones_rf &lt;- predict(modelo_rf, data = prueba)\n  probabilidades_rf &lt;- predicciones_rf$predictions[, \"Con víctimas\"]\n  clases_rf &lt;- colnames(predicciones_rf$predictions)[max.col(predicciones_rf$predictions, ties.method = \"first\")]\n  clases_rf &lt;- factor(clases_rf, levels = c(\"Con víctimas\", \"Solo daños\"))\n  real_rf &lt;- factor(prueba$accidente_con_victimas, levels = c(\"Con víctimas\", \"Solo daños\"))\n\n  matriz_confusion_rf &lt;- table(Real = real_rf, Predicho = clases_rf)\n  matriz_confusion_rf\n}\n\n\n              Predicho\nReal           Con víctimas Solo daños\n  Con víctimas          475        991\n  Solo daños            265       7269\n\n\nCódigo\nif (exists(\"matriz_confusion_rf\")) {\n  VP &lt;- matriz_confusion_rf[\"Con víctimas\", \"Con víctimas\"]\n  FN &lt;- matriz_confusion_rf[\"Con víctimas\", \"Solo daños\"]\n  FP &lt;- matriz_confusion_rf[\"Solo daños\", \"Con víctimas\"]\n  VN &lt;- matriz_confusion_rf[\"Solo daños\", \"Solo daños\"]\n\n  data.frame(exactitud=(VP+VN)/(VP+FN+FP+VN), sensibilidad=VP/(VP+FN), especificidad=VN/(VN+FP))\n}\n\n\n  exactitud sensibilidad especificidad\n1 0.8604444    0.3240109     0.9648261\n\n\n\n\n\n\n\n\nTipInterpretación del resultado\n\n\n\nLa sensibilidad indica qué tan bien detecta accidentes con víctimas. La especificidad indica qué tan bien reconoce accidentes de solo daños.",
     "crumbs": [
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Random Forest para clasificación</span>"
     ]
@@ -764,7 +834,7 @@
     "href": "07-random-forest.html#distribución-de-probabilidades-predichas",
     "title": "7  Random Forest para clasificación",
     "section": "7.10 Distribución de probabilidades predichas",
-    "text": "7.10 Distribución de probabilidades predichas\n\n\nCódigo\nif (exists(\"probabilidades_rf\")) {\n  datos_prob_rf &lt;- data.frame(probabilidad = probabilidades_rf, clase_real = real_rf)\n  ggplot(datos_prob_rf, aes(x = probabilidad, fill = clase_real)) +\n    geom_histogram(bins = 30, alpha = 0.75, position = \"identity\") +\n    escala_clases_fill(name = \"Clase real\") +\n    labs(title = \"Distribución de probabilidades predichas\", subtitle = \"Random Forest\", x = \"Probabilidad predicha de 'Con víctimas'\", y = \"Frecuencia\") +\n    tema_libro()\n}",
+    "text": "7.10 Distribución de probabilidades predichas\n\n\nCódigo\nif (exists(\"probabilidades_rf\")) {\n  datos_prob_rf &lt;- data.frame(probabilidad = probabilidades_rf, clase_real = real_rf)\n\n  ggplot(datos_prob_rf, aes(x = probabilidad, fill = clase_real)) +\n    geom_histogram(bins = 30, alpha = 0.75, position = \"identity\") +\n    escala_clases_fill(name = \"Clase real\") +\n    labs(\n      title = \"Distribución de probabilidades predichas\",\n      subtitle = \"Random Forest\",\n      x = \"Probabilidad predicha de 'Con víctimas'\",\n      y = \"Frecuencia\"\n    ) +\n    tema_libro()\n}",
     "crumbs": [
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Random Forest para clasificación</span>"
     ]
@@ -777,6 +847,217 @@
     "text": "7.11 Conclusión\nRandom Forest mejora la estabilidad y la capacidad predictiva de un solo árbol al combinar muchos árboles. Es uno de los métodos más útiles para clasificación aplicada.",
     "crumbs": [
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Random Forest para clasificación</span>"
+    ]
+  },
+  {
+    "objectID": "08-evaluacion-modelos.html",
+    "href": "08-evaluacion-modelos.html",
+    "title": "8  Evaluación, validación y comparación de modelos",
+    "section": "",
+    "text": "8.1 Objetivos del capítulo\nAl finalizar este capítulo, el lector será capaz de:",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Evaluación, validación y comparación de modelos</span>"
+    ]
+  },
+  {
+    "objectID": "08-evaluacion-modelos.html#objetivos-del-capítulo",
+    "href": "08-evaluacion-modelos.html#objetivos-del-capítulo",
+    "title": "8  Evaluación, validación y comparación de modelos",
+    "section": "",
+    "text": "explicar por qué la exactitud no siempre es suficiente;\nconstruir e interpretar una matriz de confusión;\ncalcular exactitud, sensibilidad, especificidad, precisión y valor F1;\ndistinguir entrenamiento, validación y prueba;\naplicar validación cruzada estratificada;\ncomparar modelos con criterios predictivos y prácticos;\nseleccionar un modelo sin depender de una sola métrica.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Evaluación, validación y comparación de modelos</span>"
+    ]
+  },
+  {
+    "objectID": "08-evaluacion-modelos.html#introducción",
+    "href": "08-evaluacion-modelos.html#introducción",
+    "title": "8  Evaluación, validación y comparación de modelos",
+    "section": "8.2 Introducción",
+    "text": "8.2 Introducción\nEntrenar un modelo es apenas la mitad del trabajo. Después debemos responder una pregunta más delicada: ¿qué tan bien funcionará con accidentes que nunca vio durante el aprendizaje?\nUn modelo puede memorizar los datos de entrenamiento y parecer excelente, pero fallar con observaciones nuevas. Por eso la evaluación debe realizarse con datos separados y métricas apropiadas para el objetivo del problema.\nEn este capítulo se utiliza nuevamente la base preparada a partir de ATUS (Instituto Nacional de Estadística y Geografía 2025).",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Evaluación, validación y comparación de modelos</span>"
+    ]
+  },
+  {
+    "objectID": "08-evaluacion-modelos.html#cargar-los-datos",
+    "href": "08-evaluacion-modelos.html#cargar-los-datos",
+    "title": "8  Evaluación, validación y comparación de modelos",
+    "section": "8.3 Cargar los datos",
+    "text": "8.3 Cargar los datos\n\n\nCódigo\nlibrary(readr)\nlibrary(dplyr)\nlibrary(ggplot2)\nsource(\"util_graficas.R\")\n\nruta_atus_ml &lt;- \"datos/atus_ml_preparado.csv\"\n\nif (!file.exists(ruta_atus_ml)) {\n  stop(\n    paste(\n      \"No se encontró datos/atus_ml_preparado.csv.\",\n      \"Renderice primero el capítulo de preparación de datos.\"\n    )\n  )\n}\n\natus_ml &lt;- read_csv(\n  ruta_atus_ml,\n  show_col_types = FALSE\n)",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Evaluación, validación y comparación de modelos</span>"
+    ]
+  },
+  {
+    "objectID": "08-evaluacion-modelos.html#preparar-una-muestra-reproducible",
+    "href": "08-evaluacion-modelos.html#preparar-una-muestra-reproducible",
+    "title": "8  Evaluación, validación y comparación de modelos",
+    "section": "8.4 Preparar una muestra reproducible",
+    "text": "8.4 Preparar una muestra reproducible\n\n\nCódigo\nset.seed(123)\n\natus_eval &lt;- atus_ml |&gt;\n  sample_n(min(30000, nrow(atus_ml))) |&gt;\n  mutate(\n    accidente_con_victimas = factor(\n      accidente_con_victimas,\n      levels = c(\"Solo daños\", \"Con víctimas\")\n    ),\n    MES = factor(MES),\n    ID_HORA = as.numeric(ID_HORA),\n    DIASEMANA = factor(DIASEMANA),\n    TIPACCID = factor(TIPACCID),\n    CAUSAACCI = factor(CAUSAACCI)\n  ) |&gt;\n  na.omit()\n\nprop.table(table(atus_eval$accidente_con_victimas))\n\n\n\n  Solo daños Con víctimas \n   0.8277333    0.1722667 \n\n\n\n\n\n\n\n\nTipInterpretación\n\n\n\nLa tabla de proporciones permite identificar si una clase es mucho más frecuente que la otra. Cuando existe desbalance, una exactitud alta puede resultar engañosa.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Evaluación, validación y comparación de modelos</span>"
+    ]
+  },
+  {
+    "objectID": "08-evaluacion-modelos.html#entrenamiento-validación-y-prueba",
+    "href": "08-evaluacion-modelos.html#entrenamiento-validación-y-prueba",
+    "title": "8  Evaluación, validación y comparación de modelos",
+    "section": "8.5 Entrenamiento, validación y prueba",
+    "text": "8.5 Entrenamiento, validación y prueba\nLos datos pueden dividirse en tres partes:\n\nEntrenamiento: se utiliza para estimar los parámetros del modelo.\nValidación: ayuda a elegir hiperparámetros y comparar alternativas.\nPrueba: se reserva para estimar el desempeño final.\n\nEn ejercicios introductorios es frecuente utilizar entrenamiento y prueba, mientras que la validación se realiza mediante validación cruzada dentro del conjunto de entrenamiento.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Evaluación, validación y comparación de modelos</span>"
+    ]
+  },
+  {
+    "objectID": "08-evaluacion-modelos.html#división-estratificada",
+    "href": "08-evaluacion-modelos.html#división-estratificada",
+    "title": "8  Evaluación, validación y comparación de modelos",
+    "section": "8.6 División estratificada",
+    "text": "8.6 División estratificada\nUna división estratificada conserva aproximadamente la proporción de cada clase.\n\n\nCódigo\nset.seed(123)\n\nindices_entrenamiento &lt;- unlist(\n  lapply(\n    split(seq_len(nrow(atus_eval)), atus_eval$accidente_con_victimas),\n    function(indices) {\n      sample(indices, size = floor(0.70 * length(indices)))\n    }\n  )\n)\n\nentrenamiento &lt;- atus_eval[indices_entrenamiento, ]\nprueba &lt;- atus_eval[-indices_entrenamiento, ]\n\nprop.table(table(entrenamiento$accidente_con_victimas))\n\n\n\n  Solo daños Con víctimas \n   0.8277537    0.1722463 \n\n\nCódigo\nprop.table(table(prueba$accidente_con_victimas))\n\n\n\n  Solo daños Con víctimas \n   0.8276858    0.1723142 \n\n\n\n\n\n\n\n\nNotaExplicación del código\n\n\n\nLos índices se separan por clase y después se toma 70 % de cada grupo. Así se reduce el riesgo de que una clase quede sobrerrepresentada en entrenamiento o prueba.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Evaluación, validación y comparación de modelos</span>"
+    ]
+  },
+  {
+    "objectID": "08-evaluacion-modelos.html#matriz-de-confusión",
+    "href": "08-evaluacion-modelos.html#matriz-de-confusión",
+    "title": "8  Evaluación, validación y comparación de modelos",
+    "section": "8.7 Matriz de confusión",
+    "text": "8.7 Matriz de confusión\nPara una clase positiva denominada Con víctimas, la matriz contiene:\n\nVerdadero positivo (VP): el accidente tenía víctimas y el modelo lo detectó.\nFalso negativo (FN): tenía víctimas, pero el modelo lo clasificó como solo daños.\nFalso positivo (FP): era de solo daños, pero el modelo predijo víctimas.\nVerdadero negativo (VN): era de solo daños y se clasificó correctamente.\n\n\n\n\nClase real\nPredicción positiva\nPredicción negativa\n\n\n\n\nPositiva\nVP\nFN\n\n\nNegativa\nFP\nVN\n\n\n\nUn falso negativo puede ser especialmente importante cuando el propósito consiste en identificar accidentes con víctimas.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Evaluación, validación y comparación de modelos</span>"
+    ]
+  },
+  {
+    "objectID": "08-evaluacion-modelos.html#métricas-principales",
+    "href": "08-evaluacion-modelos.html#métricas-principales",
+    "title": "8  Evaluación, validación y comparación de modelos",
+    "section": "8.8 Métricas principales",
+    "text": "8.8 Métricas principales\n\n8.8.1 Exactitud\n\\[\n\\text{Exactitud}=\\frac{VP+VN}{VP+FN+FP+VN}\n\\]\nMide la proporción total de predicciones correctas.\n\n\n8.8.2 Sensibilidad\n\\[\n\\text{Sensibilidad}=\\frac{VP}{VP+FN}\n\\]\nMide qué proporción de los accidentes con víctimas fue detectada.\n\n\n8.8.3 Especificidad\n\\[\n\\text{Especificidad}=\\frac{VN}{VN+FP}\n\\]\nMide qué proporción de los accidentes de solo daños fue reconocida correctamente.\n\n\n8.8.4 Precisión\n\\[\n\\text{Precisión}=\\frac{VP}{VP+FP}\n\\]\nIndica qué proporción de las predicciones positivas realmente tenía víctimas.\n\n\n8.8.5 Valor F1\n\\[\nF_1=2\\frac{\\text{Precisión}\\times\\text{Sensibilidad}}\n{\\text{Precisión}+\\text{Sensibilidad}}\n\\]\nEl valor F1 equilibra precisión y sensibilidad.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Evaluación, validación y comparación de modelos</span>"
+    ]
+  },
+  {
+    "objectID": "08-evaluacion-modelos.html#función-para-calcular-métricas",
+    "href": "08-evaluacion-modelos.html#función-para-calcular-métricas",
+    "title": "8  Evaluación, validación y comparación de modelos",
+    "section": "8.9 Función para calcular métricas",
+    "text": "8.9 Función para calcular métricas\n\n\nCódigo\ncalcular_metricas &lt;- function(real, predicho, positiva = \"Con víctimas\") {\n  real &lt;- factor(real)\n  predicho &lt;- factor(predicho, levels = levels(real))\n\n  negativas &lt;- setdiff(levels(real), positiva)\n\n  if (length(negativas) != 1) {\n    stop(\"La función requiere exactamente dos clases.\")\n  }\n\n  negativa &lt;- negativas[1]\n  matriz &lt;- table(Real = real, Predicho = predicho)\n\n  VP &lt;- matriz[positiva, positiva]\n  FN &lt;- matriz[positiva, negativa]\n  FP &lt;- matriz[negativa, positiva]\n  VN &lt;- matriz[negativa, negativa]\n\n  division_segura &lt;- function(numerador, denominador) {\n    if (\n      is.na(numerador) ||\n      is.na(denominador) ||\n      denominador == 0\n    ) {\n      return(NA_real_)\n    }\n\n    as.numeric(numerador / denominador)\n  }\n\n  exactitud &lt;- division_segura(VP + VN, VP + FN + FP + VN)\n  sensibilidad &lt;- division_segura(VP, VP + FN)\n  especificidad &lt;- division_segura(VN, VN + FP)\n  precision &lt;- division_segura(VP, VP + FP)\n  f1 &lt;- division_segura(\n    2 * precision * sensibilidad,\n    precision + sensibilidad\n  )\n\n  list(\n    matriz = matriz,\n    metricas = data.frame(\n      exactitud = exactitud,\n      sensibilidad = sensibilidad,\n      especificidad = especificidad,\n      precision = precision,\n      f1 = f1\n    )\n  )\n}",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Evaluación, validación y comparación de modelos</span>"
+    ]
+  },
+  {
+    "objectID": "08-evaluacion-modelos.html#modelo-de-referencia-regla-mayoritaria",
+    "href": "08-evaluacion-modelos.html#modelo-de-referencia-regla-mayoritaria",
+    "title": "8  Evaluación, validación y comparación de modelos",
+    "section": "8.10 Modelo de referencia: regla mayoritaria",
+    "text": "8.10 Modelo de referencia: regla mayoritaria\nAntes de celebrar un modelo complejo, conviene compararlo con una regla muy simple: predecir siempre la clase más frecuente.\n\n\nCódigo\nclase_mayoritaria &lt;- names(\n  which.max(table(entrenamiento$accidente_con_victimas))\n)\n\nprediccion_referencia &lt;- factor(\n  rep(clase_mayoritaria, nrow(prueba)),\n  levels = levels(entrenamiento$accidente_con_victimas)\n)\n\nresultado_referencia &lt;- calcular_metricas(\n  real = prueba$accidente_con_victimas,\n  predicho = prediccion_referencia\n)\n\nresultado_referencia$matriz\n\n\n              Predicho\nReal           Solo daños Con víctimas\n  Solo daños         7450            0\n  Con víctimas       1551            0\n\n\nCódigo\nresultado_referencia$metricas\n\n\n  exactitud sensibilidad especificidad precision f1\n1 0.8276858            0             1        NA NA\n\n\n\n\n\n\n\n\nNota¿Por qué puede aparecer NA?\n\n\n\nEl modelo de referencia predice únicamente la clase mayoritaria. Si nunca predice la clase positiva Con víctimas, la precisión no puede calcularse porque su denominador es cero. En ese caso R muestra NA, que significa métrica no definida, pero el libro continúa procesándose normalmente.\n\n\n\n\n\n\n\n\nAdvertenciaUna exactitud alta puede engañar\n\n\n\nSi 90 % de los accidentes perteneciera a una sola clase, predecir siempre esa clase produciría 90 % de exactitud sin aprender ninguna relación útil. Por eso deben revisarse sensibilidad, especificidad, precisión y F1.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Evaluación, validación y comparación de modelos</span>"
+    ]
+  },
+  {
+    "objectID": "08-evaluacion-modelos.html#evaluar-una-regresión-logística",
+    "href": "08-evaluacion-modelos.html#evaluar-una-regresión-logística",
+    "title": "8  Evaluación, validación y comparación de modelos",
+    "section": "8.11 Evaluar una regresión logística",
+    "text": "8.11 Evaluar una regresión logística\n\n\nCódigo\nmodelo_logistico &lt;- glm(\n  accidente_con_victimas ~\n    MES + ID_HORA + DIASEMANA + TIPACCID + CAUSAACCI,\n  data = entrenamiento,\n  family = binomial\n)\n\nprobabilidad_logistica &lt;- predict(\n  modelo_logistico,\n  newdata = prueba,\n  type = \"response\"\n)\n\n# glm() modela la probabilidad del segundo nivel del factor.\nclase_positiva_modelada &lt;- levels(\n  entrenamiento$accidente_con_victimas\n)[2]\n\nprediccion_logistica &lt;- ifelse(\n  probabilidad_logistica &gt;= 0.50,\n  clase_positiva_modelada,\n  levels(entrenamiento$accidente_con_victimas)[1]\n)\n\nprediccion_logistica &lt;- factor(\n  prediccion_logistica,\n  levels = levels(entrenamiento$accidente_con_victimas)\n)\n\nresultado_logistico &lt;- calcular_metricas(\n  real = prueba$accidente_con_victimas,\n  predicho = prediccion_logistica\n)\n\nresultado_logistico$matriz\n\n\n              Predicho\nReal           Solo daños Con víctimas\n  Solo daños         7403           47\n  Con víctimas       1198          353\n\n\nCódigo\nresultado_logistico$metricas\n\n\n  exactitud sensibilidad especificidad precision        f1\n1  0.861682    0.2275951     0.9936913    0.8825 0.3618657\n\n\n\n\n\n\n\n\nImportanteRevise qué clase modela R\n\n\n\nEn una regresión logística binaria, glm() calcula la probabilidad del segundo nivel del factor respuesta. El orden de los niveles debe verificarse antes de transformar probabilidades en clases.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Evaluación, validación y comparación de modelos</span>"
+    ]
+  },
+  {
+    "objectID": "08-evaluacion-modelos.html#comparación-inicial",
+    "href": "08-evaluacion-modelos.html#comparación-inicial",
+    "title": "8  Evaluación, validación y comparación de modelos",
+    "section": "8.12 Comparación inicial",
+    "text": "8.12 Comparación inicial\n\n\nCódigo\ncomparacion_inicial &lt;- bind_rows(\n  cbind(\n    modelo = \"Regla mayoritaria\",\n    resultado_referencia$metricas\n  ),\n  cbind(\n    modelo = \"Regresión logística\",\n    resultado_logistico$metricas\n  )\n)\n\ncomparacion_inicial\n\n\n               modelo exactitud sensibilidad especificidad precision        f1\n1   Regla mayoritaria 0.8276858    0.0000000     1.0000000        NA        NA\n2 Regresión logística 0.8616820    0.2275951     0.9936913    0.8825 0.3618657\n\n\n\n\nCódigo\ncomparacion_larga &lt;- comparacion_inicial |&gt;\n  tidyr::pivot_longer(\n    cols = -modelo,\n    names_to = \"metrica\",\n    values_to = \"valor\"\n  )\n\nggplot(\n  comparacion_larga,\n  aes(x = metrica, y = valor, fill = modelo)\n) +\n  geom_col(position = \"dodge\") +\n  scale_y_continuous(\n    limits = c(0, 1),\n    labels = scales::label_percent(accuracy = 1)\n  ) +\n  labs(\n    title = \"Un modelo debe superar una referencia sencilla\",\n    x = \"Métrica\",\n    y = \"Valor\",\n    fill = \"Modelo\"\n  ) +\n  tema_libro()\n\n\n\n\n\nComparación de métricas entre una regla de referencia y la regresión logística.\n\n\n\n\nFuente: Elaboración propia con datos del INEGI, ATUS 2024.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Evaluación, validación y comparación de modelos</span>"
+    ]
+  },
+  {
+    "objectID": "08-evaluacion-modelos.html#umbral-de-clasificación",
+    "href": "08-evaluacion-modelos.html#umbral-de-clasificación",
+    "title": "8  Evaluación, validación y comparación de modelos",
+    "section": "8.13 Umbral de clasificación",
+    "text": "8.13 Umbral de clasificación\nEl umbral de 0.50 no es una ley universal. Reducirlo puede aumentar la sensibilidad, aunque también puede generar más falsos positivos.\n\n\nCódigo\numbrales &lt;- seq(0.10, 0.90, by = 0.05)\n\nmetricas_umbral &lt;- lapply(umbrales, function(umbral) {\n  prediccion &lt;- ifelse(\n    probabilidad_logistica &gt;= umbral,\n    clase_positiva_modelada,\n    levels(entrenamiento$accidente_con_victimas)[1]\n  )\n\n  prediccion &lt;- factor(\n    prediccion,\n    levels = levels(entrenamiento$accidente_con_victimas)\n  )\n\n  metricas &lt;- calcular_metricas(\n    prueba$accidente_con_victimas,\n    prediccion\n  )$metricas\n\n  cbind(umbral = umbral, metricas)\n}) |&gt;\n  bind_rows()\n\nmetricas_umbral\n\n\n   umbral exactitud sensibilidad especificidad precision        f1\n1    0.10 0.7351405    0.7878788     0.7241611 0.3729020 0.5062138\n2    0.15 0.7996889    0.7150226     0.8173154 0.4489879 0.5516041\n3    0.20 0.8055772    0.7047066     0.8265772 0.4582809 0.5553862\n4    0.25 0.8182424    0.6834300     0.8463087 0.4807256 0.5644302\n5    0.30 0.8196867    0.6756931     0.8496644 0.4833948 0.5635924\n6    0.35 0.8237974    0.6434558     0.8613423 0.4913836 0.5572306\n7    0.40 0.8447950    0.4455190     0.9279195 0.5627036 0.4973012\n8    0.45 0.8586824    0.2778852     0.9795973 0.7392796 0.4039363\n9    0.50 0.8616820    0.2275951     0.9936913 0.8825000 0.3618657\n10   0.55 0.8602378    0.2127660     0.9950336 0.8991826 0.3441084\n11   0.60 0.8593490    0.1889104     0.9989262 0.9734219 0.3164147\n12   0.65 0.8596823    0.1856867     1.0000000 1.0000000 0.3132137\n13   0.70 0.8596823    0.1856867     1.0000000 1.0000000 0.3132137\n14   0.75 0.8596823    0.1856867     1.0000000 1.0000000 0.3132137\n15   0.80 0.8596823    0.1856867     1.0000000 1.0000000 0.3132137\n16   0.85 0.8596823    0.1856867     1.0000000 1.0000000 0.3132137\n17   0.90 0.8596823    0.1856867     1.0000000 1.0000000 0.3132137\n\n\n\n\n\n\n\n\nNotaDecisión práctica\n\n\n\nEl mejor umbral depende del costo de cada error. Cuando omitir un accidente con víctimas es más grave que generar una alerta adicional, puede priorizarse la sensibilidad.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Evaluación, validación y comparación de modelos</span>"
+    ]
+  },
+  {
+    "objectID": "08-evaluacion-modelos.html#validación-cruzada",
+    "href": "08-evaluacion-modelos.html#validación-cruzada",
+    "title": "8  Evaluación, validación y comparación de modelos",
+    "section": "8.14 Validación cruzada",
+    "text": "8.14 Validación cruzada\nLa validación cruzada divide el conjunto de entrenamiento en varios pliegues. Cada pliegue funciona una vez como validación y los restantes como entrenamiento.\nEn validación cruzada de \\(K\\) pliegues:\n\nse divide la muestra en \\(K\\) partes;\nse entrena con \\(K-1\\) partes;\nse evalúa en la parte restante;\nse repite hasta utilizar todos los pliegues;\nse promedian las métricas.\n\n\n8.14.1 Crear pliegues estratificados\n\n\nCódigo\ncrear_pliegues &lt;- function(respuesta, k = 5, semilla = 123) {\n  set.seed(semilla)\n\n  pliegues &lt;- integer(length(respuesta))\n\n  for (clase in levels(factor(respuesta))) {\n    indices &lt;- which(respuesta == clase)\n    etiquetas &lt;- rep(seq_len(k), length.out = length(indices))\n    pliegues[indices] &lt;- sample(etiquetas)\n  }\n\n  pliegues\n}\n\npliegue &lt;- crear_pliegues(\n  entrenamiento$accidente_con_victimas,\n  k = 5\n)\n\ntable(pliegue, entrenamiento$accidente_con_victimas)\n\n\n       \npliegue Solo daños Con víctimas\n      1       3477          724\n      2       3477          724\n      3       3476          723\n      4       3476          723\n      5       3476          723\n\n\n\n\n8.14.2 Validación cruzada de la regresión logística\n\n\nCódigo\nresultados_cv &lt;- lapply(1:5, function(k) {\n  datos_entrenamiento &lt;- entrenamiento[pliegue != k, ]\n  datos_validacion &lt;- entrenamiento[pliegue == k, ]\n\n  modelo &lt;- glm(\n    accidente_con_victimas ~\n      MES + ID_HORA + DIASEMANA + TIPACCID + CAUSAACCI,\n    data = datos_entrenamiento,\n    family = binomial\n  )\n\n  probabilidad &lt;- predict(\n    modelo,\n    newdata = datos_validacion,\n    type = \"response\"\n  )\n\n  clase_modelada &lt;- levels(\n    datos_entrenamiento$accidente_con_victimas\n  )[2]\n\n  prediccion &lt;- ifelse(\n    probabilidad &gt;= 0.50,\n    clase_modelada,\n    levels(datos_entrenamiento$accidente_con_victimas)[1]\n  )\n\n  prediccion &lt;- factor(\n    prediccion,\n    levels = levels(datos_entrenamiento$accidente_con_victimas)\n  )\n\n  metricas &lt;- calcular_metricas(\n    datos_validacion$accidente_con_victimas,\n    prediccion\n  )$metricas\n\n  cbind(pliegue = k, metricas)\n}) |&gt;\n  bind_rows()\n\nresultados_cv\n\n\n  pliegue exactitud sensibilidad especificidad precision        f1\n1       1 0.8631278    0.2389503     0.9930975 0.8781726 0.3756786\n2       2 0.8590812    0.2140884     0.9933851 0.8707865 0.3436807\n3       3 0.8630626    0.2268326     0.9953970 0.9111111 0.3632337\n4       4 0.8637771    0.2406639     0.9933832 0.8832487 0.3782609\n5       5 0.8525839    0.1798064     0.9925201 0.8333333 0.2957907\n\n\n\n\nCódigo\nresumen_cv &lt;- resultados_cv |&gt;\n  summarise(\n    across(\n      where(is.numeric) & !matches(\"pliegue\"),\n      list(media = mean, desviacion = sd),\n      na.rm = TRUE\n    )\n  )\n\nresumen_cv\n\n\n  exactitud_media exactitud_desviacion sensibilidad_media\n1       0.8603265          0.004710052          0.2200683\n  sensibilidad_desviacion especificidad_media especificidad_desviacion\n1              0.02491609           0.9935566              0.001087613\n  precision_media precision_desviacion  f1_media f1_desviacion\n1       0.8753305           0.02799749 0.3513289    0.03392253\n\n\n\n\n\n\n\n\nTipInterpretación\n\n\n\nLa media resume el desempeño esperado y la desviación estándar muestra su estabilidad. Dos modelos con medias parecidas pueden diferir mucho si uno presenta resultados más variables entre pliegues.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Evaluación, validación y comparación de modelos</span>"
+    ]
+  },
+  {
+    "objectID": "08-evaluacion-modelos.html#cómo-comparar-varios-modelos",
+    "href": "08-evaluacion-modelos.html#cómo-comparar-varios-modelos",
+    "title": "8  Evaluación, validación y comparación de modelos",
+    "section": "8.15 Cómo comparar varios modelos",
+    "text": "8.15 Cómo comparar varios modelos\nPara comparar regresión logística, k-NN, árbol de decisión y Random Forest conviene utilizar:\n\nla misma muestra;\nla misma variable respuesta;\nla misma partición de entrenamiento y prueba;\nel mismo criterio para definir la clase positiva;\nlas mismas métricas;\nuna validación cruzada equivalente;\ntiempos de entrenamiento y predicción;\nfacilidad de interpretación.\n\nUna tabla de decisión puede tener esta estructura:\n\n\n\n\n\n\n\n\n\n\n\n\nModelo\nExactitud\nSensibilidad\nEspecificidad\nF1\nInterpretación\nCosto computacional\n\n\n\n\nRegresión logística\n\n\n\n\nAlta\nBajo\n\n\nk-NN\n\n\n\n\nMedia-baja\nMedio\n\n\nÁrbol de decisión\n\n\n\n\nAlta\nBajo\n\n\nRandom Forest\n\n\n\n\nMedia\nAlto",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Evaluación, validación y comparación de modelos</span>"
+    ]
+  },
+  {
+    "objectID": "08-evaluacion-modelos.html#selección-del-modelo-final",
+    "href": "08-evaluacion-modelos.html#selección-del-modelo-final",
+    "title": "8  Evaluación, validación y comparación de modelos",
+    "section": "8.16 Selección del modelo final",
+    "text": "8.16 Selección del modelo final\nNo existe un modelo universalmente mejor. La selección depende de la finalidad:\n\nSi se requiere explicar el efecto de las variables, puede preferirse regresión logística.\nSi se necesita una regla visual y fácil de comunicar, un árbol puede ser apropiado.\nSi se prioriza capacidad predictiva y estabilidad, Random Forest puede resultar competitivo.\nSi el costo de los falsos negativos es alto, debe priorizarse sensibilidad.\nSi las alertas falsas son costosas, precisión y especificidad cobran mayor importancia.\n\n\n\n\n\n\n\nImportantePrincipio fundamental\n\n\n\nEl mejor modelo no es necesariamente el que tiene la mayor exactitud, sino el que responde mejor al objetivo, controla los errores relevantes y mantiene un desempeño estable con datos nuevos.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Evaluación, validación y comparación de modelos</span>"
+    ]
+  },
+  {
+    "objectID": "08-evaluacion-modelos.html#actividad-guiada",
+    "href": "08-evaluacion-modelos.html#actividad-guiada",
+    "title": "8  Evaluación, validación y comparación de modelos",
+    "section": "8.17 Actividad guiada",
+    "text": "8.17 Actividad guiada\n\nEjecute la regresión logística con umbrales de 0.30, 0.50 y 0.70.\nRegistre la matriz de confusión de cada caso.\nCompare sensibilidad, especificidad, precisión y F1.\nExplique qué umbral elegiría para detectar accidentes con víctimas.\nJustifique su decisión considerando el costo de falsos negativos y falsos positivos.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Evaluación, validación y comparación de modelos</span>"
+    ]
+  },
+  {
+    "objectID": "08-evaluacion-modelos.html#actividades-para-el-lector",
+    "href": "08-evaluacion-modelos.html#actividades-para-el-lector",
+    "title": "8  Evaluación, validación y comparación de modelos",
+    "section": "8.18 Actividades para el lector",
+    "text": "8.18 Actividades para el lector\n\nConstruya una función que calcule la exactitud balanceada:\n\\[\n\\text{Exactitud balanceada}=\\frac{\\text{Sensibilidad}+\\text{Especificidad}}{2}\n\\]\nCompare la variabilidad de las métricas en validación cruzada.\nRepita el procedimiento con un árbol de decisión.\nElabore una tabla comparativa con los cuatro modelos estudiados.\nEscriba una recomendación técnica de no más de 200 palabras.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Evaluación, validación y comparación de modelos</span>"
+    ]
+  },
+  {
+    "objectID": "08-evaluacion-modelos.html#resumen-del-capítulo",
+    "href": "08-evaluacion-modelos.html#resumen-del-capítulo",
+    "title": "8  Evaluación, validación y comparación de modelos",
+    "section": "8.19 Resumen del capítulo",
+    "text": "8.19 Resumen del capítulo\nEn este capítulo aprendimos que evaluar un modelo requiere datos no utilizados durante el entrenamiento, una clase positiva bien definida y varias métricas. También construimos una regla de referencia, estudiamos el efecto del umbral y aplicamos validación cruzada estratificada. Estas herramientas permiten comparar modelos de forma más justa y elegirlos según el objetivo real del análisis.\n\n\n\n\nInstituto Nacional de Estadística y Geografía. 2025. «Estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas (ATUS), 2024». Instituto Nacional de Estadística y Geografía. https://www.inegi.org.mx/programas/accidentes/.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Evaluación, validación y comparación de modelos</span>"
+    ]
+  },
+  {
+    "objectID": "referencias.html",
+    "href": "referencias.html",
+    "title": "Referencias",
+    "section": "",
+    "text": "Reconocimiento de la fuente de datos\nLos datos de accidentes empleados en este libro proceden de la Estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas (ATUS) del Instituto Nacional de Estadística y Geografía (Instituto Nacional de Estadística y Geografía 2025).\nLos datos originales pertenecen al INEGI. La limpieza, transformación, selección de variables, gráficas, modelos de aprendizaje automático e interpretaciones son elaboración del autor y no constituyen resultados oficiales ni implican el aval del Instituto.",
+    "crumbs": [
+      "Apéndices",
+      "Referencias"
     ]
   }
 ]

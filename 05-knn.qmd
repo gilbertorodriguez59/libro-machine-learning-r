@@ -8,7 +8,7 @@ Al finalizar este capítulo, el lector será capaz de explicar k-NN, preparar da
 
 k-NN clasifica una nueva observación según la clase más común entre sus vecinos más cercanos.
 
-```{r}
+```{r ejemplo-knn, fig.width=7, fig.height=4.5}
 library(ggplot2)
 library(class)
 library(dplyr)
@@ -29,84 +29,130 @@ ggplot(datos_ejemplo, aes(x = hora, y = mes, color = clase)) +
   tema_libro()
 ```
 
+::: {.callout-note}
+## Explicación del código
+Se construyen puntos artificiales para visualizar la idea de vecinos cercanos.
+:::
+
 ## Distancia euclidiana
 
 $$
-d(A,B)=\sqrt{(x_1-x_2)^2+(y_1-y_2)^2}
+d(A,B) = \sqrt{(x_1-x_2)^2 + (y_1-y_2)^2}
 $$
 
-```{r}
+```{r distancia-knn}
 sqrt((8 - 10)^2 + (1 - 2)^2)
 ```
 
+::: {.callout-tip}
+## Interpretación del resultado
+Una distancia menor indica mayor similitud entre dos observaciones.
+:::
+
 ## Cargar y preparar datos
 
-```{r}
+```{r cargar-preparar-knn}
 ruta_atus_ml <- "datos/atus_ml_preparado.csv"
+
 if (file.exists(ruta_atus_ml)) {
   atus_ml <- read_csv(ruta_atus_ml, show_col_types = FALSE)
   set.seed(123)
-  atus_knn_base <- atus_ml |> sample_n(min(12000, nrow(atus_ml))) |>
+  atus_knn_base <- atus_ml |>
+    sample_n(min(12000, nrow(atus_ml))) |>
     mutate(
       accidente_con_victimas = factor(accidente_con_victimas, levels = c("Con víctimas", "Solo daños")),
-      MES = as.factor(MES), ID_HORA = as.numeric(ID_HORA), DIASEMANA = as.factor(DIASEMANA), TIPACCID = as.factor(TIPACCID), CAUSAACCI = as.factor(CAUSAACCI)
-    ) |> na.omit()
+      MES = as.factor(MES),
+      ID_HORA = as.numeric(ID_HORA),
+      DIASEMANA = as.factor(DIASEMANA),
+      TIPACCID = as.factor(TIPACCID),
+      CAUSAACCI = as.factor(CAUSAACCI)
+    ) |>
+    na.omit()
 }
 ```
 
+::: {.callout-note}
+## Explicación del código
+Se toma una muestra para que k-NN sea rápido y reproducible. Este método puede ser costoso en bases grandes.
+:::
+
 ## Modelo k-NN
 
-```{r}
+```{r modelo-knn}
 if (exists("atus_knn_base")) {
   matriz_predictoras <- model.matrix(~ ID_HORA + MES + DIASEMANA + TIPACCID + CAUSAACCI - 1, data = atus_knn_base)
   y <- atus_knn_base$accidente_con_victimas
+
   set.seed(123)
-  idx <- sample(1:nrow(matriz_predictoras), size = round(0.7*nrow(matriz_predictoras)))
+  idx <- sample(1:nrow(matriz_predictoras), size = round(0.7 * nrow(matriz_predictoras)))
   x_entrenamiento <- matriz_predictoras[idx, ]
   x_prueba <- matriz_predictoras[-idx, ]
   y_entrenamiento <- y[idx]
   y_prueba <- y[-idx]
+
   medias <- apply(x_entrenamiento, 2, mean)
-  desviaciones <- apply(x_entrenamiento, 2, sd); desviaciones[desviaciones == 0] <- 1
+  desviaciones <- apply(x_entrenamiento, 2, sd)
+  desviaciones[desviaciones == 0] <- 1
+
   x_entrenamiento_esc <- scale(x_entrenamiento, center = medias, scale = desviaciones)
   x_prueba_esc <- scale(x_prueba, center = medias, scale = desviaciones)
+
   pred_knn_5 <- knn(x_entrenamiento_esc, x_prueba_esc, y_entrenamiento, k = 5)
   table(Real = y_prueba, Predicho = pred_knn_5)
 }
 ```
 
+::: {.callout-note}
+## Explicación del código
+Se crean variables dummy, se estandarizan las columnas y se clasifica con k igual a 5.
+:::
+
 ## Comparación de valores de k
 
-```{r}
+```{r comparacion-knn, fig.width=7, fig.height=4.5}
 calcular_metricas <- function(real, predicho) {
-  real <- factor(real, levels = c("Con víctimas", "Solo daños")); predicho <- factor(predicho, levels = c("Con víctimas", "Solo daños"))
+  real <- factor(real, levels = c("Con víctimas", "Solo daños"))
+  predicho <- factor(predicho, levels = c("Con víctimas", "Solo daños"))
   m <- table(Real = real, Predicho = predicho)
-  VP <- m["Con víctimas", "Con víctimas"]; FN <- m["Con víctimas", "Solo daños"]; FP <- m["Solo daños", "Con víctimas"]; VN <- m["Solo daños", "Solo daños"]
+  VP <- m["Con víctimas", "Con víctimas"]
+  FN <- m["Con víctimas", "Solo daños"]
+  FP <- m["Solo daños", "Con víctimas"]
+  VN <- m["Solo daños", "Solo daños"]
   data.frame(exactitud=(VP+VN)/(VP+FN+FP+VN), sensibilidad=VP/(VP+FN), especificidad=VN/(VN+FP))
 }
+
 if (exists("x_entrenamiento_esc")) {
-  valores_k <- c(3,5,11)
+  valores_k <- c(3, 5, 11)
   resultados_knn <- data.frame()
+
   for (k_actual in valores_k) {
     pred_actual <- knn(x_entrenamiento_esc, x_prueba_esc, y_entrenamiento, k = k_actual)
-    tmp <- calcular_metricas(y_prueba, pred_actual); tmp$k <- k_actual
+    tmp <- calcular_metricas(y_prueba, pred_actual)
+    tmp$k <- k_actual
     resultados_knn <- rbind(resultados_knn, tmp)
   }
+
   resultados_knn <- resultados_knn |> select(k, exactitud, sensibilidad, especificidad)
   resultados_knn
 }
-```
 
-```{r}
 if (exists("resultados_knn")) {
-  resultados_largos <- resultados_knn |> pivot_longer(cols = c(exactitud, sensibilidad, especificidad), names_to = "metrica", values_to = "valor")
+  resultados_largos <- resultados_knn |>
+    pivot_longer(cols = c(exactitud, sensibilidad, especificidad), names_to = "metrica", values_to = "valor")
+
   ggplot(resultados_largos, aes(x = k, y = valor, color = metrica, group = metrica)) +
-    geom_line(linewidth = 1.1) + geom_point(size = 3) +
+    geom_line(linewidth = 1.1) +
+    geom_point(size = 3) +
     scale_color_manual(values = c(exactitud = col_azul, sensibilidad = col_coral, especificidad = col_turquesa)) +
     labs(title = "Comparación de métricas para distintos valores de k", x = "Valor de k", y = "Valor") +
     tema_libro()
 }
 ```
+
+::: {.callout-tip}
+## Interpretación del resultado
+Cambiar k modifica el balance entre exactitud, sensibilidad y especificidad. No existe un k universalmente mejor.
+:::
 
 ## Conclusión
 

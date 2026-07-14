@@ -232,6 +232,29 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Random Forest para clasificación</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-evaluacion-modelos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Evaluación, validación y comparación de modelos</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Apéndices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./referencias.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Referencias</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -306,16 +329,29 @@ window.Quarto = {
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="05-knn_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="1050"></p>
+<p><img src="05-knn_files/figure-html/ejemplo-knn-1.png" class="img-fluid figure-img" style="width:92.0%"></p>
 </figure>
 </div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Explicación del código
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Se construyen puntos artificiales para visualizar la idea de vecinos cercanos.</p>
 </div>
 </div>
 </section>
 <section id="distancia-euclidiana" class="level2" data-number="5.3">
 <h2 data-number="5.3" class="anchored" data-anchor-id="distancia-euclidiana"><span class="header-section-number">5.3</span> Distancia euclidiana</h2>
 <p><span class="math display">\[
-d(A,B)=\sqrt{(x_1-x_2)^2+(y_1-y_2)^2}
+d(A,B) = \sqrt{(x_1-x_2)^2 + (y_1-y_2)^2}
 \]</span></p>
 <div class="cell">
 <details class="code-fold">
@@ -326,6 +362,19 @@ d(A,B)=\sqrt{(x_1-x_2)^2+(y_1-y_2)^2}
 <pre><code>[1] 2.236068</code></pre>
 </div>
 </div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Interpretación del resultado
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Una distancia menor indica mayor similitud entre dos observaciones.</p>
+</div>
+</div>
 </section>
 <section id="cargar-y-preparar-datos" class="level2" data-number="5.4">
 <h2 data-number="5.4" class="anchored" data-anchor-id="cargar-y-preparar-datos"><span class="header-section-number">5.4</span> Cargar y preparar datos</h2>
@@ -333,16 +382,36 @@ d(A,B)=\sqrt{(x_1-x_2)^2+(y_1-y_2)^2}
 <details class="code-fold">
 <summary>Código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ruta_atus_ml <span class="ot">&lt;-</span> <span class="st">"datos/atus_ml_preparado.csv"</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">file.exists</span>(ruta_atus_ml)) {</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  atus_ml <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(ruta_atus_ml, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  atus_knn_base <span class="ot">&lt;-</span> atus_ml <span class="sc">|&gt;</span> <span class="fu">sample_n</span>(<span class="fu">min</span>(<span class="dv">12000</span>, <span class="fu">nrow</span>(atus_ml))) <span class="sc">|&gt;</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">accidente_con_victimas =</span> <span class="fu">factor</span>(accidente_con_victimas, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Con víctimas"</span>, <span class="st">"Solo daños"</span>)),</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">MES =</span> <span class="fu">as.factor</span>(MES), <span class="at">ID_HORA =</span> <span class="fu">as.numeric</span>(ID_HORA), <span class="at">DIASEMANA =</span> <span class="fu">as.factor</span>(DIASEMANA), <span class="at">TIPACCID =</span> <span class="fu">as.factor</span>(TIPACCID), <span class="at">CAUSAACCI =</span> <span class="fu">as.factor</span>(CAUSAACCI)</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span> <span class="fu">na.omit</span>()</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">file.exists</span>(ruta_atus_ml)) {</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  atus_ml <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(ruta_atus_ml, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  atus_knn_base <span class="ot">&lt;-</span> atus_ml <span class="sc">|&gt;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sample_n</span>(<span class="fu">min</span>(<span class="dv">12000</span>, <span class="fu">nrow</span>(atus_ml))) <span class="sc">|&gt;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">accidente_con_victimas =</span> <span class="fu">factor</span>(accidente_con_victimas, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Con víctimas"</span>, <span class="st">"Solo daños"</span>)),</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">MES =</span> <span class="fu">as.factor</span>(MES),</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">ID_HORA =</span> <span class="fu">as.numeric</span>(ID_HORA),</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">DIASEMANA =</span> <span class="fu">as.factor</span>(DIASEMANA),</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">TIPACCID =</span> <span class="fu">as.factor</span>(TIPACCID),</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">CAUSAACCI =</span> <span class="fu">as.factor</span>(CAUSAACCI)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">na.omit</span>()</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Explicación del código
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Se toma una muestra para que k-NN sea rápido y reproducible. Este método puede ser costoso en bases grandes.</p>
+</div>
 </div>
 </section>
 <section id="modelo-k-nn" class="level2" data-number="5.5">
@@ -353,25 +422,43 @@ d(A,B)=\sqrt{(x_1-x_2)^2+(y_1-y_2)^2}
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"atus_knn_base"</span>)) {</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  matriz_predictoras <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(<span class="sc">~</span> ID_HORA <span class="sc">+</span> MES <span class="sc">+</span> DIASEMANA <span class="sc">+</span> TIPACCID <span class="sc">+</span> CAUSAACCI <span class="sc">-</span> <span class="dv">1</span>, <span class="at">data =</span> atus_knn_base)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> atus_knn_base<span class="sc">$</span>accidente_con_victimas</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  idx <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(matriz_predictoras), <span class="at">size =</span> <span class="fu">round</span>(<span class="fl">0.7</span><span class="sc">*</span><span class="fu">nrow</span>(matriz_predictoras)))</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  x_entrenamiento <span class="ot">&lt;-</span> matriz_predictoras[idx, ]</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  x_prueba <span class="ot">&lt;-</span> matriz_predictoras[<span class="sc">-</span>idx, ]</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  y_entrenamiento <span class="ot">&lt;-</span> y[idx]</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  y_prueba <span class="ot">&lt;-</span> y[<span class="sc">-</span>idx]</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  medias <span class="ot">&lt;-</span> <span class="fu">apply</span>(x_entrenamiento, <span class="dv">2</span>, mean)</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  desviaciones <span class="ot">&lt;-</span> <span class="fu">apply</span>(x_entrenamiento, <span class="dv">2</span>, sd); desviaciones[desviaciones <span class="sc">==</span> <span class="dv">0</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  x_entrenamiento_esc <span class="ot">&lt;-</span> <span class="fu">scale</span>(x_entrenamiento, <span class="at">center =</span> medias, <span class="at">scale =</span> desviaciones)</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  x_prueba_esc <span class="ot">&lt;-</span> <span class="fu">scale</span>(x_prueba, <span class="at">center =</span> medias, <span class="at">scale =</span> desviaciones)</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  pred_knn_5 <span class="ot">&lt;-</span> <span class="fu">knn</span>(x_entrenamiento_esc, x_prueba_esc, y_entrenamiento, <span class="at">k =</span> <span class="dv">5</span>)</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">table</span>(<span class="at">Real =</span> y_prueba, <span class="at">Predicho =</span> pred_knn_5)</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  idx <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(matriz_predictoras), <span class="at">size =</span> <span class="fu">round</span>(<span class="fl">0.7</span> <span class="sc">*</span> <span class="fu">nrow</span>(matriz_predictoras)))</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  x_entrenamiento <span class="ot">&lt;-</span> matriz_predictoras[idx, ]</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  x_prueba <span class="ot">&lt;-</span> matriz_predictoras[<span class="sc">-</span>idx, ]</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  y_entrenamiento <span class="ot">&lt;-</span> y[idx]</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  y_prueba <span class="ot">&lt;-</span> y[<span class="sc">-</span>idx]</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  medias <span class="ot">&lt;-</span> <span class="fu">apply</span>(x_entrenamiento, <span class="dv">2</span>, mean)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  desviaciones <span class="ot">&lt;-</span> <span class="fu">apply</span>(x_entrenamiento, <span class="dv">2</span>, sd)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  desviaciones[desviaciones <span class="sc">==</span> <span class="dv">0</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  x_entrenamiento_esc <span class="ot">&lt;-</span> <span class="fu">scale</span>(x_entrenamiento, <span class="at">center =</span> medias, <span class="at">scale =</span> desviaciones)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  x_prueba_esc <span class="ot">&lt;-</span> <span class="fu">scale</span>(x_prueba, <span class="at">center =</span> medias, <span class="at">scale =</span> desviaciones)</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>  pred_knn_5 <span class="ot">&lt;-</span> <span class="fu">knn</span>(x_entrenamiento_esc, x_prueba_esc, y_entrenamiento, <span class="at">k =</span> <span class="dv">5</span>)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">table</span>(<span class="at">Real =</span> y_prueba, <span class="at">Predicho =</span> pred_knn_5)</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>              Predicho
 Real           Con víctimas Solo daños
   Con víctimas          211        399
   Solo daños            144       2846</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Explicación del código
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Se crean variables dummy, se estandarizan las columnas y se clasifica con k igual a 5.</p>
 </div>
 </div>
 </section>
@@ -381,22 +468,30 @@ Real           Con víctimas Solo daños
 <details class="code-fold">
 <summary>Código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>calcular_metricas <span class="ot">&lt;-</span> <span class="cf">function</span>(real, predicho) {</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  real <span class="ot">&lt;-</span> <span class="fu">factor</span>(real, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Con víctimas"</span>, <span class="st">"Solo daños"</span>)); predicho <span class="ot">&lt;-</span> <span class="fu">factor</span>(predicho, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Con víctimas"</span>, <span class="st">"Solo daños"</span>))</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  m <span class="ot">&lt;-</span> <span class="fu">table</span>(<span class="at">Real =</span> real, <span class="at">Predicho =</span> predicho)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  VP <span class="ot">&lt;-</span> m[<span class="st">"Con víctimas"</span>, <span class="st">"Con víctimas"</span>]; FN <span class="ot">&lt;-</span> m[<span class="st">"Con víctimas"</span>, <span class="st">"Solo daños"</span>]; FP <span class="ot">&lt;-</span> m[<span class="st">"Solo daños"</span>, <span class="st">"Con víctimas"</span>]; VN <span class="ot">&lt;-</span> m[<span class="st">"Solo daños"</span>, <span class="st">"Solo daños"</span>]</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="at">exactitud=</span>(VP<span class="sc">+</span>VN)<span class="sc">/</span>(VP<span class="sc">+</span>FN<span class="sc">+</span>FP<span class="sc">+</span>VN), <span class="at">sensibilidad=</span>VP<span class="sc">/</span>(VP<span class="sc">+</span>FN), <span class="at">especificidad=</span>VN<span class="sc">/</span>(VN<span class="sc">+</span>FP))</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"x_entrenamiento_esc"</span>)) {</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  valores_k <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">11</span>)</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  resultados_knn <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (k_actual <span class="cf">in</span> valores_k) {</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    pred_actual <span class="ot">&lt;-</span> <span class="fu">knn</span>(x_entrenamiento_esc, x_prueba_esc, y_entrenamiento, <span class="at">k =</span> k_actual)</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    tmp <span class="ot">&lt;-</span> <span class="fu">calcular_metricas</span>(y_prueba, pred_actual); tmp<span class="sc">$</span>k <span class="ot">&lt;-</span> k_actual</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    resultados_knn <span class="ot">&lt;-</span> <span class="fu">rbind</span>(resultados_knn, tmp)</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  resultados_knn <span class="ot">&lt;-</span> resultados_knn <span class="sc">|&gt;</span> <span class="fu">select</span>(k, exactitud, sensibilidad, especificidad)</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  resultados_knn</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  real <span class="ot">&lt;-</span> <span class="fu">factor</span>(real, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Con víctimas"</span>, <span class="st">"Solo daños"</span>))</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  predicho <span class="ot">&lt;-</span> <span class="fu">factor</span>(predicho, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Con víctimas"</span>, <span class="st">"Solo daños"</span>))</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  m <span class="ot">&lt;-</span> <span class="fu">table</span>(<span class="at">Real =</span> real, <span class="at">Predicho =</span> predicho)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  VP <span class="ot">&lt;-</span> m[<span class="st">"Con víctimas"</span>, <span class="st">"Con víctimas"</span>]</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  FN <span class="ot">&lt;-</span> m[<span class="st">"Con víctimas"</span>, <span class="st">"Solo daños"</span>]</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  FP <span class="ot">&lt;-</span> m[<span class="st">"Solo daños"</span>, <span class="st">"Con víctimas"</span>]</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  VN <span class="ot">&lt;-</span> m[<span class="st">"Solo daños"</span>, <span class="st">"Solo daños"</span>]</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="at">exactitud=</span>(VP<span class="sc">+</span>VN)<span class="sc">/</span>(VP<span class="sc">+</span>FN<span class="sc">+</span>FP<span class="sc">+</span>VN), <span class="at">sensibilidad=</span>VP<span class="sc">/</span>(VP<span class="sc">+</span>FN), <span class="at">especificidad=</span>VN<span class="sc">/</span>(VN<span class="sc">+</span>FP))</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"x_entrenamiento_esc"</span>)) {</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  valores_k <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">11</span>)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  resultados_knn <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (k_actual <span class="cf">in</span> valores_k) {</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    pred_actual <span class="ot">&lt;-</span> <span class="fu">knn</span>(x_entrenamiento_esc, x_prueba_esc, y_entrenamiento, <span class="at">k =</span> k_actual)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    tmp <span class="ot">&lt;-</span> <span class="fu">calcular_metricas</span>(y_prueba, pred_actual)</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    tmp<span class="sc">$</span>k <span class="ot">&lt;-</span> k_actual</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    resultados_knn <span class="ot">&lt;-</span> <span class="fu">rbind</span>(resultados_knn, tmp)</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>  resultados_knn <span class="ot">&lt;-</span> resultados_knn <span class="sc">|&gt;</span> <span class="fu">select</span>(k, exactitud, sensibilidad, especificidad)</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>  resultados_knn</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>   k exactitud sensibilidad especificidad
@@ -404,25 +499,39 @@ Real           Con víctimas Solo daños
 2  5 0.8480556    0.3491803     0.9498328
 3 11 0.8558333    0.3377049     0.9615385</code></pre>
 </div>
-</div>
-<div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"resultados_knn"</span>)) {</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  resultados_largos <span class="ot">&lt;-</span> resultados_knn <span class="sc">|&gt;</span> <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(exactitud, sensibilidad, especificidad), <span class="at">names_to =</span> <span class="st">"metrica"</span>, <span class="at">values_to =</span> <span class="st">"valor"</span>)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(resultados_largos, <span class="fu">aes</span>(<span class="at">x =</span> k, <span class="at">y =</span> valor, <span class="at">color =</span> metrica, <span class="at">group =</span> metrica)) <span class="sc">+</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="fl">1.1</span>) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="at">exactitud =</span> col_azul, <span class="at">sensibilidad =</span> col_coral, <span class="at">especificidad =</span> col_turquesa)) <span class="sc">+</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Comparación de métricas para distintos valores de k"</span>, <span class="at">x =</span> <span class="st">"Valor de k"</span>, <span class="at">y =</span> <span class="st">"Valor"</span>) <span class="sc">+</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tema_libro</span>()</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  resultados_largos <span class="ot">&lt;-</span> resultados_knn <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(exactitud, sensibilidad, especificidad), <span class="at">names_to =</span> <span class="st">"metrica"</span>, <span class="at">values_to =</span> <span class="st">"valor"</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(resultados_largos, <span class="fu">aes</span>(<span class="at">x =</span> k, <span class="at">y =</span> valor, <span class="at">color =</span> metrica, <span class="at">group =</span> metrica)) <span class="sc">+</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="fl">1.1</span>) <span class="sc">+</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="at">exactitud =</span> col_azul, <span class="at">sensibilidad =</span> col_coral, <span class="at">especificidad =</span> col_turquesa)) <span class="sc">+</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Comparación de métricas para distintos valores de k"</span>, <span class="at">x =</span> <span class="st">"Valor de k"</span>, <span class="at">y =</span> <span class="st">"Valor"</span>) <span class="sc">+</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tema_libro</span>()</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="05-knn_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="1050"></p>
+<p><img src="05-knn_files/figure-html/comparacion-knn-1.png" class="img-fluid figure-img" style="width:92.0%"></p>
 </figure>
 </div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Interpretación del resultado
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Cambiar k modifica el balance entre exactitud, sensibilidad y especificidad. No existe un k universalmente mejor.</p>
 </div>
 </div>
 </section>

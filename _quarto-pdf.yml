@@ -1,17 +1,19 @@
-# Perfil especial para PDF editorial.
-# Se usa con: quarto render --profile pdf --to pdf
-# Oculta el código para que el PDF se vea como libro profesional,
-# pero mantiene ejecución, resultados, tablas y gráficas.
+# Perfil PDF profesional.
+# Uso: quarto render --profile pdf --to pdf
+# Conserva el código visible y suprime mensajes y advertencias innecesarios.
 execute:
-  echo: false
+  echo: true
   warning: false
   message: false
-  freeze: false
+  freeze: auto
   fig_crop: false
 
 knitr:
   opts_chunk:
     dev: "png"
-    dpi: 150
+    dpi: 180
     fig.width: 7
     fig.height: 4.5
+    out.width: "92%"
+    collapse: false
+    comment: "#>"

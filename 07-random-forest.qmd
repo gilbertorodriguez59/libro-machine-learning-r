@@ -13,12 +13,12 @@ Random Forest combina muchos árboles de decisión. Cada árbol aprende sobre un
 Si se construyen $B$ árboles, la predicción final es:
 
 $$
-\hat{y}(x)=\text{moda}\{\hat{y}^{(1)}(x),\hat{y}^{(2)}(x),\ldots,\hat{y}^{(B)}(x)\}
+\hat{y}(x) = moda\{\hat{y}^{(1)}(x), \hat{y}^{(2)}(x), \ldots, \hat{y}^{(B)}(x)\}
 $$
 
 ## Cargar paquetes y datos
 
-```{r}
+```{r cargar-rf}
 library(readr)
 library(dplyr)
 library(ggplot2)
@@ -26,6 +26,7 @@ library(ranger)
 source("util_graficas.R")
 
 ruta_atus_ml <- "datos/atus_ml_preparado.csv"
+
 if (file.exists(ruta_atus_ml)) {
   atus_ml <- read_csv(ruta_atus_ml, show_col_types = FALSE)
   print("Base preparada cargada correctamente.")
@@ -37,46 +38,64 @@ if (file.exists(ruta_atus_ml)) {
 
 ## Muestra de trabajo
 
-```{r}
+```{r muestra-rf, fig.width=7, fig.height=4.5}
 if (!is.null(atus_ml)) {
   set.seed(123)
-  atus_rf_base <- atus_ml |> sample_n(min(30000, nrow(atus_ml))) |>
+  atus_rf_base <- atus_ml |>
+    sample_n(min(30000, nrow(atus_ml))) |>
     mutate(
       accidente_con_victimas = factor(accidente_con_victimas, levels = c("Con víctimas", "Solo daños")),
-      MES = as.factor(MES), ID_HORA = as.numeric(ID_HORA), DIASEMANA = as.factor(DIASEMANA), TIPACCID = as.factor(TIPACCID), CAUSAACCI = as.factor(CAUSAACCI)
-    ) |> na.omit()
+      MES = as.factor(MES),
+      ID_HORA = as.numeric(ID_HORA),
+      DIASEMANA = as.factor(DIASEMANA),
+      TIPACCID = as.factor(TIPACCID),
+      CAUSAACCI = as.factor(CAUSAACCI)
+    ) |>
+    na.omit()
+
   data.frame(filas = nrow(atus_rf_base), columnas = ncol(atus_rf_base))
 }
-```
 
-```{r}
 if (exists("atus_rf_base")) {
   ggplot(atus_rf_base, aes(x = accidente_con_victimas, fill = accidente_con_victimas)) +
     geom_bar(width = 0.7) +
     escala_clases_fill() +
     scale_y_continuous(labels = etiqueta_numero) +
-    labs(title = "Distribución de la variable respuesta", subtitle = "Muestra para Random Forest", x = "Clase", y = "Número de accidentes") +
-    tema_libro() + theme(legend.position = "none")
+    labs(
+      title = "Distribución de la variable respuesta",
+      subtitle = "Muestra para Random Forest",
+      x = "Clase",
+      y = "Número de accidentes"
+    ) +
+    tema_libro() +
+    theme(legend.position = "none")
 }
 ```
 
+::: {.callout-note}
+## Explicación del código
+Se toma una muestra de trabajo para mantener el tiempo de ejecución razonable. El modelo Random Forest suele ser más pesado que un solo árbol.
+:::
+
 ## División en entrenamiento y prueba
 
-```{r}
+```{r division-rf}
 if (exists("atus_rf_base")) {
   set.seed(123)
-  idx <- sample(1:nrow(atus_rf_base), size = round(0.7*nrow(atus_rf_base)))
+  idx <- sample(1:nrow(atus_rf_base), size = round(0.7 * nrow(atus_rf_base)))
   entrenamiento <- atus_rf_base[idx, ]
   prueba <- atus_rf_base[-idx, ]
-  data.frame(conjunto=c("Entrenamiento","Prueba"), registros=c(nrow(entrenamiento), nrow(prueba)))
+
+  data.frame(conjunto = c("Entrenamiento", "Prueba"), registros = c(nrow(entrenamiento), nrow(prueba)))
 }
 ```
 
 ## Ajustar Random Forest
 
-```{r}
+```{r ajustar-rf}
 if (exists("entrenamiento")) {
   set.seed(123)
+
   modelo_rf <- ranger(
     accidente_con_victimas ~ MES + ID_HORA + DIASEMANA + TIPACCID + CAUSAACCI,
     data = entrenamiento,
@@ -87,21 +106,29 @@ if (exists("entrenamiento")) {
     probability = TRUE,
     seed = 123
   )
+
   modelo_rf
 }
 ```
 
+::: {.callout-tip}
+## Interpretación del resultado
+El resumen del modelo muestra cuántos árboles se construyeron, cuántas variables se probaron en cada división y el error fuera de bolsa.
+:::
+
 ## Importancia de variables
 
-```{r}
+```{r importancia-rf, fig.width=7, fig.height=4.5}
 if (exists("modelo_rf")) {
-  importancia_rf <- data.frame(variable = names(modelo_rf$variable.importance), importancia = as.numeric(modelo_rf$variable.importance)) |>
+  importancia_rf <- data.frame(
+    variable = names(modelo_rf$variable.importance),
+    importancia = as.numeric(modelo_rf$variable.importance)
+  ) |>
     arrange(desc(importancia))
+
   importancia_rf
 }
-```
 
-```{r}
 if (exists("importancia_rf")) {
   ggplot(importancia_rf, aes(x = reorder(variable, importancia), y = importancia)) +
     geom_col(fill = col_azul, width = 0.75) +
@@ -111,39 +138,55 @@ if (exists("importancia_rf")) {
 }
 ```
 
+::: {.callout-note}
+## Explicación del código
+La importancia de variables muestra qué predictores aportan más a la reducción de impureza en los árboles del bosque.
+:::
+
 ## Predicción y métricas
 
-```{r}
+```{r metricas-rf}
 if (exists("modelo_rf")) {
   predicciones_rf <- predict(modelo_rf, data = prueba)
   probabilidades_rf <- predicciones_rf$predictions[, "Con víctimas"]
   clases_rf <- colnames(predicciones_rf$predictions)[max.col(predicciones_rf$predictions, ties.method = "first")]
   clases_rf <- factor(clases_rf, levels = c("Con víctimas", "Solo daños"))
   real_rf <- factor(prueba$accidente_con_victimas, levels = c("Con víctimas", "Solo daños"))
+
   matriz_confusion_rf <- table(Real = real_rf, Predicho = clases_rf)
   matriz_confusion_rf
 }
-```
 
-```{r}
 if (exists("matriz_confusion_rf")) {
   VP <- matriz_confusion_rf["Con víctimas", "Con víctimas"]
   FN <- matriz_confusion_rf["Con víctimas", "Solo daños"]
   FP <- matriz_confusion_rf["Solo daños", "Con víctimas"]
   VN <- matriz_confusion_rf["Solo daños", "Solo daños"]
+
   data.frame(exactitud=(VP+VN)/(VP+FN+FP+VN), sensibilidad=VP/(VP+FN), especificidad=VN/(VN+FP))
 }
 ```
 
+::: {.callout-tip}
+## Interpretación del resultado
+La sensibilidad indica qué tan bien detecta accidentes con víctimas. La especificidad indica qué tan bien reconoce accidentes de solo daños.
+:::
+
 ## Distribución de probabilidades predichas
 
-```{r}
+```{r histograma-rf, fig.width=7, fig.height=4.5}
 if (exists("probabilidades_rf")) {
   datos_prob_rf <- data.frame(probabilidad = probabilidades_rf, clase_real = real_rf)
+
   ggplot(datos_prob_rf, aes(x = probabilidad, fill = clase_real)) +
     geom_histogram(bins = 30, alpha = 0.75, position = "identity") +
     escala_clases_fill(name = "Clase real") +
-    labs(title = "Distribución de probabilidades predichas", subtitle = "Random Forest", x = "Probabilidad predicha de 'Con víctimas'", y = "Frecuencia") +
+    labs(
+      title = "Distribución de probabilidades predichas",
+      subtitle = "Random Forest",
+      x = "Probabilidad predicha de 'Con víctimas'",
+      y = "Frecuencia"
+    ) +
     tema_libro()
 }
 ```

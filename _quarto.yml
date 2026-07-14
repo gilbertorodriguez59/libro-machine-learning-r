@@ -3,6 +3,7 @@ project:
   output-dir: docs
 
 lang: es
+bibliography: referencias.bib
 
 book:
   title: "Aprendizaje y Clasificación Automática con R"
@@ -20,6 +21,9 @@ book:
     - 05-knn.qmd
     - 06-arboles-decision.qmd
     - 07-random-forest.qmd
+    - 08-evaluacion-modelos.qmd
+  appendices:
+    - referencias.qmd
 
 execute:
   echo: true
@@ -34,6 +38,7 @@ knitr:
     dpi: 150
     fig.width: 7
     fig.height: 4.5
+    out.width: "92%"
 
 format:
   html:
@@ -46,33 +51,30 @@ format:
     html-math-method: mathjax
 
   pdf:
-    documentclass: book
+    documentclass: scrbook
+    classoption:
+      - openany
+      - headings=big
     pdf-engine: lualatex
     toc: true
     toc-title: "Índice general"
     number-sections: true
     colorlinks: true
+    linkcolor: blue
+    urlcolor: blue
+    citecolor: blue
+    fontsize: 10.5pt
+    papersize: letter
     geometry:
-      - margin=2.5cm
-    fontsize: 11pt
+      - top=2.35cm
+      - bottom=2.35cm
+      - inner=2.75cm
+      - outer=2.25cm
+      - headsep=0.65cm
     keep-tex: true
-    code-block-bg: "#F3F7FA"
-    code-block-border-left: "#0B4F6C"
+    code-overflow: wrap
+    highlight-style: github
+    fig-pos: "H"
+    tbl-pos: "H"
     include-in-header:
-      text: |
-        \usepackage{xcolor}
-        \usepackage{titlesec}
-        \definecolor{AzulLibro}{HTML}{0B4F6C}
-        \definecolor{TurquesaLibro}{HTML}{0EA5A8}
-        \definecolor{GrisTexto}{HTML}{374151}
-        \renewcommand{\contentsname}{Índice general}
-        \renewcommand{\chaptername}{Capítulo}
-        \titleformat{\chapter}[display]
-          {\normalfont\huge\bfseries\color{AzulLibro}}
-          {\chaptername\ \thechapter}{16pt}{\Huge}
-        \titleformat{\section}
-          {\normalfont\Large\bfseries\color{AzulLibro}}
-          {\thesection}{1em}{}
-        \titleformat{\subsection}
-          {\normalfont\large\bfseries\color{TurquesaLibro}}
-          {\thesubsection}{1em}{}
+      - latex/configuracion-pdf.tex

@@ -2,15 +2,81 @@
 
 ## Objetivos del capítulo
 
-Al finalizar este capítulo, el lector será capaz de leer una base real, seleccionar variables, construir una variable respuesta y guardar una base preparada para modelado.
+Al finalizar este capítulo, el lector será capaz de:
+
+- localizar y descargar la base ATUS desde el portal oficial del INEGI;
+- organizar los archivos dentro del proyecto Quarto;
+- leer y revisar una base real en R;
+- seleccionar y transformar variables;
+- construir una variable respuesta binaria;
+- guardar una base preparada para los capítulos de modelado;
+- citar correctamente la fuente de los datos.
 
 ## Introducción
 
-En la práctica profesional, los datos reales casi nunca vienen preparados. Antes de aplicar un algoritmo necesitamos revisar, limpiar, transformar y documentar los datos.
+En la práctica profesional, los datos casi nunca llegan preparados para aplicar un algoritmo. Antes de modelar debemos conocer su procedencia, revisar su estructura, limpiar valores, transformar variables y documentar cada decisión.
+
+En este libro utilizamos la **Estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas (ATUS)** del Instituto Nacional de Estadística y Geografía [@inegi_atus_2024]. Su objetivo es producir información anual sobre la siniestralidad del transporte terrestre en zonas de jurisdicción no federal, con desglose nacional, estatal y municipal.
+
+::: {.callout-important title="Uso responsable de la información"}
+Los datos originales son del INEGI. La limpieza, transformación, selección de variables, gráficas, modelos e interpretaciones de este libro son elaboración del autor. No constituyen resultados oficiales ni implican el aval del Instituto.
+:::
+
+## Descargar la base ATUS desde el INEGI
+
+La descarga debe realizarse desde el sitio oficial para conservar la procedencia y los metadatos del archivo.
+
+1. Abra en su navegador el portal de **Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas (ATUS)**:
+
+   <https://www.inegi.org.mx/programas/accidentes/>
+
+2. Localice el apartado **Datos abiertos** o la opción de descarga correspondiente.
+3. Seleccione el periodo anual que desea utilizar. Para reproducir los ejemplos de esta versión, elija **2024**.
+4. Descargue el archivo en formato CSV. Es posible que el portal entregue un archivo comprimido en formato ZIP.
+5. Descomprima el archivo descargado.
+6. Identifique el CSV anual y cópielo en la carpeta `datos` del proyecto.
+7. Para seguir exactamente los ejemplos, renómbrelo como:
+
+```text
+atus_2024.csv
+```
+
+La estructura mínima del proyecto debe quedar así:
+
+```text
+libro-machine-learning-r-dev/
+├── _quarto.yml
+├── index.qmd
+├── 02-preparacion-datos.qmd
+├── datos/
+│   └── atus_2024.csv
+└── referencias.bib
+```
+
+::: {.callout-tip title="Otro año de información"}
+Puede utilizar un año diferente. En ese caso, cambie el nombre del archivo o modifique la ruta utilizada en el código. Conviene anotar siempre el año de referencia porque los resultados pueden cambiar entre periodos.
+:::
+
+## Cómo citar los datos
+
+Los términos de libre uso del INEGI permiten utilizar, adaptar y publicar su información, pero requieren citar la fuente de origen [@inegi_terminos_libre_uso].
+
+En el texto puede utilizarse una cita como esta:
+
+> Los datos proceden de la Estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas del INEGI [@inegi_atus_2024].
+
+Debajo de una tabla o gráfica sin transformaciones importantes:
+
+> **Fuente:** INEGI, Estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas (ATUS), 2024.
+
+Cuando exista procesamiento, agrupación, modelado o visualización propia:
+
+> **Fuente:** Elaboración propia con datos del INEGI, Estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas (ATUS), 2024.
 
 ## Cargar paquetes
 
-```{r}
+```{r cargar-paquetes-preparacion}
+
 library(readr)
 library(dplyr)
 library(ggplot2)
@@ -18,94 +84,212 @@ library(stringr)
 source("util_graficas.R")
 ```
 
+::: {.callout-note title="Explicación del código"}
+Se cargan paquetes para leer archivos CSV, transformar datos, trabajar con texto y crear gráficas. El archivo `util_graficas.R` contiene funciones visuales comunes para mantener un estilo uniforme en todo el libro.
+:::
+
+## Localizar el archivo
+
+En lugar de depender únicamente de un nombre fijo, el siguiente código busca archivos cuyo nombre comience con `atus` y termine en `.csv`.
+
+```{r localizar-atus}
+
+archivos_atus <- list.files(
+  path = "datos",
+  pattern = "^atus.*\\.csv$",
+  full.names = TRUE,
+  ignore.case = TRUE
+)
+
+archivos_atus
+```
+
+::: {.callout-tip title="Interpretación"}
+Si aparece al menos una ruta, R encontró un archivo ATUS. Si el resultado es `character(0)`, revise que el archivo esté descomprimido y guardado dentro de la carpeta `datos`.
+:::
+
 ## Leer el archivo CSV
 
-```{r}
-ruta_atus <- "datos/atus_2024.csv"
-file.exists(ruta_atus)
+```{r leer-atus}
 
-if (file.exists(ruta_atus)) {
-  atus <- read_csv(file = ruta_atus, show_col_types = FALSE, locale = locale(encoding = "UTF-8"))
-  print("Archivo leído correctamente.")
-} else {
-  atus <- NULL
-  print("El archivo atus_2024.csv todavía no está disponible en la carpeta datos.")
+if (length(archivos_atus) == 0) {
+  stop(
+    paste(
+      "No se encontró un archivo ATUS en la carpeta datos.",
+      "Descárguelo desde el portal oficial del INEGI y descomprímalo."
+    )
+  )
 }
+
+ruta_atus <- archivos_atus[1]
+
+atus <- read_csv(
+  file = ruta_atus,
+  show_col_types = FALSE,
+  locale = locale(encoding = "UTF-8")
+)
+
+message("Archivo leído: ", ruta_atus)
 ```
+
+::: {.callout-note title="Explicación del código"}
+Se selecciona el primer archivo localizado y se lee con `read_csv()`. El argumento `show_col_types = FALSE` evita imprimir mensajes técnicos que distraen de los resultados principales.
+:::
 
 ## Primer vistazo a los datos
 
-```{r}
-if (!is.null(atus)) {
-  data.frame(filas = nrow(atus), columnas = ncol(atus))
-  head(atus)
-}
+```{r vistazo-atus}
+
+resumen_dimensiones <- data.frame(
+  filas = nrow(atus),
+  columnas = ncol(atus)
+)
+
+resumen_dimensiones
+head(atus)
 ```
 
-## Variables de interés
+::: {.callout-tip title="Interpretación"}
+Las filas representan registros de accidentes y las columnas describen sus características temporales, geográficas y operativas. Antes de modelar es indispensable confirmar que las variables esperadas estén disponibles.
+:::
 
-```{r}
-variables_interes <- c("ANIO", "MES", "ID_ENTIDAD", "ID_MUNICIPIO", "ID_HORA", "ID_DIA", "DIASEMANA", "TIPACCID", "CAUSAACCI", "CLASACC")
+## Normalizar los nombres de variables
 
-if (!is.null(atus)) {
-  names(atus) <- toupper(names(atus))
-  variables_existentes <- intersect(variables_interes, names(atus))
-  atus_base <- atus |> select(all_of(variables_existentes))
-  head(atus_base)
-}
+```{r normalizar-nombres}
+
+names(atus) <- toupper(names(atus))
+names(atus)
 ```
 
-## Crear variable respuesta
+Se convierten los nombres a mayúsculas para evitar errores por diferencias como `Mes`, `MES` o `mes`.
 
-```{r}
-if (exists("atus_base") && "CLASACC" %in% names(atus_base)) {
-  atus_modelo <- atus_base |>
-    mutate(
-      CLASACC_TXT = str_to_lower(as.character(CLASACC)),
-      accidente_con_victimas = case_when(
-        str_detect(CLASACC_TXT, "sólo daños") ~ "Solo daños",
-        str_detect(CLASACC_TXT, "solo daños") ~ "Solo daños",
-        str_detect(CLASACC_TXT, "daños") ~ "Solo daños",
-        str_detect(CLASACC_TXT, "no fatal") ~ "Con víctimas",
-        str_detect(CLASACC_TXT, "fatal") ~ "Con víctimas",
-        TRUE ~ NA_character_
-      )
-    ) |>
-    filter(!is.na(accidente_con_victimas))
+## Seleccionar variables de interés
 
-  table(atus_modelo$accidente_con_victimas)
-}
+```{r variables-interes}
+
+variables_interes <- c(
+  "ANIO", "MES", "ID_ENTIDAD", "ID_MUNICIPIO",
+  "ID_HORA", "ID_DIA", "DIASEMANA", "TIPACCID",
+  "CAUSAACCI", "CLASACC"
+)
+
+variables_existentes <- intersect(
+  variables_interes,
+  names(atus)
+)
+
+variables_faltantes <- setdiff(
+  variables_interes,
+  names(atus)
+)
+
+atus_base <- atus |>
+  select(all_of(variables_existentes))
+
+variables_existentes
+variables_faltantes
 ```
 
-## Preparar variables finales
+::: {.callout-warning title="Compruebe el diccionario de datos"}
+Los nombres y categorías pueden variar entre versiones. Si aparece una variable faltante, consulte los metadatos y el diccionario de datos descargados junto con la base antes de sustituirla.
+:::
 
-```{r}
-if (exists("atus_modelo")) {
-  atus_ml <- atus_modelo |>
-    mutate(
-      MES = as.factor(MES),
-      ID_HORA = as.character(ID_HORA),
-      DIASEMANA = as.factor(DIASEMANA),
-      TIPACCID = as.factor(TIPACCID),
-      CAUSAACCI = as.factor(CAUSAACCI),
-      accidente_con_victimas = factor(accidente_con_victimas, levels = c("Con víctimas", "Solo daños"))
-    ) |>
-    select(accidente_con_victimas, MES, ID_HORA, DIASEMANA, TIPACCID, CAUSAACCI) |>
-    na.omit()
+## Crear la variable respuesta
 
-  data.frame(filas = nrow(atus_ml), columnas = ncol(atus_ml))
-}
+El primer problema de clasificación distinguirá entre:
+
+- **Con víctimas:** accidentes fatales o no fatales con personas lesionadas o fallecidas.
+- **Solo daños:** accidentes con daños materiales sin víctimas registradas.
+
+```{r crear-respuesta}
+
+atus_modelo <- atus_base |>
+  mutate(
+    CLASACC_TXT = str_to_lower(as.character(CLASACC)),
+    accidente_con_victimas = case_when(
+      str_detect(CLASACC_TXT, "sólo daños") ~ "Solo daños",
+      str_detect(CLASACC_TXT, "solo daños") ~ "Solo daños",
+      str_detect(CLASACC_TXT, "daños") ~ "Solo daños",
+      str_detect(CLASACC_TXT, "no fatal") ~ "Con víctimas",
+      str_detect(CLASACC_TXT, "fatal") ~ "Con víctimas",
+      TRUE ~ NA_character_
+    )
+  ) |>
+  filter(!is.na(accidente_con_victimas))
+
+table(atus_modelo$accidente_con_victimas)
 ```
 
-## Guardar base preparada
+::: {.callout-note title="Explicación del código"}
+La variable `CLASACC` se transforma en una respuesta binaria. `case_when()` asigna una nueva categoría según el texto encontrado y los registros que no pueden clasificarse se excluyen temporalmente.
+:::
 
-```{r}
-if (exists("atus_ml")) {
-  if (!dir.exists("datos")) dir.create("datos")
-  write_csv(atus_ml, "datos/atus_ml_preparado.csv")
-}
+## Preparar las variables finales
+
+```{r preparar-variables-finales}
+
+atus_ml <- atus_modelo |>
+  mutate(
+    MES = as.factor(MES),
+    ID_HORA = as.character(ID_HORA),
+    DIASEMANA = as.factor(DIASEMANA),
+    TIPACCID = as.factor(TIPACCID),
+    CAUSAACCI = as.factor(CAUSAACCI),
+    accidente_con_victimas = factor(
+      accidente_con_victimas,
+      levels = c("Con víctimas", "Solo daños")
+    )
+  ) |>
+  select(
+    accidente_con_victimas,
+    MES,
+    ID_HORA,
+    DIASEMANA,
+    TIPACCID,
+    CAUSAACCI
+  ) |>
+  na.omit()
+
+data.frame(
+  filas = nrow(atus_ml),
+  columnas = ncol(atus_ml)
+)
 ```
+
+::: {.callout-tip title="Interpretación"}
+La base final queda lista para el análisis exploratorio y el modelado. Cada fila representa un accidente y cada columna una variable predictora o la respuesta que se desea clasificar.
+:::
+
+## Guardar la base preparada
+
+```{r guardar-base-preparada}
+
+if (!dir.exists("datos")) {
+  dir.create("datos")
+}
+
+write_csv(
+  atus_ml,
+  "datos/atus_ml_preparado.csv"
+)
+```
+
+::: {.callout-note title="Explicación del código"}
+Guardar la base preparada evita repetir toda la limpieza en los capítulos siguientes y ayuda a mantener reproducible el flujo de trabajo.
+:::
+
+## Lista de comprobación
+
+Antes de continuar, verifique que:
+
+- el archivo proviene del portal oficial del INEGI;
+- el año de los datos está documentado;
+- el CSV se encuentra dentro de `datos`;
+- las variables usadas existen en la versión descargada;
+- la transformación de `CLASACC` corresponde con su diccionario;
+- las tablas y gráficas incluyen la fuente;
+- el archivo `atus_ml_preparado.csv` se creó correctamente.
 
 ## Resumen del capítulo
 
-En este capítulo leímos una base real, seleccionamos variables, construimos una variable respuesta y guardamos una base preparada para aprendizaje automático.
+En este capítulo descargamos y documentamos una base real del INEGI, verificamos su ubicación, seleccionamos variables, construimos una respuesta binaria y guardamos una base preparada para aprendizaje automático.

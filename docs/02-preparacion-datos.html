@@ -58,7 +58,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -203,6 +222,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Random Forest para clasificación</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-evaluacion-modelos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Evaluación, validación y comparación de modelos</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Apéndices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./referencias.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Referencias</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -215,14 +257,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#objetivos-del-capítulo" id="toc-objetivos-del-capítulo" class="nav-link active" data-scroll-target="#objetivos-del-capítulo"><span class="header-section-number">2.1</span> Objetivos del capítulo</a></li>
   <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción"><span class="header-section-number">2.2</span> Introducción</a></li>
-  <li><a href="#cargar-paquetes" id="toc-cargar-paquetes" class="nav-link" data-scroll-target="#cargar-paquetes"><span class="header-section-number">2.3</span> Cargar paquetes</a></li>
-  <li><a href="#leer-el-archivo-csv" id="toc-leer-el-archivo-csv" class="nav-link" data-scroll-target="#leer-el-archivo-csv"><span class="header-section-number">2.4</span> Leer el archivo CSV</a></li>
-  <li><a href="#primer-vistazo-a-los-datos" id="toc-primer-vistazo-a-los-datos" class="nav-link" data-scroll-target="#primer-vistazo-a-los-datos"><span class="header-section-number">2.5</span> Primer vistazo a los datos</a></li>
-  <li><a href="#variables-de-interés" id="toc-variables-de-interés" class="nav-link" data-scroll-target="#variables-de-interés"><span class="header-section-number">2.6</span> Variables de interés</a></li>
-  <li><a href="#crear-variable-respuesta" id="toc-crear-variable-respuesta" class="nav-link" data-scroll-target="#crear-variable-respuesta"><span class="header-section-number">2.7</span> Crear variable respuesta</a></li>
-  <li><a href="#preparar-variables-finales" id="toc-preparar-variables-finales" class="nav-link" data-scroll-target="#preparar-variables-finales"><span class="header-section-number">2.8</span> Preparar variables finales</a></li>
-  <li><a href="#guardar-base-preparada" id="toc-guardar-base-preparada" class="nav-link" data-scroll-target="#guardar-base-preparada"><span class="header-section-number">2.9</span> Guardar base preparada</a></li>
-  <li><a href="#resumen-del-capítulo" id="toc-resumen-del-capítulo" class="nav-link" data-scroll-target="#resumen-del-capítulo"><span class="header-section-number">2.10</span> Resumen del capítulo</a></li>
+  <li><a href="#descargar-la-base-atus-desde-el-inegi" id="toc-descargar-la-base-atus-desde-el-inegi" class="nav-link" data-scroll-target="#descargar-la-base-atus-desde-el-inegi"><span class="header-section-number">2.3</span> Descargar la base ATUS desde el INEGI</a></li>
+  <li><a href="#cómo-citar-los-datos" id="toc-cómo-citar-los-datos" class="nav-link" data-scroll-target="#cómo-citar-los-datos"><span class="header-section-number">2.4</span> Cómo citar los datos</a></li>
+  <li><a href="#cargar-paquetes" id="toc-cargar-paquetes" class="nav-link" data-scroll-target="#cargar-paquetes"><span class="header-section-number">2.5</span> Cargar paquetes</a></li>
+  <li><a href="#localizar-el-archivo" id="toc-localizar-el-archivo" class="nav-link" data-scroll-target="#localizar-el-archivo"><span class="header-section-number">2.6</span> Localizar el archivo</a></li>
+  <li><a href="#leer-el-archivo-csv" id="toc-leer-el-archivo-csv" class="nav-link" data-scroll-target="#leer-el-archivo-csv"><span class="header-section-number">2.7</span> Leer el archivo CSV</a></li>
+  <li><a href="#primer-vistazo-a-los-datos" id="toc-primer-vistazo-a-los-datos" class="nav-link" data-scroll-target="#primer-vistazo-a-los-datos"><span class="header-section-number">2.8</span> Primer vistazo a los datos</a></li>
+  <li><a href="#normalizar-los-nombres-de-variables" id="toc-normalizar-los-nombres-de-variables" class="nav-link" data-scroll-target="#normalizar-los-nombres-de-variables"><span class="header-section-number">2.9</span> Normalizar los nombres de variables</a></li>
+  <li><a href="#seleccionar-variables-de-interés" id="toc-seleccionar-variables-de-interés" class="nav-link" data-scroll-target="#seleccionar-variables-de-interés"><span class="header-section-number">2.10</span> Seleccionar variables de interés</a></li>
+  <li><a href="#crear-la-variable-respuesta" id="toc-crear-la-variable-respuesta" class="nav-link" data-scroll-target="#crear-la-variable-respuesta"><span class="header-section-number">2.11</span> Crear la variable respuesta</a></li>
+  <li><a href="#preparar-las-variables-finales" id="toc-preparar-las-variables-finales" class="nav-link" data-scroll-target="#preparar-las-variables-finales"><span class="header-section-number">2.12</span> Preparar las variables finales</a></li>
+  <li><a href="#guardar-la-base-preparada" id="toc-guardar-la-base-preparada" class="nav-link" data-scroll-target="#guardar-la-base-preparada"><span class="header-section-number">2.13</span> Guardar la base preparada</a></li>
+  <li><a href="#lista-de-comprobación" id="toc-lista-de-comprobación" class="nav-link" data-scroll-target="#lista-de-comprobación"><span class="header-section-number">2.14</span> Lista de comprobación</a></li>
+  <li><a href="#resumen-del-capítulo" id="toc-resumen-del-capítulo" class="nav-link" data-scroll-target="#resumen-del-capítulo"><span class="header-section-number">2.15</span> Resumen del capítulo</a></li>
   </ul>
 </nav>
     </div>
@@ -250,60 +297,204 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="objetivos-del-capítulo" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="objetivos-del-capítulo"><span class="header-section-number">2.1</span> Objetivos del capítulo</h2>
-<p>Al finalizar este capítulo, el lector será capaz de leer una base real, seleccionar variables, construir una variable respuesta y guardar una base preparada para modelado.</p>
+<p>Al finalizar este capítulo, el lector será capaz de:</p>
+<ul>
+<li>localizar y descargar la base ATUS desde el portal oficial del INEGI;</li>
+<li>organizar los archivos dentro del proyecto Quarto;</li>
+<li>leer y revisar una base real en R;</li>
+<li>seleccionar y transformar variables;</li>
+<li>construir una variable respuesta binaria;</li>
+<li>guardar una base preparada para los capítulos de modelado;</li>
+<li>citar correctamente la fuente de los datos.</li>
+</ul>
 </section>
 <section id="introducción" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="introducción"><span class="header-section-number">2.2</span> Introducción</h2>
-<p>En la práctica profesional, los datos reales casi nunca vienen preparados. Antes de aplicar un algoritmo necesitamos revisar, limpiar, transformar y documentar los datos.</p>
-</section>
-<section id="cargar-paquetes" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="cargar-paquetes"><span class="header-section-number">2.3</span> Cargar paquetes</h2>
-<div class="cell">
-<details class="code-fold">
-<summary>Código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"util_graficas.R"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<p>En la práctica profesional, los datos casi nunca llegan preparados para aplicar un algoritmo. Antes de modelar debemos conocer su procedencia, revisar su estructura, limpiar valores, transformar variables y documentar cada decisión.</p>
+<p>En este libro utilizamos la <strong>Estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas (ATUS)</strong> del Instituto Nacional de Estadística y Geografía <span class="citation" data-cites="inegi_atus_2024">(<a href="referencias.html#ref-inegi_atus_2024" role="doc-biblioref">Instituto Nacional de Estadística y Geografía 2025</a>)</span>. Su objetivo es producir información anual sobre la siniestralidad del transporte terrestre en zonas de jurisdicción no federal, con desglose nacional, estatal y municipal.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Uso responsable de la información">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Uso responsable de la información
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Los datos originales son del INEGI. La limpieza, transformación, selección de variables, gráficas, modelos e interpretaciones de este libro son elaboración del autor. No constituyen resultados oficiales ni implican el aval del Instituto.</p>
+</div>
 </div>
 </section>
-<section id="leer-el-archivo-csv" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="leer-el-archivo-csv"><span class="header-section-number">2.4</span> Leer el archivo CSV</h2>
+<section id="descargar-la-base-atus-desde-el-inegi" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="descargar-la-base-atus-desde-el-inegi"><span class="header-section-number">2.3</span> Descargar la base ATUS desde el INEGI</h2>
+<p>La descarga debe realizarse desde el sitio oficial para conservar la procedencia y los metadatos del archivo.</p>
+<ol type="1">
+<li><p>Abra en su navegador el portal de <strong>Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas (ATUS)</strong>:</p>
+<p><a href="https://www.inegi.org.mx/programas/accidentes/" class="uri">https://www.inegi.org.mx/programas/accidentes/</a></p></li>
+<li><p>Localice el apartado <strong>Datos abiertos</strong> o la opción de descarga correspondiente.</p></li>
+<li><p>Seleccione el periodo anual que desea utilizar. Para reproducir los ejemplos de esta versión, elija <strong>2024</strong>.</p></li>
+<li><p>Descargue el archivo en formato CSV. Es posible que el portal entregue un archivo comprimido en formato ZIP.</p></li>
+<li><p>Descomprima el archivo descargado.</p></li>
+<li><p>Identifique el CSV anual y cópielo en la carpeta <code>datos</code> del proyecto.</p></li>
+<li><p>Para seguir exactamente los ejemplos, renómbrelo como:</p></li>
+</ol>
+<pre class="text"><code>atus_2024.csv</code></pre>
+<p>La estructura mínima del proyecto debe quedar así:</p>
+<pre class="text"><code>libro-machine-learning-r-dev/
+├── _quarto.yml
+├── index.qmd
+├── 02-preparacion-datos.qmd
+├── datos/
+│   └── atus_2024.csv
+└── referencias.bib</code></pre>
+<div class="callout callout-style-default callout-tip callout-titled" title="Otro año de información">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Otro año de información
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Puede utilizar un año diferente. En ese caso, cambie el nombre del archivo o modifique la ruta utilizada en el código. Conviene anotar siempre el año de referencia porque los resultados pueden cambiar entre periodos.</p>
+</div>
+</div>
+</section>
+<section id="cómo-citar-los-datos" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="cómo-citar-los-datos"><span class="header-section-number">2.4</span> Cómo citar los datos</h2>
+<p>Los términos de libre uso del INEGI permiten utilizar, adaptar y publicar su información, pero requieren citar la fuente de origen <span class="citation" data-cites="inegi_terminos_libre_uso">(<a href="referencias.html#ref-inegi_terminos_libre_uso" role="doc-biblioref">Instituto Nacional de Estadística y Geografía 2026</a>)</span>.</p>
+<p>En el texto puede utilizarse una cita como esta:</p>
+<blockquote class="blockquote">
+<p>Los datos proceden de la Estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas del INEGI <span class="citation" data-cites="inegi_atus_2024">(<a href="referencias.html#ref-inegi_atus_2024" role="doc-biblioref">Instituto Nacional de Estadística y Geografía 2025</a>)</span>.</p>
+</blockquote>
+<p>Debajo de una tabla o gráfica sin transformaciones importantes:</p>
+<blockquote class="blockquote">
+<p><strong>Fuente:</strong> INEGI, Estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas (ATUS), 2024.</p>
+</blockquote>
+<p>Cuando exista procesamiento, agrupación, modelado o visualización propia:</p>
+<blockquote class="blockquote">
+<p><strong>Fuente:</strong> Elaboración propia con datos del INEGI, Estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas (ATUS), 2024.</p>
+</blockquote>
+</section>
+<section id="cargar-paquetes" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="cargar-paquetes"><span class="header-section-number">2.5</span> Cargar paquetes</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ruta_atus <span class="ot">&lt;-</span> <span class="st">"datos/atus_2024.csv"</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">file.exists</span>(ruta_atus)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"util_graficas.R"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Explicación del código">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Explicación del código
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Se cargan paquetes para leer archivos CSV, transformar datos, trabajar con texto y crear gráficas. El archivo <code>util_graficas.R</code> contiene funciones visuales comunes para mantener un estilo uniforme en todo el libro.</p>
+</div>
+</div>
+</section>
+<section id="localizar-el-archivo" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="localizar-el-archivo"><span class="header-section-number">2.6</span> Localizar el archivo</h2>
+<p>En lugar de depender únicamente de un nombre fijo, el siguiente código busca archivos cuyo nombre comience con <code>atus</code> y termine en <code>.csv</code>.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>archivos_atus <span class="ot">&lt;-</span> <span class="fu">list.files</span>(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">path =</span> <span class="st">"datos"</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">pattern =</span> <span class="st">"^atus.*</span><span class="sc">\\</span><span class="st">.csv$"</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">full.names =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">ignore.case =</span> <span class="cn">TRUE</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>archivos_atus</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] TRUE</code></pre>
+<pre><code>[1] "datos/atus_2024.csv"         "datos/atus_ml_preparado.csv"</code></pre>
 </div>
-<details class="code-fold">
-<summary>Código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">file.exists</span>(ruta_atus)) {</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  atus <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="at">file =</span> ruta_atus, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>, <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">"UTF-8"</span>))</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Archivo leído correctamente."</span>)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  atus <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"El archivo atus_2024.csv todavía no está disponible en la carpeta datos."</span>)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "Archivo leído correctamente."</code></pre>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Interpretación">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Interpretación
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Si aparece al menos una ruta, R encontró un archivo ATUS. Si el resultado es <code>character(0)</code>, revise que el archivo esté descomprimido y guardado dentro de la carpeta <code>datos</code>.</p>
 </div>
 </div>
 </section>
-<section id="primer-vistazo-a-los-datos" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="primer-vistazo-a-los-datos"><span class="header-section-number">2.5</span> Primer vistazo a los datos</h2>
+<section id="leer-el-archivo-csv" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="leer-el-archivo-csv"><span class="header-section-number">2.7</span> Leer el archivo CSV</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(atus)) {</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="at">filas =</span> <span class="fu">nrow</span>(atus), <span class="at">columnas =</span> <span class="fu">ncol</span>(atus))</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(atus)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">length</span>(archivos_atus) <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stop</span>(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste</span>(</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>      <span class="st">"No se encontró un archivo ATUS en la carpeta datos."</span>,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Descárguelo desde el portal oficial del INEGI y descomprímalo."</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>ruta_atus <span class="ot">&lt;-</span> archivos_atus[<span class="dv">1</span>]</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>atus <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">file =</span> ruta_atus,</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">show_col_types =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">"UTF-8"</span>)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">"Archivo leído: "</span>, ruta_atus)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Explicación del código">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Explicación del código
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Se selecciona el primer archivo localizado y se lee con <code>read_csv()</code>. El argumento <code>show_col_types = FALSE</code> evita imprimir mensajes técnicos que distraen de los resultados principales.</p>
+</div>
+</div>
+</section>
+<section id="primer-vistazo-a-los-datos" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="primer-vistazo-a-los-datos"><span class="header-section-number">2.8</span> Primer vistazo a los datos</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>resumen_dimensiones <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">filas =</span> <span class="fu">nrow</span>(atus),</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">columnas =</span> <span class="fu">ncol</span>(atus)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>resumen_dimensiones</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>   filas columnas
+1 390627       45</code></pre>
+</div>
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(atus)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 45
@@ -324,57 +515,119 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 #   CONDHERIDO &lt;dbl&gt;, PASAMUERTO &lt;dbl&gt;, PASAHERIDO &lt;dbl&gt;, PEATMUERTO &lt;dbl&gt;, …</code></pre>
 </div>
 </div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Interpretación">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Interpretación
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Las filas representan registros de accidentes y las columnas describen sus características temporales, geográficas y operativas. Antes de modelar es indispensable confirmar que las variables esperadas estén disponibles.</p>
+</div>
+</div>
 </section>
-<section id="variables-de-interés" class="level2" data-number="2.6">
-<h2 data-number="2.6" class="anchored" data-anchor-id="variables-de-interés"><span class="header-section-number">2.6</span> Variables de interés</h2>
+<section id="normalizar-los-nombres-de-variables" class="level2" data-number="2.9">
+<h2 data-number="2.9" class="anchored" data-anchor-id="normalizar-los-nombres-de-variables"><span class="header-section-number">2.9</span> Normalizar los nombres de variables</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>variables_interes <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"ANIO"</span>, <span class="st">"MES"</span>, <span class="st">"ID_ENTIDAD"</span>, <span class="st">"ID_MUNICIPIO"</span>, <span class="st">"ID_HORA"</span>, <span class="st">"ID_DIA"</span>, <span class="st">"DIASEMANA"</span>, <span class="st">"TIPACCID"</span>, <span class="st">"CAUSAACCI"</span>, <span class="st">"CLASACC"</span>)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(atus)) {</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(atus) <span class="ot">&lt;-</span> <span class="fu">toupper</span>(<span class="fu">names</span>(atus))</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  variables_existentes <span class="ot">&lt;-</span> <span class="fu">intersect</span>(variables_interes, <span class="fu">names</span>(atus))</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  atus_base <span class="ot">&lt;-</span> atus <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="fu">all_of</span>(variables_existentes))</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(atus_base)</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(atus) <span class="ot">&lt;-</span> <span class="fu">toupper</span>(<span class="fu">names</span>(atus))</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(atus)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 10
-   ANIO MES   ID_ENTIDAD ID_MUNICIPIO ID_HORA ID_DIA DIASEMANA TIPACCID         
-  &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;        &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;            
-1  2024 01    01         001          02      01     lunes     Colisión con veh…
-2  2024 01    01         001          03      01     lunes     Colisión con obj…
-3  2024 01    01         001          04      01     lunes     Colisión con pea…
-4  2024 01    01         001          05      01     lunes     Colisión con obj…
-5  2024 01    01         001          06      01     lunes     Colisión con obj…
-6  2024 01    01         001          07      01     lunes     Colisión con veh…
-# ℹ 2 more variables: CAUSAACCI &lt;chr&gt;, CLASACC &lt;chr&gt;</code></pre>
+<pre><code> [1] "COBERTURA"    "ID_ENTIDAD"   "ID_MUNICIPIO" "ANIO"         "MES"         
+ [6] "ID_HORA"      "ID_MINUTO"    "ID_DIA"       "DIASEMANA"    "URBANA"      
+[11] "SUBURBANA"    "TIPACCID"     "AUTOMOVIL"    "CAMPASAJ"     "MICROBUS"    
+[16] "PASCAMION"    "OMNIBUS"      "TRANVIA"      "CAMIONETA"    "CAMION"      
+[21] "TRACTOR"      "FERROCARRI"   "MOTOCICLET"   "BICICLETA"    "OTROVEHIC"   
+[26] "CAUSAACCI"    "CAPAROD"      "SEXO"         "ALIENTO"      "CINTURON"    
+[31] "ID_EDAD"      "CONDMUERTO"   "CONDHERIDO"   "PASAMUERTO"   "PASAHERIDO"  
+[36] "PEATMUERTO"   "PEATHERIDO"   "CICLMUERTO"   "CICLHERIDO"   "OTROMUERTO"  
+[41] "OTROHERIDO"   "NEMUERTO"     "NEHERIDO"     "CLASACC"      "ESTATUS"     </code></pre>
 </div>
 </div>
+<p>Se convierten los nombres a mayúsculas para evitar errores por diferencias como <code>Mes</code>, <code>MES</code> o <code>mes</code>.</p>
 </section>
-<section id="crear-variable-respuesta" class="level2" data-number="2.7">
-<h2 data-number="2.7" class="anchored" data-anchor-id="crear-variable-respuesta"><span class="header-section-number">2.7</span> Crear variable respuesta</h2>
+<section id="seleccionar-variables-de-interés" class="level2" data-number="2.10">
+<h2 data-number="2.10" class="anchored" data-anchor-id="seleccionar-variables-de-interés"><span class="header-section-number">2.10</span> Seleccionar variables de interés</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"atus_base"</span>) <span class="sc">&amp;&amp;</span> <span class="st">"CLASACC"</span> <span class="sc">%in%</span> <span class="fu">names</span>(atus_base)) {</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  atus_modelo <span class="ot">&lt;-</span> atus_base <span class="sc">|&gt;</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">CLASACC_TXT =</span> <span class="fu">str_to_lower</span>(<span class="fu">as.character</span>(CLASACC)),</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">accidente_con_victimas =</span> <span class="fu">case_when</span>(</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">str_detect</span>(CLASACC_TXT, <span class="st">"sólo daños"</span>) <span class="sc">~</span> <span class="st">"Solo daños"</span>,</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">str_detect</span>(CLASACC_TXT, <span class="st">"solo daños"</span>) <span class="sc">~</span> <span class="st">"Solo daños"</span>,</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>        <span class="fu">str_detect</span>(CLASACC_TXT, <span class="st">"daños"</span>) <span class="sc">~</span> <span class="st">"Solo daños"</span>,</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>        <span class="fu">str_detect</span>(CLASACC_TXT, <span class="st">"no fatal"</span>) <span class="sc">~</span> <span class="st">"Con víctimas"</span>,</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>        <span class="fu">str_detect</span>(CLASACC_TXT, <span class="st">"fatal"</span>) <span class="sc">~</span> <span class="st">"Con víctimas"</span>,</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>        <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_character_</span></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(accidente_con_victimas))</span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">table</span>(atus_modelo<span class="sc">$</span>accidente_con_victimas)</span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>variables_interes <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ANIO"</span>, <span class="st">"MES"</span>, <span class="st">"ID_ENTIDAD"</span>, <span class="st">"ID_MUNICIPIO"</span>,</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ID_HORA"</span>, <span class="st">"ID_DIA"</span>, <span class="st">"DIASEMANA"</span>, <span class="st">"TIPACCID"</span>,</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"CAUSAACCI"</span>, <span class="st">"CLASACC"</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>variables_existentes <span class="ot">&lt;-</span> <span class="fu">intersect</span>(</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  variables_interes,</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(atus)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>variables_faltantes <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  variables_interes,</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(atus)</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>atus_base <span class="ot">&lt;-</span> atus <span class="sc">|&gt;</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">all_of</span>(variables_existentes))</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>variables_existentes</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "ANIO"         "MES"          "ID_ENTIDAD"   "ID_MUNICIPIO" "ID_HORA"     
+ [6] "ID_DIA"       "DIASEMANA"    "TIPACCID"     "CAUSAACCI"    "CLASACC"     </code></pre>
+</div>
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>variables_faltantes</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>character(0)</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled" title="Compruebe el diccionario de datos">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Compruebe el diccionario de datos
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Los nombres y categorías pueden variar entre versiones. Si aparece una variable faltante, consulte los metadatos y el diccionario de datos descargados junto con la base antes de sustituirla.</p>
+</div>
+</div>
+</section>
+<section id="crear-la-variable-respuesta" class="level2" data-number="2.11">
+<h2 data-number="2.11" class="anchored" data-anchor-id="crear-la-variable-respuesta"><span class="header-section-number">2.11</span> Crear la variable respuesta</h2>
+<p>El primer problema de clasificación distinguirá entre:</p>
+<ul>
+<li><strong>Con víctimas:</strong> accidentes fatales o no fatales con personas lesionadas o fallecidas.</li>
+<li><strong>Solo daños:</strong> accidentes con daños materiales sin víctimas registradas.</li>
+</ul>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>atus_modelo <span class="ot">&lt;-</span> atus_base <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">CLASACC_TXT =</span> <span class="fu">str_to_lower</span>(<span class="fu">as.character</span>(CLASACC)),</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">accidente_con_victimas =</span> <span class="fu">case_when</span>(</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">str_detect</span>(CLASACC_TXT, <span class="st">"sólo daños"</span>) <span class="sc">~</span> <span class="st">"Solo daños"</span>,</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">str_detect</span>(CLASACC_TXT, <span class="st">"solo daños"</span>) <span class="sc">~</span> <span class="st">"Solo daños"</span>,</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">str_detect</span>(CLASACC_TXT, <span class="st">"daños"</span>) <span class="sc">~</span> <span class="st">"Solo daños"</span>,</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">str_detect</span>(CLASACC_TXT, <span class="st">"no fatal"</span>) <span class="sc">~</span> <span class="st">"Con víctimas"</span>,</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">str_detect</span>(CLASACC_TXT, <span class="st">"fatal"</span>) <span class="sc">~</span> <span class="st">"Con víctimas"</span>,</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_character_</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(accidente_con_victimas))</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(atus_modelo<span class="sc">$</span>accidente_con_victimas)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -382,51 +635,126 @@ Con víctimas   Solo daños
        68108       322519 </code></pre>
 </div>
 </div>
+<div class="callout callout-style-default callout-note callout-titled" title="Explicación del código">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Explicación del código
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La variable <code>CLASACC</code> se transforma en una respuesta binaria. <code>case_when()</code> asigna una nueva categoría según el texto encontrado y los registros que no pueden clasificarse se excluyen temporalmente.</p>
+</div>
+</div>
 </section>
-<section id="preparar-variables-finales" class="level2" data-number="2.8">
-<h2 data-number="2.8" class="anchored" data-anchor-id="preparar-variables-finales"><span class="header-section-number">2.8</span> Preparar variables finales</h2>
+<section id="preparar-las-variables-finales" class="level2" data-number="2.12">
+<h2 data-number="2.12" class="anchored" data-anchor-id="preparar-las-variables-finales"><span class="header-section-number">2.12</span> Preparar las variables finales</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"atus_modelo"</span>)) {</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  atus_ml <span class="ot">&lt;-</span> atus_modelo <span class="sc">|&gt;</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">MES =</span> <span class="fu">as.factor</span>(MES),</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">ID_HORA =</span> <span class="fu">as.character</span>(ID_HORA),</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">DIASEMANA =</span> <span class="fu">as.factor</span>(DIASEMANA),</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">TIPACCID =</span> <span class="fu">as.factor</span>(TIPACCID),</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">CAUSAACCI =</span> <span class="fu">as.factor</span>(CAUSAACCI),</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">accidente_con_victimas =</span> <span class="fu">factor</span>(accidente_con_victimas, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Con víctimas"</span>, <span class="st">"Solo daños"</span>))</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(accidente_con_victimas, MES, ID_HORA, DIASEMANA, TIPACCID, CAUSAACCI) <span class="sc">|&gt;</span></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">na.omit</span>()</span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="at">filas =</span> <span class="fu">nrow</span>(atus_ml), <span class="at">columnas =</span> <span class="fu">ncol</span>(atus_ml))</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>atus_ml <span class="ot">&lt;-</span> atus_modelo <span class="sc">|&gt;</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">MES =</span> <span class="fu">as.factor</span>(MES),</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">ID_HORA =</span> <span class="fu">as.character</span>(ID_HORA),</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">DIASEMANA =</span> <span class="fu">as.factor</span>(DIASEMANA),</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">TIPACCID =</span> <span class="fu">as.factor</span>(TIPACCID),</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">CAUSAACCI =</span> <span class="fu">as.factor</span>(CAUSAACCI),</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">accidente_con_victimas =</span> <span class="fu">factor</span>(</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>      accidente_con_victimas,</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Con víctimas"</span>, <span class="st">"Solo daños"</span>)</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>    accidente_con_victimas,</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>    MES,</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>    ID_HORA,</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>    DIASEMANA,</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>    TIPACCID,</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>    CAUSAACCI</span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>()</span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(</span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">filas =</span> <span class="fu">nrow</span>(atus_ml),</span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">columnas =</span> <span class="fu">ncol</span>(atus_ml)</span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>   filas columnas
 1 390627        6</code></pre>
 </div>
 </div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Interpretación">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Interpretación
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La base final queda lista para el análisis exploratorio y el modelado. Cada fila representa un accidente y cada columna una variable predictora o la respuesta que se desea clasificar.</p>
+</div>
+</div>
 </section>
-<section id="guardar-base-preparada" class="level2" data-number="2.9">
-<h2 data-number="2.9" class="anchored" data-anchor-id="guardar-base-preparada"><span class="header-section-number">2.9</span> Guardar base preparada</h2>
+<section id="guardar-la-base-preparada" class="level2" data-number="2.13">
+<h2 data-number="2.13" class="anchored" data-anchor-id="guardar-la-base-preparada"><span class="header-section-number">2.13</span> Guardar la base preparada</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"atus_ml"</span>)) {</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">dir.exists</span>(<span class="st">"datos"</span>)) <span class="fu">dir.create</span>(<span class="st">"datos"</span>)</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write_csv</span>(atus_ml, <span class="st">"datos/atus_ml_preparado.csv"</span>)</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">dir.exists</span>(<span class="st">"datos"</span>)) {</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dir.create</span>(<span class="st">"datos"</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  atus_ml,</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"datos/atus_ml_preparado.csv"</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
+<div class="callout callout-style-default callout-note callout-titled" title="Explicación del código">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Explicación del código
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Guardar la base preparada evita repetir toda la limpieza en los capítulos siguientes y ayuda a mantener reproducible el flujo de trabajo.</p>
+</div>
+</div>
 </section>
-<section id="resumen-del-capítulo" class="level2" data-number="2.10">
-<h2 data-number="2.10" class="anchored" data-anchor-id="resumen-del-capítulo"><span class="header-section-number">2.10</span> Resumen del capítulo</h2>
-<p>En este capítulo leímos una base real, seleccionamos variables, construimos una variable respuesta y guardamos una base preparada para aprendizaje automático.</p>
+<section id="lista-de-comprobación" class="level2" data-number="2.14">
+<h2 data-number="2.14" class="anchored" data-anchor-id="lista-de-comprobación"><span class="header-section-number">2.14</span> Lista de comprobación</h2>
+<p>Antes de continuar, verifique que:</p>
+<ul>
+<li>el archivo proviene del portal oficial del INEGI;</li>
+<li>el año de los datos está documentado;</li>
+<li>el CSV se encuentra dentro de <code>datos</code>;</li>
+<li>las variables usadas existen en la versión descargada;</li>
+<li>la transformación de <code>CLASACC</code> corresponde con su diccionario;</li>
+<li>las tablas y gráficas incluyen la fuente;</li>
+<li>el archivo <code>atus_ml_preparado.csv</code> se creó correctamente.</li>
+</ul>
+</section>
+<section id="resumen-del-capítulo" class="level2" data-number="2.15">
+<h2 data-number="2.15" class="anchored" data-anchor-id="resumen-del-capítulo"><span class="header-section-number">2.15</span> Resumen del capítulo</h2>
+<p>En este capítulo descargamos y documentamos una base real del INEGI, verificamos su ubicación, seleccionamos variables, construimos una respuesta binaria y guardamos una base preparada para aprendizaje automático.</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-inegi_atus_2024" class="csl-entry" role="listitem">
+Instituto Nacional de Estadística y Geografía. 2025. <span>«Estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas (ATUS), 2024»</span>. Instituto Nacional de Estadística y Geografía. <a href="https://www.inegi.org.mx/programas/accidentes/">https://www.inegi.org.mx/programas/accidentes/</a>.
+</div>
+<div id="ref-inegi_terminos_libre_uso" class="csl-entry" role="listitem">
+Instituto Nacional de Estadística y Geografía. 2026. <span>«Términos de libre uso de la información del INEGI»</span>. <a href="https://www.inegi.org.mx/inegi/terminos.html">https://www.inegi.org.mx/inegi/terminos.html</a>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->

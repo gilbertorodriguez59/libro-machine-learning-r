@@ -6,11 +6,12 @@
 %
 \documentclass[
   spanish,
-  11pt,
+  10.5pt,
   letterpaper,
-]{book}
+  openany,
+  headings=big]{scrbook}
 \usepackage{xcolor}
-\usepackage[margin=2.5cm]{geometry}
+\usepackage[top=2.35cm,bottom=2.35cm,inner=2.75cm,outer=2.25cm,headsep=0.65cm]{geometry}
 \usepackage{amsmath,amssymb}
 \setcounter{secnumdepth}{5}
 \usepackage{iftex}
@@ -67,6 +68,44 @@
 \fi
 \makeatother
 
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.33,0.33}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.42,0.45,0.49}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.84,0.23,0.29}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.36,0.77}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.84,0.23,0.29}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.01,0.18,0.38}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.42,0.45,0.49}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.42,0.45,0.49}{#1}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.36,0.77}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.84,0.23,0.29}{#1}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.84,0.23,0.29}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.36,0.77}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.42,0.45,0.49}{#1}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.33,0.33}{\underline{#1}}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.84,0.23,0.29}{\textbf{#1}}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.36,0.77}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.44,0.26,0.76}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.01,0.18,0.38}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.42,0.45,0.49}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.84,0.23,0.29}{#1}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.14,0.16,0.18}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.14,0.16,0.18}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.44,0.26,0.76}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.84,0.23,0.29}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.42,0.45,0.49}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.36,0.77}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.01,0.18,0.38}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.01,0.18,0.38}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.89,0.38,0.04}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.01,0.18,0.38}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{1.00,0.33,0.33}{#1}}
 
 \usepackage{longtable,booktabs,array}
 \newcounter{none} % for unnumbered tables
@@ -96,6 +135,39 @@
 \makeatother
 
 
+% definitions for citeproc citations
+\NewDocumentCommand\citeproctext{}{}
+\NewDocumentCommand\citeproc{mm}{%
+  \begingroup\def\citeproctext{#2}\cite{#1}\endgroup}
+\makeatletter
+ % allow citations to break across lines
+ \let\@cite@ofmt\@firstofone
+ % avoid brackets around text for \cite:
+ \def\@biblabel#1{}
+ \def\@cite#1#2{{#1\if@tempswa , #2\fi}}
+\makeatother
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newenvironment{CSLReferences}[2] % #1 hanging-indent, #2 entry-spacing
+ {\begin{list}{}{%
+  \setlength{\itemindent}{0pt}
+  \setlength{\leftmargin}{0pt}
+  \setlength{\parsep}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+   \setlength{\leftmargin}{\cslhangindent}
+   \setlength{\itemindent}{-1\cslhangindent}
+  \fi
+  % set entry spacing
+  \setlength{\itemsep}{#2\baselineskip}}}
+ {\end{list}}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{\hfill\break\parbox[t]{\linewidth}{\strut\ignorespaces#1\strut}}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{\strut#1\strut}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{\strut#1\strut}}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 
 \ifLuaTeX
 \usepackage[bidi=basic,shorthands=off]{babel}
@@ -117,22 +189,100 @@
  
 
 
+% Configuración editorial para el PDF del libro
 \usepackage{xcolor}
+\usepackage{fontspec}
+\usepackage{microtype}
+\usepackage{fvextra}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
 \usepackage{titlesec}
-\definecolor{AzulLibro}{HTML}{0B4F6C}
-\definecolor{TurquesaLibro}{HTML}{0EA5A8}
-\definecolor{GrisTexto}{HTML}{374151}
+\usepackage{fancyhdr}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{caption}
+\usepackage{enumitem}
+\usepackage{needspace}
+\usepackage{etoolbox}
+
+% Tipografías incluidas normalmente con TeX Live/TinyTeX
+% Evitan depender de fuentes instaladas en Windows.
+\setmainfont{TeX Gyre Pagella}
+\setsansfont{TeX Gyre Heros}
+\setmonofont[Scale=0.86]{TeX Gyre Cursor}
+
+% Paleta visual
+\definecolor{AzulLibro}{HTML}{1F4E79}
+\definecolor{TurquesaLibro}{HTML}{168A91}
+\definecolor{FondoCodigo}{HTML}{F4F6F8}
+\definecolor{BordeCodigo}{HTML}{8BA6BF}
+\definecolor{TextoCodigo}{HTML}{202124}
+\definecolor{GrisEncabezado}{HTML}{5A6673}
+
+% Composición general
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt plus 1pt minus 1pt}
+\setlist[itemize]{topsep=4pt,itemsep=2pt,parsep=0pt}
+\setlist[enumerate]{topsep=4pt,itemsep=2pt,parsep=0pt}
+\emergencystretch=2em
+\widowpenalty=10000
+\clubpenalty=10000
+\displaywidowpenalty=10000
+
+% Títulos
+\titleformat{\chapter}[display]
+  {\normalfont\Huge\bfseries\color{AzulLibro}}
+  {\chaptertitlename\ \thechapter}{10pt}{\Huge}
+\titlespacing*{\chapter}{0pt}{-15pt}{25pt}
+\titleformat{\section}
+  {\needspace{4\baselineskip}\normalfont\Large\bfseries\color{AzulLibro}}
+  {\thesection}{0.75em}{}
+\titleformat{\subsection}
+  {\needspace{3\baselineskip}\normalfont\large\bfseries\color{TurquesaLibro}}
+  {\thesubsection}{0.75em}{}
+
+% Encabezados y pies
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE]{\small\color{GrisEncabezado}\nouppercase{\leftmark}}
+\fancyhead[RO]{\small\color{GrisEncabezado}\nouppercase{\rightmark}}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.35pt}
+\renewcommand{\footrulewidth}{0pt}
+\setlength{\headheight}{15pt}
+
+% Bloques de código generados por Pandoc/Quarto
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{
+  commandchars=\\\{\},
+  breaklines=true,
+  breakanywhere=true,
+  fontsize=\footnotesize,
+  baselinestretch=1.03,
+  frame=single,
+  framesep=3mm,
+  rulecolor=\color{BordeCodigo},
+  fillcolor=\color{FondoCodigo},
+  formatcom=\color{TextoCodigo},
+  xleftmargin=1mm,
+  xrightmargin=1mm
+}
+
+% Código sin resaltado
+\fvset{
+  breaklines=true,
+  breakanywhere=true,
+  fontsize=\footnotesize,
+  baselinestretch=1.03
+}
+
+% Tablas y figuras
+\renewcommand{\arraystretch}{1.15}
+\captionsetup{font=small,labelfont=bf,justification=centering}
+\AtBeginEnvironment{longtable}{\small}
+
+% Nombres en español
 \renewcommand{\contentsname}{Índice general}
 \renewcommand{\chaptername}{Capítulo}
-\titleformat{\chapter}[display]
-  {\normalfont\huge\bfseries\color{AzulLibro}}
-  {\chaptername\ \thechapter}{16pt}{\Huge}
-\titleformat{\section}
-  {\normalfont\Large\bfseries\color{AzulLibro}}
-  {\thesection}{1em}{}
-\titleformat{\subsection}
-  {\normalfont\large\bfseries\color{TurquesaLibro}}
-  {\thesubsection}{1em}{}
 \makeatletter
 \@ifpackageloaded{tcolorbox}{}{\usepackage[skins,breakable]{tcolorbox}}
 \@ifpackageloaded{fontawesome5}{}{\usepackage{fontawesome5}}
@@ -193,18 +343,6 @@
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
 \makeatother
-\makeatletter
-\@ifpackageloaded{tcolorbox}{}{\usepackage[skins,breakable]{tcolorbox}}
-\makeatother
-\makeatletter
-\@ifundefined{shadecolor}{\definecolor{shadecolor}{HTML}{0B4F6C}}{}
-\makeatother
-\makeatletter
-\@ifundefined{codebgcolor}{\definecolor{codebgcolor}{HTML}{F3F7FA}}{}
-\makeatother
-\makeatletter
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[borderline west={3pt}{0pt}{shadecolor}, boxrule=0pt, breakable, colback={codebgcolor}, enhanced, frame hidden, sharp corners]}{\end{tcolorbox}}\fi
-\makeatother
 \usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
@@ -213,10 +351,10 @@
   pdfauthor={MI Jesús Gilberto Rodríguez Escobedo},
   pdflang={es},
   colorlinks=true,
-  linkcolor={Maroon},
+  linkcolor={blue},
   filecolor={Maroon},
-  citecolor={Blue},
-  urlcolor={Blue},
+  citecolor={blue},
+  urlcolor={blue},
   pdfcreator={LaTeX via pandoc}}
 
 
@@ -229,7 +367,7 @@
 \makeatother
 \subtitle{Un enfoque práctico con datos abiertos reales}
 \author{MI Jesús Gilberto Rodríguez Escobedo}
-\date{2026-07-10}
+\date{2026-07-13}
 \begin{document}
 \frontmatter
 \maketitle
@@ -261,15 +399,14 @@ reales}\label{un-enfoque-pruxe1ctico-con-datos-abiertos-reales}
 reales}
 
 \textbf{Autor:} MI Jesús Gilberto Rodríguez Escobedo\\
-\textbf{Versión:} 0.5\\
-\textbf{Modalidad:} Libro abierto, práctico e interactivo
-
-\texttt{R} · \texttt{Quarto} · \texttt{Machine\ Learning} ·
-\texttt{Datos\ abiertos} · \texttt{GitHub\ Pages}
+\textbf{Versión:} 0.7 (desarrollo)\\
+\textbf{Modalidad:} Libro abierto, práctico e interactivo\\
+\textbf{Tecnologías:} R · Quarto · Machine Learning · Datos abiertos ·
+GitHub Pages
 
 Este libro introduce el aprendizaje automático (\emph{Machine Learning})
 mediante ejemplos claros, didácticos y prácticos desarrollados
-principalmente en R.
+principalmente en \textbf{R}.
 
 La intención no es escribir un tratado matemático extenso, sino
 construir una guía aplicada para aprender haciendo con datos abiertos
@@ -277,10 +414,11 @@ reales. En esta versión trabajamos con datos de accidentes de tránsito
 de México y los usamos como hilo conductor para explicar preparación de
 datos, análisis exploratorio y modelos de clasificación.
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Enfoque del libro}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-note-color!10!white, colframe=quarto-callout-note-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Enfoque del libro}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
 
 El libro combina fundamento conceptual, código reproducible en R,
-interpretación didáctica de resultados y visualizaciones profesionales.
+explicación breve del código, interpretación didáctica de resultados y
+visualizaciones profesionales.
 
 \end{tcolorbox}
 
@@ -306,10 +444,6 @@ aprendizaje automático con un enfoque práctico.
 \addcontentsline{toc}{section}{Software utilizado}
 
 \markright{Software utilizado}
-
-Los ejemplos se desarrollan principalmente en R, usando RStudio y
-Quarto. También se mencionan herramientas útiles para publicar y
-compartir resultados:
 
 \begin{itemize}
 \tightlist
@@ -350,6 +484,8 @@ libro}\label{estructura-actual-del-libro}
   Árboles de decisión.
 \item
   Random Forest.
+\item
+  Evaluación, validación y comparación de modelos.
 \end{enumerate}
 
 \section*{Nota para el lector}\label{nota-para-el-lector}
@@ -360,6 +496,18 @@ libro}\label{estructura-actual-del-libro}
 Los capítulos están diseñados para leerse y ejecutarse paso a paso. Cada
 bloque de código busca responder una pregunta concreta y cada resultado
 se acompaña de una interpretación didáctica.
+
+\section*{Fuente principal de los
+datos}\label{fuente-principal-de-los-datos}
+\addcontentsline{toc}{section}{Fuente principal de los datos}
+
+\markright{Fuente principal de los datos}
+
+Los ejemplos aplicados utilizan información de la Estadística de
+Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas del INEGI
+(Instituto Nacional de Estadística y Geografía 2025). Cuando una tabla o
+gráfica se elabora con estos datos, se indica expresamente la fuente y
+se distingue el procesamiento realizado por el autor.
 
 \bookmarksetup{startatroot}
 
@@ -423,8 +571,8 @@ identificar problemas de clasificación, regresión y agrupamiento.
 \section{Introducción}\label{introducciuxf3n}
 
 El aprendizaje automático, también conocido como \emph{Machine
-Learning}, es una rama de la inteligencia artificial que permite
-construir modelos capaces de aprender patrones a partir de datos.
+Learning}, permite construir modelos capaces de aprender patrones a
+partir de datos.
 
 En la programación tradicional, una persona define reglas. En
 aprendizaje automático, proporcionamos ejemplos para que un algoritmo
@@ -433,35 +581,81 @@ aprenda una relación entre variables de entrada y una salida esperada.
 \section{Programación tradicional contra aprendizaje
 automático}\label{programaciuxf3n-tradicional-contra-aprendizaje-automuxe1tico}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pm10 }\OtherTok{\textless{}{-}} \DecValTok{85}
+
+\ControlFlowTok{if}\NormalTok{ (pm10 }\SpecialCharTok{\textgreater{}} \DecValTok{75}\NormalTok{) \{}
+  \FunctionTok{print}\NormalTok{(}\StringTok{"Contaminación alta"}\NormalTok{)}
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
+  \FunctionTok{print}\NormalTok{(}\StringTok{"Contaminación baja"}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
-[1] "Contaminación alta"
+#> [1] "Contaminación alta"
 \end{verbatim}
 
-\textbf{Interpretación.} Este ejemplo muestra programación tradicional:
-la decisión depende de una regla escrita manualmente.
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-note-color!10!white, colframe=quarto-callout-note-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Explicación del código}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Se define un valor de PM10 y después se aplica una regla fija. Si el
+valor es mayor que 75, el programa clasifica el día como de
+contaminación alta.
+
+\end{tcolorbox}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Interpretación del resultado}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Este ejemplo representa programación tradicional: la decisión depende de
+una regla escrita manualmente. En aprendizaje automático, la regla se
+aprende a partir de ejemplos.
+
+\end{tcolorbox}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{datos }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{dia =} \DecValTok{1}\SpecialCharTok{:}\DecValTok{12}\NormalTok{,}
+  \AttributeTok{pm10 =} \FunctionTok{c}\NormalTok{(}\DecValTok{42}\NormalTok{, }\DecValTok{88}\NormalTok{, }\DecValTok{55}\NormalTok{, }\DecValTok{120}\NormalTok{, }\DecValTok{63}\NormalTok{, }\DecValTok{95}\NormalTok{, }\DecValTok{38}\NormalTok{, }\DecValTok{110}\NormalTok{, }\DecValTok{72}\NormalTok{, }\DecValTok{130}\NormalTok{, }\DecValTok{47}\NormalTok{, }\DecValTok{99}\NormalTok{),}
+  \AttributeTok{temperatura =} \FunctionTok{c}\NormalTok{(}\DecValTok{25}\NormalTok{, }\DecValTok{28}\NormalTok{, }\DecValTok{22}\NormalTok{, }\DecValTok{30}\NormalTok{, }\DecValTok{24}\NormalTok{, }\DecValTok{29}\NormalTok{, }\DecValTok{21}\NormalTok{, }\DecValTok{31}\NormalTok{, }\DecValTok{27}\NormalTok{, }\DecValTok{32}\NormalTok{, }\DecValTok{23}\NormalTok{, }\DecValTok{30}\NormalTok{),}
+  \AttributeTok{humedad =} \FunctionTok{c}\NormalTok{(}\DecValTok{40}\NormalTok{, }\DecValTok{35}\NormalTok{, }\DecValTok{60}\NormalTok{, }\DecValTok{30}\NormalTok{, }\DecValTok{55}\NormalTok{, }\DecValTok{33}\NormalTok{, }\DecValTok{65}\NormalTok{, }\DecValTok{29}\NormalTok{, }\DecValTok{42}\NormalTok{, }\DecValTok{28}\NormalTok{, }\DecValTok{62}\NormalTok{, }\DecValTok{34}\NormalTok{),}
+  \AttributeTok{clase =} \FunctionTok{c}\NormalTok{(}\StringTok{"Baja"}\NormalTok{, }\StringTok{"Alta"}\NormalTok{, }\StringTok{"Baja"}\NormalTok{, }\StringTok{"Alta"}\NormalTok{, }\StringTok{"Baja"}\NormalTok{, }\StringTok{"Alta"}\NormalTok{, }\StringTok{"Baja"}\NormalTok{, }\StringTok{"Alta"}\NormalTok{, }\StringTok{"Baja"}\NormalTok{, }\StringTok{"Alta"}\NormalTok{, }\StringTok{"Baja"}\NormalTok{, }\StringTok{"Alta"}\NormalTok{)}
+\NormalTok{)}
+
+\NormalTok{datos}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
-   dia pm10 temperatura humedad clase
-1    1   42          25      40  Baja
-2    2   88          28      35  Alta
-3    3   55          22      60  Baja
-4    4  120          30      30  Alta
-5    5   63          24      55  Baja
-6    6   95          29      33  Alta
-7    7   38          21      65  Baja
-8    8  110          31      29  Alta
-9    9   72          27      42  Baja
-10  10  130          32      28  Alta
-11  11   47          23      62  Baja
-12  12   99          30      34  Alta
+#>    dia pm10 temperatura humedad clase
+#> 1    1   42          25      40  Baja
+#> 2    2   88          28      35  Alta
+#> 3    3   55          22      60  Baja
+#> 4    4  120          30      30  Alta
+#> 5    5   63          24      55  Baja
+#> 6    6   95          29      33  Alta
+#> 7    7   38          21      65  Baja
+#> 8    8  110          31      29  Alta
+#> 9    9   72          27      42  Baja
+#> 10  10  130          32      28  Alta
+#> 11  11   47          23      62  Baja
+#> 12  12   99          30      34  Alta
 \end{verbatim}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-note-color!10!white, colframe=quarto-callout-note-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Explicación del código}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Se construye una pequeña base de datos con 12 días. Cada fila contiene
+variables ambientales y una clase conocida.
+
+\end{tcolorbox}
 
 \section{Variables predictoras y variable
 respuesta}\label{variables-predictoras-y-variable-respuesta}
 
-La \textbf{variable respuesta} es la variable que queremos predecir. Las
-\textbf{variables predictoras} son las variables que usamos como entrada
-para el modelo.
+La variable respuesta es la variable que queremos predecir. Las
+variables predictoras son las variables que usamos como entrada para el
+modelo.
 
 \section{Tipos principales de aprendizaje
 automático}\label{tipos-principales-de-aprendizaje-automuxe1tico}
@@ -484,49 +678,134 @@ predictoras. Podemos representar los datos mediante una matriz \(X\) y
 una variable respuesta \(Y\).
 
 \[
-\hat{y}=f(x_1,x_2,\ldots,x_p)
+\hat{y} = f(x_1, x_2, \ldots, x_p)
 \]
 
 \section{Primer ejemplo visual en R}\label{primer-ejemplo-visual-en-r}
 
-\pandocbounded{\includegraphics[keepaspectratio]{01-introduccion_files/figure-pdf/unnamed-chunk-3-1.png}}
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{source}\NormalTok{(}\StringTok{"util\_graficas.R"}\NormalTok{)}
+
+\FunctionTok{ggplot}\NormalTok{(datos, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ pm10, }\AttributeTok{y =}\NormalTok{ temperatura, }\AttributeTok{color =}\NormalTok{ clase)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{size =} \DecValTok{4}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.9}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{escala\_clases\_color}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"Ejemplo inicial de clasificación"}\NormalTok{,}
+    \AttributeTok{subtitle =} \StringTok{"Clasificación de contaminación alta o baja"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{"PM10"}\NormalTok{,}
+    \AttributeTok{y =} \StringTok{"Temperatura"}\NormalTok{,}
+    \AttributeTok{color =} \StringTok{"Clase"}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{tema\_libro}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=0.92\linewidth,height=\textheight,keepaspectratio]{01-introduccion_files/figure-pdf/grafica-introduccion-1.png}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-note-color!10!white, colframe=quarto-callout-note-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Explicación del código}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+La gráfica coloca PM10 en el eje horizontal, temperatura en el eje
+vertical y usa color para distinguir la clase.
+
+\end{tcolorbox}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Interpretación del resultado}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Los puntos permiten visualizar si las clases se separan. Esta es la idea
+básica detrás de muchos métodos de clasificación.
+
+\end{tcolorbox}
 
 \section{División entre entrenamiento y
 prueba}\label{divisiuxf3n-entre-entrenamiento-y-prueba}
 
-\begin{verbatim}
-   dia pm10 temperatura humedad clase
-3    3   55          22      60  Baja
-12  12   99          30      34  Alta
-10  10  130          32      28  Alta
-2    2   88          28      35  Alta
-6    6   95          29      33  Alta
-11  11   47          23      62  Baja
-5    5   63          24      55  Baja
-4    4  120          30      30  Alta
-\end{verbatim}
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+\NormalTok{n }\OtherTok{\textless{}{-}} \FunctionTok{nrow}\NormalTok{(datos)}
+\NormalTok{indices\_entrenamiento }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\NormalTok{n, }\AttributeTok{size =} \FunctionTok{round}\NormalTok{(}\FloatTok{0.7} \SpecialCharTok{*}\NormalTok{ n))}
+
+\NormalTok{entrenamiento }\OtherTok{\textless{}{-}}\NormalTok{ datos[indices\_entrenamiento, ]}
+\NormalTok{prueba }\OtherTok{\textless{}{-}}\NormalTok{ datos[}\SpecialCharTok{{-}}\NormalTok{indices\_entrenamiento, ]}
+
+\NormalTok{entrenamiento}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
-  dia pm10 temperatura humedad clase
-1   1   42          25      40  Baja
-7   7   38          21      65  Baja
-8   8  110          31      29  Alta
-9   9   72          27      42  Baja
+#>    dia pm10 temperatura humedad clase
+#> 3    3   55          22      60  Baja
+#> 12  12   99          30      34  Alta
+#> 10  10  130          32      28  Alta
+#> 2    2   88          28      35  Alta
+#> 6    6   95          29      33  Alta
+#> 11  11   47          23      62  Baja
+#> 5    5   63          24      55  Baja
+#> 4    4  120          30      30  Alta
 \end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{prueba}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#>   dia pm10 temperatura humedad clase
+#> 1   1   42          25      40  Baja
+#> 7   7   38          21      65  Baja
+#> 8   8  110          31      29  Alta
+#> 9   9   72          27      42  Baja
+\end{verbatim}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-note-color!10!white, colframe=quarto-callout-note-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Explicación del código}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Se divide la base en dos partes: una para entrenar el modelo y otra para
+evaluar cómo funciona con datos no usados durante el ajuste.
+
+\end{tcolorbox}
 
 \section{Primer clasificador basado en una
 regla}\label{primer-clasificador-basado-en-una-regla}
 
-\begin{verbatim}
-      Predicho
-Real   Alta Baja
-  Alta    6    0
-  Baja    0    6
-\end{verbatim}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{datos}\SpecialCharTok{$}\NormalTok{prediccion\_regla }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{pm10 }\SpecialCharTok{\textgreater{}} \DecValTok{75}\NormalTok{, }\StringTok{"Alta"}\NormalTok{, }\StringTok{"Baja"}\NormalTok{)}
+
+\NormalTok{tabla\_confusion }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(}
+  \AttributeTok{Real =}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{clase,}
+  \AttributeTok{Predicho =}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{prediccion\_regla}
+\NormalTok{)}
+
+\NormalTok{tabla\_confusion}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
-[1] 1
+#>       Predicho
+#> Real   Alta Baja
+#>   Alta    6    0
+#>   Baja    0    6
 \end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{clase }\SpecialCharTok{==}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{prediccion\_regla)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> [1] 1
+\end{verbatim}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Interpretación del resultado}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+La matriz de confusión compara la clase real contra la clase predicha.
+La exactitud mide la proporción de aciertos.
+
+\end{tcolorbox}
 
 \section{Conclusión}\label{conclusiuxf3n}
 
@@ -541,86 +820,500 @@ reales}\label{preparaciuxf3n-de-datos-reales}
 
 \section{Objetivos del capítulo}\label{objetivos-del-capuxedtulo-1}
 
-Al finalizar este capítulo, el lector será capaz de leer una base real,
-seleccionar variables, construir una variable respuesta y guardar una
-base preparada para modelado.
+Al finalizar este capítulo, el lector será capaz de:
+
+\begin{itemize}
+\tightlist
+\item
+  localizar y descargar la base ATUS desde el portal oficial del INEGI;
+\item
+  organizar los archivos dentro del proyecto Quarto;
+\item
+  leer y revisar una base real en R;
+\item
+  seleccionar y transformar variables;
+\item
+  construir una variable respuesta binaria;
+\item
+  guardar una base preparada para los capítulos de modelado;
+\item
+  citar correctamente la fuente de los datos.
+\end{itemize}
 
 \section{Introducción}\label{introducciuxf3n-1}
 
-En la práctica profesional, los datos reales casi nunca vienen
-preparados. Antes de aplicar un algoritmo necesitamos revisar, limpiar,
-transformar y documentar los datos.
+En la práctica profesional, los datos casi nunca llegan preparados para
+aplicar un algoritmo. Antes de modelar debemos conocer su procedencia,
+revisar su estructura, limpiar valores, transformar variables y
+documentar cada decisión.
+
+En este libro utilizamos la \textbf{Estadística de Accidentes de
+Tránsito Terrestre en Zonas Urbanas y Suburbanas (ATUS)} del Instituto
+Nacional de Estadística y Geografía (Instituto Nacional de Estadística y
+Geografía 2025). Su objetivo es producir información anual sobre la
+siniestralidad del transporte terrestre en zonas de jurisdicción no
+federal, con desglose nacional, estatal y municipal.
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-important-color!10!white, colframe=quarto-callout-important-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Uso responsable de la información}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Los datos originales son del INEGI. La limpieza, transformación,
+selección de variables, gráficas, modelos e interpretaciones de este
+libro son elaboración del autor. No constituyen resultados oficiales ni
+implican el aval del Instituto.
+
+\end{tcolorbox}
+
+\section{Descargar la base ATUS desde el
+INEGI}\label{descargar-la-base-atus-desde-el-inegi}
+
+La descarga debe realizarse desde el sitio oficial para conservar la
+procedencia y los metadatos del archivo.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Abra en su navegador el portal de \textbf{Accidentes de Tránsito
+  Terrestre en Zonas Urbanas y Suburbanas (ATUS)}:
+
+  \url{https://www.inegi.org.mx/programas/accidentes/}
+\item
+  Localice el apartado \textbf{Datos abiertos} o la opción de descarga
+  correspondiente.
+\item
+  Seleccione el periodo anual que desea utilizar. Para reproducir los
+  ejemplos de esta versión, elija \textbf{2024}.
+\item
+  Descargue el archivo en formato CSV. Es posible que el portal entregue
+  un archivo comprimido en formato ZIP.
+\item
+  Descomprima el archivo descargado.
+\item
+  Identifique el CSV anual y cópielo en la carpeta \texttt{datos} del
+  proyecto.
+\item
+  Para seguir exactamente los ejemplos, renómbrelo como:
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{atus\_2024.csv}
+\end{Highlighting}
+\end{Shaded}
+
+La estructura mínima del proyecto debe quedar así:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{libro{-}machine{-}learning{-}r{-}dev/}
+\NormalTok{├── \_quarto.yml}
+\NormalTok{├── index.qmd}
+\NormalTok{├── 02{-}preparacion{-}datos.qmd}
+\NormalTok{├── datos/}
+\NormalTok{│   └── atus\_2024.csv}
+\NormalTok{└── referencias.bib}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Otro año de información}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Puede utilizar un año diferente. En ese caso, cambie el nombre del
+archivo o modifique la ruta utilizada en el código. Conviene anotar
+siempre el año de referencia porque los resultados pueden cambiar entre
+periodos.
+
+\end{tcolorbox}
+
+\section{Cómo citar los datos}\label{cuxf3mo-citar-los-datos}
+
+Los términos de libre uso del INEGI permiten utilizar, adaptar y
+publicar su información, pero requieren citar la fuente de origen
+(Instituto Nacional de Estadística y Geografía 2026).
+
+En el texto puede utilizarse una cita como esta:
+
+\begin{quote}
+Los datos proceden de la Estadística de Accidentes de Tránsito Terrestre
+en Zonas Urbanas y Suburbanas del INEGI (Instituto Nacional de
+Estadística y Geografía 2025).
+\end{quote}
+
+Debajo de una tabla o gráfica sin transformaciones importantes:
+
+\begin{quote}
+\textbf{Fuente:} INEGI, Estadística de Accidentes de Tránsito Terrestre
+en Zonas Urbanas y Suburbanas (ATUS), 2024.
+\end{quote}
+
+Cuando exista procesamiento, agrupación, modelado o visualización
+propia:
+
+\begin{quote}
+\textbf{Fuente:} Elaboración propia con datos del INEGI, Estadística de
+Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas (ATUS),
+2024.
+\end{quote}
 
 \section{Cargar paquetes}\label{cargar-paquetes}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(readr)}
+\FunctionTok{library}\NormalTok{(dplyr)}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{library}\NormalTok{(stringr)}
+\FunctionTok{source}\NormalTok{(}\StringTok{"util\_graficas.R"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-note-color!10!white, colframe=quarto-callout-note-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Explicación del código}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Se cargan paquetes para leer archivos CSV, transformar datos, trabajar
+con texto y crear gráficas. El archivo \texttt{util\_graficas.R}
+contiene funciones visuales comunes para mantener un estilo uniforme en
+todo el libro.
+
+\end{tcolorbox}
+
+\section{Localizar el archivo}\label{localizar-el-archivo}
+
+En lugar de depender únicamente de un nombre fijo, el siguiente código
+busca archivos cuyo nombre comience con \texttt{atus} y termine en
+\texttt{.csv}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{archivos\_atus }\OtherTok{\textless{}{-}} \FunctionTok{list.files}\NormalTok{(}
+  \AttributeTok{path =} \StringTok{"datos"}\NormalTok{,}
+  \AttributeTok{pattern =} \StringTok{"\^{}atus.*}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{.csv$"}\NormalTok{,}
+  \AttributeTok{full.names =} \ConstantTok{TRUE}\NormalTok{,}
+  \AttributeTok{ignore.case =} \ConstantTok{TRUE}
+\NormalTok{)}
+
+\NormalTok{archivos\_atus}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> [1] "datos/atus_2024.csv"         "datos/atus_ml_preparado.csv"
+\end{verbatim}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Interpretación}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Si aparece al menos una ruta, R encontró un archivo ATUS. Si el
+resultado es \texttt{character(0)}, revise que el archivo esté
+descomprimido y guardado dentro de la carpeta \texttt{datos}.
+
+\end{tcolorbox}
+
 \section{Leer el archivo CSV}\label{leer-el-archivo-csv}
 
-\begin{verbatim}
-[1] TRUE
-\end{verbatim}
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{length}\NormalTok{(archivos\_atus) }\SpecialCharTok{==} \DecValTok{0}\NormalTok{) \{}
+  \FunctionTok{stop}\NormalTok{(}
+    \FunctionTok{paste}\NormalTok{(}
+      \StringTok{"No se encontró un archivo ATUS en la carpeta datos."}\NormalTok{,}
+      \StringTok{"Descárguelo desde el portal oficial del INEGI y descomprímalo."}
+\NormalTok{    )}
+\NormalTok{  )}
+\NormalTok{\}}
 
-\begin{verbatim}
-[1] "Archivo leído correctamente."
-\end{verbatim}
+\NormalTok{ruta\_atus }\OtherTok{\textless{}{-}}\NormalTok{ archivos\_atus[}\DecValTok{1}\NormalTok{]}
+
+\NormalTok{atus }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}
+  \AttributeTok{file =}\NormalTok{ ruta\_atus,}
+  \AttributeTok{show\_col\_types =} \ConstantTok{FALSE}\NormalTok{,}
+  \AttributeTok{locale =} \FunctionTok{locale}\NormalTok{(}\AttributeTok{encoding =} \StringTok{"UTF{-}8"}\NormalTok{)}
+\NormalTok{)}
+
+\FunctionTok{message}\NormalTok{(}\StringTok{"Archivo leído: "}\NormalTok{, ruta\_atus)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-note-color!10!white, colframe=quarto-callout-note-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Explicación del código}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Se selecciona el primer archivo localizado y se lee con
+\texttt{read\_csv()}. El argumento \texttt{show\_col\_types\ =\ FALSE}
+evita imprimir mensajes técnicos que distraen de los resultados
+principales.
+
+\end{tcolorbox}
 
 \section{Primer vistazo a los datos}\label{primer-vistazo-a-los-datos}
 
-\begin{verbatim}
-# A tibble: 6 x 45
-  COBERTURA ID_ENTIDAD ID_MUNICIPIO  ANIO MES   ID_HORA ID_MINUTO ID_DIA
-  <chr>     <chr>      <chr>        <dbl> <chr> <chr>   <chr>     <chr> 
-1 Municipal 01         001           2024 01    02      25        01    
-2 Municipal 01         001           2024 01    03      40        01    
-3 Municipal 01         001           2024 01    04      37        01    
-4 Municipal 01         001           2024 01    05      00        01    
-5 Municipal 01         001           2024 01    06      45        01    
-6 Municipal 01         001           2024 01    07      30        01    
-# i 37 more variables: DIASEMANA <chr>, URBANA <chr>, SUBURBANA <chr>,
-#   TIPACCID <chr>, AUTOMOVIL <dbl>, CAMPASAJ <dbl>, MICROBUS <dbl>,
-#   PASCAMION <dbl>, OMNIBUS <dbl>, TRANVIA <dbl>, CAMIONETA <dbl>,
-#   CAMION <dbl>, TRACTOR <dbl>, FERROCARRI <dbl>, MOTOCICLET <dbl>,
-#   BICICLETA <dbl>, OTROVEHIC <dbl>, CAUSAACCI <chr>, CAPAROD <chr>,
-#   SEXO <chr>, ALIENTO <chr>, CINTURON <chr>, ID_EDAD <dbl>, CONDMUERTO <dbl>,
-#   CONDHERIDO <dbl>, PASAMUERTO <dbl>, PASAHERIDO <dbl>, PEATMUERTO <dbl>, ...
-\end{verbatim}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{resumen\_dimensiones }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{filas =} \FunctionTok{nrow}\NormalTok{(atus),}
+  \AttributeTok{columnas =} \FunctionTok{ncol}\NormalTok{(atus)}
+\NormalTok{)}
 
-\section{Variables de interés}\label{variables-de-interuxe9s}
+\NormalTok{resumen\_dimensiones}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
-# A tibble: 6 x 10
-   ANIO MES   ID_ENTIDAD ID_MUNICIPIO ID_HORA ID_DIA DIASEMANA TIPACCID         
-  <dbl> <chr> <chr>      <chr>        <chr>   <chr>  <chr>     <chr>            
-1  2024 01    01         001          02      01     lunes     Colisión con veh~
-2  2024 01    01         001          03      01     lunes     Colisión con obj~
-3  2024 01    01         001          04      01     lunes     Colisión con pea~
-4  2024 01    01         001          05      01     lunes     Colisión con obj~
-5  2024 01    01         001          06      01     lunes     Colisión con obj~
-6  2024 01    01         001          07      01     lunes     Colisión con veh~
-# i 2 more variables: CAUSAACCI <chr>, CLASACC <chr>
+#>    filas columnas
+#> 1 390627       45
 \end{verbatim}
 
-\section{Crear variable respuesta}\label{crear-variable-respuesta}
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{head}\NormalTok{(atus)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
-
-Con víctimas   Solo daños 
-       68108       322519 
+#> # A tibble: 6 x 45
+#>   COBERTURA ID_ENTIDAD ID_MUNICIPIO  ANIO MES   ID_HORA ID_MINUTO ID_DIA
+#>   <chr>     <chr>      <chr>        <dbl> <chr> <chr>   <chr>     <chr> 
+#> 1 Municipal 01         001           2024 01    02      25        01    
+#> 2 Municipal 01         001           2024 01    03      40        01    
+#> 3 Municipal 01         001           2024 01    04      37        01    
+#> 4 Municipal 01         001           2024 01    05      00        01    
+#> 5 Municipal 01         001           2024 01    06      45        01    
+#> 6 Municipal 01         001           2024 01    07      30        01    
+#> # i 37 more variables: DIASEMANA <chr>, URBANA <chr>, SUBURBANA <chr>,
+#> #   TIPACCID <chr>, AUTOMOVIL <dbl>, CAMPASAJ <dbl>, MICROBUS <dbl>,
+#> #   PASCAMION <dbl>, OMNIBUS <dbl>, TRANVIA <dbl>, CAMIONETA <dbl>,
+#> #   CAMION <dbl>, TRACTOR <dbl>, FERROCARRI <dbl>, MOTOCICLET <dbl>,
+#> #   BICICLETA <dbl>, OTROVEHIC <dbl>, CAUSAACCI <chr>, CAPAROD <chr>,
+#> #   SEXO <chr>, ALIENTO <chr>, CINTURON <chr>, ID_EDAD <dbl>, CONDMUERTO <dbl>,
+#> #   CONDHERIDO <dbl>, PASAMUERTO <dbl>, PASAHERIDO <dbl>, PEATMUERTO <dbl>, ...
 \end{verbatim}
 
-\section{Preparar variables finales}\label{preparar-variables-finales}
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Interpretación}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Las filas representan registros de accidentes y las columnas describen
+sus características temporales, geográficas y operativas. Antes de
+modelar es indispensable confirmar que las variables esperadas estén
+disponibles.
+
+\end{tcolorbox}
+
+\section{Normalizar los nombres de
+variables}\label{normalizar-los-nombres-de-variables}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{names}\NormalTok{(atus) }\OtherTok{\textless{}{-}} \FunctionTok{toupper}\NormalTok{(}\FunctionTok{names}\NormalTok{(atus))}
+\FunctionTok{names}\NormalTok{(atus)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
-   filas columnas
-1 390627        6
+#>  [1] "COBERTURA"    "ID_ENTIDAD"   "ID_MUNICIPIO" "ANIO"         "MES"         
+#>  [6] "ID_HORA"      "ID_MINUTO"    "ID_DIA"       "DIASEMANA"    "URBANA"      
+#> [11] "SUBURBANA"    "TIPACCID"     "AUTOMOVIL"    "CAMPASAJ"     "MICROBUS"    
+#> [16] "PASCAMION"    "OMNIBUS"      "TRANVIA"      "CAMIONETA"    "CAMION"      
+#> [21] "TRACTOR"      "FERROCARRI"   "MOTOCICLET"   "BICICLETA"    "OTROVEHIC"   
+#> [26] "CAUSAACCI"    "CAPAROD"      "SEXO"         "ALIENTO"      "CINTURON"    
+#> [31] "ID_EDAD"      "CONDMUERTO"   "CONDHERIDO"   "PASAMUERTO"   "PASAHERIDO"  
+#> [36] "PEATMUERTO"   "PEATHERIDO"   "CICLMUERTO"   "CICLHERIDO"   "OTROMUERTO"  
+#> [41] "OTROHERIDO"   "NEMUERTO"     "NEHERIDO"     "CLASACC"      "ESTATUS"
 \end{verbatim}
 
-\section{Guardar base preparada}\label{guardar-base-preparada}
+Se convierten los nombres a mayúsculas para evitar errores por
+diferencias como \texttt{Mes}, \texttt{MES} o \texttt{mes}.
+
+\section{Seleccionar variables de
+interés}\label{seleccionar-variables-de-interuxe9s}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{variables\_interes }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}
+  \StringTok{"ANIO"}\NormalTok{, }\StringTok{"MES"}\NormalTok{, }\StringTok{"ID\_ENTIDAD"}\NormalTok{, }\StringTok{"ID\_MUNICIPIO"}\NormalTok{,}
+  \StringTok{"ID\_HORA"}\NormalTok{, }\StringTok{"ID\_DIA"}\NormalTok{, }\StringTok{"DIASEMANA"}\NormalTok{, }\StringTok{"TIPACCID"}\NormalTok{,}
+  \StringTok{"CAUSAACCI"}\NormalTok{, }\StringTok{"CLASACC"}
+\NormalTok{)}
+
+\NormalTok{variables\_existentes }\OtherTok{\textless{}{-}} \FunctionTok{intersect}\NormalTok{(}
+\NormalTok{  variables\_interes,}
+  \FunctionTok{names}\NormalTok{(atus)}
+\NormalTok{)}
+
+\NormalTok{variables\_faltantes }\OtherTok{\textless{}{-}} \FunctionTok{setdiff}\NormalTok{(}
+\NormalTok{  variables\_interes,}
+  \FunctionTok{names}\NormalTok{(atus)}
+\NormalTok{)}
+
+\NormalTok{atus\_base }\OtherTok{\textless{}{-}}\NormalTok{ atus }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{select}\NormalTok{(}\FunctionTok{all\_of}\NormalTok{(variables\_existentes))}
+
+\NormalTok{variables\_existentes}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#>  [1] "ANIO"         "MES"          "ID_ENTIDAD"   "ID_MUNICIPIO" "ID_HORA"     
+#>  [6] "ID_DIA"       "DIASEMANA"    "TIPACCID"     "CAUSAACCI"    "CLASACC"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{variables\_faltantes}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> character(0)
+\end{verbatim}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-warning-color!10!white, colframe=quarto-callout-warning-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-warning-color}{\faExclamationTriangle}\hspace{0.5em}{Compruebe el diccionario de datos}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Los nombres y categorías pueden variar entre versiones. Si aparece una
+variable faltante, consulte los metadatos y el diccionario de datos
+descargados junto con la base antes de sustituirla.
+
+\end{tcolorbox}
+
+\section{Crear la variable respuesta}\label{crear-la-variable-respuesta}
+
+El primer problema de clasificación distinguirá entre:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Con víctimas:} accidentes fatales o no fatales con personas
+  lesionadas o fallecidas.
+\item
+  \textbf{Solo daños:} accidentes con daños materiales sin víctimas
+  registradas.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{atus\_modelo }\OtherTok{\textless{}{-}}\NormalTok{ atus\_base }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{CLASACC\_TXT =} \FunctionTok{str\_to\_lower}\NormalTok{(}\FunctionTok{as.character}\NormalTok{(CLASACC)),}
+    \AttributeTok{accidente\_con\_victimas =} \FunctionTok{case\_when}\NormalTok{(}
+      \FunctionTok{str\_detect}\NormalTok{(CLASACC\_TXT, }\StringTok{"sólo daños"}\NormalTok{) }\SpecialCharTok{\textasciitilde{}} \StringTok{"Solo daños"}\NormalTok{,}
+      \FunctionTok{str\_detect}\NormalTok{(CLASACC\_TXT, }\StringTok{"solo daños"}\NormalTok{) }\SpecialCharTok{\textasciitilde{}} \StringTok{"Solo daños"}\NormalTok{,}
+      \FunctionTok{str\_detect}\NormalTok{(CLASACC\_TXT, }\StringTok{"daños"}\NormalTok{) }\SpecialCharTok{\textasciitilde{}} \StringTok{"Solo daños"}\NormalTok{,}
+      \FunctionTok{str\_detect}\NormalTok{(CLASACC\_TXT, }\StringTok{"no fatal"}\NormalTok{) }\SpecialCharTok{\textasciitilde{}} \StringTok{"Con víctimas"}\NormalTok{,}
+      \FunctionTok{str\_detect}\NormalTok{(CLASACC\_TXT, }\StringTok{"fatal"}\NormalTok{) }\SpecialCharTok{\textasciitilde{}} \StringTok{"Con víctimas"}\NormalTok{,}
+      \ConstantTok{TRUE} \SpecialCharTok{\textasciitilde{}} \ConstantTok{NA\_character\_}
+\NormalTok{    )}
+\NormalTok{  ) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(accidente\_con\_victimas))}
+
+\FunctionTok{table}\NormalTok{(atus\_modelo}\SpecialCharTok{$}\NormalTok{accidente\_con\_victimas)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> 
+#> Con víctimas   Solo daños 
+#>        68108       322519
+\end{verbatim}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-note-color!10!white, colframe=quarto-callout-note-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Explicación del código}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+La variable \texttt{CLASACC} se transforma en una respuesta binaria.
+\texttt{case\_when()} asigna una nueva categoría según el texto
+encontrado y los registros que no pueden clasificarse se excluyen
+temporalmente.
+
+\end{tcolorbox}
+
+\section{Preparar las variables
+finales}\label{preparar-las-variables-finales}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{atus\_ml }\OtherTok{\textless{}{-}}\NormalTok{ atus\_modelo }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{MES =} \FunctionTok{as.factor}\NormalTok{(MES),}
+    \AttributeTok{ID\_HORA =} \FunctionTok{as.character}\NormalTok{(ID\_HORA),}
+    \AttributeTok{DIASEMANA =} \FunctionTok{as.factor}\NormalTok{(DIASEMANA),}
+    \AttributeTok{TIPACCID =} \FunctionTok{as.factor}\NormalTok{(TIPACCID),}
+    \AttributeTok{CAUSAACCI =} \FunctionTok{as.factor}\NormalTok{(CAUSAACCI),}
+    \AttributeTok{accidente\_con\_victimas =} \FunctionTok{factor}\NormalTok{(}
+\NormalTok{      accidente\_con\_victimas,}
+      \AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Con víctimas"}\NormalTok{, }\StringTok{"Solo daños"}\NormalTok{)}
+\NormalTok{    )}
+\NormalTok{  ) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{select}\NormalTok{(}
+\NormalTok{    accidente\_con\_victimas,}
+\NormalTok{    MES,}
+\NormalTok{    ID\_HORA,}
+\NormalTok{    DIASEMANA,}
+\NormalTok{    TIPACCID,}
+\NormalTok{    CAUSAACCI}
+\NormalTok{  ) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{na.omit}\NormalTok{()}
+
+\FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{filas =} \FunctionTok{nrow}\NormalTok{(atus\_ml),}
+  \AttributeTok{columnas =} \FunctionTok{ncol}\NormalTok{(atus\_ml)}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#>    filas columnas
+#> 1 390627        6
+\end{verbatim}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Interpretación}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+La base final queda lista para el análisis exploratorio y el modelado.
+Cada fila representa un accidente y cada columna una variable predictora
+o la respuesta que se desea clasificar.
+
+\end{tcolorbox}
+
+\section{Guardar la base preparada}\label{guardar-la-base-preparada}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{dir.exists}\NormalTok{(}\StringTok{"datos"}\NormalTok{)) \{}
+  \FunctionTok{dir.create}\NormalTok{(}\StringTok{"datos"}\NormalTok{)}
+\NormalTok{\}}
+
+\FunctionTok{write\_csv}\NormalTok{(}
+\NormalTok{  atus\_ml,}
+  \StringTok{"datos/atus\_ml\_preparado.csv"}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-note-color!10!white, colframe=quarto-callout-note-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Explicación del código}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Guardar la base preparada evita repetir toda la limpieza en los
+capítulos siguientes y ayuda a mantener reproducible el flujo de
+trabajo.
+
+\end{tcolorbox}
+
+\section{Lista de comprobación}\label{lista-de-comprobaciuxf3n}
+
+Antes de continuar, verifique que:
+
+\begin{itemize}
+\tightlist
+\item
+  el archivo proviene del portal oficial del INEGI;
+\item
+  el año de los datos está documentado;
+\item
+  el CSV se encuentra dentro de \texttt{datos};
+\item
+  las variables usadas existen en la versión descargada;
+\item
+  la transformación de \texttt{CLASACC} corresponde con su diccionario;
+\item
+  las tablas y gráficas incluyen la fuente;
+\item
+  el archivo \texttt{atus\_ml\_preparado.csv} se creó correctamente.
+\end{itemize}
 
 \section{Resumen del capítulo}\label{resumen-del-capuxedtulo}
 
-En este capítulo leímos una base real, seleccionamos variables,
-construimos una variable respuesta y guardamos una base preparada para
-aprendizaje automático.
+En este capítulo descargamos y documentamos una base real del INEGI,
+verificamos su ubicación, seleccionamos variables, construimos una
+respuesta binaria y guardamos una base preparada para aprendizaje
+automático.
 
 \bookmarksetup{startatroot}
 
@@ -635,14 +1328,70 @@ gráficas e interpretar patrones iniciales.
 
 \section{Cargar paquetes y base}\label{cargar-paquetes-y-base}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(readr)}
+\FunctionTok{library}\NormalTok{(dplyr)}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{source}\NormalTok{(}\StringTok{"util\_graficas.R"}\NormalTok{)}
+
+\NormalTok{ruta\_atus\_ml }\OtherTok{\textless{}{-}} \StringTok{"datos/atus\_ml\_preparado.csv"}
+
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{file.exists}\NormalTok{(ruta\_atus\_ml)) \{}
+\NormalTok{  atus\_ml }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(ruta\_atus\_ml, }\AttributeTok{show\_col\_types =} \ConstantTok{FALSE}\NormalTok{)}
+  \FunctionTok{print}\NormalTok{(}\StringTok{"Base preparada cargada correctamente."}\NormalTok{)}
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{  atus\_ml }\OtherTok{\textless{}{-}} \ConstantTok{NULL}
+  \FunctionTok{print}\NormalTok{(}\StringTok{"No se encontró el archivo datos/atus\_ml\_preparado.csv. Ejecuta primero el capítulo 2."}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 [1] "Base preparada cargada correctamente."
 \end{verbatim}
 
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-note-color!10!white, colframe=quarto-callout-note-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Explicación del código}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Se carga la base preparada en el capítulo anterior. Esto permite empezar
+directamente con el análisis exploratorio.
+
+\end{tcolorbox}
+
 \section{Preparar variables}\label{preparar-variables}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(atus\_ml)) \{}
+\NormalTok{  atus\_ml }\OtherTok{\textless{}{-}}\NormalTok{ atus\_ml }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{mutate}\NormalTok{(}
+      \AttributeTok{ID\_HORA\_NUM =} \FunctionTok{as.numeric}\NormalTok{(ID\_HORA),}
+      \AttributeTok{MES\_NUM =} \FunctionTok{as.numeric}\NormalTok{(MES),}
+      \AttributeTok{MES\_FACTOR =} \FunctionTok{factor}\NormalTok{(}\FunctionTok{sprintf}\NormalTok{(}\StringTok{"\%02d"}\NormalTok{, MES\_NUM), }\AttributeTok{levels =} \FunctionTok{sprintf}\NormalTok{(}\StringTok{"\%02d"}\NormalTok{, }\DecValTok{1}\SpecialCharTok{:}\DecValTok{12}\NormalTok{)),}
+      \AttributeTok{accidente\_con\_victimas =} \FunctionTok{factor}\NormalTok{(accidente\_con\_victimas, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Con víctimas"}\NormalTok{, }\StringTok{"Solo daños"}\NormalTok{))}
+\NormalTok{    )}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-note-color!10!white, colframe=quarto-callout-note-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Explicación del código}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Se crean variables numéricas y factores ordenados para facilitar tablas
+y gráficas.
+
+\end{tcolorbox}
 
 \section{Distribución de la variable
 respuesta}\label{distribuciuxf3n-de-la-variable-respuesta}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(atus\_ml)) \{}
+\NormalTok{  tabla\_clase }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(atus\_ml}\SpecialCharTok{$}\NormalTok{accidente\_con\_victimas)}
+  \FunctionTok{round}\NormalTok{(}\DecValTok{100} \SpecialCharTok{*} \FunctionTok{prop.table}\NormalTok{(tabla\_clase), }\DecValTok{2}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 
@@ -650,9 +1399,45 @@ Con víctimas   Solo daños
        17.44        82.56 
 \end{verbatim}
 
-\pandocbounded{\includegraphics[keepaspectratio]{03-analisis-exploratorio_files/figure-pdf/unnamed-chunk-4-1.png}}
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(atus\_ml)) \{}
+  \FunctionTok{ggplot}\NormalTok{(atus\_ml, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ accidente\_con\_victimas, }\AttributeTok{fill =}\NormalTok{ accidente\_con\_victimas)) }\SpecialCharTok{+}
+    \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{width =} \FloatTok{0.7}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{escala\_clases\_fill}\NormalTok{() }\SpecialCharTok{+}
+    \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{labels =}\NormalTok{ etiqueta\_numero) }\SpecialCharTok{+}
+    \FunctionTok{labs}\NormalTok{(}
+      \AttributeTok{title =} \StringTok{"Distribución de accidentes según presencia de víctimas"}\NormalTok{,}
+      \AttributeTok{subtitle =} \StringTok{"Comparación entre clases"}\NormalTok{,}
+      \AttributeTok{x =} \StringTok{"Clase"}\NormalTok{,}
+      \AttributeTok{y =} \StringTok{"Número de accidentes"}\NormalTok{,}
+      \AttributeTok{fill =} \StringTok{"Clase"}
+\NormalTok{    ) }\SpecialCharTok{+}
+    \FunctionTok{tema\_libro}\NormalTok{() }\SpecialCharTok{+}
+    \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position =} \StringTok{"none"}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=0.92\linewidth,height=\textheight,keepaspectratio]{03-analisis-exploratorio_files/figure-pdf/distribucion-respuesta-1.png}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Interpretación del resultado}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+La base está desbalanceada: hay más accidentes de solo daños que
+accidentes con víctimas. Esto será importante al evaluar modelos.
+
+\end{tcolorbox}
 
 \section{Accidentes por mes}\label{accidentes-por-mes}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(atus\_ml)) \{}
+\NormalTok{  accidentes\_mes }\OtherTok{\textless{}{-}}\NormalTok{ atus\_ml }\SpecialCharTok{|\textgreater{}} \FunctionTok{count}\NormalTok{(MES\_FACTOR, }\AttributeTok{name =} \StringTok{"n"}\NormalTok{) }\SpecialCharTok{|\textgreater{}} \FunctionTok{arrange}\NormalTok{(MES\_FACTOR)}
+\NormalTok{  accidentes\_mes}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 # A tibble: 12 x 2
@@ -672,22 +1457,126 @@ Con víctimas   Solo daños
 12 12         33483
 \end{verbatim}
 
-\pandocbounded{\includegraphics[keepaspectratio]{03-analisis-exploratorio_files/figure-pdf/unnamed-chunk-6-1.png}}
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"accidentes\_mes"}\NormalTok{)) \{}
+  \FunctionTok{ggplot}\NormalTok{(accidentes\_mes, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ MES\_FACTOR, }\AttributeTok{y =}\NormalTok{ n)) }\SpecialCharTok{+}
+    \FunctionTok{geom\_col}\NormalTok{(}\AttributeTok{fill =}\NormalTok{ col\_azul, }\AttributeTok{width =} \FloatTok{0.75}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{labels =}\NormalTok{ etiqueta\_numero) }\SpecialCharTok{+}
+    \FunctionTok{labs}\NormalTok{(}
+      \AttributeTok{title =} \StringTok{"Número de accidentes por mes"}\NormalTok{,}
+      \AttributeTok{subtitle =} \StringTok{"Base ATUS preparada"}\NormalTok{,}
+      \AttributeTok{x =} \StringTok{"Mes"}\NormalTok{,}
+      \AttributeTok{y =} \StringTok{"Número de accidentes"}
+\NormalTok{    ) }\SpecialCharTok{+}
+    \FunctionTok{tema\_libro}\NormalTok{()}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=0.92\linewidth,height=\textheight,keepaspectratio]{03-analisis-exploratorio_files/figure-pdf/accidentes-mes-1.png}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-note-color!10!white, colframe=quarto-callout-note-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Explicación del código}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Se cuentan los accidentes por mes y se visualizan con barras. El eje
+vertical usa separadores de miles para facilitar la lectura.
+
+\end{tcolorbox}
 
 \section{Accidentes por hora del
 día}\label{accidentes-por-hora-del-duxeda}
 
-\pandocbounded{\includegraphics[keepaspectratio]{03-analisis-exploratorio_files/figure-pdf/unnamed-chunk-7-1.png}}
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(atus\_ml)) \{}
+\NormalTok{  accidentes\_hora }\OtherTok{\textless{}{-}}\NormalTok{ atus\_ml }\SpecialCharTok{|\textgreater{}} \FunctionTok{count}\NormalTok{(ID\_HORA\_NUM, }\AttributeTok{name =} \StringTok{"n"}\NormalTok{) }\SpecialCharTok{|\textgreater{}} \FunctionTok{arrange}\NormalTok{(ID\_HORA\_NUM)}
+
+  \FunctionTok{ggplot}\NormalTok{(accidentes\_hora, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ ID\_HORA\_NUM, }\AttributeTok{y =}\NormalTok{ n)) }\SpecialCharTok{+}
+    \FunctionTok{geom\_col}\NormalTok{(}\AttributeTok{fill =}\NormalTok{ col\_turquesa, }\AttributeTok{width =} \FloatTok{0.75}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{breaks =} \DecValTok{0}\SpecialCharTok{:}\DecValTok{23}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{labels =}\NormalTok{ etiqueta\_numero) }\SpecialCharTok{+}
+    \FunctionTok{labs}\NormalTok{(}
+      \AttributeTok{title =} \StringTok{"Número de accidentes por hora del día"}\NormalTok{,}
+      \AttributeTok{x =} \StringTok{"Hora del día"}\NormalTok{,}
+      \AttributeTok{y =} \StringTok{"Número de accidentes"}
+\NormalTok{    ) }\SpecialCharTok{+}
+    \FunctionTok{tema\_libro}\NormalTok{()}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=0.92\linewidth,height=\textheight,keepaspectratio]{03-analisis-exploratorio_files/figure-pdf/accidentes-hora-1.png}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Interpretación del resultado}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+La gráfica permite detectar horas con mayor concentración de accidentes.
+
+\end{tcolorbox}
 
 \section{Tipos de accidente más
 frecuentes}\label{tipos-de-accidente-muxe1s-frecuentes}
 
-\pandocbounded{\includegraphics[keepaspectratio]{03-analisis-exploratorio_files/figure-pdf/unnamed-chunk-8-1.png}}
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(atus\_ml)) \{}
+\NormalTok{  accidentes\_tipo\_top }\OtherTok{\textless{}{-}}\NormalTok{ atus\_ml }\SpecialCharTok{|\textgreater{}} \FunctionTok{count}\NormalTok{(TIPACCID, }\AttributeTok{name =} \StringTok{"n"}\NormalTok{) }\SpecialCharTok{|\textgreater{}} \FunctionTok{slice\_max}\NormalTok{(n, }\AttributeTok{n =} \DecValTok{10}\NormalTok{)}
+
+  \FunctionTok{ggplot}\NormalTok{(accidentes\_tipo\_top, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =} \FunctionTok{reorder}\NormalTok{(TIPACCID, n), }\AttributeTok{y =}\NormalTok{ n)) }\SpecialCharTok{+}
+    \FunctionTok{geom\_col}\NormalTok{(}\AttributeTok{fill =}\NormalTok{ col\_azul, }\AttributeTok{width =} \FloatTok{0.75}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{coord\_flip}\NormalTok{() }\SpecialCharTok{+}
+    \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{labels =}\NormalTok{ etiqueta\_numero) }\SpecialCharTok{+}
+    \FunctionTok{labs}\NormalTok{(}
+      \AttributeTok{title =} \StringTok{"Tipos de accidente más frecuentes"}\NormalTok{,}
+      \AttributeTok{x =} \StringTok{"Tipo de accidente"}\NormalTok{,}
+      \AttributeTok{y =} \StringTok{"Número de accidentes"}
+\NormalTok{    ) }\SpecialCharTok{+}
+    \FunctionTok{tema\_libro}\NormalTok{()}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=0.92\linewidth,height=\textheight,keepaspectratio]{03-analisis-exploratorio_files/figure-pdf/tipos-accidente-1.png}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-note-color!10!white, colframe=quarto-callout-note-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Explicación del código}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Se seleccionan los diez tipos de accidente con mayor frecuencia para
+evitar una gráfica saturada.
+
+\end{tcolorbox}
 
 \section{Proporción por tipo de
 accidente}\label{proporciuxf3n-por-tipo-de-accidente}
 
-\pandocbounded{\includegraphics[keepaspectratio]{03-analisis-exploratorio_files/figure-pdf/unnamed-chunk-9-1.png}}
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(atus\_ml)) \{}
+\NormalTok{  tipos\_top }\OtherTok{\textless{}{-}}\NormalTok{ atus\_ml }\SpecialCharTok{|\textgreater{}} \FunctionTok{count}\NormalTok{(TIPACCID) }\SpecialCharTok{|\textgreater{}} \FunctionTok{slice\_max}\NormalTok{(n, }\AttributeTok{n =} \DecValTok{10}\NormalTok{) }\SpecialCharTok{|\textgreater{}} \FunctionTok{pull}\NormalTok{(TIPACCID)}
+\NormalTok{  atus\_tipo\_top }\OtherTok{\textless{}{-}}\NormalTok{ atus\_ml }\SpecialCharTok{|\textgreater{}} \FunctionTok{filter}\NormalTok{(TIPACCID }\SpecialCharTok{\%in\%}\NormalTok{ tipos\_top)}
+
+  \FunctionTok{ggplot}\NormalTok{(atus\_tipo\_top, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ TIPACCID, }\AttributeTok{fill =}\NormalTok{ accidente\_con\_victimas)) }\SpecialCharTok{+}
+    \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{position =} \StringTok{"fill"}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{coord\_flip}\NormalTok{() }\SpecialCharTok{+}
+    \FunctionTok{escala\_clases\_fill}\NormalTok{() }\SpecialCharTok{+}
+    \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{labels =}\NormalTok{ etiqueta\_porcentaje) }\SpecialCharTok{+}
+    \FunctionTok{labs}\NormalTok{(}
+      \AttributeTok{title =} \StringTok{"Proporción de accidentes con víctimas según tipo de accidente"}\NormalTok{,}
+      \AttributeTok{x =} \StringTok{"Tipo de accidente"}\NormalTok{,}
+      \AttributeTok{y =} \StringTok{"Proporción"}\NormalTok{,}
+      \AttributeTok{fill =} \StringTok{"Clase"}
+\NormalTok{    ) }\SpecialCharTok{+}
+    \FunctionTok{tema\_libro}\NormalTok{()}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=0.92\linewidth,height=\textheight,keepaspectratio]{03-analisis-exploratorio_files/figure-pdf/proporcion-tipo-1.png}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Interpretación del resultado}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Esta gráfica compara proporciones, no cantidades absolutas. Permite
+identificar tipos de accidente con mayor presencia relativa de víctimas.
+
+\end{tcolorbox}
 
 \section{Conclusión}\label{conclusiuxf3n-1}
 
@@ -709,63 +1598,233 @@ regresión logística, predecir probabilidades y evaluar el desempeño.
 La regresión logística utiliza la función:
 
 \[
-p=\frac{1}{1+e^{-z}}
+p = \frac{1}{1 + e^{-z}}
 \]
 
-donde \(z=\beta_0+\beta_1x_1+\cdots+\beta_px_p\).
+donde \(z = \beta_0 + \beta_1x_1 + \cdots + \beta_px_p\).
 
 \section{Visualización de la función
 logística}\label{visualizaciuxf3n-de-la-funciuxf3n-loguxedstica}
 
-\pandocbounded{\includegraphics[keepaspectratio]{04-regresion-logistica_files/figure-pdf/unnamed-chunk-1-1.png}}
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{source}\NormalTok{(}\StringTok{"util\_graficas.R"}\NormalTok{)}
+
+\NormalTok{z }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{10}\NormalTok{, }\DecValTok{10}\NormalTok{, }\AttributeTok{length.out =} \DecValTok{200}\NormalTok{)}
+\NormalTok{datos\_logistica }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{z =}\NormalTok{ z, }\AttributeTok{p =} \DecValTok{1} \SpecialCharTok{/}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{+} \FunctionTok{exp}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{z)))}
+
+\FunctionTok{ggplot}\NormalTok{(datos\_logistica, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ z, }\AttributeTok{y =}\NormalTok{ p)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{(}\AttributeTok{linewidth =} \FloatTok{1.2}\NormalTok{, }\AttributeTok{color =}\NormalTok{ col\_azul) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"Función logística"}\NormalTok{,}
+    \AttributeTok{subtitle =} \StringTok{"Transforma valores reales en probabilidades"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{"z"}\NormalTok{,}
+    \AttributeTok{y =} \StringTok{"Probabilidad"}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{tema\_libro}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=0.92\linewidth,height=\textheight,keepaspectratio]{04-regresion-logistica_files/figure-pdf/grafica-logistica-1.png}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-note-color!10!white, colframe=quarto-callout-note-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Explicación del código}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Se genera una secuencia de valores para \(z\) y se calcula su
+probabilidad usando la función logística.
+
+\end{tcolorbox}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Interpretación del resultado}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+La curva tiene forma de S. Valores negativos producen probabilidades
+cercanas a cero y valores positivos probabilidades cercanas a uno.
+
+\end{tcolorbox}
 
 \section{Cargar paquetes y datos}\label{cargar-paquetes-y-datos}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(readr)}
+\FunctionTok{library}\NormalTok{(dplyr)}
+\FunctionTok{source}\NormalTok{(}\StringTok{"util\_graficas.R"}\NormalTok{)}
+
+\NormalTok{ruta\_atus\_ml }\OtherTok{\textless{}{-}} \StringTok{"datos/atus\_ml\_preparado.csv"}
+
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{file.exists}\NormalTok{(ruta\_atus\_ml)) \{}
+\NormalTok{  atus\_ml }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(ruta\_atus\_ml, }\AttributeTok{show\_col\_types =} \ConstantTok{FALSE}\NormalTok{)}
+  \FunctionTok{print}\NormalTok{(}\StringTok{"Base preparada cargada correctamente."}\NormalTok{)}
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{  atus\_ml }\OtherTok{\textless{}{-}} \ConstantTok{NULL}
+  \FunctionTok{print}\NormalTok{(}\StringTok{"No se encontró el archivo datos/atus\_ml\_preparado.csv. Ejecuta primero el capítulo 2."}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
-[1] "Base preparada cargada correctamente."
+#> [1] "Base preparada cargada correctamente."
 \end{verbatim}
 
 \section{Preparar y dividir datos}\label{preparar-y-dividir-datos}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(atus\_ml)) \{}
+\NormalTok{  atus\_modelo }\OtherTok{\textless{}{-}}\NormalTok{ atus\_ml }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{mutate}\NormalTok{(}
+      \AttributeTok{victimas\_binaria =} \FunctionTok{ifelse}\NormalTok{(accidente\_con\_victimas }\SpecialCharTok{==} \StringTok{"Con víctimas"}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{),}
+      \AttributeTok{MES =} \FunctionTok{as.factor}\NormalTok{(MES),}
+      \AttributeTok{ID\_HORA =} \FunctionTok{as.numeric}\NormalTok{(ID\_HORA),}
+      \AttributeTok{DIASEMANA =} \FunctionTok{as.factor}\NormalTok{(DIASEMANA),}
+      \AttributeTok{TIPACCID =} \FunctionTok{as.factor}\NormalTok{(TIPACCID),}
+      \AttributeTok{CAUSAACCI =} \FunctionTok{as.factor}\NormalTok{(CAUSAACCI),}
+      \AttributeTok{accidente\_con\_victimas =} \FunctionTok{factor}\NormalTok{(accidente\_con\_victimas, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Con víctimas"}\NormalTok{, }\StringTok{"Solo daños"}\NormalTok{))}
+\NormalTok{    )}
+
+  \FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+\NormalTok{  idx }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(atus\_modelo), }\AttributeTok{size =} \FunctionTok{round}\NormalTok{(}\FloatTok{0.7} \SpecialCharTok{*} \FunctionTok{nrow}\NormalTok{(atus\_modelo)))}
+\NormalTok{  entrenamiento }\OtherTok{\textless{}{-}}\NormalTok{ atus\_modelo[idx, ]}
+\NormalTok{  prueba }\OtherTok{\textless{}{-}}\NormalTok{ atus\_modelo[}\SpecialCharTok{{-}}\NormalTok{idx, ]}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-note-color!10!white, colframe=quarto-callout-note-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Explicación del código}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+La variable respuesta se transforma a binaria y la base se divide en
+entrenamiento y prueba.
+
+\end{tcolorbox}
+
 \section{Ajustar modelo}\label{ajustar-modelo}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"entrenamiento"}\NormalTok{)) \{}
+\NormalTok{  modelo\_logistico }\OtherTok{\textless{}{-}} \FunctionTok{glm}\NormalTok{(}
+\NormalTok{    victimas\_binaria }\SpecialCharTok{\textasciitilde{}}\NormalTok{ MES }\SpecialCharTok{+}\NormalTok{ ID\_HORA }\SpecialCharTok{+}\NormalTok{ DIASEMANA }\SpecialCharTok{+}\NormalTok{ TIPACCID }\SpecialCharTok{+}\NormalTok{ CAUSAACCI,}
+    \AttributeTok{data =}\NormalTok{ entrenamiento,}
+    \AttributeTok{family =}\NormalTok{ binomial}
+\NormalTok{  )}
+
+  \FunctionTok{head}\NormalTok{(}\FunctionTok{summary}\NormalTok{(modelo\_logistico)}\SpecialCharTok{$}\NormalTok{coefficients, }\DecValTok{12}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
-                Estimate   Std. Error     z value     Pr(>|z|)
-(Intercept) 18.107257168 101.84719297  0.17778848 8.588891e-01
-MES02       -0.045765700   0.02975556 -1.53805548 1.240350e-01
-MES03       -0.032191364   0.02927313 -1.09968980 2.714673e-01
-MES04       -0.002838049   0.02945462 -0.09635327 9.232400e-01
-MES05       -0.015408552   0.02906672 -0.53010979 5.960358e-01
-MES06       -0.054753129   0.02983667 -1.83509526 6.649158e-02
-MES07       -0.076296781   0.03035194 -2.51373620 1.194598e-02
-MES08       -0.094049541   0.02997105 -3.13801278 1.700975e-03
-MES09       -0.077109438   0.03015044 -2.55748998 1.054306e-02
-MES10       -0.154152374   0.02979697 -5.17342485 2.298416e-07
-MES11       -0.106385033   0.02950811 -3.60528073 3.118157e-04
-MES12       -0.111888509   0.02959338 -3.78086333 1.562855e-04
+#>                 Estimate   Std. Error     z value     Pr(>|z|)
+#> (Intercept) 18.107257168 101.84719297  0.17778848 8.588891e-01
+#> MES02       -0.045765700   0.02975556 -1.53805548 1.240350e-01
+#> MES03       -0.032191364   0.02927313 -1.09968980 2.714673e-01
+#> MES04       -0.002838049   0.02945462 -0.09635327 9.232400e-01
+#> MES05       -0.015408552   0.02906672 -0.53010979 5.960358e-01
+#> MES06       -0.054753129   0.02983667 -1.83509526 6.649158e-02
+#> MES07       -0.076296781   0.03035194 -2.51373620 1.194598e-02
+#> MES08       -0.094049541   0.02997105 -3.13801278 1.700975e-03
+#> MES09       -0.077109438   0.03015044 -2.55748998 1.054306e-02
+#> MES10       -0.154152374   0.02979697 -5.17342485 2.298416e-07
+#> MES11       -0.106385033   0.02950811 -3.60528073 3.118157e-04
+#> MES12       -0.111888509   0.02959338 -3.78086333 1.562855e-04
 \end{verbatim}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Interpretación del resultado}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Los coeficientes estiman el efecto de cada variable sobre el logit de la
+probabilidad de accidente con víctimas.
+
+\end{tcolorbox}
 
 \section{Predicción y matriz de
 confusión}\label{predicciuxf3n-y-matriz-de-confusiuxf3n}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"modelo\_logistico"}\NormalTok{)) \{}
+\NormalTok{  prueba}\SpecialCharTok{$}\NormalTok{probabilidad\_victimas }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(modelo\_logistico, }\AttributeTok{newdata =}\NormalTok{ prueba, }\AttributeTok{type =} \StringTok{"response"}\NormalTok{)}
+\NormalTok{  prueba}\SpecialCharTok{$}\NormalTok{prediccion\_03 }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(}
+    \FunctionTok{ifelse}\NormalTok{(prueba}\SpecialCharTok{$}\NormalTok{probabilidad\_victimas }\SpecialCharTok{\textgreater{}=} \FloatTok{0.3}\NormalTok{, }\StringTok{"Con víctimas"}\NormalTok{, }\StringTok{"Solo daños"}\NormalTok{),}
+    \AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Con víctimas"}\NormalTok{, }\StringTok{"Solo daños"}\NormalTok{)}
+\NormalTok{  )}
+
+\NormalTok{  matriz\_confusion\_03 }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(}
+    \AttributeTok{Real =}\NormalTok{ prueba}\SpecialCharTok{$}\NormalTok{accidente\_con\_victimas,}
+    \AttributeTok{Predicho =}\NormalTok{ prueba}\SpecialCharTok{$}\NormalTok{prediccion\_03}
+\NormalTok{  )}
+
+\NormalTok{  matriz\_confusion\_03}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
-              Predicho
-Real           Con víctimas Solo daños
-  Con víctimas        13765       6739
-  Solo daños          14302      82382
+#>               Predicho
+#> Real           Con víctimas Solo daños
+#>   Con víctimas        13765       6739
+#>   Solo daños          14302      82382
 \end{verbatim}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-note-color!10!white, colframe=quarto-callout-note-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Explicación del código}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Las probabilidades se convierten en clases usando un punto de corte de
+0.3.
+
+\end{tcolorbox}
 
 \section{Métricas}\label{muxe9tricas}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"matriz\_confusion\_03"}\NormalTok{)) \{}
+\NormalTok{  VP }\OtherTok{\textless{}{-}}\NormalTok{ matriz\_confusion\_03[}\StringTok{"Con víctimas"}\NormalTok{, }\StringTok{"Con víctimas"}\NormalTok{]}
+\NormalTok{  FN }\OtherTok{\textless{}{-}}\NormalTok{ matriz\_confusion\_03[}\StringTok{"Con víctimas"}\NormalTok{, }\StringTok{"Solo daños"}\NormalTok{]}
+\NormalTok{  FP }\OtherTok{\textless{}{-}}\NormalTok{ matriz\_confusion\_03[}\StringTok{"Solo daños"}\NormalTok{, }\StringTok{"Con víctimas"}\NormalTok{]}
+\NormalTok{  VN }\OtherTok{\textless{}{-}}\NormalTok{ matriz\_confusion\_03[}\StringTok{"Solo daños"}\NormalTok{, }\StringTok{"Solo daños"}\NormalTok{]}
+
+  \FunctionTok{data.frame}\NormalTok{(}
+    \AttributeTok{exactitud =}\NormalTok{ (VP }\SpecialCharTok{+}\NormalTok{ VN) }\SpecialCharTok{/}\NormalTok{ (VP }\SpecialCharTok{+}\NormalTok{ FN }\SpecialCharTok{+}\NormalTok{ FP }\SpecialCharTok{+}\NormalTok{ VN),}
+    \AttributeTok{sensibilidad =}\NormalTok{ VP }\SpecialCharTok{/}\NormalTok{ (VP }\SpecialCharTok{+}\NormalTok{ FN),}
+    \AttributeTok{especificidad =}\NormalTok{ VN }\SpecialCharTok{/}\NormalTok{ (VN }\SpecialCharTok{+}\NormalTok{ FP)}
+\NormalTok{  )}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
-  exactitud sensibilidad especificidad
-1 0.8204509    0.6713324     0.8520748
+#>   exactitud sensibilidad especificidad
+#> 1 0.8204509    0.6713324     0.8520748
 \end{verbatim}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Interpretación del resultado}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+La sensibilidad mide la capacidad para detectar accidentes con víctimas;
+la especificidad mide la capacidad para detectar accidentes de solo
+daños.
+
+\end{tcolorbox}
 
 \section{Distribución de
 probabilidades}\label{distribuciuxf3n-de-probabilidades}
 
-\pandocbounded{\includegraphics[keepaspectratio]{04-regresion-logistica_files/figure-pdf/unnamed-chunk-7-1.png}}
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"prueba"}\NormalTok{)) \{}
+  \FunctionTok{ggplot}\NormalTok{(prueba, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ probabilidad\_victimas, }\AttributeTok{fill =}\NormalTok{ accidente\_con\_victimas)) }\SpecialCharTok{+}
+    \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{bins =} \DecValTok{30}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.75}\NormalTok{, }\AttributeTok{position =} \StringTok{"identity"}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{escala\_clases\_fill}\NormalTok{(}\AttributeTok{name =} \StringTok{"Clase real"}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{labs}\NormalTok{(}
+      \AttributeTok{title =} \StringTok{"Distribución de probabilidades predichas"}\NormalTok{,}
+      \AttributeTok{subtitle =} \StringTok{"Regresión logística"}\NormalTok{,}
+      \AttributeTok{x =} \StringTok{"Probabilidad predicha de accidente con víctimas"}\NormalTok{,}
+      \AttributeTok{y =} \StringTok{"Frecuencia"}
+\NormalTok{    ) }\SpecialCharTok{+}
+    \FunctionTok{tema\_libro}\NormalTok{()}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=0.92\linewidth,height=\textheight,keepaspectratio]{04-regresion-logistica_files/figure-pdf/histograma-logistica-1.png}
 
 \section{Conclusión}\label{conclusiuxf3n-2}
 
@@ -789,40 +1848,197 @@ desempeño.
 k-NN clasifica una nueva observación según la clase más común entre sus
 vecinos más cercanos.
 
-\pandocbounded{\includegraphics[keepaspectratio]{05-knn_files/figure-pdf/unnamed-chunk-1-1.png}}
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{library}\NormalTok{(class)}
+\FunctionTok{library}\NormalTok{(dplyr)}
+\FunctionTok{library}\NormalTok{(tidyr)}
+\FunctionTok{library}\NormalTok{(readr)}
+\FunctionTok{source}\NormalTok{(}\StringTok{"util\_graficas.R"}\NormalTok{)}
+
+\NormalTok{datos\_ejemplo }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{hora =} \FunctionTok{c}\NormalTok{(}\DecValTok{8}\NormalTok{, }\DecValTok{9}\NormalTok{, }\DecValTok{10}\NormalTok{, }\DecValTok{18}\NormalTok{, }\DecValTok{19}\NormalTok{, }\DecValTok{20}\NormalTok{, }\DecValTok{22}\NormalTok{, }\DecValTok{23}\NormalTok{),}
+  \AttributeTok{mes =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{7}\NormalTok{, }\DecValTok{12}\NormalTok{, }\DecValTok{12}\NormalTok{),}
+  \AttributeTok{clase =} \FunctionTok{c}\NormalTok{(}\StringTok{"Solo daños"}\NormalTok{, }\StringTok{"Solo daños"}\NormalTok{, }\StringTok{"Solo daños"}\NormalTok{, }\StringTok{"Con víctimas"}\NormalTok{, }\StringTok{"Con víctimas"}\NormalTok{, }\StringTok{"Con víctimas"}\NormalTok{, }\StringTok{"Con víctimas"}\NormalTok{, }\StringTok{"Con víctimas"}\NormalTok{)}
+\NormalTok{)}
+
+\FunctionTok{ggplot}\NormalTok{(datos\_ejemplo, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ hora, }\AttributeTok{y =}\NormalTok{ mes, }\AttributeTok{color =}\NormalTok{ clase)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{size =} \DecValTok{4}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{escala\_clases\_color}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Ejemplo intuitivo de k{-}NN"}\NormalTok{, }\AttributeTok{x =} \StringTok{"Hora"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Mes"}\NormalTok{, }\AttributeTok{color =} \StringTok{"Clase"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{tema\_libro}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=0.92\linewidth,height=\textheight,keepaspectratio]{05-knn_files/figure-pdf/ejemplo-knn-1.png}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-note-color!10!white, colframe=quarto-callout-note-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Explicación del código}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Se construyen puntos artificiales para visualizar la idea de vecinos
+cercanos.
+
+\end{tcolorbox}
 
 \section{Distancia euclidiana}\label{distancia-euclidiana}
 
 \[
-d(A,B)=\sqrt{(x_1-x_2)^2+(y_1-y_2)^2}
+d(A,B) = \sqrt{(x_1-x_2)^2 + (y_1-y_2)^2}
 \]
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sqrt}\NormalTok{((}\DecValTok{8} \SpecialCharTok{{-}} \DecValTok{10}\NormalTok{)}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{{-}} \DecValTok{2}\NormalTok{)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
-[1] 2.236068
+#> [1] 2.236068
 \end{verbatim}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Interpretación del resultado}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Una distancia menor indica mayor similitud entre dos observaciones.
+
+\end{tcolorbox}
 
 \section{Cargar y preparar datos}\label{cargar-y-preparar-datos}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ruta\_atus\_ml }\OtherTok{\textless{}{-}} \StringTok{"datos/atus\_ml\_preparado.csv"}
+
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{file.exists}\NormalTok{(ruta\_atus\_ml)) \{}
+\NormalTok{  atus\_ml }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(ruta\_atus\_ml, }\AttributeTok{show\_col\_types =} \ConstantTok{FALSE}\NormalTok{)}
+  \FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+\NormalTok{  atus\_knn\_base }\OtherTok{\textless{}{-}}\NormalTok{ atus\_ml }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{sample\_n}\NormalTok{(}\FunctionTok{min}\NormalTok{(}\DecValTok{12000}\NormalTok{, }\FunctionTok{nrow}\NormalTok{(atus\_ml))) }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{mutate}\NormalTok{(}
+      \AttributeTok{accidente\_con\_victimas =} \FunctionTok{factor}\NormalTok{(accidente\_con\_victimas, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Con víctimas"}\NormalTok{, }\StringTok{"Solo daños"}\NormalTok{)),}
+      \AttributeTok{MES =} \FunctionTok{as.factor}\NormalTok{(MES),}
+      \AttributeTok{ID\_HORA =} \FunctionTok{as.numeric}\NormalTok{(ID\_HORA),}
+      \AttributeTok{DIASEMANA =} \FunctionTok{as.factor}\NormalTok{(DIASEMANA),}
+      \AttributeTok{TIPACCID =} \FunctionTok{as.factor}\NormalTok{(TIPACCID),}
+      \AttributeTok{CAUSAACCI =} \FunctionTok{as.factor}\NormalTok{(CAUSAACCI)}
+\NormalTok{    ) }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{na.omit}\NormalTok{()}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-note-color!10!white, colframe=quarto-callout-note-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Explicación del código}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Se toma una muestra para que k-NN sea rápido y reproducible. Este método
+puede ser costoso en bases grandes.
+
+\end{tcolorbox}
+
 \section{Modelo k-NN}\label{modelo-k-nn}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"atus\_knn\_base"}\NormalTok{)) \{}
+\NormalTok{  matriz\_predictoras }\OtherTok{\textless{}{-}} \FunctionTok{model.matrix}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{ ID\_HORA }\SpecialCharTok{+}\NormalTok{ MES }\SpecialCharTok{+}\NormalTok{ DIASEMANA }\SpecialCharTok{+}\NormalTok{ TIPACCID }\SpecialCharTok{+}\NormalTok{ CAUSAACCI }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{, }\AttributeTok{data =}\NormalTok{ atus\_knn\_base)}
+\NormalTok{  y }\OtherTok{\textless{}{-}}\NormalTok{ atus\_knn\_base}\SpecialCharTok{$}\NormalTok{accidente\_con\_victimas}
+
+  \FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+\NormalTok{  idx }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(matriz\_predictoras), }\AttributeTok{size =} \FunctionTok{round}\NormalTok{(}\FloatTok{0.7} \SpecialCharTok{*} \FunctionTok{nrow}\NormalTok{(matriz\_predictoras)))}
+\NormalTok{  x\_entrenamiento }\OtherTok{\textless{}{-}}\NormalTok{ matriz\_predictoras[idx, ]}
+\NormalTok{  x\_prueba }\OtherTok{\textless{}{-}}\NormalTok{ matriz\_predictoras[}\SpecialCharTok{{-}}\NormalTok{idx, ]}
+\NormalTok{  y\_entrenamiento }\OtherTok{\textless{}{-}}\NormalTok{ y[idx]}
+\NormalTok{  y\_prueba }\OtherTok{\textless{}{-}}\NormalTok{ y[}\SpecialCharTok{{-}}\NormalTok{idx]}
+
+\NormalTok{  medias }\OtherTok{\textless{}{-}} \FunctionTok{apply}\NormalTok{(x\_entrenamiento, }\DecValTok{2}\NormalTok{, mean)}
+\NormalTok{  desviaciones }\OtherTok{\textless{}{-}} \FunctionTok{apply}\NormalTok{(x\_entrenamiento, }\DecValTok{2}\NormalTok{, sd)}
+\NormalTok{  desviaciones[desviaciones }\SpecialCharTok{==} \DecValTok{0}\NormalTok{] }\OtherTok{\textless{}{-}} \DecValTok{1}
+
+\NormalTok{  x\_entrenamiento\_esc }\OtherTok{\textless{}{-}} \FunctionTok{scale}\NormalTok{(x\_entrenamiento, }\AttributeTok{center =}\NormalTok{ medias, }\AttributeTok{scale =}\NormalTok{ desviaciones)}
+\NormalTok{  x\_prueba\_esc }\OtherTok{\textless{}{-}} \FunctionTok{scale}\NormalTok{(x\_prueba, }\AttributeTok{center =}\NormalTok{ medias, }\AttributeTok{scale =}\NormalTok{ desviaciones)}
+
+\NormalTok{  pred\_knn\_5 }\OtherTok{\textless{}{-}} \FunctionTok{knn}\NormalTok{(x\_entrenamiento\_esc, x\_prueba\_esc, y\_entrenamiento, }\AttributeTok{k =} \DecValTok{5}\NormalTok{)}
+  \FunctionTok{table}\NormalTok{(}\AttributeTok{Real =}\NormalTok{ y\_prueba, }\AttributeTok{Predicho =}\NormalTok{ pred\_knn\_5)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
-              Predicho
-Real           Con víctimas Solo daños
-  Con víctimas          211        399
-  Solo daños            144       2846
+#>               Predicho
+#> Real           Con víctimas Solo daños
+#>   Con víctimas          211        399
+#>   Solo daños            144       2846
 \end{verbatim}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-note-color!10!white, colframe=quarto-callout-note-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Explicación del código}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Se crean variables dummy, se estandarizan las columnas y se clasifica
+con k igual a 5.
+
+\end{tcolorbox}
 
 \section{Comparación de valores de
 k}\label{comparaciuxf3n-de-valores-de-k}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{calcular\_metricas }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(real, predicho) \{}
+\NormalTok{  real }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(real, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Con víctimas"}\NormalTok{, }\StringTok{"Solo daños"}\NormalTok{))}
+\NormalTok{  predicho }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(predicho, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Con víctimas"}\NormalTok{, }\StringTok{"Solo daños"}\NormalTok{))}
+\NormalTok{  m }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(}\AttributeTok{Real =}\NormalTok{ real, }\AttributeTok{Predicho =}\NormalTok{ predicho)}
+\NormalTok{  VP }\OtherTok{\textless{}{-}}\NormalTok{ m[}\StringTok{"Con víctimas"}\NormalTok{, }\StringTok{"Con víctimas"}\NormalTok{]}
+\NormalTok{  FN }\OtherTok{\textless{}{-}}\NormalTok{ m[}\StringTok{"Con víctimas"}\NormalTok{, }\StringTok{"Solo daños"}\NormalTok{]}
+\NormalTok{  FP }\OtherTok{\textless{}{-}}\NormalTok{ m[}\StringTok{"Solo daños"}\NormalTok{, }\StringTok{"Con víctimas"}\NormalTok{]}
+\NormalTok{  VN }\OtherTok{\textless{}{-}}\NormalTok{ m[}\StringTok{"Solo daños"}\NormalTok{, }\StringTok{"Solo daños"}\NormalTok{]}
+  \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{exactitud=}\NormalTok{(VP}\SpecialCharTok{+}\NormalTok{VN)}\SpecialCharTok{/}\NormalTok{(VP}\SpecialCharTok{+}\NormalTok{FN}\SpecialCharTok{+}\NormalTok{FP}\SpecialCharTok{+}\NormalTok{VN), }\AttributeTok{sensibilidad=}\NormalTok{VP}\SpecialCharTok{/}\NormalTok{(VP}\SpecialCharTok{+}\NormalTok{FN), }\AttributeTok{especificidad=}\NormalTok{VN}\SpecialCharTok{/}\NormalTok{(VN}\SpecialCharTok{+}\NormalTok{FP))}
+\NormalTok{\}}
+
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"x\_entrenamiento\_esc"}\NormalTok{)) \{}
+\NormalTok{  valores\_k }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{11}\NormalTok{)}
+\NormalTok{  resultados\_knn }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{()}
+
+  \ControlFlowTok{for}\NormalTok{ (k\_actual }\ControlFlowTok{in}\NormalTok{ valores\_k) \{}
+\NormalTok{    pred\_actual }\OtherTok{\textless{}{-}} \FunctionTok{knn}\NormalTok{(x\_entrenamiento\_esc, x\_prueba\_esc, y\_entrenamiento, }\AttributeTok{k =}\NormalTok{ k\_actual)}
+\NormalTok{    tmp }\OtherTok{\textless{}{-}} \FunctionTok{calcular\_metricas}\NormalTok{(y\_prueba, pred\_actual)}
+\NormalTok{    tmp}\SpecialCharTok{$}\NormalTok{k }\OtherTok{\textless{}{-}}\NormalTok{ k\_actual}
+\NormalTok{    resultados\_knn }\OtherTok{\textless{}{-}} \FunctionTok{rbind}\NormalTok{(resultados\_knn, tmp)}
+\NormalTok{  \}}
+
+\NormalTok{  resultados\_knn }\OtherTok{\textless{}{-}}\NormalTok{ resultados\_knn }\SpecialCharTok{|\textgreater{}} \FunctionTok{select}\NormalTok{(k, exactitud, sensibilidad, especificidad)}
+\NormalTok{  resultados\_knn}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
-   k exactitud sensibilidad especificidad
-1  3 0.8433333    0.3770492     0.9384615
-2  5 0.8480556    0.3491803     0.9498328
-3 11 0.8558333    0.3377049     0.9615385
+#>    k exactitud sensibilidad especificidad
+#> 1  3 0.8433333    0.3770492     0.9384615
+#> 2  5 0.8480556    0.3491803     0.9498328
+#> 3 11 0.8558333    0.3377049     0.9615385
 \end{verbatim}
 
-\pandocbounded{\includegraphics[keepaspectratio]{05-knn_files/figure-pdf/unnamed-chunk-6-1.png}}
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"resultados\_knn"}\NormalTok{)) \{}
+\NormalTok{  resultados\_largos }\OtherTok{\textless{}{-}}\NormalTok{ resultados\_knn }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{pivot\_longer}\NormalTok{(}\AttributeTok{cols =} \FunctionTok{c}\NormalTok{(exactitud, sensibilidad, especificidad), }\AttributeTok{names\_to =} \StringTok{"metrica"}\NormalTok{, }\AttributeTok{values\_to =} \StringTok{"valor"}\NormalTok{)}
+
+  \FunctionTok{ggplot}\NormalTok{(resultados\_largos, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ k, }\AttributeTok{y =}\NormalTok{ valor, }\AttributeTok{color =}\NormalTok{ metrica, }\AttributeTok{group =}\NormalTok{ metrica)) }\SpecialCharTok{+}
+    \FunctionTok{geom\_line}\NormalTok{(}\AttributeTok{linewidth =} \FloatTok{1.1}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{size =} \DecValTok{3}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{scale\_color\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\AttributeTok{exactitud =}\NormalTok{ col\_azul, }\AttributeTok{sensibilidad =}\NormalTok{ col\_coral, }\AttributeTok{especificidad =}\NormalTok{ col\_turquesa)) }\SpecialCharTok{+}
+    \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Comparación de métricas para distintos valores de k"}\NormalTok{, }\AttributeTok{x =} \StringTok{"Valor de k"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Valor"}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{tema\_libro}\NormalTok{()}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=0.92\linewidth,height=\textheight,keepaspectratio]{05-knn_files/figure-pdf/comparacion-knn-1.png}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Interpretación del resultado}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Cambiar k modifica el balance entre exactitud, sensibilidad y
+especificidad. No existe un k universalmente mejor.
+
+\end{tcolorbox}
 
 \section{Conclusión}\label{conclusiuxf3n-3}
 
@@ -851,10 +2067,29 @@ si-entonces.
 Una medida común de impureza es el índice de Gini:
 
 \[
-Gini=1-\sum_{k=1}^{K}p_k^2
+Gini = 1 - \sum_{k=1}^{K} p_k^2
 \]
 
 \section{Cargar paquetes y datos}\label{cargar-paquetes-y-datos-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(readr)}
+\FunctionTok{library}\NormalTok{(dplyr)}
+\FunctionTok{library}\NormalTok{(rpart)}
+\FunctionTok{source}\NormalTok{(}\StringTok{"util\_graficas.R"}\NormalTok{)}
+
+\NormalTok{ruta\_atus\_ml }\OtherTok{\textless{}{-}} \StringTok{"datos/atus\_ml\_preparado.csv"}
+
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{file.exists}\NormalTok{(ruta\_atus\_ml)) \{}
+\NormalTok{  atus\_ml }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(ruta\_atus\_ml, }\AttributeTok{show\_col\_types =} \ConstantTok{FALSE}\NormalTok{)}
+  \FunctionTok{print}\NormalTok{(}\StringTok{"Base preparada cargada correctamente."}\NormalTok{)}
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{  atus\_ml }\OtherTok{\textless{}{-}} \ConstantTok{NULL}
+  \FunctionTok{print}\NormalTok{(}\StringTok{"No se encontró el archivo datos/atus\_ml\_preparado.csv. Ejecuta primero el capítulo 2."}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 [1] "Base preparada cargada correctamente."
@@ -862,14 +2097,71 @@ Gini=1-\sum_{k=1}^{K}p_k^2
 
 \section{Usar la base completa}\label{usar-la-base-completa}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(atus\_ml)) \{}
+\NormalTok{  atus\_arbol\_base }\OtherTok{\textless{}{-}}\NormalTok{ atus\_ml }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{mutate}\NormalTok{(}
+      \AttributeTok{accidente\_con\_victimas =} \FunctionTok{factor}\NormalTok{(accidente\_con\_victimas, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Con víctimas"}\NormalTok{, }\StringTok{"Solo daños"}\NormalTok{)),}
+      \AttributeTok{MES =} \FunctionTok{as.factor}\NormalTok{(MES),}
+      \AttributeTok{ID\_HORA =} \FunctionTok{as.numeric}\NormalTok{(ID\_HORA),}
+      \AttributeTok{DIASEMANA =} \FunctionTok{as.factor}\NormalTok{(DIASEMANA),}
+      \AttributeTok{TIPACCID =} \FunctionTok{as.factor}\NormalTok{(TIPACCID),}
+      \AttributeTok{CAUSAACCI =} \FunctionTok{as.factor}\NormalTok{(CAUSAACCI)}
+\NormalTok{    ) }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{na.omit}\NormalTok{()}
+
+  \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{filas =} \FunctionTok{nrow}\NormalTok{(atus\_arbol\_base), }\AttributeTok{columnas =} \FunctionTok{ncol}\NormalTok{(atus\_arbol\_base))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
    filas columnas
 1 390627        6
 \end{verbatim}
 
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-note-color!10!white, colframe=quarto-callout-note-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Explicación del código}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Se usa la base completa, pero el crecimiento del árbol se controla
+mediante parámetros del modelo.
+
+\end{tcolorbox}
+
 \section{División y entrenamiento}\label{divisiuxf3n-y-entrenamiento}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"atus\_arbol\_base"}\NormalTok{)) \{}
+  \FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+\NormalTok{  idx }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(atus\_arbol\_base), }\AttributeTok{size =} \FunctionTok{round}\NormalTok{(}\FloatTok{0.7} \SpecialCharTok{*} \FunctionTok{nrow}\NormalTok{(atus\_arbol\_base)))}
+\NormalTok{  entrenamiento }\OtherTok{\textless{}{-}}\NormalTok{ atus\_arbol\_base[idx, ]}
+\NormalTok{  prueba }\OtherTok{\textless{}{-}}\NormalTok{ atus\_arbol\_base[}\SpecialCharTok{{-}}\NormalTok{idx, ]}
+
+\NormalTok{  modelo\_arbol }\OtherTok{\textless{}{-}} \FunctionTok{rpart}\NormalTok{(}
+\NormalTok{    accidente\_con\_victimas }\SpecialCharTok{\textasciitilde{}}\NormalTok{ MES }\SpecialCharTok{+}\NormalTok{ ID\_HORA }\SpecialCharTok{+}\NormalTok{ DIASEMANA }\SpecialCharTok{+}\NormalTok{ TIPACCID }\SpecialCharTok{+}\NormalTok{ CAUSAACCI,}
+    \AttributeTok{data =}\NormalTok{ entrenamiento,}
+    \AttributeTok{method =} \StringTok{"class"}\NormalTok{,}
+    \AttributeTok{control =} \FunctionTok{rpart.control}\NormalTok{(}\AttributeTok{cp =} \FloatTok{0.005}\NormalTok{, }\AttributeTok{minsplit =} \DecValTok{1000}\NormalTok{, }\AttributeTok{minbucket =} \DecValTok{300}\NormalTok{, }\AttributeTok{maxdepth =} \DecValTok{5}\NormalTok{)}
+\NormalTok{  )}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-note-color!10!white, colframe=quarto-callout-note-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Explicación del código}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Se ajusta un árbol de decisión controlado para evitar sobreajuste y
+salidas demasiado grandes.
+
+\end{tcolorbox}
+
 \section{Complejidad e importancia}\label{complejidad-e-importancia}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"modelo\_arbol"}\NormalTok{)) }\FunctionTok{printcp}\NormalTok{(modelo\_arbol)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 
@@ -891,11 +2183,31 @@ n= 273439
 2 0.005000      2    0.8059 0.8059 0.0038150
 \end{verbatim}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"modelo\_arbol"}\NormalTok{)) \{}
+\NormalTok{  importancia }\OtherTok{\textless{}{-}}\NormalTok{ modelo\_arbol}\SpecialCharTok{$}\NormalTok{variable.importance}
+  \ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(importancia)) \{}
+\NormalTok{    importancia\_df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{variable =} \FunctionTok{names}\NormalTok{(importancia), }\AttributeTok{importancia =} \FunctionTok{as.numeric}\NormalTok{(importancia), }\AttributeTok{row.names =} \ConstantTok{NULL}\NormalTok{)}
+\NormalTok{    importancia\_df }\OtherTok{\textless{}{-}}\NormalTok{ importancia\_df[}\FunctionTok{order}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{importancia\_df}\SpecialCharTok{$}\NormalTok{importancia), ]}
+\NormalTok{    importancia\_df}
+\NormalTok{  \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
    variable importancia
 1  TIPACCID   22919.330
 2 CAUSAACCI    1093.984
 \end{verbatim}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Interpretación del resultado}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+La importancia de variables indica qué variables ayudan más a separar
+accidentes con víctimas de accidentes de solo daños.
+
+\end{tcolorbox}
 
 \section{Gráfica opcional del
 árbol}\label{gruxe1fica-opcional-del-uxe1rbol}
@@ -903,7 +2215,27 @@ n= 273439
 La gráfica completa del árbol puede ser pesada en PDF. El lector puede
 ejecutarla manualmente en RStudio.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(modelo\_arbol, }\AttributeTok{uniform =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{margin =} \FloatTok{0.1}\NormalTok{)}
+\FunctionTok{text}\NormalTok{(modelo\_arbol, }\AttributeTok{use.n =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{cex =} \FloatTok{0.7}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 \section{Predicción y métricas}\label{predicciuxf3n-y-muxe9tricas}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"modelo\_arbol"}\NormalTok{)) \{}
+\NormalTok{  pred\_arbol }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(modelo\_arbol, }\AttributeTok{newdata =}\NormalTok{ prueba, }\AttributeTok{type =} \StringTok{"class"}\NormalTok{)}
+\NormalTok{  real\_arbol }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(prueba}\SpecialCharTok{$}\NormalTok{accidente\_con\_victimas, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Con víctimas"}\NormalTok{, }\StringTok{"Solo daños"}\NormalTok{))}
+\NormalTok{  pred\_arbol }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(pred\_arbol, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Con víctimas"}\NormalTok{, }\StringTok{"Solo daños"}\NormalTok{))}
+
+\NormalTok{  matriz\_confusion\_arbol }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(}\AttributeTok{Real =}\NormalTok{ real\_arbol, }\AttributeTok{Predicho =}\NormalTok{ pred\_arbol)}
+\NormalTok{  matriz\_confusion\_arbol}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
               Predicho
@@ -912,10 +2244,30 @@ Real           Con víctimas Solo daños
   Solo daños              0      96684
 \end{verbatim}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"matriz\_confusion\_arbol"}\NormalTok{)) \{}
+\NormalTok{  VP }\OtherTok{\textless{}{-}}\NormalTok{ matriz\_confusion\_arbol[}\StringTok{"Con víctimas"}\NormalTok{, }\StringTok{"Con víctimas"}\NormalTok{]}
+\NormalTok{  FN }\OtherTok{\textless{}{-}}\NormalTok{ matriz\_confusion\_arbol[}\StringTok{"Con víctimas"}\NormalTok{, }\StringTok{"Solo daños"}\NormalTok{]}
+\NormalTok{  FP }\OtherTok{\textless{}{-}}\NormalTok{ matriz\_confusion\_arbol[}\StringTok{"Solo daños"}\NormalTok{, }\StringTok{"Con víctimas"}\NormalTok{]}
+\NormalTok{  VN }\OtherTok{\textless{}{-}}\NormalTok{ matriz\_confusion\_arbol[}\StringTok{"Solo daños"}\NormalTok{, }\StringTok{"Solo daños"}\NormalTok{]}
+
+  \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{exactitud=}\NormalTok{(VP}\SpecialCharTok{+}\NormalTok{VN)}\SpecialCharTok{/}\NormalTok{(VP}\SpecialCharTok{+}\NormalTok{FN}\SpecialCharTok{+}\NormalTok{FP}\SpecialCharTok{+}\NormalTok{VN), }\AttributeTok{sensibilidad=}\NormalTok{VP}\SpecialCharTok{/}\NormalTok{(VP}\SpecialCharTok{+}\NormalTok{FN), }\AttributeTok{especificidad=}\NormalTok{VN}\SpecialCharTok{/}\NormalTok{(VN}\SpecialCharTok{+}\NormalTok{FP))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
   exactitud sensibilidad especificidad
 1 0.8588678    0.1933769             1
 \end{verbatim}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Interpretación del resultado}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+La matriz de confusión y las métricas permiten evaluar el desempeño del
+árbol sobre datos de prueba.
+
+\end{tcolorbox}
 
 \section{Conclusión}\label{conclusiuxf3n-4}
 
@@ -945,89 +2297,1204 @@ obtiene por votación mayoritaria.
 Si se construyen \(B\) árboles, la predicción final es:
 
 \[
-\hat{y}(x)=\text{moda}\{\hat{y}^{(1)}(x),\hat{y}^{(2)}(x),\ldots,\hat{y}^{(B)}(x)\}
+\hat{y}(x) = moda\{\hat{y}^{(1)}(x), \hat{y}^{(2)}(x), \ldots, \hat{y}^{(B)}(x)\}
 \]
 
 \section{Cargar paquetes y datos}\label{cargar-paquetes-y-datos-2}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(readr)}
+\FunctionTok{library}\NormalTok{(dplyr)}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{library}\NormalTok{(ranger)}
+\FunctionTok{source}\NormalTok{(}\StringTok{"util\_graficas.R"}\NormalTok{)}
+
+\NormalTok{ruta\_atus\_ml }\OtherTok{\textless{}{-}} \StringTok{"datos/atus\_ml\_preparado.csv"}
+
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{file.exists}\NormalTok{(ruta\_atus\_ml)) \{}
+\NormalTok{  atus\_ml }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(ruta\_atus\_ml, }\AttributeTok{show\_col\_types =} \ConstantTok{FALSE}\NormalTok{)}
+  \FunctionTok{print}\NormalTok{(}\StringTok{"Base preparada cargada correctamente."}\NormalTok{)}
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{  atus\_ml }\OtherTok{\textless{}{-}} \ConstantTok{NULL}
+  \FunctionTok{print}\NormalTok{(}\StringTok{"No se encontró el archivo datos/atus\_ml\_preparado.csv. Ejecuta primero el capítulo 2."}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
-[1] "Base preparada cargada correctamente."
+#> [1] "Base preparada cargada correctamente."
 \end{verbatim}
 
 \section{Muestra de trabajo}\label{muestra-de-trabajo}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(atus\_ml)) \{}
+  \FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+\NormalTok{  atus\_rf\_base }\OtherTok{\textless{}{-}}\NormalTok{ atus\_ml }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{sample\_n}\NormalTok{(}\FunctionTok{min}\NormalTok{(}\DecValTok{30000}\NormalTok{, }\FunctionTok{nrow}\NormalTok{(atus\_ml))) }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{mutate}\NormalTok{(}
+      \AttributeTok{accidente\_con\_victimas =} \FunctionTok{factor}\NormalTok{(accidente\_con\_victimas, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Con víctimas"}\NormalTok{, }\StringTok{"Solo daños"}\NormalTok{)),}
+      \AttributeTok{MES =} \FunctionTok{as.factor}\NormalTok{(MES),}
+      \AttributeTok{ID\_HORA =} \FunctionTok{as.numeric}\NormalTok{(ID\_HORA),}
+      \AttributeTok{DIASEMANA =} \FunctionTok{as.factor}\NormalTok{(DIASEMANA),}
+      \AttributeTok{TIPACCID =} \FunctionTok{as.factor}\NormalTok{(TIPACCID),}
+      \AttributeTok{CAUSAACCI =} \FunctionTok{as.factor}\NormalTok{(CAUSAACCI)}
+\NormalTok{    ) }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{na.omit}\NormalTok{()}
+
+  \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{filas =} \FunctionTok{nrow}\NormalTok{(atus\_rf\_base), }\AttributeTok{columnas =} \FunctionTok{ncol}\NormalTok{(atus\_rf\_base))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
-  filas columnas
-1 30000        6
+#>   filas columnas
+#> 1 30000        6
 \end{verbatim}
 
-\pandocbounded{\includegraphics[keepaspectratio]{07-random-forest_files/figure-pdf/unnamed-chunk-3-1.png}}
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"atus\_rf\_base"}\NormalTok{)) \{}
+  \FunctionTok{ggplot}\NormalTok{(atus\_rf\_base, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ accidente\_con\_victimas, }\AttributeTok{fill =}\NormalTok{ accidente\_con\_victimas)) }\SpecialCharTok{+}
+    \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{width =} \FloatTok{0.7}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{escala\_clases\_fill}\NormalTok{() }\SpecialCharTok{+}
+    \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{labels =}\NormalTok{ etiqueta\_numero) }\SpecialCharTok{+}
+    \FunctionTok{labs}\NormalTok{(}
+      \AttributeTok{title =} \StringTok{"Distribución de la variable respuesta"}\NormalTok{,}
+      \AttributeTok{subtitle =} \StringTok{"Muestra para Random Forest"}\NormalTok{,}
+      \AttributeTok{x =} \StringTok{"Clase"}\NormalTok{,}
+      \AttributeTok{y =} \StringTok{"Número de accidentes"}
+\NormalTok{    ) }\SpecialCharTok{+}
+    \FunctionTok{tema\_libro}\NormalTok{() }\SpecialCharTok{+}
+    \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position =} \StringTok{"none"}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=0.92\linewidth,height=\textheight,keepaspectratio]{07-random-forest_files/figure-pdf/muestra-rf-1.png}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-note-color!10!white, colframe=quarto-callout-note-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Explicación del código}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Se toma una muestra de trabajo para mantener el tiempo de ejecución
+razonable. El modelo Random Forest suele ser más pesado que un solo
+árbol.
+
+\end{tcolorbox}
 
 \section{División en entrenamiento y
 prueba}\label{divisiuxf3n-en-entrenamiento-y-prueba}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"atus\_rf\_base"}\NormalTok{)) \{}
+  \FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+\NormalTok{  idx }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(atus\_rf\_base), }\AttributeTok{size =} \FunctionTok{round}\NormalTok{(}\FloatTok{0.7} \SpecialCharTok{*} \FunctionTok{nrow}\NormalTok{(atus\_rf\_base)))}
+\NormalTok{  entrenamiento }\OtherTok{\textless{}{-}}\NormalTok{ atus\_rf\_base[idx, ]}
+\NormalTok{  prueba }\OtherTok{\textless{}{-}}\NormalTok{ atus\_rf\_base[}\SpecialCharTok{{-}}\NormalTok{idx, ]}
+
+  \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{conjunto =} \FunctionTok{c}\NormalTok{(}\StringTok{"Entrenamiento"}\NormalTok{, }\StringTok{"Prueba"}\NormalTok{), }\AttributeTok{registros =} \FunctionTok{c}\NormalTok{(}\FunctionTok{nrow}\NormalTok{(entrenamiento), }\FunctionTok{nrow}\NormalTok{(prueba)))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
-       conjunto registros
-1 Entrenamiento     21000
-2        Prueba      9000
+#>        conjunto registros
+#> 1 Entrenamiento     21000
+#> 2        Prueba      9000
 \end{verbatim}
 
 \section{Ajustar Random Forest}\label{ajustar-random-forest}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"entrenamiento"}\NormalTok{)) \{}
+  \FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\NormalTok{  modelo\_rf }\OtherTok{\textless{}{-}} \FunctionTok{ranger}\NormalTok{(}
+\NormalTok{    accidente\_con\_victimas }\SpecialCharTok{\textasciitilde{}}\NormalTok{ MES }\SpecialCharTok{+}\NormalTok{ ID\_HORA }\SpecialCharTok{+}\NormalTok{ DIASEMANA }\SpecialCharTok{+}\NormalTok{ TIPACCID }\SpecialCharTok{+}\NormalTok{ CAUSAACCI,}
+    \AttributeTok{data =}\NormalTok{ entrenamiento,}
+    \AttributeTok{num.trees =} \DecValTok{200}\NormalTok{,}
+    \AttributeTok{mtry =} \DecValTok{3}\NormalTok{,}
+    \AttributeTok{min.node.size =} \DecValTok{20}\NormalTok{,}
+    \AttributeTok{importance =} \StringTok{"impurity"}\NormalTok{,}
+    \AttributeTok{probability =} \ConstantTok{TRUE}\NormalTok{,}
+    \AttributeTok{seed =} \DecValTok{123}
+\NormalTok{  )}
+
+\NormalTok{  modelo\_rf}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
-Ranger result
-
-Call:
- ranger(accidente_con_victimas ~ MES + ID_HORA + DIASEMANA + TIPACCID +      CAUSAACCI, data = entrenamiento, num.trees = 200, mtry = 3,      min.node.size = 20, importance = "impurity", probability = TRUE,      seed = 123) 
-
-Type:                             Probability estimation 
-Number of trees:                  200 
-Sample size:                      21000 
-Number of independent variables:  5 
-Mtry:                             3 
-Target node size:                 20 
-Variable importance mode:         impurity 
-Splitrule:                        gini 
-OOB prediction error (Brier s.):  0.1066668 
+#> Ranger result
+#> 
+#> Call:
+#>  ranger(accidente_con_victimas ~ MES + ID_HORA + DIASEMANA + TIPACCID +      CAUSAACCI, data = entrenamiento, num.trees = 200, mtry = 3,      min.node.size = 20, importance = "impurity", probability = TRUE,      seed = 123) 
+#> 
+#> Type:                             Probability estimation 
+#> Number of trees:                  200 
+#> Sample size:                      21000 
+#> Number of independent variables:  5 
+#> Mtry:                             3 
+#> Target node size:                 20 
+#> Variable importance mode:         impurity 
+#> Splitrule:                        gini 
+#> OOB prediction error (Brier s.):  0.1066668
 \end{verbatim}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Interpretación del resultado}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+El resumen del modelo muestra cuántos árboles se construyeron, cuántas
+variables se probaron en cada división y el error fuera de bolsa.
+
+\end{tcolorbox}
 
 \section{Importancia de variables}\label{importancia-de-variables}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"modelo\_rf"}\NormalTok{)) \{}
+\NormalTok{  importancia\_rf }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+    \AttributeTok{variable =} \FunctionTok{names}\NormalTok{(modelo\_rf}\SpecialCharTok{$}\NormalTok{variable.importance),}
+    \AttributeTok{importancia =} \FunctionTok{as.numeric}\NormalTok{(modelo\_rf}\SpecialCharTok{$}\NormalTok{variable.importance)}
+\NormalTok{  ) }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(importancia))}
+
+\NormalTok{  importancia\_rf}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
-   variable importancia
-1  TIPACCID   1608.8347
-2   ID_HORA    416.7870
-3       MES    324.9780
-4 DIASEMANA    234.4944
-5 CAUSAACCI    220.5923
+#>    variable importancia
+#> 1  TIPACCID   1608.8347
+#> 2   ID_HORA    416.7870
+#> 3       MES    324.9780
+#> 4 DIASEMANA    234.4944
+#> 5 CAUSAACCI    220.5923
 \end{verbatim}
 
-\pandocbounded{\includegraphics[keepaspectratio]{07-random-forest_files/figure-pdf/unnamed-chunk-7-1.png}}
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"importancia\_rf"}\NormalTok{)) \{}
+  \FunctionTok{ggplot}\NormalTok{(importancia\_rf, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =} \FunctionTok{reorder}\NormalTok{(variable, importancia), }\AttributeTok{y =}\NormalTok{ importancia)) }\SpecialCharTok{+}
+    \FunctionTok{geom\_col}\NormalTok{(}\AttributeTok{fill =}\NormalTok{ col\_azul, }\AttributeTok{width =} \FloatTok{0.75}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{coord\_flip}\NormalTok{() }\SpecialCharTok{+}
+    \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Importancia de variables en Random Forest"}\NormalTok{, }\AttributeTok{x =} \StringTok{"Variable"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Importancia"}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{tema\_libro}\NormalTok{()}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=0.92\linewidth,height=\textheight,keepaspectratio]{07-random-forest_files/figure-pdf/importancia-rf-1.png}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-note-color!10!white, colframe=quarto-callout-note-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Explicación del código}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+La importancia de variables muestra qué predictores aportan más a la
+reducción de impureza en los árboles del bosque.
+
+\end{tcolorbox}
 
 \section{Predicción y métricas}\label{predicciuxf3n-y-muxe9tricas-1}
 
-\begin{verbatim}
-              Predicho
-Real           Con víctimas Solo daños
-  Con víctimas          475        991
-  Solo daños            265       7269
-\end{verbatim}
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"modelo\_rf"}\NormalTok{)) \{}
+\NormalTok{  predicciones\_rf }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(modelo\_rf, }\AttributeTok{data =}\NormalTok{ prueba)}
+\NormalTok{  probabilidades\_rf }\OtherTok{\textless{}{-}}\NormalTok{ predicciones\_rf}\SpecialCharTok{$}\NormalTok{predictions[, }\StringTok{"Con víctimas"}\NormalTok{]}
+\NormalTok{  clases\_rf }\OtherTok{\textless{}{-}} \FunctionTok{colnames}\NormalTok{(predicciones\_rf}\SpecialCharTok{$}\NormalTok{predictions)[}\FunctionTok{max.col}\NormalTok{(predicciones\_rf}\SpecialCharTok{$}\NormalTok{predictions, }\AttributeTok{ties.method =} \StringTok{"first"}\NormalTok{)]}
+\NormalTok{  clases\_rf }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(clases\_rf, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Con víctimas"}\NormalTok{, }\StringTok{"Solo daños"}\NormalTok{))}
+\NormalTok{  real\_rf }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(prueba}\SpecialCharTok{$}\NormalTok{accidente\_con\_victimas, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Con víctimas"}\NormalTok{, }\StringTok{"Solo daños"}\NormalTok{))}
+
+\NormalTok{  matriz\_confusion\_rf }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(}\AttributeTok{Real =}\NormalTok{ real\_rf, }\AttributeTok{Predicho =}\NormalTok{ clases\_rf)}
+\NormalTok{  matriz\_confusion\_rf}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
-  exactitud sensibilidad especificidad
-1 0.8604444    0.3240109     0.9648261
+#>               Predicho
+#> Real           Con víctimas Solo daños
+#>   Con víctimas          475        991
+#>   Solo daños            265       7269
 \end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"matriz\_confusion\_rf"}\NormalTok{)) \{}
+\NormalTok{  VP }\OtherTok{\textless{}{-}}\NormalTok{ matriz\_confusion\_rf[}\StringTok{"Con víctimas"}\NormalTok{, }\StringTok{"Con víctimas"}\NormalTok{]}
+\NormalTok{  FN }\OtherTok{\textless{}{-}}\NormalTok{ matriz\_confusion\_rf[}\StringTok{"Con víctimas"}\NormalTok{, }\StringTok{"Solo daños"}\NormalTok{]}
+\NormalTok{  FP }\OtherTok{\textless{}{-}}\NormalTok{ matriz\_confusion\_rf[}\StringTok{"Solo daños"}\NormalTok{, }\StringTok{"Con víctimas"}\NormalTok{]}
+\NormalTok{  VN }\OtherTok{\textless{}{-}}\NormalTok{ matriz\_confusion\_rf[}\StringTok{"Solo daños"}\NormalTok{, }\StringTok{"Solo daños"}\NormalTok{]}
+
+  \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{exactitud=}\NormalTok{(VP}\SpecialCharTok{+}\NormalTok{VN)}\SpecialCharTok{/}\NormalTok{(VP}\SpecialCharTok{+}\NormalTok{FN}\SpecialCharTok{+}\NormalTok{FP}\SpecialCharTok{+}\NormalTok{VN), }\AttributeTok{sensibilidad=}\NormalTok{VP}\SpecialCharTok{/}\NormalTok{(VP}\SpecialCharTok{+}\NormalTok{FN), }\AttributeTok{especificidad=}\NormalTok{VN}\SpecialCharTok{/}\NormalTok{(VN}\SpecialCharTok{+}\NormalTok{FP))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#>   exactitud sensibilidad especificidad
+#> 1 0.8604444    0.3240109     0.9648261
+\end{verbatim}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Interpretación del resultado}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+La sensibilidad indica qué tan bien detecta accidentes con víctimas. La
+especificidad indica qué tan bien reconoce accidentes de solo daños.
+
+\end{tcolorbox}
 
 \section{Distribución de probabilidades
 predichas}\label{distribuciuxf3n-de-probabilidades-predichas}
 
-\pandocbounded{\includegraphics[keepaspectratio]{07-random-forest_files/figure-pdf/unnamed-chunk-10-1.png}}
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{exists}\NormalTok{(}\StringTok{"probabilidades\_rf"}\NormalTok{)) \{}
+\NormalTok{  datos\_prob\_rf }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{probabilidad =}\NormalTok{ probabilidades\_rf, }\AttributeTok{clase\_real =}\NormalTok{ real\_rf)}
+
+  \FunctionTok{ggplot}\NormalTok{(datos\_prob\_rf, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ probabilidad, }\AttributeTok{fill =}\NormalTok{ clase\_real)) }\SpecialCharTok{+}
+    \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{bins =} \DecValTok{30}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.75}\NormalTok{, }\AttributeTok{position =} \StringTok{"identity"}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{escala\_clases\_fill}\NormalTok{(}\AttributeTok{name =} \StringTok{"Clase real"}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{labs}\NormalTok{(}
+      \AttributeTok{title =} \StringTok{"Distribución de probabilidades predichas"}\NormalTok{,}
+      \AttributeTok{subtitle =} \StringTok{"Random Forest"}\NormalTok{,}
+      \AttributeTok{x =} \StringTok{"Probabilidad predicha de \textquotesingle{}Con víctimas\textquotesingle{}"}\NormalTok{,}
+      \AttributeTok{y =} \StringTok{"Frecuencia"}
+\NormalTok{    ) }\SpecialCharTok{+}
+    \FunctionTok{tema\_libro}\NormalTok{()}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=0.92\linewidth,height=\textheight,keepaspectratio]{07-random-forest_files/figure-pdf/histograma-rf-1.png}
 
 \section{Conclusión}\label{conclusiuxf3n-5}
 
 Random Forest mejora la estabilidad y la capacidad predictiva de un solo
 árbol al combinar muchos árboles. Es uno de los métodos más útiles para
 clasificación aplicada.
+
+\bookmarksetup{startatroot}
+
+\chapter{Evaluación, validación y comparación de
+modelos}\label{evaluaciuxf3n-validaciuxf3n-y-comparaciuxf3n-de-modelos}
+
+\section{Objetivos del capítulo}\label{objetivos-del-capuxedtulo-7}
+
+Al finalizar este capítulo, el lector será capaz de:
+
+\begin{itemize}
+\tightlist
+\item
+  explicar por qué la exactitud no siempre es suficiente;
+\item
+  construir e interpretar una matriz de confusión;
+\item
+  calcular exactitud, sensibilidad, especificidad, precisión y valor F1;
+\item
+  distinguir entrenamiento, validación y prueba;
+\item
+  aplicar validación cruzada estratificada;
+\item
+  comparar modelos con criterios predictivos y prácticos;
+\item
+  seleccionar un modelo sin depender de una sola métrica.
+\end{itemize}
+
+\section{Introducción}\label{introducciuxf3n-4}
+
+Entrenar un modelo es apenas la mitad del trabajo. Después debemos
+responder una pregunta más delicada: \textbf{¿qué tan bien funcionará
+con accidentes que nunca vio durante el aprendizaje?}
+
+Un modelo puede memorizar los datos de entrenamiento y parecer
+excelente, pero fallar con observaciones nuevas. Por eso la evaluación
+debe realizarse con datos separados y métricas apropiadas para el
+objetivo del problema.
+
+En este capítulo se utiliza nuevamente la base preparada a partir de
+ATUS (Instituto Nacional de Estadística y Geografía 2025).
+
+\section{Cargar los datos}\label{cargar-los-datos}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(readr)}
+\FunctionTok{library}\NormalTok{(dplyr)}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{source}\NormalTok{(}\StringTok{"util\_graficas.R"}\NormalTok{)}
+
+\NormalTok{ruta\_atus\_ml }\OtherTok{\textless{}{-}} \StringTok{"datos/atus\_ml\_preparado.csv"}
+
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{file.exists}\NormalTok{(ruta\_atus\_ml)) \{}
+  \FunctionTok{stop}\NormalTok{(}
+    \FunctionTok{paste}\NormalTok{(}
+      \StringTok{"No se encontró datos/atus\_ml\_preparado.csv."}\NormalTok{,}
+      \StringTok{"Renderice primero el capítulo de preparación de datos."}
+\NormalTok{    )}
+\NormalTok{  )}
+\NormalTok{\}}
+
+\NormalTok{atus\_ml }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}
+\NormalTok{  ruta\_atus\_ml,}
+  \AttributeTok{show\_col\_types =} \ConstantTok{FALSE}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Preparar una muestra
+reproducible}\label{preparar-una-muestra-reproducible}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\NormalTok{atus\_eval }\OtherTok{\textless{}{-}}\NormalTok{ atus\_ml }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{sample\_n}\NormalTok{(}\FunctionTok{min}\NormalTok{(}\DecValTok{30000}\NormalTok{, }\FunctionTok{nrow}\NormalTok{(atus\_ml))) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{accidente\_con\_victimas =} \FunctionTok{factor}\NormalTok{(}
+\NormalTok{      accidente\_con\_victimas,}
+      \AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Solo daños"}\NormalTok{, }\StringTok{"Con víctimas"}\NormalTok{)}
+\NormalTok{    ),}
+    \AttributeTok{MES =} \FunctionTok{factor}\NormalTok{(MES),}
+    \AttributeTok{ID\_HORA =} \FunctionTok{as.numeric}\NormalTok{(ID\_HORA),}
+    \AttributeTok{DIASEMANA =} \FunctionTok{factor}\NormalTok{(DIASEMANA),}
+    \AttributeTok{TIPACCID =} \FunctionTok{factor}\NormalTok{(TIPACCID),}
+    \AttributeTok{CAUSAACCI =} \FunctionTok{factor}\NormalTok{(CAUSAACCI)}
+\NormalTok{  ) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{na.omit}\NormalTok{()}
+
+\FunctionTok{prop.table}\NormalTok{(}\FunctionTok{table}\NormalTok{(atus\_eval}\SpecialCharTok{$}\NormalTok{accidente\_con\_victimas))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> 
+#>   Solo daños Con víctimas 
+#>    0.8277333    0.1722667
+\end{verbatim}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Interpretación}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+La tabla de proporciones permite identificar si una clase es mucho más
+frecuente que la otra. Cuando existe desbalance, una exactitud alta
+puede resultar engañosa.
+
+\end{tcolorbox}
+
+\section{Entrenamiento, validación y
+prueba}\label{entrenamiento-validaciuxf3n-y-prueba}
+
+Los datos pueden dividirse en tres partes:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Entrenamiento:} se utiliza para estimar los parámetros del
+  modelo.
+\item
+  \textbf{Validación:} ayuda a elegir hiperparámetros y comparar
+  alternativas.
+\item
+  \textbf{Prueba:} se reserva para estimar el desempeño final.
+\end{itemize}
+
+En ejercicios introductorios es frecuente utilizar entrenamiento y
+prueba, mientras que la validación se realiza mediante validación
+cruzada dentro del conjunto de entrenamiento.
+
+\section{División estratificada}\label{divisiuxf3n-estratificada}
+
+Una división estratificada conserva aproximadamente la proporción de
+cada clase.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\NormalTok{indices\_entrenamiento }\OtherTok{\textless{}{-}} \FunctionTok{unlist}\NormalTok{(}
+  \FunctionTok{lapply}\NormalTok{(}
+    \FunctionTok{split}\NormalTok{(}\FunctionTok{seq\_len}\NormalTok{(}\FunctionTok{nrow}\NormalTok{(atus\_eval)), atus\_eval}\SpecialCharTok{$}\NormalTok{accidente\_con\_victimas),}
+    \ControlFlowTok{function}\NormalTok{(indices) \{}
+      \FunctionTok{sample}\NormalTok{(indices, }\AttributeTok{size =} \FunctionTok{floor}\NormalTok{(}\FloatTok{0.70} \SpecialCharTok{*} \FunctionTok{length}\NormalTok{(indices)))}
+\NormalTok{    \}}
+\NormalTok{  )}
+\NormalTok{)}
+
+\NormalTok{entrenamiento }\OtherTok{\textless{}{-}}\NormalTok{ atus\_eval[indices\_entrenamiento, ]}
+\NormalTok{prueba }\OtherTok{\textless{}{-}}\NormalTok{ atus\_eval[}\SpecialCharTok{{-}}\NormalTok{indices\_entrenamiento, ]}
+
+\FunctionTok{prop.table}\NormalTok{(}\FunctionTok{table}\NormalTok{(entrenamiento}\SpecialCharTok{$}\NormalTok{accidente\_con\_victimas))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> 
+#>   Solo daños Con víctimas 
+#>    0.8277537    0.1722463
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{prop.table}\NormalTok{(}\FunctionTok{table}\NormalTok{(prueba}\SpecialCharTok{$}\NormalTok{accidente\_con\_victimas))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> 
+#>   Solo daños Con víctimas 
+#>    0.8276858    0.1723142
+\end{verbatim}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-note-color!10!white, colframe=quarto-callout-note-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Explicación del código}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Los índices se separan por clase y después se toma 70 \% de cada grupo.
+Así se reduce el riesgo de que una clase quede sobrerrepresentada en
+entrenamiento o prueba.
+
+\end{tcolorbox}
+
+\section{Matriz de confusión}\label{matriz-de-confusiuxf3n}
+
+Para una clase positiva denominada \textbf{Con víctimas}, la matriz
+contiene:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Verdadero positivo (VP):} el accidente tenía víctimas y el
+  modelo lo detectó.
+\item
+  \textbf{Falso negativo (FN):} tenía víctimas, pero el modelo lo
+  clasificó como solo daños.
+\item
+  \textbf{Falso positivo (FP):} era de solo daños, pero el modelo
+  predijo víctimas.
+\item
+  \textbf{Verdadero negativo (VN):} era de solo daños y se clasificó
+  correctamente.
+\end{itemize}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lrr@{}}
+\toprule\noalign{}
+Clase real & Predicción positiva & Predicción negativa \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Positiva & VP & FN \\
+Negativa & FP & VN \\
+\end{longtable}
+}
+
+Un falso negativo puede ser especialmente importante cuando el propósito
+consiste en identificar accidentes con víctimas.
+
+\section{Métricas principales}\label{muxe9tricas-principales}
+
+\subsection{Exactitud}\label{exactitud}
+
+\[
+\text{Exactitud}=\frac{VP+VN}{VP+FN+FP+VN}
+\]
+
+Mide la proporción total de predicciones correctas.
+
+\subsection{Sensibilidad}\label{sensibilidad}
+
+\[
+\text{Sensibilidad}=\frac{VP}{VP+FN}
+\]
+
+Mide qué proporción de los accidentes con víctimas fue detectada.
+
+\subsection{Especificidad}\label{especificidad}
+
+\[
+\text{Especificidad}=\frac{VN}{VN+FP}
+\]
+
+Mide qué proporción de los accidentes de solo daños fue reconocida
+correctamente.
+
+\subsection{Precisión}\label{precisiuxf3n}
+
+\[
+\text{Precisión}=\frac{VP}{VP+FP}
+\]
+
+Indica qué proporción de las predicciones positivas realmente tenía
+víctimas.
+
+\subsection{Valor F1}\label{valor-f1}
+
+\[
+F_1=2\frac{\text{Precisión}\times\text{Sensibilidad}}
+{\text{Precisión}+\text{Sensibilidad}}
+\]
+
+El valor F1 equilibra precisión y sensibilidad.
+
+\section{Función para calcular
+métricas}\label{funciuxf3n-para-calcular-muxe9tricas}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{calcular\_metricas }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(real, predicho, }\AttributeTok{positiva =} \StringTok{"Con víctimas"}\NormalTok{) \{}
+\NormalTok{  real }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(real)}
+\NormalTok{  predicho }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(predicho, }\AttributeTok{levels =} \FunctionTok{levels}\NormalTok{(real))}
+
+\NormalTok{  negativas }\OtherTok{\textless{}{-}} \FunctionTok{setdiff}\NormalTok{(}\FunctionTok{levels}\NormalTok{(real), positiva)}
+
+  \ControlFlowTok{if}\NormalTok{ (}\FunctionTok{length}\NormalTok{(negativas) }\SpecialCharTok{!=} \DecValTok{1}\NormalTok{) \{}
+    \FunctionTok{stop}\NormalTok{(}\StringTok{"La función requiere exactamente dos clases."}\NormalTok{)}
+\NormalTok{  \}}
+
+\NormalTok{  negativa }\OtherTok{\textless{}{-}}\NormalTok{ negativas[}\DecValTok{1}\NormalTok{]}
+\NormalTok{  matriz }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(}\AttributeTok{Real =}\NormalTok{ real, }\AttributeTok{Predicho =}\NormalTok{ predicho)}
+
+\NormalTok{  VP }\OtherTok{\textless{}{-}}\NormalTok{ matriz[positiva, positiva]}
+\NormalTok{  FN }\OtherTok{\textless{}{-}}\NormalTok{ matriz[positiva, negativa]}
+\NormalTok{  FP }\OtherTok{\textless{}{-}}\NormalTok{ matriz[negativa, positiva]}
+\NormalTok{  VN }\OtherTok{\textless{}{-}}\NormalTok{ matriz[negativa, negativa]}
+
+\NormalTok{  division\_segura }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(numerador, denominador) \{}
+    \ControlFlowTok{if}\NormalTok{ (}
+      \FunctionTok{is.na}\NormalTok{(numerador) }\SpecialCharTok{||}
+      \FunctionTok{is.na}\NormalTok{(denominador) }\SpecialCharTok{||}
+\NormalTok{      denominador }\SpecialCharTok{==} \DecValTok{0}
+\NormalTok{    ) \{}
+      \FunctionTok{return}\NormalTok{(}\ConstantTok{NA\_real\_}\NormalTok{)}
+\NormalTok{    \}}
+
+    \FunctionTok{as.numeric}\NormalTok{(numerador }\SpecialCharTok{/}\NormalTok{ denominador)}
+\NormalTok{  \}}
+
+\NormalTok{  exactitud }\OtherTok{\textless{}{-}} \FunctionTok{division\_segura}\NormalTok{(VP }\SpecialCharTok{+}\NormalTok{ VN, VP }\SpecialCharTok{+}\NormalTok{ FN }\SpecialCharTok{+}\NormalTok{ FP }\SpecialCharTok{+}\NormalTok{ VN)}
+\NormalTok{  sensibilidad }\OtherTok{\textless{}{-}} \FunctionTok{division\_segura}\NormalTok{(VP, VP }\SpecialCharTok{+}\NormalTok{ FN)}
+\NormalTok{  especificidad }\OtherTok{\textless{}{-}} \FunctionTok{division\_segura}\NormalTok{(VN, VN }\SpecialCharTok{+}\NormalTok{ FP)}
+\NormalTok{  precision }\OtherTok{\textless{}{-}} \FunctionTok{division\_segura}\NormalTok{(VP, VP }\SpecialCharTok{+}\NormalTok{ FP)}
+\NormalTok{  f1 }\OtherTok{\textless{}{-}} \FunctionTok{division\_segura}\NormalTok{(}
+    \DecValTok{2} \SpecialCharTok{*}\NormalTok{ precision }\SpecialCharTok{*}\NormalTok{ sensibilidad,}
+\NormalTok{    precision }\SpecialCharTok{+}\NormalTok{ sensibilidad}
+\NormalTok{  )}
+
+  \FunctionTok{list}\NormalTok{(}
+    \AttributeTok{matriz =}\NormalTok{ matriz,}
+    \AttributeTok{metricas =} \FunctionTok{data.frame}\NormalTok{(}
+      \AttributeTok{exactitud =}\NormalTok{ exactitud,}
+      \AttributeTok{sensibilidad =}\NormalTok{ sensibilidad,}
+      \AttributeTok{especificidad =}\NormalTok{ especificidad,}
+      \AttributeTok{precision =}\NormalTok{ precision,}
+      \AttributeTok{f1 =}\NormalTok{ f1}
+\NormalTok{    )}
+\NormalTok{  )}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Modelo de referencia: regla
+mayoritaria}\label{modelo-de-referencia-regla-mayoritaria}
+
+Antes de celebrar un modelo complejo, conviene compararlo con una regla
+muy simple: predecir siempre la clase más frecuente.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{clase\_mayoritaria }\OtherTok{\textless{}{-}} \FunctionTok{names}\NormalTok{(}
+  \FunctionTok{which.max}\NormalTok{(}\FunctionTok{table}\NormalTok{(entrenamiento}\SpecialCharTok{$}\NormalTok{accidente\_con\_victimas))}
+\NormalTok{)}
+
+\NormalTok{prediccion\_referencia }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(}
+  \FunctionTok{rep}\NormalTok{(clase\_mayoritaria, }\FunctionTok{nrow}\NormalTok{(prueba)),}
+  \AttributeTok{levels =} \FunctionTok{levels}\NormalTok{(entrenamiento}\SpecialCharTok{$}\NormalTok{accidente\_con\_victimas)}
+\NormalTok{)}
+
+\NormalTok{resultado\_referencia }\OtherTok{\textless{}{-}} \FunctionTok{calcular\_metricas}\NormalTok{(}
+  \AttributeTok{real =}\NormalTok{ prueba}\SpecialCharTok{$}\NormalTok{accidente\_con\_victimas,}
+  \AttributeTok{predicho =}\NormalTok{ prediccion\_referencia}
+\NormalTok{)}
+
+\NormalTok{resultado\_referencia}\SpecialCharTok{$}\NormalTok{matriz}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#>               Predicho
+#> Real           Solo daños Con víctimas
+#>   Solo daños         7450            0
+#>   Con víctimas       1551            0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{resultado\_referencia}\SpecialCharTok{$}\NormalTok{metricas}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#>   exactitud sensibilidad especificidad precision f1
+#> 1 0.8276858            0             1        NA NA
+\end{verbatim}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-note-color!10!white, colframe=quarto-callout-note-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{¿Por qué puede aparecer NA?}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+El modelo de referencia predice únicamente la clase mayoritaria. Si
+nunca predice la clase positiva \textbf{Con víctimas}, la precisión no
+puede calcularse porque su denominador es cero. En ese caso R muestra
+\texttt{NA}, que significa \textbf{métrica no definida}, pero el libro
+continúa procesándose normalmente.
+
+\end{tcolorbox}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-warning-color!10!white, colframe=quarto-callout-warning-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-warning-color}{\faExclamationTriangle}\hspace{0.5em}{Una exactitud alta puede engañar}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Si 90 \% de los accidentes perteneciera a una sola clase, predecir
+siempre esa clase produciría 90 \% de exactitud sin aprender ninguna
+relación útil. Por eso deben revisarse sensibilidad, especificidad,
+precisión y F1.
+
+\end{tcolorbox}
+
+\section{Evaluar una regresión
+logística}\label{evaluar-una-regresiuxf3n-loguxedstica}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{modelo\_logistico }\OtherTok{\textless{}{-}} \FunctionTok{glm}\NormalTok{(}
+\NormalTok{  accidente\_con\_victimas }\SpecialCharTok{\textasciitilde{}}
+\NormalTok{    MES }\SpecialCharTok{+}\NormalTok{ ID\_HORA }\SpecialCharTok{+}\NormalTok{ DIASEMANA }\SpecialCharTok{+}\NormalTok{ TIPACCID }\SpecialCharTok{+}\NormalTok{ CAUSAACCI,}
+  \AttributeTok{data =}\NormalTok{ entrenamiento,}
+  \AttributeTok{family =}\NormalTok{ binomial}
+\NormalTok{)}
+
+\NormalTok{probabilidad\_logistica }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(}
+\NormalTok{  modelo\_logistico,}
+  \AttributeTok{newdata =}\NormalTok{ prueba,}
+  \AttributeTok{type =} \StringTok{"response"}
+\NormalTok{)}
+
+\CommentTok{\# glm() modela la probabilidad del segundo nivel del factor.}
+\NormalTok{clase\_positiva\_modelada }\OtherTok{\textless{}{-}} \FunctionTok{levels}\NormalTok{(}
+\NormalTok{  entrenamiento}\SpecialCharTok{$}\NormalTok{accidente\_con\_victimas}
+\NormalTok{)[}\DecValTok{2}\NormalTok{]}
+
+\NormalTok{prediccion\_logistica }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(}
+\NormalTok{  probabilidad\_logistica }\SpecialCharTok{\textgreater{}=} \FloatTok{0.50}\NormalTok{,}
+\NormalTok{  clase\_positiva\_modelada,}
+  \FunctionTok{levels}\NormalTok{(entrenamiento}\SpecialCharTok{$}\NormalTok{accidente\_con\_victimas)[}\DecValTok{1}\NormalTok{]}
+\NormalTok{)}
+
+\NormalTok{prediccion\_logistica }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(}
+\NormalTok{  prediccion\_logistica,}
+  \AttributeTok{levels =} \FunctionTok{levels}\NormalTok{(entrenamiento}\SpecialCharTok{$}\NormalTok{accidente\_con\_victimas)}
+\NormalTok{)}
+
+\NormalTok{resultado\_logistico }\OtherTok{\textless{}{-}} \FunctionTok{calcular\_metricas}\NormalTok{(}
+  \AttributeTok{real =}\NormalTok{ prueba}\SpecialCharTok{$}\NormalTok{accidente\_con\_victimas,}
+  \AttributeTok{predicho =}\NormalTok{ prediccion\_logistica}
+\NormalTok{)}
+
+\NormalTok{resultado\_logistico}\SpecialCharTok{$}\NormalTok{matriz}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#>               Predicho
+#> Real           Solo daños Con víctimas
+#>   Solo daños         7403           47
+#>   Con víctimas       1198          353
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{resultado\_logistico}\SpecialCharTok{$}\NormalTok{metricas}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#>   exactitud sensibilidad especificidad precision        f1
+#> 1  0.861682    0.2275951     0.9936913    0.8825 0.3618657
+\end{verbatim}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-important-color!10!white, colframe=quarto-callout-important-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Revise qué clase modela R}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+En una regresión logística binaria, \texttt{glm()} calcula la
+probabilidad del segundo nivel del factor respuesta. El orden de los
+niveles debe verificarse antes de transformar probabilidades en clases.
+
+\end{tcolorbox}
+
+\section{Comparación inicial}\label{comparaciuxf3n-inicial}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{comparacion\_inicial }\OtherTok{\textless{}{-}} \FunctionTok{bind\_rows}\NormalTok{(}
+  \FunctionTok{cbind}\NormalTok{(}
+    \AttributeTok{modelo =} \StringTok{"Regla mayoritaria"}\NormalTok{,}
+\NormalTok{    resultado\_referencia}\SpecialCharTok{$}\NormalTok{metricas}
+\NormalTok{  ),}
+  \FunctionTok{cbind}\NormalTok{(}
+    \AttributeTok{modelo =} \StringTok{"Regresión logística"}\NormalTok{,}
+\NormalTok{    resultado\_logistico}\SpecialCharTok{$}\NormalTok{metricas}
+\NormalTok{  )}
+\NormalTok{)}
+
+\NormalTok{comparacion\_inicial}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#>                modelo exactitud sensibilidad especificidad precision        f1
+#> 1   Regla mayoritaria 0.8276858    0.0000000     1.0000000        NA        NA
+#> 2 Regresión logística 0.8616820    0.2275951     0.9936913    0.8825 0.3618657
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{comparacion\_larga }\OtherTok{\textless{}{-}}\NormalTok{ comparacion\_inicial }\SpecialCharTok{|\textgreater{}}
+\NormalTok{  tidyr}\SpecialCharTok{::}\FunctionTok{pivot\_longer}\NormalTok{(}
+    \AttributeTok{cols =} \SpecialCharTok{{-}}\NormalTok{modelo,}
+    \AttributeTok{names\_to =} \StringTok{"metrica"}\NormalTok{,}
+    \AttributeTok{values\_to =} \StringTok{"valor"}
+\NormalTok{  )}
+
+\FunctionTok{ggplot}\NormalTok{(}
+\NormalTok{  comparacion\_larga,}
+  \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ metrica, }\AttributeTok{y =}\NormalTok{ valor, }\AttributeTok{fill =}\NormalTok{ modelo)}
+\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_col}\NormalTok{(}\AttributeTok{position =} \StringTok{"dodge"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_y\_continuous}\NormalTok{(}
+    \AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{),}
+    \AttributeTok{labels =}\NormalTok{ scales}\SpecialCharTok{::}\FunctionTok{label\_percent}\NormalTok{(}\AttributeTok{accuracy =} \DecValTok{1}\NormalTok{)}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"Un modelo debe superar una referencia sencilla"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{"Métrica"}\NormalTok{,}
+    \AttributeTok{y =} \StringTok{"Valor"}\NormalTok{,}
+    \AttributeTok{fill =} \StringTok{"Modelo"}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{tema\_libro}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=0.92\linewidth,height=\textheight,keepaspectratio]{08-evaluacion-modelos_files/figure-pdf/grafica-comparacion-inicial-1.png}
+
+}
+
+\caption{Comparación de métricas entre una regla de referencia y la
+regresión logística.}
+
+\end{figure}%
+
+\textbf{Fuente:} Elaboración propia con datos del INEGI, ATUS 2024.
+
+\section{Umbral de clasificación}\label{umbral-de-clasificaciuxf3n}
+
+El umbral de 0.50 no es una ley universal. Reducirlo puede aumentar la
+sensibilidad, aunque también puede generar más falsos positivos.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{umbrales }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\FloatTok{0.10}\NormalTok{, }\FloatTok{0.90}\NormalTok{, }\AttributeTok{by =} \FloatTok{0.05}\NormalTok{)}
+
+\NormalTok{metricas\_umbral }\OtherTok{\textless{}{-}} \FunctionTok{lapply}\NormalTok{(umbrales, }\ControlFlowTok{function}\NormalTok{(umbral) \{}
+\NormalTok{  prediccion }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(}
+\NormalTok{    probabilidad\_logistica }\SpecialCharTok{\textgreater{}=}\NormalTok{ umbral,}
+\NormalTok{    clase\_positiva\_modelada,}
+    \FunctionTok{levels}\NormalTok{(entrenamiento}\SpecialCharTok{$}\NormalTok{accidente\_con\_victimas)[}\DecValTok{1}\NormalTok{]}
+\NormalTok{  )}
+
+\NormalTok{  prediccion }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(}
+\NormalTok{    prediccion,}
+    \AttributeTok{levels =} \FunctionTok{levels}\NormalTok{(entrenamiento}\SpecialCharTok{$}\NormalTok{accidente\_con\_victimas)}
+\NormalTok{  )}
+
+\NormalTok{  metricas }\OtherTok{\textless{}{-}} \FunctionTok{calcular\_metricas}\NormalTok{(}
+\NormalTok{    prueba}\SpecialCharTok{$}\NormalTok{accidente\_con\_victimas,}
+\NormalTok{    prediccion}
+\NormalTok{  )}\SpecialCharTok{$}\NormalTok{metricas}
+
+  \FunctionTok{cbind}\NormalTok{(}\AttributeTok{umbral =}\NormalTok{ umbral, metricas)}
+\NormalTok{\}) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{bind\_rows}\NormalTok{()}
+
+\NormalTok{metricas\_umbral}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#>    umbral exactitud sensibilidad especificidad precision        f1
+#> 1    0.10 0.7351405    0.7878788     0.7241611 0.3729020 0.5062138
+#> 2    0.15 0.7996889    0.7150226     0.8173154 0.4489879 0.5516041
+#> 3    0.20 0.8055772    0.7047066     0.8265772 0.4582809 0.5553862
+#> 4    0.25 0.8182424    0.6834300     0.8463087 0.4807256 0.5644302
+#> 5    0.30 0.8196867    0.6756931     0.8496644 0.4833948 0.5635924
+#> 6    0.35 0.8237974    0.6434558     0.8613423 0.4913836 0.5572306
+#> 7    0.40 0.8447950    0.4455190     0.9279195 0.5627036 0.4973012
+#> 8    0.45 0.8586824    0.2778852     0.9795973 0.7392796 0.4039363
+#> 9    0.50 0.8616820    0.2275951     0.9936913 0.8825000 0.3618657
+#> 10   0.55 0.8602378    0.2127660     0.9950336 0.8991826 0.3441084
+#> 11   0.60 0.8593490    0.1889104     0.9989262 0.9734219 0.3164147
+#> 12   0.65 0.8596823    0.1856867     1.0000000 1.0000000 0.3132137
+#> 13   0.70 0.8596823    0.1856867     1.0000000 1.0000000 0.3132137
+#> 14   0.75 0.8596823    0.1856867     1.0000000 1.0000000 0.3132137
+#> 15   0.80 0.8596823    0.1856867     1.0000000 1.0000000 0.3132137
+#> 16   0.85 0.8596823    0.1856867     1.0000000 1.0000000 0.3132137
+#> 17   0.90 0.8596823    0.1856867     1.0000000 1.0000000 0.3132137
+\end{verbatim}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-note-color!10!white, colframe=quarto-callout-note-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Decisión práctica}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+El mejor umbral depende del costo de cada error. Cuando omitir un
+accidente con víctimas es más grave que generar una alerta adicional,
+puede priorizarse la sensibilidad.
+
+\end{tcolorbox}
+
+\section{Validación cruzada}\label{validaciuxf3n-cruzada}
+
+La validación cruzada divide el conjunto de entrenamiento en varios
+pliegues. Cada pliegue funciona una vez como validación y los restantes
+como entrenamiento.
+
+En validación cruzada de \(K\) pliegues:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  se divide la muestra en \(K\) partes;
+\item
+  se entrena con \(K-1\) partes;
+\item
+  se evalúa en la parte restante;
+\item
+  se repite hasta utilizar todos los pliegues;
+\item
+  se promedian las métricas.
+\end{enumerate}
+
+\subsection{Crear pliegues
+estratificados}\label{crear-pliegues-estratificados}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{crear\_pliegues }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(respuesta, }\AttributeTok{k =} \DecValTok{5}\NormalTok{, }\AttributeTok{semilla =} \DecValTok{123}\NormalTok{) \{}
+  \FunctionTok{set.seed}\NormalTok{(semilla)}
+
+\NormalTok{  pliegues }\OtherTok{\textless{}{-}} \FunctionTok{integer}\NormalTok{(}\FunctionTok{length}\NormalTok{(respuesta))}
+
+  \ControlFlowTok{for}\NormalTok{ (clase }\ControlFlowTok{in} \FunctionTok{levels}\NormalTok{(}\FunctionTok{factor}\NormalTok{(respuesta))) \{}
+\NormalTok{    indices }\OtherTok{\textless{}{-}} \FunctionTok{which}\NormalTok{(respuesta }\SpecialCharTok{==}\NormalTok{ clase)}
+\NormalTok{    etiquetas }\OtherTok{\textless{}{-}} \FunctionTok{rep}\NormalTok{(}\FunctionTok{seq\_len}\NormalTok{(k), }\AttributeTok{length.out =} \FunctionTok{length}\NormalTok{(indices))}
+\NormalTok{    pliegues[indices] }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(etiquetas)}
+\NormalTok{  \}}
+
+\NormalTok{  pliegues}
+\NormalTok{\}}
+
+\NormalTok{pliegue }\OtherTok{\textless{}{-}} \FunctionTok{crear\_pliegues}\NormalTok{(}
+\NormalTok{  entrenamiento}\SpecialCharTok{$}\NormalTok{accidente\_con\_victimas,}
+  \AttributeTok{k =} \DecValTok{5}
+\NormalTok{)}
+
+\FunctionTok{table}\NormalTok{(pliegue, entrenamiento}\SpecialCharTok{$}\NormalTok{accidente\_con\_victimas)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#>        
+#> pliegue Solo daños Con víctimas
+#>       1       3477          724
+#>       2       3477          724
+#>       3       3476          723
+#>       4       3476          723
+#>       5       3476          723
+\end{verbatim}
+
+\subsection{Validación cruzada de la regresión
+logística}\label{validaciuxf3n-cruzada-de-la-regresiuxf3n-loguxedstica}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{resultados\_cv }\OtherTok{\textless{}{-}} \FunctionTok{lapply}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{, }\ControlFlowTok{function}\NormalTok{(k) \{}
+\NormalTok{  datos\_entrenamiento }\OtherTok{\textless{}{-}}\NormalTok{ entrenamiento[pliegue }\SpecialCharTok{!=}\NormalTok{ k, ]}
+\NormalTok{  datos\_validacion }\OtherTok{\textless{}{-}}\NormalTok{ entrenamiento[pliegue }\SpecialCharTok{==}\NormalTok{ k, ]}
+
+\NormalTok{  modelo }\OtherTok{\textless{}{-}} \FunctionTok{glm}\NormalTok{(}
+\NormalTok{    accidente\_con\_victimas }\SpecialCharTok{\textasciitilde{}}
+\NormalTok{      MES }\SpecialCharTok{+}\NormalTok{ ID\_HORA }\SpecialCharTok{+}\NormalTok{ DIASEMANA }\SpecialCharTok{+}\NormalTok{ TIPACCID }\SpecialCharTok{+}\NormalTok{ CAUSAACCI,}
+    \AttributeTok{data =}\NormalTok{ datos\_entrenamiento,}
+    \AttributeTok{family =}\NormalTok{ binomial}
+\NormalTok{  )}
+
+\NormalTok{  probabilidad }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(}
+\NormalTok{    modelo,}
+    \AttributeTok{newdata =}\NormalTok{ datos\_validacion,}
+    \AttributeTok{type =} \StringTok{"response"}
+\NormalTok{  )}
+
+\NormalTok{  clase\_modelada }\OtherTok{\textless{}{-}} \FunctionTok{levels}\NormalTok{(}
+\NormalTok{    datos\_entrenamiento}\SpecialCharTok{$}\NormalTok{accidente\_con\_victimas}
+\NormalTok{  )[}\DecValTok{2}\NormalTok{]}
+
+\NormalTok{  prediccion }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(}
+\NormalTok{    probabilidad }\SpecialCharTok{\textgreater{}=} \FloatTok{0.50}\NormalTok{,}
+\NormalTok{    clase\_modelada,}
+    \FunctionTok{levels}\NormalTok{(datos\_entrenamiento}\SpecialCharTok{$}\NormalTok{accidente\_con\_victimas)[}\DecValTok{1}\NormalTok{]}
+\NormalTok{  )}
+
+\NormalTok{  prediccion }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(}
+\NormalTok{    prediccion,}
+    \AttributeTok{levels =} \FunctionTok{levels}\NormalTok{(datos\_entrenamiento}\SpecialCharTok{$}\NormalTok{accidente\_con\_victimas)}
+\NormalTok{  )}
+
+\NormalTok{  metricas }\OtherTok{\textless{}{-}} \FunctionTok{calcular\_metricas}\NormalTok{(}
+\NormalTok{    datos\_validacion}\SpecialCharTok{$}\NormalTok{accidente\_con\_victimas,}
+\NormalTok{    prediccion}
+\NormalTok{  )}\SpecialCharTok{$}\NormalTok{metricas}
+
+  \FunctionTok{cbind}\NormalTok{(}\AttributeTok{pliegue =}\NormalTok{ k, metricas)}
+\NormalTok{\}) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{bind\_rows}\NormalTok{()}
+
+\NormalTok{resultados\_cv}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#>   pliegue exactitud sensibilidad especificidad precision        f1
+#> 1       1 0.8631278    0.2389503     0.9930975 0.8781726 0.3756786
+#> 2       2 0.8590812    0.2140884     0.9933851 0.8707865 0.3436807
+#> 3       3 0.8630626    0.2268326     0.9953970 0.9111111 0.3632337
+#> 4       4 0.8637771    0.2406639     0.9933832 0.8832487 0.3782609
+#> 5       5 0.8525839    0.1798064     0.9925201 0.8333333 0.2957907
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{resumen\_cv }\OtherTok{\textless{}{-}}\NormalTok{ resultados\_cv }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{summarise}\NormalTok{(}
+    \FunctionTok{across}\NormalTok{(}
+      \FunctionTok{where}\NormalTok{(is.numeric) }\SpecialCharTok{\&} \SpecialCharTok{!}\FunctionTok{matches}\NormalTok{(}\StringTok{"pliegue"}\NormalTok{),}
+      \FunctionTok{list}\NormalTok{(}\AttributeTok{media =}\NormalTok{ mean, }\AttributeTok{desviacion =}\NormalTok{ sd),}
+      \AttributeTok{na.rm =} \ConstantTok{TRUE}
+\NormalTok{    )}
+\NormalTok{  )}
+
+\NormalTok{resumen\_cv}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#>   exactitud_media exactitud_desviacion sensibilidad_media
+#> 1       0.8603265          0.004710052          0.2200683
+#>   sensibilidad_desviacion especificidad_media especificidad_desviacion
+#> 1              0.02491609           0.9935566              0.001087613
+#>   precision_media precision_desviacion  f1_media f1_desviacion
+#> 1       0.8753305           0.02799749 0.3513289    0.03392253
+\end{verbatim}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Interpretación}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+La media resume el desempeño esperado y la desviación estándar muestra
+su estabilidad. Dos modelos con medias parecidas pueden diferir mucho si
+uno presenta resultados más variables entre pliegues.
+
+\end{tcolorbox}
+
+\section{Cómo comparar varios
+modelos}\label{cuxf3mo-comparar-varios-modelos}
+
+Para comparar regresión logística, k-NN, árbol de decisión y Random
+Forest conviene utilizar:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  la misma muestra;
+\item
+  la misma variable respuesta;
+\item
+  la misma partición de entrenamiento y prueba;
+\item
+  el mismo criterio para definir la clase positiva;
+\item
+  las mismas métricas;
+\item
+  una validación cruzada equivalente;
+\item
+  tiempos de entrenamiento y predicción;
+\item
+  facilidad de interpretación.
+\end{enumerate}
+
+Una tabla de decisión puede tener esta estructura:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1200}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1600}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1600}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1600}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1600}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1200}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1200}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Modelo
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Exactitud
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Sensibilidad
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Especificidad
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+F1
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Interpretación
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Costo computacional
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Regresión logística & & & & & Alta & Bajo \\
+k-NN & & & & & Media-baja & Medio \\
+Árbol de decisión & & & & & Alta & Bajo \\
+Random Forest & & & & & Media & Alto \\
+\end{longtable}
+}
+
+\section{Selección del modelo
+final}\label{selecciuxf3n-del-modelo-final}
+
+No existe un modelo universalmente mejor. La selección depende de la
+finalidad:
+
+\begin{itemize}
+\tightlist
+\item
+  Si se requiere explicar el efecto de las variables, puede preferirse
+  regresión logística.
+\item
+  Si se necesita una regla visual y fácil de comunicar, un árbol puede
+  ser apropiado.
+\item
+  Si se prioriza capacidad predictiva y estabilidad, Random Forest puede
+  resultar competitivo.
+\item
+  Si el costo de los falsos negativos es alto, debe priorizarse
+  sensibilidad.
+\item
+  Si las alertas falsas son costosas, precisión y especificidad cobran
+  mayor importancia.
+\end{itemize}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-important-color!10!white, colframe=quarto-callout-important-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Principio fundamental}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+El mejor modelo no es necesariamente el que tiene la mayor exactitud,
+sino el que responde mejor al objetivo, controla los errores relevantes
+y mantiene un desempeño estable con datos nuevos.
+
+\end{tcolorbox}
+
+\section{Actividad guiada}\label{actividad-guiada}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Ejecute la regresión logística con umbrales de 0.30, 0.50 y 0.70.
+\item
+  Registre la matriz de confusión de cada caso.
+\item
+  Compare sensibilidad, especificidad, precisión y F1.
+\item
+  Explique qué umbral elegiría para detectar accidentes con víctimas.
+\item
+  Justifique su decisión considerando el costo de falsos negativos y
+  falsos positivos.
+\end{enumerate}
+
+\section{Actividades para el lector}\label{actividades-para-el-lector}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Construya una función que calcule la exactitud balanceada:
+
+  \[
+  \text{Exactitud balanceada}=\frac{\text{Sensibilidad}+\text{Especificidad}}{2}
+  \]
+\item
+  Compare la variabilidad de las métricas en validación cruzada.
+\item
+  Repita el procedimiento con un árbol de decisión.
+\item
+  Elabore una tabla comparativa con los cuatro modelos estudiados.
+\item
+  Escriba una recomendación técnica de no más de 200 palabras.
+\end{enumerate}
+
+\section{Resumen del capítulo}\label{resumen-del-capuxedtulo-1}
+
+En este capítulo aprendimos que evaluar un modelo requiere datos no
+utilizados durante el entrenamiento, una clase positiva bien definida y
+varias métricas. También construimos una regla de referencia, estudiamos
+el efecto del umbral y aplicamos validación cruzada estratificada. Estas
+herramientas permiten comparar modelos de forma más justa y elegirlos
+según el objetivo real del análisis.
+
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{part}{Apéndices}
+\appendix
+
+\chapter*{Referencias}\label{referencias}
+\addcontentsline{toc}{chapter}{Referencias}
+
+\markboth{Referencias}{Referencias}
+
+\protect\phantomsection\label{refs}
+\begin{CSLReferences}{1}{1}
+\bibitem[\citeproctext]{ref-inegi_atus_2024}
+Instituto Nacional de Estadística y Geografía. 2025. {«Estadística de
+Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas (ATUS),
+2024»}. Instituto Nacional de Estadística y Geografía.
+\url{https://www.inegi.org.mx/programas/accidentes/}.
+
+\bibitem[\citeproctext]{ref-inegi_terminos_libre_uso}
+Instituto Nacional de Estadística y Geografía. 2026. {«Términos de libre
+uso de la información del INEGI»}.
+\url{https://www.inegi.org.mx/inegi/terminos.html}.
+
+\end{CSLReferences}
+
+\section*{Reconocimiento de la fuente de
+datos}\label{reconocimiento-de-la-fuente-de-datos}
+\addcontentsline{toc}{section}{Reconocimiento de la fuente de datos}
+
+\markright{Reconocimiento de la fuente de datos}
+
+Los datos de accidentes empleados en este libro proceden de la
+\textbf{Estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas
+y Suburbanas (ATUS)} del Instituto Nacional de Estadística y Geografía
+(Instituto Nacional de Estadística y Geografía 2025).
+
+Los datos originales pertenecen al INEGI. La limpieza, transformación,
+selección de variables, gráficas, modelos de aprendizaje automático e
+interpretaciones son elaboración del autor y no constituyen resultados
+oficiales ni implican el aval del Instituto.
 
 
 \backmatter

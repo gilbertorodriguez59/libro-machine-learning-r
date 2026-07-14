@@ -1,20 +1,20 @@
 library(ggplot2)
 library(scales)
 
-# Paleta institucional
 col_azul <- "#1F4E79"
-col_azul_oscuro <- "#12324D"
-col_azul_suave <- "#DCEAF7"
+col_azul_oscuro <- "#16324F"
 col_turquesa <- "#19A7AE"
 col_turquesa_suave <- "#7AD7D1"
 col_coral <- "#D95D39"
-col_ambar <- "#F4A261"
-col_morado <- "#6C63FF"
+col_morado <- "#6D5BD0"
+col_ambar <- "#F2A541"
 col_gris_oscuro <- "#374151"
 col_gris_medio <- "#6B7280"
 col_gris_claro <- "#E5E7EB"
 
-# Tema profesional para gráficas
+etiqueta_numero <- label_number(big.mark = ",", decimal.mark = ".")
+etiqueta_porcentaje <- label_percent(accuracy = 1, decimal.mark = ".")
+
 tema_libro <- function(base_size = 13) {
   theme_minimal(base_size = base_size) +
     theme(
@@ -30,9 +30,9 @@ tema_libro <- function(base_size = 13) {
       legend.title = element_text(face = "bold", color = col_gris_oscuro),
       legend.text = element_text(color = col_gris_oscuro),
       strip.text = element_text(face = "bold", color = col_azul_oscuro),
-      strip.background = element_rect(fill = col_azul_suave, color = NA),
+      strip.background = element_rect(fill = "#DCEAF7", color = NA),
       axis.line = element_line(color = col_gris_claro),
-      plot.margin = margin(10, 12, 10, 10)
+      plot.margin = margin(10, 14, 10, 10)
     )
 }
 
@@ -51,6 +51,3 @@ escala_clases_color <- function(...) {
     ...
   )
 }
-
-etiqueta_numero <- label_number(big.mark = ",", decimal.mark = ".")
-etiqueta_porcentaje <- label_percent(accuracy = 1, decimal.mark = ".")

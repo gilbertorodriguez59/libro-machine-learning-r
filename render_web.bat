@@ -1,5 +1,8 @@
 @echo off
-cd /d C:\libro-machine-learning-r
+setlocal
+cd /d "%~dp0"
 quarto render --to html
+if errorlevel 1 exit /b 1
 type nul > docs\.nojekyll
-echo Web generada correctamente.
+echo Sitio web generado correctamente.
+endlocal

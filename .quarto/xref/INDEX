@@ -1,35 +1,35 @@
 {
   "index.qmd": {
-    "index.html": "03598d2b"
+    "index.html": "c7aaf9a4"
   },
   "00-licencia-y-citacion.qmd": {
-    "00-licencia-y-citacion.html": "f992fb8e"
+    "00-licencia-y-citacion.html": "233a2a97"
   },
   "01-introduccion.qmd": {
-    "01-introduccion.html": "9477e186"
+    "01-introduccion.html": "ea9ae01b"
   },
   "02-preparacion-datos.qmd": {
-    "02-preparacion-datos.html": "930e4b40"
+    "02-preparacion-datos.html": "23edb36a"
   },
   "03-analisis-exploratorio.qmd": {
-    "03-analisis-exploratorio.html": "e37bb7a8"
+    "03-analisis-exploratorio.html": "4329b929"
   },
   "04-regresion-logistica.qmd": {
-    "04-regresion-logistica.html": "0c3700b8"
+    "04-regresion-logistica.html": "8303dcd6"
   },
   "05-knn.qmd": {
-    "05-knn.html": "11dac975"
+    "05-knn.html": "ef7439e5"
   },
   "06-arboles-decision.qmd": {
-    "06-arboles-decision.html": "8f5044e7"
+    "06-arboles-decision.html": "b00c517f"
   },
   "07-random-forest.qmd": {
-    "07-random-forest.html": "249d2aaa"
+    "07-random-forest.html": "da146510"
   },
   "08-evaluacion-modelos.qmd": {
-    "08-evaluacion-modelos.html": "6900dacc"
+    "08-evaluacion-modelos.html": "2deacadb"
   },
   "referencias.qmd": {
-    "referencias.html": "56da0329"
+    "referencias.html": "6c3f864f"
   }
 }

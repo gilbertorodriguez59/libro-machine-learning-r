@@ -1,4 +1,4 @@
-﻿PUBLICACION AUTOMATICA DE LA VERSION DE DESARROLLO
+PUBLICACION AUTOMATICA DE LA VERSION DE DESARROLLO
 
 1. Copie estos dos archivos dentro de:
    C:\libro-machine-learning-r-estable
@@ -24,4 +24,3 @@ https://gilbertorodriguez59.github.io/libro-machine-learning-r/
 
 PDF:
 https://gilbertorodriguez59.github.io/libro-machine-learning-r/libro-machine-learning-r.pdf
-

@@ -4,19 +4,19 @@
     "href": "index.html",
     "title": "Aprendizaje y Clasificación Automática con R",
     "section": "",
-    "text": "PresentaciÃ³n",
+    "text": "Presentación",
     "crumbs": [
-      "Aprendizaje y ClasificaciÃ³n AutomÃ¡tica con R"
+      "Presentación"
     ]
   },
   {
-    "objectID": "index.html#aprendizaje-y-clasificaciã³n-automãtica-con-r",
-    "href": "index.html#aprendizaje-y-clasificaciã³n-automãtica-con-r",
+    "objectID": "index.html#aprendizaje-y-clasificación-automática-con-r",
+    "href": "index.html#aprendizaje-y-clasificación-automática-con-r",
     "title": "Aprendizaje y Clasificación Automática con R",
-    "section": "Aprendizaje y ClasificaciÃ³n AutomÃ¡tica con R",
-    "text": "Aprendizaje y ClasificaciÃ³n AutomÃ¡tica con R\n\nUn enfoque prÃ¡ctico con datos abiertos reales\nAutor: MI JesÃºs Gilberto RodrÃ­guez Escobedo\nVersiÃ³n: 0.7 (desarrollo)\nModalidad: Libro abierto, prÃ¡ctico e interactivo\nTecnologÃ­as: R Â· Quarto Â· Machine Learning Â· Datos abiertos Â· GitHub Pages\nEste libro introduce el aprendizaje automÃ¡tico (Machine Learning) mediante ejemplos claros, didÃ¡cticos y prÃ¡cticos desarrollados principalmente en R.\nLa intenciÃ³n no es escribir un tratado matemÃ¡tico extenso, sino construir una guÃ­a aplicada para aprender haciendo con datos abiertos reales. En esta versiÃ³n trabajamos con datos de accidentes de trÃ¡nsito de MÃ©xico y los usamos como hilo conductor para explicar preparaciÃ³n de datos, anÃ¡lisis exploratorio y modelos de clasificaciÃ³n.\n\n\n\n\n\n\nNotaEnfoque del libro\n\n\n\nEl libro combina fundamento conceptual, cÃ³digo reproducible en R, explicaciÃ³n breve del cÃ³digo, interpretaciÃ³n didÃ¡ctica de resultados y visualizaciones profesionales.",
+    "section": "Aprendizaje y Clasificación Automática con R",
+    "text": "Aprendizaje y Clasificación Automática con R\n\nUn enfoque práctico con datos abiertos reales\nAutor: MI Jesús Gilberto Rodríguez Escobedo\nVersión: 0.7 (desarrollo)\nModalidad: Libro abierto, práctico e interactivo\nTecnologías: R · Quarto · Machine Learning · Datos abiertos · GitHub Pages\nEste libro introduce el aprendizaje automático (Machine Learning) mediante ejemplos claros, didácticos y prácticos desarrollados principalmente en R.\nLa intención no es escribir un tratado matemático extenso, sino construir una guía aplicada para aprender haciendo con datos abiertos reales. En esta versión trabajamos con datos de accidentes de tránsito de México y los usamos como hilo conductor para explicar preparación de datos, análisis exploratorio y modelos de clasificación.\n\n\n\n\n\n\nNotaEnfoque del libro\n\n\n\nEl libro combina fundamento conceptual, código reproducible en R, explicación breve del código, interpretación didáctica de resultados y visualizaciones profesionales.",
     "crumbs": [
-      "Aprendizaje y ClasificaciÃ³n AutomÃ¡tica con R"
+      "Presentación"
     ]
   },
   {
@@ -24,19 +24,19 @@
     "href": "index.html#objetivo-general",
     "title": "Aprendizaje y Clasificación Automática con R",
     "section": "Objetivo general",
-    "text": "Objetivo general\nDesarrollar competencias bÃ¡sicas e intermedias en aprendizaje automÃ¡tico mediante el anÃ¡lisis, modelado e interpretaciÃ³n de datos reales.",
+    "text": "Objetivo general\nDesarrollar competencias básicas e intermedias en aprendizaje automático mediante el análisis, modelado e interpretación de datos reales.",
     "crumbs": [
-      "Aprendizaje y ClasificaciÃ³n AutomÃ¡tica con R"
+      "Presentación"
     ]
   },
   {
-    "objectID": "index.html#pãºblico-al-que-va-dirigido",
-    "href": "index.html#pãºblico-al-que-va-dirigido",
+    "objectID": "index.html#público-al-que-va-dirigido",
+    "href": "index.html#público-al-que-va-dirigido",
     "title": "Aprendizaje y Clasificación Automática con R",
-    "section": "PÃºblico al que va dirigido",
-    "text": "PÃºblico al que va dirigido\nEste libro estÃ¡ dirigido a estudiantes de ingenierÃ­a, ciencias, ciencia de datos, estadÃ­stica aplicada y Ã¡reas afines que desean iniciar en aprendizaje automÃ¡tico con un enfoque prÃ¡ctico.",
+    "section": "Público al que va dirigido",
+    "text": "Público al que va dirigido\nEste libro está dirigido a estudiantes de ingeniería, ciencias, ciencia de datos, estadística aplicada y áreas afines que desean iniciar en aprendizaje automático con un enfoque práctico.",
     "crumbs": [
-      "Aprendizaje y ClasificaciÃ³n AutomÃ¡tica con R"
+      "Presentación"
     ]
   },
   {
@@ -46,7 +46,7 @@
     "section": "Software utilizado",
     "text": "Software utilizado\n\nRStudio\nConsola de R\nGoogle Colab\nGitHub\nGitHub Pages\nQuarto Pub",
     "crumbs": [
-      "Aprendizaje y ClasificaciÃ³n AutomÃ¡tica con R"
+      "Presentación"
     ]
   },
   {
@@ -54,9 +54,9 @@
     "href": "index.html#cuaderno-completo-de-google-colab",
     "title": "Aprendizaje y Clasificación Automática con R",
     "section": "Cuaderno completo de Google Colab",
-    "text": "Cuaderno completo de Google Colab\nEl contenido del libro tambiÃ©n estÃ¡ disponible como un cuaderno ejecutable de Google Colab. Las explicaciones se presentan en celdas de texto y cada cÃ³digo R estÃ¡ separado para ejecutarse paso a paso.\n\nAbrir el cuaderno en Google Colab\nDescargar el archivo .ipynb\nConsultar instrucciones de uso",
+    "text": "Cuaderno completo de Google Colab\nEl contenido del libro también está disponible como un cuaderno ejecutable de Google Colab. Las explicaciones se presentan en celdas de texto y cada código R está separado para ejecutarse paso a paso.\n\nAbrir el cuaderno en Google Colab\nDescargar el archivo .ipynb\nConsultar instrucciones de uso",
     "crumbs": [
-      "Aprendizaje y ClasificaciÃ³n AutomÃ¡tica con R"
+      "Presentación"
     ]
   },
   {
@@ -64,9 +64,9 @@
     "href": "index.html#estructura-actual-del-libro",
     "title": "Aprendizaje y Clasificación Automática con R",
     "section": "Estructura actual del libro",
-    "text": "Estructura actual del libro\n\nIntroducciÃ³n al aprendizaje automÃ¡tico.\nPreparaciÃ³n de datos reales.\nAnÃ¡lisis exploratorio de datos.\nRegresiÃ³n logÃ­stica.\nk vecinos mÃ¡s cercanos.\nÃrboles de decisiÃ³n.\nRandom Forest.\nEvaluaciÃ³n, validaciÃ³n y comparaciÃ³n de modelos.",
+    "text": "Estructura actual del libro\n\nIntroducción al aprendizaje automático.\nPreparación de datos reales.\nAnálisis exploratorio de datos.\nRegresión logística.\nk vecinos más cercanos.\nÁrboles de decisión.\nRandom Forest.\nEvaluación, validación y comparación de modelos.",
     "crumbs": [
-      "Aprendizaje y ClasificaciÃ³n AutomÃ¡tica con R"
+      "Presentación"
     ]
   },
   {
@@ -74,9 +74,9 @@
     "href": "index.html#nota-para-el-lector",
     "title": "Aprendizaje y Clasificación Automática con R",
     "section": "Nota para el lector",
-    "text": "Nota para el lector\nLos capÃ­tulos estÃ¡n diseÃ±ados para leerse y ejecutarse paso a paso. Cada bloque de cÃ³digo busca responder una pregunta concreta y cada resultado se acompaÃ±a de una interpretaciÃ³n didÃ¡ctica.",
+    "text": "Nota para el lector\nLos capítulos están diseñados para leerse y ejecutarse paso a paso. Cada bloque de código busca responder una pregunta concreta y cada resultado se acompaña de una interpretación didáctica.",
     "crumbs": [
-      "Aprendizaje y ClasificaciÃ³n AutomÃ¡tica con R"
+      "Presentación"
     ]
   },
   {
@@ -84,9 +84,9 @@
     "href": "index.html#fuente-principal-de-los-datos",
     "title": "Aprendizaje y Clasificación Automática con R",
     "section": "Fuente principal de los datos",
-    "text": "Fuente principal de los datos\nLos ejemplos aplicados utilizan informaciÃ³n de la EstadÃ­stica de Accidentes de TrÃ¡nsito Terrestre en Zonas Urbanas y Suburbanas del INEGI (Instituto Nacional de Estadística y Geografía 2025). Cuando una tabla o grÃ¡fica se elabora con estos datos, se indica expresamente la fuente y se distingue el procesamiento realizado por el autor.\n\n\n\n\nInstituto Nacional de Estadística y Geografía. 2025. «Estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas (ATUS), 2024». Instituto Nacional de Estadística y Geografía. https://www.inegi.org.mx/programas/accidentes/.",
+    "text": "Fuente principal de los datos\nLos ejemplos aplicados utilizan información de la Estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas del INEGI (Instituto Nacional de Estadística y Geografía 2025). Cuando una tabla o gráfica se elabora con estos datos, se indica expresamente la fuente y se distingue el procesamiento realizado por el autor.\n\n\n\n\nInstituto Nacional de Estadística y Geografía. 2025. «Estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas (ATUS), 2024». Instituto Nacional de Estadística y Geografía. https://www.inegi.org.mx/programas/accidentes/.",
     "crumbs": [
-      "Aprendizaje y ClasificaciÃ³n AutomÃ¡tica con R"
+      "Presentación"
     ]
   },
   {
@@ -132,31 +132,41 @@
   {
     "objectID": "00-cuaderno-google-colab.html",
     "href": "00-cuaderno-google-colab.html",
-    "title": "Â¿QuÃ© contiene el cuaderno?",
+    "title": "Cuaderno completo para Google Colab",
     "section": "",
-    "text": "Cuaderno completo para Google Colab\nAdemÃ¡s de la versiÃ³n web y del documento PDF, el libro cuenta con un cuaderno completo de Google Colab. En Ã©l, las explicaciones aparecen en celdas de texto y cada bloque de cÃ³digo R se encuentra en una celda independiente para que pueda ejecutarse paso a paso.\nEl cuaderno reproduce el contenido del libro y contiene:",
+    "text": "¿Qué contiene el cuaderno?\nAdemás de la versión web y del documento PDF, el libro cuenta con un cuaderno completo de Google Colab. En él, las explicaciones aparecen en celdas de texto y cada bloque de código R se encuentra en una celda independiente para que pueda ejecutarse paso a paso.\nEl cuaderno reproduce el contenido del libro y contiene:",
     "crumbs": [
-      "Â¿QuÃ© contiene el cuaderno?"
+      "Cuaderno completo para Google Colab"
     ]
   },
   {
-    "objectID": "00-cuaderno-google-colab.html#cã³mo-utilizarlo",
-    "href": "00-cuaderno-google-colab.html#cã³mo-utilizarlo",
-    "title": "Â¿QuÃ© contiene el cuaderno?",
-    "section": "CÃ³mo utilizarlo",
-    "text": "CÃ³mo utilizarlo\n\nAbra el enlace Ejecutar el libro completo en Google Colab.\nInicie sesiÃ³n con una cuenta de Google, si Colab lo solicita.\nSeleccione Archivo â†’ Guardar una copia en Drive para conservar una copia editable.\nCompruebe que el entorno de ejecuciÃ³n utilice R.\nEjecute primero las celdas de preparaciÃ³n e instalaciÃ³n de paquetes.\nContinÃºe en orden, ejecutando cada celda con el botÃ³n de reproducciÃ³n o con Shift + Enter.\n\n\n\n\n\n\n\nAdvertenciaEjecuciÃ³n en orden\n\n\n\nAlgunos capÃ­tulos utilizan objetos creados en capÃ­tulos anteriores. Durante la primera ejecuciÃ³n se recomienda avanzar en el orden establecido y no saltar las celdas de preparaciÃ³n de datos.",
+    "objectID": "00-cuaderno-google-colab.html#qué-contiene-el-cuaderno",
+    "href": "00-cuaderno-google-colab.html#qué-contiene-el-cuaderno",
+    "title": "Cuaderno completo para Google Colab",
+    "section": "",
+    "text": "un índice navegable con todos los capítulos y secciones;\nexplicaciones conceptuales en celdas de texto;\nfórmulas matemáticas;\ncódigos R separados en celdas independientes;\ninstalación y carga de los paquetes necesarios;\npreparación y lectura de los datos ATUS;\nanálisis exploratorio;\nregresión logística;\nk vecinos más cercanos;\nárboles de decisión;\nRandom Forest;\nevaluación y comparación de modelos;\nejercicios, interpretaciones y referencias.",
     "crumbs": [
-      "Â¿QuÃ© contiene el cuaderno?"
+      "Cuaderno completo para Google Colab"
+    ]
+  },
+  {
+    "objectID": "00-cuaderno-google-colab.html#cómo-utilizarlo",
+    "href": "00-cuaderno-google-colab.html#cómo-utilizarlo",
+    "title": "Cuaderno completo para Google Colab",
+    "section": "Cómo utilizarlo",
+    "text": "Cómo utilizarlo\n\nAbra el enlace Ejecutar el libro completo en Google Colab.\nInicie sesión con una cuenta de Google, si Colab lo solicita.\nSeleccione Archivo → Guardar una copia en Drive para conservar una copia editable.\nCompruebe que el entorno de ejecución utilice R.\nEjecute primero las celdas de preparación e instalación de paquetes.\nContinúe en orden, ejecutando cada celda con el botón de reproducción o con Shift + Enter.\n\n\n\n\n\n\n\nAdvertenciaEjecución en orden\n\n\n\nAlgunos capítulos utilizan objetos creados en capítulos anteriores. Durante la primera ejecución se recomienda avanzar en el orden establecido y no saltar las celdas de preparación de datos.",
+    "crumbs": [
+      "Cuaderno completo para Google Colab"
     ]
   },
   {
     "objectID": "00-cuaderno-google-colab.html#diferencias-entre-el-libro-web-y-el-cuaderno",
     "href": "00-cuaderno-google-colab.html#diferencias-entre-el-libro-web-y-el-cuaderno",
-    "title": "Â¿QuÃ© contiene el cuaderno?",
+    "title": "Cuaderno completo para Google Colab",
     "section": "Diferencias entre el libro web y el cuaderno",
-    "text": "Diferencias entre el libro web y el cuaderno\nLa versiÃ³n web es la opciÃ³n mÃ¡s cÃ³moda para leer y consultar el contenido. El cuaderno de Colab estÃ¡ pensado para experimentar: permite modificar valores, ejecutar nuevamente los modelos y observar cÃ³mo cambian los resultados sin instalar R ni RStudio en la computadora.\n\n\n\n\n\n\nNotaDatos y acceso a internet\n\n\n\nEl cuaderno necesita conexiÃ³n a internet para instalar paquetes y descargar los archivos de datos cuando no estÃ©n disponibles en la sesiÃ³n. La descarga de ATUS puede tardar debido al tamaÃ±o de la base.",
+    "text": "Diferencias entre el libro web y el cuaderno\nLa versión web es la opción más cómoda para leer y consultar el contenido. El cuaderno de Colab está pensado para experimentar: permite modificar valores, ejecutar nuevamente los modelos y observar cómo cambian los resultados sin instalar R ni RStudio en la computadora.\n\n\n\n\n\n\nNotaDatos y acceso a internet\n\n\n\nEl cuaderno necesita conexión a internet para instalar paquetes y descargar los archivos de datos cuando no estén disponibles en la sesión. La descarga de ATUS puede tardar debido al tamaño de la base.",
     "crumbs": [
-      "Â¿QuÃ© contiene el cuaderno?"
+      "Cuaderno completo para Google Colab"
     ]
   },
   {

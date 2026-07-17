@@ -1,6 +1,6 @@
-﻿# Cuaderno completo para Google Colab {.unnumbered}
+# Cuaderno completo para Google Colab {.unnumbered}
 
-AdemÃ¡s de la versiÃ³n web y del documento PDF, el libro cuenta con un **cuaderno completo de Google Colab**. En Ã©l, las explicaciones aparecen en celdas de texto y cada bloque de cÃ³digo R se encuentra en una celda independiente para que pueda ejecutarse paso a paso.
+Además de la versión web y del documento PDF, el libro cuenta con un **cuaderno completo de Google Colab**. En él, las explicaciones aparecen en celdas de texto y cada bloque de código R se encuentra en una celda independiente para que pueda ejecutarse paso a paso.
 
 ::: {.callout-tip title="Abrir o descargar el cuaderno"}
 
@@ -12,42 +12,41 @@ AdemÃ¡s de la versiÃ³n web y del documento PDF, el libro cuenta con un **cua
 
 :::
 
-## Â¿QuÃ© contiene el cuaderno? {.unnumbered}
+## ¿Qué contiene el cuaderno? {.unnumbered}
 
 El cuaderno reproduce el contenido del libro y contiene:
 
-- un Ã­ndice navegable con todos los capÃ­tulos y secciones;
+- un índice navegable con todos los capítulos y secciones;
 - explicaciones conceptuales en celdas de texto;
-- fÃ³rmulas matemÃ¡ticas;
-- cÃ³digos R separados en celdas independientes;
-- instalaciÃ³n y carga de los paquetes necesarios;
-- preparaciÃ³n y lectura de los datos ATUS;
-- anÃ¡lisis exploratorio;
-- regresiÃ³n logÃ­stica;
-- k vecinos mÃ¡s cercanos;
-- Ã¡rboles de decisiÃ³n;
+- fórmulas matemáticas;
+- códigos R separados en celdas independientes;
+- instalación y carga de los paquetes necesarios;
+- preparación y lectura de los datos ATUS;
+- análisis exploratorio;
+- regresión logística;
+- k vecinos más cercanos;
+- árboles de decisión;
 - Random Forest;
-- evaluaciÃ³n y comparaciÃ³n de modelos;
+- evaluación y comparación de modelos;
 - ejercicios, interpretaciones y referencias.
 
-## CÃ³mo utilizarlo {.unnumbered}
+## Cómo utilizarlo {.unnumbered}
 
 1. Abra el enlace **Ejecutar el libro completo en Google Colab**.
-2. Inicie sesiÃ³n con una cuenta de Google, si Colab lo solicita.
-3. Seleccione **Archivo â†’ Guardar una copia en Drive** para conservar una copia editable.
-4. Compruebe que el entorno de ejecuciÃ³n utilice **R**.
-5. Ejecute primero las celdas de preparaciÃ³n e instalaciÃ³n de paquetes.
-6. ContinÃºe en orden, ejecutando cada celda con el botÃ³n de reproducciÃ³n o con `Shift + Enter`.
+2. Inicie sesión con una cuenta de Google, si Colab lo solicita.
+3. Seleccione **Archivo → Guardar una copia en Drive** para conservar una copia editable.
+4. Compruebe que el entorno de ejecución utilice **R**.
+5. Ejecute primero las celdas de preparación e instalación de paquetes.
+6. Continúe en orden, ejecutando cada celda con el botón de reproducción o con `Shift + Enter`.
 
-::: {.callout-warning title="EjecuciÃ³n en orden"}
-Algunos capÃ­tulos utilizan objetos creados en capÃ­tulos anteriores. Durante la primera ejecuciÃ³n se recomienda avanzar en el orden establecido y no saltar las celdas de preparaciÃ³n de datos.
+::: {.callout-warning title="Ejecución en orden"}
+Algunos capítulos utilizan objetos creados en capítulos anteriores. Durante la primera ejecución se recomienda avanzar en el orden establecido y no saltar las celdas de preparación de datos.
 :::
 
 ## Diferencias entre el libro web y el cuaderno {.unnumbered}
 
-La versiÃ³n web es la opciÃ³n mÃ¡s cÃ³moda para leer y consultar el contenido. El cuaderno de Colab estÃ¡ pensado para experimentar: permite modificar valores, ejecutar nuevamente los modelos y observar cÃ³mo cambian los resultados sin instalar R ni RStudio en la computadora.
+La versión web es la opción más cómoda para leer y consultar el contenido. El cuaderno de Colab está pensado para experimentar: permite modificar valores, ejecutar nuevamente los modelos y observar cómo cambian los resultados sin instalar R ni RStudio en la computadora.
 
 ::: {.callout-note title="Datos y acceso a internet"}
-El cuaderno necesita conexiÃ³n a internet para instalar paquetes y descargar los archivos de datos cuando no estÃ©n disponibles en la sesiÃ³n. La descarga de ATUS puede tardar debido al tamaÃ±o de la base.
+El cuaderno necesita conexión a internet para instalar paquetes y descargar los archivos de datos cuando no estén disponibles en la sesión. La descarga de ATUS puede tardar debido al tamaño de la base.
 :::
-

@@ -157,3 +157,8 @@ Cambiar k modifica el balance entre exactitud, sensibilidad y especificidad. No 
 ## Conclusión
 
 k-NN es un método intuitivo basado en similitud. Su desempeño depende del valor de $k$, del escalamiento y de la calidad de las variables predictoras.
+
+
+## Referencias fundamentales de k-NN
+
+El método de los vecinos más cercanos tiene como antecedente clásico el informe de @fix1951discriminatory. Sus propiedades de clasificación y cotas de error fueron estudiadas por @cover1967nearest. Una exposición moderna, acompañada de aplicaciones en R, puede consultarse en @james2021islr.

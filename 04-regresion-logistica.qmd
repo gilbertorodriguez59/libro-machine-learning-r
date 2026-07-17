@@ -174,3 +174,8 @@ if (exists("prueba")) {
 ## Conclusión
 
 La regresión logística es un modelo interpretable para clasificación binaria. El punto de corte permite ajustar el balance entre sensibilidad y especificidad.
+
+
+## Referencias fundamentales de la regresión logística
+
+La formulación moderna de la regresión para respuestas binarias se relaciona con el trabajo de Cox [@cox1958regression]. Para profundizar en ajuste, interpretación, diagnóstico y aplicaciones del modelo logístico puede consultarse a @hosmer2013applied. Una presentación orientada al aprendizaje estadístico y a su implementación en R aparece en @james2021islr.

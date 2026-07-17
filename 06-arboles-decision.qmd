@@ -141,3 +141,8 @@ La matriz de confusión y las métricas permiten evaluar el desempeño del árbo
 ## Conclusión
 
 Los árboles de decisión son modelos intuitivos, visuales e interpretables. Este capítulo prepara el camino para modelos basados en muchos árboles, como Random Forest.
+
+
+## Referencias fundamentales de los árboles de decisión
+
+La metodología CART fue desarrollada sistemáticamente por @breiman1984classification. El algoritmo ID3 y la inducción de árboles mediante ganancia de información fueron presentados por @quinlan1986induction. Para una introducción contemporánea con ejemplos en R puede consultarse @james2021islr.

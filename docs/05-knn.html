@@ -58,7 +58,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -181,13 +200,19 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Presentación</span></a>
+ <span class="menu-text">Aprendizaje y ClasificaciÃ³n AutomÃ¡tica con R</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./00-licencia-y-citacion.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Licencia, autoría y forma de citar</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00-cuaderno-google-colab.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Â¿QuÃ© contiene el cuaderno?</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -238,6 +263,18 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Evaluación, validación y comparación de modelos</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-svm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Máquinas de Vectores de Soporte (SVM)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-naive-bayes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Clasificador Naive Bayes</span></span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
@@ -272,6 +309,7 @@ window.Quarto = {
   <li><a href="#modelo-k-nn" id="toc-modelo-k-nn" class="nav-link" data-scroll-target="#modelo-k-nn"><span class="header-section-number">5.5</span> Modelo k-NN</a></li>
   <li><a href="#comparación-de-valores-de-k" id="toc-comparación-de-valores-de-k" class="nav-link" data-scroll-target="#comparación-de-valores-de-k"><span class="header-section-number">5.6</span> Comparación de valores de k</a></li>
   <li><a href="#conclusión" id="toc-conclusión" class="nav-link" data-scroll-target="#conclusión"><span class="header-section-number">5.7</span> Conclusión</a></li>
+  <li><a href="#referencias-fundamentales-de-k-nn" id="toc-referencias-fundamentales-de-k-nn" class="nav-link" data-scroll-target="#referencias-fundamentales-de-k-nn"><span class="header-section-number">5.8</span> Referencias fundamentales de k-NN</a></li>
   </ul>
 </nav>
     </div>
@@ -538,8 +576,23 @@ Real           Con víctimas Solo daños
 <section id="conclusión" class="level2" data-number="5.7">
 <h2 data-number="5.7" class="anchored" data-anchor-id="conclusión"><span class="header-section-number">5.7</span> Conclusión</h2>
 <p>k-NN es un método intuitivo basado en similitud. Su desempeño depende del valor de <span class="math inline">\(k\)</span>, del escalamiento y de la calidad de las variables predictoras.</p>
+</section>
+<section id="referencias-fundamentales-de-k-nn" class="level2" data-number="5.8">
+<h2 data-number="5.8" class="anchored" data-anchor-id="referencias-fundamentales-de-k-nn"><span class="header-section-number">5.8</span> Referencias fundamentales de k-NN</h2>
+<p>El método de los vecinos más cercanos tiene como antecedente clásico el informe de <span class="citation" data-cites="fix1951discriminatory">Fix y Hodges (<a href="referencias.html#ref-fix1951discriminatory" role="doc-biblioref">1951</a>)</span>. Sus propiedades de clasificación y cotas de error fueron estudiadas por <span class="citation" data-cites="cover1967nearest">Cover y Hart (<a href="referencias.html#ref-cover1967nearest" role="doc-biblioref">1967</a>)</span>. Una exposición moderna, acompañada de aplicaciones en R, puede consultarse en <span class="citation" data-cites="james2021islr">James et&nbsp;al. (<a href="referencias.html#ref-james2021islr" role="doc-biblioref">2021</a>)</span>.</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-cover1967nearest" class="csl-entry" role="listitem">
+Cover, Thomas M., y Peter E. Hart. 1967. <span>«Nearest Neighbor Pattern Classification»</span>. <em>IEEE Transactions on Information Theory</em> 13 (1): 21-27. <a href="https://doi.org/10.1109/TIT.1967.1053964">https://doi.org/10.1109/TIT.1967.1053964</a>.
+</div>
+<div id="ref-fix1951discriminatory" class="csl-entry" role="listitem">
+Fix, Evelyn, y Joseph L. Hodges. 1951. <em>Discriminatory Analysis: Nonparametric Discrimination: Consistency Properties</em>. Project 21-49-004, Report 4. USAF School of Aviation Medicine.
+</div>
+<div id="ref-james2021islr" class="csl-entry" role="listitem">
+James, Gareth, Daniela Witten, Trevor Hastie, y Robert Tibshirani. 2021. <em>An Introduction to Statistical Learning: with Applications in R</em>. 2.ª ed. Springer. <a href="https://doi.org/10.1007/978-1-0716-1418-1">https://doi.org/10.1007/978-1-0716-1418-1</a>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->

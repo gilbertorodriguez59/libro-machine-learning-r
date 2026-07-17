@@ -194,3 +194,8 @@ if (exists("probabilidades_rf")) {
 ## Conclusión
 
 Random Forest mejora la estabilidad y la capacidad predictiva de un solo árbol al combinar muchos árboles. Es uno de los métodos más útiles para clasificación aplicada.
+
+
+## Referencias fundamentales de Random Forest
+
+El algoritmo Random Forest fue formalizado por @breiman2001random como un ensamble de árboles construido mediante remuestreo y selección aleatoria de variables. Una explicación didáctica y comparativa puede consultarse también en @james2021islr.

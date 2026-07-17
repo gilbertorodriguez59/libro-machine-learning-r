@@ -1,6 +1,8 @@
 project:
   type: book
   output-dir: docs
+  resources:
+    - Aprendizaje_y_Clasificacion_Automatica_con_R_Colab.ipynb
 
 lang: es
 bibliography: referencias.bib
@@ -14,6 +16,7 @@ book:
   chapters:
     - index.qmd
     - 00-licencia-y-citacion.qmd
+    - 00-cuaderno-google-colab.qmd
     - 01-introduccion.qmd
     - 02-preparacion-datos.qmd
     - 03-analisis-exploratorio.qmd
@@ -22,6 +25,8 @@ book:
     - 06-arboles-decision.qmd
     - 07-random-forest.qmd
     - 08-evaluacion-modelos.qmd
+    - 09-svm.qmd
+    - 10-naive-bayes.qmd
   appendices:
     - referencias.qmd
 

@@ -553,3 +553,8 @@ El mejor modelo no es necesariamente el que tiene la mayor exactitud, sino el qu
 ## Resumen del capítulo
 
 En este capítulo aprendimos que evaluar un modelo requiere datos no utilizados durante el entrenamiento, una clase positiva bien definida y varias métricas. También construimos una regla de referencia, estudiamos el efecto del umbral y aplicamos validación cruzada estratificada. Estas herramientas permiten comparar modelos de forma más justa y elegirlos según el objetivo real del análisis.
+
+
+## Referencias fundamentales sobre evaluación
+
+La validación cruzada y su uso para estimar el desempeño de modelos fueron examinados comparativamente por @kohavi1995crossvalidation. Para el análisis mediante curvas ROC y AUC, una referencia ampliamente utilizada es @fawcett2006roc. Una visión integrada de partición de datos, remuestreo y comparación de modelos aparece en @james2021islr.

@@ -87,7 +87,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./referencias.html" rel="next">
+<link href="./09-svm.html" rel="next">
 <link href="./07-random-forest.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -200,13 +200,19 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Presentación</span></a>
+ <span class="menu-text">Aprendizaje y ClasificaciÃ³n AutomÃ¡tica con R</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./00-licencia-y-citacion.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Licencia, autoría y forma de citar</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00-cuaderno-google-colab.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Â¿QuÃ© contiene el cuaderno?</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -255,6 +261,18 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="./08-evaluacion-modelos.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Evaluación, validación y comparación de modelos</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-svm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Máquinas de Vectores de Soporte (SVM)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-naive-bayes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Clasificador Naive Bayes</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -314,6 +332,7 @@ window.Quarto = {
   <li><a href="#actividad-guiada" id="toc-actividad-guiada" class="nav-link" data-scroll-target="#actividad-guiada"><span class="header-section-number">8.17</span> Actividad guiada</a></li>
   <li><a href="#actividades-para-el-lector" id="toc-actividades-para-el-lector" class="nav-link" data-scroll-target="#actividades-para-el-lector"><span class="header-section-number">8.18</span> Actividades para el lector</a></li>
   <li><a href="#resumen-del-capítulo" id="toc-resumen-del-capítulo" class="nav-link" data-scroll-target="#resumen-del-capítulo"><span class="header-section-number">8.19</span> Resumen del capítulo</a></li>
+  <li><a href="#referencias-fundamentales-sobre-evaluación" id="toc-referencias-fundamentales-sobre-evaluación" class="nav-link" data-scroll-target="#referencias-fundamentales-sobre-evaluación"><span class="header-section-number">8.20</span> Referencias fundamentales sobre evaluación</a></li>
   </ul>
 </nav>
     </div>
@@ -1150,11 +1169,24 @@ pliegue Solo daños Con víctimas
 <section id="resumen-del-capítulo" class="level2" data-number="8.19">
 <h2 data-number="8.19" class="anchored" data-anchor-id="resumen-del-capítulo"><span class="header-section-number">8.19</span> Resumen del capítulo</h2>
 <p>En este capítulo aprendimos que evaluar un modelo requiere datos no utilizados durante el entrenamiento, una clase positiva bien definida y varias métricas. También construimos una regla de referencia, estudiamos el efecto del umbral y aplicamos validación cruzada estratificada. Estas herramientas permiten comparar modelos de forma más justa y elegirlos según el objetivo real del análisis.</p>
+</section>
+<section id="referencias-fundamentales-sobre-evaluación" class="level2" data-number="8.20">
+<h2 data-number="8.20" class="anchored" data-anchor-id="referencias-fundamentales-sobre-evaluación"><span class="header-section-number">8.20</span> Referencias fundamentales sobre evaluación</h2>
+<p>La validación cruzada y su uso para estimar el desempeño de modelos fueron examinados comparativamente por <span class="citation" data-cites="kohavi1995crossvalidation">Kohavi (<a href="referencias.html#ref-kohavi1995crossvalidation" role="doc-biblioref">1995</a>)</span>. Para el análisis mediante curvas ROC y AUC, una referencia ampliamente utilizada es <span class="citation" data-cites="fawcett2006roc">Fawcett (<a href="referencias.html#ref-fawcett2006roc" role="doc-biblioref">2006</a>)</span>. Una visión integrada de partición de datos, remuestreo y comparación de modelos aparece en <span class="citation" data-cites="james2021islr">James et&nbsp;al. (<a href="referencias.html#ref-james2021islr" role="doc-biblioref">2021</a>)</span>.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-fawcett2006roc" class="csl-entry" role="listitem">
+Fawcett, Tom. 2006. <span>«An Introduction to ROC Analysis»</span>. <em>Pattern Recognition Letters</em> 27 (8): 861-74. <a href="https://doi.org/10.1016/j.patrec.2005.10.010">https://doi.org/10.1016/j.patrec.2005.10.010</a>.
+</div>
 <div id="ref-inegi_atus_2024" class="csl-entry" role="listitem">
 Instituto Nacional de Estadística y Geografía. 2025. <span>«Estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas (ATUS), 2024»</span>. Instituto Nacional de Estadística y Geografía. <a href="https://www.inegi.org.mx/programas/accidentes/">https://www.inegi.org.mx/programas/accidentes/</a>.
+</div>
+<div id="ref-james2021islr" class="csl-entry" role="listitem">
+James, Gareth, Daniela Witten, Trevor Hastie, y Robert Tibshirani. 2021. <em>An Introduction to Statistical Learning: with Applications in R</em>. 2.ª ed. Springer. <a href="https://doi.org/10.1007/978-1-0716-1418-1">https://doi.org/10.1007/978-1-0716-1418-1</a>.
+</div>
+<div id="ref-kohavi1995crossvalidation" class="csl-entry" role="listitem">
+Kohavi, Ron. 1995. <span>«A Study of Cross-Validation and Bootstrap for Accuracy Estimation and Model Selection»</span>. <em>Proceedings of the 14th International Joint Conference on Artificial Intelligence</em> 2: 1137-45.
 </div>
 </div>
 </section>
@@ -1567,8 +1599,8 @@ Instituto Nacional de Estadística y Geografía. 2025. <span>«Estadística de A
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./referencias.html" class="pagination-link" aria-label="Referencias">
-        <span class="nav-page-text">Referencias</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./09-svm.html" class="pagination-link" aria-label="Máquinas de Vectores de Soporte (SVM)">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Máquinas de Vectores de Soporte (SVM)</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

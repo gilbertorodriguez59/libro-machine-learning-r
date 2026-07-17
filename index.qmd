@@ -1,30 +1,30 @@
-# Presentación {.unnumbered}
+﻿# PresentaciÃ³n {.unnumbered}
 
-## Aprendizaje y Clasificación Automática con R {.unnumbered}
+## Aprendizaje y ClasificaciÃ³n AutomÃ¡tica con R {.unnumbered}
 
-### Un enfoque práctico con datos abiertos reales {.unnumbered}
+### Un enfoque prÃ¡ctico con datos abiertos reales {.unnumbered}
 
-**Autor:** MI Jesús Gilberto Rodríguez Escobedo  
-**Versión:** 0.7 (desarrollo)  
-**Modalidad:** Libro abierto, práctico e interactivo  
-**Tecnologías:** R · Quarto · Machine Learning · Datos abiertos · GitHub Pages
+**Autor:** MI JesÃºs Gilberto RodrÃ­guez Escobedo  
+**VersiÃ³n:** 0.7 (desarrollo)  
+**Modalidad:** Libro abierto, prÃ¡ctico e interactivo  
+**TecnologÃ­as:** R Â· Quarto Â· Machine Learning Â· Datos abiertos Â· GitHub Pages
 
-Este libro introduce el aprendizaje automático (*Machine Learning*) mediante ejemplos claros, didácticos y prácticos desarrollados principalmente en **R**.
+Este libro introduce el aprendizaje automÃ¡tico (*Machine Learning*) mediante ejemplos claros, didÃ¡cticos y prÃ¡cticos desarrollados principalmente en **R**.
 
-La intención no es escribir un tratado matemático extenso, sino construir una guía aplicada para aprender haciendo con datos abiertos reales. En esta versión trabajamos con datos de accidentes de tránsito de México y los usamos como hilo conductor para explicar preparación de datos, análisis exploratorio y modelos de clasificación.
+La intenciÃ³n no es escribir un tratado matemÃ¡tico extenso, sino construir una guÃ­a aplicada para aprender haciendo con datos abiertos reales. En esta versiÃ³n trabajamos con datos de accidentes de trÃ¡nsito de MÃ©xico y los usamos como hilo conductor para explicar preparaciÃ³n de datos, anÃ¡lisis exploratorio y modelos de clasificaciÃ³n.
 
 ::: {.callout-note}
 ## Enfoque del libro
-El libro combina fundamento conceptual, código reproducible en R, explicación breve del código, interpretación didáctica de resultados y visualizaciones profesionales.
+El libro combina fundamento conceptual, cÃ³digo reproducible en R, explicaciÃ³n breve del cÃ³digo, interpretaciÃ³n didÃ¡ctica de resultados y visualizaciones profesionales.
 :::
 
 ## Objetivo general {.unnumbered}
 
-Desarrollar competencias básicas e intermedias en aprendizaje automático mediante el análisis, modelado e interpretación de datos reales.
+Desarrollar competencias bÃ¡sicas e intermedias en aprendizaje automÃ¡tico mediante el anÃ¡lisis, modelado e interpretaciÃ³n de datos reales.
 
-## Público al que va dirigido {.unnumbered}
+## PÃºblico al que va dirigido {.unnumbered}
 
-Este libro está dirigido a estudiantes de ingeniería, ciencias, ciencia de datos, estadística aplicada y áreas afines que desean iniciar en aprendizaje automático con un enfoque práctico.
+Este libro estÃ¡ dirigido a estudiantes de ingenierÃ­a, ciencias, ciencia de datos, estadÃ­stica aplicada y Ã¡reas afines que desean iniciar en aprendizaje automÃ¡tico con un enfoque prÃ¡ctico.
 
 ## Software utilizado {.unnumbered}
 
@@ -35,21 +35,31 @@ Este libro está dirigido a estudiantes de ingeniería, ciencias, ciencia de dat
 - GitHub Pages
 - Quarto Pub
 
+
+## Cuaderno completo de Google Colab {.unnumbered}
+
+El contenido del libro tambiÃ©n estÃ¡ disponible como un cuaderno ejecutable de Google Colab. Las explicaciones se presentan en celdas de texto y cada cÃ³digo R estÃ¡ separado para ejecutarse paso a paso.
+
+- [Abrir el cuaderno en Google Colab](https://colab.research.google.com/github/gilbertorodriguez59/libro-machine-learning-r/blob/main/Aprendizaje_y_Clasificacion_Automatica_con_R_Colab.ipynb)
+- [Descargar el archivo `.ipynb`](Aprendizaje_y_Clasificacion_Automatica_con_R_Colab.ipynb)
+- [Consultar instrucciones de uso](00-cuaderno-google-colab.qmd)
+
 ## Estructura actual del libro {.unnumbered}
 
-1. Introducción al aprendizaje automático.
-2. Preparación de datos reales.
-3. Análisis exploratorio de datos.
-4. Regresión logística.
-5. k vecinos más cercanos.
-6. Árboles de decisión.
+1. IntroducciÃ³n al aprendizaje automÃ¡tico.
+2. PreparaciÃ³n de datos reales.
+3. AnÃ¡lisis exploratorio de datos.
+4. RegresiÃ³n logÃ­stica.
+5. k vecinos mÃ¡s cercanos.
+6. Ãrboles de decisiÃ³n.
 7. Random Forest.
-8. Evaluación, validación y comparación de modelos.
+8. EvaluaciÃ³n, validaciÃ³n y comparaciÃ³n de modelos.
 
 ## Nota para el lector {.unnumbered}
 
-Los capítulos están diseñados para leerse y ejecutarse paso a paso. Cada bloque de código busca responder una pregunta concreta y cada resultado se acompaña de una interpretación didáctica.
+Los capÃ­tulos estÃ¡n diseÃ±ados para leerse y ejecutarse paso a paso. Cada bloque de cÃ³digo busca responder una pregunta concreta y cada resultado se acompaÃ±a de una interpretaciÃ³n didÃ¡ctica.
 
 ## Fuente principal de los datos {.unnumbered}
 
-Los ejemplos aplicados utilizan información de la Estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas del INEGI [@inegi_atus_2024]. Cuando una tabla o gráfica se elabora con estos datos, se indica expresamente la fuente y se distingue el procesamiento realizado por el autor.
+Los ejemplos aplicados utilizan informaciÃ³n de la EstadÃ­stica de Accidentes de TrÃ¡nsito Terrestre en Zonas Urbanas y Suburbanas del INEGI [@inegi_atus_2024]. Cuando una tabla o grÃ¡fica se elabora con estos datos, se indica expresamente la fuente y se distingue el procesamiento realizado por el autor.
+

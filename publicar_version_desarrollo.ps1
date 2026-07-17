@@ -1,6 +1,6 @@
 ﻿$ErrorActionPreference = "Stop"
 
-$ProjectDir = "C:\libro-machine-learning-r-estable"
+$ProjectDir = "C:\libro-machine-learning-r-dev"
 $PublicPdfName = "libro-machine-learning-r.pdf"
 $QuartoPdfName = "Aprendizaje-y-Clasificación-Automática-con-R.pdf"
 
@@ -24,7 +24,7 @@ try {
     Write-Host "Repositorio remoto configurado:" -ForegroundColor Cyan
     git remote -v
     Write-Host ""
-    Write-Host "Debe aparecer: gilbertorodriguez59/libro-machine-learning-r.git"
+    Write-Host "Debe aparecer: gilbertorodriguez59/libro-machine-learning-r-dev.git"
     Read-Host "Presione Enter para continuar"
 
     if (Test-Path $TempDir) {
@@ -34,7 +34,7 @@ try {
     New-Item -ItemType Directory -Path $TempDir -Force | Out-Null
 
     Write-Host ""
-    Write-Host "1. Generando PDF..." -ForegroundColor Cyan
+    Write-Host "1. Generando PDF de desarrollo..." -ForegroundColor Cyan
     & quarto render --profile pdf --to pdf
 
     if ($LASTEXITCODE -ne 0) {
@@ -63,7 +63,7 @@ try {
     }
 
     Write-Host ""
-    Write-Host "3. Generando sitio HTML..." -ForegroundColor Cyan
+    Write-Host "3. Generando sitio HTML de desarrollo..." -ForegroundColor Cyan
     & quarto render --to html
 
     if ($LASTEXITCODE -ne 0) {
@@ -77,10 +77,7 @@ try {
     Write-Host ""
     Write-Host "4. Restaurando los dos nombres del PDF..." -ForegroundColor Cyan
 
-    # Nombre corto para enlace directo
     Copy-Item -LiteralPath $TempPdf -Destination $FinalPdfShort -Force
-
-    # Nombre que utiliza automaticamente el icono PDF de Quarto
     Copy-Item -LiteralPath $TempPdf -Destination $FinalPdfQuarto -Force
 
     $IndexHtml = Join-Path $DocsDir "index.html"
@@ -99,6 +96,7 @@ try {
 
     Write-Host ""
     Write-Host "Archivos publicos verificados:" -ForegroundColor Green
+
     Get-Item -LiteralPath $IndexHtml, $FinalPdfShort, $FinalPdfQuarto |
         Select-Object Name, Length, LastWriteTime |
         Format-Table -AutoSize
@@ -117,7 +115,7 @@ try {
     git diff --cached --quiet
 
     if ($LASTEXITCODE -ne 0) {
-        git commit -m "Corregir enlace del icono PDF y actualizar version estable"
+        git commit -m "Actualizar sitio web y PDF de la version de desarrollo"
 
         if ($LASTEXITCODE -ne 0) {
             Fail "No se pudo crear el commit."
@@ -137,16 +135,16 @@ try {
     }
 
     Write-Host ""
-    Write-Host "PUBLICACION TERMINADA CORRECTAMENTE" -ForegroundColor Green
+    Write-Host "PUBLICACION DE DESARROLLO TERMINADA CORRECTAMENTE" -ForegroundColor Green
     Write-Host ""
     Write-Host "Libro web:"
-    Write-Host "https://gilbertorodriguez59.github.io/libro-machine-learning-r/"
+    Write-Host "https://gilbertorodriguez59.github.io/libro-machine-learning-r-dev/"
     Write-Host ""
     Write-Host "PDF con nombre corto:"
-    Write-Host "https://gilbertorodriguez59.github.io/libro-machine-learning-r/$PublicPdfName"
+    Write-Host "https://gilbertorodriguez59.github.io/libro-machine-learning-r-dev/$PublicPdfName"
     Write-Host ""
-    Write-Host "El icono PDF de Quarto utilizara:"
-    Write-Host "https://gilbertorodriguez59.github.io/libro-machine-learning-r/$QuartoPdfName"
+    Write-Host "PDF usado por el icono de Quarto:"
+    Write-Host "https://gilbertorodriguez59.github.io/libro-machine-learning-r-dev/$QuartoPdfName"
     Write-Host ""
     Write-Host "GitHub Pages puede tardar entre 1 y 5 minutos en actualizarse."
 

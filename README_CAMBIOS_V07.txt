@@ -1,4 +1,4 @@
-APRENDIZAJE Y CLASIFICACION AUTOMATICA CON R
+﻿APRENDIZAJE Y CLASIFICACION AUTOMATICA CON R
 VERSION 0.7 - DESARROLLO
 
 CAMBIOS PRINCIPALES
@@ -35,5 +35,6 @@ quarto render --profile pdf --to pdf
 quarto render --to html
 
 NOTA
-Trabaje y pruebe esta version en C:\libro-machine-learning-r-dev.
+Trabaje y pruebe esta version en C:\libro-machine-learning-r-estable.
 No copie a la version estable hasta revisar HTML y PDF.
+

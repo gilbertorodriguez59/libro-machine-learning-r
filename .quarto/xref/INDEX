@@ -31,5 +31,14 @@
   },
   "referencias.qmd": {
     "referencias.html": "6c3f864f"
+  },
+  "00-cuaderno-google-colab.qmd": {
+    "00-cuaderno-google-colab.html": "321d779e"
+  },
+  "09-svm.qmd": {
+    "09-svm.html": "315e2d96"
+  },
+  "10-naive-bayes.qmd": {
+    "10-naive-bayes.html": "318682be"
   }
 }

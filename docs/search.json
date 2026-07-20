@@ -14,7 +14,7 @@
     "href": "index.html#aprendizaje-y-clasificación-automática-con-r",
     "title": "Aprendizaje y Clasificación Automática con R",
     "section": "Aprendizaje y Clasificación Automática con R",
-    "text": "Aprendizaje y Clasificación Automática con R\n\nUn enfoque práctico con datos abiertos reales\nAutor: MI Jesús Gilberto Rodríguez Escobedo\nVersión: 0.9.0 (desarrollo) Modalidad: Libro abierto, práctico e interactivo\nTecnologías: R · Quarto · Machine Learning · Datos abiertos · GitHub Pages\nEste libro introduce el aprendizaje automático (Machine Learning) mediante ejemplos claros, didácticos y prácticos desarrollados principalmente en R.\nLa intención no es escribir un tratado matemático extenso, sino construir una guía aplicada para aprender haciendo con datos abiertos reales. En esta versión trabajamos con datos de accidentes de tránsito de México y los usamos como hilo conductor para explicar preparación de datos, análisis exploratorio y modelos de clasificación.\n\n\n\n\n\n\nNotaEnfoque del libro\n\n\n\nEl libro combina fundamento conceptual, código reproducible en R, explicación breve del código, interpretación didáctica de resultados y visualizaciones profesionales.",
+    "text": "Aprendizaje y Clasificación Automática con R\n\nUn enfoque práctico con datos abiertos reales\nAutor: MI Jesús Gilberto Rodríguez Escobedo\nVersión: 0.9.5 (desarrollo) Modalidad: Libro abierto, práctico e interactivo\nTecnologías: R · Quarto · Machine Learning · Datos abiertos · GitHub Pages\nEste libro introduce el aprendizaje automático (Machine Learning) mediante ejemplos claros, didácticos y prácticos desarrollados principalmente en R.\nLa intención no es escribir un tratado matemático extenso, sino construir una guía aplicada para aprender haciendo con datos abiertos reales. En esta versión trabajamos con datos de accidentes de tránsito de México y los usamos como hilo conductor para explicar preparación de datos, análisis exploratorio y modelos de clasificación.\n\n\n\n\n\n\nNotaEnfoque del libro\n\n\n\nEl libro combina fundamento conceptual, código reproducible en R, explicación breve del código, interpretación didáctica de resultados y visualizaciones profesionales.",
     "crumbs": [
       "Presentación"
     ]
@@ -55,6 +55,16 @@
     "title": "Aprendizaje y Clasificación Automática con R",
     "section": "Cuaderno completo de Google Colab",
     "text": "Cuaderno completo de Google Colab\nEl contenido del libro también está disponible como un cuaderno ejecutable de Google Colab. Las explicaciones se presentan en celdas de texto y cada código R está separado para ejecutarse paso a paso.\n\nAbrir el cuaderno en Google Colab\nDescargar el archivo .ipynb\nConsultar instrucciones de uso",
+    "crumbs": [
+      "Presentación"
+    ]
+  },
+  {
+    "objectID": "index.html#materiales-complementarios-descargables",
+    "href": "index.html#materiales-complementarios-descargables",
+    "title": "Aprendizaje y Clasificación Automática con R",
+    "section": "Materiales complementarios descargables",
+    "text": "Materiales complementarios descargables\nPara facilitar la presentación, consulta y difusión de las primeras secciones del libro —Presentación, Licencia, autoría y forma de citar, y Cuaderno completo para Google Colab— se ofrecen los siguientes recursos complementarios:\n\n\n\nRecurso\nDescripción\nAbrir o reproducir\nDescargar\n\n\n\n\nPresentación en PDF\nDiapositivas de lectura sobre la Presentación, la licencia y el cuaderno de Colab.\nVer PDF\nDescargar PDF\n\n\nPresentación editable\nArchivo PowerPoint que puede utilizarse para exponer o adaptar el contenido.\nAbrir o descargar PPTX\nDescargar PPTX\n\n\nVideo explicativo\nPresentación audiovisual de las secciones iniciales del libro.\nReproducir video\nDescargar MP4\n\n\nInfografía\nSíntesis visual para consulta rápida, clase o difusión educativa.\nVer infografía\nDescargar PNG\n\n\n\n\n\n\n\n\n\nTipCómo descargar los materiales\n\n\n\nSeleccione el enlace de la columna Descargar. Dependiendo de la configuración del navegador, el archivo puede descargarse inmediatamente o abrirse primero en una pestaña nueva. En ese caso, utilice el botón de descarga del navegador.\nLos archivos se encuentran alojados en el mismo repositorio de GitHub que el libro, por lo que no es necesario iniciar sesión en Google Drive ni solicitar permisos adicionales.\n\n\n\n\n\n\n\n\nNotaElaboración de los recursos\n\n\n\nEstos materiales complementarios fueron elaborados con apoyo de NotebookLM de Google, a partir del contenido del libro, y posteriormente revisados, seleccionados y adaptados por el autor. El contenido del libro y sus archivos fuente constituyen la referencia principal.",
     "crumbs": [
       "Presentación"
     ]
@@ -140,11 +150,31 @@
     ]
   },
   {
+    "objectID": "00-licencia-y-citacion.html#materiales-complementarios-descargables",
+    "href": "00-licencia-y-citacion.html#materiales-complementarios-descargables",
+    "title": "Licencia, autoría y forma de citar",
+    "section": "Materiales complementarios descargables",
+    "text": "Materiales complementarios descargables\nComo apoyo para comprender y comunicar la licencia, la autoría, la forma de citar y el acceso al cuaderno de Colab, se ofrecen los siguientes recursos complementarios:\n\n\n\nRecurso\nDescripción\nAbrir o reproducir\nDescargar\n\n\n\n\nPresentación en PDF\nDiapositivas de lectura sobre la Presentación, la licencia y el cuaderno de Colab.\nVer PDF\nDescargar PDF\n\n\nPresentación editable\nArchivo PowerPoint que puede utilizarse para exponer o adaptar el contenido.\nAbrir o descargar PPTX\nDescargar PPTX\n\n\nVideo explicativo\nPresentación audiovisual de las secciones iniciales del libro.\nReproducir video\nDescargar MP4\n\n\nInfografía\nSíntesis visual para consulta rápida, clase o difusión educativa.\nVer infografía\nDescargar PNG\n\n\n\n\n\n\n\n\n\nTipCómo descargar los materiales\n\n\n\nSeleccione el enlace de la columna Descargar. Dependiendo de la configuración del navegador, el archivo puede descargarse inmediatamente o abrirse primero en una pestaña nueva. En ese caso, utilice el botón de descarga del navegador.\nLos archivos se encuentran alojados en el mismo repositorio de GitHub que el libro, por lo que no es necesario iniciar sesión en Google Drive ni solicitar permisos adicionales.\n\n\n\n\n\n\n\n\nNotaElaboración de los recursos\n\n\n\nEstos materiales complementarios fueron elaborados con apoyo de NotebookLM de Google, a partir del contenido del libro, y posteriormente revisados, seleccionados y adaptados por el autor. El contenido del libro y sus archivos fuente constituyen la referencia principal.",
+    "crumbs": [
+      "Licencia, autoría y forma de citar"
+    ]
+  },
+  {
     "objectID": "00-cuaderno-google-colab.html",
     "href": "00-cuaderno-google-colab.html",
     "title": "Cuaderno completo para Google Colab",
     "section": "",
-    "text": "¿Qué contiene el cuaderno?\nAdemás de la versión web y del documento PDF, el libro cuenta con un cuaderno completo de Google Colab. En él, las explicaciones aparecen en celdas de texto y cada bloque de código R se encuentra en una celda independiente para que pueda ejecutarse paso a paso.\nEl cuaderno reproduce el contenido del libro y contiene:",
+    "text": "Materiales complementarios descargables\nAdemás de la versión web y del documento PDF, el libro cuenta con un cuaderno completo de Google Colab. En él, las explicaciones aparecen en celdas de texto y cada bloque de código R se encuentra en una celda independiente para que pueda ejecutarse paso a paso.\nAntes de comenzar a ejecutar el cuaderno, el lector puede consultar o descargar una presentación, un video y una infografía que resumen la Presentación del libro, su licencia y la forma de trabajar en Google Colab:",
+    "crumbs": [
+      "Cuaderno completo para Google Colab"
+    ]
+  },
+  {
+    "objectID": "00-cuaderno-google-colab.html#materiales-complementarios-descargables",
+    "href": "00-cuaderno-google-colab.html#materiales-complementarios-descargables",
+    "title": "Cuaderno completo para Google Colab",
+    "section": "",
+    "text": "Recurso\nDescripción\nAbrir o reproducir\nDescargar\n\n\n\n\nPresentación en PDF\nDiapositivas de lectura sobre la Presentación, la licencia y el cuaderno de Colab.\nVer PDF\nDescargar PDF\n\n\nPresentación editable\nArchivo PowerPoint que puede utilizarse para exponer o adaptar el contenido.\nAbrir o descargar PPTX\nDescargar PPTX\n\n\nVideo explicativo\nPresentación audiovisual de las secciones iniciales del libro.\nReproducir video\nDescargar MP4\n\n\nInfografía\nSíntesis visual para consulta rápida, clase o difusión educativa.\nVer infografía\nDescargar PNG\n\n\n\n\n\n\n\n\n\nTipCómo descargar los materiales\n\n\n\nSeleccione el enlace de la columna Descargar. Dependiendo de la configuración del navegador, el archivo puede descargarse inmediatamente o abrirse primero en una pestaña nueva. En ese caso, utilice el botón de descarga del navegador.\nLos archivos se encuentran alojados en el mismo repositorio de GitHub que el libro, por lo que no es necesario iniciar sesión en Google Drive ni solicitar permisos adicionales.\n\n\n\n\n\n\n\n\nNotaElaboración de los recursos\n\n\n\nEstos materiales complementarios fueron elaborados con apoyo de NotebookLM de Google, a partir del contenido del libro, y posteriormente revisados, seleccionados y adaptados por el autor. El contenido del libro y sus archivos fuente constituyen la referencia principal.",
     "crumbs": [
       "Cuaderno completo para Google Colab"
     ]
@@ -153,8 +183,8 @@
     "objectID": "00-cuaderno-google-colab.html#qué-contiene-el-cuaderno",
     "href": "00-cuaderno-google-colab.html#qué-contiene-el-cuaderno",
     "title": "Cuaderno completo para Google Colab",
-    "section": "",
-    "text": "un índice navegable con todos los capítulos y secciones;\nexplicaciones conceptuales en celdas de texto;\nfórmulas matemáticas;\ncódigos R separados en celdas independientes;\ninstalación y carga de los paquetes necesarios;\npreparación y lectura de los datos ATUS;\nanálisis exploratorio;\nregresión logística;\nk vecinos más cercanos;\nárboles de decisión;\nRandom Forest;\nevaluación y comparación de modelos;\nejercicios, interpretaciones y referencias.",
+    "section": "¿Qué contiene el cuaderno?",
+    "text": "¿Qué contiene el cuaderno?\nEl cuaderno reproduce el contenido del libro y contiene:\n\nun índice navegable con todos los capítulos y secciones;\nexplicaciones conceptuales en celdas de texto;\nfórmulas matemáticas;\ncódigos R separados en celdas independientes;\ninstalación y carga de los paquetes necesarios;\npreparación y lectura de los datos ATUS;\nanálisis exploratorio;\nregresión logística;\nk vecinos más cercanos;\nárboles de decisión;\nRandom Forest;\nevaluación y comparación de modelos;\nejercicios, interpretaciones y referencias.",
     "crumbs": [
       "Cuaderno completo para Google Colab"
     ]

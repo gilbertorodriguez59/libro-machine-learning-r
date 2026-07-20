@@ -5,6 +5,10 @@ project:
     - recursos_colab/atus_2024.csv.gz
     - recursos_colab/atus_ml_preparado.csv.gz
     - Aprendizaje_y_Clasificacion_Automatica_con_R_Colab.ipynb
+    - recursos/presentacion-licencia-cuaderno.pdf
+    - recursos/presentacion-licencia-cuaderno.pptx
+    - recursos/video-presentacion-licencia-cuaderno.mp4
+    - recursos/infografia-presentacion-licencia-cuaderno.png
 
 lang: es
 bibliography: referencias.bib

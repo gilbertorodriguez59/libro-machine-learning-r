@@ -44,7 +44,7 @@ atus_2024.csv
 La estructura mínima del proyecto debe quedar así:
 
 ```text
-libro-machine-learning-r-dev/
+libro-machine-learning-r/
 ├── _quarto.yml
 ├── index.qmd
 ├── 02-preparacion-datos.qmd

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>6&nbsp; Árboles de decisión para clasificación – Aprendizaje y Clasificación Automática con R</title>
+<title>7&nbsp; Árboles de decisión para clasificación – Aprendizaje y Clasificación Automática con R</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -169,7 +169,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./06-arboles-decision.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Árboles de decisión para clasificación</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./06-arboles-decision.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Árboles de decisión para clasificación</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
@@ -235,44 +235,50 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./04-regresion-lineal-multiple.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regresión lineal simple y múltiple</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./04-regresion-logistica.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regresión logística para clasificación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regresión logística para clasificación</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05-knn.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">k vecinos más cercanos, k-NN</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">k vecinos más cercanos, k-NN</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./06-arboles-decision.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Árboles de decisión para clasificación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Árboles de decisión para clasificación</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07-random-forest.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Random Forest para clasificación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Random Forest para clasificación</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./08-evaluacion-modelos.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Evaluación, validación y comparación de modelos</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Evaluación, validación y comparación de modelos</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./09-svm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Máquinas de Vectores de Soporte (SVM)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Máquinas de Vectores de Soporte (SVM)</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./10-naive-bayes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Clasificador Naive Bayes</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Clasificador Naive Bayes</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -302,17 +308,17 @@ window.Quarto = {
     <h2 id="toc-title">Tabla de contenidos</h2>
    
   <ul>
-  <li><a href="#objetivos-del-capítulo" id="toc-objetivos-del-capítulo" class="nav-link active" data-scroll-target="#objetivos-del-capítulo"><span class="header-section-number">6.1</span> Objetivos del capítulo</a></li>
-  <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción"><span class="header-section-number">6.2</span> Introducción</a></li>
-  <li><a href="#fundamento-matemático" id="toc-fundamento-matemático" class="nav-link" data-scroll-target="#fundamento-matemático"><span class="header-section-number">6.3</span> Fundamento matemático</a></li>
-  <li><a href="#cargar-paquetes-y-datos" id="toc-cargar-paquetes-y-datos" class="nav-link" data-scroll-target="#cargar-paquetes-y-datos"><span class="header-section-number">6.4</span> Cargar paquetes y datos</a></li>
-  <li><a href="#usar-la-base-completa" id="toc-usar-la-base-completa" class="nav-link" data-scroll-target="#usar-la-base-completa"><span class="header-section-number">6.5</span> Usar la base completa</a></li>
-  <li><a href="#división-y-entrenamiento" id="toc-división-y-entrenamiento" class="nav-link" data-scroll-target="#división-y-entrenamiento"><span class="header-section-number">6.6</span> División y entrenamiento</a></li>
-  <li><a href="#complejidad-e-importancia" id="toc-complejidad-e-importancia" class="nav-link" data-scroll-target="#complejidad-e-importancia"><span class="header-section-number">6.7</span> Complejidad e importancia</a></li>
-  <li><a href="#gráfica-opcional-del-árbol" id="toc-gráfica-opcional-del-árbol" class="nav-link" data-scroll-target="#gráfica-opcional-del-árbol"><span class="header-section-number">6.8</span> Gráfica opcional del árbol</a></li>
-  <li><a href="#predicción-y-métricas" id="toc-predicción-y-métricas" class="nav-link" data-scroll-target="#predicción-y-métricas"><span class="header-section-number">6.9</span> Predicción y métricas</a></li>
-  <li><a href="#conclusión" id="toc-conclusión" class="nav-link" data-scroll-target="#conclusión"><span class="header-section-number">6.10</span> Conclusión</a></li>
-  <li><a href="#referencias-fundamentales-de-los-árboles-de-decisión" id="toc-referencias-fundamentales-de-los-árboles-de-decisión" class="nav-link" data-scroll-target="#referencias-fundamentales-de-los-árboles-de-decisión"><span class="header-section-number">6.11</span> Referencias fundamentales de los árboles de decisión</a></li>
+  <li><a href="#objetivos-del-capítulo" id="toc-objetivos-del-capítulo" class="nav-link active" data-scroll-target="#objetivos-del-capítulo"><span class="header-section-number">7.1</span> Objetivos del capítulo</a></li>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción"><span class="header-section-number">7.2</span> Introducción</a></li>
+  <li><a href="#fundamento-matemático" id="toc-fundamento-matemático" class="nav-link" data-scroll-target="#fundamento-matemático"><span class="header-section-number">7.3</span> Fundamento matemático</a></li>
+  <li><a href="#cargar-paquetes-y-datos" id="toc-cargar-paquetes-y-datos" class="nav-link" data-scroll-target="#cargar-paquetes-y-datos"><span class="header-section-number">7.4</span> Cargar paquetes y datos</a></li>
+  <li><a href="#usar-la-base-completa" id="toc-usar-la-base-completa" class="nav-link" data-scroll-target="#usar-la-base-completa"><span class="header-section-number">7.5</span> Usar la base completa</a></li>
+  <li><a href="#división-y-entrenamiento" id="toc-división-y-entrenamiento" class="nav-link" data-scroll-target="#división-y-entrenamiento"><span class="header-section-number">7.6</span> División y entrenamiento</a></li>
+  <li><a href="#complejidad-e-importancia" id="toc-complejidad-e-importancia" class="nav-link" data-scroll-target="#complejidad-e-importancia"><span class="header-section-number">7.7</span> Complejidad e importancia</a></li>
+  <li><a href="#gráfica-opcional-del-árbol" id="toc-gráfica-opcional-del-árbol" class="nav-link" data-scroll-target="#gráfica-opcional-del-árbol"><span class="header-section-number">7.8</span> Gráfica opcional del árbol</a></li>
+  <li><a href="#predicción-y-métricas" id="toc-predicción-y-métricas" class="nav-link" data-scroll-target="#predicción-y-métricas"><span class="header-section-number">7.9</span> Predicción y métricas</a></li>
+  <li><a href="#conclusión" id="toc-conclusión" class="nav-link" data-scroll-target="#conclusión"><span class="header-section-number">7.10</span> Conclusión</a></li>
+  <li><a href="#referencias-fundamentales-de-los-árboles-de-decisión" id="toc-referencias-fundamentales-de-los-árboles-de-decisión" class="nav-link" data-scroll-target="#referencias-fundamentales-de-los-árboles-de-decisión"><span class="header-section-number">7.11</span> Referencias fundamentales de los árboles de decisión</a></li>
   </ul>
 </nav>
     </div>
@@ -321,7 +327,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Árboles de decisión para clasificación</span></h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Árboles de decisión para clasificación</span></h1>
 </div>
 
 
@@ -338,23 +344,23 @@ window.Quarto = {
 </header>
 
 
-<section id="objetivos-del-capítulo" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="objetivos-del-capítulo"><span class="header-section-number">6.1</span> Objetivos del capítulo</h2>
+<section id="objetivos-del-capítulo" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="objetivos-del-capítulo"><span class="header-section-number">7.1</span> Objetivos del capítulo</h2>
 <p>Al finalizar este capítulo, el lector será capaz de explicar la idea básica de un árbol de decisión, entrenarlo en R y evaluar su desempeño.</p>
 </section>
-<section id="introducción" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="introducción"><span class="header-section-number">6.2</span> Introducción</h2>
+<section id="introducción" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="introducción"><span class="header-section-number">7.2</span> Introducción</h2>
 <p>Los árboles de decisión clasifican observaciones mediante una secuencia de preguntas. Son interpretables y pueden expresarse como reglas tipo si-entonces.</p>
 </section>
-<section id="fundamento-matemático" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="fundamento-matemático"><span class="header-section-number">6.3</span> Fundamento matemático</h2>
+<section id="fundamento-matemático" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="fundamento-matemático"><span class="header-section-number">7.3</span> Fundamento matemático</h2>
 <p>Una medida común de impureza es el índice de Gini:</p>
 <p><span class="math display">\[
 Gini = 1 - \sum_{k=1}^{K} p_k^2
 \]</span></p>
 </section>
-<section id="cargar-paquetes-y-datos" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="cargar-paquetes-y-datos"><span class="header-section-number">6.4</span> Cargar paquetes y datos</h2>
+<section id="cargar-paquetes-y-datos" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="cargar-paquetes-y-datos"><span class="header-section-number">7.4</span> Cargar paquetes y datos</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -378,8 +384,8 @@ Gini = 1 - \sum_{k=1}^{K} p_k^2
 </div>
 </div>
 </section>
-<section id="usar-la-base-completa" class="level2" data-number="6.5">
-<h2 data-number="6.5" class="anchored" data-anchor-id="usar-la-base-completa"><span class="header-section-number">6.5</span> Usar la base completa</h2>
+<section id="usar-la-base-completa" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="usar-la-base-completa"><span class="header-section-number">7.5</span> Usar la base completa</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -417,8 +423,8 @@ Gini = 1 - \sum_{k=1}^{K} p_k^2
 </div>
 </div>
 </section>
-<section id="división-y-entrenamiento" class="level2" data-number="6.6">
-<h2 data-number="6.6" class="anchored" data-anchor-id="división-y-entrenamiento"><span class="header-section-number">6.6</span> División y entrenamiento</h2>
+<section id="división-y-entrenamiento" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="división-y-entrenamiento"><span class="header-section-number">7.6</span> División y entrenamiento</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -451,8 +457,8 @@ Gini = 1 - \sum_{k=1}^{K} p_k^2
 </div>
 </div>
 </section>
-<section id="complejidad-e-importancia" class="level2" data-number="6.7">
-<h2 data-number="6.7" class="anchored" data-anchor-id="complejidad-e-importancia"><span class="header-section-number">6.7</span> Complejidad e importancia</h2>
+<section id="complejidad-e-importancia" class="level2" data-number="7.7">
+<h2 data-number="7.7" class="anchored" data-anchor-id="complejidad-e-importancia"><span class="header-section-number">7.7</span> Complejidad e importancia</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -508,8 +514,8 @@ n= 273439
 </div>
 </div>
 </section>
-<section id="gráfica-opcional-del-árbol" class="level2" data-number="6.8">
-<h2 data-number="6.8" class="anchored" data-anchor-id="gráfica-opcional-del-árbol"><span class="header-section-number">6.8</span> Gráfica opcional del árbol</h2>
+<section id="gráfica-opcional-del-árbol" class="level2" data-number="7.8">
+<h2 data-number="7.8" class="anchored" data-anchor-id="gráfica-opcional-del-árbol"><span class="header-section-number">7.8</span> Gráfica opcional del árbol</h2>
 <p>La gráfica completa del árbol puede ser pesada en PDF. El lector puede ejecutarla manualmente en RStudio.</p>
 <div class="cell">
 <details class="code-fold">
@@ -519,8 +525,8 @@ n= 273439
 </details>
 </div>
 </section>
-<section id="predicción-y-métricas" class="level2" data-number="6.9">
-<h2 data-number="6.9" class="anchored" data-anchor-id="predicción-y-métricas"><span class="header-section-number">6.9</span> Predicción y métricas</h2>
+<section id="predicción-y-métricas" class="level2" data-number="7.9">
+<h2 data-number="7.9" class="anchored" data-anchor-id="predicción-y-métricas"><span class="header-section-number">7.9</span> Predicción y métricas</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -569,12 +575,12 @@ Real           Con víctimas Solo daños
 </div>
 </div>
 </section>
-<section id="conclusión" class="level2" data-number="6.10">
-<h2 data-number="6.10" class="anchored" data-anchor-id="conclusión"><span class="header-section-number">6.10</span> Conclusión</h2>
+<section id="conclusión" class="level2" data-number="7.10">
+<h2 data-number="7.10" class="anchored" data-anchor-id="conclusión"><span class="header-section-number">7.10</span> Conclusión</h2>
 <p>Los árboles de decisión son modelos intuitivos, visuales e interpretables. Este capítulo prepara el camino para modelos basados en muchos árboles, como Random Forest.</p>
 </section>
-<section id="referencias-fundamentales-de-los-árboles-de-decisión" class="level2" data-number="6.11">
-<h2 data-number="6.11" class="anchored" data-anchor-id="referencias-fundamentales-de-los-árboles-de-decisión"><span class="header-section-number">6.11</span> Referencias fundamentales de los árboles de decisión</h2>
+<section id="referencias-fundamentales-de-los-árboles-de-decisión" class="level2" data-number="7.11">
+<h2 data-number="7.11" class="anchored" data-anchor-id="referencias-fundamentales-de-los-árboles-de-decisión"><span class="header-section-number">7.11</span> Referencias fundamentales de los árboles de decisión</h2>
 <p>La metodología CART fue desarrollada sistemáticamente por <span class="citation" data-cites="breiman1984classification">Breiman et&nbsp;al. (<a href="referencias.html#ref-breiman1984classification" role="doc-biblioref">1984</a>)</span>. El algoritmo ID3 y la inducción de árboles mediante ganancia de información fueron presentados por <span class="citation" data-cites="quinlan1986induction">Quinlan (<a href="referencias.html#ref-quinlan1986induction" role="doc-biblioref">1986</a>)</span>. Para una introducción contemporánea con ejemplos en R puede consultarse <span class="citation" data-cites="james2021islr">James et&nbsp;al. (<a href="referencias.html#ref-james2021islr" role="doc-biblioref">2021</a>)</span>.</p>
 
 
@@ -995,12 +1001,12 @@ Quinlan, J. Ross. 1986. <span>«Induction of Decision Trees»</span>. <em>Machin
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./05-knn.html" class="pagination-link" aria-label="k vecinos más cercanos, k-NN">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">k vecinos más cercanos, k-NN</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">k vecinos más cercanos, k-NN</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./07-random-forest.html" class="pagination-link" aria-label="Random Forest para clasificación">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Random Forest para clasificación</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Random Forest para clasificación</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

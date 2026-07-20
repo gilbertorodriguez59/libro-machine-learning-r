@@ -152,44 +152,50 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./04-regresion-lineal-multiple.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regresión lineal simple y múltiple</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./04-regresion-logistica.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regresión logística para clasificación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regresión logística para clasificación</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05-knn.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">k vecinos más cercanos, k-NN</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">k vecinos más cercanos, k-NN</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./06-arboles-decision.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Árboles de decisión para clasificación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Árboles de decisión para clasificación</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07-random-forest.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Random Forest para clasificación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Random Forest para clasificación</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./08-evaluacion-modelos.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Evaluación, validación y comparación de modelos</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Evaluación, validación y comparación de modelos</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./09-svm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Máquinas de Vectores de Soporte (SVM)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Máquinas de Vectores de Soporte (SVM)</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./10-naive-bayes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Clasificador Naive Bayes</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Clasificador Naive Bayes</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -222,6 +228,10 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#qué-contiene-el-cuaderno" id="toc-qué-contiene-el-cuaderno" class="nav-link active" data-scroll-target="#qué-contiene-el-cuaderno">¿Qué contiene el cuaderno?</a></li>
   <li><a href="#cómo-utilizarlo" id="toc-cómo-utilizarlo" class="nav-link" data-scroll-target="#cómo-utilizarlo">Cómo utilizarlo</a></li>
   <li><a href="#diferencias-entre-el-libro-web-y-el-cuaderno" id="toc-diferencias-entre-el-libro-web-y-el-cuaderno" class="nav-link" data-scroll-target="#diferencias-entre-el-libro-web-y-el-cuaderno">Diferencias entre el libro web y el cuaderno</a></li>
+  <li><a href="#ejecución-autónoma-en-google-colab" id="toc-ejecución-autónoma-en-google-colab" class="nav-link" data-scroll-target="#ejecución-autónoma-en-google-colab">Ejecución autónoma en Google Colab</a></li>
+  <li><a href="#instalación-automática-de-paquetes" id="toc-instalación-automática-de-paquetes" class="nav-link" data-scroll-target="#instalación-automática-de-paquetes">Instalación automática de paquetes</a></li>
+  <li><a href="#referencias-bibliográficas-en-colab" id="toc-referencias-bibliográficas-en-colab" class="nav-link" data-scroll-target="#referencias-bibliográficas-en-colab">Referencias bibliográficas en Colab</a></li>
+  <li><a href="#descarga-automática-de-los-datos" id="toc-descarga-automática-de-los-datos" class="nav-link" data-scroll-target="#descarga-automática-de-los-datos">Descarga automática de los datos</a></li>
   </ul>
 </nav>
     </div>
@@ -323,6 +333,42 @@ ul.task-list li input[type="checkbox"] {
 <p>El cuaderno necesita conexión a internet para instalar paquetes y descargar los archivos de datos cuando no estén disponibles en la sesión. La descarga de ATUS puede tardar debido al tamaño de la base.</p>
 </div>
 </div>
+</section>
+<section id="ejecución-autónoma-en-google-colab" class="level2">
+<h2 class="anchored" data-anchor-id="ejecución-autónoma-en-google-colab">Ejecución autónoma en Google Colab</h2>
+<p>El cuaderno incluye una celda inicial de <strong>preparación automática</strong> que:</p>
+<ul>
+<li>instala los paquetes de R que hagan falta;</li>
+<li>define dentro del propio cuaderno todas las funciones gráficas;</li>
+<li>crea la carpeta <code>datos</code>;</li>
+<li>descarga las bases ATUS desde el repositorio estable cuando no estén presentes;</li>
+<li>comprueba que los recursos necesarios estén disponibles.</li>
+</ul>
+<p>Por esta razón, el usuario no necesita descargar manualmente <code>util_graficas.R</code> ni subir archivos auxiliares a Colab.</p>
+</section>
+<section id="instalación-automática-de-paquetes" class="level2">
+<h2 class="anchored" data-anchor-id="instalación-automática-de-paquetes">Instalación automática de paquetes</h2>
+<p>El cuaderno utiliza la función <code>cargar_paquete()</code>. Antes de cargar un paquete, comprueba si está instalado y, cuando hace falta, lo instala automáticamente desde CRAN. Esto evita errores como <code>there is no package called 'ranger'</code>.</p>
+</section>
+<section id="referencias-bibliográficas-en-colab" class="level2">
+<h2 class="anchored" data-anchor-id="referencias-bibliográficas-en-colab">Referencias bibliográficas en Colab</h2>
+<p>En los capítulos Quarto se conservan claves como <code>@breiman1984classification</code>, porque Quarto las transforma al generar el libro. En Google Colab esas claves se sustituyen por citas legibles como <strong>Breiman et al.&nbsp;(1984)</strong>, y la bibliografía completa aparece al final del cuaderno.</p>
+</section>
+<section id="descarga-automática-de-los-datos" class="level2">
+<h2 class="anchored" data-anchor-id="descarga-automática-de-los-datos">Descarga automática de los datos</h2>
+<p>Para evitar archivos demasiado grandes dentro del cuaderno, las bases ATUS se publican en formato comprimido <code>.csv.gz</code>. La primera celda de Colab:</p>
+<ol type="1">
+<li>descarga los archivos comprimidos desde GitHub Pages;</li>
+<li>los descomprime automáticamente;</li>
+<li>guarda los CSV en la carpeta <code>datos</code>;</li>
+<li>comprueba que quedaron disponibles antes de continuar.</li>
+</ol>
+<p>Los archivos publicados son:</p>
+<ul>
+<li><code>recursos_colab/atus_ml_preparado.csv.gz</code>;</li>
+<li><code>recursos_colab/atus_2024.csv.gz</code>.</li>
+</ul>
+<p>Si la celda informa un error 404, primero debe publicarse esta versión del sitio para que esos recursos estén disponibles.</p>
 
 
 </section>

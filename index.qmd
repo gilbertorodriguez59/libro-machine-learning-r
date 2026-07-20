@@ -5,7 +5,7 @@
 ### Un enfoque práctico con datos abiertos reales {.unnumbered}
 
 **Autor:** MI Jesús Gilberto Rodríguez Escobedo  
-**Versión:** 0.7 (desarrollo)  
+**Versión:** 0.9.0 (desarrollo)
 **Modalidad:** Libro abierto, práctico e interactivo  
 **Tecnologías:** R · Quarto · Machine Learning · Datos abiertos · GitHub Pages
 
@@ -49,11 +49,26 @@ El contenido del libro también está disponible como un cuaderno ejecutable de 
 1. Introducción al aprendizaje automático.
 2. Preparación de datos reales.
 3. Análisis exploratorio de datos.
-4. Regresión logística.
-5. k vecinos más cercanos.
-6. Árboles de decisión.
-7. Random Forest.
-8. Evaluación, validación y comparación de modelos.
+4. Regresión lineal simple y múltiple.
+5. Regresión logística para clasificación.
+6. k vecinos más cercanos (k-NN).
+7. Árboles de decisión.
+8. Random Forest.
+9. Evaluación, validación y comparación de modelos.
+10. Máquinas de Vectores de Soporte (SVM).
+11. Clasificador Naive Bayes.
+
+## Ruta prevista para los siguientes capítulos {.unnumbered}
+
+La secuencia prevista, sujeta a revisión conforme avance el libro, es:
+
+12. Redes neuronales artificiales.
+13. Introducción al aprendizaje no supervisado.
+14. Agrupamiento con k-means.
+15. Análisis de Componentes Principales (PCA).
+16. Comparación integral y selección de algoritmos.
+17. Proyecto aplicado final con datos abiertos.
+
 
 ## Nota para el lector {.unnumbered}
 

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>8&nbsp; Evaluación, validación y comparación de modelos – Aprendizaje y Clasificación Automática con R</title>
+<title>9&nbsp; Evaluación, validación y comparación de modelos – Aprendizaje y Clasificación Automática con R</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -169,7 +169,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./08-evaluacion-modelos.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Evaluación, validación y comparación de modelos</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./08-evaluacion-modelos.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Evaluación, validación y comparación de modelos</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
@@ -235,44 +235,50 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./04-regresion-lineal-multiple.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regresión lineal simple y múltiple</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./04-regresion-logistica.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regresión logística para clasificación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regresión logística para clasificación</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05-knn.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">k vecinos más cercanos, k-NN</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">k vecinos más cercanos, k-NN</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./06-arboles-decision.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Árboles de decisión para clasificación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Árboles de decisión para clasificación</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07-random-forest.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Random Forest para clasificación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Random Forest para clasificación</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./08-evaluacion-modelos.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Evaluación, validación y comparación de modelos</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Evaluación, validación y comparación de modelos</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./09-svm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Máquinas de Vectores de Soporte (SVM)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Máquinas de Vectores de Soporte (SVM)</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./10-naive-bayes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Clasificador Naive Bayes</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Clasificador Naive Bayes</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -302,37 +308,37 @@ window.Quarto = {
     <h2 id="toc-title">Tabla de contenidos</h2>
    
   <ul>
-  <li><a href="#objetivos-del-capítulo" id="toc-objetivos-del-capítulo" class="nav-link active" data-scroll-target="#objetivos-del-capítulo"><span class="header-section-number">8.1</span> Objetivos del capítulo</a></li>
-  <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción"><span class="header-section-number">8.2</span> Introducción</a></li>
-  <li><a href="#cargar-los-datos" id="toc-cargar-los-datos" class="nav-link" data-scroll-target="#cargar-los-datos"><span class="header-section-number">8.3</span> Cargar los datos</a></li>
-  <li><a href="#preparar-una-muestra-reproducible" id="toc-preparar-una-muestra-reproducible" class="nav-link" data-scroll-target="#preparar-una-muestra-reproducible"><span class="header-section-number">8.4</span> Preparar una muestra reproducible</a></li>
-  <li><a href="#entrenamiento-validación-y-prueba" id="toc-entrenamiento-validación-y-prueba" class="nav-link" data-scroll-target="#entrenamiento-validación-y-prueba"><span class="header-section-number">8.5</span> Entrenamiento, validación y prueba</a></li>
-  <li><a href="#división-estratificada" id="toc-división-estratificada" class="nav-link" data-scroll-target="#división-estratificada"><span class="header-section-number">8.6</span> División estratificada</a></li>
-  <li><a href="#matriz-de-confusión" id="toc-matriz-de-confusión" class="nav-link" data-scroll-target="#matriz-de-confusión"><span class="header-section-number">8.7</span> Matriz de confusión</a></li>
-  <li><a href="#métricas-principales" id="toc-métricas-principales" class="nav-link" data-scroll-target="#métricas-principales"><span class="header-section-number">8.8</span> Métricas principales</a>
+  <li><a href="#objetivos-del-capítulo" id="toc-objetivos-del-capítulo" class="nav-link active" data-scroll-target="#objetivos-del-capítulo"><span class="header-section-number">9.1</span> Objetivos del capítulo</a></li>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción"><span class="header-section-number">9.2</span> Introducción</a></li>
+  <li><a href="#cargar-los-datos" id="toc-cargar-los-datos" class="nav-link" data-scroll-target="#cargar-los-datos"><span class="header-section-number">9.3</span> Cargar los datos</a></li>
+  <li><a href="#preparar-una-muestra-reproducible" id="toc-preparar-una-muestra-reproducible" class="nav-link" data-scroll-target="#preparar-una-muestra-reproducible"><span class="header-section-number">9.4</span> Preparar una muestra reproducible</a></li>
+  <li><a href="#entrenamiento-validación-y-prueba" id="toc-entrenamiento-validación-y-prueba" class="nav-link" data-scroll-target="#entrenamiento-validación-y-prueba"><span class="header-section-number">9.5</span> Entrenamiento, validación y prueba</a></li>
+  <li><a href="#división-estratificada" id="toc-división-estratificada" class="nav-link" data-scroll-target="#división-estratificada"><span class="header-section-number">9.6</span> División estratificada</a></li>
+  <li><a href="#matriz-de-confusión" id="toc-matriz-de-confusión" class="nav-link" data-scroll-target="#matriz-de-confusión"><span class="header-section-number">9.7</span> Matriz de confusión</a></li>
+  <li><a href="#métricas-principales" id="toc-métricas-principales" class="nav-link" data-scroll-target="#métricas-principales"><span class="header-section-number">9.8</span> Métricas principales</a>
   <ul class="collapse">
-  <li><a href="#exactitud" id="toc-exactitud" class="nav-link" data-scroll-target="#exactitud"><span class="header-section-number">8.8.1</span> Exactitud</a></li>
-  <li><a href="#sensibilidad" id="toc-sensibilidad" class="nav-link" data-scroll-target="#sensibilidad"><span class="header-section-number">8.8.2</span> Sensibilidad</a></li>
-  <li><a href="#especificidad" id="toc-especificidad" class="nav-link" data-scroll-target="#especificidad"><span class="header-section-number">8.8.3</span> Especificidad</a></li>
-  <li><a href="#precisión" id="toc-precisión" class="nav-link" data-scroll-target="#precisión"><span class="header-section-number">8.8.4</span> Precisión</a></li>
-  <li><a href="#valor-f1" id="toc-valor-f1" class="nav-link" data-scroll-target="#valor-f1"><span class="header-section-number">8.8.5</span> Valor F1</a></li>
+  <li><a href="#exactitud" id="toc-exactitud" class="nav-link" data-scroll-target="#exactitud"><span class="header-section-number">9.8.1</span> Exactitud</a></li>
+  <li><a href="#sensibilidad" id="toc-sensibilidad" class="nav-link" data-scroll-target="#sensibilidad"><span class="header-section-number">9.8.2</span> Sensibilidad</a></li>
+  <li><a href="#especificidad" id="toc-especificidad" class="nav-link" data-scroll-target="#especificidad"><span class="header-section-number">9.8.3</span> Especificidad</a></li>
+  <li><a href="#precisión" id="toc-precisión" class="nav-link" data-scroll-target="#precisión"><span class="header-section-number">9.8.4</span> Precisión</a></li>
+  <li><a href="#valor-f1" id="toc-valor-f1" class="nav-link" data-scroll-target="#valor-f1"><span class="header-section-number">9.8.5</span> Valor F1</a></li>
   </ul></li>
-  <li><a href="#función-para-calcular-métricas" id="toc-función-para-calcular-métricas" class="nav-link" data-scroll-target="#función-para-calcular-métricas"><span class="header-section-number">8.9</span> Función para calcular métricas</a></li>
-  <li><a href="#modelo-de-referencia-regla-mayoritaria" id="toc-modelo-de-referencia-regla-mayoritaria" class="nav-link" data-scroll-target="#modelo-de-referencia-regla-mayoritaria"><span class="header-section-number">8.10</span> Modelo de referencia: regla mayoritaria</a></li>
-  <li><a href="#evaluar-una-regresión-logística" id="toc-evaluar-una-regresión-logística" class="nav-link" data-scroll-target="#evaluar-una-regresión-logística"><span class="header-section-number">8.11</span> Evaluar una regresión logística</a></li>
-  <li><a href="#comparación-inicial" id="toc-comparación-inicial" class="nav-link" data-scroll-target="#comparación-inicial"><span class="header-section-number">8.12</span> Comparación inicial</a></li>
-  <li><a href="#umbral-de-clasificación" id="toc-umbral-de-clasificación" class="nav-link" data-scroll-target="#umbral-de-clasificación"><span class="header-section-number">8.13</span> Umbral de clasificación</a></li>
-  <li><a href="#validación-cruzada" id="toc-validación-cruzada" class="nav-link" data-scroll-target="#validación-cruzada"><span class="header-section-number">8.14</span> Validación cruzada</a>
+  <li><a href="#función-para-calcular-métricas" id="toc-función-para-calcular-métricas" class="nav-link" data-scroll-target="#función-para-calcular-métricas"><span class="header-section-number">9.9</span> Función para calcular métricas</a></li>
+  <li><a href="#modelo-de-referencia-regla-mayoritaria" id="toc-modelo-de-referencia-regla-mayoritaria" class="nav-link" data-scroll-target="#modelo-de-referencia-regla-mayoritaria"><span class="header-section-number">9.10</span> Modelo de referencia: regla mayoritaria</a></li>
+  <li><a href="#evaluar-una-regresión-logística" id="toc-evaluar-una-regresión-logística" class="nav-link" data-scroll-target="#evaluar-una-regresión-logística"><span class="header-section-number">9.11</span> Evaluar una regresión logística</a></li>
+  <li><a href="#comparación-inicial" id="toc-comparación-inicial" class="nav-link" data-scroll-target="#comparación-inicial"><span class="header-section-number">9.12</span> Comparación inicial</a></li>
+  <li><a href="#umbral-de-clasificación" id="toc-umbral-de-clasificación" class="nav-link" data-scroll-target="#umbral-de-clasificación"><span class="header-section-number">9.13</span> Umbral de clasificación</a></li>
+  <li><a href="#validación-cruzada" id="toc-validación-cruzada" class="nav-link" data-scroll-target="#validación-cruzada"><span class="header-section-number">9.14</span> Validación cruzada</a>
   <ul class="collapse">
-  <li><a href="#crear-pliegues-estratificados" id="toc-crear-pliegues-estratificados" class="nav-link" data-scroll-target="#crear-pliegues-estratificados"><span class="header-section-number">8.14.1</span> Crear pliegues estratificados</a></li>
-  <li><a href="#validación-cruzada-de-la-regresión-logística" id="toc-validación-cruzada-de-la-regresión-logística" class="nav-link" data-scroll-target="#validación-cruzada-de-la-regresión-logística"><span class="header-section-number">8.14.2</span> Validación cruzada de la regresión logística</a></li>
+  <li><a href="#crear-pliegues-estratificados" id="toc-crear-pliegues-estratificados" class="nav-link" data-scroll-target="#crear-pliegues-estratificados"><span class="header-section-number">9.14.1</span> Crear pliegues estratificados</a></li>
+  <li><a href="#validación-cruzada-de-la-regresión-logística" id="toc-validación-cruzada-de-la-regresión-logística" class="nav-link" data-scroll-target="#validación-cruzada-de-la-regresión-logística"><span class="header-section-number">9.14.2</span> Validación cruzada de la regresión logística</a></li>
   </ul></li>
-  <li><a href="#cómo-comparar-varios-modelos" id="toc-cómo-comparar-varios-modelos" class="nav-link" data-scroll-target="#cómo-comparar-varios-modelos"><span class="header-section-number">8.15</span> Cómo comparar varios modelos</a></li>
-  <li><a href="#selección-del-modelo-final" id="toc-selección-del-modelo-final" class="nav-link" data-scroll-target="#selección-del-modelo-final"><span class="header-section-number">8.16</span> Selección del modelo final</a></li>
-  <li><a href="#actividad-guiada" id="toc-actividad-guiada" class="nav-link" data-scroll-target="#actividad-guiada"><span class="header-section-number">8.17</span> Actividad guiada</a></li>
-  <li><a href="#actividades-para-el-lector" id="toc-actividades-para-el-lector" class="nav-link" data-scroll-target="#actividades-para-el-lector"><span class="header-section-number">8.18</span> Actividades para el lector</a></li>
-  <li><a href="#resumen-del-capítulo" id="toc-resumen-del-capítulo" class="nav-link" data-scroll-target="#resumen-del-capítulo"><span class="header-section-number">8.19</span> Resumen del capítulo</a></li>
-  <li><a href="#referencias-fundamentales-sobre-evaluación" id="toc-referencias-fundamentales-sobre-evaluación" class="nav-link" data-scroll-target="#referencias-fundamentales-sobre-evaluación"><span class="header-section-number">8.20</span> Referencias fundamentales sobre evaluación</a></li>
+  <li><a href="#cómo-comparar-varios-modelos" id="toc-cómo-comparar-varios-modelos" class="nav-link" data-scroll-target="#cómo-comparar-varios-modelos"><span class="header-section-number">9.15</span> Cómo comparar varios modelos</a></li>
+  <li><a href="#selección-del-modelo-final" id="toc-selección-del-modelo-final" class="nav-link" data-scroll-target="#selección-del-modelo-final"><span class="header-section-number">9.16</span> Selección del modelo final</a></li>
+  <li><a href="#actividad-guiada" id="toc-actividad-guiada" class="nav-link" data-scroll-target="#actividad-guiada"><span class="header-section-number">9.17</span> Actividad guiada</a></li>
+  <li><a href="#actividades-para-el-lector" id="toc-actividades-para-el-lector" class="nav-link" data-scroll-target="#actividades-para-el-lector"><span class="header-section-number">9.18</span> Actividades para el lector</a></li>
+  <li><a href="#resumen-del-capítulo" id="toc-resumen-del-capítulo" class="nav-link" data-scroll-target="#resumen-del-capítulo"><span class="header-section-number">9.19</span> Resumen del capítulo</a></li>
+  <li><a href="#referencias-fundamentales-sobre-evaluación" id="toc-referencias-fundamentales-sobre-evaluación" class="nav-link" data-scroll-target="#referencias-fundamentales-sobre-evaluación"><span class="header-section-number">9.20</span> Referencias fundamentales sobre evaluación</a></li>
   </ul>
 </nav>
     </div>
@@ -341,7 +347,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Evaluación, validación y comparación de modelos</span></h1>
+<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Evaluación, validación y comparación de modelos</span></h1>
 </div>
 
 
@@ -358,8 +364,8 @@ window.Quarto = {
 </header>
 
 
-<section id="objetivos-del-capítulo" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="objetivos-del-capítulo"><span class="header-section-number">8.1</span> Objetivos del capítulo</h2>
+<section id="objetivos-del-capítulo" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="objetivos-del-capítulo"><span class="header-section-number">9.1</span> Objetivos del capítulo</h2>
 <p>Al finalizar este capítulo, el lector será capaz de:</p>
 <ul>
 <li>explicar por qué la exactitud no siempre es suficiente;</li>
@@ -371,14 +377,14 @@ window.Quarto = {
 <li>seleccionar un modelo sin depender de una sola métrica.</li>
 </ul>
 </section>
-<section id="introducción" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="introducción"><span class="header-section-number">8.2</span> Introducción</h2>
+<section id="introducción" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="introducción"><span class="header-section-number">9.2</span> Introducción</h2>
 <p>Entrenar un modelo es apenas la mitad del trabajo. Después debemos responder una pregunta más delicada: <strong>¿qué tan bien funcionará con accidentes que nunca vio durante el aprendizaje?</strong></p>
 <p>Un modelo puede memorizar los datos de entrenamiento y parecer excelente, pero fallar con observaciones nuevas. Por eso la evaluación debe realizarse con datos separados y métricas apropiadas para el objetivo del problema.</p>
 <p>En este capítulo se utiliza nuevamente la base preparada a partir de ATUS <span class="citation" data-cites="inegi_atus_2024">(<a href="referencias.html#ref-inegi_atus_2024" role="doc-biblioref">Instituto Nacional de Estadística y Geografía 2025</a>)</span>.</p>
 </section>
-<section id="cargar-los-datos" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="cargar-los-datos"><span class="header-section-number">8.3</span> Cargar los datos</h2>
+<section id="cargar-los-datos" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="cargar-los-datos"><span class="header-section-number">9.3</span> Cargar los datos</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -405,8 +411,8 @@ window.Quarto = {
 </details>
 </div>
 </section>
-<section id="preparar-una-muestra-reproducible" class="level2" data-number="8.4">
-<h2 data-number="8.4" class="anchored" data-anchor-id="preparar-una-muestra-reproducible"><span class="header-section-number">8.4</span> Preparar una muestra reproducible</h2>
+<section id="preparar-una-muestra-reproducible" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="preparar-una-muestra-reproducible"><span class="header-section-number">9.4</span> Preparar una muestra reproducible</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -449,8 +455,8 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="entrenamiento-validación-y-prueba" class="level2" data-number="8.5">
-<h2 data-number="8.5" class="anchored" data-anchor-id="entrenamiento-validación-y-prueba"><span class="header-section-number">8.5</span> Entrenamiento, validación y prueba</h2>
+<section id="entrenamiento-validación-y-prueba" class="level2" data-number="9.5">
+<h2 data-number="9.5" class="anchored" data-anchor-id="entrenamiento-validación-y-prueba"><span class="header-section-number">9.5</span> Entrenamiento, validación y prueba</h2>
 <p>Los datos pueden dividirse en tres partes:</p>
 <ul>
 <li><strong>Entrenamiento:</strong> se utiliza para estimar los parámetros del modelo.</li>
@@ -459,8 +465,8 @@ window.Quarto = {
 </ul>
 <p>En ejercicios introductorios es frecuente utilizar entrenamiento y prueba, mientras que la validación se realiza mediante validación cruzada dentro del conjunto de entrenamiento.</p>
 </section>
-<section id="división-estratificada" class="level2" data-number="8.6">
-<h2 data-number="8.6" class="anchored" data-anchor-id="división-estratificada"><span class="header-section-number">8.6</span> División estratificada</h2>
+<section id="división-estratificada" class="level2" data-number="9.6">
+<h2 data-number="9.6" class="anchored" data-anchor-id="división-estratificada"><span class="header-section-number">9.6</span> División estratificada</h2>
 <p>Una división estratificada conserva aproximadamente la proporción de cada clase.</p>
 <div class="cell">
 <details class="code-fold">
@@ -510,8 +516,8 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="matriz-de-confusión" class="level2" data-number="8.7">
-<h2 data-number="8.7" class="anchored" data-anchor-id="matriz-de-confusión"><span class="header-section-number">8.7</span> Matriz de confusión</h2>
+<section id="matriz-de-confusión" class="level2" data-number="9.7">
+<h2 data-number="9.7" class="anchored" data-anchor-id="matriz-de-confusión"><span class="header-section-number">9.7</span> Matriz de confusión</h2>
 <p>Para una clase positiva denominada <strong>Con víctimas</strong>, la matriz contiene:</p>
 <ul>
 <li><strong>Verdadero positivo (VP):</strong> el accidente tenía víctimas y el modelo lo detectó.</li>
@@ -542,38 +548,38 @@ window.Quarto = {
 </table>
 <p>Un falso negativo puede ser especialmente importante cuando el propósito consiste en identificar accidentes con víctimas.</p>
 </section>
-<section id="métricas-principales" class="level2" data-number="8.8">
-<h2 data-number="8.8" class="anchored" data-anchor-id="métricas-principales"><span class="header-section-number">8.8</span> Métricas principales</h2>
-<section id="exactitud" class="level3" data-number="8.8.1">
-<h3 data-number="8.8.1" class="anchored" data-anchor-id="exactitud"><span class="header-section-number">8.8.1</span> Exactitud</h3>
+<section id="métricas-principales" class="level2" data-number="9.8">
+<h2 data-number="9.8" class="anchored" data-anchor-id="métricas-principales"><span class="header-section-number">9.8</span> Métricas principales</h2>
+<section id="exactitud" class="level3" data-number="9.8.1">
+<h3 data-number="9.8.1" class="anchored" data-anchor-id="exactitud"><span class="header-section-number">9.8.1</span> Exactitud</h3>
 <p><span class="math display">\[
 \text{Exactitud}=\frac{VP+VN}{VP+FN+FP+VN}
 \]</span></p>
 <p>Mide la proporción total de predicciones correctas.</p>
 </section>
-<section id="sensibilidad" class="level3" data-number="8.8.2">
-<h3 data-number="8.8.2" class="anchored" data-anchor-id="sensibilidad"><span class="header-section-number">8.8.2</span> Sensibilidad</h3>
+<section id="sensibilidad" class="level3" data-number="9.8.2">
+<h3 data-number="9.8.2" class="anchored" data-anchor-id="sensibilidad"><span class="header-section-number">9.8.2</span> Sensibilidad</h3>
 <p><span class="math display">\[
 \text{Sensibilidad}=\frac{VP}{VP+FN}
 \]</span></p>
 <p>Mide qué proporción de los accidentes con víctimas fue detectada.</p>
 </section>
-<section id="especificidad" class="level3" data-number="8.8.3">
-<h3 data-number="8.8.3" class="anchored" data-anchor-id="especificidad"><span class="header-section-number">8.8.3</span> Especificidad</h3>
+<section id="especificidad" class="level3" data-number="9.8.3">
+<h3 data-number="9.8.3" class="anchored" data-anchor-id="especificidad"><span class="header-section-number">9.8.3</span> Especificidad</h3>
 <p><span class="math display">\[
 \text{Especificidad}=\frac{VN}{VN+FP}
 \]</span></p>
 <p>Mide qué proporción de los accidentes de solo daños fue reconocida correctamente.</p>
 </section>
-<section id="precisión" class="level3" data-number="8.8.4">
-<h3 data-number="8.8.4" class="anchored" data-anchor-id="precisión"><span class="header-section-number">8.8.4</span> Precisión</h3>
+<section id="precisión" class="level3" data-number="9.8.4">
+<h3 data-number="9.8.4" class="anchored" data-anchor-id="precisión"><span class="header-section-number">9.8.4</span> Precisión</h3>
 <p><span class="math display">\[
 \text{Precisión}=\frac{VP}{VP+FP}
 \]</span></p>
 <p>Indica qué proporción de las predicciones positivas realmente tenía víctimas.</p>
 </section>
-<section id="valor-f1" class="level3" data-number="8.8.5">
-<h3 data-number="8.8.5" class="anchored" data-anchor-id="valor-f1"><span class="header-section-number">8.8.5</span> Valor F1</h3>
+<section id="valor-f1" class="level3" data-number="9.8.5">
+<h3 data-number="9.8.5" class="anchored" data-anchor-id="valor-f1"><span class="header-section-number">9.8.5</span> Valor F1</h3>
 <p><span class="math display">\[
 F_1=2\frac{\text{Precisión}\times\text{Sensibilidad}}
 {\text{Precisión}+\text{Sensibilidad}}
@@ -581,8 +587,8 @@ F_1=2\frac{\text{Precisión}\times\text{Sensibilidad}}
 <p>El valor F1 equilibra precisión y sensibilidad.</p>
 </section>
 </section>
-<section id="función-para-calcular-métricas" class="level2" data-number="8.9">
-<h2 data-number="8.9" class="anchored" data-anchor-id="función-para-calcular-métricas"><span class="header-section-number">8.9</span> Función para calcular métricas</h2>
+<section id="función-para-calcular-métricas" class="level2" data-number="9.9">
+<h2 data-number="9.9" class="anchored" data-anchor-id="función-para-calcular-métricas"><span class="header-section-number">9.9</span> Función para calcular métricas</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -639,8 +645,8 @@ F_1=2\frac{\text{Precisión}\times\text{Sensibilidad}}
 </details>
 </div>
 </section>
-<section id="modelo-de-referencia-regla-mayoritaria" class="level2" data-number="8.10">
-<h2 data-number="8.10" class="anchored" data-anchor-id="modelo-de-referencia-regla-mayoritaria"><span class="header-section-number">8.10</span> Modelo de referencia: regla mayoritaria</h2>
+<section id="modelo-de-referencia-regla-mayoritaria" class="level2" data-number="9.10">
+<h2 data-number="9.10" class="anchored" data-anchor-id="modelo-de-referencia-regla-mayoritaria"><span class="header-section-number">9.10</span> Modelo de referencia: regla mayoritaria</h2>
 <p>Antes de celebrar un modelo complejo, conviene compararlo con una regla muy simple: predecir siempre la clase más frecuente.</p>
 <div class="cell">
 <details class="code-fold">
@@ -703,8 +709,8 @@ Real           Solo daños Con víctimas
 </div>
 </div>
 </section>
-<section id="evaluar-una-regresión-logística" class="level2" data-number="8.11">
-<h2 data-number="8.11" class="anchored" data-anchor-id="evaluar-una-regresión-logística"><span class="header-section-number">8.11</span> Evaluar una regresión logística</h2>
+<section id="evaluar-una-regresión-logística" class="level2" data-number="9.11">
+<h2 data-number="9.11" class="anchored" data-anchor-id="evaluar-una-regresión-logística"><span class="header-section-number">9.11</span> Evaluar una regresión logística</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -773,8 +779,8 @@ Real           Solo daños Con víctimas
 </div>
 </div>
 </section>
-<section id="comparación-inicial" class="level2" data-number="8.12">
-<h2 data-number="8.12" class="anchored" data-anchor-id="comparación-inicial"><span class="header-section-number">8.12</span> Comparación inicial</h2>
+<section id="comparación-inicial" class="level2" data-number="9.12">
+<h2 data-number="9.12" class="anchored" data-anchor-id="comparación-inicial"><span class="header-section-number">9.12</span> Comparación inicial</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -835,8 +841,8 @@ Real           Solo daños Con víctimas
 </div>
 <p><strong>Fuente:</strong> Elaboración propia con datos del INEGI, ATUS 2024.</p>
 </section>
-<section id="umbral-de-clasificación" class="level2" data-number="8.13">
-<h2 data-number="8.13" class="anchored" data-anchor-id="umbral-de-clasificación"><span class="header-section-number">8.13</span> Umbral de clasificación</h2>
+<section id="umbral-de-clasificación" class="level2" data-number="9.13">
+<h2 data-number="9.13" class="anchored" data-anchor-id="umbral-de-clasificación"><span class="header-section-number">9.13</span> Umbral de clasificación</h2>
 <p>El umbral de 0.50 no es una ley universal. Reducirlo puede aumentar la sensibilidad, aunque también puede generar más falsos positivos.</p>
 <div class="cell">
 <details class="code-fold">
@@ -901,8 +907,8 @@ Real           Solo daños Con víctimas
 </div>
 </div>
 </section>
-<section id="validación-cruzada" class="level2" data-number="8.14">
-<h2 data-number="8.14" class="anchored" data-anchor-id="validación-cruzada"><span class="header-section-number">8.14</span> Validación cruzada</h2>
+<section id="validación-cruzada" class="level2" data-number="9.14">
+<h2 data-number="9.14" class="anchored" data-anchor-id="validación-cruzada"><span class="header-section-number">9.14</span> Validación cruzada</h2>
 <p>La validación cruzada divide el conjunto de entrenamiento en varios pliegues. Cada pliegue funciona una vez como validación y los restantes como entrenamiento.</p>
 <p>En validación cruzada de <span class="math inline">\(K\)</span> pliegues:</p>
 <ol type="1">
@@ -912,8 +918,8 @@ Real           Solo daños Con víctimas
 <li>se repite hasta utilizar todos los pliegues;</li>
 <li>se promedian las métricas.</li>
 </ol>
-<section id="crear-pliegues-estratificados" class="level3" data-number="8.14.1">
-<h3 data-number="8.14.1" class="anchored" data-anchor-id="crear-pliegues-estratificados"><span class="header-section-number">8.14.1</span> Crear pliegues estratificados</h3>
+<section id="crear-pliegues-estratificados" class="level3" data-number="9.14.1">
+<h3 data-number="9.14.1" class="anchored" data-anchor-id="crear-pliegues-estratificados"><span class="header-section-number">9.14.1</span> Crear pliegues estratificados</h3>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -949,8 +955,8 @@ pliegue Solo daños Con víctimas
 </div>
 </div>
 </section>
-<section id="validación-cruzada-de-la-regresión-logística" class="level3" data-number="8.14.2">
-<h3 data-number="8.14.2" class="anchored" data-anchor-id="validación-cruzada-de-la-regresión-logística"><span class="header-section-number">8.14.2</span> Validación cruzada de la regresión logística</h3>
+<section id="validación-cruzada-de-la-regresión-logística" class="level3" data-number="9.14.2">
+<h3 data-number="9.14.2" class="anchored" data-anchor-id="validación-cruzada-de-la-regresión-logística"><span class="header-section-number">9.14.2</span> Validación cruzada de la regresión logística</h3>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -1044,8 +1050,8 @@ pliegue Solo daños Con víctimas
 </div>
 </section>
 </section>
-<section id="cómo-comparar-varios-modelos" class="level2" data-number="8.15">
-<h2 data-number="8.15" class="anchored" data-anchor-id="cómo-comparar-varios-modelos"><span class="header-section-number">8.15</span> Cómo comparar varios modelos</h2>
+<section id="cómo-comparar-varios-modelos" class="level2" data-number="9.15">
+<h2 data-number="9.15" class="anchored" data-anchor-id="cómo-comparar-varios-modelos"><span class="header-section-number">9.15</span> Cómo comparar varios modelos</h2>
 <p>Para comparar regresión logística, k-NN, árbol de decisión y Random Forest conviene utilizar:</p>
 <ol type="1">
 <li>la misma muestra;</li>
@@ -1119,8 +1125,8 @@ pliegue Solo daños Con víctimas
 </tbody>
 </table>
 </section>
-<section id="selección-del-modelo-final" class="level2" data-number="8.16">
-<h2 data-number="8.16" class="anchored" data-anchor-id="selección-del-modelo-final"><span class="header-section-number">8.16</span> Selección del modelo final</h2>
+<section id="selección-del-modelo-final" class="level2" data-number="9.16">
+<h2 data-number="9.16" class="anchored" data-anchor-id="selección-del-modelo-final"><span class="header-section-number">9.16</span> Selección del modelo final</h2>
 <p>No existe un modelo universalmente mejor. La selección depende de la finalidad:</p>
 <ul>
 <li>Si se requiere explicar el efecto de las variables, puede preferirse regresión logística.</li>
@@ -1143,8 +1149,8 @@ pliegue Solo daños Con víctimas
 </div>
 </div>
 </section>
-<section id="actividad-guiada" class="level2" data-number="8.17">
-<h2 data-number="8.17" class="anchored" data-anchor-id="actividad-guiada"><span class="header-section-number">8.17</span> Actividad guiada</h2>
+<section id="actividad-guiada" class="level2" data-number="9.17">
+<h2 data-number="9.17" class="anchored" data-anchor-id="actividad-guiada"><span class="header-section-number">9.17</span> Actividad guiada</h2>
 <ol type="1">
 <li>Ejecute la regresión logística con umbrales de 0.30, 0.50 y 0.70.</li>
 <li>Registre la matriz de confusión de cada caso.</li>
@@ -1153,8 +1159,8 @@ pliegue Solo daños Con víctimas
 <li>Justifique su decisión considerando el costo de falsos negativos y falsos positivos.</li>
 </ol>
 </section>
-<section id="actividades-para-el-lector" class="level2" data-number="8.18">
-<h2 data-number="8.18" class="anchored" data-anchor-id="actividades-para-el-lector"><span class="header-section-number">8.18</span> Actividades para el lector</h2>
+<section id="actividades-para-el-lector" class="level2" data-number="9.18">
+<h2 data-number="9.18" class="anchored" data-anchor-id="actividades-para-el-lector"><span class="header-section-number">9.18</span> Actividades para el lector</h2>
 <ol type="1">
 <li><p>Construya una función que calcule la exactitud balanceada:</p>
 <p><span class="math display">\[
@@ -1166,12 +1172,12 @@ pliegue Solo daños Con víctimas
 <li><p>Escriba una recomendación técnica de no más de 200 palabras.</p></li>
 </ol>
 </section>
-<section id="resumen-del-capítulo" class="level2" data-number="8.19">
-<h2 data-number="8.19" class="anchored" data-anchor-id="resumen-del-capítulo"><span class="header-section-number">8.19</span> Resumen del capítulo</h2>
+<section id="resumen-del-capítulo" class="level2" data-number="9.19">
+<h2 data-number="9.19" class="anchored" data-anchor-id="resumen-del-capítulo"><span class="header-section-number">9.19</span> Resumen del capítulo</h2>
 <p>En este capítulo aprendimos que evaluar un modelo requiere datos no utilizados durante el entrenamiento, una clase positiva bien definida y varias métricas. También construimos una regla de referencia, estudiamos el efecto del umbral y aplicamos validación cruzada estratificada. Estas herramientas permiten comparar modelos de forma más justa y elegirlos según el objetivo real del análisis.</p>
 </section>
-<section id="referencias-fundamentales-sobre-evaluación" class="level2" data-number="8.20">
-<h2 data-number="8.20" class="anchored" data-anchor-id="referencias-fundamentales-sobre-evaluación"><span class="header-section-number">8.20</span> Referencias fundamentales sobre evaluación</h2>
+<section id="referencias-fundamentales-sobre-evaluación" class="level2" data-number="9.20">
+<h2 data-number="9.20" class="anchored" data-anchor-id="referencias-fundamentales-sobre-evaluación"><span class="header-section-number">9.20</span> Referencias fundamentales sobre evaluación</h2>
 <p>La validación cruzada y su uso para estimar el desempeño de modelos fueron examinados comparativamente por <span class="citation" data-cites="kohavi1995crossvalidation">Kohavi (<a href="referencias.html#ref-kohavi1995crossvalidation" role="doc-biblioref">1995</a>)</span>. Para el análisis mediante curvas ROC y AUC, una referencia ampliamente utilizada es <span class="citation" data-cites="fawcett2006roc">Fawcett (<a href="referencias.html#ref-fawcett2006roc" role="doc-biblioref">2006</a>)</span>. Una visión integrada de partición de datos, remuestreo y comparación de modelos aparece en <span class="citation" data-cites="james2021islr">James et&nbsp;al. (<a href="referencias.html#ref-james2021islr" role="doc-biblioref">2021</a>)</span>.</p>
 
 
@@ -1595,12 +1601,12 @@ Kohavi, Ron. 1995. <span>«A Study of Cross-Validation and Bootstrap for Accurac
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./07-random-forest.html" class="pagination-link" aria-label="Random Forest para clasificación">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Random Forest para clasificación</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Random Forest para clasificación</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./09-svm.html" class="pagination-link" aria-label="Máquinas de Vectores de Soporte (SVM)">
-        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Máquinas de Vectores de Soporte (SVM)</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Máquinas de Vectores de Soporte (SVM)</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

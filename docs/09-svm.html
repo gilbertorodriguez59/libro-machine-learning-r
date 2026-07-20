@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>9&nbsp; Máquinas de Vectores de Soporte (SVM) – Aprendizaje y Clasificación Automática con R</title>
+<title>10&nbsp; Máquinas de Vectores de Soporte (SVM) – Aprendizaje y Clasificación Automática con R</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -169,7 +169,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./09-svm.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Máquinas de Vectores de Soporte (SVM)</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./09-svm.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Máquinas de Vectores de Soporte (SVM)</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
@@ -235,44 +235,50 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./04-regresion-lineal-multiple.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regresión lineal simple y múltiple</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./04-regresion-logistica.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regresión logística para clasificación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regresión logística para clasificación</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05-knn.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">k vecinos más cercanos, k-NN</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">k vecinos más cercanos, k-NN</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./06-arboles-decision.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Árboles de decisión para clasificación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Árboles de decisión para clasificación</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07-random-forest.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Random Forest para clasificación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Random Forest para clasificación</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./08-evaluacion-modelos.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Evaluación, validación y comparación de modelos</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Evaluación, validación y comparación de modelos</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./09-svm.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Máquinas de Vectores de Soporte (SVM)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Máquinas de Vectores de Soporte (SVM)</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./10-naive-bayes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Clasificador Naive Bayes</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Clasificador Naive Bayes</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -302,41 +308,41 @@ window.Quarto = {
     <h2 id="toc-title">Tabla de contenidos</h2>
    
   <ul>
-  <li><a href="#objetivos-del-capítulo" id="toc-objetivos-del-capítulo" class="nav-link active" data-scroll-target="#objetivos-del-capítulo"><span class="header-section-number">9.1</span> Objetivos del capítulo</a></li>
-  <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción"><span class="header-section-number">9.2</span> Introducción</a></li>
-  <li><a href="#intuición-geométrica" id="toc-intuición-geométrica" class="nav-link" data-scroll-target="#intuición-geométrica"><span class="header-section-number">9.3</span> Intuición geométrica</a></li>
-  <li><a href="#crear-un-ejemplo-didáctico" id="toc-crear-un-ejemplo-didáctico" class="nav-link" data-scroll-target="#crear-un-ejemplo-didáctico"><span class="header-section-number">9.4</span> Crear un ejemplo didáctico</a></li>
-  <li><a href="#visualizar-las-clases" id="toc-visualizar-las-clases" class="nav-link" data-scroll-target="#visualizar-las-clases"><span class="header-section-number">9.5</span> Visualizar las clases</a></li>
-  <li><a href="#instalar-y-cargar-el-paquete-e1071" id="toc-instalar-y-cargar-el-paquete-e1071" class="nav-link" data-scroll-target="#instalar-y-cargar-el-paquete-e1071"><span class="header-section-number">9.6</span> Instalar y cargar el paquete <code>e1071</code></a></li>
-  <li><a href="#entrenar-una-svm-lineal" id="toc-entrenar-una-svm-lineal" class="nav-link" data-scroll-target="#entrenar-una-svm-lineal"><span class="header-section-number">9.7</span> Entrenar una SVM lineal</a></li>
-  <li><a href="#identificar-los-vectores-de-soporte" id="toc-identificar-los-vectores-de-soporte" class="nav-link" data-scroll-target="#identificar-los-vectores-de-soporte"><span class="header-section-number">9.8</span> Identificar los vectores de soporte</a></li>
-  <li><a href="#dibujar-la-frontera-de-decisión" id="toc-dibujar-la-frontera-de-decisión" class="nav-link" data-scroll-target="#dibujar-la-frontera-de-decisión"><span class="header-section-number">9.9</span> Dibujar la frontera de decisión</a></li>
-  <li><a href="#el-parámetro-de-costo" id="toc-el-parámetro-de-costo" class="nav-link" data-scroll-target="#el-parámetro-de-costo"><span class="header-section-number">9.10</span> El parámetro de costo</a></li>
-  <li><a href="#cuando-una-línea-no-es-suficiente" id="toc-cuando-una-línea-no-es-suficiente" class="nav-link" data-scroll-target="#cuando-una-línea-no-es-suficiente"><span class="header-section-number">9.11</span> Cuando una línea no es suficiente</a></li>
-  <li><a href="#kernel-radial" id="toc-kernel-radial" class="nav-link" data-scroll-target="#kernel-radial"><span class="header-section-number">9.12</span> Kernel radial</a></li>
-  <li><a href="#aplicación-con-los-datos-atus" id="toc-aplicación-con-los-datos-atus" class="nav-link" data-scroll-target="#aplicación-con-los-datos-atus"><span class="header-section-number">9.13</span> Aplicación con los datos ATUS</a></li>
-  <li><a href="#cargar-la-base-preparada" id="toc-cargar-la-base-preparada" class="nav-link" data-scroll-target="#cargar-la-base-preparada"><span class="header-section-number">9.14</span> Cargar la base preparada</a></li>
-  <li><a href="#preparar-una-muestra-reproducible" id="toc-preparar-una-muestra-reproducible" class="nav-link" data-scroll-target="#preparar-una-muestra-reproducible"><span class="header-section-number">9.15</span> Preparar una muestra reproducible</a></li>
-  <li><a href="#dividir-los-datos-de-forma-estratificada" id="toc-dividir-los-datos-de-forma-estratificada" class="nav-link" data-scroll-target="#dividir-los-datos-de-forma-estratificada"><span class="header-section-number">9.16</span> Dividir los datos de forma estratificada</a></li>
-  <li><a href="#calcular-pesos-para-las-clases" id="toc-calcular-pesos-para-las-clases" class="nav-link" data-scroll-target="#calcular-pesos-para-las-clases"><span class="header-section-number">9.17</span> Calcular pesos para las clases</a></li>
-  <li><a href="#ajustar-una-svm-lineal" id="toc-ajustar-una-svm-lineal" class="nav-link" data-scroll-target="#ajustar-una-svm-lineal"><span class="header-section-number">9.18</span> Ajustar una SVM lineal</a></li>
-  <li><a href="#realizar-predicciones" id="toc-realizar-predicciones" class="nav-link" data-scroll-target="#realizar-predicciones"><span class="header-section-number">9.19</span> Realizar predicciones</a></li>
-  <li><a href="#función-segura-para-calcular-métricas" id="toc-función-segura-para-calcular-métricas" class="nav-link" data-scroll-target="#función-segura-para-calcular-métricas"><span class="header-section-number">9.20</span> Función segura para calcular métricas</a></li>
-  <li><a href="#evaluar-la-svm-lineal" id="toc-evaluar-la-svm-lineal" class="nav-link" data-scroll-target="#evaluar-la-svm-lineal"><span class="header-section-number">9.21</span> Evaluar la SVM lineal</a></li>
-  <li><a href="#ajustar-una-svm-con-kernel-radial" id="toc-ajustar-una-svm-con-kernel-radial" class="nav-link" data-scroll-target="#ajustar-una-svm-con-kernel-radial"><span class="header-section-number">9.22</span> Ajustar una SVM con kernel radial</a></li>
-  <li><a href="#evaluar-la-svm-radial" id="toc-evaluar-la-svm-radial" class="nav-link" data-scroll-target="#evaluar-la-svm-radial"><span class="header-section-number">9.23</span> Evaluar la SVM radial</a></li>
-  <li><a href="#comparar-los-dos-modelos" id="toc-comparar-los-dos-modelos" class="nav-link" data-scroll-target="#comparar-los-dos-modelos"><span class="header-section-number">9.24</span> Comparar los dos modelos</a></li>
-  <li><a href="#selección-de-hiperparámetros-con-validación-cruzada" id="toc-selección-de-hiperparámetros-con-validación-cruzada" class="nav-link" data-scroll-target="#selección-de-hiperparámetros-con-validación-cruzada"><span class="header-section-number">9.25</span> Selección de hiperparámetros con validación cruzada</a></li>
-  <li><a href="#ventajas-y-limitaciones" id="toc-ventajas-y-limitaciones" class="nav-link" data-scroll-target="#ventajas-y-limitaciones"><span class="header-section-number">9.26</span> Ventajas y limitaciones</a>
+  <li><a href="#objetivos-del-capítulo" id="toc-objetivos-del-capítulo" class="nav-link active" data-scroll-target="#objetivos-del-capítulo"><span class="header-section-number">10.1</span> Objetivos del capítulo</a></li>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción"><span class="header-section-number">10.2</span> Introducción</a></li>
+  <li><a href="#intuición-geométrica" id="toc-intuición-geométrica" class="nav-link" data-scroll-target="#intuición-geométrica"><span class="header-section-number">10.3</span> Intuición geométrica</a></li>
+  <li><a href="#crear-un-ejemplo-didáctico" id="toc-crear-un-ejemplo-didáctico" class="nav-link" data-scroll-target="#crear-un-ejemplo-didáctico"><span class="header-section-number">10.4</span> Crear un ejemplo didáctico</a></li>
+  <li><a href="#visualizar-las-clases" id="toc-visualizar-las-clases" class="nav-link" data-scroll-target="#visualizar-las-clases"><span class="header-section-number">10.5</span> Visualizar las clases</a></li>
+  <li><a href="#instalar-y-cargar-el-paquete-e1071" id="toc-instalar-y-cargar-el-paquete-e1071" class="nav-link" data-scroll-target="#instalar-y-cargar-el-paquete-e1071"><span class="header-section-number">10.6</span> Instalar y cargar el paquete <code>e1071</code></a></li>
+  <li><a href="#entrenar-una-svm-lineal" id="toc-entrenar-una-svm-lineal" class="nav-link" data-scroll-target="#entrenar-una-svm-lineal"><span class="header-section-number">10.7</span> Entrenar una SVM lineal</a></li>
+  <li><a href="#identificar-los-vectores-de-soporte" id="toc-identificar-los-vectores-de-soporte" class="nav-link" data-scroll-target="#identificar-los-vectores-de-soporte"><span class="header-section-number">10.8</span> Identificar los vectores de soporte</a></li>
+  <li><a href="#dibujar-la-frontera-de-decisión" id="toc-dibujar-la-frontera-de-decisión" class="nav-link" data-scroll-target="#dibujar-la-frontera-de-decisión"><span class="header-section-number">10.9</span> Dibujar la frontera de decisión</a></li>
+  <li><a href="#el-parámetro-de-costo" id="toc-el-parámetro-de-costo" class="nav-link" data-scroll-target="#el-parámetro-de-costo"><span class="header-section-number">10.10</span> El parámetro de costo</a></li>
+  <li><a href="#cuando-una-línea-no-es-suficiente" id="toc-cuando-una-línea-no-es-suficiente" class="nav-link" data-scroll-target="#cuando-una-línea-no-es-suficiente"><span class="header-section-number">10.11</span> Cuando una línea no es suficiente</a></li>
+  <li><a href="#kernel-radial" id="toc-kernel-radial" class="nav-link" data-scroll-target="#kernel-radial"><span class="header-section-number">10.12</span> Kernel radial</a></li>
+  <li><a href="#aplicación-con-los-datos-atus" id="toc-aplicación-con-los-datos-atus" class="nav-link" data-scroll-target="#aplicación-con-los-datos-atus"><span class="header-section-number">10.13</span> Aplicación con los datos ATUS</a></li>
+  <li><a href="#cargar-la-base-preparada" id="toc-cargar-la-base-preparada" class="nav-link" data-scroll-target="#cargar-la-base-preparada"><span class="header-section-number">10.14</span> Cargar la base preparada</a></li>
+  <li><a href="#preparar-una-muestra-reproducible" id="toc-preparar-una-muestra-reproducible" class="nav-link" data-scroll-target="#preparar-una-muestra-reproducible"><span class="header-section-number">10.15</span> Preparar una muestra reproducible</a></li>
+  <li><a href="#dividir-los-datos-de-forma-estratificada" id="toc-dividir-los-datos-de-forma-estratificada" class="nav-link" data-scroll-target="#dividir-los-datos-de-forma-estratificada"><span class="header-section-number">10.16</span> Dividir los datos de forma estratificada</a></li>
+  <li><a href="#calcular-pesos-para-las-clases" id="toc-calcular-pesos-para-las-clases" class="nav-link" data-scroll-target="#calcular-pesos-para-las-clases"><span class="header-section-number">10.17</span> Calcular pesos para las clases</a></li>
+  <li><a href="#ajustar-una-svm-lineal" id="toc-ajustar-una-svm-lineal" class="nav-link" data-scroll-target="#ajustar-una-svm-lineal"><span class="header-section-number">10.18</span> Ajustar una SVM lineal</a></li>
+  <li><a href="#realizar-predicciones" id="toc-realizar-predicciones" class="nav-link" data-scroll-target="#realizar-predicciones"><span class="header-section-number">10.19</span> Realizar predicciones</a></li>
+  <li><a href="#función-segura-para-calcular-métricas" id="toc-función-segura-para-calcular-métricas" class="nav-link" data-scroll-target="#función-segura-para-calcular-métricas"><span class="header-section-number">10.20</span> Función segura para calcular métricas</a></li>
+  <li><a href="#evaluar-la-svm-lineal" id="toc-evaluar-la-svm-lineal" class="nav-link" data-scroll-target="#evaluar-la-svm-lineal"><span class="header-section-number">10.21</span> Evaluar la SVM lineal</a></li>
+  <li><a href="#ajustar-una-svm-con-kernel-radial" id="toc-ajustar-una-svm-con-kernel-radial" class="nav-link" data-scroll-target="#ajustar-una-svm-con-kernel-radial"><span class="header-section-number">10.22</span> Ajustar una SVM con kernel radial</a></li>
+  <li><a href="#evaluar-la-svm-radial" id="toc-evaluar-la-svm-radial" class="nav-link" data-scroll-target="#evaluar-la-svm-radial"><span class="header-section-number">10.23</span> Evaluar la SVM radial</a></li>
+  <li><a href="#comparar-los-dos-modelos" id="toc-comparar-los-dos-modelos" class="nav-link" data-scroll-target="#comparar-los-dos-modelos"><span class="header-section-number">10.24</span> Comparar los dos modelos</a></li>
+  <li><a href="#selección-de-hiperparámetros-con-validación-cruzada" id="toc-selección-de-hiperparámetros-con-validación-cruzada" class="nav-link" data-scroll-target="#selección-de-hiperparámetros-con-validación-cruzada"><span class="header-section-number">10.25</span> Selección de hiperparámetros con validación cruzada</a></li>
+  <li><a href="#ventajas-y-limitaciones" id="toc-ventajas-y-limitaciones" class="nav-link" data-scroll-target="#ventajas-y-limitaciones"><span class="header-section-number">10.26</span> Ventajas y limitaciones</a>
   <ul class="collapse">
-  <li><a href="#ventajas" id="toc-ventajas" class="nav-link" data-scroll-target="#ventajas"><span class="header-section-number">9.26.1</span> Ventajas</a></li>
-  <li><a href="#limitaciones" id="toc-limitaciones" class="nav-link" data-scroll-target="#limitaciones"><span class="header-section-number">9.26.2</span> Limitaciones</a></li>
+  <li><a href="#ventajas" id="toc-ventajas" class="nav-link" data-scroll-target="#ventajas"><span class="header-section-number">10.26.1</span> Ventajas</a></li>
+  <li><a href="#limitaciones" id="toc-limitaciones" class="nav-link" data-scroll-target="#limitaciones"><span class="header-section-number">10.26.2</span> Limitaciones</a></li>
   </ul></li>
-  <li><a href="#recomendaciones-prácticas" id="toc-recomendaciones-prácticas" class="nav-link" data-scroll-target="#recomendaciones-prácticas"><span class="header-section-number">9.27</span> Recomendaciones prácticas</a></li>
-  <li><a href="#actividad-guiada" id="toc-actividad-guiada" class="nav-link" data-scroll-target="#actividad-guiada"><span class="header-section-number">9.28</span> Actividad guiada</a></li>
-  <li><a href="#ejercicios" id="toc-ejercicios" class="nav-link" data-scroll-target="#ejercicios"><span class="header-section-number">9.29</span> Ejercicios</a></li>
-  <li><a href="#conclusiones" id="toc-conclusiones" class="nav-link" data-scroll-target="#conclusiones"><span class="header-section-number">9.30</span> Conclusiones</a></li>
-  <li><a href="#referencias-fundamentales-de-svm" id="toc-referencias-fundamentales-de-svm" class="nav-link" data-scroll-target="#referencias-fundamentales-de-svm"><span class="header-section-number">9.31</span> Referencias fundamentales de SVM</a></li>
+  <li><a href="#recomendaciones-prácticas" id="toc-recomendaciones-prácticas" class="nav-link" data-scroll-target="#recomendaciones-prácticas"><span class="header-section-number">10.27</span> Recomendaciones prácticas</a></li>
+  <li><a href="#actividad-guiada" id="toc-actividad-guiada" class="nav-link" data-scroll-target="#actividad-guiada"><span class="header-section-number">10.28</span> Actividad guiada</a></li>
+  <li><a href="#ejercicios" id="toc-ejercicios" class="nav-link" data-scroll-target="#ejercicios"><span class="header-section-number">10.29</span> Ejercicios</a></li>
+  <li><a href="#conclusiones" id="toc-conclusiones" class="nav-link" data-scroll-target="#conclusiones"><span class="header-section-number">10.30</span> Conclusiones</a></li>
+  <li><a href="#referencias-fundamentales-de-svm" id="toc-referencias-fundamentales-de-svm" class="nav-link" data-scroll-target="#referencias-fundamentales-de-svm"><span class="header-section-number">10.31</span> Referencias fundamentales de SVM</a></li>
   </ul>
 </nav>
     </div>
@@ -345,7 +351,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Máquinas de Vectores de Soporte (SVM)</span></h1>
+<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Máquinas de Vectores de Soporte (SVM)</span></h1>
 </div>
 
 
@@ -362,8 +368,8 @@ window.Quarto = {
 </header>
 
 
-<section id="objetivos-del-capítulo" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="objetivos-del-capítulo"><span class="header-section-number">9.1</span> Objetivos del capítulo</h2>
+<section id="objetivos-del-capítulo" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="objetivos-del-capítulo"><span class="header-section-number">10.1</span> Objetivos del capítulo</h2>
 <p>Al finalizar este capítulo, el lector será capaz de:</p>
 <ul>
 <li>explicar la idea del hiperplano de separación y del margen máximo;</li>
@@ -376,15 +382,15 @@ window.Quarto = {
 <li>comparar una SVM lineal con una SVM de kernel radial.</li>
 </ul>
 </section>
-<section id="introducción" class="level2" data-number="9.2">
-<h2 data-number="9.2" class="anchored" data-anchor-id="introducción"><span class="header-section-number">9.2</span> Introducción</h2>
+<section id="introducción" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="introducción"><span class="header-section-number">10.2</span> Introducción</h2>
 <p>Las <strong>máquinas de vectores de soporte</strong>, conocidas como <strong>SVM</strong> por <em>Support Vector Machines</em>, son métodos supervisados utilizados principalmente para clasificación. Su propósito es construir una frontera que separe las clases con el margen más amplio posible.</p>
 <p>La idea es sencilla de visualizar: si dos grupos pueden separarse mediante una línea, existen muchas líneas posibles, pero la SVM busca aquella que deja la mayor distancia entre la frontera y las observaciones más cercanas de cada clase.</p>
 <p>Esas observaciones cercanas reciben el nombre de <strong>vectores de soporte</strong>. Aunque el conjunto de datos contenga miles de registros, los vectores de soporte son los que determinan directamente la posición de la frontera.</p>
 <p>En este capítulo se emplean primero datos simulados para entender la geometría del método y después la base preparada de ATUS <span class="citation" data-cites="inegi_atus_2024">(<a href="referencias.html#ref-inegi_atus_2024" role="doc-biblioref">Instituto Nacional de Estadística y Geografía 2025</a>)</span>.</p>
 </section>
-<section id="intuición-geométrica" class="level2" data-number="9.3">
-<h2 data-number="9.3" class="anchored" data-anchor-id="intuición-geométrica"><span class="header-section-number">9.3</span> Intuición geométrica</h2>
+<section id="intuición-geométrica" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="intuición-geométrica"><span class="header-section-number">10.3</span> Intuición geométrica</h2>
 <p>Supongamos que cada observación tiene dos variables, <span class="math inline">\(x_1\)</span> y <span class="math inline">\(x_2\)</span>. Una frontera lineal puede escribirse como:</p>
 <p><span class="math display">\[
 w_1x_1+w_2x_2+b=0
@@ -419,8 +425,8 @@ y_i(\mathbf{w}^{T}\mathbf{x}_i+b)\geq 1
 </div>
 </div>
 </section>
-<section id="crear-un-ejemplo-didáctico" class="level2" data-number="9.4">
-<h2 data-number="9.4" class="anchored" data-anchor-id="crear-un-ejemplo-didáctico"><span class="header-section-number">9.4</span> Crear un ejemplo didáctico</h2>
+<section id="crear-un-ejemplo-didáctico" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="crear-un-ejemplo-didáctico"><span class="header-section-number">10.4</span> Crear un ejemplo didáctico</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -462,8 +468,8 @@ y_i(\mathbf{w}^{T}\mathbf{x}_i+b)\geq 1
 </div>
 </div>
 </section>
-<section id="visualizar-las-clases" class="level2" data-number="9.5">
-<h2 data-number="9.5" class="anchored" data-anchor-id="visualizar-las-clases"><span class="header-section-number">9.5</span> Visualizar las clases</h2>
+<section id="visualizar-las-clases" class="level2" data-number="10.5">
+<h2 data-number="10.5" class="anchored" data-anchor-id="visualizar-las-clases"><span class="header-section-number">10.5</span> Visualizar las clases</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -490,8 +496,8 @@ y_i(\mathbf{w}^{T}\mathbf{x}_i+b)\geq 1
 </div>
 </div>
 </section>
-<section id="instalar-y-cargar-el-paquete-e1071" class="level2" data-number="9.6">
-<h2 data-number="9.6" class="anchored" data-anchor-id="instalar-y-cargar-el-paquete-e1071"><span class="header-section-number">9.6</span> Instalar y cargar el paquete <code>e1071</code></h2>
+<section id="instalar-y-cargar-el-paquete-e1071" class="level2" data-number="10.6">
+<h2 data-number="10.6" class="anchored" data-anchor-id="instalar-y-cargar-el-paquete-e1071"><span class="header-section-number">10.6</span> Instalar y cargar el paquete <code>e1071</code></h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -504,8 +510,8 @@ y_i(\mathbf{w}^{T}\mathbf{x}_i+b)\geq 1
 </div>
 <p>El paquete <code>e1071</code> proporciona la función <code>svm()</code>, que permite entrenar modelos lineales y no lineales.</p>
 </section>
-<section id="entrenar-una-svm-lineal" class="level2" data-number="9.7">
-<h2 data-number="9.7" class="anchored" data-anchor-id="entrenar-una-svm-lineal"><span class="header-section-number">9.7</span> Entrenar una SVM lineal</h2>
+<section id="entrenar-una-svm-lineal" class="level2" data-number="10.7">
+<h2 data-number="10.7" class="anchored" data-anchor-id="entrenar-una-svm-lineal"><span class="header-section-number">10.7</span> Entrenar una SVM lineal</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -541,8 +547,8 @@ Number of Support Vectors:  14</code></pre>
 <li><code>scale = TRUE</code>: estandariza las variables numéricas antes del ajuste.</li>
 </ul>
 </section>
-<section id="identificar-los-vectores-de-soporte" class="level2" data-number="9.8">
-<h2 data-number="9.8" class="anchored" data-anchor-id="identificar-los-vectores-de-soporte"><span class="header-section-number">9.8</span> Identificar los vectores de soporte</h2>
+<section id="identificar-los-vectores-de-soporte" class="level2" data-number="10.8">
+<h2 data-number="10.8" class="anchored" data-anchor-id="identificar-los-vectores-de-soporte"><span class="header-section-number">10.8</span> Identificar los vectores de soporte</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -582,8 +588,8 @@ Number of Support Vectors:  14</code></pre>
 </div>
 </div>
 </section>
-<section id="dibujar-la-frontera-de-decisión" class="level2" data-number="9.9">
-<h2 data-number="9.9" class="anchored" data-anchor-id="dibujar-la-frontera-de-decisión"><span class="header-section-number">9.9</span> Dibujar la frontera de decisión</h2>
+<section id="dibujar-la-frontera-de-decisión" class="level2" data-number="10.9">
+<h2 data-number="10.9" class="anchored" data-anchor-id="dibujar-la-frontera-de-decisión"><span class="header-section-number">10.9</span> Dibujar la frontera de decisión</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -636,8 +642,8 @@ Number of Support Vectors:  14</code></pre>
 </div>
 </div>
 </section>
-<section id="el-parámetro-de-costo" class="level2" data-number="9.10">
-<h2 data-number="9.10" class="anchored" data-anchor-id="el-parámetro-de-costo"><span class="header-section-number">9.10</span> El parámetro de costo</h2>
+<section id="el-parámetro-de-costo" class="level2" data-number="10.10">
+<h2 data-number="10.10" class="anchored" data-anchor-id="el-parámetro-de-costo"><span class="header-section-number">10.10</span> El parámetro de costo</h2>
 <p>El parámetro <code>cost</code> controla la penalización asignada a las observaciones clasificadas incorrectamente.</p>
 <ul>
 <li>Un costo pequeño permite más errores y favorece un margen amplio.</li>
@@ -679,8 +685,8 @@ Number of Support Vectors:  14</code></pre>
 </div>
 </div>
 </section>
-<section id="cuando-una-línea-no-es-suficiente" class="level2" data-number="9.11">
-<h2 data-number="9.11" class="anchored" data-anchor-id="cuando-una-línea-no-es-suficiente"><span class="header-section-number">9.11</span> Cuando una línea no es suficiente</h2>
+<section id="cuando-una-línea-no-es-suficiente" class="level2" data-number="10.11">
+<h2 data-number="10.11" class="anchored" data-anchor-id="cuando-una-línea-no-es-suficiente"><span class="header-section-number">10.11</span> Cuando una línea no es suficiente</h2>
 <p>Algunos conjuntos de datos no pueden separarse adecuadamente mediante una línea o un hiperplano. En esos casos, una SVM puede utilizar una función denominada <strong>kernel</strong>.</p>
 <p>El kernel calcula similitudes entre observaciones y permite representar fronteras no lineales sin construir explícitamente todas las nuevas variables.</p>
 <p>Los kernels más utilizados son:</p>
@@ -715,8 +721,8 @@ Number of Support Vectors:  14</code></pre>
 </tbody>
 </table>
 </section>
-<section id="kernel-radial" class="level2" data-number="9.12">
-<h2 data-number="9.12" class="anchored" data-anchor-id="kernel-radial"><span class="header-section-number">9.12</span> Kernel radial</h2>
+<section id="kernel-radial" class="level2" data-number="10.12">
+<h2 data-number="10.12" class="anchored" data-anchor-id="kernel-radial"><span class="header-section-number">10.12</span> Kernel radial</h2>
 <p>El kernel radial utiliza una función semejante a:</p>
 <p><span class="math display">\[
 K(\mathbf{x}_i,\mathbf{x}_j)=
@@ -741,11 +747,11 @@ K(\mathbf{x}_i,\mathbf{x}_j)=
 </div>
 </div>
 </section>
-<section id="aplicación-con-los-datos-atus" class="level2" data-number="9.13">
-<h2 data-number="9.13" class="anchored" data-anchor-id="aplicación-con-los-datos-atus"><span class="header-section-number">9.13</span> Aplicación con los datos ATUS</h2>
+<section id="aplicación-con-los-datos-atus" class="level2" data-number="10.13">
+<h2 data-number="10.13" class="anchored" data-anchor-id="aplicación-con-los-datos-atus"><span class="header-section-number">10.13</span> Aplicación con los datos ATUS</h2>
 </section>
-<section id="cargar-la-base-preparada" class="level2" data-number="9.14">
-<h2 data-number="9.14" class="anchored" data-anchor-id="cargar-la-base-preparada"><span class="header-section-number">9.14</span> Cargar la base preparada</h2>
+<section id="cargar-la-base-preparada" class="level2" data-number="10.14">
+<h2 data-number="10.14" class="anchored" data-anchor-id="cargar-la-base-preparada"><span class="header-section-number">10.14</span> Cargar la base preparada</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -770,8 +776,8 @@ K(\mathbf{x}_i,\mathbf{x}_j)=
 </details>
 </div>
 </section>
-<section id="preparar-una-muestra-reproducible" class="level2" data-number="9.15">
-<h2 data-number="9.15" class="anchored" data-anchor-id="preparar-una-muestra-reproducible"><span class="header-section-number">9.15</span> Preparar una muestra reproducible</h2>
+<section id="preparar-una-muestra-reproducible" class="level2" data-number="10.15">
+<h2 data-number="10.15" class="anchored" data-anchor-id="preparar-una-muestra-reproducible"><span class="header-section-number">10.15</span> Preparar una muestra reproducible</h2>
 <p>Las SVM pueden requerir bastante memoria y tiempo cuando el conjunto es muy grande. Para fines didácticos se utiliza una muestra de hasta 6 000 accidentes.</p>
 <div class="cell">
 <details class="code-fold">
@@ -815,8 +821,8 @@ K(\mathbf{x}_i,\mathbf{x}_j)=
 </div>
 </div>
 </section>
-<section id="dividir-los-datos-de-forma-estratificada" class="level2" data-number="9.16">
-<h2 data-number="9.16" class="anchored" data-anchor-id="dividir-los-datos-de-forma-estratificada"><span class="header-section-number">9.16</span> Dividir los datos de forma estratificada</h2>
+<section id="dividir-los-datos-de-forma-estratificada" class="level2" data-number="10.16">
+<h2 data-number="10.16" class="anchored" data-anchor-id="dividir-los-datos-de-forma-estratificada"><span class="header-section-number">10.16</span> Dividir los datos de forma estratificada</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -852,8 +858,8 @@ K(\mathbf{x}_i,\mathbf{x}_j)=
 </div>
 </div>
 </section>
-<section id="calcular-pesos-para-las-clases" class="level2" data-number="9.17">
-<h2 data-number="9.17" class="anchored" data-anchor-id="calcular-pesos-para-las-clases"><span class="header-section-number">9.17</span> Calcular pesos para las clases</h2>
+<section id="calcular-pesos-para-las-clases" class="level2" data-number="10.17">
+<h2 data-number="10.17" class="anchored" data-anchor-id="calcular-pesos-para-las-clases"><span class="header-section-number">10.17</span> Calcular pesos para las clases</h2>
 <p>Si una clase aparece con menor frecuencia, la SVM puede recibir pesos inversamente proporcionales a sus frecuencias.</p>
 <div class="cell">
 <details class="code-fold">
@@ -875,8 +881,8 @@ K(\mathbf{x}_i,\mathbf{x}_j)=
 </div>
 <p>La clase menos frecuente recibe un peso mayor, de modo que sus errores tengan más influencia durante el entrenamiento.</p>
 </section>
-<section id="ajustar-una-svm-lineal" class="level2" data-number="9.18">
-<h2 data-number="9.18" class="anchored" data-anchor-id="ajustar-una-svm-lineal"><span class="header-section-number">9.18</span> Ajustar una SVM lineal</h2>
+<section id="ajustar-una-svm-lineal" class="level2" data-number="10.18">
+<h2 data-number="10.18" class="anchored" data-anchor-id="ajustar-una-svm-lineal"><span class="header-section-number">10.18</span> Ajustar una SVM lineal</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -911,8 +917,8 @@ Number of Support Vectors:  2215</code></pre>
 </div>
 </div>
 </section>
-<section id="realizar-predicciones" class="level2" data-number="9.19">
-<h2 data-number="9.19" class="anchored" data-anchor-id="realizar-predicciones"><span class="header-section-number">9.19</span> Realizar predicciones</h2>
+<section id="realizar-predicciones" class="level2" data-number="10.19">
+<h2 data-number="10.19" class="anchored" data-anchor-id="realizar-predicciones"><span class="header-section-number">10.19</span> Realizar predicciones</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -936,8 +942,8 @@ Real           Solo daños Con víctimas
 </div>
 </div>
 </section>
-<section id="función-segura-para-calcular-métricas" class="level2" data-number="9.20">
-<h2 data-number="9.20" class="anchored" data-anchor-id="función-segura-para-calcular-métricas"><span class="header-section-number">9.20</span> Función segura para calcular métricas</h2>
+<section id="función-segura-para-calcular-métricas" class="level2" data-number="10.20">
+<h2 data-number="10.20" class="anchored" data-anchor-id="función-segura-para-calcular-métricas"><span class="header-section-number">10.20</span> Función segura para calcular métricas</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -990,8 +996,8 @@ Real           Solo daños Con víctimas
 </details>
 </div>
 </section>
-<section id="evaluar-la-svm-lineal" class="level2" data-number="9.21">
-<h2 data-number="9.21" class="anchored" data-anchor-id="evaluar-la-svm-lineal"><span class="header-section-number">9.21</span> Evaluar la SVM lineal</h2>
+<section id="evaluar-la-svm-lineal" class="level2" data-number="10.21">
+<h2 data-number="10.21" class="anchored" data-anchor-id="evaluar-la-svm-lineal"><span class="header-section-number">10.21</span> Evaluar la SVM lineal</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -1021,8 +1027,8 @@ Real           Solo daños Con víctimas
 </div>
 </div>
 </section>
-<section id="ajustar-una-svm-con-kernel-radial" class="level2" data-number="9.22">
-<h2 data-number="9.22" class="anchored" data-anchor-id="ajustar-una-svm-con-kernel-radial"><span class="header-section-number">9.22</span> Ajustar una SVM con kernel radial</h2>
+<section id="ajustar-una-svm-con-kernel-radial" class="level2" data-number="10.22">
+<h2 data-number="10.22" class="anchored" data-anchor-id="ajustar-una-svm-con-kernel-radial"><span class="header-section-number">10.22</span> Ajustar una SVM con kernel radial</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -1058,8 +1064,8 @@ Number of Support Vectors:  2318</code></pre>
 </div>
 </div>
 </section>
-<section id="evaluar-la-svm-radial" class="level2" data-number="9.23">
-<h2 data-number="9.23" class="anchored" data-anchor-id="evaluar-la-svm-radial"><span class="header-section-number">9.23</span> Evaluar la SVM radial</h2>
+<section id="evaluar-la-svm-radial" class="level2" data-number="10.23">
+<h2 data-number="10.23" class="anchored" data-anchor-id="evaluar-la-svm-radial"><span class="header-section-number">10.23</span> Evaluar la SVM radial</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -1098,8 +1104,8 @@ Real           Solo daños Con víctimas
 </div>
 </div>
 </section>
-<section id="comparar-los-dos-modelos" class="level2" data-number="9.24">
-<h2 data-number="9.24" class="anchored" data-anchor-id="comparar-los-dos-modelos"><span class="header-section-number">9.24</span> Comparar los dos modelos</h2>
+<section id="comparar-los-dos-modelos" class="level2" data-number="10.24">
+<h2 data-number="10.24" class="anchored" data-anchor-id="comparar-los-dos-modelos"><span class="header-section-number">10.24</span> Comparar los dos modelos</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -1151,8 +1157,8 @@ Real           Solo daños Con víctimas
 </div>
 </div>
 </section>
-<section id="selección-de-hiperparámetros-con-validación-cruzada" class="level2" data-number="9.25">
-<h2 data-number="9.25" class="anchored" data-anchor-id="selección-de-hiperparámetros-con-validación-cruzada"><span class="header-section-number">9.25</span> Selección de hiperparámetros con validación cruzada</h2>
+<section id="selección-de-hiperparámetros-con-validación-cruzada" class="level2" data-number="10.25">
+<h2 data-number="10.25" class="anchored" data-anchor-id="selección-de-hiperparámetros-con-validación-cruzada"><span class="header-section-number">10.25</span> Selección de hiperparámetros con validación cruzada</h2>
 <p>La función <code>tune.svm()</code> permite probar diferentes combinaciones de hiperparámetros. Para mantener un tiempo razonable se usa una cuadrícula pequeña.</p>
 <div class="cell">
 <details class="code-fold">
@@ -1216,10 +1222,10 @@ Real           Solo daños Con víctimas
 </div>
 </div>
 </section>
-<section id="ventajas-y-limitaciones" class="level2" data-number="9.26">
-<h2 data-number="9.26" class="anchored" data-anchor-id="ventajas-y-limitaciones"><span class="header-section-number">9.26</span> Ventajas y limitaciones</h2>
-<section id="ventajas" class="level3" data-number="9.26.1">
-<h3 data-number="9.26.1" class="anchored" data-anchor-id="ventajas"><span class="header-section-number">9.26.1</span> Ventajas</h3>
+<section id="ventajas-y-limitaciones" class="level2" data-number="10.26">
+<h2 data-number="10.26" class="anchored" data-anchor-id="ventajas-y-limitaciones"><span class="header-section-number">10.26</span> Ventajas y limitaciones</h2>
+<section id="ventajas" class="level3" data-number="10.26.1">
+<h3 data-number="10.26.1" class="anchored" data-anchor-id="ventajas"><span class="header-section-number">10.26.1</span> Ventajas</h3>
 <ul>
 <li>puede construir fronteras lineales y no lineales;</li>
 <li>funciona bien en espacios con muchas variables;</li>
@@ -1228,8 +1234,8 @@ Real           Solo daños Con víctimas
 <li>permite ponderar clases desbalanceadas.</li>
 </ul>
 </section>
-<section id="limitaciones" class="level3" data-number="9.26.2">
-<h3 data-number="9.26.2" class="anchored" data-anchor-id="limitaciones"><span class="header-section-number">9.26.2</span> Limitaciones</h3>
+<section id="limitaciones" class="level3" data-number="10.26.2">
+<h3 data-number="10.26.2" class="anchored" data-anchor-id="limitaciones"><span class="header-section-number">10.26.2</span> Limitaciones</h3>
 <ul>
 <li>puede ser lenta con conjuntos de datos muy grandes;</li>
 <li>requiere elegir kernel e hiperparámetros;</li>
@@ -1239,8 +1245,8 @@ Real           Solo daños Con víctimas
 </ul>
 </section>
 </section>
-<section id="recomendaciones-prácticas" class="level2" data-number="9.27">
-<h2 data-number="9.27" class="anchored" data-anchor-id="recomendaciones-prácticas"><span class="header-section-number">9.27</span> Recomendaciones prácticas</h2>
+<section id="recomendaciones-prácticas" class="level2" data-number="10.27">
+<h2 data-number="10.27" class="anchored" data-anchor-id="recomendaciones-prácticas"><span class="header-section-number">10.27</span> Recomendaciones prácticas</h2>
 <ol type="1">
 <li>Comience con una SVM lineal como referencia.</li>
 <li>Estandarice las variables numéricas.</li>
@@ -1251,8 +1257,8 @@ Real           Solo daños Con víctimas
 <li>Evalúe el modelo final una sola vez sobre datos de prueba no utilizados durante el ajuste.</li>
 </ol>
 </section>
-<section id="actividad-guiada" class="level2" data-number="9.28">
-<h2 data-number="9.28" class="anchored" data-anchor-id="actividad-guiada"><span class="header-section-number">9.28</span> Actividad guiada</h2>
+<section id="actividad-guiada" class="level2" data-number="10.28">
+<h2 data-number="10.28" class="anchored" data-anchor-id="actividad-guiada"><span class="header-section-number">10.28</span> Actividad guiada</h2>
 <p>Modifique el código para comparar:</p>
 <ul>
 <li><code>cost = 0.1</code>, <code>1</code> y <code>10</code> en la SVM lineal;</li>
@@ -1271,8 +1277,8 @@ Real           Solo daños Con víctimas
 <li>valor F1.</li>
 </ul>
 </section>
-<section id="ejercicios" class="level2" data-number="9.29">
-<h2 data-number="9.29" class="anchored" data-anchor-id="ejercicios"><span class="header-section-number">9.29</span> Ejercicios</h2>
+<section id="ejercicios" class="level2" data-number="10.29">
+<h2 data-number="10.29" class="anchored" data-anchor-id="ejercicios"><span class="header-section-number">10.29</span> Ejercicios</h2>
 <ol type="1">
 <li>Explique con sus propias palabras qué es un vector de soporte.</li>
 <li>¿Qué diferencia existe entre una frontera lineal y una frontera construida con kernel radial?</li>
@@ -1284,14 +1290,14 @@ Real           Solo daños Con víctimas
 <li>Analice si una mejora pequeña en exactitud justifica una pérdida importante de interpretabilidad.</li>
 </ol>
 </section>
-<section id="conclusiones" class="level2" data-number="9.30">
-<h2 data-number="9.30" class="anchored" data-anchor-id="conclusiones"><span class="header-section-number">9.30</span> Conclusiones</h2>
+<section id="conclusiones" class="level2" data-number="10.30">
+<h2 data-number="10.30" class="anchored" data-anchor-id="conclusiones"><span class="header-section-number">10.30</span> Conclusiones</h2>
 <p>Las máquinas de vectores de soporte buscan una frontera con margen amplio y se apoyan en un subconjunto de observaciones denominado vectores de soporte. Mediante kernels pueden representar relaciones no lineales y producir modelos predictivos potentes.</p>
 <p>Sin embargo, una SVM requiere seleccionar cuidadosamente sus hiperparámetros y evaluar su desempeño con datos no utilizados durante el entrenamiento. En problemas con clases desbalanceadas, la ponderación de clases y el análisis conjunto de sensibilidad, especificidad, precisión y F1 son fundamentales.</p>
 <p><strong>Fuente de los datos de aplicación:</strong> elaboración propia con datos del INEGI, Estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas (ATUS), 2024.</p>
 </section>
-<section id="referencias-fundamentales-de-svm" class="level2" data-number="9.31">
-<h2 data-number="9.31" class="anchored" data-anchor-id="referencias-fundamentales-de-svm"><span class="header-section-number">9.31</span> Referencias fundamentales de SVM</h2>
+<section id="referencias-fundamentales-de-svm" class="level2" data-number="10.31">
+<h2 data-number="10.31" class="anchored" data-anchor-id="referencias-fundamentales-de-svm"><span class="header-section-number">10.31</span> Referencias fundamentales de SVM</h2>
 <p>Las máquinas de vectores de soporte fueron presentadas formalmente por <span class="citation" data-cites="cortes1995support">Cortes y Vapnik (<a href="referencias.html#ref-cortes1995support" role="doc-biblioref">1995</a>)</span>. El tutorial de <span class="citation" data-cites="burges1998tutorial">Burges (<a href="referencias.html#ref-burges1998tutorial" role="doc-biblioref">1998</a>)</span> desarrolla la intuición geométrica, los márgenes y el uso de kernels. Una introducción aplicada en R puede consultarse en <span class="citation" data-cites="james2021islr">James et&nbsp;al. (<a href="referencias.html#ref-james2021islr" role="doc-biblioref">2021</a>)</span>.</p>
 
 
@@ -1715,12 +1721,12 @@ James, Gareth, Daniela Witten, Trevor Hastie, y Robert Tibshirani. 2021. <em>An 
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./08-evaluacion-modelos.html" class="pagination-link" aria-label="Evaluación, validación y comparación de modelos">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Evaluación, validación y comparación de modelos</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Evaluación, validación y comparación de modelos</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./10-naive-bayes.html" class="pagination-link" aria-label="Clasificador Naive Bayes">
-        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Clasificador Naive Bayes</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Clasificador Naive Bayes</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

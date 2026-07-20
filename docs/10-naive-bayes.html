@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>10&nbsp; Clasificador Naive Bayes – Aprendizaje y Clasificación Automática con R</title>
+<title>11&nbsp; Clasificador Naive Bayes – Aprendizaje y Clasificación Automática con R</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -169,7 +169,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10-naive-bayes.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Clasificador Naive Bayes</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10-naive-bayes.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Clasificador Naive Bayes</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
@@ -235,44 +235,50 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./04-regresion-lineal-multiple.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regresión lineal simple y múltiple</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./04-regresion-logistica.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regresión logística para clasificación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regresión logística para clasificación</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05-knn.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">k vecinos más cercanos, k-NN</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">k vecinos más cercanos, k-NN</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./06-arboles-decision.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Árboles de decisión para clasificación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Árboles de decisión para clasificación</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07-random-forest.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Random Forest para clasificación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Random Forest para clasificación</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./08-evaluacion-modelos.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Evaluación, validación y comparación de modelos</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Evaluación, validación y comparación de modelos</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./09-svm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Máquinas de Vectores de Soporte (SVM)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Máquinas de Vectores de Soporte (SVM)</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./10-naive-bayes.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Clasificador Naive Bayes</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Clasificador Naive Bayes</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -302,33 +308,33 @@ window.Quarto = {
     <h2 id="toc-title">Tabla de contenidos</h2>
    
   <ul>
-  <li><a href="#objetivos-del-capítulo" id="toc-objetivos-del-capítulo" class="nav-link active" data-scroll-target="#objetivos-del-capítulo"><span class="header-section-number">10.1</span> Objetivos del capítulo</a></li>
-  <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción"><span class="header-section-number">10.2</span> Introducción</a></li>
-  <li><a href="#recordatorio-del-teorema-de-bayes" id="toc-recordatorio-del-teorema-de-bayes" class="nav-link" data-scroll-target="#recordatorio-del-teorema-de-bayes"><span class="header-section-number">10.3</span> Recordatorio del teorema de Bayes</a></li>
-  <li><a href="#el-supuesto-ingenuo-de-independencia" id="toc-el-supuesto-ingenuo-de-independencia" class="nav-link" data-scroll-target="#el-supuesto-ingenuo-de-independencia"><span class="header-section-number">10.4</span> El supuesto ingenuo de independencia</a></li>
-  <li><a href="#ejemplo-manual-con-variables-categóricas" id="toc-ejemplo-manual-con-variables-categóricas" class="nav-link" data-scroll-target="#ejemplo-manual-con-variables-categóricas"><span class="header-section-number">10.5</span> Ejemplo manual con variables categóricas</a></li>
-  <li><a href="#calcular-las-probabilidades-previas" id="toc-calcular-las-probabilidades-previas" class="nav-link" data-scroll-target="#calcular-las-probabilidades-previas"><span class="header-section-number">10.6</span> Calcular las probabilidades previas</a></li>
-  <li><a href="#calcular-probabilidades-condicionales" id="toc-calcular-probabilidades-condicionales" class="nav-link" data-scroll-target="#calcular-probabilidades-condicionales"><span class="header-section-number">10.7</span> Calcular probabilidades condicionales</a></li>
-  <li><a href="#clasificar-una-observación-manualmente" id="toc-clasificar-una-observación-manualmente" class="nav-link" data-scroll-target="#clasificar-una-observación-manualmente"><span class="header-section-number">10.8</span> Clasificar una observación manualmente</a></li>
-  <li><a href="#el-problema-de-las-probabilidades-iguales-a-cero" id="toc-el-problema-de-las-probabilidades-iguales-a-cero" class="nav-link" data-scroll-target="#el-problema-de-las-probabilidades-iguales-a-cero"><span class="header-section-number">10.9</span> El problema de las probabilidades iguales a cero</a></li>
-  <li><a href="#naive-bayes-gaussiano" id="toc-naive-bayes-gaussiano" class="nav-link" data-scroll-target="#naive-bayes-gaussiano"><span class="header-section-number">10.10</span> Naive Bayes gaussiano</a></li>
-  <li><a href="#instalar-y-cargar-paquetes" id="toc-instalar-y-cargar-paquetes" class="nav-link" data-scroll-target="#instalar-y-cargar-paquetes"><span class="header-section-number">10.11</span> Instalar y cargar paquetes</a></li>
-  <li><a href="#cargar-la-base-preparada-de-atus" id="toc-cargar-la-base-preparada-de-atus" class="nav-link" data-scroll-target="#cargar-la-base-preparada-de-atus"><span class="header-section-number">10.12</span> Cargar la base preparada de ATUS</a></li>
-  <li><a href="#preparar-una-muestra-para-el-modelo" id="toc-preparar-una-muestra-para-el-modelo" class="nav-link" data-scroll-target="#preparar-una-muestra-para-el-modelo"><span class="header-section-number">10.13</span> Preparar una muestra para el modelo</a></li>
-  <li><a href="#división-estratificada-en-entrenamiento-y-prueba" id="toc-división-estratificada-en-entrenamiento-y-prueba" class="nav-link" data-scroll-target="#división-estratificada-en-entrenamiento-y-prueba"><span class="header-section-number">10.14</span> División estratificada en entrenamiento y prueba</a></li>
-  <li><a href="#entrenar-el-modelo-naive-bayes" id="toc-entrenar-el-modelo-naive-bayes" class="nav-link" data-scroll-target="#entrenar-el-modelo-naive-bayes"><span class="header-section-number">10.15</span> Entrenar el modelo Naive Bayes</a></li>
-  <li><a href="#obtener-predicciones-de-clase" id="toc-obtener-predicciones-de-clase" class="nav-link" data-scroll-target="#obtener-predicciones-de-clase"><span class="header-section-number">10.16</span> Obtener predicciones de clase</a></li>
-  <li><a href="#obtener-probabilidades-posteriores" id="toc-obtener-probabilidades-posteriores" class="nav-link" data-scroll-target="#obtener-probabilidades-posteriores"><span class="header-section-number">10.17</span> Obtener probabilidades posteriores</a></li>
-  <li><a href="#construir-la-matriz-de-confusión" id="toc-construir-la-matriz-de-confusión" class="nav-link" data-scroll-target="#construir-la-matriz-de-confusión"><span class="header-section-number">10.18</span> Construir la matriz de confusión</a></li>
-  <li><a href="#calcular-las-métricas" id="toc-calcular-las-métricas" class="nav-link" data-scroll-target="#calcular-las-métricas"><span class="header-section-number">10.19</span> Calcular las métricas</a></li>
-  <li><a href="#visualizar-las-métricas" id="toc-visualizar-las-métricas" class="nav-link" data-scroll-target="#visualizar-las-métricas"><span class="header-section-number">10.20</span> Visualizar las métricas</a></li>
-  <li><a href="#inspeccionar-las-probabilidades-aprendidas" id="toc-inspeccionar-las-probabilidades-aprendidas" class="nav-link" data-scroll-target="#inspeccionar-las-probabilidades-aprendidas"><span class="header-section-number">10.21</span> Inspeccionar las probabilidades aprendidas</a></li>
-  <li><a href="#ventajas-de-naive-bayes" id="toc-ventajas-de-naive-bayes" class="nav-link" data-scroll-target="#ventajas-de-naive-bayes"><span class="header-section-number">10.22</span> Ventajas de Naive Bayes</a></li>
-  <li><a href="#limitaciones" id="toc-limitaciones" class="nav-link" data-scroll-target="#limitaciones"><span class="header-section-number">10.23</span> Limitaciones</a></li>
-  <li><a href="#comparación-conceptual-con-otros-algoritmos" id="toc-comparación-conceptual-con-otros-algoritmos" class="nav-link" data-scroll-target="#comparación-conceptual-con-otros-algoritmos"><span class="header-section-number">10.24</span> Comparación conceptual con otros algoritmos</a></li>
-  <li><a href="#actividades-para-el-lector" id="toc-actividades-para-el-lector" class="nav-link" data-scroll-target="#actividades-para-el-lector"><span class="header-section-number">10.25</span> Actividades para el lector</a></li>
-  <li><a href="#conclusiones" id="toc-conclusiones" class="nav-link" data-scroll-target="#conclusiones"><span class="header-section-number">10.26</span> Conclusiones</a></li>
-  <li><a href="#referencias-fundamentales-de-naive-bayes" id="toc-referencias-fundamentales-de-naive-bayes" class="nav-link" data-scroll-target="#referencias-fundamentales-de-naive-bayes"><span class="header-section-number">10.27</span> Referencias fundamentales de Naive Bayes</a></li>
+  <li><a href="#objetivos-del-capítulo" id="toc-objetivos-del-capítulo" class="nav-link active" data-scroll-target="#objetivos-del-capítulo"><span class="header-section-number">11.1</span> Objetivos del capítulo</a></li>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción"><span class="header-section-number">11.2</span> Introducción</a></li>
+  <li><a href="#recordatorio-del-teorema-de-bayes" id="toc-recordatorio-del-teorema-de-bayes" class="nav-link" data-scroll-target="#recordatorio-del-teorema-de-bayes"><span class="header-section-number">11.3</span> Recordatorio del teorema de Bayes</a></li>
+  <li><a href="#el-supuesto-ingenuo-de-independencia" id="toc-el-supuesto-ingenuo-de-independencia" class="nav-link" data-scroll-target="#el-supuesto-ingenuo-de-independencia"><span class="header-section-number">11.4</span> El supuesto ingenuo de independencia</a></li>
+  <li><a href="#ejemplo-manual-con-variables-categóricas" id="toc-ejemplo-manual-con-variables-categóricas" class="nav-link" data-scroll-target="#ejemplo-manual-con-variables-categóricas"><span class="header-section-number">11.5</span> Ejemplo manual con variables categóricas</a></li>
+  <li><a href="#calcular-las-probabilidades-previas" id="toc-calcular-las-probabilidades-previas" class="nav-link" data-scroll-target="#calcular-las-probabilidades-previas"><span class="header-section-number">11.6</span> Calcular las probabilidades previas</a></li>
+  <li><a href="#calcular-probabilidades-condicionales" id="toc-calcular-probabilidades-condicionales" class="nav-link" data-scroll-target="#calcular-probabilidades-condicionales"><span class="header-section-number">11.7</span> Calcular probabilidades condicionales</a></li>
+  <li><a href="#clasificar-una-observación-manualmente" id="toc-clasificar-una-observación-manualmente" class="nav-link" data-scroll-target="#clasificar-una-observación-manualmente"><span class="header-section-number">11.8</span> Clasificar una observación manualmente</a></li>
+  <li><a href="#el-problema-de-las-probabilidades-iguales-a-cero" id="toc-el-problema-de-las-probabilidades-iguales-a-cero" class="nav-link" data-scroll-target="#el-problema-de-las-probabilidades-iguales-a-cero"><span class="header-section-number">11.9</span> El problema de las probabilidades iguales a cero</a></li>
+  <li><a href="#naive-bayes-gaussiano" id="toc-naive-bayes-gaussiano" class="nav-link" data-scroll-target="#naive-bayes-gaussiano"><span class="header-section-number">11.10</span> Naive Bayes gaussiano</a></li>
+  <li><a href="#instalar-y-cargar-paquetes" id="toc-instalar-y-cargar-paquetes" class="nav-link" data-scroll-target="#instalar-y-cargar-paquetes"><span class="header-section-number">11.11</span> Instalar y cargar paquetes</a></li>
+  <li><a href="#cargar-la-base-preparada-de-atus" id="toc-cargar-la-base-preparada-de-atus" class="nav-link" data-scroll-target="#cargar-la-base-preparada-de-atus"><span class="header-section-number">11.12</span> Cargar la base preparada de ATUS</a></li>
+  <li><a href="#preparar-una-muestra-para-el-modelo" id="toc-preparar-una-muestra-para-el-modelo" class="nav-link" data-scroll-target="#preparar-una-muestra-para-el-modelo"><span class="header-section-number">11.13</span> Preparar una muestra para el modelo</a></li>
+  <li><a href="#división-estratificada-en-entrenamiento-y-prueba" id="toc-división-estratificada-en-entrenamiento-y-prueba" class="nav-link" data-scroll-target="#división-estratificada-en-entrenamiento-y-prueba"><span class="header-section-number">11.14</span> División estratificada en entrenamiento y prueba</a></li>
+  <li><a href="#entrenar-el-modelo-naive-bayes" id="toc-entrenar-el-modelo-naive-bayes" class="nav-link" data-scroll-target="#entrenar-el-modelo-naive-bayes"><span class="header-section-number">11.15</span> Entrenar el modelo Naive Bayes</a></li>
+  <li><a href="#obtener-predicciones-de-clase" id="toc-obtener-predicciones-de-clase" class="nav-link" data-scroll-target="#obtener-predicciones-de-clase"><span class="header-section-number">11.16</span> Obtener predicciones de clase</a></li>
+  <li><a href="#obtener-probabilidades-posteriores" id="toc-obtener-probabilidades-posteriores" class="nav-link" data-scroll-target="#obtener-probabilidades-posteriores"><span class="header-section-number">11.17</span> Obtener probabilidades posteriores</a></li>
+  <li><a href="#construir-la-matriz-de-confusión" id="toc-construir-la-matriz-de-confusión" class="nav-link" data-scroll-target="#construir-la-matriz-de-confusión"><span class="header-section-number">11.18</span> Construir la matriz de confusión</a></li>
+  <li><a href="#calcular-las-métricas" id="toc-calcular-las-métricas" class="nav-link" data-scroll-target="#calcular-las-métricas"><span class="header-section-number">11.19</span> Calcular las métricas</a></li>
+  <li><a href="#visualizar-las-métricas" id="toc-visualizar-las-métricas" class="nav-link" data-scroll-target="#visualizar-las-métricas"><span class="header-section-number">11.20</span> Visualizar las métricas</a></li>
+  <li><a href="#inspeccionar-las-probabilidades-aprendidas" id="toc-inspeccionar-las-probabilidades-aprendidas" class="nav-link" data-scroll-target="#inspeccionar-las-probabilidades-aprendidas"><span class="header-section-number">11.21</span> Inspeccionar las probabilidades aprendidas</a></li>
+  <li><a href="#ventajas-de-naive-bayes" id="toc-ventajas-de-naive-bayes" class="nav-link" data-scroll-target="#ventajas-de-naive-bayes"><span class="header-section-number">11.22</span> Ventajas de Naive Bayes</a></li>
+  <li><a href="#limitaciones" id="toc-limitaciones" class="nav-link" data-scroll-target="#limitaciones"><span class="header-section-number">11.23</span> Limitaciones</a></li>
+  <li><a href="#comparación-conceptual-con-otros-algoritmos" id="toc-comparación-conceptual-con-otros-algoritmos" class="nav-link" data-scroll-target="#comparación-conceptual-con-otros-algoritmos"><span class="header-section-number">11.24</span> Comparación conceptual con otros algoritmos</a></li>
+  <li><a href="#actividades-para-el-lector" id="toc-actividades-para-el-lector" class="nav-link" data-scroll-target="#actividades-para-el-lector"><span class="header-section-number">11.25</span> Actividades para el lector</a></li>
+  <li><a href="#conclusiones" id="toc-conclusiones" class="nav-link" data-scroll-target="#conclusiones"><span class="header-section-number">11.26</span> Conclusiones</a></li>
+  <li><a href="#referencias-fundamentales-de-naive-bayes" id="toc-referencias-fundamentales-de-naive-bayes" class="nav-link" data-scroll-target="#referencias-fundamentales-de-naive-bayes"><span class="header-section-number">11.27</span> Referencias fundamentales de Naive Bayes</a></li>
   </ul>
 </nav>
     </div>
@@ -337,7 +343,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Clasificador Naive Bayes</span></h1>
+<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Clasificador Naive Bayes</span></h1>
 </div>
 
 
@@ -354,8 +360,8 @@ window.Quarto = {
 </header>
 
 
-<section id="objetivos-del-capítulo" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="objetivos-del-capítulo"><span class="header-section-number">10.1</span> Objetivos del capítulo</h2>
+<section id="objetivos-del-capítulo" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="objetivos-del-capítulo"><span class="header-section-number">11.1</span> Objetivos del capítulo</h2>
 <p>Al finalizar este capítulo, el lector será capaz de:</p>
 <ul>
 <li>explicar el teorema de Bayes aplicado a clasificación;</li>
@@ -368,14 +374,14 @@ window.Quarto = {
 <li>reconocer sus ventajas, limitaciones y condiciones de uso.</li>
 </ul>
 </section>
-<section id="introducción" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="introducción"><span class="header-section-number">10.2</span> Introducción</h2>
+<section id="introducción" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="introducción"><span class="header-section-number">11.2</span> Introducción</h2>
 <p><strong>Naive Bayes</strong> es una familia de clasificadores probabilísticos basada en el teorema de Bayes. Su nombre incluye la palabra <em>naive</em> —ingenuo— porque supone que las variables predictoras son condicionalmente independientes una vez conocida la clase.</p>
 <p>Este supuesto rara vez se cumple de manera exacta en datos reales. Sin embargo, el clasificador puede funcionar sorprendentemente bien incluso cuando existe cierta dependencia entre las variables <span class="citation" data-cites="domingos1997optimality hand2001idiots">(<a href="referencias.html#ref-domingos1997optimality" role="doc-biblioref">Domingos y Pazzani 1997</a>; <a href="referencias.html#ref-hand2001idiots" role="doc-biblioref">Hand y Yu 2001</a>)</span>.</p>
 <p>La principal fortaleza del método es que transforma la clasificación en una comparación de probabilidades. Para una observación nueva, se calcula qué clase resulta más probable dados los valores de sus predictores.</p>
 </section>
-<section id="recordatorio-del-teorema-de-bayes" class="level2" data-number="10.3">
-<h2 data-number="10.3" class="anchored" data-anchor-id="recordatorio-del-teorema-de-bayes"><span class="header-section-number">10.3</span> Recordatorio del teorema de Bayes</h2>
+<section id="recordatorio-del-teorema-de-bayes" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="recordatorio-del-teorema-de-bayes"><span class="header-section-number">11.3</span> Recordatorio del teorema de Bayes</h2>
 <p>Para una clase <span class="math inline">\(C\)</span> y un conjunto de características <span class="math inline">\(X\)</span>, el teorema de Bayes establece:</p>
 <p><span class="math display">\[
 P(C\mid X)=\frac{P(X\mid C)P(C)}{P(X)}
@@ -392,8 +398,8 @@ P(C\mid X)=\frac{P(X\mid C)P(C)}{P(X)}
 P(C\mid X)\propto P(X\mid C)P(C)
 \]</span></p>
 </section>
-<section id="el-supuesto-ingenuo-de-independencia" class="level2" data-number="10.4">
-<h2 data-number="10.4" class="anchored" data-anchor-id="el-supuesto-ingenuo-de-independencia"><span class="header-section-number">10.4</span> El supuesto ingenuo de independencia</h2>
+<section id="el-supuesto-ingenuo-de-independencia" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="el-supuesto-ingenuo-de-independencia"><span class="header-section-number">11.4</span> El supuesto ingenuo de independencia</h2>
 <p>Si una observación tiene predictores <span class="math inline">\(X_1,X_2,\ldots,X_p\)</span>, Naive Bayes supone que, conocida la clase, sus contribuciones pueden multiplicarse:</p>
 <p><span class="math display">\[
 P(X_1,\ldots,X_p\mid C)
@@ -418,8 +424,8 @@ P(C\mid X_1,\ldots,X_p)
 </div>
 </div>
 </section>
-<section id="ejemplo-manual-con-variables-categóricas" class="level2" data-number="10.5">
-<h2 data-number="10.5" class="anchored" data-anchor-id="ejemplo-manual-con-variables-categóricas"><span class="header-section-number">10.5</span> Ejemplo manual con variables categóricas</h2>
+<section id="ejemplo-manual-con-variables-categóricas" class="level2" data-number="11.5">
+<h2 data-number="11.5" class="anchored" data-anchor-id="ejemplo-manual-con-variables-categóricas"><span class="header-section-number">11.5</span> Ejemplo manual con variables categóricas</h2>
 <p>Consideremos un pequeño conjunto de accidentes descritos por dos variables: condición climática y horario.</p>
 <div class="cell">
 <details class="code-fold">
@@ -451,8 +457,8 @@ P(C\mid X_1,\ldots,X_p)
 </div>
 </div>
 </section>
-<section id="calcular-las-probabilidades-previas" class="level2" data-number="10.6">
-<h2 data-number="10.6" class="anchored" data-anchor-id="calcular-las-probabilidades-previas"><span class="header-section-number">10.6</span> Calcular las probabilidades previas</h2>
+<section id="calcular-las-probabilidades-previas" class="level2" data-number="11.6">
+<h2 data-number="11.6" class="anchored" data-anchor-id="calcular-las-probabilidades-previas"><span class="header-section-number">11.6</span> Calcular las probabilidades previas</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -467,8 +473,8 @@ P(C\mid X_1,\ldots,X_p)
 </div>
 <p>Las probabilidades previas representan la proporción inicial de cada clase antes de observar las variables predictoras.</p>
 </section>
-<section id="calcular-probabilidades-condicionales" class="level2" data-number="10.7">
-<h2 data-number="10.7" class="anchored" data-anchor-id="calcular-probabilidades-condicionales"><span class="header-section-number">10.7</span> Calcular probabilidades condicionales</h2>
+<section id="calcular-probabilidades-condicionales" class="level2" data-number="11.7">
+<h2 data-number="11.7" class="anchored" data-anchor-id="calcular-probabilidades-condicionales"><span class="header-section-number">11.7</span> Calcular probabilidades condicionales</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -502,8 +508,8 @@ P(C\mid X_1,\ldots,X_p)
 </div>
 </div>
 </section>
-<section id="clasificar-una-observación-manualmente" class="level2" data-number="10.8">
-<h2 data-number="10.8" class="anchored" data-anchor-id="clasificar-una-observación-manualmente"><span class="header-section-number">10.8</span> Clasificar una observación manualmente</h2>
+<section id="clasificar-una-observación-manualmente" class="level2" data-number="11.8">
+<h2 data-number="11.8" class="anchored" data-anchor-id="clasificar-una-observación-manualmente"><span class="header-section-number">11.8</span> Clasificar una observación manualmente</h2>
 <p>Supongamos un accidente ocurrido con lluvia durante la noche. Comparamos los puntajes para las dos clases.</p>
 <div class="cell">
 <details class="code-fold">
@@ -551,8 +557,8 @@ P(C\mid X_1,\ldots,X_p)
 </div>
 </div>
 </section>
-<section id="el-problema-de-las-probabilidades-iguales-a-cero" class="level2" data-number="10.9">
-<h2 data-number="10.9" class="anchored" data-anchor-id="el-problema-de-las-probabilidades-iguales-a-cero"><span class="header-section-number">10.9</span> El problema de las probabilidades iguales a cero</h2>
+<section id="el-problema-de-las-probabilidades-iguales-a-cero" class="level2" data-number="11.9">
+<h2 data-number="11.9" class="anchored" data-anchor-id="el-problema-de-las-probabilidades-iguales-a-cero"><span class="header-section-number">11.9</span> El problema de las probabilidades iguales a cero</h2>
 <p>Cuando una combinación nunca aparece en el entrenamiento, una de las probabilidades condicionales puede ser cero. Al multiplicar, todo el puntaje de esa clase se vuelve cero.</p>
 <p>Una solución habitual es el <strong>suavizado de Laplace</strong>, que agrega una pequeña cantidad a los conteos antes de calcular las probabilidades.</p>
 <p><span class="math display">\[
@@ -561,16 +567,16 @@ P(C\mid X_1,\ldots,X_p)
 \]</span></p>
 <p>Aquí, <span class="math inline">\(k\)</span> es el número de categorías y normalmente se utiliza <span class="math inline">\(\alpha=1\)</span>.</p>
 </section>
-<section id="naive-bayes-gaussiano" class="level2" data-number="10.10">
-<h2 data-number="10.10" class="anchored" data-anchor-id="naive-bayes-gaussiano"><span class="header-section-number">10.10</span> Naive Bayes gaussiano</h2>
+<section id="naive-bayes-gaussiano" class="level2" data-number="11.10">
+<h2 data-number="11.10" class="anchored" data-anchor-id="naive-bayes-gaussiano"><span class="header-section-number">11.10</span> Naive Bayes gaussiano</h2>
 <p>Cuando un predictor es numérico continuo, una opción común es suponer que, dentro de cada clase, sigue una distribución normal:</p>
 <p><span class="math display">\[
 X_j\mid C=c\sim N(\mu_{jc},\sigma_{jc}^{2})
 \]</span></p>
 <p>La media y la desviación estándar se estiman por separado para cada clase. Esta variante se denomina <strong>Naive Bayes gaussiano</strong>.</p>
 </section>
-<section id="instalar-y-cargar-paquetes" class="level2" data-number="10.11">
-<h2 data-number="10.11" class="anchored" data-anchor-id="instalar-y-cargar-paquetes"><span class="header-section-number">10.11</span> Instalar y cargar paquetes</h2>
+<section id="instalar-y-cargar-paquetes" class="level2" data-number="11.11">
+<h2 data-number="11.11" class="anchored" data-anchor-id="instalar-y-cargar-paquetes"><span class="header-section-number">11.11</span> Instalar y cargar paquetes</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -592,8 +598,8 @@ X_j\mid C=c\sim N(\mu_{jc},\sigma_{jc}^{2})
 </details>
 </div>
 </section>
-<section id="cargar-la-base-preparada-de-atus" class="level2" data-number="10.12">
-<h2 data-number="10.12" class="anchored" data-anchor-id="cargar-la-base-preparada-de-atus"><span class="header-section-number">10.12</span> Cargar la base preparada de ATUS</h2>
+<section id="cargar-la-base-preparada-de-atus" class="level2" data-number="11.12">
+<h2 data-number="11.12" class="anchored" data-anchor-id="cargar-la-base-preparada-de-atus"><span class="header-section-number">11.12</span> Cargar la base preparada de ATUS</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -612,8 +618,8 @@ X_j\mid C=c\sim N(\mu_{jc},\sigma_{jc}^{2})
 </details>
 </div>
 </section>
-<section id="preparar-una-muestra-para-el-modelo" class="level2" data-number="10.13">
-<h2 data-number="10.13" class="anchored" data-anchor-id="preparar-una-muestra-para-el-modelo"><span class="header-section-number">10.13</span> Preparar una muestra para el modelo</h2>
+<section id="preparar-una-muestra-para-el-modelo" class="level2" data-number="11.13">
+<h2 data-number="11.13" class="anchored" data-anchor-id="preparar-una-muestra-para-el-modelo"><span class="header-section-number">11.13</span> Preparar una muestra para el modelo</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -643,8 +649,8 @@ X_j\mid C=c\sim N(\mu_{jc},\sigma_{jc}^{2})
 </div>
 </div>
 </section>
-<section id="división-estratificada-en-entrenamiento-y-prueba" class="level2" data-number="10.14">
-<h2 data-number="10.14" class="anchored" data-anchor-id="división-estratificada-en-entrenamiento-y-prueba"><span class="header-section-number">10.14</span> División estratificada en entrenamiento y prueba</h2>
+<section id="división-estratificada-en-entrenamiento-y-prueba" class="level2" data-number="11.14">
+<h2 data-number="11.14" class="anchored" data-anchor-id="división-estratificada-en-entrenamiento-y-prueba"><span class="header-section-number">11.14</span> División estratificada en entrenamiento y prueba</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -680,8 +686,8 @@ X_j\mid C=c\sim N(\mu_{jc},\sigma_{jc}^{2})
 </div>
 </div>
 </section>
-<section id="entrenar-el-modelo-naive-bayes" class="level2" data-number="10.15">
-<h2 data-number="10.15" class="anchored" data-anchor-id="entrenar-el-modelo-naive-bayes"><span class="header-section-number">10.15</span> Entrenar el modelo Naive Bayes</h2>
+<section id="entrenar-el-modelo-naive-bayes" class="level2" data-number="11.15">
+<h2 data-number="11.15" class="anchored" data-anchor-id="entrenar-el-modelo-naive-bayes"><span class="header-section-number">11.15</span> Entrenar el modelo Naive Bayes</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -771,8 +777,8 @@ Y              Mala condición del camino         Otra Peatón o pasajero
 </div>
 <p>El argumento <code>laplace = 1</code> aplica suavizado de Laplace a los predictores categóricos.</p>
 </section>
-<section id="obtener-predicciones-de-clase" class="level2" data-number="10.16">
-<h2 data-number="10.16" class="anchored" data-anchor-id="obtener-predicciones-de-clase"><span class="header-section-number">10.16</span> Obtener predicciones de clase</h2>
+<section id="obtener-predicciones-de-clase" class="level2" data-number="11.16">
+<h2 data-number="11.16" class="anchored" data-anchor-id="obtener-predicciones-de-clase"><span class="header-section-number">11.16</span> Obtener predicciones de clase</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -790,8 +796,8 @@ Levels: Solo daños Con víctimas</code></pre>
 </div>
 </div>
 </section>
-<section id="obtener-probabilidades-posteriores" class="level2" data-number="10.17">
-<h2 data-number="10.17" class="anchored" data-anchor-id="obtener-probabilidades-posteriores"><span class="header-section-number">10.17</span> Obtener probabilidades posteriores</h2>
+<section id="obtener-probabilidades-posteriores" class="level2" data-number="11.17">
+<h2 data-number="11.17" class="anchored" data-anchor-id="obtener-probabilidades-posteriores"><span class="header-section-number">11.17</span> Obtener probabilidades posteriores</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -814,8 +820,8 @@ Levels: Solo daños Con víctimas</code></pre>
 </div>
 </div>
 </section>
-<section id="construir-la-matriz-de-confusión" class="level2" data-number="10.18">
-<h2 data-number="10.18" class="anchored" data-anchor-id="construir-la-matriz-de-confusión"><span class="header-section-number">10.18</span> Construir la matriz de confusión</h2>
+<section id="construir-la-matriz-de-confusión" class="level2" data-number="11.18">
+<h2 data-number="11.18" class="anchored" data-anchor-id="construir-la-matriz-de-confusión"><span class="header-section-number">11.18</span> Construir la matriz de confusión</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -834,8 +840,8 @@ Real           Solo daños Con víctimas
 </div>
 </div>
 </section>
-<section id="calcular-las-métricas" class="level2" data-number="10.19">
-<h2 data-number="10.19" class="anchored" data-anchor-id="calcular-las-métricas"><span class="header-section-number">10.19</span> Calcular las métricas</h2>
+<section id="calcular-las-métricas" class="level2" data-number="11.19">
+<h2 data-number="11.19" class="anchored" data-anchor-id="calcular-las-métricas"><span class="header-section-number">11.19</span> Calcular las métricas</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -889,8 +895,8 @@ Real           Solo daños Con víctimas
 </div>
 </div>
 </section>
-<section id="visualizar-las-métricas" class="level2" data-number="10.20">
-<h2 data-number="10.20" class="anchored" data-anchor-id="visualizar-las-métricas"><span class="header-section-number">10.20</span> Visualizar las métricas</h2>
+<section id="visualizar-las-métricas" class="level2" data-number="11.20">
+<h2 data-number="11.20" class="anchored" data-anchor-id="visualizar-las-métricas"><span class="header-section-number">11.20</span> Visualizar las métricas</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -920,8 +926,8 @@ Real           Solo daños Con víctimas
 </div>
 <p><strong>Fuente:</strong> elaboración propia mediante R con datos del INEGI, Estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas (ATUS), 2024.</p>
 </section>
-<section id="inspeccionar-las-probabilidades-aprendidas" class="level2" data-number="10.21">
-<h2 data-number="10.21" class="anchored" data-anchor-id="inspeccionar-las-probabilidades-aprendidas"><span class="header-section-number">10.21</span> Inspeccionar las probabilidades aprendidas</h2>
+<section id="inspeccionar-las-probabilidades-aprendidas" class="level2" data-number="11.21">
+<h2 data-number="11.21" class="anchored" data-anchor-id="inspeccionar-las-probabilidades-aprendidas"><span class="header-section-number">11.21</span> Inspeccionar las probabilidades aprendidas</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -953,8 +959,8 @@ Y                      11         12
 </div>
 <p>La primera salida muestra las probabilidades previas de las clases. La segunda resume las probabilidades condicionales estimadas para los meses.</p>
 </section>
-<section id="ventajas-de-naive-bayes" class="level2" data-number="10.22">
-<h2 data-number="10.22" class="anchored" data-anchor-id="ventajas-de-naive-bayes"><span class="header-section-number">10.22</span> Ventajas de Naive Bayes</h2>
+<section id="ventajas-de-naive-bayes" class="level2" data-number="11.22">
+<h2 data-number="11.22" class="anchored" data-anchor-id="ventajas-de-naive-bayes"><span class="header-section-number">11.22</span> Ventajas de Naive Bayes</h2>
 <ul>
 <li>Es sencillo y rápido de entrenar.</li>
 <li>Produce probabilidades de pertenencia a cada clase.</li>
@@ -964,8 +970,8 @@ Y                      11         12
 <li>Constituye una excelente línea base probabilística.</li>
 </ul>
 </section>
-<section id="limitaciones" class="level2" data-number="10.23">
-<h2 data-number="10.23" class="anchored" data-anchor-id="limitaciones"><span class="header-section-number">10.23</span> Limitaciones</h2>
+<section id="limitaciones" class="level2" data-number="11.23">
+<h2 data-number="11.23" class="anchored" data-anchor-id="limitaciones"><span class="header-section-number">11.23</span> Limitaciones</h2>
 <ul>
 <li>El supuesto de independencia condicional puede ser poco realista.</li>
 <li>Variables muy correlacionadas pueden contar información repetida.</li>
@@ -987,8 +993,8 @@ Y                      11         12
 </div>
 </div>
 </section>
-<section id="comparación-conceptual-con-otros-algoritmos" class="level2" data-number="10.24">
-<h2 data-number="10.24" class="anchored" data-anchor-id="comparación-conceptual-con-otros-algoritmos"><span class="header-section-number">10.24</span> Comparación conceptual con otros algoritmos</h2>
+<section id="comparación-conceptual-con-otros-algoritmos" class="level2" data-number="11.24">
+<h2 data-number="11.24" class="anchored" data-anchor-id="comparación-conceptual-con-otros-algoritmos"><span class="header-section-number">11.24</span> Comparación conceptual con otros algoritmos</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 16%">
@@ -1052,8 +1058,8 @@ Y                      11         12
 </tbody>
 </table>
 </section>
-<section id="actividades-para-el-lector" class="level2" data-number="10.25">
-<h2 data-number="10.25" class="anchored" data-anchor-id="actividades-para-el-lector"><span class="header-section-number">10.25</span> Actividades para el lector</h2>
+<section id="actividades-para-el-lector" class="level2" data-number="11.25">
+<h2 data-number="11.25" class="anchored" data-anchor-id="actividades-para-el-lector"><span class="header-section-number">11.25</span> Actividades para el lector</h2>
 <ol type="1">
 <li>Cambie el suavizado de Laplace a <code>0</code>, <code>0.5</code> y <code>2</code>. Compare las métricas.</li>
 <li>Elimine una variable predictora y examine si mejora la sensibilidad.</li>
@@ -1063,13 +1069,13 @@ Y                      11         12
 <li>Explique por qué dos variables correlacionadas pueden influir doblemente en el producto de verosimilitudes.</li>
 </ol>
 </section>
-<section id="conclusiones" class="level2" data-number="10.26">
-<h2 data-number="10.26" class="anchored" data-anchor-id="conclusiones"><span class="header-section-number">10.26</span> Conclusiones</h2>
+<section id="conclusiones" class="level2" data-number="11.26">
+<h2 data-number="11.26" class="anchored" data-anchor-id="conclusiones"><span class="header-section-number">11.26</span> Conclusiones</h2>
 <p>Naive Bayes muestra que un modelo relativamente simple puede construir clasificaciones útiles mediante probabilidades. Su supuesto de independencia facilita el cálculo y reduce el costo computacional, aunque exige interpretar los resultados con prudencia.</p>
 <p>En ATUS, el método proporciona una línea base probabilística rápida para predecir si un accidente pertenece a la clase con víctimas o a la clase de solo daños. Su desempeño debe juzgarse junto con la sensibilidad, la especificidad y F1, no únicamente por la exactitud.</p>
 </section>
-<section id="referencias-fundamentales-de-naive-bayes" class="level2" data-number="10.27">
-<h2 data-number="10.27" class="anchored" data-anchor-id="referencias-fundamentales-de-naive-bayes"><span class="header-section-number">10.27</span> Referencias fundamentales de Naive Bayes</h2>
+<section id="referencias-fundamentales-de-naive-bayes" class="level2" data-number="11.27">
+<h2 data-number="11.27" class="anchored" data-anchor-id="referencias-fundamentales-de-naive-bayes"><span class="header-section-number">11.27</span> Referencias fundamentales de Naive Bayes</h2>
 <p>El análisis de las condiciones bajo las cuales el clasificador bayesiano simple puede ser óptimo fue desarrollado por <span class="citation" data-cites="domingos1997optimality">Domingos y Pazzani (<a href="referencias.html#ref-domingos1997optimality" role="doc-biblioref">1997</a>)</span>. Una discusión crítica sobre por qué el método puede funcionar bien pese a su supuesto ingenuo aparece en <span class="citation" data-cites="hand2001idiots">Hand y Yu (<a href="referencias.html#ref-hand2001idiots" role="doc-biblioref">2001</a>)</span>. Para una introducción moderna dentro del aprendizaje estadístico puede consultarse <span class="citation" data-cites="james2021islr">James et&nbsp;al. (<a href="referencias.html#ref-james2021islr" role="doc-biblioref">2021</a>)</span>.</p>
 
 
@@ -1490,7 +1496,7 @@ James, Gareth, Daniela Witten, Trevor Hastie, y Robert Tibshirani. 2021. <em>An 
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./09-svm.html" class="pagination-link" aria-label="Máquinas de Vectores de Soporte (SVM)">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Máquinas de Vectores de Soporte (SVM)</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Máquinas de Vectores de Soporte (SVM)</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

@@ -367,7 +367,7 @@
 \makeatother
 \subtitle{Un enfoque práctico con datos abiertos reales}
 \author{MI Jesús Gilberto Rodríguez Escobedo}
-\date{2026-07-16}
+\date{2026-07-20}
 \begin{document}
 \frontmatter
 \maketitle
@@ -399,8 +399,8 @@ reales}\label{un-enfoque-pruxe1ctico-con-datos-abiertos-reales}
 reales}
 
 \textbf{Autor:} MI Jesús Gilberto Rodríguez Escobedo\\
-\textbf{Versión:} 0.7 (desarrollo)\\
-\textbf{Modalidad:} Libro abierto, práctico e interactivo\\
+\textbf{Versión:} 0.9.0 (desarrollo) \textbf{Modalidad:} Libro abierto,
+práctico e interactivo\\
 \textbf{Tecnologías:} R · Quarto · Machine Learning · Datos abiertos ·
 GitHub Pages
 
@@ -499,15 +499,48 @@ libro}\label{estructura-actual-del-libro}
 \item
   Análisis exploratorio de datos.
 \item
-  Regresión logística.
+  Regresión lineal simple y múltiple.
 \item
-  k vecinos más cercanos.
+  Regresión logística para clasificación.
+\item
+  k vecinos más cercanos (k-NN).
 \item
   Árboles de decisión.
 \item
   Random Forest.
 \item
   Evaluación, validación y comparación de modelos.
+\item
+  Máquinas de Vectores de Soporte (SVM).
+\item
+  Clasificador Naive Bayes.
+\end{enumerate}
+
+\section*{Ruta prevista para los siguientes
+capítulos}\label{ruta-prevista-para-los-siguientes-capuxedtulos}
+\addcontentsline{toc}{section}{Ruta prevista para los siguientes
+capítulos}
+
+\markright{Ruta prevista para los siguientes capítulos}
+
+La secuencia prevista, sujeta a revisión conforme avance el libro, es:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{11}
+\tightlist
+\item
+  Redes neuronales artificiales.
+\item
+  Introducción al aprendizaje no supervisado.
+\item
+  Agrupamiento con k-means.
+\item
+  Análisis de Componentes Principales (PCA).
+\item
+  Comparación integral y selección de algoritmos.
+\item
+  Proyecto aplicado final con datos abiertos.
 \end{enumerate}
 
 \section*{Nota para el lector}\label{nota-para-el-lector}
@@ -693,6 +726,92 @@ descargar los archivos de datos cuando no estén disponibles en la
 sesión. La descarga de ATUS puede tardar debido al tamaño de la base.
 
 \end{tcolorbox}
+
+\section*{Ejecución autónoma en Google
+Colab}\label{ejecuciuxf3n-autuxf3noma-en-google-colab}
+\addcontentsline{toc}{section}{Ejecución autónoma en Google Colab}
+
+\markright{Ejecución autónoma en Google Colab}
+
+El cuaderno incluye una celda inicial de \textbf{preparación automática}
+que:
+
+\begin{itemize}
+\tightlist
+\item
+  instala los paquetes de R que hagan falta;
+\item
+  define dentro del propio cuaderno todas las funciones gráficas;
+\item
+  crea la carpeta \texttt{datos};
+\item
+  descarga las bases ATUS desde el repositorio estable cuando no estén
+  presentes;
+\item
+  comprueba que los recursos necesarios estén disponibles.
+\end{itemize}
+
+Por esta razón, el usuario no necesita descargar manualmente
+\texttt{util\_graficas.R} ni subir archivos auxiliares a Colab.
+
+\section*{Instalación automática de
+paquetes}\label{instalaciuxf3n-automuxe1tica-de-paquetes}
+\addcontentsline{toc}{section}{Instalación automática de paquetes}
+
+\markright{Instalación automática de paquetes}
+
+El cuaderno utiliza la función \texttt{cargar\_paquete()}. Antes de
+cargar un paquete, comprueba si está instalado y, cuando hace falta, lo
+instala automáticamente desde CRAN. Esto evita errores como
+\texttt{there\ is\ no\ package\ called\ \textquotesingle{}ranger\textquotesingle{}}.
+
+\section*{Referencias bibliográficas en
+Colab}\label{referencias-bibliogruxe1ficas-en-colab}
+\addcontentsline{toc}{section}{Referencias bibliográficas en Colab}
+
+\markright{Referencias bibliográficas en Colab}
+
+En los capítulos Quarto se conservan claves como
+\texttt{@breiman1984classification}, porque Quarto las transforma al
+generar el libro. En Google Colab esas claves se sustituyen por citas
+legibles como \textbf{Breiman et al.~(1984)}, y la bibliografía completa
+aparece al final del cuaderno.
+
+\section*{Descarga automática de los
+datos}\label{descarga-automuxe1tica-de-los-datos}
+\addcontentsline{toc}{section}{Descarga automática de los datos}
+
+\markright{Descarga automática de los datos}
+
+Para evitar archivos demasiado grandes dentro del cuaderno, las bases
+ATUS se publican en formato comprimido \texttt{.csv.gz}. La primera
+celda de Colab:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  descarga los archivos comprimidos desde GitHub Pages;
+\item
+  los descomprime automáticamente;
+\item
+  guarda los CSV en la carpeta \texttt{datos};
+\item
+  comprueba que quedaron disponibles antes de continuar.
+\end{enumerate}
+
+Los archivos publicados son:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{recursos\_colab/atus\_ml\_preparado.csv.gz};
+\item
+  \texttt{recursos\_colab/atus\_2024.csv.gz}.
+\end{itemize}
+
+Si la celda informa un error 404, primero debe publicarse esta versión
+del sitio para que esos recursos estén disponibles.
 
 \bookmarksetup{startatroot}
 
@@ -1041,7 +1160,7 @@ La estructura mínima del proyecto debe quedar así:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{libro{-}machine{-}learning{-}r{-}dev/}
+\NormalTok{libro{-}machine{-}learning{-}r/}
 \NormalTok{├── \_quarto.yml}
 \NormalTok{├── index.qmd}
 \NormalTok{├── 02{-}preparacion{-}datos.qmd}
@@ -1722,10 +1841,725 @@ desbalance de clases e identificar variables útiles para modelar.
 
 \bookmarksetup{startatroot}
 
+\chapter{Regresión lineal simple y
+múltiple}\label{regresiuxf3n-lineal-simple-y-muxfaltiple}
+
+\section{Objetivos del capítulo}\label{objetivos-del-capuxedtulo-3}
+
+Al terminar este capítulo, el lector podrá:
+
+\begin{itemize}
+\tightlist
+\item
+  distinguir entre regresión y clasificación;
+\item
+  interpretar una relación lineal entre una variable respuesta y una
+  variable explicativa;
+\item
+  ajustar una regresión lineal simple en R;
+\item
+  construir e interpretar un modelo de regresión lineal múltiple;
+\item
+  evaluar el ajuste mediante \(R^2\), \(R^2\) ajustado, RMSE y análisis
+  de residuos;
+\item
+  reconocer cuándo la regresión lineal no es apropiada.
+\end{itemize}
+
+\section{¿Por qué estudiar regresión lineal en un libro de
+clasificación?}\label{por-quuxe9-estudiar-regresiuxf3n-lineal-en-un-libro-de-clasificaciuxf3n}
+
+La regresión lineal no es un algoritmo de clasificación: su respuesta es
+numérica y continua. Sin embargo, es una base fundamental del
+aprendizaje supervisado porque introduce ideas que reaparecen en otros
+modelos: función de predicción, coeficientes, error, ajuste,
+generalización y evaluación fuera de muestra.
+
+Además, permite comprender mejor la regresión logística del capítulo
+siguiente. Ambos modelos construyen una combinación de variables
+explicativas, aunque difieren en la naturaleza de la respuesta y en la
+función utilizada para obtener la predicción (James et~al. 2021).
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-note-color!10!white, colframe=quarto-callout-note-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Idea central}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+En regresión lineal se predice una cantidad, por ejemplo el número
+mensual de accidentes. En clasificación se predice una categoría, por
+ejemplo si un accidente tuvo víctimas o solo daños.
+
+\end{tcolorbox}
+
+\section{Regresión lineal simple}\label{regresiuxf3n-lineal-simple}
+
+La regresión lineal simple relaciona una variable respuesta \(Y\) con
+una sola variable explicativa \(X\):
+
+\[
+Y_i = \beta_0 + \beta_1 X_i + \varepsilon_i.
+\]
+
+Donde:
+
+\begin{itemize}
+\tightlist
+\item
+  \(\beta_0\) es la ordenada al origen;
+\item
+  \(\beta_1\) representa el cambio promedio esperado en \(Y\) cuando
+  \(X\) aumenta una unidad;
+\item
+  \(\varepsilon_i\) representa la parte no explicada por el modelo.
+\end{itemize}
+
+Los coeficientes se estiman normalmente mediante mínimos cuadrados,
+buscando minimizar la suma de los errores al cuadrado (Montgomery et~al.
+2021).
+
+\section{Primer ejemplo didáctico}\label{primer-ejemplo-diduxe1ctico}
+
+Supongamos que se desea relacionar el número de horas de estudio con la
+calificación obtenida.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{horas }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{7}\NormalTok{, }\DecValTok{8}\NormalTok{, }\DecValTok{9}\NormalTok{)}
+\NormalTok{calificacion }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{55}\NormalTok{, }\DecValTok{60}\NormalTok{, }\DecValTok{64}\NormalTok{, }\DecValTok{70}\NormalTok{, }\DecValTok{75}\NormalTok{, }\DecValTok{79}\NormalTok{, }\DecValTok{86}\NormalTok{, }\DecValTok{90}\NormalTok{)}
+
+\NormalTok{datos\_estudio }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{horas =}\NormalTok{ horas,}
+  \AttributeTok{calificacion =}\NormalTok{ calificacion}
+\NormalTok{)}
+
+\NormalTok{datos\_estudio}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#>   horas calificacion
+#> 1     2           55
+#> 2     3           60
+#> 3     4           64
+#> 4     5           70
+#> 5     6           75
+#> 6     7           79
+#> 7     8           86
+#> 8     9           90
+\end{verbatim}
+
+\section{Visualizar la relación}\label{visualizar-la-relaciuxf3n}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{source}\NormalTok{(}\StringTok{"util\_graficas.R"}\NormalTok{)}
+
+\FunctionTok{ggplot}\NormalTok{(datos\_estudio, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ horas, }\AttributeTok{y =}\NormalTok{ calificacion)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{size =} \DecValTok{3}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{, }\AttributeTok{se =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"Horas de estudio y calificación"}\NormalTok{,}
+    \AttributeTok{subtitle =} \StringTok{"Ejemplo de una relación aproximadamente lineal"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{"Horas de estudio"}\NormalTok{,}
+    \AttributeTok{y =} \StringTok{"Calificación"}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{tema\_libro}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=0.92\linewidth,height=\textheight,keepaspectratio]{04-regresion-lineal-multiple_files/figure-pdf/grafica-regresion-simple-1.png}
+
+\section{Ajustar el modelo simple}\label{ajustar-el-modelo-simple}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{modelo\_simple }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(}
+\NormalTok{  calificacion }\SpecialCharTok{\textasciitilde{}}\NormalTok{ horas,}
+  \AttributeTok{data =}\NormalTok{ datos\_estudio}
+\NormalTok{)}
+
+\FunctionTok{summary}\NormalTok{(modelo\_simple)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> 
+#> Call:
+#> lm(formula = calificacion ~ horas, data = datos_estudio)
+#> 
+#> Residuals:
+#>     Min      1Q  Median      3Q     Max 
+#> -0.9643 -0.2589  0.1250  0.2887  0.9762 
+#> 
+#> Coefficients:
+#>             Estimate Std. Error t value Pr(>|t|)    
+#> (Intercept)  44.5476     0.6197   71.88 4.88e-10 ***
+#> horas         5.0595     0.1040   48.64 5.06e-09 ***
+#> ---
+#> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+#> 
+#> Residual standard error: 0.6741 on 6 degrees of freedom
+#> Multiple R-squared:  0.9975, Adjusted R-squared:  0.997 
+#> F-statistic:  2366 on 1 and 6 DF,  p-value: 5.061e-09
+\end{verbatim}
+
+\section{Interpretar los
+coeficientes}\label{interpretar-los-coeficientes}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{coeficientes\_simple }\OtherTok{\textless{}{-}} \FunctionTok{coef}\NormalTok{(modelo\_simple)}
+\NormalTok{coeficientes\_simple}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> (Intercept)       horas 
+#>   44.547619    5.059524
+\end{verbatim}
+
+El modelo estimado tiene la forma:
+
+\[
+\widehat{Y} = \widehat{\beta}_0 + \widehat{\beta}_1 X.
+\]
+
+La pendiente indica cuántos puntos cambia, en promedio, la calificación
+por cada hora adicional de estudio. La ordenada al origen es necesaria
+matemáticamente, aunque no siempre tenga una interpretación práctica
+dentro del rango observado.
+
+\section{Realizar una predicción}\label{realizar-una-predicciuxf3n}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nuevo\_estudiante }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{horas =} \FloatTok{6.5}\NormalTok{)}
+
+\FunctionTok{predict}\NormalTok{(}
+\NormalTok{  modelo\_simple,}
+  \AttributeTok{newdata =}\NormalTok{ nuevo\_estudiante,}
+  \AttributeTok{interval =} \StringTok{"prediction"}\NormalTok{,}
+  \AttributeTok{level =} \FloatTok{0.95}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#>        fit      lwr      upr
+#> 1 77.43452 75.66668 79.20237
+\end{verbatim}
+
+El intervalo de predicción es más amplio que un intervalo para la media
+porque considera tanto la incertidumbre del modelo como la variabilidad
+individual.
+
+\section{Residuos}\label{residuos}
+
+El residuo de la observación \(i\) es:
+
+\[
+e_i = y_i - \widehat{y}_i.
+\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{diagnostico\_simple }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{observado =}\NormalTok{ datos\_estudio}\SpecialCharTok{$}\NormalTok{calificacion,}
+  \AttributeTok{predicho =} \FunctionTok{fitted}\NormalTok{(modelo\_simple),}
+  \AttributeTok{residuo =} \FunctionTok{residuals}\NormalTok{(modelo\_simple)}
+\NormalTok{)}
+
+\NormalTok{diagnostico\_simple}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#>   observado predicho     residuo
+#> 1        55 54.66667  0.33333333
+#> 2        60 59.72619  0.27380952
+#> 3        64 64.78571 -0.78571429
+#> 4        70 69.84524  0.15476190
+#> 5        75 74.90476  0.09523810
+#> 6        79 79.96429 -0.96428571
+#> 7        86 85.02381  0.97619048
+#> 8        90 90.08333 -0.08333333
+\end{verbatim}
+
+\section{Visualizar los residuos}\label{visualizar-los-residuos}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(diagnostico\_simple, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ predicho, }\AttributeTok{y =}\NormalTok{ residuo)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_hline}\NormalTok{(}\AttributeTok{yintercept =} \DecValTok{0}\NormalTok{, }\AttributeTok{linetype =} \DecValTok{2}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{size =} \DecValTok{3}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"Residuos frente a valores predichos"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{"Valor predicho"}\NormalTok{,}
+    \AttributeTok{y =} \StringTok{"Residuo"}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{tema\_libro}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=0.92\linewidth,height=\textheight,keepaspectratio]{04-regresion-lineal-multiple_files/figure-pdf/grafica-residuos-simple-1.png}
+
+Una nube sin patrón claro alrededor de cero es compatible con una
+relación lineal razonable. Curvaturas, forma de embudo o puntos extremos
+sugieren revisar el modelo.
+
+\section{Regresión lineal
+múltiple}\label{regresiuxf3n-lineal-muxfaltiple}
+
+La regresión múltiple incorpora varias variables explicativas:
+
+\[
+Y_i = \beta_0 + \beta_1X_{i1} + \beta_2X_{i2} + \cdots + \beta_pX_{ip} + \varepsilon_i.
+\]
+
+Cada coeficiente representa el cambio esperado en la respuesta cuando la
+variable correspondiente aumenta una unidad, \textbf{manteniendo
+constantes las demás variables}.
+
+\section{Preparar un ejemplo
+múltiple}\label{preparar-un-ejemplo-muxfaltiple}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{2026}\NormalTok{)}
+
+\NormalTok{n }\OtherTok{\textless{}{-}} \DecValTok{80}
+
+\NormalTok{datos\_ambientales }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{temperatura =} \FunctionTok{runif}\NormalTok{(n, }\DecValTok{12}\NormalTok{, }\DecValTok{35}\NormalTok{),}
+  \AttributeTok{velocidad\_viento =} \FunctionTok{runif}\NormalTok{(n, }\FloatTok{0.5}\NormalTok{, }\DecValTok{8}\NormalTok{),}
+  \AttributeTok{trafico =} \FunctionTok{runif}\NormalTok{(n, }\DecValTok{100}\NormalTok{, }\DecValTok{900}\NormalTok{)}
+\NormalTok{)}
+
+\NormalTok{datos\_ambientales}\SpecialCharTok{$}\NormalTok{pm10 }\OtherTok{\textless{}{-}}
+  \DecValTok{18} \SpecialCharTok{+}
+  \FloatTok{0.9} \SpecialCharTok{*}\NormalTok{ datos\_ambientales}\SpecialCharTok{$}\NormalTok{temperatura }\SpecialCharTok{{-}}
+  \FloatTok{2.1} \SpecialCharTok{*}\NormalTok{ datos\_ambientales}\SpecialCharTok{$}\NormalTok{velocidad\_viento }\SpecialCharTok{+}
+  \FloatTok{0.045} \SpecialCharTok{*}\NormalTok{ datos\_ambientales}\SpecialCharTok{$}\NormalTok{trafico }\SpecialCharTok{+}
+  \FunctionTok{rnorm}\NormalTok{(n, }\AttributeTok{mean =} \DecValTok{0}\NormalTok{, }\AttributeTok{sd =} \DecValTok{6}\NormalTok{)}
+
+\FunctionTok{head}\NormalTok{(datos\_ambientales)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#>   temperatura velocidad_viento  trafico     pm10
+#> 1    28.06949         1.426882 199.1416 60.66469
+#> 2    24.80020         7.636602 504.3138 59.76823
+#> 3    15.22322         6.362863 847.4719 57.86386
+#> 4    18.57164         7.716020 190.2525 32.45387
+#> 5    24.77349         1.356889 199.1549 35.97589
+#> 6    12.57802         7.831641 402.8500 33.81511
+\end{verbatim}
+
+\section{Ajustar el modelo
+múltiple}\label{ajustar-el-modelo-muxfaltiple}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{modelo\_multiple }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(}
+\NormalTok{  pm10 }\SpecialCharTok{\textasciitilde{}}\NormalTok{ temperatura }\SpecialCharTok{+}\NormalTok{ velocidad\_viento }\SpecialCharTok{+}\NormalTok{ trafico,}
+  \AttributeTok{data =}\NormalTok{ datos\_ambientales}
+\NormalTok{)}
+
+\FunctionTok{summary}\NormalTok{(modelo\_multiple)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> 
+#> Call:
+#> lm(formula = pm10 ~ temperatura + velocidad_viento + trafico, 
+#>     data = datos_ambientales)
+#> 
+#> Residuals:
+#>      Min       1Q   Median       3Q      Max 
+#> -11.4969  -4.0965   0.1626   3.3999  12.7856 
+#> 
+#> Coefficients:
+#>                   Estimate Std. Error t value Pr(>|t|)    
+#> (Intercept)      13.831686   2.970644   4.656 1.34e-05 ***
+#> temperatura       1.016287   0.095374  10.656  < 2e-16 ***
+#> velocidad_viento -1.681322   0.282650  -5.948 7.75e-08 ***
+#> trafico           0.047190   0.002486  18.982  < 2e-16 ***
+#> ---
+#> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+#> 
+#> Residual standard error: 5.446 on 76 degrees of freedom
+#> Multiple R-squared:  0.866,  Adjusted R-squared:  0.8607 
+#> F-statistic: 163.7 on 3 and 76 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\section{Interpretar los coeficientes
+múltiples}\label{interpretar-los-coeficientes-muxfaltiples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tabla\_coeficientes }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{termino =} \FunctionTok{names}\NormalTok{(}\FunctionTok{coef}\NormalTok{(modelo\_multiple)),}
+  \AttributeTok{estimacion =} \FunctionTok{as.numeric}\NormalTok{(}\FunctionTok{coef}\NormalTok{(modelo\_multiple))}
+\NormalTok{)}
+
+\NormalTok{tabla\_coeficientes}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#>            termino  estimacion
+#> 1      (Intercept) 13.83168556
+#> 2      temperatura  1.01628652
+#> 3 velocidad_viento -1.68132208
+#> 4          trafico  0.04718991
+\end{verbatim}
+
+Por ejemplo, el coeficiente de \texttt{velocidad\_viento} estima el
+cambio promedio de PM10 asociado con un aumento de una unidad en la
+velocidad del viento, manteniendo constantes la temperatura y el
+tráfico.
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-warning-color!10!white, colframe=quarto-callout-warning-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-warning-color}{\faExclamationTriangle}\hspace{0.5em}{Asociación no significa causalidad}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Un coeficiente estadísticamente significativo no demuestra por sí solo
+una relación causal. La causalidad requiere diseño, conocimiento
+sustantivo y control adecuado de variables de confusión.
+
+\end{tcolorbox}
+
+\section{Separar entrenamiento y
+prueba}\label{separar-entrenamiento-y-prueba}
+
+Evaluar el modelo con los mismos datos usados para ajustarlo produce una
+visión demasiado optimista. Por ello se separan datos de entrenamiento y
+prueba.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{2026}\NormalTok{)}
+
+\NormalTok{indices\_entrenamiento }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(}
+  \FunctionTok{seq\_len}\NormalTok{(}\FunctionTok{nrow}\NormalTok{(datos\_ambientales)),}
+  \AttributeTok{size =} \FunctionTok{floor}\NormalTok{(}\FloatTok{0.8} \SpecialCharTok{*} \FunctionTok{nrow}\NormalTok{(datos\_ambientales))}
+\NormalTok{)}
+
+\NormalTok{entrenamiento\_reg }\OtherTok{\textless{}{-}}\NormalTok{ datos\_ambientales[indices\_entrenamiento, ]}
+\NormalTok{prueba\_reg }\OtherTok{\textless{}{-}}\NormalTok{ datos\_ambientales[}\SpecialCharTok{{-}}\NormalTok{indices\_entrenamiento, ]}
+
+\NormalTok{modelo\_multiple\_prueba }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(}
+\NormalTok{  pm10 }\SpecialCharTok{\textasciitilde{}}\NormalTok{ temperatura }\SpecialCharTok{+}\NormalTok{ velocidad\_viento }\SpecialCharTok{+}\NormalTok{ trafico,}
+  \AttributeTok{data =}\NormalTok{ entrenamiento\_reg}
+\NormalTok{)}
+
+\NormalTok{prediccion\_reg }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(}
+\NormalTok{  modelo\_multiple\_prueba,}
+  \AttributeTok{newdata =}\NormalTok{ prueba\_reg}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Métricas de evaluación}\label{muxe9tricas-de-evaluaciuxf3n}
+
+El error cuadrático medio y su raíz se calculan como:
+
+\[
+RMSE = \sqrt{\frac{1}{n}\sum_{i=1}^{n}(y_i-\widehat{y}_i)^2}.
+\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rmse }\OtherTok{\textless{}{-}} \FunctionTok{sqrt}\NormalTok{(}\FunctionTok{mean}\NormalTok{((prueba\_reg}\SpecialCharTok{$}\NormalTok{pm10 }\SpecialCharTok{{-}}\NormalTok{ prediccion\_reg)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{))}
+\NormalTok{mae }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(}\FunctionTok{abs}\NormalTok{(prueba\_reg}\SpecialCharTok{$}\NormalTok{pm10 }\SpecialCharTok{{-}}\NormalTok{ prediccion\_reg))}
+
+\NormalTok{metricas\_regresion }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{metrica =} \FunctionTok{c}\NormalTok{(}\StringTok{"RMSE"}\NormalTok{, }\StringTok{"MAE"}\NormalTok{),}
+  \AttributeTok{valor =} \FunctionTok{c}\NormalTok{(rmse, mae)}
+\NormalTok{)}
+
+\NormalTok{metricas\_regresion}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#>   metrica    valor
+#> 1    RMSE 4.290665
+#> 2     MAE 3.749943
+\end{verbatim}
+
+\section{Observado frente a predicho}\label{observado-frente-a-predicho}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{comparacion\_regresion }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{observado =}\NormalTok{ prueba\_reg}\SpecialCharTok{$}\NormalTok{pm10,}
+  \AttributeTok{predicho =}\NormalTok{ prediccion\_reg}
+\NormalTok{)}
+
+\FunctionTok{ggplot}\NormalTok{(comparacion\_regresion, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ observado, }\AttributeTok{y =}\NormalTok{ predicho)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{size =} \DecValTok{3}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.8}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_abline}\NormalTok{(}\AttributeTok{slope =} \DecValTok{1}\NormalTok{, }\AttributeTok{intercept =} \DecValTok{0}\NormalTok{, }\AttributeTok{linetype =} \DecValTok{2}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"Valores observados y predichos"}\NormalTok{,}
+    \AttributeTok{subtitle =} \StringTok{"La línea diagonal representa predicción perfecta"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{"PM10 observado"}\NormalTok{,}
+    \AttributeTok{y =} \StringTok{"PM10 predicho"}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{tema\_libro}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=0.92\linewidth,height=\textheight,keepaspectratio]{04-regresion-lineal-multiple_files/figure-pdf/observado-predicho-regresion-1.png}
+
+\section{Aplicación con datos ATUS
+agregados}\label{aplicaciuxf3n-con-datos-atus-agregados}
+
+En ATUS cada fila corresponde a un accidente. La base preparada del
+libro conserva las variables necesarias para los algoritmos de
+clasificación, pero no incluye entidad ni municipio. Por ello, en este
+ejemplo los registros se agregan por mes y se modela el número mensual
+de accidentes registrados.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(readr)}
+\FunctionTok{library}\NormalTok{(dplyr)}
+
+\NormalTok{ruta\_atus\_ml }\OtherTok{\textless{}{-}} \StringTok{"datos/atus\_ml\_preparado.csv"}
+
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{file.exists}\NormalTok{(ruta\_atus\_ml)) \{}
+  \FunctionTok{stop}\NormalTok{(}
+    \FunctionTok{paste}\NormalTok{(}
+      \StringTok{"No se encontró datos/atus\_ml\_preparado.csv."}\NormalTok{,}
+      \StringTok{"Ejecute primero la celda de preparación automática."}
+\NormalTok{    )}
+\NormalTok{  )}
+\NormalTok{\}}
+
+\NormalTok{atus\_reg }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}
+\NormalTok{  ruta\_atus\_ml,}
+  \AttributeTok{show\_col\_types =} \ConstantTok{FALSE}
+\NormalTok{)}
+
+\FunctionTok{names}\NormalTok{(atus\_reg)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> [1] "accidente_con_victimas" "MES"                    "ID_HORA"               
+#> [4] "DIASEMANA"              "TIPACCID"               "CAUSAACCI"
+\end{verbatim}
+
+\section{Construir una base mensual}\label{construir-una-base-mensual}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{variables\_necesarias }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}
+  \StringTok{"MES"}\NormalTok{, }\StringTok{"ID\_HORA"}\NormalTok{, }\StringTok{"DIASEMANA"}\NormalTok{, }\StringTok{"TIPACCID"}\NormalTok{,}
+  \StringTok{"accidente\_con\_victimas"}
+\NormalTok{)}
+
+\NormalTok{faltantes }\OtherTok{\textless{}{-}} \FunctionTok{setdiff}\NormalTok{(variables\_necesarias, }\FunctionTok{names}\NormalTok{(atus\_reg))}
+
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{length}\NormalTok{(faltantes) }\SpecialCharTok{\textgreater{}} \DecValTok{0}\NormalTok{) \{}
+  \FunctionTok{stop}\NormalTok{(}
+    \FunctionTok{paste}\NormalTok{(}
+      \StringTok{"Faltan variables para el ejemplo:"}\NormalTok{,}
+      \FunctionTok{paste}\NormalTok{(faltantes, }\AttributeTok{collapse =} \StringTok{", "}\NormalTok{)}
+\NormalTok{    )}
+\NormalTok{  )}
+\NormalTok{\}}
+
+\NormalTok{atus\_mensual }\OtherTok{\textless{}{-}}\NormalTok{ atus\_reg }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{ID\_HORA =} \FunctionTok{as.numeric}\NormalTok{(ID\_HORA),}
+    \AttributeTok{MES =} \FunctionTok{as.numeric}\NormalTok{(MES),}
+    \AttributeTok{fin\_semana =}\NormalTok{ DIASEMANA }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}
+      \StringTok{"sábado"}\NormalTok{, }\StringTok{"sabado"}\NormalTok{, }\StringTok{"domingo"}\NormalTok{,}
+      \StringTok{"Sábado"}\NormalTok{, }\StringTok{"Sabado"}\NormalTok{, }\StringTok{"Domingo"}
+\NormalTok{    ),}
+    \AttributeTok{con\_victimas =}\NormalTok{ accidente\_con\_victimas }\SpecialCharTok{==} \StringTok{"Con víctimas"}
+\NormalTok{  ) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{group\_by}\NormalTok{(MES) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{summarise}\NormalTok{(}
+    \AttributeTok{accidentes =} \FunctionTok{n}\NormalTok{(),}
+    \AttributeTok{tipos\_accidente =} \FunctionTok{n\_distinct}\NormalTok{(TIPACCID, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{),}
+    \AttributeTok{hora\_promedio =} \FunctionTok{mean}\NormalTok{(ID\_HORA, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{),}
+    \AttributeTok{proporcion\_fin\_semana =} \FunctionTok{mean}\NormalTok{(fin\_semana, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{),}
+    \AttributeTok{proporcion\_con\_victimas =} \FunctionTok{mean}\NormalTok{(con\_victimas, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{),}
+    \AttributeTok{.groups =} \StringTok{"drop"}
+\NormalTok{  ) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{filter}\NormalTok{(}
+    \FunctionTok{is.finite}\NormalTok{(accidentes),}
+    \FunctionTok{is.finite}\NormalTok{(tipos\_accidente),}
+    \FunctionTok{is.finite}\NormalTok{(hora\_promedio),}
+    \FunctionTok{is.finite}\NormalTok{(proporcion\_fin\_semana),}
+    \FunctionTok{is.finite}\NormalTok{(proporcion\_con\_victimas)}
+\NormalTok{  )}
+
+\NormalTok{atus\_mensual}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> # A tibble: 12 x 6
+#>      MES accidentes tipos_accidente hora_promedio proporcion_fin_semana
+#>    <dbl>      <int>           <int>         <dbl>                 <dbl>
+#>  1     1      31600              13          13.6                 0.252
+#>  2     2      32208              13          13.7                 0.271
+#>  3     3      33237              13          13.7                 0.320
+#>  4     4      32666              13          13.7                 0.272
+#>  5     5      34665              13          13.8                 0.260
+#>  6     6      31737              13          13.7                 0.338
+#>  7     7      30062              13          13.7                 0.270
+#>  8     8      31800              13          13.8                 0.293
+#>  9     9      31351              13          13.6                 0.292
+#> 10    10      33771              13          13.6                 0.251
+#> 11    11      34047              13          13.6                 0.293
+#> 12    12      33483              13          13.6                 0.291
+#> # i 1 more variable: proporcion_con_victimas <dbl>
+\end{verbatim}
+
+\section{Ajustar la regresión múltiple con
+ATUS}\label{ajustar-la-regresiuxf3n-muxfaltiple-con-atus}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{modelo\_atus\_reg }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(}
+\NormalTok{  accidentes }\SpecialCharTok{\textasciitilde{}}\NormalTok{ MES }\SpecialCharTok{+}\NormalTok{ tipos\_accidente }\SpecialCharTok{+}
+\NormalTok{    hora\_promedio }\SpecialCharTok{+}\NormalTok{ proporcion\_fin\_semana,}
+  \AttributeTok{data =}\NormalTok{ atus\_mensual}
+\NormalTok{)}
+
+\FunctionTok{summary}\NormalTok{(modelo\_atus\_reg)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> 
+#> Call:
+#> lm(formula = accidentes ~ MES + tipos_accidente + hora_promedio + 
+#>     proporcion_fin_semana, data = atus_mensual)
+#> 
+#> Residuals:
+#>      Min       1Q   Median       3Q      Max 
+#> -2402.87  -610.94    75.52   707.04  2319.88 
+#> 
+#> Coefficients: (1 not defined because of singularities)
+#>                       Estimate Std. Error t value Pr(>|t|)
+#> (Intercept)           71520.81   93274.17   0.767    0.465
+#> MES                      65.83     140.08   0.470    0.651
+#> tipos_accidente             NA         NA      NA       NA
+#> hora_promedio         -2749.42    6808.57  -0.404    0.697
+#> proporcion_fin_semana -6359.05   17099.04  -0.372    0.720
+#> 
+#> Residual standard error: 1487 on 8 degrees of freedom
+#> Multiple R-squared:  0.08946,    Adjusted R-squared:  -0.252 
+#> F-statistic: 0.262 on 3 and 8 DF,  p-value: 0.8509
+\end{verbatim}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-warning-color!10!white, colframe=quarto-callout-warning-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-warning-color}{\faExclamationTriangle}\hspace{0.5em}{Limitación del ejemplo}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+El número de accidentes es una variable de conteo. La regresión lineal
+se utiliza aquí con fines didácticos; en un estudio formal podrían ser
+más apropiados modelos de Poisson o binomial negativa. Esta comparación
+ayuda a comprender que la elección del algoritmo depende de la
+naturaleza de la respuesta.
+
+\end{tcolorbox}
+
+\section{Supuestos principales}\label{supuestos-principales}
+
+La interpretación inferencial tradicional de la regresión lineal se
+apoya en varios supuestos:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  relación aproximadamente lineal;
+\item
+  errores independientes;
+\item
+  varianza aproximadamente constante;
+\item
+  ausencia de colinealidad extrema;
+\item
+  normalidad aproximada de los errores cuando se construyen pruebas e
+  intervalos.
+\end{enumerate}
+
+Los supuestos deben analizarse mediante gráficas, conocimiento del
+problema y medidas diagnósticas; no deben tratarse como una lista
+mecánica.
+
+\section{Diferencias entre regresión lineal y
+logística}\label{diferencias-entre-regresiuxf3n-lineal-y-loguxedstica}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Característica
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Regresión lineal
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Regresión logística
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Respuesta & Numérica continua & Categórica binaria \\
+Salida directa & Cualquier número real & Probabilidad entre 0 y 1 \\
+Función usual & Identidad & Logística \\
+Evaluación & RMSE, MAE, \(R^2\) & Matriz de confusión, sensibilidad,
+especificidad, AUC \\
+Ejemplo & Predecir PM10 & Clasificar accidente con víctimas \\
+\end{longtable}
+}
+
+\section{Actividades para el lector}\label{actividades-para-el-lector}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Modifique el ejemplo simple y prediga la calificación para 7.5 horas
+  de estudio.
+\item
+  Retire una variable del modelo ambiental y compare el \(R^2\) ajustado
+  y el RMSE.
+\item
+  Añada una interacción entre temperatura y velocidad del viento.
+\item
+  Analice los residuos del modelo múltiple.
+\item
+  Explique por qué no sería correcto utilizar regresión lineal ordinaria
+  para predecir directamente una categoría como \texttt{Con\ víctimas} o
+  \texttt{Solo\ daños}.
+\item
+  Compare conceptualmente el modelo ATUS de este capítulo con la
+  regresión logística del capítulo siguiente.
+\end{enumerate}
+
+\section{Conclusiones}\label{conclusiones}
+
+La regresión lineal simple explica una respuesta cuantitativa mediante
+una variable y la regresión múltiple permite considerar varios factores
+simultáneamente. Su valor en este libro no se limita a la predicción
+numérica: proporciona el lenguaje básico para comprender coeficientes,
+errores, validación y generalización, conceptos que continuarán
+apareciendo en los algoritmos de clasificación.
+
+\bookmarksetup{startatroot}
+
 \chapter{Regresión logística para
 clasificación}\label{regresiuxf3n-loguxedstica-para-clasificaciuxf3n}
 
-\section{Objetivos del capítulo}\label{objetivos-del-capuxedtulo-3}
+\section{Objetivos del capítulo}\label{objetivos-del-capuxedtulo-4}
 
 Al finalizar este capítulo, el lector será capaz de ajustar una
 regresión logística, predecir probabilidades y evaluar el desempeño.
@@ -1984,7 +2818,7 @@ et~al. (2021).
 \chapter{k vecinos más cercanos,
 k-NN}\label{k-vecinos-muxe1s-cercanos-k-nn}
 
-\section{Objetivos del capítulo}\label{objetivos-del-capuxedtulo-4}
+\section{Objetivos del capítulo}\label{objetivos-del-capuxedtulo-5}
 
 Al finalizar este capítulo, el lector será capaz de explicar k-NN,
 preparar datos para este método, estandarizar variables y evaluar el
@@ -2207,7 +3041,7 @@ et~al. (2021).
 \chapter{Árboles de decisión para
 clasificación}\label{uxe1rboles-de-decisiuxf3n-para-clasificaciuxf3n}
 
-\section{Objetivos del capítulo}\label{objetivos-del-capuxedtulo-5}
+\section{Objetivos del capítulo}\label{objetivos-del-capuxedtulo-6}
 
 Al finalizar este capítulo, el lector será capaz de explicar la idea
 básica de un árbol de decisión, entrenarlo en R y evaluar su desempeño.
@@ -2444,7 +3278,7 @@ contemporánea con ejemplos en R puede consultarse James et~al. (2021).
 \chapter{Random Forest para
 clasificación}\label{random-forest-para-clasificaciuxf3n}
 
-\section{Objetivos del capítulo}\label{objetivos-del-capuxedtulo-6}
+\section{Objetivos del capítulo}\label{objetivos-del-capuxedtulo-7}
 
 Al finalizar este capítulo, el lector será capaz de explicar Random
 Forest, entrenar un modelo en R, interpretar importancia de variables y
@@ -2754,7 +3588,7 @@ también en James et~al. (2021).
 \chapter{Evaluación, validación y comparación de
 modelos}\label{evaluaciuxf3n-validaciuxf3n-y-comparaciuxf3n-de-modelos}
 
-\section{Objetivos del capítulo}\label{objetivos-del-capuxedtulo-7}
+\section{Objetivos del capítulo}\label{objetivos-del-capuxedtulo-8}
 
 Al finalizar este capítulo, el lector será capaz de:
 
@@ -3598,7 +4432,7 @@ y mantiene un desempeño estable con datos nuevos.
   falsos positivos.
 \end{enumerate}
 
-\section{Actividades para el lector}\label{actividades-para-el-lector}
+\section{Actividades para el lector}\label{actividades-para-el-lector-1}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -3641,7 +4475,7 @@ comparación de modelos aparece en James et~al. (2021).
 \chapter{Máquinas de Vectores de Soporte
 (SVM)}\label{muxe1quinas-de-vectores-de-soporte-svm}
 
-\section{Objetivos del capítulo}\label{objetivos-del-capuxedtulo-8}
+\section{Objetivos del capítulo}\label{objetivos-del-capuxedtulo-9}
 
 Al finalizar este capítulo, el lector será capaz de:
 
@@ -4666,7 +5500,7 @@ Registre para cada modelo:
   importante de interpretabilidad.
 \end{enumerate}
 
-\section{Conclusiones}\label{conclusiones}
+\section{Conclusiones}\label{conclusiones-1}
 
 Las máquinas de vectores de soporte buscan una frontera con margen
 amplio y se apoyan en un subconjunto de observaciones denominado
@@ -4695,7 +5529,7 @@ aplicada en R puede consultarse en James et~al. (2021).
 
 \chapter{Clasificador Naive Bayes}\label{clasificador-naive-bayes}
 
-\section{Objetivos del capítulo}\label{objetivos-del-capuxedtulo-9}
+\section{Objetivos del capítulo}\label{objetivos-del-capuxedtulo-10}
 
 Al finalizar este capítulo, el lector será capaz de:
 
@@ -5448,7 +6282,7 @@ variante & Alta & Mediante distribuciones por clase \\
 \end{longtable}
 }
 
-\section{Actividades para el lector}\label{actividades-para-el-lector-1}
+\section{Actividades para el lector}\label{actividades-para-el-lector-2}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -5471,7 +6305,7 @@ variante & Alta & Mediante distribuciones por clase \\
   doblemente en el producto de verosimilitudes.
 \end{enumerate}
 
-\section{Conclusiones}\label{conclusiones-1}
+\section{Conclusiones}\label{conclusiones-2}
 
 Naive Bayes muestra que un modelo relativamente simple puede construir
 clasificaciones útiles mediante probabilidades. Su supuesto de
@@ -5580,6 +6414,10 @@ James, Gareth, Daniela Witten, Trevor Hastie, y Robert Tibshirani. 2021.
 Kohavi, Ron. 1995. {«A Study of Cross-Validation and Bootstrap for
 Accuracy Estimation and Model Selection»}. \emph{Proceedings of the 14th
 International Joint Conference on Artificial Intelligence} 2: 1137-45.
+
+\bibitem[\citeproctext]{ref-montgomery2021introduction}
+Montgomery, Douglas C., Elizabeth A. Peck, y G. Geoffrey Vining. 2021.
+\emph{Introduction to Linear Regression Analysis}. 6.ª ed. Wiley.
 
 \bibitem[\citeproctext]{ref-quinlan1986induction}
 Quinlan, J. Ross. 1986. {«Induction of Decision Trees»}. \emph{Machine

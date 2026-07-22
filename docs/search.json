@@ -14,7 +14,7 @@
     "href": "index.html#aprendizaje-y-clasificación-automática-con-r",
     "title": "Aprendizaje y Clasificación Automática con R",
     "section": "Aprendizaje y Clasificación Automática con R",
-    "text": "Aprendizaje y Clasificación Automática con R\n\nUn enfoque práctico con datos abiertos reales\nAutor: MI Jesús Gilberto Rodríguez Escobedo\nVersión: 0.10.1 (desarrollo) Modalidad: Libro abierto, práctico e interactivo\nTecnologías: R · Quarto · Machine Learning · Datos abiertos · GitHub Pages\nEste libro introduce el aprendizaje automático (Machine Learning) mediante ejemplos claros, didácticos y prácticos desarrollados principalmente en R.\nLa intención no es escribir un tratado matemático extenso, sino construir una guía aplicada para aprender haciendo con datos abiertos reales. En esta versión trabajamos con datos de accidentes de tránsito de México y los usamos como hilo conductor para explicar preparación de datos, análisis exploratorio y modelos de clasificación.\n\n\n\n\n\n\nNotaEnfoque del libro\n\n\n\nEl libro combina fundamento conceptual, código reproducible en R, explicación breve del código, interpretación didáctica de resultados y visualizaciones profesionales.",
+    "text": "Aprendizaje y Clasificación Automática con R\n\nUn enfoque práctico con datos abiertos reales\nAutor: MI Jesús Gilberto Rodríguez Escobedo\nVersión: 0.10.3 (desarrollo) Modalidad: Libro abierto, práctico e interactivo\nTecnologías: R · Quarto · Machine Learning · Datos abiertos · GitHub Pages\nEste libro introduce el aprendizaje automático (Machine Learning) mediante ejemplos claros, didácticos y prácticos desarrollados principalmente en R.\nLa intención no es escribir un tratado matemático extenso, sino construir una guía aplicada para aprender haciendo con datos abiertos reales. En esta versión trabajamos con datos de accidentes de tránsito de México y los usamos como hilo conductor para explicar preparación de datos, análisis exploratorio y modelos de clasificación.\n\n\n\n\n\n\nNotaEnfoque del libro\n\n\n\nEl libro combina fundamento conceptual, código reproducible en R, explicación breve del código, interpretación didáctica de resultados y visualizaciones profesionales.",
     "crumbs": [
       "Presentación"
     ]
@@ -330,11 +330,21 @@
     ]
   },
   {
+    "objectID": "01-introduccion.html#materiales-complementarios-del-capítulo",
+    "href": "01-introduccion.html#materiales-complementarios-del-capítulo",
+    "title": "1  ¿Qué es el aprendizaje automático?",
+    "section": "1.10 Materiales complementarios del capítulo",
+    "text": "1.10 Materiales complementarios del capítulo\nEstos recursos permiten repasar los conceptos principales del capítulo mediante distintos formatos. La presentación puede consultarse en PDF o modificarse en PowerPoint; la infografía ofrece una síntesis visual y el video explica los contenidos de manera audiovisual.\n\n\n\nRecurso\nUtilidad\nAbrir o reproducir\nDescargar\n\n\n\n\nVideo explicativo\nIntroducción audiovisual al aprendizaje automático y a los contenidos del capítulo.\nVer en YouTube\n—\n\n\nPresentación en PDF\nDiapositivas para lectura, estudio o exposición.\nVer PDF\nDescargar PDF\n\n\nPresentación editable\nArchivo PowerPoint para utilizarlo en clase o adaptarlo.\nAbrir PPTX\nDescargar PPTX\n\n\nInfografía\nResumen visual de las ideas fundamentales.\nVer infografía\nDescargar PNG\n\n\n\n\n1.10.1 Video explicativo\n\n \n\n\n\n1.10.2 Vista previa de la infografía\n\n\n\nInfografía del capítulo 1\n\n\n\n\n\n\n\n\nNotaElaboración de los materiales\n\n\n\nLos materiales complementarios fueron elaborados con apoyo de NotebookLM de Google, a partir del contenido del capítulo, y posteriormente revisados y adaptados por el autor. El texto del libro y sus archivos fuente constituyen la referencia principal.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>¿Qué es el aprendizaje automático?</span>"
+    ]
+  },
+  {
     "objectID": "01-introduccion.html#conclusión",
     "href": "01-introduccion.html#conclusión",
     "title": "1  ¿Qué es el aprendizaje automático?",
-    "section": "1.10 Conclusión",
-    "text": "1.10 Conclusión\nEl aprendizaje automático permite construir modelos que aprenden patrones a partir de datos. En este capítulo vimos la diferencia entre reglas manuales y aprendizaje a partir de ejemplos.",
+    "section": "1.11 Conclusión",
+    "text": "1.11 Conclusión\nEl aprendizaje automático permite construir modelos que aprenden patrones a partir de datos. En este capítulo vimos la diferencia entre reglas manuales y aprendizaje a partir de ejemplos.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>¿Qué es el aprendizaje automático?</span>"
     ]
@@ -494,7 +504,17 @@
     "href": "02-preparacion-datos.html#resumen-del-capítulo",
     "title": "2  Preparación de datos reales",
     "section": "2.15 Resumen del capítulo",
-    "text": "2.15 Resumen del capítulo\nEn este capítulo descargamos y documentamos una base real del INEGI, verificamos su ubicación, seleccionamos variables, construimos una respuesta binaria y guardamos una base preparada para aprendizaje automático.\n\n\n\n\nInstituto Nacional de Estadística y Geografía. 2025. «Estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas (ATUS), 2024». Instituto Nacional de Estadística y Geografía. https://www.inegi.org.mx/programas/accidentes/.\n\n\nInstituto Nacional de Estadística y Geografía. 2026. «Términos de libre uso de la información del INEGI». https://www.inegi.org.mx/inegi/terminos.html.",
+    "text": "2.15 Resumen del capítulo\nEn este capítulo descargamos y documentamos una base real del INEGI, verificamos su ubicación, seleccionamos variables, construimos una respuesta binaria y guardamos una base preparada para aprendizaje automático.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
+    ]
+  },
+  {
+    "objectID": "02-preparacion-datos.html#materiales-complementarios-del-capítulo",
+    "href": "02-preparacion-datos.html#materiales-complementarios-del-capítulo",
+    "title": "2  Preparación de datos reales",
+    "section": "2.16 Materiales complementarios del capítulo",
+    "text": "2.16 Materiales complementarios del capítulo\nEstos recursos permiten repasar la preparación de datos reales mediante una presentación, una infografía y un video explicativo.\n\n\n\nRecurso\nUtilidad\nAbrir o reproducir\nDescargar\n\n\n\n\nVideo explicativo\nExplicación audiovisual del proceso de descarga, revisión, limpieza y preparación de datos.\nVer en YouTube\n—\n\n\nPresentación en PDF\nDiapositivas para lectura, estudio o exposición.\nVer PDF\nDescargar PDF\n\n\nPresentación editable\nArchivo PowerPoint para utilizarlo en clase o adaptarlo.\nAbrir PPTX\nDescargar PPTX\n\n\nInfografía\nResumen visual de las etapas de preparación de datos.\nVer infografía\nDescargar PNG\n\n\n\n\n2.16.1 Video explicativo\n\n \n\n\n\n2.16.2 Vista previa de la infografía\n\n\n\nInfografía del capítulo 2\n\n\n\n\n\n\n\n\nNotaElaboración de los materiales\n\n\n\nLos materiales complementarios fueron elaborados con apoyo de NotebookLM de Google, a partir del contenido del capítulo, y posteriormente revisados y adaptados por el autor. El texto del libro y sus archivos fuente constituyen la referencia principal.\n\n\n\n\n\n\nInstituto Nacional de Estadística y Geografía. 2025. «Estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas (ATUS), 2024». Instituto Nacional de Estadística y Geografía. https://www.inegi.org.mx/programas/accidentes/.\n\n\nInstituto Nacional de Estadística y Geografía. 2026. «Términos de libre uso de la información del INEGI». https://www.inegi.org.mx/inegi/terminos.html.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
     ]

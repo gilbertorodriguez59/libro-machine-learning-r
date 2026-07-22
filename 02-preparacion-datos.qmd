@@ -293,3 +293,44 @@ Antes de continuar, verifique que:
 ## Resumen del capítulo
 
 En este capítulo descargamos y documentamos una base real del INEGI, verificamos su ubicación, seleccionamos variables, construimos una respuesta binaria y guardamos una base preparada para aprendizaje automático.
+
+
+## Materiales complementarios del capítulo
+
+Estos recursos permiten repasar la preparación de datos reales mediante una presentación, una infografía y un video explicativo.
+
+| Recurso | Utilidad | Abrir o reproducir | Descargar |
+|---|---|---|---|
+| Video explicativo | Explicación audiovisual del proceso de descarga, revisión, limpieza y preparación de datos. | [Ver en YouTube](https://www.youtube.com/watch?v=bmv-tDPZGjQ){target="_blank"} | — |
+| Presentación en PDF | Diapositivas para lectura, estudio o exposición. | [Ver PDF](recursos/capitulo-02/capitulo-02-preparacion-datos-reales.pdf){target="_blank"} | [Descargar PDF](recursos/capitulo-02/capitulo-02-preparacion-datos-reales.pdf){download="capitulo-02-preparacion-datos-reales.pdf"} |
+| Presentación editable | Archivo PowerPoint para utilizarlo en clase o adaptarlo. | [Abrir PPTX](recursos/capitulo-02/capitulo-02-preparacion-datos-reales.pptx) | [Descargar PPTX](recursos/capitulo-02/capitulo-02-preparacion-datos-reales.pptx){download="capitulo-02-preparacion-datos-reales.pptx"} |
+| Infografía | Resumen visual de las etapas de preparación de datos. | [Ver infografía](recursos/capitulo-02/capitulo-02-preparacion-datos-reales-infografia.png){target="_blank"} | [Descargar PNG](recursos/capitulo-02/capitulo-02-preparacion-datos-reales-infografia.png){download="capitulo-02-preparacion-datos-reales-infografia.png"} |
+
+::: {.content-visible when-format="html"}
+### Video explicativo
+
+<div class="video-responsive">
+  <iframe
+    src="https://www.youtube.com/embed/bmv-tDPZGjQ"
+    title="Capítulo 2. Preparación de datos reales"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen>
+  </iframe>
+</div>
+
+### Vista previa de la infografía
+
+[![Infografía del capítulo 2](recursos/capitulo-02/capitulo-02-preparacion-datos-reales-infografia.png)](recursos/capitulo-02/capitulo-02-preparacion-datos-reales-infografia.png)
+:::
+
+::: {.content-visible when-format="pdf"}
+**Video del capítulo:** <https://www.youtube.com/watch?v=bmv-tDPZGjQ>
+
+La presentación PDF, el archivo editable y la infografía pueden descargarse desde la versión web del libro.
+:::
+
+::: {.callout-note title="Elaboración de los materiales"}
+Los materiales complementarios fueron elaborados con apoyo de **NotebookLM de Google**, a partir del contenido del capítulo, y posteriormente revisados y adaptados por el autor. El texto del libro y sus archivos fuente constituyen la referencia principal.
+:::

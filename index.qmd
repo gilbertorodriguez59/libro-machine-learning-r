@@ -5,7 +5,7 @@
 ### Un enfoque práctico con datos abiertos reales {.unnumbered}
 
 **Autor:** MI Jesús Gilberto Rodríguez Escobedo  
-**Versión:** 0.10.1 (desarrollo)
+**Versión:** 0.10.3 (desarrollo)
 **Modalidad:** Libro abierto, práctico e interactivo  
 **Tecnologías:** R · Quarto · Machine Learning · Datos abiertos · GitHub Pages
 
@@ -49,11 +49,11 @@ El contenido del libro también está disponible como un cuaderno ejecutable de 
 
 Este video ofrece una introducción general a la presentación, la licencia de uso y el cuaderno completo de Google Colab.
 
-[Ver el video en YouTube](https://www.youtube.com/watch?v=rNhh4LBgKnw){.btn .btn-primary target="_blank"}
+[Ver el video en YouTube](https://www.youtube.com/watch?v=pyvMWWDqLws){.btn .btn-primary target="_blank"}
 
 ::: {.content-visible when-format="html"}
 <div class="video-responsive">
-<iframe src="https://www.youtube.com/embed/rNhh4LBgKnw" title="Presentación del libro Aprendizaje y Clasificación Automática con R" frameborder="0" allowfullscreen></iframe>
+<iframe src="https://www.youtube.com/embed/pyvMWWDqLws" title="Presentación del libro Aprendizaje y Clasificación Automática con R" frameborder="0" allowfullscreen></iframe>
 </div>
 :::
 

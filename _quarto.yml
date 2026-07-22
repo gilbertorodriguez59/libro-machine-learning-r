@@ -8,6 +8,12 @@ project:
     - recursos/presentacion-licencia-cuaderno.pdf
     - recursos/presentacion-licencia-cuaderno.pptx
     - recursos/infografia-presentacion-licencia-cuaderno.png
+    - recursos/capitulo-01/capitulo-01-introduccion-aprendizaje-automatico.pdf
+    - recursos/capitulo-01/capitulo-01-introduccion-aprendizaje-automatico.pptx
+    - recursos/capitulo-01/capitulo-01-introduccion-aprendizaje-automatico-infografia.png
+    - recursos/capitulo-02/capitulo-02-preparacion-datos-reales.pdf
+    - recursos/capitulo-02/capitulo-02-preparacion-datos-reales.pptx
+    - recursos/capitulo-02/capitulo-02-preparacion-datos-reales-infografia.png
 
 lang: es
 bibliography: referencias.bib

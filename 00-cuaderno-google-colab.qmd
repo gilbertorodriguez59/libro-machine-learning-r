@@ -13,26 +13,7 @@ Además de la versión web y del documento PDF, el libro cuenta con un **cuadern
 :::
 
 
-## Materiales complementarios descargables {.unnumbered}
 
-Antes de comenzar a ejecutar el cuaderno, el lector puede consultar o descargar una presentación, un video y una infografía que resumen la Presentación del libro, su licencia y la forma de trabajar en Google Colab:
-
-| Recurso | Descripción | Abrir o reproducir | Descargar |
-|---|---|---|---|
-| Presentación en PDF | Diapositivas de lectura sobre la Presentación, la licencia y el cuaderno de Colab. | [Ver PDF](recursos/presentacion-licencia-cuaderno.pdf){target="_blank"} | [Descargar PDF](recursos/presentacion-licencia-cuaderno.pdf){download="presentacion-licencia-cuaderno.pdf"} |
-| Presentación editable | Archivo PowerPoint que puede utilizarse para exponer o adaptar el contenido. | [Abrir o descargar PPTX](recursos/presentacion-licencia-cuaderno.pptx) | [Descargar PPTX](recursos/presentacion-licencia-cuaderno.pptx){download="presentacion-licencia-cuaderno.pptx"} |
-| Video explicativo | Presentación audiovisual de las secciones iniciales del libro. | [Reproducir video](recursos/video-presentacion-licencia-cuaderno.mp4){target="_blank"} | [Descargar MP4](recursos/video-presentacion-licencia-cuaderno.mp4){download="video-presentacion-licencia-cuaderno.mp4"} |
-| Infografía | Síntesis visual para consulta rápida, clase o difusión educativa. | [Ver infografía](recursos/infografia-presentacion-licencia-cuaderno.png){target="_blank"} | [Descargar PNG](recursos/infografia-presentacion-licencia-cuaderno.png){download="infografia-presentacion-licencia-cuaderno.png"} |
-
-::: {.callout-tip title="Cómo descargar los materiales"}
-Seleccione el enlace de la columna **Descargar**. Dependiendo de la configuración del navegador, el archivo puede descargarse inmediatamente o abrirse primero en una pestaña nueva. En ese caso, utilice el botón de descarga del navegador.
-
-Los archivos se encuentran alojados en el mismo repositorio de GitHub que el libro, por lo que no es necesario iniciar sesión en Google Drive ni solicitar permisos adicionales.
-:::
-
-::: {.callout-note title="Elaboración de los recursos"}
-Estos materiales complementarios fueron elaborados con apoyo de **NotebookLM de Google**, a partir del contenido del libro, y posteriormente revisados, seleccionados y adaptados por el autor. El contenido del libro y sus archivos fuente constituyen la referencia principal.
-:::
 
 ## ¿Qué contiene el cuaderno? {.unnumbered}
 

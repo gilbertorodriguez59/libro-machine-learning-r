@@ -5,7 +5,7 @@
 ### Un enfoque práctico con datos abiertos reales {.unnumbered}
 
 **Autor:** MI Jesús Gilberto Rodríguez Escobedo  
-**Versión:** 0.9.5 (desarrollo)
+**Versión:** 0.10.1 (desarrollo)
 **Modalidad:** Libro abierto, práctico e interactivo  
 **Tecnologías:** R · Quarto · Machine Learning · Datos abiertos · GitHub Pages
 
@@ -45,6 +45,23 @@ El contenido del libro también está disponible como un cuaderno ejecutable de 
 - [Consultar instrucciones de uso](00-cuaderno-google-colab.qmd)
 
 
+## Video de presentación del libro
+
+Este video ofrece una introducción general a la presentación, la licencia de uso y el cuaderno completo de Google Colab.
+
+[Ver el video en YouTube](https://www.youtube.com/watch?v=rNhh4LBgKnw){.btn .btn-primary target="_blank"}
+
+::: {.content-visible when-format="html"}
+<div class="video-responsive">
+<iframe src="https://www.youtube.com/embed/rNhh4LBgKnw" title="Presentación del libro Aprendizaje y Clasificación Automática con R" frameborder="0" allowfullscreen></iframe>
+</div>
+:::
+
+::: {.content-visible when-format="pdf"}
+**Video disponible en YouTube:**  
+<https://www.youtube.com/watch?v=rNhh4LBgKnw>
+:::
+
 ## Materiales complementarios descargables {.unnumbered}
 
 Para facilitar la presentación, consulta y difusión de las primeras secciones del libro —**Presentación**, **Licencia, autoría y forma de citar**, y **Cuaderno completo para Google Colab**— se ofrecen los siguientes recursos complementarios:
@@ -53,7 +70,6 @@ Para facilitar la presentación, consulta y difusión de las primeras secciones 
 |---|---|---|---|
 | Presentación en PDF | Diapositivas de lectura sobre la Presentación, la licencia y el cuaderno de Colab. | [Ver PDF](recursos/presentacion-licencia-cuaderno.pdf){target="_blank"} | [Descargar PDF](recursos/presentacion-licencia-cuaderno.pdf){download="presentacion-licencia-cuaderno.pdf"} |
 | Presentación editable | Archivo PowerPoint que puede utilizarse para exponer o adaptar el contenido. | [Abrir o descargar PPTX](recursos/presentacion-licencia-cuaderno.pptx) | [Descargar PPTX](recursos/presentacion-licencia-cuaderno.pptx){download="presentacion-licencia-cuaderno.pptx"} |
-| Video explicativo | Presentación audiovisual de las secciones iniciales del libro. | [Reproducir video](recursos/video-presentacion-licencia-cuaderno.mp4){target="_blank"} | [Descargar MP4](recursos/video-presentacion-licencia-cuaderno.mp4){download="video-presentacion-licencia-cuaderno.mp4"} |
 | Infografía | Síntesis visual para consulta rápida, clase o difusión educativa. | [Ver infografía](recursos/infografia-presentacion-licencia-cuaderno.png){target="_blank"} | [Descargar PNG](recursos/infografia-presentacion-licencia-cuaderno.png){download="infografia-presentacion-licencia-cuaderno.png"} |
 
 ::: {.callout-tip title="Cómo descargar los materiales"}

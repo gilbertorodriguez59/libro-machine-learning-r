@@ -17,3 +17,9 @@ knitr:
     out.width: "92%"
     collapse: false
     comment: "#>"
+
+format:
+  pdf:
+    include-in-header:
+      - latex/configuracion-pdf.tex
+      - latex/portada-pdf.tex

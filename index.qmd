@@ -5,7 +5,7 @@
 ### Un enfoque práctico con datos abiertos reales {.unnumbered}
 
 **Autor:** MI Jesús Gilberto Rodríguez Escobedo  
-**Versión:** 0.10.3 (desarrollo)
+**Versión:** 0.10.7 (desarrollo)
 **Modalidad:** Libro abierto, práctico e interactivo  
 **Tecnologías:** R · Quarto · Machine Learning · Datos abiertos · GitHub Pages
 
@@ -58,8 +58,47 @@ Este video ofrece una introducción general a la presentación, la licencia de u
 :::
 
 ::: {.content-visible when-format="pdf"}
-**Video disponible en YouTube:**  
-<https://www.youtube.com/watch?v=rNhh4LBgKnw>
+\newpage
+
+### Curso completo en YouTube
+
+Escanea el código QR o abre el enlace para acceder a la lista de reproducción oficial del curso:
+
+\begin{center}
+\includegraphics[width=0.28\textwidth]{imagenes/qr-curso-youtube.png}
+\end{center}
+
+<https://www.youtube.com/playlist?list=PLDJYd2v7Kt-Q>
+:::
+
+## Curso completo en YouTube
+
+El libro cuenta con una lista oficial de reproducción en YouTube, donde se reúnen los videos de presentación y de cada capítulo.
+
+[▶ Ver el curso completo en YouTube](https://www.youtube.com/playlist?list=PLDJYd2v7Kt-Q){.btn .btn-danger .btn-lg target="_blank"}
+
+Enlace directo: <https://www.youtube.com/playlist?list=PLDJYd2v7Kt-Q>
+
+::: {.content-visible when-format="html"}
+<div class="playlist-card">
+  <div>
+    <strong>Lista oficial del curso</strong><br>
+    Presentación general y videos complementarios de los capítulos.
+  </div>
+  <div>
+    <a href="https://www.youtube.com/playlist?list=PLDJYd2v7Kt-Q" target="_blank" class="btn btn-danger">Abrir curso en YouTube</a>
+  </div>
+</div>
+:::
+
+::: {.content-visible when-format="pdf"}
+### Lista oficial del curso
+
+\begin{center}
+\includegraphics[width=0.25\textwidth]{imagenes/qr-curso-youtube.png}
+\end{center}
+
+<https://www.youtube.com/playlist?list=PLDJYd2v7Kt-Q>
 :::
 
 ## Materiales complementarios descargables {.unnumbered}

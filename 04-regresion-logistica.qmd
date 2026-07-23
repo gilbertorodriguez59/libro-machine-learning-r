@@ -171,6 +171,54 @@ if (exists("prueba")) {
 }
 ```
 
+## Materiales complementarios del capítulo
+
+Estos recursos permiten estudiar la regresión logística desde una perspectiva audiovisual, gráfica y práctica.
+
+| Recurso | Utilidad | Abrir o reproducir | Descargar |
+|---|---|---|---|
+| Video explicativo | Explicación audiovisual de la regresión logística aplicada a problemas de clasificación. | [Ver en YouTube](https://www.youtube.com/watch?v=7CwP40QDeys){target="_blank"} | — |
+| Presentación en PDF | Diapositivas para lectura, estudio o exposición. | [Ver PDF](recursos/capitulo-05/capitulo-05-regresion-logistica-clasificacion.pdf){target="_blank"} | [Descargar PDF](recursos/capitulo-05/capitulo-05-regresion-logistica-clasificacion.pdf){download="capitulo-05-regresion-logistica-clasificacion.pdf"} |
+| Presentación editable | Archivo PowerPoint para utilizarlo en clase o adaptarlo. | [Abrir PPTX](recursos/capitulo-05/capitulo-05-regresion-logistica-clasificacion.pptx) | [Descargar PPTX](recursos/capitulo-05/capitulo-05-regresion-logistica-clasificacion.pptx){download="capitulo-05-regresion-logistica-clasificacion.pptx"} |
+| Infografía | Síntesis visual de los conceptos, la función logística y el proceso de clasificación. | [Ver infografía](recursos/capitulo-05/capitulo-05-regresion-logistica-clasificacion-infografia.png){target="_blank"} | [Descargar PNG](recursos/capitulo-05/capitulo-05-regresion-logistica-clasificacion-infografia.png){download="capitulo-05-regresion-logistica-clasificacion-infografia.png"} |
+
+::: {.content-visible when-format="html"}
+### Video explicativo
+
+<div class="video-responsive">
+  <iframe
+    src="https://www.youtube.com/embed/7CwP40QDeys"
+    title="Capítulo 5. Regresión logística para clasificación"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen>
+  </iframe>
+</div>
+
+### Vista previa de la infografía
+
+[![Infografía del capítulo 5](recursos/capitulo-05/capitulo-05-regresion-logistica-clasificacion-infografia.png)](recursos/capitulo-05/capitulo-05-regresion-logistica-clasificacion-infografia.png)
+:::
+
+::: {.content-visible when-format="pdf"}
+**Video del capítulo:** <https://www.youtube.com/watch?v=7CwP40QDeys>
+
+**Curso completo en YouTube:** <https://www.youtube.com/playlist?list=PLDJYd2v7Kt-Q>
+
+La presentación PDF, el archivo PowerPoint y la infografía pueden descargarse desde la versión web del libro.
+:::
+
+::: {.callout-tip title="Curso completo en YouTube"}
+Este video forma parte de la lista oficial del curso.
+
+[Consultar todos los videos del curso](https://www.youtube.com/playlist?list=PLDJYd2v7Kt-Q){target="_blank"}
+:::
+
+::: {.callout-note title="Elaboración de los materiales"}
+Los materiales complementarios fueron elaborados con apoyo de **NotebookLM de Google**, a partir del contenido del capítulo, y posteriormente revisados y adaptados por el autor.
+:::
+
 ## Conclusión
 
 La regresión logística es un modelo interpretable para clasificación binaria. El punto de corte permite ajustar el balance entre sensibilidad y especificidad.

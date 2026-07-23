@@ -14,6 +14,16 @@ project:
     - recursos/capitulo-02/capitulo-02-preparacion-datos-reales.pdf
     - recursos/capitulo-02/capitulo-02-preparacion-datos-reales.pptx
     - recursos/capitulo-02/capitulo-02-preparacion-datos-reales-infografia.png
+    - imagenes/qr-curso-youtube.png
+    - recursos/capitulo-03/capitulo-03-analisis-exploratorio-datos.pdf
+    - recursos/capitulo-03/capitulo-03-analisis-exploratorio-datos.pptx
+    - recursos/capitulo-03/capitulo-03-analisis-exploratorio-datos-infografia.png
+    - recursos/capitulo-04/capitulo-04-regresion-lineal-simple-multiple.pdf
+    - recursos/capitulo-04/capitulo-04-regresion-lineal-simple-multiple.pptx
+    - recursos/capitulo-04/capitulo-04-regresion-lineal-simple-multiple-infografia.png
+    - recursos/capitulo-05/capitulo-05-regresion-logistica-clasificacion.pdf
+    - recursos/capitulo-05/capitulo-05-regresion-logistica-clasificacion.pptx
+    - recursos/capitulo-05/capitulo-05-regresion-logistica-clasificacion-infografia.png
 
 lang: es
 bibliography: referencias.bib

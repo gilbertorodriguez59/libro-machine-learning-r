@@ -334,3 +334,10 @@ La presentación PDF, el archivo editable y la infografía pueden descargarse de
 ::: {.callout-note title="Elaboración de los materiales"}
 Los materiales complementarios fueron elaborados con apoyo de **NotebookLM de Google**, a partir del contenido del capítulo, y posteriormente revisados y adaptados por el autor. El texto del libro y sus archivos fuente constituyen la referencia principal.
 :::
+
+
+::: {.callout-tip title="Curso completo en YouTube"}
+Este video forma parte de la lista oficial del curso **Aprendizaje y Clasificación Automática con R**.
+
+[Consultar todos los videos del curso](https://www.youtube.com/playlist?list=PLDJYd2v7Kt-Q){target="_blank"}
+:::

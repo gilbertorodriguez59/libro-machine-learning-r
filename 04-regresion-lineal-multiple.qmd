@@ -399,3 +399,35 @@ Los supuestos deben analizarse mediante gráficas, conocimiento del problema y m
 ## Conclusiones
 
 La regresión lineal simple explica una respuesta cuantitativa mediante una variable y la regresión múltiple permite considerar varios factores simultáneamente. Su valor en este libro no se limita a la predicción numérica: proporciona el lenguaje básico para comprender coeficientes, errores, validación y generalización, conceptos que continuarán apareciendo en los algoritmos de clasificación.
+
+
+## Materiales complementarios del capítulo
+
+| Recurso | Utilidad | Abrir o reproducir | Descargar |
+|---|---|---|---|
+| Video explicativo | Explicación audiovisual de la regresión lineal simple y múltiple. | [Ver en YouTube](https://www.youtube.com/watch?v=SE6DCeU9h1w){target="_blank"} | — |
+| Presentación en PDF | Diapositivas para lectura, estudio o exposición. | [Ver PDF](recursos/capitulo-04/capitulo-04-regresion-lineal-simple-multiple.pdf){target="_blank"} | [Descargar PDF](recursos/capitulo-04/capitulo-04-regresion-lineal-simple-multiple.pdf){download="capitulo-04-regresion-lineal-simple-multiple.pdf"} |
+| Presentación editable | Archivo PowerPoint para utilizarlo en clase o adaptarlo. | [Abrir PPTX](recursos/capitulo-04/capitulo-04-regresion-lineal-simple-multiple.pptx) | [Descargar PPTX](recursos/capitulo-04/capitulo-04-regresion-lineal-simple-multiple.pptx){download="capitulo-04-regresion-lineal-simple-multiple.pptx"} |
+| Infografía | Síntesis visual de conceptos, fórmulas e interpretación. | [Ver infografía](recursos/capitulo-04/capitulo-04-regresion-lineal-simple-multiple-infografia.png){target="_blank"} | [Descargar PNG](recursos/capitulo-04/capitulo-04-regresion-lineal-simple-multiple-infografia.png){download="capitulo-04-regresion-lineal-simple-multiple-infografia.png"} |
+
+::: {.content-visible when-format="html"}
+### Video explicativo
+
+<div class="video-responsive">
+  <iframe src="https://www.youtube.com/embed/SE6DCeU9h1w" title="Capítulo 4. Regresión lineal simple y múltiple" frameborder="0" allowfullscreen></iframe>
+</div>
+
+### Vista previa de la infografía
+
+[![Infografía del capítulo 4](recursos/capitulo-04/capitulo-04-regresion-lineal-simple-multiple-infografia.png)](recursos/capitulo-04/capitulo-04-regresion-lineal-simple-multiple-infografia.png)
+:::
+
+::: {.content-visible when-format="pdf"}
+**Video del capítulo:** <https://www.youtube.com/watch?v=SE6DCeU9h1w>
+
+**Curso completo en YouTube:** <https://www.youtube.com/playlist?list=PLDJYd2v7Kt-Q>
+:::
+
+::: {.callout-tip title="Curso completo en YouTube"}
+[Consultar todos los videos del curso](https://www.youtube.com/playlist?list=PLDJYd2v7Kt-Q){target="_blank"}
+:::

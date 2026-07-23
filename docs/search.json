@@ -14,7 +14,7 @@
     "href": "index.html#aprendizaje-y-clasificación-automática-con-r",
     "title": "Aprendizaje y Clasificación Automática con R",
     "section": "Aprendizaje y Clasificación Automática con R",
-    "text": "Aprendizaje y Clasificación Automática con R\n\nUn enfoque práctico con datos abiertos reales\nAutor: MI Jesús Gilberto Rodríguez Escobedo\nVersión: 0.10.3 (desarrollo) Modalidad: Libro abierto, práctico e interactivo\nTecnologías: R · Quarto · Machine Learning · Datos abiertos · GitHub Pages\nEste libro introduce el aprendizaje automático (Machine Learning) mediante ejemplos claros, didácticos y prácticos desarrollados principalmente en R.\nLa intención no es escribir un tratado matemático extenso, sino construir una guía aplicada para aprender haciendo con datos abiertos reales. En esta versión trabajamos con datos de accidentes de tránsito de México y los usamos como hilo conductor para explicar preparación de datos, análisis exploratorio y modelos de clasificación.\n\n\n\n\n\n\nNotaEnfoque del libro\n\n\n\nEl libro combina fundamento conceptual, código reproducible en R, explicación breve del código, interpretación didáctica de resultados y visualizaciones profesionales.",
+    "text": "Aprendizaje y Clasificación Automática con R\n\nUn enfoque práctico con datos abiertos reales\nAutor: MI Jesús Gilberto Rodríguez Escobedo\nVersión: 0.10.7 (desarrollo) Modalidad: Libro abierto, práctico e interactivo\nTecnologías: R · Quarto · Machine Learning · Datos abiertos · GitHub Pages\nEste libro introduce el aprendizaje automático (Machine Learning) mediante ejemplos claros, didácticos y prácticos desarrollados principalmente en R.\nLa intención no es escribir un tratado matemático extenso, sino construir una guía aplicada para aprender haciendo con datos abiertos reales. En esta versión trabajamos con datos de accidentes de tránsito de México y los usamos como hilo conductor para explicar preparación de datos, análisis exploratorio y modelos de clasificación.\n\n\n\n\n\n\nNotaEnfoque del libro\n\n\n\nEl libro combina fundamento conceptual, código reproducible en R, explicación breve del código, interpretación didáctica de resultados y visualizaciones profesionales.",
     "crumbs": [
       "Presentación"
     ]
@@ -65,6 +65,16 @@
     "title": "Aprendizaje y Clasificación Automática con R",
     "section": "Video de presentación del libro",
     "text": "Video de presentación del libro\nEste video ofrece una introducción general a la presentación, la licencia de uso y el cuaderno completo de Google Colab.\nVer el video en YouTube",
+    "crumbs": [
+      "Presentación"
+    ]
+  },
+  {
+    "objectID": "index.html#curso-completo-en-youtube-1",
+    "href": "index.html#curso-completo-en-youtube-1",
+    "title": "Aprendizaje y Clasificación Automática con R",
+    "section": "Curso completo en YouTube",
+    "text": "Curso completo en YouTube\nEl libro cuenta con una lista oficial de reproducción en YouTube, donde se reúnen los videos de presentación y de cada capítulo.\n▶ Ver el curso completo en YouTube\nEnlace directo: https://www.youtube.com/playlist?list=PLDJYd2v7Kt-Q\n\n\n&lt;strong&gt;Lista oficial del curso&lt;/strong&gt;&lt;br&gt;\nPresentación general y videos complementarios de los capítulos.\n\n\n&lt;a href=\"https://www.youtube.com/playlist?list=PLDJYd2v7Kt-Q\" target=\"_blank\" class=\"btn btn-danger\"&gt;Abrir curso en YouTube&lt;/a&gt;",
     "crumbs": [
       "Presentación"
     ]
@@ -334,7 +344,7 @@
     "href": "01-introduccion.html#materiales-complementarios-del-capítulo",
     "title": "1  ¿Qué es el aprendizaje automático?",
     "section": "1.10 Materiales complementarios del capítulo",
-    "text": "1.10 Materiales complementarios del capítulo\nEstos recursos permiten repasar los conceptos principales del capítulo mediante distintos formatos. La presentación puede consultarse en PDF o modificarse en PowerPoint; la infografía ofrece una síntesis visual y el video explica los contenidos de manera audiovisual.\n\n\n\nRecurso\nUtilidad\nAbrir o reproducir\nDescargar\n\n\n\n\nVideo explicativo\nIntroducción audiovisual al aprendizaje automático y a los contenidos del capítulo.\nVer en YouTube\n—\n\n\nPresentación en PDF\nDiapositivas para lectura, estudio o exposición.\nVer PDF\nDescargar PDF\n\n\nPresentación editable\nArchivo PowerPoint para utilizarlo en clase o adaptarlo.\nAbrir PPTX\nDescargar PPTX\n\n\nInfografía\nResumen visual de las ideas fundamentales.\nVer infografía\nDescargar PNG\n\n\n\n\n1.10.1 Video explicativo\n\n \n\n\n\n1.10.2 Vista previa de la infografía\n\n\n\nInfografía del capítulo 1\n\n\n\n\n\n\n\n\nNotaElaboración de los materiales\n\n\n\nLos materiales complementarios fueron elaborados con apoyo de NotebookLM de Google, a partir del contenido del capítulo, y posteriormente revisados y adaptados por el autor. El texto del libro y sus archivos fuente constituyen la referencia principal.",
+    "text": "1.10 Materiales complementarios del capítulo\nEstos recursos permiten repasar los conceptos principales del capítulo mediante distintos formatos. La presentación puede consultarse en PDF o modificarse en PowerPoint; la infografía ofrece una síntesis visual y el video explica los contenidos de manera audiovisual.\n\n\n\nRecurso\nUtilidad\nAbrir o reproducir\nDescargar\n\n\n\n\nVideo explicativo\nIntroducción audiovisual al aprendizaje automático y a los contenidos del capítulo.\nVer en YouTube\n—\n\n\nPresentación en PDF\nDiapositivas para lectura, estudio o exposición.\nVer PDF\nDescargar PDF\n\n\nPresentación editable\nArchivo PowerPoint para utilizarlo en clase o adaptarlo.\nAbrir PPTX\nDescargar PPTX\n\n\nInfografía\nResumen visual de las ideas fundamentales.\nVer infografía\nDescargar PNG\n\n\n\n\n1.10.1 Video explicativo\n\n \n\n\n\n1.10.2 Vista previa de la infografía\n\n\n\nInfografía del capítulo 1\n\n\n\n\n\n\n\n\nNotaElaboración de los materiales\n\n\n\nLos materiales complementarios fueron elaborados con apoyo de NotebookLM de Google, a partir del contenido del capítulo, y posteriormente revisados y adaptados por el autor. El texto del libro y sus archivos fuente constituyen la referencia principal.\n\n\n\n\n\n\n\n\nTipCurso completo en YouTube\n\n\n\nEste video forma parte de la lista oficial del curso Aprendizaje y Clasificación Automática con R.\nConsultar todos los videos del curso",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>¿Qué es el aprendizaje automático?</span>"
     ]
@@ -514,7 +524,7 @@
     "href": "02-preparacion-datos.html#materiales-complementarios-del-capítulo",
     "title": "2  Preparación de datos reales",
     "section": "2.16 Materiales complementarios del capítulo",
-    "text": "2.16 Materiales complementarios del capítulo\nEstos recursos permiten repasar la preparación de datos reales mediante una presentación, una infografía y un video explicativo.\n\n\n\nRecurso\nUtilidad\nAbrir o reproducir\nDescargar\n\n\n\n\nVideo explicativo\nExplicación audiovisual del proceso de descarga, revisión, limpieza y preparación de datos.\nVer en YouTube\n—\n\n\nPresentación en PDF\nDiapositivas para lectura, estudio o exposición.\nVer PDF\nDescargar PDF\n\n\nPresentación editable\nArchivo PowerPoint para utilizarlo en clase o adaptarlo.\nAbrir PPTX\nDescargar PPTX\n\n\nInfografía\nResumen visual de las etapas de preparación de datos.\nVer infografía\nDescargar PNG\n\n\n\n\n2.16.1 Video explicativo\n\n \n\n\n\n2.16.2 Vista previa de la infografía\n\n\n\nInfografía del capítulo 2\n\n\n\n\n\n\n\n\nNotaElaboración de los materiales\n\n\n\nLos materiales complementarios fueron elaborados con apoyo de NotebookLM de Google, a partir del contenido del capítulo, y posteriormente revisados y adaptados por el autor. El texto del libro y sus archivos fuente constituyen la referencia principal.\n\n\n\n\n\n\nInstituto Nacional de Estadística y Geografía. 2025. «Estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas (ATUS), 2024». Instituto Nacional de Estadística y Geografía. https://www.inegi.org.mx/programas/accidentes/.\n\n\nInstituto Nacional de Estadística y Geografía. 2026. «Términos de libre uso de la información del INEGI». https://www.inegi.org.mx/inegi/terminos.html.",
+    "text": "2.16 Materiales complementarios del capítulo\nEstos recursos permiten repasar la preparación de datos reales mediante una presentación, una infografía y un video explicativo.\n\n\n\nRecurso\nUtilidad\nAbrir o reproducir\nDescargar\n\n\n\n\nVideo explicativo\nExplicación audiovisual del proceso de descarga, revisión, limpieza y preparación de datos.\nVer en YouTube\n—\n\n\nPresentación en PDF\nDiapositivas para lectura, estudio o exposición.\nVer PDF\nDescargar PDF\n\n\nPresentación editable\nArchivo PowerPoint para utilizarlo en clase o adaptarlo.\nAbrir PPTX\nDescargar PPTX\n\n\nInfografía\nResumen visual de las etapas de preparación de datos.\nVer infografía\nDescargar PNG\n\n\n\n\n2.16.1 Video explicativo\n\n \n\n\n\n2.16.2 Vista previa de la infografía\n\n\n\nInfografía del capítulo 2\n\n\n\n\n\n\n\n\nNotaElaboración de los materiales\n\n\n\nLos materiales complementarios fueron elaborados con apoyo de NotebookLM de Google, a partir del contenido del capítulo, y posteriormente revisados y adaptados por el autor. El texto del libro y sus archivos fuente constituyen la referencia principal.\n\n\n\n\n\n\n\n\nTipCurso completo en YouTube\n\n\n\nEste video forma parte de la lista oficial del curso Aprendizaje y Clasificación Automática con R.\nConsultar todos los videos del curso\n\n\n\n\n\n\nInstituto Nacional de Estadística y Geografía. 2025. «Estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas (ATUS), 2024». Instituto Nacional de Estadística y Geografía. https://www.inegi.org.mx/programas/accidentes/.\n\n\nInstituto Nacional de Estadística y Geografía. 2026. «Términos de libre uso de la información del INEGI». https://www.inegi.org.mx/inegi/terminos.html.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preparación de datos reales</span>"
     ]
@@ -600,11 +610,21 @@
     ]
   },
   {
+    "objectID": "03-analisis-exploratorio.html#materiales-complementarios-del-capítulo",
+    "href": "03-analisis-exploratorio.html#materiales-complementarios-del-capítulo",
+    "title": "3  Análisis exploratorio de datos",
+    "section": "3.9 Materiales complementarios del capítulo",
+    "text": "3.9 Materiales complementarios del capítulo\nEstos recursos permiten repasar los conceptos esenciales del análisis exploratorio de datos mediante distintos formatos.\n\n\n\nRecurso\nUtilidad\nAbrir o reproducir\nDescargar\n\n\n\n\nVideo explicativo\nExplicación audiovisual del análisis exploratorio de datos y de sus principales herramientas.\nVer en YouTube\n—\n\n\nPresentación en PDF\nDiapositivas para lectura, estudio o exposición.\nVer PDF\nDescargar PDF\n\n\nPresentación editable\nArchivo PowerPoint para utilizarlo en clase o adaptarlo.\nAbrir PPTX\nDescargar PPTX\n\n\nInfografía\nSíntesis visual de conceptos, procedimientos y gráficos del capítulo.\nVer infografía\nDescargar PNG\n\n\n\n\n3.9.1 Video explicativo\n\n \n\n\n\n3.9.2 Vista previa de la infografía\n\n\n\nInfografía del capítulo 3\n\n\n\n\n\n\n\n\nTipCurso completo en YouTube\n\n\n\nEste video forma parte de la lista oficial del curso Aprendizaje y Clasificación Automática con R.\nConsultar todos los videos del curso\n\n\n\n\n\n\n\n\nNotaElaboración de los materiales\n\n\n\nLos materiales complementarios fueron elaborados con apoyo de NotebookLM de Google, a partir del contenido del capítulo, y posteriormente revisados y adaptados por el autor. El texto del libro y sus archivos fuente constituyen la referencia principal.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Análisis exploratorio de datos</span>"
+    ]
+  },
+  {
     "objectID": "03-analisis-exploratorio.html#conclusión",
     "href": "03-analisis-exploratorio.html#conclusión",
     "title": "3  Análisis exploratorio de datos",
-    "section": "3.9 Conclusión",
-    "text": "3.9 Conclusión\nEl análisis exploratorio permite detectar patrones iniciales, revisar el desbalance de clases e identificar variables útiles para modelar.",
+    "section": "3.10 Conclusión",
+    "text": "3.10 Conclusión\nEl análisis exploratorio permite detectar patrones iniciales, revisar el desbalance de clases e identificar variables útiles para modelar.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Análisis exploratorio de datos</span>"
     ]
@@ -854,7 +874,17 @@
     "href": "04-regresion-lineal-multiple.html#conclusiones",
     "title": "4  Regresión lineal simple y múltiple",
     "section": "4.24 Conclusiones",
-    "text": "4.24 Conclusiones\nLa regresión lineal simple explica una respuesta cuantitativa mediante una variable y la regresión múltiple permite considerar varios factores simultáneamente. Su valor en este libro no se limita a la predicción numérica: proporciona el lenguaje básico para comprender coeficientes, errores, validación y generalización, conceptos que continuarán apareciendo en los algoritmos de clasificación.\n\n\n\n\nJames, Gareth, Daniela Witten, Trevor Hastie, y Robert Tibshirani. 2021. An Introduction to Statistical Learning: with Applications in R. 2.ª ed. Springer. https://doi.org/10.1007/978-1-0716-1418-1.\n\n\nMontgomery, Douglas C., Elizabeth A. Peck, y G. Geoffrey Vining. 2021. Introduction to Linear Regression Analysis. 6.ª ed. Wiley.",
+    "text": "4.24 Conclusiones\nLa regresión lineal simple explica una respuesta cuantitativa mediante una variable y la regresión múltiple permite considerar varios factores simultáneamente. Su valor en este libro no se limita a la predicción numérica: proporciona el lenguaje básico para comprender coeficientes, errores, validación y generalización, conceptos que continuarán apareciendo en los algoritmos de clasificación.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresión lineal simple y múltiple</span>"
+    ]
+  },
+  {
+    "objectID": "04-regresion-lineal-multiple.html#materiales-complementarios-del-capítulo",
+    "href": "04-regresion-lineal-multiple.html#materiales-complementarios-del-capítulo",
+    "title": "4  Regresión lineal simple y múltiple",
+    "section": "4.25 Materiales complementarios del capítulo",
+    "text": "4.25 Materiales complementarios del capítulo\n\n\n\nRecurso\nUtilidad\nAbrir o reproducir\nDescargar\n\n\n\n\nVideo explicativo\nExplicación audiovisual de la regresión lineal simple y múltiple.\nVer en YouTube\n—\n\n\nPresentación en PDF\nDiapositivas para lectura, estudio o exposición.\nVer PDF\nDescargar PDF\n\n\nPresentación editable\nArchivo PowerPoint para utilizarlo en clase o adaptarlo.\nAbrir PPTX\nDescargar PPTX\n\n\nInfografía\nSíntesis visual de conceptos, fórmulas e interpretación.\nVer infografía\nDescargar PNG\n\n\n\n\n4.25.1 Video explicativo\n\n\n\n\n\n4.25.2 Vista previa de la infografía\n\n\n\nInfografía del capítulo 4\n\n\n\n\n\n\n\n\nTipCurso completo en YouTube\n\n\n\nConsultar todos los videos del curso\n\n\n\n\n\n\nJames, Gareth, Daniela Witten, Trevor Hastie, y Robert Tibshirani. 2021. An Introduction to Statistical Learning: with Applications in R. 2.ª ed. Springer. https://doi.org/10.1007/978-1-0716-1418-1.\n\n\nMontgomery, Douglas C., Elizabeth A. Peck, y G. Geoffrey Vining. 2021. Introduction to Linear Regression Analysis. 6.ª ed. Wiley.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regresión lineal simple y múltiple</span>"
     ]
@@ -950,11 +980,21 @@
     ]
   },
   {
+    "objectID": "04-regresion-logistica.html#materiales-complementarios-del-capítulo",
+    "href": "04-regresion-logistica.html#materiales-complementarios-del-capítulo",
+    "title": "5  Regresión logística para clasificación",
+    "section": "5.10 Materiales complementarios del capítulo",
+    "text": "5.10 Materiales complementarios del capítulo\nEstos recursos permiten estudiar la regresión logística desde una perspectiva audiovisual, gráfica y práctica.\n\n\n\nRecurso\nUtilidad\nAbrir o reproducir\nDescargar\n\n\n\n\nVideo explicativo\nExplicación audiovisual de la regresión logística aplicada a problemas de clasificación.\nVer en YouTube\n—\n\n\nPresentación en PDF\nDiapositivas para lectura, estudio o exposición.\nVer PDF\nDescargar PDF\n\n\nPresentación editable\nArchivo PowerPoint para utilizarlo en clase o adaptarlo.\nAbrir PPTX\nDescargar PPTX\n\n\nInfografía\nSíntesis visual de los conceptos, la función logística y el proceso de clasificación.\nVer infografía\nDescargar PNG\n\n\n\n\n5.10.1 Video explicativo\n\n \n\n\n\n5.10.2 Vista previa de la infografía\n\n\n\nInfografía del capítulo 5\n\n\n\n\n\n\n\n\nTipCurso completo en YouTube\n\n\n\nEste video forma parte de la lista oficial del curso.\nConsultar todos los videos del curso\n\n\n\n\n\n\n\n\nNotaElaboración de los materiales\n\n\n\nLos materiales complementarios fueron elaborados con apoyo de NotebookLM de Google, a partir del contenido del capítulo, y posteriormente revisados y adaptados por el autor.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Regresión logística para clasificación</span>"
+    ]
+  },
+  {
     "objectID": "04-regresion-logistica.html#conclusión",
     "href": "04-regresion-logistica.html#conclusión",
     "title": "5  Regresión logística para clasificación",
-    "section": "5.10 Conclusión",
-    "text": "5.10 Conclusión\nLa regresión logística es un modelo interpretable para clasificación binaria. El punto de corte permite ajustar el balance entre sensibilidad y especificidad.",
+    "section": "5.11 Conclusión",
+    "text": "5.11 Conclusión\nLa regresión logística es un modelo interpretable para clasificación binaria. El punto de corte permite ajustar el balance entre sensibilidad y especificidad.",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Regresión logística para clasificación</span>"
     ]
@@ -963,8 +1003,8 @@
     "objectID": "04-regresion-logistica.html#referencias-fundamentales-de-la-regresión-logística",
     "href": "04-regresion-logistica.html#referencias-fundamentales-de-la-regresión-logística",
     "title": "5  Regresión logística para clasificación",
-    "section": "5.11 Referencias fundamentales de la regresión logística",
-    "text": "5.11 Referencias fundamentales de la regresión logística\nLa formulación moderna de la regresión para respuestas binarias se relaciona con el trabajo de Cox (Cox 1958). Para profundizar en ajuste, interpretación, diagnóstico y aplicaciones del modelo logístico puede consultarse a Hosmer et al. (2013). Una presentación orientada al aprendizaje estadístico y a su implementación en R aparece en James et al. (2021).\n\n\n\n\nCox, David R. 1958. «The Regression Analysis of Binary Sequences». Journal of the Royal Statistical Society: Series B (Methodological) 20 (2): 215-42. https://doi.org/10.1111/j.2517-6161.1958.tb00292.x.\n\n\nHosmer, David W., Stanley Lemeshow, y Rodney X. Sturdivant. 2013. Applied Logistic Regression. 3.ª ed. Wiley. https://doi.org/10.1002/9781118548387.\n\n\nJames, Gareth, Daniela Witten, Trevor Hastie, y Robert Tibshirani. 2021. An Introduction to Statistical Learning: with Applications in R. 2.ª ed. Springer. https://doi.org/10.1007/978-1-0716-1418-1.",
+    "section": "5.12 Referencias fundamentales de la regresión logística",
+    "text": "5.12 Referencias fundamentales de la regresión logística\nLa formulación moderna de la regresión para respuestas binarias se relaciona con el trabajo de Cox (Cox 1958). Para profundizar en ajuste, interpretación, diagnóstico y aplicaciones del modelo logístico puede consultarse a Hosmer et al. (2013). Una presentación orientada al aprendizaje estadístico y a su implementación en R aparece en James et al. (2021).\n\n\n\n\nCox, David R. 1958. «The Regression Analysis of Binary Sequences». Journal of the Royal Statistical Society: Series B (Methodological) 20 (2): 215-42. https://doi.org/10.1111/j.2517-6161.1958.tb00292.x.\n\n\nHosmer, David W., Stanley Lemeshow, y Rodney X. Sturdivant. 2013. Applied Logistic Regression. 3.ª ed. Wiley. https://doi.org/10.1002/9781118548387.\n\n\nJames, Gareth, Daniela Witten, Trevor Hastie, y Robert Tibshirani. 2021. An Introduction to Statistical Learning: with Applications in R. 2.ª ed. Springer. https://doi.org/10.1007/978-1-0716-1418-1.",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Regresión logística para clasificación</span>"
     ]

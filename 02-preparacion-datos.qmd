@@ -341,3 +341,97 @@ Este video forma parte de la lista oficial del curso **Aprendizaje y Clasificaci
 
 [Consultar todos los videos del curso](https://www.youtube.com/playlist?list=PLDJYd2v7Kt-Q){target="_blank"}
 :::
+
+
+## Laboratorio interactivo: preparar datos
+
+::: {.content-visible when-format="html"}
+
+Explora valores faltantes, imputación y estandarización.
+
+```{shinylive-r}
+#| standalone: true
+#| viewerHeight: 720
+#| components: [viewer]
+
+library(shiny)
+
+ui <- fluidPage(
+  titlePanel("Preparación interactiva de datos"),
+  sidebarLayout(
+    sidebarPanel(
+      sliderInput("faltantes", "Porcentaje de valores faltantes",
+                  0, 40, 15, step = 5),
+      selectInput("imputacion", "Método de imputación",
+                  choices = c("Media" = "media", "Mediana" = "mediana")),
+      checkboxInput("escalar", "Estandarizar variables", TRUE),
+      numericInput("semilla", "Semilla", 123, min = 1)
+    ),
+    mainPanel(
+      h4("Datos con valores faltantes"),
+      tableOutput("antes"),
+      h4("Datos preparados"),
+      tableOutput("despues"),
+      tableOutput("resumen")
+    )
+  )
+)
+
+server <- function(input, output, session) {
+  datos <- reactive({
+    set.seed(input$semilla)
+    d <- data.frame(
+      temperatura = round(rnorm(12, 25, 4), 1),
+      humedad = round(rnorm(12, 55, 12), 1),
+      contaminacion = round(rnorm(12, 40, 10), 1)
+    )
+    n_na <- round(length(as.matrix(d)) * input$faltantes / 100)
+    if (n_na > 0) {
+      m <- as.matrix(d)
+      m[sample(seq_len(length(m)), n_na)] <- NA
+      d <- as.data.frame(m)
+    }
+    d
+  })
+
+  preparados <- reactive({
+    d <- datos()
+    for (j in seq_along(d)) {
+      valor <- if (input$imputacion == "media") {
+        mean(d[[j]], na.rm = TRUE)
+      } else {
+        median(d[[j]], na.rm = TRUE)
+      }
+      d[[j]][is.na(d[[j]])] <- valor
+    }
+    if (input$escalar) d <- as.data.frame(scale(d))
+    d
+  })
+
+  output$antes <- renderTable(datos(), digits = 2)
+  output$despues <- renderTable(preparados(), digits = 3)
+
+  output$resumen <- renderTable({
+    data.frame(
+      Etapa = c("Antes", "Después"),
+      Valores_faltantes = c(sum(is.na(datos())), sum(is.na(preparados()))),
+      Media_variable_1 = round(c(mean(datos()[[1]], na.rm = TRUE),
+                                 mean(preparados()[[1]])), 3),
+      Desviacion_variable_1 = round(c(sd(datos()[[1]], na.rm = TRUE),
+                                      sd(preparados()[[1]])), 3)
+    )
+  })
+}
+
+shinyApp(ui, server)
+```
+
+:::
+
+::: {.content-visible when-format="pdf"}
+
+### Laboratorio disponible en la versión web
+
+Permite introducir valores faltantes, imputarlos y estandarizar las variables.
+
+:::

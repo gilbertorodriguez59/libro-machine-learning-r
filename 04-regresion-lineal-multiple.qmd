@@ -387,6 +387,120 @@ Los supuestos deben analizarse mediante gráficas, conocimiento del problema y m
 | Evaluación | RMSE, MAE, $R^2$ | Matriz de confusión, sensibilidad, especificidad, AUC |
 | Ejemplo | Predecir PM10 | Clasificar accidente con víctimas |
 
+## Laboratorio interactivo: regresión lineal
+
+::: {.content-visible when-format="html"}
+
+Modifica el intercepto, la pendiente y el nivel de ruido para observar cómo cambia la nube de puntos y la recta de regresión.
+
+```{shinylive-r}
+#| standalone: true
+#| viewerHeight: 700
+#| components: [viewer]
+
+library(shiny)
+
+ui <- fluidPage(
+  titlePanel("Laboratorio de regresión lineal"),
+
+  sidebarLayout(
+    sidebarPanel(
+      sliderInput("b0", "Intercepto", -10, 10, 2, 0.5),
+      sliderInput("b1", "Pendiente", -5, 5, 1.5, 0.1),
+      sliderInput("ruido", "Desviación del ruido", 0, 8, 2, 0.25),
+      sliderInput("n", "Número de observaciones", 20, 200, 60, 10),
+      numericInput("semilla", "Semilla", 123, min = 1)
+    ),
+
+    mainPanel(
+      plotOutput("grafica", height = "450px"),
+      verbatimTextOutput("modelo"),
+      textOutput("interpretacion")
+    )
+  )
+)
+
+server <- function(input, output, session) {
+
+  datos <- reactive({
+    set.seed(input$semilla)
+    x <- runif(input$n, 0, 10)
+    y <- input$b0 + input$b1 * x +
+      rnorm(input$n, 0, input$ruido)
+    data.frame(x = x, y = y)
+  })
+
+  ajuste <- reactive({
+    lm(y ~ x, data = datos())
+  })
+
+  output$grafica <- renderPlot({
+    d <- datos()
+
+    plot(
+      d$x, d$y,
+      pch = 19,
+      xlab = "Variable x",
+      ylab = "Variable y",
+      main = "Datos simulados y recta estimada"
+    )
+
+    abline(ajuste(), lwd = 3)
+    abline(
+      a = input$b0,
+      b = input$b1,
+      lty = 2,
+      lwd = 2
+    )
+
+    legend(
+      "topleft",
+      legend = c("Recta estimada", "Recta verdadera"),
+      lty = c(1, 2),
+      lwd = c(3, 2),
+      bty = "n"
+    )
+  })
+
+  output$modelo <- renderPrint({
+    coeficientes <- coef(ajuste())
+    r2 <- summary(ajuste())$r.squared
+
+    cat("Modelo estimado:\n")
+    cat(
+      "y =",
+      round(coeficientes[1], 3),
+      "+",
+      round(coeficientes[2], 3),
+      "x\n\n"
+    )
+    cat("R² =", round(r2, 4))
+  })
+
+  output$interpretacion <- renderText({
+    if (input$ruido < 1) {
+      "Con poco ruido, la recta estimada suele aproximarse mucho a la relación verdadera."
+    } else if (input$ruido < 4) {
+      "El ruido genera dispersión y reduce la precisión del ajuste."
+    } else {
+      "Con ruido alto, la relación es más difícil de identificar y el R² suele disminuir."
+    }
+  })
+}
+
+shinyApp(ui, server)
+```
+
+:::
+
+::: {.content-visible when-format="pdf"}
+
+### Laboratorio disponible en la versión web
+
+El laboratorio permite modificar intercepto, pendiente, ruido, tamaño de muestra y semilla, y comparar la recta verdadera con la estimada.
+
+:::
+
 ## Actividades para el lector
 
 1. Modifique el ejemplo simple y prediga la calificación para 7.5 horas de estudio.

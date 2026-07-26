@@ -80,6 +80,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-12eeb4b20e9f5a2b0bfc604bfaf942bb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<meta name="shinylive:serviceworker_dir" content=".">
+<script src="site_libs/quarto-contrib/shinylive-0.10.12/shinylive/load-shinylive-sw.js" type="module"></script>
+<script src="site_libs/quarto-contrib/shinylive-0.10.12/shinylive/run-python-blocks.js" type="module"></script>
+<link href="site_libs/quarto-contrib/shinylive-0.10.12/shinylive/shinylive.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -232,6 +237,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Clasificador Naive Bayes</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-redes-neuronales.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Redes neuronales artificiales</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-kmeans.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Agrupamiento con k-means</span></span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
@@ -272,7 +289,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#video-explicativo" id="toc-video-explicativo" class="nav-link" data-scroll-target="#video-explicativo"><span class="header-section-number">3.9.1</span> Video explicativo</a></li>
   <li><a href="#vista-previa-de-la-infografía" id="toc-vista-previa-de-la-infografía" class="nav-link" data-scroll-target="#vista-previa-de-la-infografía"><span class="header-section-number">3.9.2</span> Vista previa de la infografía</a></li>
   </ul></li>
-  <li><a href="#conclusión" id="toc-conclusión" class="nav-link" data-scroll-target="#conclusión"><span class="header-section-number">3.10</span> Conclusión</a></li>
+  <li><a href="#laboratorio-interactivo-exploración-de-distribuciones" id="toc-laboratorio-interactivo-exploración-de-distribuciones" class="nav-link" data-scroll-target="#laboratorio-interactivo-exploración-de-distribuciones"><span class="header-section-number">3.10</span> Laboratorio interactivo: exploración de distribuciones</a></li>
+  <li><a href="#conclusión" id="toc-conclusión" class="nav-link" data-scroll-target="#conclusión"><span class="header-section-number">3.11</span> Conclusión</a></li>
   </ul>
 </nav>
     </div>
@@ -704,8 +722,75 @@ Con víctimas   Solo daños
 </div>
 </section>
 </section>
-<section id="conclusión" class="level2" data-number="3.10">
-<h2 data-number="3.10" class="anchored" data-anchor-id="conclusión"><span class="header-section-number">3.10</span> Conclusión</h2>
+<section id="laboratorio-interactivo-exploración-de-distribuciones" class="level2" data-number="3.10">
+<h2 data-number="3.10" class="anchored" data-anchor-id="laboratorio-interactivo-exploración-de-distribuciones"><span class="header-section-number">3.10</span> Laboratorio interactivo: exploración de distribuciones</h2>
+<p>Selecciona una variable de <code>iris</code> y examina su distribución.</p>
+<pre class="shinylive-r" data-engine="r"><code>#| '!! shinylive warning !!': |
+#|   shinylive does not work in self-contained HTML documents.
+#|   Please set `embed-resources: false` in your metadata.
+#| standalone: true
+#| viewerHeight: 700
+#| components: [viewer]
+
+library(shiny)
+
+ui &lt;- fluidPage(
+  titlePanel("Explorador interactivo de datos"),
+  sidebarLayout(
+    sidebarPanel(
+      selectInput("variable", "Variable", choices = names(iris)[1:4],
+                  selected = "Sepal.Length"),
+      radioButtons("grafica", "Tipo de gráfica",
+                   choices = c("Histograma" = "hist",
+                               "Boxplot por especie" = "box",
+                               "Densidad" = "dens")),
+      sliderInput("clases", "Número de intervalos", 5, 30, 12)
+    ),
+    mainPanel(
+      plotOutput("plot", height = "420px"),
+      tableOutput("resumen")
+    )
+  )
+)
+
+server &lt;- function(input, output, session) {
+  valores &lt;- reactive(iris[[input$variable]])
+
+  output$plot &lt;- renderPlot({
+    x &lt;- valores()
+    if (input$grafica == "hist") {
+      hist(x, breaks = input$clases,
+           main = paste("Histograma de", input$variable),
+           xlab = input$variable)
+    } else if (input$grafica == "box") {
+      boxplot(x ~ iris$Species, xlab = "Especie",
+              ylab = input$variable,
+              main = paste(input$variable, "por especie"))
+    } else {
+      plot(density(x), lwd = 3,
+           main = paste("Densidad de", input$variable),
+           xlab = input$variable)
+      grid()
+    }
+  })
+
+  output$resumen &lt;- renderTable({
+    x &lt;- valores()
+    data.frame(
+      N = length(x),
+      Media = round(mean(x), 3),
+      Mediana = round(median(x), 3),
+      Desviacion = round(sd(x), 3),
+      Minimo = min(x),
+      Maximo = max(x)
+    )
+  })
+}
+
+shinyApp(ui, server)</code></pre>
+</section>
+<section id="conclusión" class="level2" data-number="3.11">
+<h2 data-number="3.11" class="anchored" data-anchor-id="conclusión"><span class="header-section-number">3.11</span> Conclusión</h2>
 <p>El análisis exploratorio permite detectar patrones iniciales, revisar el desbalance de clases e identificar variables útiles para modelar.</p>
 
 

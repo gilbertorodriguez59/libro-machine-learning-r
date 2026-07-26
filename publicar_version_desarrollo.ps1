@@ -1,6 +1,6 @@
-﻿$ErrorActionPreference = "Stop"
+$ErrorActionPreference = "Stop"
 
-$ProjectDir = "C:\libro-machine-learning-r-dev"
+$ProjectDir = "C:\libro-machine-learning-r-estable"
 $PublicPdfName = "libro-machine-learning-r.pdf"
 $QuartoPdfName = "Aprendizaje-y-Clasificación-Automática-con-R.pdf"
 
@@ -24,7 +24,7 @@ try {
     Write-Host "Repositorio remoto configurado:" -ForegroundColor Cyan
     git remote -v
     Write-Host ""
-    Write-Host "Debe aparecer: gilbertorodriguez59/libro-machine-learning-r-dev.git"
+    Write-Host "Debe aparecer: gilbertorodriguez59/libro-machine-learning-r.git"
     Read-Host "Presione Enter para continuar"
 
     if (Test-Path $TempDir) {
@@ -138,13 +138,13 @@ try {
     Write-Host "PUBLICACION DE DESARROLLO TERMINADA CORRECTAMENTE" -ForegroundColor Green
     Write-Host ""
     Write-Host "Libro web:"
-    Write-Host "https://gilbertorodriguez59.github.io/libro-machine-learning-r-dev/"
+    Write-Host "https://gilbertorodriguez59.github.io/libro-machine-learning-r/"
     Write-Host ""
     Write-Host "PDF con nombre corto:"
-    Write-Host "https://gilbertorodriguez59.github.io/libro-machine-learning-r-dev/$PublicPdfName"
+    Write-Host "https://gilbertorodriguez59.github.io/libro-machine-learning-r/$PublicPdfName"
     Write-Host ""
     Write-Host "PDF usado por el icono de Quarto:"
-    Write-Host "https://gilbertorodriguez59.github.io/libro-machine-learning-r-dev/$QuartoPdfName"
+    Write-Host "https://gilbertorodriguez59.github.io/libro-machine-learning-r/$QuartoPdfName"
     Write-Host ""
     Write-Host "GitHub Pages puede tardar entre 1 y 5 minutos en actualizarse."
 

@@ -99,6 +99,11 @@ div.csl-indent {
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-12eeb4b20e9f5a2b0bfc604bfaf942bb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<meta name="shinylive:serviceworker_dir" content=".">
+<script src="site_libs/quarto-contrib/shinylive-0.10.12/shinylive/load-shinylive-sw.js" type="module"></script>
+<script src="site_libs/quarto-contrib/shinylive-0.10.12/shinylive/run-python-blocks.js" type="module"></script>
+<link href="site_libs/quarto-contrib/shinylive-0.10.12/shinylive/shinylive.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -280,6 +285,18 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Clasificador Naive Bayes</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-redes-neuronales.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Redes neuronales artificiales</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-kmeans.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Agrupamiento con k-means</span></span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
@@ -329,12 +346,13 @@ window.Quarto = {
   <li><a href="#ajustar-la-regresión-múltiple-con-atus" id="toc-ajustar-la-regresión-múltiple-con-atus" class="nav-link" data-scroll-target="#ajustar-la-regresión-múltiple-con-atus"><span class="header-section-number">4.20</span> Ajustar la regresión múltiple con ATUS</a></li>
   <li><a href="#supuestos-principales" id="toc-supuestos-principales" class="nav-link" data-scroll-target="#supuestos-principales"><span class="header-section-number">4.21</span> Supuestos principales</a></li>
   <li><a href="#diferencias-entre-regresión-lineal-y-logística" id="toc-diferencias-entre-regresión-lineal-y-logística" class="nav-link" data-scroll-target="#diferencias-entre-regresión-lineal-y-logística"><span class="header-section-number">4.22</span> Diferencias entre regresión lineal y logística</a></li>
-  <li><a href="#actividades-para-el-lector" id="toc-actividades-para-el-lector" class="nav-link" data-scroll-target="#actividades-para-el-lector"><span class="header-section-number">4.23</span> Actividades para el lector</a></li>
-  <li><a href="#conclusiones" id="toc-conclusiones" class="nav-link" data-scroll-target="#conclusiones"><span class="header-section-number">4.24</span> Conclusiones</a></li>
-  <li><a href="#materiales-complementarios-del-capítulo" id="toc-materiales-complementarios-del-capítulo" class="nav-link" data-scroll-target="#materiales-complementarios-del-capítulo"><span class="header-section-number">4.25</span> Materiales complementarios del capítulo</a>
+  <li><a href="#laboratorio-interactivo-regresión-lineal" id="toc-laboratorio-interactivo-regresión-lineal" class="nav-link" data-scroll-target="#laboratorio-interactivo-regresión-lineal"><span class="header-section-number">4.23</span> Laboratorio interactivo: regresión lineal</a></li>
+  <li><a href="#actividades-para-el-lector" id="toc-actividades-para-el-lector" class="nav-link" data-scroll-target="#actividades-para-el-lector"><span class="header-section-number">4.24</span> Actividades para el lector</a></li>
+  <li><a href="#conclusiones" id="toc-conclusiones" class="nav-link" data-scroll-target="#conclusiones"><span class="header-section-number">4.25</span> Conclusiones</a></li>
+  <li><a href="#materiales-complementarios-del-capítulo" id="toc-materiales-complementarios-del-capítulo" class="nav-link" data-scroll-target="#materiales-complementarios-del-capítulo"><span class="header-section-number">4.26</span> Materiales complementarios del capítulo</a>
   <ul class="collapse">
-  <li><a href="#video-explicativo" id="toc-video-explicativo" class="nav-link" data-scroll-target="#video-explicativo"><span class="header-section-number">4.25.1</span> Video explicativo</a></li>
-  <li><a href="#vista-previa-de-la-infografía" id="toc-vista-previa-de-la-infografía" class="nav-link" data-scroll-target="#vista-previa-de-la-infografía"><span class="header-section-number">4.25.2</span> Vista previa de la infografía</a></li>
+  <li><a href="#video-explicativo" id="toc-video-explicativo" class="nav-link" data-scroll-target="#video-explicativo"><span class="header-section-number">4.26.1</span> Video explicativo</a></li>
+  <li><a href="#vista-previa-de-la-infografía" id="toc-vista-previa-de-la-infografía" class="nav-link" data-scroll-target="#vista-previa-de-la-infografía"><span class="header-section-number">4.26.2</span> Vista previa de la infografía</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -985,8 +1003,110 @@ F-statistic: 0.262 on 3 and 8 DF,  p-value: 0.8509</code></pre>
 </tbody>
 </table>
 </section>
-<section id="actividades-para-el-lector" class="level2" data-number="4.23">
-<h2 data-number="4.23" class="anchored" data-anchor-id="actividades-para-el-lector"><span class="header-section-number">4.23</span> Actividades para el lector</h2>
+<section id="laboratorio-interactivo-regresión-lineal" class="level2" data-number="4.23">
+<h2 data-number="4.23" class="anchored" data-anchor-id="laboratorio-interactivo-regresión-lineal"><span class="header-section-number">4.23</span> Laboratorio interactivo: regresión lineal</h2>
+<p>Modifica el intercepto, la pendiente y el nivel de ruido para observar cómo cambia la nube de puntos y la recta de regresión.</p>
+<pre class="shinylive-r" data-engine="r"><code>#| '!! shinylive warning !!': |
+#|   shinylive does not work in self-contained HTML documents.
+#|   Please set `embed-resources: false` in your metadata.
+#| standalone: true
+#| viewerHeight: 700
+#| components: [viewer]
+
+library(shiny)
+
+ui &lt;- fluidPage(
+  titlePanel("Laboratorio de regresión lineal"),
+
+  sidebarLayout(
+    sidebarPanel(
+      sliderInput("b0", "Intercepto", -10, 10, 2, 0.5),
+      sliderInput("b1", "Pendiente", -5, 5, 1.5, 0.1),
+      sliderInput("ruido", "Desviación del ruido", 0, 8, 2, 0.25),
+      sliderInput("n", "Número de observaciones", 20, 200, 60, 10),
+      numericInput("semilla", "Semilla", 123, min = 1)
+    ),
+
+    mainPanel(
+      plotOutput("grafica", height = "450px"),
+      verbatimTextOutput("modelo"),
+      textOutput("interpretacion")
+    )
+  )
+)
+
+server &lt;- function(input, output, session) {
+
+  datos &lt;- reactive({
+    set.seed(input$semilla)
+    x &lt;- runif(input$n, 0, 10)
+    y &lt;- input$b0 + input$b1 * x +
+      rnorm(input$n, 0, input$ruido)
+    data.frame(x = x, y = y)
+  })
+
+  ajuste &lt;- reactive({
+    lm(y ~ x, data = datos())
+  })
+
+  output$grafica &lt;- renderPlot({
+    d &lt;- datos()
+
+    plot(
+      d$x, d$y,
+      pch = 19,
+      xlab = "Variable x",
+      ylab = "Variable y",
+      main = "Datos simulados y recta estimada"
+    )
+
+    abline(ajuste(), lwd = 3)
+    abline(
+      a = input$b0,
+      b = input$b1,
+      lty = 2,
+      lwd = 2
+    )
+
+    legend(
+      "topleft",
+      legend = c("Recta estimada", "Recta verdadera"),
+      lty = c(1, 2),
+      lwd = c(3, 2),
+      bty = "n"
+    )
+  })
+
+  output$modelo &lt;- renderPrint({
+    coeficientes &lt;- coef(ajuste())
+    r2 &lt;- summary(ajuste())$r.squared
+
+    cat("Modelo estimado:\n")
+    cat(
+      "y =",
+      round(coeficientes[1], 3),
+      "+",
+      round(coeficientes[2], 3),
+      "x\n\n"
+    )
+    cat("R² =", round(r2, 4))
+  })
+
+  output$interpretacion &lt;- renderText({
+    if (input$ruido &lt; 1) {
+      "Con poco ruido, la recta estimada suele aproximarse mucho a la relación verdadera."
+    } else if (input$ruido &lt; 4) {
+      "El ruido genera dispersión y reduce la precisión del ajuste."
+    } else {
+      "Con ruido alto, la relación es más difícil de identificar y el R² suele disminuir."
+    }
+  })
+}
+
+shinyApp(ui, server)</code></pre>
+</section>
+<section id="actividades-para-el-lector" class="level2" data-number="4.24">
+<h2 data-number="4.24" class="anchored" data-anchor-id="actividades-para-el-lector"><span class="header-section-number">4.24</span> Actividades para el lector</h2>
 <ol type="1">
 <li>Modifique el ejemplo simple y prediga la calificación para 7.5 horas de estudio.</li>
 <li>Retire una variable del modelo ambiental y compare el <span class="math inline">\(R^2\)</span> ajustado y el RMSE.</li>
@@ -996,12 +1116,12 @@ F-statistic: 0.262 on 3 and 8 DF,  p-value: 0.8509</code></pre>
 <li>Compare conceptualmente el modelo ATUS de este capítulo con la regresión logística del capítulo siguiente.</li>
 </ol>
 </section>
-<section id="conclusiones" class="level2" data-number="4.24">
-<h2 data-number="4.24" class="anchored" data-anchor-id="conclusiones"><span class="header-section-number">4.24</span> Conclusiones</h2>
+<section id="conclusiones" class="level2" data-number="4.25">
+<h2 data-number="4.25" class="anchored" data-anchor-id="conclusiones"><span class="header-section-number">4.25</span> Conclusiones</h2>
 <p>La regresión lineal simple explica una respuesta cuantitativa mediante una variable y la regresión múltiple permite considerar varios factores simultáneamente. Su valor en este libro no se limita a la predicción numérica: proporciona el lenguaje básico para comprender coeficientes, errores, validación y generalización, conceptos que continuarán apareciendo en los algoritmos de clasificación.</p>
 </section>
-<section id="materiales-complementarios-del-capítulo" class="level2" data-number="4.25">
-<h2 data-number="4.25" class="anchored" data-anchor-id="materiales-complementarios-del-capítulo"><span class="header-section-number">4.25</span> Materiales complementarios del capítulo</h2>
+<section id="materiales-complementarios-del-capítulo" class="level2" data-number="4.26">
+<h2 data-number="4.26" class="anchored" data-anchor-id="materiales-complementarios-del-capítulo"><span class="header-section-number">4.26</span> Materiales complementarios del capítulo</h2>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -1038,14 +1158,14 @@ F-statistic: 0.262 on 3 and 8 DF,  p-value: 0.8509</code></pre>
 </tr>
 </tbody>
 </table>
-<section id="video-explicativo" class="level3" data-number="4.25.1">
-<h3 data-number="4.25.1" class="anchored" data-anchor-id="video-explicativo"><span class="header-section-number">4.25.1</span> Video explicativo</h3>
+<section id="video-explicativo" class="level3" data-number="4.26.1">
+<h3 data-number="4.26.1" class="anchored" data-anchor-id="video-explicativo"><span class="header-section-number">4.26.1</span> Video explicativo</h3>
 <div class="video-responsive">
 <p><iframe src="https://www.youtube.com/embed/SE6DCeU9h1w" title="Capítulo 4. Regresión lineal simple y múltiple" frameborder="0" allowfullscreen=""></iframe></p>
 </div>
 </section>
-<section id="vista-previa-de-la-infografía" class="level3" data-number="4.25.2">
-<h3 data-number="4.25.2" class="anchored" data-anchor-id="vista-previa-de-la-infografía"><span class="header-section-number">4.25.2</span> Vista previa de la infografía</h3>
+<section id="vista-previa-de-la-infografía" class="level3" data-number="4.26.2">
+<h3 data-number="4.26.2" class="anchored" data-anchor-id="vista-previa-de-la-infografía"><span class="header-section-number">4.26.2</span> Vista previa de la infografía</h3>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><a href="recursos/capitulo-04/capitulo-04-regresion-lineal-simple-multiple-infografia.png"><img src="recursos/capitulo-04/capitulo-04-regresion-lineal-simple-multiple-infografia.png" class="img-fluid figure-img"></a></p>

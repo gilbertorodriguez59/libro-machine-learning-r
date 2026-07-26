@@ -35,5 +35,5 @@ quarto render --profile pdf --to pdf
 quarto render --to html
 
 NOTA
-Trabaje y pruebe esta version en C:\libro-machine-learning-r-estable.
+Trabaje y pruebe esta version en C:\libro-machine-learning-r-dev.
 No copie a la version estable hasta revisar HTML y PDF.

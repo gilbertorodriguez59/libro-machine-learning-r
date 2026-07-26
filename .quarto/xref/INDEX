@@ -43,5 +43,11 @@
   },
   "04-regresion-lineal-multiple.qmd": {
     "04-regresion-lineal-multiple.html": "1ed56aea"
+  },
+  "11-redes-neuronales.qmd": {
+    "11-redes-neuronales.html": "49899de3"
+  },
+  "12-kmeans.qmd": {
+    "12-kmeans.html": "b55727b7"
   }
 }

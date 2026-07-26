@@ -180,6 +180,84 @@ Este video forma parte de la lista oficial del curso **Aprendizaje y Clasificaci
 [Consultar todos los videos del curso](https://www.youtube.com/playlist?list=PLDJYd2v7Kt-Q){target="_blank"}
 :::
 
+## Laboratorio interactivo: una regla de clasificación
+
+::: {.content-visible when-format="html"}
+
+Este laboratorio muestra cómo una regla sencilla puede clasificar observaciones
+a partir de un umbral.
+
+```{shinylive-r}
+#| standalone: true
+#| viewerHeight: 680
+#| components: [viewer]
+
+library(shiny)
+
+ui <- fluidPage(
+  titlePanel("Clasificador basado en un umbral"),
+  sidebarLayout(
+    sidebarPanel(
+      sliderInput("umbral", "Umbral de clasificación", 0, 10, 5, step = 0.1),
+      sliderInput("ruido", "Nivel de ruido", 0, 3, 1, step = 0.1),
+      numericInput("semilla", "Semilla", 123, min = 1)
+    ),
+    mainPanel(
+      plotOutput("grafica", height = "400px"),
+      tableOutput("metricas"),
+      textOutput("regla")
+    )
+  )
+)
+
+server <- function(input, output, session) {
+  datos <- reactive({
+    set.seed(input$semilla)
+    x <- seq(0.5, 9.5, length.out = 80)
+    clase_real <- ifelse(x + rnorm(length(x), 0, input$ruido) >= 5, 1, 0)
+    pred <- ifelse(x >= input$umbral, 1, 0)
+    data.frame(x, clase_real, pred)
+  })
+
+  output$grafica <- renderPlot({
+    d <- datos()
+    plot(d$x, jitter(d$clase_real, amount = 0.08), pch = 19,
+         xlab = "Variable predictora x", ylab = "Clase real",
+         yaxt = "n", main = "Regla de clasificación")
+    axis(2, at = c(0, 1), labels = c("Clase 0", "Clase 1"))
+    abline(v = input$umbral, lwd = 3, lty = 2)
+    grid()
+  })
+
+  output$metricas <- renderTable({
+    d <- datos()
+    data.frame(
+      Observaciones = nrow(d),
+      Aciertos = sum(d$clase_real == d$pred),
+      Errores = sum(d$clase_real != d$pred),
+      Exactitud = round(mean(d$clase_real == d$pred), 4)
+    )
+  })
+
+  output$regla <- renderText({
+    paste0("Si x >= ", round(input$umbral, 2),
+           ", predecir Clase 1; en otro caso, Clase 0.")
+  })
+}
+
+shinyApp(ui, server)
+```
+
+:::
+
+::: {.content-visible when-format="pdf"}
+
+### Laboratorio disponible en la versión web
+
+Permite cambiar el umbral de una regla de clasificación y observar la exactitud.
+
+:::
+
 ## Conclusión
 
 El aprendizaje automático permite construir modelos que aprenden patrones a partir de datos. En este capítulo vimos la diferencia entre reglas manuales y aprendizaje a partir de ejemplos.

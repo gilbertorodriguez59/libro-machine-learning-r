@@ -5,9 +5,34 @@
 ### Un enfoque práctico con datos abiertos reales {.unnumbered}
 
 **Autor:** MI Jesús Gilberto Rodríguez Escobedo  
-**Versión:** 0.10.7 (desarrollo)
+**Versión:** 0.13.5 (desarrollo)
 **Modalidad:** Libro abierto, práctico e interactivo  
-**Tecnologías:** R · Quarto · Machine Learning · Datos abiertos · GitHub Pages
+**Tecnologías:** R · Quarto · Machine Learning · Shinylive · Google Colab · YouTube · GitHub Pages
+
+
+::: {.content-visible when-format="html"}
+
+::: {.callout-note appearance="simple" icon="false"}
+
+## Edición interactiva ampliada
+
+### Aprende Machine Learning haciendo
+
+Libro abierto con código en **R**, datos reales, videos, presentaciones,
+infografías, Google Colab y laboratorios que se ejecutan directamente en el
+navegador.
+
+[Comenzar el libro](01-introduccion.qmd){.btn .btn-primary .btn-lg}
+[Curso completo en YouTube](https://www.youtube.com/playlist?list=PLDJYd2v7Kt-Q){.btn .btn-danger .btn-lg}
+[Cuaderno Google Colab](00-cuaderno-google-colab.qmd){.btn .btn-outline-primary .btn-lg}
+
+![Portada del libro](imagenes/portada-libro-carta.png){fig-alt="Portada del libro Aprendizaje y Clasificación Automática con R" width="58%"}
+
+**13 capítulos · R reproducible · Datos abiertos · Videos · Shinylive · PDF**
+
+:::
+
+:::
 
 Este libro introduce el aprendizaje automático (*Machine Learning*) mediante ejemplos claros, didácticos y prácticos desarrollados principalmente en **R**.
 
@@ -62,14 +87,18 @@ Este video ofrece una introducción general a la presentación, la licencia de u
 
 ### Curso completo en YouTube
 
-Escanea el código QR o abre el enlace para acceder a la lista de reproducción oficial del curso:
+El libro cuenta con una lista oficial de reproducción en YouTube, donde se
+reúnen el video de presentación y los videos complementarios de cada capítulo.
 
-\begin{center}
-\includegraphics[width=0.28\textwidth]{imagenes/qr-curso-youtube.png}
-\end{center}
+[▶ Ver el curso completo en YouTube](https://www.youtube.com/playlist?list=PLDJYd2v7Kt-Q){.btn .btn-danger .btn-lg target="_blank"}
+
+Enlace directo:
 
 <https://www.youtube.com/playlist?list=PLDJYd2v7Kt-Q>
-:::
+
+**Lista oficial del curso**
+
+Presentación general y videos complementarios de los capítulos.
 
 ## Curso completo en YouTube
 
@@ -134,18 +163,15 @@ Estos materiales complementarios fueron elaborados con apoyo de **NotebookLM de 
 9. Evaluación, validación y comparación de modelos.
 10. Máquinas de Vectores de Soporte (SVM).
 11. Clasificador Naive Bayes.
+12. Redes neuronales artificiales.
+13. Agrupamiento con k-means.
 
 ## Ruta prevista para los siguientes capítulos {.unnumbered}
 
-La secuencia prevista, sujeta a revisión conforme avance el libro, es:
-
-12. Redes neuronales artificiales.
-13. Introducción al aprendizaje no supervisado.
-14. Agrupamiento con k-means.
-15. Análisis de Componentes Principales (PCA).
-16. Comparación integral y selección de algoritmos.
+14. Análisis de Componentes Principales (PCA).  
+15. Reglas de asociación con Apriori.  
+16. Comparación integral y selección de algoritmos.  
 17. Proyecto aplicado final con datos abiertos.
-
 
 ## Nota para el lector {.unnumbered}
 

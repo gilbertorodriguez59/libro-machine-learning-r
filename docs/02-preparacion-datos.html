@@ -99,6 +99,11 @@ div.csl-indent {
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-12eeb4b20e9f5a2b0bfc604bfaf942bb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<meta name="shinylive:serviceworker_dir" content=".">
+<script src="site_libs/quarto-contrib/shinylive-0.10.12/shinylive/load-shinylive-sw.js" type="module"></script>
+<script src="site_libs/quarto-contrib/shinylive-0.10.12/shinylive/run-python-blocks.js" type="module"></script>
+<link href="site_libs/quarto-contrib/shinylive-0.10.12/shinylive/shinylive.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -251,6 +256,18 @@ div.csl-indent {
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Clasificador Naive Bayes</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-redes-neuronales.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Redes neuronales artificiales</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-kmeans.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Agrupamiento con k-means</span></span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
@@ -298,6 +315,7 @@ div.csl-indent {
   <li><a href="#video-explicativo" id="toc-video-explicativo" class="nav-link" data-scroll-target="#video-explicativo"><span class="header-section-number">2.16.1</span> Video explicativo</a></li>
   <li><a href="#vista-previa-de-la-infografía" id="toc-vista-previa-de-la-infografía" class="nav-link" data-scroll-target="#vista-previa-de-la-infografía"><span class="header-section-number">2.16.2</span> Vista previa de la infografía</a></li>
   </ul></li>
+  <li><a href="#laboratorio-interactivo-preparar-datos" id="toc-laboratorio-interactivo-preparar-datos" class="nav-link" data-scroll-target="#laboratorio-interactivo-preparar-datos"><span class="header-section-number">2.17</span> Laboratorio interactivo: preparar datos</a></li>
   </ul>
 </nav>
     </div>
@@ -859,6 +877,88 @@ Con víctimas   Solo daños
 <p><a href="https://www.youtube.com/playlist?list=PLDJYd2v7Kt-Q" target="_blank">Consultar todos los videos del curso</a></p>
 </div>
 </div>
+</section>
+</section>
+<section id="laboratorio-interactivo-preparar-datos" class="level2" data-number="2.17">
+<h2 data-number="2.17" class="anchored" data-anchor-id="laboratorio-interactivo-preparar-datos"><span class="header-section-number">2.17</span> Laboratorio interactivo: preparar datos</h2>
+<p>Explora valores faltantes, imputación y estandarización.</p>
+<pre class="shinylive-r" data-engine="r"><code>#| '!! shinylive warning !!': |
+#|   shinylive does not work in self-contained HTML documents.
+#|   Please set `embed-resources: false` in your metadata.
+#| standalone: true
+#| viewerHeight: 720
+#| components: [viewer]
+
+library(shiny)
+
+ui &lt;- fluidPage(
+  titlePanel("Preparación interactiva de datos"),
+  sidebarLayout(
+    sidebarPanel(
+      sliderInput("faltantes", "Porcentaje de valores faltantes",
+                  0, 40, 15, step = 5),
+      selectInput("imputacion", "Método de imputación",
+                  choices = c("Media" = "media", "Mediana" = "mediana")),
+      checkboxInput("escalar", "Estandarizar variables", TRUE),
+      numericInput("semilla", "Semilla", 123, min = 1)
+    ),
+    mainPanel(
+      h4("Datos con valores faltantes"),
+      tableOutput("antes"),
+      h4("Datos preparados"),
+      tableOutput("despues"),
+      tableOutput("resumen")
+    )
+  )
+)
+
+server &lt;- function(input, output, session) {
+  datos &lt;- reactive({
+    set.seed(input$semilla)
+    d &lt;- data.frame(
+      temperatura = round(rnorm(12, 25, 4), 1),
+      humedad = round(rnorm(12, 55, 12), 1),
+      contaminacion = round(rnorm(12, 40, 10), 1)
+    )
+    n_na &lt;- round(length(as.matrix(d)) * input$faltantes / 100)
+    if (n_na &gt; 0) {
+      m &lt;- as.matrix(d)
+      m[sample(seq_len(length(m)), n_na)] &lt;- NA
+      d &lt;- as.data.frame(m)
+    }
+    d
+  })
+
+  preparados &lt;- reactive({
+    d &lt;- datos()
+    for (j in seq_along(d)) {
+      valor &lt;- if (input$imputacion == "media") {
+        mean(d[[j]], na.rm = TRUE)
+      } else {
+        median(d[[j]], na.rm = TRUE)
+      }
+      d[[j]][is.na(d[[j]])] &lt;- valor
+    }
+    if (input$escalar) d &lt;- as.data.frame(scale(d))
+    d
+  })
+
+  output$antes &lt;- renderTable(datos(), digits = 2)
+  output$despues &lt;- renderTable(preparados(), digits = 3)
+
+  output$resumen &lt;- renderTable({
+    data.frame(
+      Etapa = c("Antes", "Después"),
+      Valores_faltantes = c(sum(is.na(datos())), sum(is.na(preparados()))),
+      Media_variable_1 = round(c(mean(datos()[[1]], na.rm = TRUE),
+                                 mean(preparados()[[1]])), 3),
+      Desviacion_variable_1 = round(c(sd(datos()[[1]], na.rm = TRUE),
+                                      sd(preparados()[[1]])), 3)
+    )
+  })
+}
+
+shinyApp(ui, server)</code></pre>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
@@ -869,7 +969,6 @@ Instituto Nacional de Estadística y Geografía. 2025. <span>«Estadística de A
 Instituto Nacional de Estadística y Geografía. 2026. <span>«Términos de libre uso de la información del INEGI»</span>. <a href="https://www.inegi.org.mx/inegi/terminos.html">https://www.inegi.org.mx/inegi/terminos.html</a>.
 </div>
 </div>
-</section>
 </section>
 
 </main> <!-- /main -->

@@ -1,6 +1,6 @@
-﻿$ErrorActionPreference = "Stop"
+$ErrorActionPreference = "Stop"
 
-$ProjectDir = "C:\libro-machine-learning-r-dev"
+$ProjectDir = "C:\libro-machine-learning-r-estable"
 $BookPdfGenerated = "Aprendizaje-y-Clasificación-Automática-con-R.pdf"
 $BookPdfAscii = "Aprendizaje-y-Clasificacion-Automatica-con-R.pdf"
 $PublicPdfName = "libro-machine-learning-r.pdf"
@@ -22,7 +22,7 @@ try {
     Write-Host "Repositorio remoto:" -ForegroundColor Cyan
     git remote -v
     Write-Host ""
-    Write-Host "Debe aparecer gilbertorodriguez59/libro-machine-learning-r-dev.git"
+    Write-Host "Debe aparecer gilbertorodriguez59/libro-machine-learning-r.git"
     Read-Host "Presione Enter para continuar"
 
     if (Test-Path $TempDir) {
@@ -152,10 +152,10 @@ try {
     Write-Host "PUBLICACIÓN TERMINADA CORRECTAMENTE" -ForegroundColor Green
     Write-Host ""
     Write-Host "Web:"
-    Write-Host "https://gilbertorodriguez59.github.io/libro-machine-learning-r-dev/"
+    Write-Host "https://gilbertorodriguez59.github.io/libro-machine-learning-r/"
     Write-Host ""
     Write-Host "PDF:"
-    Write-Host "https://gilbertorodriguez59.github.io/libro-machine-learning-r-dev/$PublicPdfName"
+    Write-Host "https://gilbertorodriguez59.github.io/libro-machine-learning-r/$PublicPdfName"
     Write-Host ""
     Read-Host "Presione Enter para cerrar"
 }

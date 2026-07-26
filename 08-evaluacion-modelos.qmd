@@ -558,3 +558,140 @@ En este capítulo aprendimos que evaluar un modelo requiere datos no utilizados 
 ## Referencias fundamentales sobre evaluación
 
 La validación cruzada y su uso para estimar el desempeño de modelos fueron examinados comparativamente por @kohavi1995crossvalidation. Para el análisis mediante curvas ROC y AUC, una referencia ampliamente utilizada es @fawcett2006roc. Una visión integrada de partición de datos, remuestreo y comparación de modelos aparece en @james2021islr.
+
+
+## Laboratorio interactivo: matriz de confusión y métricas
+
+::: {.content-visible when-format="html"}
+
+Modifica los cuatro valores de la matriz de confusión y observa cómo cambian
+exactitud, sensibilidad, especificidad, precisión y F1.
+
+```{shinylive-r}
+#| standalone: true
+#| viewerHeight: 720
+#| components: [viewer]
+
+library(shiny)
+
+ui <- fluidPage(
+  titlePanel("Calculadora de métricas de clasificación"),
+  sidebarLayout(
+    sidebarPanel(
+      numericInput("vp", "Verdaderos positivos", 40, min = 0),
+      numericInput("vn", "Verdaderos negativos", 45, min = 0),
+      numericInput("fp", "Falsos positivos", 5, min = 0),
+      numericInput("fn", "Falsos negativos", 10, min = 0)
+    ),
+    mainPanel(
+      tableOutput("matriz"),
+      tableOutput("metricas"),
+      plotOutput("grafica", height = "320px")
+    )
+  )
+)
+
+server <- function(input, output, session) {
+  calc <- reactive({
+    vp <- input$vp; vn <- input$vn; fp <- input$fp; fn <- input$fn
+    total <- vp + vn + fp + fn
+    exactitud <- ifelse(total == 0, NA, (vp + vn) / total)
+    sensibilidad <- ifelse(vp + fn == 0, NA, vp / (vp + fn))
+    especificidad <- ifelse(vn + fp == 0, NA, vn / (vn + fp))
+    precision <- ifelse(vp + fp == 0, NA, vp / (vp + fp))
+    f1 <- ifelse(
+      is.na(precision) || is.na(sensibilidad) || precision + sensibilidad == 0,
+      NA,
+      2 * precision * sensibilidad / (precision + sensibilidad)
+    )
+    list(
+      matriz = matrix(c(vn, fp, fn, vp), nrow = 2, byrow = TRUE,
+                      dimnames = list(
+                        "Real" = c("Clase 0", "Clase 1"),
+                        "Predicho" = c("Clase 0", "Clase 1")
+                      )),
+      metricas = c(
+        Exactitud = exactitud,
+        Sensibilidad = sensibilidad,
+        Especificidad = especificidad,
+        Precision = precision,
+        F1 = f1
+      )
+    )
+  })
+
+  output$matriz <- renderTable({
+    as.data.frame.matrix(calc()$matriz)
+  }, rownames = TRUE)
+
+  output$metricas <- renderTable({
+    data.frame(
+      Métrica = names(calc()$metricas),
+      Valor = round(as.numeric(calc()$metricas), 4)
+    )
+  })
+
+  output$grafica <- renderPlot({
+    m <- calc()$metricas
+    barplot(
+      m,
+      ylim = c(0, 1),
+      ylab = "Valor",
+      main = "Métricas del modelo"
+    )
+    abline(h = seq(0, 1, by = 0.2), lty = 3)
+  })
+}
+
+shinyApp(ui, server)
+```
+
+:::
+
+::: {.content-visible when-format="pdf"}
+
+### Laboratorio disponible en la versión web
+
+La calculadora permite editar la matriz de confusión y obtener automáticamente
+exactitud, sensibilidad, especificidad, precisión y F1.
+
+:::
+
+## Materiales complementarios del capítulo
+
+::: {.content-visible when-format="html"}
+
+### Video del capítulo
+
+<iframe width="100%" height="420"
+src="https://www.youtube.com/embed/ShiKrfhIfpY"
+title="Capítulo 9. Evaluación, validación y comparación de modelos"
+frameborder="0"
+allowfullscreen></iframe>
+
+:::
+
+::: {.content-visible when-format="pdf"}
+
+### Video del capítulo
+
+Disponible en YouTube:
+
+<https://youtu.be/ShiKrfhIfpY>
+
+:::
+
+| Recurso | Descripción | Abrir o descargar |
+|---|---|---|
+| Presentación en PDF | Síntesis del capítulo para lectura o exposición. | [Abrir PDF](recursos/capitulo-09/capitulo-09-evaluacion-modelos-presentacion.pdf){target="_blank"} |
+| Presentación editable | Diapositivas en PowerPoint. | [Descargar PPTX](recursos/capitulo-09/capitulo-09-evaluacion-modelos-presentacion.pptx) |
+| Infografía | Resumen visual del capítulo. | [Abrir infografía](recursos/capitulo-09/capitulo-09-evaluacion-modelos-infografia.png){target="_blank"} |
+
+::: {.content-visible when-format="html"}
+
+![Infografía del capítulo 9](recursos/capitulo-09/capitulo-09-evaluacion-modelos-infografia.png){fig-alt="Capítulo 9. Evaluación, validación y comparación de modelos" width="85%"}
+
+:::
+
+Los materiales fueron creados con apoyo de NotebookLM de Google a partir del
+contenido del libro y revisados y adaptados por el autor.

@@ -99,6 +99,11 @@ div.csl-indent {
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-12eeb4b20e9f5a2b0bfc604bfaf942bb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<meta name="shinylive:serviceworker_dir" content=".">
+<script src="site_libs/quarto-contrib/shinylive-0.10.12/shinylive/load-shinylive-sw.js" type="module"></script>
+<script src="site_libs/quarto-contrib/shinylive-0.10.12/shinylive/run-python-blocks.js" type="module"></script>
+<link href="site_libs/quarto-contrib/shinylive-0.10.12/shinylive/shinylive.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -280,6 +285,18 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Clasificador Naive Bayes</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-redes-neuronales.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Redes neuronales artificiales</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-kmeans.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Agrupamiento con k-means</span></span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
@@ -313,8 +330,13 @@ window.Quarto = {
   <li><a href="#cargar-y-preparar-datos" id="toc-cargar-y-preparar-datos" class="nav-link" data-scroll-target="#cargar-y-preparar-datos"><span class="header-section-number">6.4</span> Cargar y preparar datos</a></li>
   <li><a href="#modelo-k-nn" id="toc-modelo-k-nn" class="nav-link" data-scroll-target="#modelo-k-nn"><span class="header-section-number">6.5</span> Modelo k-NN</a></li>
   <li><a href="#comparación-de-valores-de-k" id="toc-comparación-de-valores-de-k" class="nav-link" data-scroll-target="#comparación-de-valores-de-k"><span class="header-section-number">6.6</span> Comparación de valores de k</a></li>
-  <li><a href="#conclusión" id="toc-conclusión" class="nav-link" data-scroll-target="#conclusión"><span class="header-section-number">6.7</span> Conclusión</a></li>
-  <li><a href="#referencias-fundamentales-de-k-nn" id="toc-referencias-fundamentales-de-k-nn" class="nav-link" data-scroll-target="#referencias-fundamentales-de-k-nn"><span class="header-section-number">6.8</span> Referencias fundamentales de k-NN</a></li>
+  <li><a href="#laboratorio-interactivo-k-nn" id="toc-laboratorio-interactivo-k-nn" class="nav-link" data-scroll-target="#laboratorio-interactivo-k-nn"><span class="header-section-number">6.7</span> Laboratorio interactivo: k-NN</a></li>
+  <li><a href="#materiales-complementarios-del-capítulo" id="toc-materiales-complementarios-del-capítulo" class="nav-link" data-scroll-target="#materiales-complementarios-del-capítulo"><span class="header-section-number">6.8</span> Materiales complementarios del capítulo</a>
+  <ul class="collapse">
+  <li><a href="#video-del-capítulo" id="toc-video-del-capítulo" class="nav-link" data-scroll-target="#video-del-capítulo"><span class="header-section-number">6.8.1</span> Video del capítulo</a></li>
+  </ul></li>
+  <li><a href="#conclusión" id="toc-conclusión" class="nav-link" data-scroll-target="#conclusión"><span class="header-section-number">6.9</span> Conclusión</a></li>
+  <li><a href="#referencias-fundamentales-de-k-nn" id="toc-referencias-fundamentales-de-k-nn" class="nav-link" data-scroll-target="#referencias-fundamentales-de-k-nn"><span class="header-section-number">6.10</span> Referencias fundamentales de k-NN</a></li>
   </ul>
 </nav>
     </div>
@@ -597,12 +619,175 @@ Real           Con víctimas Solo daños
 </div>
 </div>
 </section>
-<section id="conclusión" class="level2" data-number="6.7">
-<h2 data-number="6.7" class="anchored" data-anchor-id="conclusión"><span class="header-section-number">6.7</span> Conclusión</h2>
+<section id="laboratorio-interactivo-k-nn" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="laboratorio-interactivo-k-nn"><span class="header-section-number">6.7</span> Laboratorio interactivo: k-NN</h2>
+<p>Selecciona el número de vecinos y mueve un punto nuevo. El laboratorio identifica sus vecinos más cercanos y muestra la clase predicha.</p>
+<pre class="shinylive-r" data-engine="r"><code>#| '!! shinylive warning !!': |
+#|   shinylive does not work in self-contained HTML documents.
+#|   Please set `embed-resources: false` in your metadata.
+#| standalone: true
+#| viewerHeight: 760
+#| components: [viewer]
+
+library(shiny)
+
+ui &lt;- fluidPage(
+  titlePanel("Laboratorio de clasificación k-NN"),
+
+  sidebarLayout(
+    sidebarPanel(
+      sliderInput("k", "Número de vecinos k", 1, 15, 5, 2),
+      sliderInput("xnew", "Longitud del sépalo", 4, 8, 5.8, 0.1),
+      sliderInput("ynew", "Anchura del sépalo", 2, 4.5, 3.0, 0.1)
+    ),
+
+    mainPanel(
+      plotOutput("grafica", height = "500px"),
+      verbatimTextOutput("resultado"),
+      textOutput("explicacion")
+    )
+  )
+)
+
+server &lt;- function(input, output, session) {
+
+  resultado &lt;- reactive({
+    X &lt;- as.matrix(iris[, c("Sepal.Length", "Sepal.Width")])
+    nuevo &lt;- c(input$xnew, input$ynew)
+
+    distancias &lt;- sqrt(
+      rowSums(
+        sweep(X, 2, nuevo, "-")^2
+      )
+    )
+
+    indices &lt;- order(distancias)[seq_len(input$k)]
+    votos &lt;- table(iris$Species[indices])
+    clase &lt;- names(which.max(votos))
+
+    list(
+      indices = indices,
+      distancias = distancias,
+      votos = votos,
+      clase = clase
+    )
+  })
+
+  output$grafica &lt;- renderPlot({
+    especies &lt;- as.integer(iris$Species)
+    r &lt;- resultado()
+
+    plot(
+      iris$Sepal.Length,
+      iris$Sepal.Width,
+      pch = 19,
+      col = especies,
+      xlab = "Longitud del sépalo",
+      ylab = "Anchura del sépalo",
+      main = paste("Predicción:", r$clase)
+    )
+
+    points(
+      iris$Sepal.Length[r$indices],
+      iris$Sepal.Width[r$indices],
+      pch = 1,
+      cex = 2.1,
+      lwd = 2
+    )
+
+    points(
+      input$xnew,
+      input$ynew,
+      pch = 8,
+      cex = 2.2,
+      lwd = 3
+    )
+
+    segments(
+      input$xnew,
+      input$ynew,
+      iris$Sepal.Length[r$indices],
+      iris$Sepal.Width[r$indices],
+      lty = 3
+    )
+
+    legend(
+      "topright",
+      legend = levels(iris$Species),
+      col = seq_along(levels(iris$Species)),
+      pch = 19,
+      bty = "n"
+    )
+  })
+
+  output$resultado &lt;- renderPrint({
+    r &lt;- resultado()
+
+    cat("Clase predicha:", r$clase, "\n\n")
+    cat("Votos de los vecinos:\n")
+    print(r$votos)
+  })
+
+  output$explicacion &lt;- renderText({
+    paste0(
+      "Los círculos grandes indican los ",
+      input$k,
+      " vecinos utilizados. La estrella representa la observación nueva."
+    )
+  })
+}
+
+shinyApp(ui, server)</code></pre>
+</section>
+<section id="materiales-complementarios-del-capítulo" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="materiales-complementarios-del-capítulo"><span class="header-section-number">6.8</span> Materiales complementarios del capítulo</h2>
+<section id="video-del-capítulo" class="level3" data-number="6.8.1">
+<h3 data-number="6.8.1" class="anchored" data-anchor-id="video-del-capítulo"><span class="header-section-number">6.8.1</span> Video del capítulo</h3>
+<div class="video-responsive">
+<iframe src="https://www.youtube.com/embed/NLJj0QAWomU" title="Capítulo 6. k vecinos más cercanos, k-NN" frameborder="0" allowfullscreen="">
+</iframe>
+</div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Recurso</th>
+<th>Descripción</th>
+<th>Abrir o descargar</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Presentación en PDF</td>
+<td>Síntesis del capítulo para lectura o exposición.</td>
+<td><a href="recursos/capitulo-06/capitulo-06-knn-presentacion.pdf" target="_blank">Abrir PDF</a></td>
+</tr>
+<tr class="even">
+<td>Presentación editable</td>
+<td>Diapositivas en PowerPoint.</td>
+<td><a href="recursos/capitulo-06/capitulo-06-knn-presentacion.pptx">Descargar PPTX</a></td>
+</tr>
+<tr class="odd">
+<td>Infografía</td>
+<td>Resumen visual del algoritmo k-NN.</td>
+<td><a href="recursos/capitulo-06/capitulo-06-knn-infografia.png" target="_blank">Abrir infografía</a></td>
+</tr>
+</tbody>
+</table>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="recursos/capitulo-06/capitulo-06-knn-infografia.png" class="img-fluid figure-img" style="width:85.0%" alt="Infografía sobre k vecinos más cercanos"></p>
+<figcaption>Infografía del capítulo 6</figcaption>
+</figure>
+</div>
+<p>Los materiales fueron creados con apoyo de NotebookLM de Google a partir del contenido del libro y revisados y adaptados por el autor.</p>
+</section>
+</section>
+<section id="conclusión" class="level2" data-number="6.9">
+<h2 data-number="6.9" class="anchored" data-anchor-id="conclusión"><span class="header-section-number">6.9</span> Conclusión</h2>
 <p>k-NN es un método intuitivo basado en similitud. Su desempeño depende del valor de <span class="math inline">\(k\)</span>, del escalamiento y de la calidad de las variables predictoras.</p>
 </section>
-<section id="referencias-fundamentales-de-k-nn" class="level2" data-number="6.8">
-<h2 data-number="6.8" class="anchored" data-anchor-id="referencias-fundamentales-de-k-nn"><span class="header-section-number">6.8</span> Referencias fundamentales de k-NN</h2>
+<section id="referencias-fundamentales-de-k-nn" class="level2" data-number="6.10">
+<h2 data-number="6.10" class="anchored" data-anchor-id="referencias-fundamentales-de-k-nn"><span class="header-section-number">6.10</span> Referencias fundamentales de k-NN</h2>
 <p>El método de los vecinos más cercanos tiene como antecedente clásico el informe de <span class="citation" data-cites="fix1951discriminatory">Fix y Hodges (<a href="referencias.html#ref-fix1951discriminatory" role="doc-biblioref">1951</a>)</span>. Sus propiedades de clasificación y cotas de error fueron estudiadas por <span class="citation" data-cites="cover1967nearest">Cover y Hart (<a href="referencias.html#ref-cover1967nearest" role="doc-biblioref">1967</a>)</span>. Una exposición moderna, acompañada de aplicaciones en R, puede consultarse en <span class="citation" data-cites="james2021islr">James et&nbsp;al. (<a href="referencias.html#ref-james2021islr" role="doc-biblioref">2021</a>)</span>.</p>
 
 

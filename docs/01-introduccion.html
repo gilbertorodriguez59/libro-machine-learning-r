@@ -80,6 +80,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-12eeb4b20e9f5a2b0bfc604bfaf942bb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<meta name="shinylive:serviceworker_dir" content=".">
+<script src="site_libs/quarto-contrib/shinylive-0.10.12/shinylive/load-shinylive-sw.js" type="module"></script>
+<script src="site_libs/quarto-contrib/shinylive-0.10.12/shinylive/run-python-blocks.js" type="module"></script>
+<link href="site_libs/quarto-contrib/shinylive-0.10.12/shinylive/shinylive.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -261,6 +266,18 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Clasificador Naive Bayes</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-redes-neuronales.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Redes neuronales artificiales</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-kmeans.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Agrupamiento con k-means</span></span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
@@ -302,7 +319,8 @@ window.Quarto = {
   <li><a href="#video-explicativo" id="toc-video-explicativo" class="nav-link" data-scroll-target="#video-explicativo"><span class="header-section-number">1.10.1</span> Video explicativo</a></li>
   <li><a href="#vista-previa-de-la-infografía" id="toc-vista-previa-de-la-infografía" class="nav-link" data-scroll-target="#vista-previa-de-la-infografía"><span class="header-section-number">1.10.2</span> Vista previa de la infografía</a></li>
   </ul></li>
-  <li><a href="#conclusión" id="toc-conclusión" class="nav-link" data-scroll-target="#conclusión"><span class="header-section-number">1.11</span> Conclusión</a></li>
+  <li><a href="#laboratorio-interactivo-una-regla-de-clasificación" id="toc-laboratorio-interactivo-una-regla-de-clasificación" class="nav-link" data-scroll-target="#laboratorio-interactivo-una-regla-de-clasificación"><span class="header-section-number">1.11</span> Laboratorio interactivo: una regla de clasificación</a></li>
+  <li><a href="#conclusión" id="toc-conclusión" class="nav-link" data-scroll-target="#conclusión"><span class="header-section-number">1.12</span> Conclusión</a></li>
   </ul>
 </nav>
     </div>
@@ -654,8 +672,73 @@ Real   Alta Baja
 </div>
 </section>
 </section>
-<section id="conclusión" class="level2" data-number="1.11">
-<h2 data-number="1.11" class="anchored" data-anchor-id="conclusión"><span class="header-section-number">1.11</span> Conclusión</h2>
+<section id="laboratorio-interactivo-una-regla-de-clasificación" class="level2" data-number="1.11">
+<h2 data-number="1.11" class="anchored" data-anchor-id="laboratorio-interactivo-una-regla-de-clasificación"><span class="header-section-number">1.11</span> Laboratorio interactivo: una regla de clasificación</h2>
+<p>Este laboratorio muestra cómo una regla sencilla puede clasificar observaciones a partir de un umbral.</p>
+<pre class="shinylive-r" data-engine="r"><code>#| '!! shinylive warning !!': |
+#|   shinylive does not work in self-contained HTML documents.
+#|   Please set `embed-resources: false` in your metadata.
+#| standalone: true
+#| viewerHeight: 680
+#| components: [viewer]
+
+library(shiny)
+
+ui &lt;- fluidPage(
+  titlePanel("Clasificador basado en un umbral"),
+  sidebarLayout(
+    sidebarPanel(
+      sliderInput("umbral", "Umbral de clasificación", 0, 10, 5, step = 0.1),
+      sliderInput("ruido", "Nivel de ruido", 0, 3, 1, step = 0.1),
+      numericInput("semilla", "Semilla", 123, min = 1)
+    ),
+    mainPanel(
+      plotOutput("grafica", height = "400px"),
+      tableOutput("metricas"),
+      textOutput("regla")
+    )
+  )
+)
+
+server &lt;- function(input, output, session) {
+  datos &lt;- reactive({
+    set.seed(input$semilla)
+    x &lt;- seq(0.5, 9.5, length.out = 80)
+    clase_real &lt;- ifelse(x + rnorm(length(x), 0, input$ruido) &gt;= 5, 1, 0)
+    pred &lt;- ifelse(x &gt;= input$umbral, 1, 0)
+    data.frame(x, clase_real, pred)
+  })
+
+  output$grafica &lt;- renderPlot({
+    d &lt;- datos()
+    plot(d$x, jitter(d$clase_real, amount = 0.08), pch = 19,
+         xlab = "Variable predictora x", ylab = "Clase real",
+         yaxt = "n", main = "Regla de clasificación")
+    axis(2, at = c(0, 1), labels = c("Clase 0", "Clase 1"))
+    abline(v = input$umbral, lwd = 3, lty = 2)
+    grid()
+  })
+
+  output$metricas &lt;- renderTable({
+    d &lt;- datos()
+    data.frame(
+      Observaciones = nrow(d),
+      Aciertos = sum(d$clase_real == d$pred),
+      Errores = sum(d$clase_real != d$pred),
+      Exactitud = round(mean(d$clase_real == d$pred), 4)
+    )
+  })
+
+  output$regla &lt;- renderText({
+    paste0("Si x &gt;= ", round(input$umbral, 2),
+           ", predecir Clase 1; en otro caso, Clase 0.")
+  })
+}
+
+shinyApp(ui, server)</code></pre>
+</section>
+<section id="conclusión" class="level2" data-number="1.12">
+<h2 data-number="1.12" class="anchored" data-anchor-id="conclusión"><span class="header-section-number">1.12</span> Conclusión</h2>
 <p>El aprendizaje automático permite construir modelos que aprenden patrones a partir de datos. En este capítulo vimos la diferencia entre reglas manuales y aprendizaje a partir de ejemplos.</p>
 
 

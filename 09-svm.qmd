@@ -642,3 +642,135 @@ Sin embargo, una SVM requiere seleccionar cuidadosamente sus hiperparámetros y 
 ## Referencias fundamentales de SVM
 
 Las máquinas de vectores de soporte fueron presentadas formalmente por @cortes1995support. El tutorial de @burges1998tutorial desarrolla la intuición geométrica, los márgenes y el uso de kernels. Una introducción aplicada en R puede consultarse en @james2021islr.
+
+
+## Laboratorio interactivo: margen e hiperplano
+
+::: {.content-visible when-format="html"}
+
+Explora una frontera lineal de la forma
+\(w_1x_1+w_2x_2+b=0\), sus márgenes y la clasificación de un punto nuevo.
+
+```{shinylive-r}
+#| standalone: true
+#| viewerHeight: 720
+#| components: [viewer]
+
+library(shiny)
+
+ui <- fluidPage(
+  titlePanel("Explorador interactivo de una SVM lineal"),
+  sidebarLayout(
+    sidebarPanel(
+      sliderInput("w1", "Peso w1", -3, 3, 1, step = 0.1),
+      sliderInput("w2", "Peso w2", -3, 3, -1, step = 0.1),
+      sliderInput("b", "Sesgo b", -3, 3, 0, step = 0.1),
+      sliderInput("x1", "Punto nuevo: x1", -4, 4, 1, step = 0.1),
+      sliderInput("x2", "Punto nuevo: x2", -4, 4, 1, step = 0.1)
+    ),
+    mainPanel(
+      plotOutput("plano", height = "440px"),
+      verbatimTextOutput("resultado"),
+      textOutput("interpretacion")
+    )
+  )
+)
+
+server <- function(input, output, session) {
+  valor <- reactive({
+    input$w1 * input$x1 + input$w2 * input$x2 + input$b
+  })
+
+  output$plano <- renderPlot({
+    plot(
+      NA, xlim = c(-4, 4), ylim = c(-4, 4),
+      xlab = "x1", ylab = "x2",
+      main = "Hiperplano y márgenes"
+    )
+    grid()
+
+    if (abs(input$w2) > 1e-8) {
+      abline(a = -input$b / input$w2,
+             b = -input$w1 / input$w2,
+             lwd = 3)
+      abline(a = -(input$b - 1) / input$w2,
+             b = -input$w1 / input$w2,
+             lty = 2)
+      abline(a = -(input$b + 1) / input$w2,
+             b = -input$w1 / input$w2,
+             lty = 2)
+    } else if (abs(input$w1) > 1e-8) {
+      abline(v = -input$b / input$w1, lwd = 3)
+      abline(v = -(input$b - 1) / input$w1, lty = 2)
+      abline(v = -(input$b + 1) / input$w1, lty = 2)
+    }
+
+    points(input$x1, input$x2, pch = 19, cex = 2)
+  })
+
+  output$resultado <- renderPrint({
+    cat("Valor de decisión:", round(valor(), 4), "\n")
+    cat("Clase predicha:", ifelse(valor() >= 0, "Clase +1", "Clase -1"))
+  })
+
+  output$interpretacion <- renderText({
+    paste0(
+      "La distancia funcional del punto al hiperplano es ",
+      round(valor(), 4),
+      ". El signo determina la clase predicha."
+    )
+  })
+}
+
+shinyApp(ui, server)
+```
+
+:::
+
+::: {.content-visible when-format="pdf"}
+
+### Laboratorio disponible en la versión web
+
+La versión web permite cambiar los pesos, el sesgo y un punto nuevo para
+observar el hiperplano, los márgenes y la clase predicha.
+
+:::
+
+## Materiales complementarios del capítulo
+
+::: {.content-visible when-format="html"}
+
+### Video del capítulo
+
+<iframe width="100%" height="420"
+src="https://www.youtube.com/embed/upiQi4xIBrQ"
+title="Capítulo 10. Máquinas de vectores de soporte"
+frameborder="0"
+allowfullscreen></iframe>
+
+:::
+
+::: {.content-visible when-format="pdf"}
+
+### Video del capítulo
+
+Disponible en YouTube:
+
+<https://youtu.be/upiQi4xIBrQ>
+
+:::
+
+| Recurso | Descripción | Abrir o descargar |
+|---|---|---|
+| Presentación en PDF | Síntesis del capítulo para lectura o exposición. | [Abrir PDF](recursos/capitulo-10/capitulo-10-svm-presentacion.pdf){target="_blank"} |
+| Presentación editable | Diapositivas en PowerPoint. | [Descargar PPTX](recursos/capitulo-10/capitulo-10-svm-presentacion.pptx) |
+| Infografía | Resumen visual del capítulo. | [Abrir infografía](recursos/capitulo-10/capitulo-10-svm-infografia.png){target="_blank"} |
+
+::: {.content-visible when-format="html"}
+
+![Infografía del capítulo 10](recursos/capitulo-10/capitulo-10-svm-infografia.png){fig-alt="Capítulo 10. Máquinas de vectores de soporte" width="85%"}
+
+:::
+
+Los materiales fueron creados con apoyo de NotebookLM de Google a partir del
+contenido del libro y revisados y adaptados por el autor.

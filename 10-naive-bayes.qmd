@@ -411,3 +411,128 @@ En ATUS, el método proporciona una línea base probabilística rápida para pre
 ## Referencias fundamentales de Naive Bayes
 
 El análisis de las condiciones bajo las cuales el clasificador bayesiano simple puede ser óptimo fue desarrollado por @domingos1997optimality. Una discusión crítica sobre por qué el método puede funcionar bien pese a su supuesto ingenuo aparece en @hand2001idiots. Para una introducción moderna dentro del aprendizaje estadístico puede consultarse @james2021islr.
+
+
+## Laboratorio interactivo: probabilidades posteriores Naive Bayes
+
+::: {.content-visible when-format="html"}
+
+Modifica probabilidades previas y condicionales para observar el resultado.
+
+```{shinylive-r}
+#| standalone: true
+#| viewerHeight: 700
+#| components: [viewer]
+
+library(shiny)
+
+ui <- fluidPage(
+  titlePanel("Calculadora Naive Bayes"),
+  sidebarLayout(
+    sidebarPanel(
+      sliderInput("prior", "P(Clase 1)", 0.05, 0.95, 0.40, step = 0.05),
+      sliderInput("e1", "P(Evidencia | Clase 1)", 0.01, 0.99, 0.80, step = 0.01),
+      sliderInput("e0", "P(Evidencia | Clase 0)", 0.01, 0.99, 0.25, step = 0.01),
+      radioButtons("observada", "Evidencia observada",
+                   choices = c("Sí" = "si", "No" = "no"))
+    ),
+    mainPanel(
+      tableOutput("calculo"),
+      plotOutput("grafica", height = "340px"),
+      textOutput("decision")
+    )
+  )
+)
+
+server <- function(input, output, session) {
+  posterior <- reactive({
+    p1 <- input$prior
+    p0 <- 1 - p1
+    if (input$observada == "si") {
+      l1 <- input$e1
+      l0 <- input$e0
+    } else {
+      l1 <- 1 - input$e1
+      l0 <- 1 - input$e0
+    }
+    num1 <- p1 * l1
+    num0 <- p0 * l0
+    evidencia <- num1 + num0
+    c(Clase_0 = num0 / evidencia, Clase_1 = num1 / evidencia)
+  })
+
+  output$calculo <- renderTable({
+    p <- posterior()
+    data.frame(
+      Clase = names(p),
+      Probabilidad_posterior = round(as.numeric(p), 4)
+    )
+  })
+
+  output$grafica <- renderPlot({
+    p <- posterior()
+    barplot(p, ylim = c(0, 1),
+            ylab = "Probabilidad posterior",
+            main = "Resultado de Naive Bayes")
+    abline(h = 0.5, lty = 2)
+  })
+
+  output$decision <- renderText({
+    p <- posterior()
+    paste("Clase predicha:",
+          ifelse(p["Clase_1"] >= p["Clase_0"], "Clase 1", "Clase 0"))
+  })
+}
+
+shinyApp(ui, server)
+```
+
+:::
+
+::: {.content-visible when-format="pdf"}
+
+### Laboratorio disponible en la versión web
+
+Permite modificar probabilidades previas y condicionales.
+
+:::
+
+
+## Materiales complementarios del capítulo
+
+::: {.content-visible when-format="html"}
+
+### Video del capítulo
+
+<iframe width="100%" height="420"
+src="https://www.youtube.com/embed/UbfJ3bLDwUI"
+title="Capítulo 11. Clasificador Naive Bayes"
+frameborder="0"
+allowfullscreen></iframe>
+
+:::
+
+::: {.content-visible when-format="pdf"}
+
+### Video del capítulo
+
+Disponible en YouTube:
+
+<https://youtu.be/UbfJ3bLDwUI>
+
+:::
+
+| Recurso | Descripción | Abrir o descargar |
+|---|---|---|
+| Presentación en PDF | Síntesis del capítulo para lectura o exposición. | [Abrir PDF](recursos/capitulo-11/capitulo-11-naive-bayes-presentacion.pdf){target="_blank"} |
+| Presentación editable | Diapositivas en PowerPoint. | [Descargar PPTX](recursos/capitulo-11/capitulo-11-naive-bayes-presentacion.pptx) |
+| Infografía | Resumen visual del capítulo. | [Abrir infografía](recursos/capitulo-11/capitulo-11-naive-bayes-infografia.png){target="_blank"} |
+
+::: {.content-visible when-format="html"}
+
+![Infografía del capítulo 11](recursos/capitulo-11/capitulo-11-naive-bayes-infografia.png){fig-alt="Capítulo 11. Clasificador Naive Bayes" width="85%"}
+
+:::
+
+Los materiales fueron creados con apoyo de NotebookLM de Google a partir del
+contenido del libro y revisados y adaptados por el autor.

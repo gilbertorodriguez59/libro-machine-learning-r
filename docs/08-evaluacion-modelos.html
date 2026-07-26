@@ -99,6 +99,11 @@ div.csl-indent {
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-12eeb4b20e9f5a2b0bfc604bfaf942bb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<meta name="shinylive:serviceworker_dir" content=".">
+<script src="site_libs/quarto-contrib/shinylive-0.10.12/shinylive/load-shinylive-sw.js" type="module"></script>
+<script src="site_libs/quarto-contrib/shinylive-0.10.12/shinylive/run-python-blocks.js" type="module"></script>
+<link href="site_libs/quarto-contrib/shinylive-0.10.12/shinylive/shinylive.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -280,6 +285,18 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Clasificador Naive Bayes</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-redes-neuronales.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Redes neuronales artificiales</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-kmeans.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Agrupamiento con k-means</span></span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
@@ -338,6 +355,11 @@ window.Quarto = {
   <li><a href="#actividades-para-el-lector" id="toc-actividades-para-el-lector" class="nav-link" data-scroll-target="#actividades-para-el-lector"><span class="header-section-number">9.18</span> Actividades para el lector</a></li>
   <li><a href="#resumen-del-capítulo" id="toc-resumen-del-capítulo" class="nav-link" data-scroll-target="#resumen-del-capítulo"><span class="header-section-number">9.19</span> Resumen del capítulo</a></li>
   <li><a href="#referencias-fundamentales-sobre-evaluación" id="toc-referencias-fundamentales-sobre-evaluación" class="nav-link" data-scroll-target="#referencias-fundamentales-sobre-evaluación"><span class="header-section-number">9.20</span> Referencias fundamentales sobre evaluación</a></li>
+  <li><a href="#laboratorio-interactivo-matriz-de-confusión-y-métricas" id="toc-laboratorio-interactivo-matriz-de-confusión-y-métricas" class="nav-link" data-scroll-target="#laboratorio-interactivo-matriz-de-confusión-y-métricas"><span class="header-section-number">9.21</span> Laboratorio interactivo: matriz de confusión y métricas</a></li>
+  <li><a href="#materiales-complementarios-del-capítulo" id="toc-materiales-complementarios-del-capítulo" class="nav-link" data-scroll-target="#materiales-complementarios-del-capítulo"><span class="header-section-number">9.22</span> Materiales complementarios del capítulo</a>
+  <ul class="collapse">
+  <li><a href="#video-del-capítulo" id="toc-video-del-capítulo" class="nav-link" data-scroll-target="#video-del-capítulo"><span class="header-section-number">9.22.1</span> Video del capítulo</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -1180,6 +1202,129 @@ Supply arguments directly to `.fns` through an anonymous function instead.
 <section id="referencias-fundamentales-sobre-evaluación" class="level2" data-number="9.20">
 <h2 data-number="9.20" class="anchored" data-anchor-id="referencias-fundamentales-sobre-evaluación"><span class="header-section-number">9.20</span> Referencias fundamentales sobre evaluación</h2>
 <p>La validación cruzada y su uso para estimar el desempeño de modelos fueron examinados comparativamente por <span class="citation" data-cites="kohavi1995crossvalidation">Kohavi (<a href="referencias.html#ref-kohavi1995crossvalidation" role="doc-biblioref">1995</a>)</span>. Para el análisis mediante curvas ROC y AUC, una referencia ampliamente utilizada es <span class="citation" data-cites="fawcett2006roc">Fawcett (<a href="referencias.html#ref-fawcett2006roc" role="doc-biblioref">2006</a>)</span>. Una visión integrada de partición de datos, remuestreo y comparación de modelos aparece en <span class="citation" data-cites="james2021islr">James et&nbsp;al. (<a href="referencias.html#ref-james2021islr" role="doc-biblioref">2021</a>)</span>.</p>
+</section>
+<section id="laboratorio-interactivo-matriz-de-confusión-y-métricas" class="level2" data-number="9.21">
+<h2 data-number="9.21" class="anchored" data-anchor-id="laboratorio-interactivo-matriz-de-confusión-y-métricas"><span class="header-section-number">9.21</span> Laboratorio interactivo: matriz de confusión y métricas</h2>
+<p>Modifica los cuatro valores de la matriz de confusión y observa cómo cambian exactitud, sensibilidad, especificidad, precisión y F1.</p>
+<pre class="shinylive-r" data-engine="r"><code>#| '!! shinylive warning !!': |
+#|   shinylive does not work in self-contained HTML documents.
+#|   Please set `embed-resources: false` in your metadata.
+#| standalone: true
+#| viewerHeight: 720
+#| components: [viewer]
+
+library(shiny)
+
+ui &lt;- fluidPage(
+  titlePanel("Calculadora de métricas de clasificación"),
+  sidebarLayout(
+    sidebarPanel(
+      numericInput("vp", "Verdaderos positivos", 40, min = 0),
+      numericInput("vn", "Verdaderos negativos", 45, min = 0),
+      numericInput("fp", "Falsos positivos", 5, min = 0),
+      numericInput("fn", "Falsos negativos", 10, min = 0)
+    ),
+    mainPanel(
+      tableOutput("matriz"),
+      tableOutput("metricas"),
+      plotOutput("grafica", height = "320px")
+    )
+  )
+)
+
+server &lt;- function(input, output, session) {
+  calc &lt;- reactive({
+    vp &lt;- input$vp; vn &lt;- input$vn; fp &lt;- input$fp; fn &lt;- input$fn
+    total &lt;- vp + vn + fp + fn
+    exactitud &lt;- ifelse(total == 0, NA, (vp + vn) / total)
+    sensibilidad &lt;- ifelse(vp + fn == 0, NA, vp / (vp + fn))
+    especificidad &lt;- ifelse(vn + fp == 0, NA, vn / (vn + fp))
+    precision &lt;- ifelse(vp + fp == 0, NA, vp / (vp + fp))
+    f1 &lt;- ifelse(
+      is.na(precision) || is.na(sensibilidad) || precision + sensibilidad == 0,
+      NA,
+      2 * precision * sensibilidad / (precision + sensibilidad)
+    )
+    list(
+      matriz = matrix(c(vn, fp, fn, vp), nrow = 2, byrow = TRUE,
+                      dimnames = list(
+                        "Real" = c("Clase 0", "Clase 1"),
+                        "Predicho" = c("Clase 0", "Clase 1")
+                      )),
+      metricas = c(
+        Exactitud = exactitud,
+        Sensibilidad = sensibilidad,
+        Especificidad = especificidad,
+        Precision = precision,
+        F1 = f1
+      )
+    )
+  })
+
+  output$matriz &lt;- renderTable({
+    as.data.frame.matrix(calc()$matriz)
+  }, rownames = TRUE)
+
+  output$metricas &lt;- renderTable({
+    data.frame(
+      Métrica = names(calc()$metricas),
+      Valor = round(as.numeric(calc()$metricas), 4)
+    )
+  })
+
+  output$grafica &lt;- renderPlot({
+    m &lt;- calc()$metricas
+    barplot(
+      m,
+      ylim = c(0, 1),
+      ylab = "Valor",
+      main = "Métricas del modelo"
+    )
+    abline(h = seq(0, 1, by = 0.2), lty = 3)
+  })
+}
+
+shinyApp(ui, server)</code></pre>
+</section>
+<section id="materiales-complementarios-del-capítulo" class="level2" data-number="9.22">
+<h2 data-number="9.22" class="anchored" data-anchor-id="materiales-complementarios-del-capítulo"><span class="header-section-number">9.22</span> Materiales complementarios del capítulo</h2>
+<section id="video-del-capítulo" class="level3" data-number="9.22.1">
+<h3 data-number="9.22.1" class="anchored" data-anchor-id="video-del-capítulo"><span class="header-section-number">9.22.1</span> Video del capítulo</h3>
+<iframe width="100%" height="420" src="https://www.youtube.com/embed/ShiKrfhIfpY" title="Capítulo 9. Evaluación, validación y comparación de modelos" frameborder="0" allowfullscreen="">
+</iframe>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Recurso</th>
+<th>Descripción</th>
+<th>Abrir o descargar</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Presentación en PDF</td>
+<td>Síntesis del capítulo para lectura o exposición.</td>
+<td><a href="recursos/capitulo-09/capitulo-09-evaluacion-modelos-presentacion.pdf" target="_blank">Abrir PDF</a></td>
+</tr>
+<tr class="even">
+<td>Presentación editable</td>
+<td>Diapositivas en PowerPoint.</td>
+<td><a href="recursos/capitulo-09/capitulo-09-evaluacion-modelos-presentacion.pptx">Descargar PPTX</a></td>
+</tr>
+<tr class="odd">
+<td>Infografía</td>
+<td>Resumen visual del capítulo.</td>
+<td><a href="recursos/capitulo-09/capitulo-09-evaluacion-modelos-infografia.png" target="_blank">Abrir infografía</a></td>
+</tr>
+</tbody>
+</table>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="recursos/capitulo-09/capitulo-09-evaluacion-modelos-infografia.png" class="img-fluid figure-img" style="width:85.0%" alt="Capítulo 9. Evaluación, validación y comparación de modelos"></p>
+<figcaption>Infografía del capítulo 9</figcaption>
+</figure>
+</div>
+<p>Los materiales fueron creados con apoyo de NotebookLM de Google a partir del contenido del libro y revisados y adaptados por el autor.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
@@ -1196,6 +1341,7 @@ James, Gareth, Daniela Witten, Trevor Hastie, y Robert Tibshirani. 2021. <em>An 
 Kohavi, Ron. 1995. <span>«A Study of Cross-Validation and Bootstrap for Accuracy Estimation and Model Selection»</span>. <em>Proceedings of the 14th International Joint Conference on Artificial Intelligence</em> 2: 1137-45.
 </div>
 </div>
+</section>
 </section>
 
 </main> <!-- /main -->

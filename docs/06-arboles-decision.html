@@ -99,6 +99,11 @@ div.csl-indent {
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-12eeb4b20e9f5a2b0bfc604bfaf942bb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<meta name="shinylive:serviceworker_dir" content=".">
+<script src="site_libs/quarto-contrib/shinylive-0.10.12/shinylive/load-shinylive-sw.js" type="module"></script>
+<script src="site_libs/quarto-contrib/shinylive-0.10.12/shinylive/run-python-blocks.js" type="module"></script>
+<link href="site_libs/quarto-contrib/shinylive-0.10.12/shinylive/shinylive.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -280,6 +285,18 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Clasificador Naive Bayes</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-redes-neuronales.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Redes neuronales artificiales</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-kmeans.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Agrupamiento con k-means</span></span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
@@ -316,8 +333,13 @@ window.Quarto = {
   <li><a href="#complejidad-e-importancia" id="toc-complejidad-e-importancia" class="nav-link" data-scroll-target="#complejidad-e-importancia"><span class="header-section-number">7.7</span> Complejidad e importancia</a></li>
   <li><a href="#gráfica-opcional-del-árbol" id="toc-gráfica-opcional-del-árbol" class="nav-link" data-scroll-target="#gráfica-opcional-del-árbol"><span class="header-section-number">7.8</span> Gráfica opcional del árbol</a></li>
   <li><a href="#predicción-y-métricas" id="toc-predicción-y-métricas" class="nav-link" data-scroll-target="#predicción-y-métricas"><span class="header-section-number">7.9</span> Predicción y métricas</a></li>
-  <li><a href="#conclusión" id="toc-conclusión" class="nav-link" data-scroll-target="#conclusión"><span class="header-section-number">7.10</span> Conclusión</a></li>
-  <li><a href="#referencias-fundamentales-de-los-árboles-de-decisión" id="toc-referencias-fundamentales-de-los-árboles-de-decisión" class="nav-link" data-scroll-target="#referencias-fundamentales-de-los-árboles-de-decisión"><span class="header-section-number">7.11</span> Referencias fundamentales de los árboles de decisión</a></li>
+  <li><a href="#laboratorio-interactivo-construye-una-división-del-árbol" id="toc-laboratorio-interactivo-construye-una-división-del-árbol" class="nav-link" data-scroll-target="#laboratorio-interactivo-construye-una-división-del-árbol"><span class="header-section-number">7.10</span> Laboratorio interactivo: construye una división del árbol</a></li>
+  <li><a href="#materiales-complementarios-del-capítulo" id="toc-materiales-complementarios-del-capítulo" class="nav-link" data-scroll-target="#materiales-complementarios-del-capítulo"><span class="header-section-number">7.11</span> Materiales complementarios del capítulo</a>
+  <ul class="collapse">
+  <li><a href="#video-del-capítulo" id="toc-video-del-capítulo" class="nav-link" data-scroll-target="#video-del-capítulo"><span class="header-section-number">7.11.1</span> Video del capítulo</a></li>
+  </ul></li>
+  <li><a href="#conclusión" id="toc-conclusión" class="nav-link" data-scroll-target="#conclusión"><span class="header-section-number">7.12</span> Conclusión</a></li>
+  <li><a href="#referencias-fundamentales-de-los-árboles-de-decisión" id="toc-referencias-fundamentales-de-los-árboles-de-decisión" class="nav-link" data-scroll-target="#referencias-fundamentales-de-los-árboles-de-decisión"><span class="header-section-number">7.13</span> Referencias fundamentales de los árboles de decisión</a></li>
   </ul>
 </nav>
     </div>
@@ -584,12 +606,252 @@ Real           Con víctimas Solo daños
 </div>
 </div>
 </section>
-<section id="conclusión" class="level2" data-number="7.10">
-<h2 data-number="7.10" class="anchored" data-anchor-id="conclusión"><span class="header-section-number">7.10</span> Conclusión</h2>
+<section id="laboratorio-interactivo-construye-una-división-del-árbol" class="level2" data-number="7.10">
+<h2 data-number="7.10" class="anchored" data-anchor-id="laboratorio-interactivo-construye-una-división-del-árbol"><span class="header-section-number">7.10</span> Laboratorio interactivo: construye una división del árbol</h2>
+<p>Este laboratorio permite explorar cómo una regla del tipo <code>Petal.Length &lt; punto de corte</code> divide los datos de <code>iris</code>. El usuario puede cambiar el punto de corte y comparar la impureza de Gini antes y después de la división.</p>
+<pre class="shinylive-r" data-engine="r"><code>#| '!! shinylive warning !!': |
+#|   shinylive does not work in self-contained HTML documents.
+#|   Please set `embed-resources: false` in your metadata.
+#| standalone: true
+#| viewerHeight: 720
+#| components: [viewer]
+
+library(shiny)
+
+gini &lt;- function(clase) {
+  if (length(clase) == 0) return(0)
+  p &lt;- prop.table(table(clase))
+  1 - sum(p^2)
+}
+
+ui &lt;- fluidPage(
+  titlePanel("Explorador interactivo de una división CART"),
+
+  sidebarLayout(
+    sidebarPanel(
+      selectInput(
+        "variable",
+        "Variable para dividir",
+        choices = c(
+          "Longitud del pétalo" = "Petal.Length",
+          "Anchura del pétalo" = "Petal.Width",
+          "Longitud del sépalo" = "Sepal.Length",
+          "Anchura del sépalo" = "Sepal.Width"
+        ),
+        selected = "Petal.Length"
+      ),
+
+      uiOutput("control_corte"),
+
+      radioButtons(
+        "criterio",
+        "Regla del nodo izquierdo",
+        choices = c(
+          "Menor que" = "menor",
+          "Menor o igual que" = "menor_igual"
+        ),
+        selected = "menor_igual"
+      )
+    ),
+
+    mainPanel(
+      plotOutput("grafica", height = "420px"),
+      tableOutput("resumen"),
+      verbatimTextOutput("regla"),
+      textOutput("interpretacion")
+    )
+  )
+)
+
+server &lt;- function(input, output, session) {
+
+  output$control_corte &lt;- renderUI({
+    x &lt;- iris[[input$variable]]
+
+    sliderInput(
+      "corte",
+      "Punto de corte",
+      min = floor(min(x) * 10) / 10,
+      max = ceiling(max(x) * 10) / 10,
+      value = median(x),
+      step = 0.1
+    )
+  })
+
+  division &lt;- reactive({
+    req(input$corte)
+
+    x &lt;- iris[[input$variable]]
+
+    izquierda &lt;- if (input$criterio == "menor") {
+      x &lt; input$corte
+    } else {
+      x &lt;= input$corte
+    }
+
+    derecha &lt;- !izquierda
+
+    gini_padre &lt;- gini(iris$Species)
+    gini_izq &lt;- gini(iris$Species[izquierda])
+    gini_der &lt;- gini(iris$Species[derecha])
+
+    n &lt;- nrow(iris)
+
+    gini_ponderado &lt;-
+      sum(izquierda) / n * gini_izq +
+      sum(derecha) / n * gini_der
+
+    ganancia &lt;- gini_padre - gini_ponderado
+
+    list(
+      x = x,
+      izquierda = izquierda,
+      derecha = derecha,
+      gini_padre = gini_padre,
+      gini_izq = gini_izq,
+      gini_der = gini_der,
+      gini_ponderado = gini_ponderado,
+      ganancia = ganancia
+    )
+  })
+
+  output$grafica &lt;- renderPlot({
+    d &lt;- division()
+    colores &lt;- as.integer(iris$Species)
+
+    plot(
+      d$x,
+      jitter(as.integer(iris$Species), amount = 0.08),
+      pch = 19,
+      col = colores,
+      xlab = input$variable,
+      ylab = "Especie",
+      yaxt = "n",
+      main = "División propuesta"
+    )
+
+    axis(
+      2,
+      at = 1:3,
+      labels = levels(iris$Species)
+    )
+
+    abline(v = input$corte, lwd = 3, lty = 2)
+
+    legend(
+      "topright",
+      legend = levels(iris$Species),
+      col = 1:3,
+      pch = 19,
+      bty = "n"
+    )
+  })
+
+  output$resumen &lt;- renderTable({
+    d &lt;- division()
+
+    data.frame(
+      Nodo = c("Padre", "Izquierdo", "Derecho", "División ponderada"),
+      Observaciones = c(
+        nrow(iris),
+        sum(d$izquierda),
+        sum(d$derecha),
+        nrow(iris)
+      ),
+      Gini = round(
+        c(
+          d$gini_padre,
+          d$gini_izq,
+          d$gini_der,
+          d$gini_ponderado
+        ),
+        4
+      )
+    )
+  })
+
+  output$regla &lt;- renderPrint({
+    operador &lt;- if (input$criterio == "menor") "&lt;" else "&lt;="
+
+    cat(
+      "Nodo izquierdo:",
+      input$variable,
+      operador,
+      round(input$corte, 2),
+      "\n"
+    )
+
+    cat(
+      "Nodo derecho:",
+      input$variable,
+      ifelse(operador == "&lt;", "&gt;=", "&gt;"),
+      round(input$corte, 2),
+      "\n"
+    )
+  })
+
+  output$interpretacion &lt;- renderText({
+    d &lt;- division()
+
+    paste0(
+      "La reducción de impureza es ",
+      round(d$ganancia, 4),
+      ". Una reducción mayor indica una división más útil para separar las clases."
+    )
+  })
+}
+
+shinyApp(ui, server)</code></pre>
+</section>
+<section id="materiales-complementarios-del-capítulo" class="level2" data-number="7.11">
+<h2 data-number="7.11" class="anchored" data-anchor-id="materiales-complementarios-del-capítulo"><span class="header-section-number">7.11</span> Materiales complementarios del capítulo</h2>
+<section id="video-del-capítulo" class="level3" data-number="7.11.1">
+<h3 data-number="7.11.1" class="anchored" data-anchor-id="video-del-capítulo"><span class="header-section-number">7.11.1</span> Video del capítulo</h3>
+<div class="video-responsive">
+<iframe src="https://www.youtube.com/embed/UperQjxBYEY" title="Capítulo 7. Árboles de decisión para clasificación" frameborder="0" allowfullscreen="">
+</iframe>
+</div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Recurso</th>
+<th>Descripción</th>
+<th>Abrir o descargar</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Presentación en PDF</td>
+<td>Síntesis del capítulo para lectura o exposición.</td>
+<td><a href="recursos/capitulo-07/capitulo-07-arboles-presentacion.pdf" target="_blank">Abrir PDF</a></td>
+</tr>
+<tr class="even">
+<td>Presentación editable</td>
+<td>Diapositivas en PowerPoint.</td>
+<td><a href="recursos/capitulo-07/capitulo-07-arboles-presentacion.pptx">Descargar PPTX</a></td>
+</tr>
+<tr class="odd">
+<td>Infografía</td>
+<td>Resumen visual de árboles de decisión.</td>
+<td><a href="recursos/capitulo-07/capitulo-07-arboles-infografia.png" target="_blank">Abrir infografía</a></td>
+</tr>
+</tbody>
+</table>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="recursos/capitulo-07/capitulo-07-arboles-infografia.png" class="img-fluid figure-img" style="width:85.0%" alt="Infografía sobre árboles de decisión"></p>
+<figcaption>Infografía del capítulo 7</figcaption>
+</figure>
+</div>
+<p>Los materiales fueron creados con apoyo de NotebookLM de Google a partir del contenido del libro y revisados y adaptados por el autor.</p>
+</section>
+</section>
+<section id="conclusión" class="level2" data-number="7.12">
+<h2 data-number="7.12" class="anchored" data-anchor-id="conclusión"><span class="header-section-number">7.12</span> Conclusión</h2>
 <p>Los árboles de decisión son modelos intuitivos, visuales e interpretables. Este capítulo prepara el camino para modelos basados en muchos árboles, como Random Forest.</p>
 </section>
-<section id="referencias-fundamentales-de-los-árboles-de-decisión" class="level2" data-number="7.11">
-<h2 data-number="7.11" class="anchored" data-anchor-id="referencias-fundamentales-de-los-árboles-de-decisión"><span class="header-section-number">7.11</span> Referencias fundamentales de los árboles de decisión</h2>
+<section id="referencias-fundamentales-de-los-árboles-de-decisión" class="level2" data-number="7.13">
+<h2 data-number="7.13" class="anchored" data-anchor-id="referencias-fundamentales-de-los-árboles-de-decisión"><span class="header-section-number">7.13</span> Referencias fundamentales de los árboles de decisión</h2>
 <p>La metodología CART fue desarrollada sistemáticamente por <span class="citation" data-cites="breiman1984classification">Breiman et&nbsp;al. (<a href="referencias.html#ref-breiman1984classification" role="doc-biblioref">1984</a>)</span>. El algoritmo ID3 y la inducción de árboles mediante ganancia de información fueron presentados por <span class="citation" data-cites="quinlan1986induction">Quinlan (<a href="referencias.html#ref-quinlan1986induction" role="doc-biblioref">1986</a>)</span>. Para una introducción contemporánea con ejemplos en R puede consultarse <span class="citation" data-cites="james2021islr">James et&nbsp;al. (<a href="referencias.html#ref-james2021islr" role="doc-biblioref">2021</a>)</span>.</p>
 
 

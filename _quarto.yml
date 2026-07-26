@@ -2,6 +2,30 @@ project:
   type: book
   output-dir: docs
   resources:
+  - recursos/capitulo-11/capitulo-11-naive-bayes-presentacion.pdf
+  - recursos/capitulo-11/capitulo-11-naive-bayes-presentacion.pptx
+  - recursos/capitulo-11/capitulo-11-naive-bayes-infografia.png
+  - recursos/capitulo-12/capitulo-12-redes-neuronales-presentacion.pdf
+  - recursos/capitulo-12/capitulo-12-redes-neuronales-presentacion.pptx
+  - recursos/capitulo-12/capitulo-12-redes-neuronales-infografia.png
+  - recursos/capitulo-13/capitulo-13-kmeans-presentacion.pdf
+  - recursos/capitulo-13/capitulo-13-kmeans-presentacion.pptx
+  - recursos/capitulo-13/capitulo-13-kmeans-infografia.png
+  - recursos/capitulo-08/capitulo-08-random-forest-presentacion.pdf
+  - recursos/capitulo-08/capitulo-08-random-forest-presentacion.pptx
+  - recursos/capitulo-08/capitulo-08-random-forest-infografia.png
+  - recursos/capitulo-09/capitulo-09-evaluacion-modelos-presentacion.pdf
+  - recursos/capitulo-09/capitulo-09-evaluacion-modelos-presentacion.pptx
+  - recursos/capitulo-09/capitulo-09-evaluacion-modelos-infografia.png
+  - recursos/capitulo-10/capitulo-10-svm-presentacion.pdf
+  - recursos/capitulo-10/capitulo-10-svm-presentacion.pptx
+  - recursos/capitulo-10/capitulo-10-svm-infografia.png
+  - recursos/capitulo-06/capitulo-06-knn-presentacion.pdf
+  - recursos/capitulo-06/capitulo-06-knn-presentacion.pptx
+  - recursos/capitulo-06/capitulo-06-knn-infografia.png
+  - recursos/capitulo-07/capitulo-07-arboles-presentacion.pdf
+  - recursos/capitulo-07/capitulo-07-arboles-presentacion.pptx
+  - recursos/capitulo-07/capitulo-07-arboles-infografia.png
     - recursos_colab/atus_2024.csv.gz
     - recursos_colab/atus_ml_preparado.csv.gz
     - Aprendizaje_y_Clasificacion_Automatica_con_R_Colab.ipynb
@@ -28,6 +52,13 @@ project:
 lang: es
 bibliography: referencias.bib
 
+filters:
+  - shinylive
+
+format:
+  html:
+    embed-resources: false
+
 book:
   title: "Aprendizaje y Clasificación Automática con R"
   subtitle: "Un enfoque práctico con datos abiertos reales"
@@ -49,6 +80,8 @@ book:
     - 08-evaluacion-modelos.qmd
     - 09-svm.qmd
     - 10-naive-bayes.qmd
+    - 11-redes-neuronales.qmd
+    - 12-kmeans.qmd
   appendices:
     - referencias.qmd
 

@@ -219,6 +219,115 @@ Este video forma parte de la lista oficial del curso.
 Los materiales complementarios fueron elaborados con apoyo de **NotebookLM de Google**, a partir del contenido del capítulo, y posteriormente revisados y adaptados por el autor.
 :::
 
+## Laboratorio interactivo: regresión logística
+
+::: {.content-visible when-format="html"}
+
+Explora cómo el intercepto, la pendiente y el umbral cambian la probabilidad estimada y la clasificación final.
+
+```{shinylive-r}
+#| standalone: true
+#| viewerHeight: 720
+#| components: [viewer]
+
+library(shiny)
+
+sigmoide <- function(z) {
+  1 / (1 + exp(-z))
+}
+
+ui <- fluidPage(
+  titlePanel("Laboratorio de regresión logística"),
+
+  sidebarLayout(
+    sidebarPanel(
+      sliderInput("b0", "Intercepto", -10, 10, -3, 0.25),
+      sliderInput("b1", "Pendiente", -5, 5, 1.2, 0.1),
+      sliderInput("umbral", "Umbral de clasificación", 0.05, 0.95, 0.5, 0.05),
+      sliderInput("xnew", "Valor nuevo de x", -5, 10, 2.5, 0.1)
+    ),
+
+    mainPanel(
+      plotOutput("curva", height = "440px"),
+      verbatimTextOutput("resultado"),
+      textOutput("interpretacion")
+    )
+  )
+)
+
+server <- function(input, output, session) {
+
+  prob_nueva <- reactive({
+    sigmoide(input$b0 + input$b1 * input$xnew)
+  })
+
+  output$curva <- renderPlot({
+    x <- seq(-5, 10, length.out = 400)
+    p <- sigmoide(input$b0 + input$b1 * x)
+
+    plot(
+      x, p,
+      type = "l",
+      lwd = 3,
+      ylim = c(0, 1),
+      xlab = "Variable x",
+      ylab = "Probabilidad estimada",
+      main = "Curva logística y umbral"
+    )
+
+    abline(h = input$umbral, lty = 2)
+    abline(v = input$xnew, lty = 3)
+
+    points(
+      input$xnew,
+      prob_nueva(),
+      pch = 19,
+      cex = 1.8
+    )
+
+    text(
+      input$xnew,
+      prob_nueva(),
+      labels = paste0("  p = ", round(prob_nueva(), 3)),
+      pos = 4
+    )
+  })
+
+  output$resultado <- renderPrint({
+    clase <- ifelse(
+      prob_nueva() >= input$umbral,
+      1,
+      0
+    )
+
+    cat("Logit =", round(input$b0 + input$b1 * input$xnew, 4), "\n")
+    cat("Probabilidad =", round(prob_nueva(), 4), "\n")
+    cat("Umbral =", input$umbral, "\n")
+    cat("Clase predicha =", clase)
+  })
+
+  output$interpretacion <- renderText({
+    if (prob_nueva() >= input$umbral) {
+      "La probabilidad supera el umbral, por lo que la observación se asigna a la clase 1."
+    } else {
+      "La probabilidad no alcanza el umbral, por lo que la observación se asigna a la clase 0."
+    }
+  })
+}
+
+shinyApp(ui, server)
+```
+
+:::
+
+::: {.content-visible when-format="pdf"}
+
+### Laboratorio disponible en la versión web
+
+El laboratorio permite cambiar los coeficientes, el umbral y el valor de una observación nueva para estudiar la curva logística y la clase predicha.
+
+:::
+
 ## Conclusión
 
 La regresión logística es un modelo interpretable para clasificación binaria. El punto de corte permite ajustar el balance entre sensibilidad y especificidad.

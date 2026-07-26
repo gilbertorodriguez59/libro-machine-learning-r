@@ -154,6 +154,177 @@ if (exists("resultados_knn")) {
 Cambiar k modifica el balance entre exactitud, sensibilidad y especificidad. No existe un k universalmente mejor.
 :::
 
+## Laboratorio interactivo: k-NN
+
+::: {.content-visible when-format="html"}
+
+Selecciona el número de vecinos y mueve un punto nuevo. El laboratorio identifica sus vecinos más cercanos y muestra la clase predicha.
+
+```{shinylive-r}
+#| standalone: true
+#| viewerHeight: 760
+#| components: [viewer]
+
+library(shiny)
+
+ui <- fluidPage(
+  titlePanel("Laboratorio de clasificación k-NN"),
+
+  sidebarLayout(
+    sidebarPanel(
+      sliderInput("k", "Número de vecinos k", 1, 15, 5, 2),
+      sliderInput("xnew", "Longitud del sépalo", 4, 8, 5.8, 0.1),
+      sliderInput("ynew", "Anchura del sépalo", 2, 4.5, 3.0, 0.1)
+    ),
+
+    mainPanel(
+      plotOutput("grafica", height = "500px"),
+      verbatimTextOutput("resultado"),
+      textOutput("explicacion")
+    )
+  )
+)
+
+server <- function(input, output, session) {
+
+  resultado <- reactive({
+    X <- as.matrix(iris[, c("Sepal.Length", "Sepal.Width")])
+    nuevo <- c(input$xnew, input$ynew)
+
+    distancias <- sqrt(
+      rowSums(
+        sweep(X, 2, nuevo, "-")^2
+      )
+    )
+
+    indices <- order(distancias)[seq_len(input$k)]
+    votos <- table(iris$Species[indices])
+    clase <- names(which.max(votos))
+
+    list(
+      indices = indices,
+      distancias = distancias,
+      votos = votos,
+      clase = clase
+    )
+  })
+
+  output$grafica <- renderPlot({
+    especies <- as.integer(iris$Species)
+    r <- resultado()
+
+    plot(
+      iris$Sepal.Length,
+      iris$Sepal.Width,
+      pch = 19,
+      col = especies,
+      xlab = "Longitud del sépalo",
+      ylab = "Anchura del sépalo",
+      main = paste("Predicción:", r$clase)
+    )
+
+    points(
+      iris$Sepal.Length[r$indices],
+      iris$Sepal.Width[r$indices],
+      pch = 1,
+      cex = 2.1,
+      lwd = 2
+    )
+
+    points(
+      input$xnew,
+      input$ynew,
+      pch = 8,
+      cex = 2.2,
+      lwd = 3
+    )
+
+    segments(
+      input$xnew,
+      input$ynew,
+      iris$Sepal.Length[r$indices],
+      iris$Sepal.Width[r$indices],
+      lty = 3
+    )
+
+    legend(
+      "topright",
+      legend = levels(iris$Species),
+      col = seq_along(levels(iris$Species)),
+      pch = 19,
+      bty = "n"
+    )
+  })
+
+  output$resultado <- renderPrint({
+    r <- resultado()
+
+    cat("Clase predicha:", r$clase, "\n\n")
+    cat("Votos de los vecinos:\n")
+    print(r$votos)
+  })
+
+  output$explicacion <- renderText({
+    paste0(
+      "Los círculos grandes indican los ",
+      input$k,
+      " vecinos utilizados. La estrella representa la observación nueva."
+    )
+  })
+}
+
+shinyApp(ui, server)
+```
+
+:::
+
+::: {.content-visible when-format="pdf"}
+
+### Laboratorio disponible en la versión web
+
+El lector puede cambiar el valor de $k$, mover una observación nueva y visualizar sus vecinos, distancias y clase predicha.
+
+:::
+
+## Materiales complementarios del capítulo
+
+::: {.content-visible when-format="html"}
+
+### Video del capítulo
+
+<div class="video-responsive">
+<iframe src="https://www.youtube.com/embed/NLJj0QAWomU"
+title="Capítulo 6. k vecinos más cercanos, k-NN"
+frameborder="0" allowfullscreen></iframe>
+</div>
+
+:::
+
+::: {.content-visible when-format="pdf"}
+
+### Video del capítulo
+
+Disponible en YouTube:
+
+<https://youtu.be/NLJj0QAWomU>
+
+:::
+
+| Recurso | Descripción | Abrir o descargar |
+|---|---|---|
+| Presentación en PDF | Síntesis del capítulo para lectura o exposición. | [Abrir PDF](recursos/capitulo-06/capitulo-06-knn-presentacion.pdf){target="_blank"} |
+| Presentación editable | Diapositivas en PowerPoint. | [Descargar PPTX](recursos/capitulo-06/capitulo-06-knn-presentacion.pptx) |
+| Infografía | Resumen visual del algoritmo k-NN. | [Abrir infografía](recursos/capitulo-06/capitulo-06-knn-infografia.png){target="_blank"} |
+
+::: {.content-visible when-format="html"}
+
+![Infografía del capítulo 6](recursos/capitulo-06/capitulo-06-knn-infografia.png){fig-alt="Infografía sobre k vecinos más cercanos" width="85%"}
+
+:::
+
+Los materiales fueron creados con apoyo de NotebookLM de Google a partir del
+contenido del libro y revisados y adaptados por el autor.
+
 ## Conclusión
 
 k-NN es un método intuitivo basado en similitud. Su desempeño depende del valor de $k$, del escalamiento y de la calidad de las variables predictoras.

@@ -24,26 +24,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -119,7 +100,9 @@ div.csl-indent {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Aprendizaje y Clasificación Automática con R</a> 
+      <a href="./">
+      Aprendizaje y Clasificación Automática con R
+      </a> 
         <div class="sidebar-tools-main">
     <a href="./Aprendizaje-y-Clasificación-Automática-con-R.pdf" title="Descargar PDF" class="quarto-navigation-tool px-1" aria-label="Descargar PDF"><i class="bi bi-file-pdf"></i></a>
 </div>
@@ -216,6 +199,18 @@ div.csl-indent {
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Clasificador Naive Bayes</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-redes-neuronales.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Redes neuronales artificiales</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-kmeans.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Agrupamiento con k-means</span></span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
@@ -254,12 +249,6 @@ div.csl-indent {
   <li><a href="#software-utilizado" id="toc-software-utilizado" class="nav-link" data-scroll-target="#software-utilizado">Software utilizado</a></li>
   <li><a href="#cuaderno-completo-de-google-colab" id="toc-cuaderno-completo-de-google-colab" class="nav-link" data-scroll-target="#cuaderno-completo-de-google-colab">Cuaderno completo de Google Colab</a></li>
   <li><a href="#video-de-presentación-del-libro" id="toc-video-de-presentación-del-libro" class="nav-link" data-scroll-target="#video-de-presentación-del-libro">Video de presentación del libro</a></li>
-  <li><a href="#curso-completo-en-youtube-1" id="toc-curso-completo-en-youtube-1" class="nav-link" data-scroll-target="#curso-completo-en-youtube-1">Curso completo en YouTube</a></li>
-  <li><a href="#materiales-complementarios-descargables" id="toc-materiales-complementarios-descargables" class="nav-link" data-scroll-target="#materiales-complementarios-descargables">Materiales complementarios descargables</a></li>
-  <li><a href="#estructura-actual-del-libro" id="toc-estructura-actual-del-libro" class="nav-link" data-scroll-target="#estructura-actual-del-libro">Estructura actual del libro</a></li>
-  <li><a href="#ruta-prevista-para-los-siguientes-capítulos" id="toc-ruta-prevista-para-los-siguientes-capítulos" class="nav-link" data-scroll-target="#ruta-prevista-para-los-siguientes-capítulos">Ruta prevista para los siguientes capítulos</a></li>
-  <li><a href="#nota-para-el-lector" id="toc-nota-para-el-lector" class="nav-link" data-scroll-target="#nota-para-el-lector">Nota para el lector</a></li>
-  <li><a href="#fuente-principal-de-los-datos" id="toc-fuente-principal-de-los-datos" class="nav-link" data-scroll-target="#fuente-principal-de-los-datos">Fuente principal de los datos</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -287,7 +276,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Fecha de publicación</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">22 de julio de 2026</p>
+      <p class="date">25 de julio de 2026</p>
     </div>
   </div>
   
@@ -306,8 +295,30 @@ div.csl-indent {
 <section id="un-enfoque-práctico-con-datos-abiertos-reales" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="un-enfoque-práctico-con-datos-abiertos-reales">Un enfoque práctico con datos abiertos reales</h3>
 <p><strong>Autor:</strong> MI Jesús Gilberto Rodríguez Escobedo<br>
-<strong>Versión:</strong> 0.10.7 (desarrollo) <strong>Modalidad:</strong> Libro abierto, práctico e interactivo<br>
-<strong>Tecnologías:</strong> R · Quarto · Machine Learning · Datos abiertos · GitHub Pages</p>
+<strong>Versión:</strong> 0.13.5 (desarrollo) <strong>Modalidad:</strong> Libro abierto, práctico e interactivo<br>
+<strong>Tecnologías:</strong> R · Quarto · Machine Learning · Shinylive · Google Colab · YouTube · GitHub Pages</p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Edición interactiva ampliada
+</div>
+</div>
+<section id="aprende-machine-learning-haciendo" class="level3 callout-body-container callout-body">
+<h3 class="anchored" data-anchor-id="aprende-machine-learning-haciendo">Aprende Machine Learning haciendo</h3>
+<p>Libro abierto con código en <strong>R</strong>, datos reales, videos, presentaciones, infografías, Google Colab y laboratorios que se ejecutan directamente en el navegador.</p>
+<p><a href="./01-introduccion.html" class="btn btn-primary btn-lg">Comenzar el libro</a> <a href="https://www.youtube.com/playlist?list=PLDJYd2v7Kt-Q" class="btn btn-danger btn-lg">Curso completo en YouTube</a> <a href="./00-cuaderno-google-colab.html" class="btn btn-outline-primary btn-lg">Cuaderno Google Colab</a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imagenes/portada-libro-carta.png" class="img-fluid figure-img" style="width:58.0%" alt="Portada del libro Aprendizaje y Clasificación Automática con R"></p>
+<figcaption>Portada del libro</figcaption>
+</figure>
+</div>
+<p><strong>13 capítulos · R reproducible · Datos abiertos · Videos · Shinylive · PDF</strong></p>
+</section>
+</div>
 <p>Este libro introduce el aprendizaje automático (<em>Machine Learning</em>) mediante ejemplos claros, didácticos y prácticos desarrollados principalmente en <strong>R</strong>.</p>
 <p>La intención no es escribir un tratado matemático extenso, sino construir una guía aplicada para aprender haciendo con datos abiertos reales. En esta versión trabajamos con datos de accidentes de tránsito de México y los usamos como hilo conductor para explicar preparación de datos, análisis exploratorio y modelos de clasificación.</p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -360,125 +371,6 @@ div.csl-indent {
 <div class="video-responsive">
 <iframe src="https://www.youtube.com/embed/pyvMWWDqLws" title="Presentación del libro Aprendizaje y Clasificación Automática con R" frameborder="0" allowfullscreen="">
 </iframe>
-</div>
-</section>
-<section id="curso-completo-en-youtube-1" class="level2">
-<h2 class="anchored" data-anchor-id="curso-completo-en-youtube-1">Curso completo en YouTube</h2>
-<p>El libro cuenta con una lista oficial de reproducción en YouTube, donde se reúnen los videos de presentación y de cada capítulo.</p>
-<p><a href="https://www.youtube.com/playlist?list=PLDJYd2v7Kt-Q" class="btn btn-danger btn-lg" target="_blank">▶ Ver el curso completo en YouTube</a></p>
-<p>Enlace directo: <a href="https://www.youtube.com/playlist?list=PLDJYd2v7Kt-Q" class="uri">https://www.youtube.com/playlist?list=PLDJYd2v7Kt-Q</a></p>
-<div class="playlist-card">
-<div>
-<pre><code>&lt;strong&gt;Lista oficial del curso&lt;/strong&gt;&lt;br&gt;
-Presentación general y videos complementarios de los capítulos.</code></pre>
-</div>
-<div>
-<pre><code>&lt;a href="https://www.youtube.com/playlist?list=PLDJYd2v7Kt-Q" target="_blank" class="btn btn-danger"&gt;Abrir curso en YouTube&lt;/a&gt;</code></pre>
-</div>
-</div>
-</section>
-<section id="materiales-complementarios-descargables" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="materiales-complementarios-descargables">Materiales complementarios descargables</h2>
-<p>Para facilitar la presentación, consulta y difusión de las primeras secciones del libro —<strong>Presentación</strong>, <strong>Licencia, autoría y forma de citar</strong>, y <strong>Cuaderno completo para Google Colab</strong>— se ofrecen los siguientes recursos complementarios:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Recurso</th>
-<th>Descripción</th>
-<th>Abrir o reproducir</th>
-<th>Descargar</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Presentación en PDF</td>
-<td>Diapositivas de lectura sobre la Presentación, la licencia y el cuaderno de Colab.</td>
-<td><a href="recursos/presentacion-licencia-cuaderno.pdf" target="_blank">Ver PDF</a></td>
-<td><a href="recursos/presentacion-licencia-cuaderno.pdf" download="presentacion-licencia-cuaderno.pdf">Descargar PDF</a></td>
-</tr>
-<tr class="even">
-<td>Presentación editable</td>
-<td>Archivo PowerPoint que puede utilizarse para exponer o adaptar el contenido.</td>
-<td><a href="recursos/presentacion-licencia-cuaderno.pptx">Abrir o descargar PPTX</a></td>
-<td><a href="recursos/presentacion-licencia-cuaderno.pptx" download="presentacion-licencia-cuaderno.pptx">Descargar PPTX</a></td>
-</tr>
-<tr class="odd">
-<td>Infografía</td>
-<td>Síntesis visual para consulta rápida, clase o difusión educativa.</td>
-<td><a href="recursos/infografia-presentacion-licencia-cuaderno.png" target="_blank">Ver infografía</a></td>
-<td><a href="recursos/infografia-presentacion-licencia-cuaderno.png" download="infografia-presentacion-licencia-cuaderno.png">Descargar PNG</a></td>
-</tr>
-</tbody>
-</table>
-<div class="callout callout-style-default callout-tip callout-titled" title="Cómo descargar los materiales">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Cómo descargar los materiales
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Seleccione el enlace de la columna <strong>Descargar</strong>. Dependiendo de la configuración del navegador, el archivo puede descargarse inmediatamente o abrirse primero en una pestaña nueva. En ese caso, utilice el botón de descarga del navegador.</p>
-<p>Los archivos se encuentran alojados en el mismo repositorio de GitHub que el libro, por lo que no es necesario iniciar sesión en Google Drive ni solicitar permisos adicionales.</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled" title="Elaboración de los recursos">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Nota</span>Elaboración de los recursos
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Estos materiales complementarios fueron elaborados con apoyo de <strong>NotebookLM de Google</strong>, a partir del contenido del libro, y posteriormente revisados, seleccionados y adaptados por el autor. El contenido del libro y sus archivos fuente constituyen la referencia principal.</p>
-</div>
-</div>
-</section>
-<section id="estructura-actual-del-libro" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="estructura-actual-del-libro">Estructura actual del libro</h2>
-<ol type="1">
-<li>Introducción al aprendizaje automático.</li>
-<li>Preparación de datos reales.</li>
-<li>Análisis exploratorio de datos.</li>
-<li>Regresión lineal simple y múltiple.</li>
-<li>Regresión logística para clasificación.</li>
-<li>k vecinos más cercanos (k-NN).</li>
-<li>Árboles de decisión.</li>
-<li>Random Forest.</li>
-<li>Evaluación, validación y comparación de modelos.</li>
-<li>Máquinas de Vectores de Soporte (SVM).</li>
-<li>Clasificador Naive Bayes.</li>
-</ol>
-</section>
-<section id="ruta-prevista-para-los-siguientes-capítulos" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="ruta-prevista-para-los-siguientes-capítulos">Ruta prevista para los siguientes capítulos</h2>
-<p>La secuencia prevista, sujeta a revisión conforme avance el libro, es:</p>
-<ol start="12" type="1">
-<li>Redes neuronales artificiales.</li>
-<li>Introducción al aprendizaje no supervisado.</li>
-<li>Agrupamiento con k-means.</li>
-<li>Análisis de Componentes Principales (PCA).</li>
-<li>Comparación integral y selección de algoritmos.</li>
-<li>Proyecto aplicado final con datos abiertos.</li>
-</ol>
-</section>
-<section id="nota-para-el-lector" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="nota-para-el-lector">Nota para el lector</h2>
-<p>Los capítulos están diseñados para leerse y ejecutarse paso a paso. Cada bloque de código busca responder una pregunta concreta y cada resultado se acompaña de una interpretación didáctica.</p>
-</section>
-<section id="fuente-principal-de-los-datos" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="fuente-principal-de-los-datos">Fuente principal de los datos</h2>
-<p>Los ejemplos aplicados utilizan información de la Estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas del INEGI <span class="citation" data-cites="inegi_atus_2024">(<a href="referencias.html#ref-inegi_atus_2024" role="doc-biblioref">Instituto Nacional de Estadística y Geografía 2025</a>)</span>. Cuando una tabla o gráfica se elabora con estos datos, se indica expresamente la fuente y se distingue el procesamiento realizado por el autor.</p>
-
-
-<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
-<div id="ref-inegi_atus_2024" class="csl-entry" role="listitem">
-Instituto Nacional de Estadística y Geografía. 2025. <span>«Estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas (ATUS), 2024»</span>. Instituto Nacional de Estadística y Geografía. <a href="https://www.inegi.org.mx/programas/accidentes/">https://www.inegi.org.mx/programas/accidentes/</a>.
-</div>
 </div>
 </section>
 </section>

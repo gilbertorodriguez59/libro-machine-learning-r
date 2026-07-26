@@ -191,6 +191,134 @@ if (exists("probabilidades_rf")) {
 }
 ```
 
+## Laboratorio interactivo: votación de un bosque
+
+::: {.content-visible when-format="html"}
+
+Este simulador muestra cómo múltiples árboles emiten votos y cómo la predicción
+del bosque se estabiliza al aumentar el número de árboles.
+
+```{shinylive-r}
+#| standalone: true
+#| viewerHeight: 700
+#| components: [viewer]
+
+library(shiny)
+
+ui <- fluidPage(
+  titlePanel("Simulador de votación Random Forest"),
+  sidebarLayout(
+    sidebarPanel(
+      sliderInput("ntree", "Número de árboles", 5, 200, 50, step = 5),
+      sliderInput("prob", "Probabilidad de que un árbol vote por Clase 1",
+                  0.05, 0.95, 0.65, step = 0.05),
+      numericInput("semilla", "Semilla", 123, min = 1),
+      actionButton("simular", "Simular bosque")
+    ),
+    mainPanel(
+      plotOutput("votos", height = "360px"),
+      tableOutput("resumen"),
+      textOutput("prediccion")
+    )
+  )
+)
+
+server <- function(input, output, session) {
+  datos <- eventReactive(input$simular, {
+    set.seed(input$semilla)
+    votos <- rbinom(input$ntree, 1, input$prob)
+    data.frame(
+      arbol = seq_along(votos),
+      voto = votos,
+      acumulado = cumsum(votos) / seq_along(votos)
+    )
+  }, ignoreNULL = FALSE)
+
+  output$votos <- renderPlot({
+    d <- datos()
+    plot(
+      d$arbol, d$acumulado,
+      type = "l", lwd = 3,
+      ylim = c(0, 1),
+      xlab = "Número de árboles acumulados",
+      ylab = "Proporción acumulada de votos por Clase 1",
+      main = "Estabilización de la votación del bosque"
+    )
+    abline(h = 0.5, lty = 2)
+    grid()
+  })
+
+  output$resumen <- renderTable({
+    d <- datos()
+    votos1 <- sum(d$voto == 1)
+    votos0 <- sum(d$voto == 0)
+    data.frame(
+      Clase = c("Clase 0", "Clase 1"),
+      Votos = c(votos0, votos1),
+      Porcentaje = round(100 * c(votos0, votos1) / nrow(d), 1)
+    )
+  })
+
+  output$prediccion <- renderText({
+    d <- datos()
+    clase <- ifelse(mean(d$voto) >= 0.5, "Clase 1", "Clase 0")
+    paste("Predicción final del bosque:", clase)
+  })
+}
+
+shinyApp(ui, server)
+```
+
+:::
+
+::: {.content-visible when-format="pdf"}
+
+### Laboratorio disponible en la versión web
+
+El laboratorio permite cambiar el número de árboles y observar cómo se
+estabiliza la proporción acumulada de votos del bosque.
+
+:::
+
+## Materiales complementarios del capítulo
+
+::: {.content-visible when-format="html"}
+
+### Video del capítulo
+
+<iframe width="100%" height="420"
+src="https://www.youtube.com/embed/KELSgYttifs"
+title="Capítulo 8. Random Forest para clasificación"
+frameborder="0"
+allowfullscreen></iframe>
+
+:::
+
+::: {.content-visible when-format="pdf"}
+
+### Video del capítulo
+
+Disponible en YouTube:
+
+<https://youtu.be/KELSgYttifs>
+
+:::
+
+| Recurso | Descripción | Abrir o descargar |
+|---|---|---|
+| Presentación en PDF | Síntesis del capítulo para lectura o exposición. | [Abrir PDF](recursos/capitulo-08/capitulo-08-random-forest-presentacion.pdf){target="_blank"} |
+| Presentación editable | Diapositivas en PowerPoint. | [Descargar PPTX](recursos/capitulo-08/capitulo-08-random-forest-presentacion.pptx) |
+| Infografía | Resumen visual del capítulo. | [Abrir infografía](recursos/capitulo-08/capitulo-08-random-forest-infografia.png){target="_blank"} |
+
+::: {.content-visible when-format="html"}
+
+![Infografía del capítulo 8](recursos/capitulo-08/capitulo-08-random-forest-infografia.png){fig-alt="Capítulo 8. Random Forest para clasificación" width="85%"}
+
+:::
+
+Los materiales fueron creados con apoyo de NotebookLM de Google a partir del
+contenido del libro y revisados y adaptados por el autor.
+
 ## Conclusión
 
 Random Forest mejora la estabilidad y la capacidad predictiva de un solo árbol al combinar muchos árboles. Es uno de los métodos más útiles para clasificación aplicada.

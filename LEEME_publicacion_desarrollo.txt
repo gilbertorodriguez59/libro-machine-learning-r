@@ -1,7 +1,7 @@
-PUBLICACION AUTOMATICA DE LA VERSION DE DESARROLLO
+﻿PUBLICACION AUTOMATICA DE LA VERSION DE DESARROLLO
 
 1. Copie estos dos archivos dentro de:
-   C:\libro-machine-learning-r-estable
+   C:\libro-machine-learning-r-dev
 
    - publicar_version_desarrollo.ps1
    - ejecutar_publicacion_desarrollo.bat
@@ -20,7 +20,7 @@ PUBLICACION AUTOMATICA DE LA VERSION DE DESARROLLO
 Direcciones:
 
 Libro web:
-https://gilbertorodriguez59.github.io/libro-machine-learning-r/
+https://gilbertorodriguez59.github.io/libro-machine-learning-r-dev/
 
 PDF:
-https://gilbertorodriguez59.github.io/libro-machine-learning-r/libro-machine-learning-r.pdf
+https://gilbertorodriguez59.github.io/libro-machine-learning-r-dev/libro-machine-learning-r.pdf

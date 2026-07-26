@@ -87,7 +87,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./referencias.html" rel="next">
+<link href="./11-redes-neuronales.html" rel="next">
 <link href="./09-svm.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -99,6 +99,11 @@ div.csl-indent {
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-12eeb4b20e9f5a2b0bfc604bfaf942bb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<meta name="shinylive:serviceworker_dir" content=".">
+<script src="site_libs/quarto-contrib/shinylive-0.10.12/shinylive/load-shinylive-sw.js" type="module"></script>
+<script src="site_libs/quarto-contrib/shinylive-0.10.12/shinylive/run-python-blocks.js" type="module"></script>
+<link href="site_libs/quarto-contrib/shinylive-0.10.12/shinylive/shinylive.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -280,6 +285,18 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Clasificador Naive Bayes</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-redes-neuronales.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Redes neuronales artificiales</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-kmeans.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Agrupamiento con k-means</span></span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
@@ -334,6 +351,11 @@ window.Quarto = {
   <li><a href="#actividades-para-el-lector" id="toc-actividades-para-el-lector" class="nav-link" data-scroll-target="#actividades-para-el-lector"><span class="header-section-number">11.25</span> Actividades para el lector</a></li>
   <li><a href="#conclusiones" id="toc-conclusiones" class="nav-link" data-scroll-target="#conclusiones"><span class="header-section-number">11.26</span> Conclusiones</a></li>
   <li><a href="#referencias-fundamentales-de-naive-bayes" id="toc-referencias-fundamentales-de-naive-bayes" class="nav-link" data-scroll-target="#referencias-fundamentales-de-naive-bayes"><span class="header-section-number">11.27</span> Referencias fundamentales de Naive Bayes</a></li>
+  <li><a href="#laboratorio-interactivo-probabilidades-posteriores-naive-bayes" id="toc-laboratorio-interactivo-probabilidades-posteriores-naive-bayes" class="nav-link" data-scroll-target="#laboratorio-interactivo-probabilidades-posteriores-naive-bayes"><span class="header-section-number">11.28</span> Laboratorio interactivo: probabilidades posteriores Naive Bayes</a></li>
+  <li><a href="#materiales-complementarios-del-capítulo" id="toc-materiales-complementarios-del-capítulo" class="nav-link" data-scroll-target="#materiales-complementarios-del-capítulo"><span class="header-section-number">11.29</span> Materiales complementarios del capítulo</a>
+  <ul class="collapse">
+  <li><a href="#video-del-capítulo" id="toc-video-del-capítulo" class="nav-link" data-scroll-target="#video-del-capítulo"><span class="header-section-number">11.29.1</span> Video del capítulo</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -1060,6 +1082,118 @@ Y                      11         12
 <section id="referencias-fundamentales-de-naive-bayes" class="level2" data-number="11.27">
 <h2 data-number="11.27" class="anchored" data-anchor-id="referencias-fundamentales-de-naive-bayes"><span class="header-section-number">11.27</span> Referencias fundamentales de Naive Bayes</h2>
 <p>El análisis de las condiciones bajo las cuales el clasificador bayesiano simple puede ser óptimo fue desarrollado por <span class="citation" data-cites="domingos1997optimality">Domingos y Pazzani (<a href="referencias.html#ref-domingos1997optimality" role="doc-biblioref">1997</a>)</span>. Una discusión crítica sobre por qué el método puede funcionar bien pese a su supuesto ingenuo aparece en <span class="citation" data-cites="hand2001idiots">Hand y Yu (<a href="referencias.html#ref-hand2001idiots" role="doc-biblioref">2001</a>)</span>. Para una introducción moderna dentro del aprendizaje estadístico puede consultarse <span class="citation" data-cites="james2021islr">James et&nbsp;al. (<a href="referencias.html#ref-james2021islr" role="doc-biblioref">2021</a>)</span>.</p>
+</section>
+<section id="laboratorio-interactivo-probabilidades-posteriores-naive-bayes" class="level2" data-number="11.28">
+<h2 data-number="11.28" class="anchored" data-anchor-id="laboratorio-interactivo-probabilidades-posteriores-naive-bayes"><span class="header-section-number">11.28</span> Laboratorio interactivo: probabilidades posteriores Naive Bayes</h2>
+<p>Modifica probabilidades previas y condicionales para observar el resultado.</p>
+<pre class="shinylive-r" data-engine="r"><code>#| '!! shinylive warning !!': |
+#|   shinylive does not work in self-contained HTML documents.
+#|   Please set `embed-resources: false` in your metadata.
+#| standalone: true
+#| viewerHeight: 700
+#| components: [viewer]
+
+library(shiny)
+
+ui &lt;- fluidPage(
+  titlePanel("Calculadora Naive Bayes"),
+  sidebarLayout(
+    sidebarPanel(
+      sliderInput("prior", "P(Clase 1)", 0.05, 0.95, 0.40, step = 0.05),
+      sliderInput("e1", "P(Evidencia | Clase 1)", 0.01, 0.99, 0.80, step = 0.01),
+      sliderInput("e0", "P(Evidencia | Clase 0)", 0.01, 0.99, 0.25, step = 0.01),
+      radioButtons("observada", "Evidencia observada",
+                   choices = c("Sí" = "si", "No" = "no"))
+    ),
+    mainPanel(
+      tableOutput("calculo"),
+      plotOutput("grafica", height = "340px"),
+      textOutput("decision")
+    )
+  )
+)
+
+server &lt;- function(input, output, session) {
+  posterior &lt;- reactive({
+    p1 &lt;- input$prior
+    p0 &lt;- 1 - p1
+    if (input$observada == "si") {
+      l1 &lt;- input$e1
+      l0 &lt;- input$e0
+    } else {
+      l1 &lt;- 1 - input$e1
+      l0 &lt;- 1 - input$e0
+    }
+    num1 &lt;- p1 * l1
+    num0 &lt;- p0 * l0
+    evidencia &lt;- num1 + num0
+    c(Clase_0 = num0 / evidencia, Clase_1 = num1 / evidencia)
+  })
+
+  output$calculo &lt;- renderTable({
+    p &lt;- posterior()
+    data.frame(
+      Clase = names(p),
+      Probabilidad_posterior = round(as.numeric(p), 4)
+    )
+  })
+
+  output$grafica &lt;- renderPlot({
+    p &lt;- posterior()
+    barplot(p, ylim = c(0, 1),
+            ylab = "Probabilidad posterior",
+            main = "Resultado de Naive Bayes")
+    abline(h = 0.5, lty = 2)
+  })
+
+  output$decision &lt;- renderText({
+    p &lt;- posterior()
+    paste("Clase predicha:",
+          ifelse(p["Clase_1"] &gt;= p["Clase_0"], "Clase 1", "Clase 0"))
+  })
+}
+
+shinyApp(ui, server)</code></pre>
+</section>
+<section id="materiales-complementarios-del-capítulo" class="level2" data-number="11.29">
+<h2 data-number="11.29" class="anchored" data-anchor-id="materiales-complementarios-del-capítulo"><span class="header-section-number">11.29</span> Materiales complementarios del capítulo</h2>
+<section id="video-del-capítulo" class="level3" data-number="11.29.1">
+<h3 data-number="11.29.1" class="anchored" data-anchor-id="video-del-capítulo"><span class="header-section-number">11.29.1</span> Video del capítulo</h3>
+<iframe width="100%" height="420" src="https://www.youtube.com/embed/UbfJ3bLDwUI" title="Capítulo 11. Clasificador Naive Bayes" frameborder="0" allowfullscreen="">
+</iframe>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Recurso</th>
+<th>Descripción</th>
+<th>Abrir o descargar</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Presentación en PDF</td>
+<td>Síntesis del capítulo para lectura o exposición.</td>
+<td><a href="recursos/capitulo-11/capitulo-11-naive-bayes-presentacion.pdf" target="_blank">Abrir PDF</a></td>
+</tr>
+<tr class="even">
+<td>Presentación editable</td>
+<td>Diapositivas en PowerPoint.</td>
+<td><a href="recursos/capitulo-11/capitulo-11-naive-bayes-presentacion.pptx">Descargar PPTX</a></td>
+</tr>
+<tr class="odd">
+<td>Infografía</td>
+<td>Resumen visual del capítulo.</td>
+<td><a href="recursos/capitulo-11/capitulo-11-naive-bayes-infografia.png" target="_blank">Abrir infografía</a></td>
+</tr>
+</tbody>
+</table>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="recursos/capitulo-11/capitulo-11-naive-bayes-infografia.png" class="img-fluid figure-img" style="width:85.0%" alt="Capítulo 11. Clasificador Naive Bayes"></p>
+<figcaption>Infografía del capítulo 11</figcaption>
+</figure>
+</div>
+<p>Los materiales fueron creados con apoyo de NotebookLM de Google a partir del contenido del libro y revisados y adaptados por el autor.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
@@ -1073,6 +1207,7 @@ Hand, David J., y Keming Yu. 2001. <span>«Idiot’s Bayes—Not So Stupid after
 James, Gareth, Daniela Witten, Trevor Hastie, y Robert Tibshirani. 2021. <em>An Introduction to Statistical Learning: with Applications in R</em>. 2.ª ed. Springer. <a href="https://doi.org/10.1007/978-1-0716-1418-1">https://doi.org/10.1007/978-1-0716-1418-1</a>.
 </div>
 </div>
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -1483,8 +1618,8 @@ James, Gareth, Daniela Witten, Trevor Hastie, y Robert Tibshirani. 2021. <em>An 
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./referencias.html" class="pagination-link" aria-label="Referencias">
-        <span class="nav-page-text">Referencias</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./11-redes-neuronales.html" class="pagination-link" aria-label="Redes neuronales artificiales">
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Redes neuronales artificiales</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

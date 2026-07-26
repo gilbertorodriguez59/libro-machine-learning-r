@@ -225,6 +225,85 @@ Este video forma parte de la lista oficial del curso **Aprendizaje y Clasificaci
 Los materiales complementarios fueron elaborados con apoyo de **NotebookLM de Google**, a partir del contenido del capítulo, y posteriormente revisados y adaptados por el autor. El texto del libro y sus archivos fuente constituyen la referencia principal.
 :::
 
+## Laboratorio interactivo: exploración de distribuciones
+
+::: {.content-visible when-format="html"}
+
+Selecciona una variable de `iris` y examina su distribución.
+
+```{shinylive-r}
+#| standalone: true
+#| viewerHeight: 700
+#| components: [viewer]
+
+library(shiny)
+
+ui <- fluidPage(
+  titlePanel("Explorador interactivo de datos"),
+  sidebarLayout(
+    sidebarPanel(
+      selectInput("variable", "Variable", choices = names(iris)[1:4],
+                  selected = "Sepal.Length"),
+      radioButtons("grafica", "Tipo de gráfica",
+                   choices = c("Histograma" = "hist",
+                               "Boxplot por especie" = "box",
+                               "Densidad" = "dens")),
+      sliderInput("clases", "Número de intervalos", 5, 30, 12)
+    ),
+    mainPanel(
+      plotOutput("plot", height = "420px"),
+      tableOutput("resumen")
+    )
+  )
+)
+
+server <- function(input, output, session) {
+  valores <- reactive(iris[[input$variable]])
+
+  output$plot <- renderPlot({
+    x <- valores()
+    if (input$grafica == "hist") {
+      hist(x, breaks = input$clases,
+           main = paste("Histograma de", input$variable),
+           xlab = input$variable)
+    } else if (input$grafica == "box") {
+      boxplot(x ~ iris$Species, xlab = "Especie",
+              ylab = input$variable,
+              main = paste(input$variable, "por especie"))
+    } else {
+      plot(density(x), lwd = 3,
+           main = paste("Densidad de", input$variable),
+           xlab = input$variable)
+      grid()
+    }
+  })
+
+  output$resumen <- renderTable({
+    x <- valores()
+    data.frame(
+      N = length(x),
+      Media = round(mean(x), 3),
+      Mediana = round(median(x), 3),
+      Desviacion = round(sd(x), 3),
+      Minimo = min(x),
+      Maximo = max(x)
+    )
+  })
+}
+
+shinyApp(ui, server)
+```
+
+:::
+
+::: {.content-visible when-format="pdf"}
+
+### Laboratorio disponible en la versión web
+
+Permite elegir una variable y visualizar histograma, densidad o boxplot.
+
+:::
+
 ## Conclusión
 
 El análisis exploratorio permite detectar patrones iniciales, revisar el desbalance de clases e identificar variables útiles para modelar.

@@ -1,0 +1,102 @@
+name: Promover edición validada a estable 1.0.0
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/promote-from-covid.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: promocion-estable-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  promover:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del repositorio estable
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          path: stable
+
+      - name: Obtener snapshot validado de la edición COVID
+        run: |
+          git init source
+          git -C source remote add origin https://github.com/gilbertorodriguez59/libro-machine-learning-r-covid.git
+          git -C source fetch --depth=1 origin c8ca8aeab9c83951c639be0d5e3496d20edcb82c
+          git -C source checkout --detach FETCH_HEAD
+          echo "Snapshot fuente: $(git -C source rev-parse HEAD)"
+
+      - name: Sincronizar contenido hacia el estable
+        run: |
+          rsync -a --delete \
+            --exclude='.git/' \
+            --exclude='.github/workflows/promote-from-covid.yml' \
+            source/ stable/
+
+      - name: Adaptar URLs y marcar versión estable 1.0.0
+        working-directory: stable
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          old = 'libro-machine-learning-r-covid'
+          new = 'libro-machine-learning-r'
+          skip = Path('.github/workflows/promote-from-covid.yml')
+
+          for p in Path('.').rglob('*'):
+              if not p.is_file() or p == skip or '.git' in p.parts:
+                  continue
+              try:
+                  data = p.read_text(encoding='utf-8')
+              except (UnicodeDecodeError, OSError):
+                  continue
+              if old in data:
+                  p.write_text(data.replace(old, new), encoding='utf-8')
+
+          index = Path('index.qmd')
+          text = index.read_text(encoding='utf-8')
+          text = re.sub(r'\*\*Versión:\*\*\s*[^\n]+', '**Versión:** 1.0.0  ', text, count=1)
+          index.write_text(text, encoding='utf-8')
+
+          print('URLs adaptadas al repositorio estable y versión fijada en 1.0.0')
+          PY
+
+      - name: Validar promoción antes de publicar
+        working-directory: stable
+        run: |
+          test -f index.qmd
+          test -f referencias.bib
+          test -f referencias.qmd
+          test -f Aprendizaje_y_Clasificacion_Automatica_con_R_Colab.ipynb
+          test -f colab/00-indice-colabs.ipynb
+          test -f colab/01-introduccion.ipynb
+          test -f colab/13-kmeans.ipynb
+          test -f datos/covid19/procesados/covid19_mexico_2022_ml_preparado.csv.gz
+          grep -q '\*\*Versión:\*\* 1.0.0' index.qmd
+          grep -q 'salud_covid_historicos_2022' referencias.bib
+          grep -q 'Dirección General de Epidemiología' referencias.qmd
+          grep -q 'Fundamentos Matemáticos del Aprendizaje Automático' referencias.qmd
+          ! grep -RIl --exclude='promote-from-covid.yml' 'libro-machine-learning-r-covid' . | grep -q .
+
+      - name: Publicar snapshot en main estable
+        working-directory: stable
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+
+          if git diff --cached --quiet; then
+            echo "El estable ya coincide con el snapshot validado"
+            exit 0
+          fi
+
+          git commit -m "Publicar versión estable 1.0.0 desde edición validada [skip ci]"
+          git push origin HEAD:main

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,10 +12,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -52,17 +55,18 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./12-kmeans.html" rel="prev">
+<link href="./indice-figuras.html" rel="next">
+<link href="./glosario.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-12eeb4b20e9f5a2b0bfc604bfaf942bb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-40766f26011dd0955435ccc10f1198e2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -103,7 +107,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./referencias.html">Apéndices</a></li><li class="breadcrumb-item"><a href="./referencias.html">Referencias</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./glosario.html">Apéndices</a></li><li class="breadcrumb-item"><a href="./referencias.html">Referencias</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
@@ -120,7 +124,7 @@ div.csl-indent {
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Aprendizaje y Clasificación Automática con R</a> 
         <div class="sidebar-tools-main">
-    <a href="./Aprendizaje-y-Clasificación-Automática-con-R.pdf" title="Descargar PDF" class="quarto-navigation-tool px-1" aria-label="Descargar PDF"><i class="bi bi-file-pdf"></i></a>
+    <a href="./Aprendizaje-y-Clasificacion-Automatica-con-R.pdf" title="Descargar PDF" class="quarto-navigation-tool px-1" aria-label="Descargar PDF"><i class="bi bi-file-pdf"></i></a>
 </div>
     </div>
       </div>
@@ -139,14 +143,38 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./00-licencia-y-citacion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Licencia, autoría y forma de citar</span></a>
+  <a href="./00-bienvenida.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bienvenida</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00-creditos-editoriales.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Créditos editoriales</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00-licencia-y-uso-academico.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Licencia y uso académico</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00-prefacio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prefacio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00-agradecimientos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Agradecimientos</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./00-cuaderno-google-colab.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Cuaderno completo para Google Colab</span></a>
+ <span class="menu-text">Google Colab: cuaderno completo y cuadernos por capítulo</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -238,8 +266,32 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./glosario.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Glosario</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./referencias.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Referencias</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./indice-figuras.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Índice de figuras</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./indice-tematico.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Índice temático</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./acerca-del-autor.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Acerca del autor</span></a>
   </div>
 </li>
       </ul>
@@ -254,14 +306,19 @@ div.csl-indent {
     <h2 id="toc-title">Tabla de contenidos</h2>
    
   <ul>
-  <li><a href="#reconocimiento-de-la-fuente-de-datos" id="toc-reconocimiento-de-la-fuente-de-datos" class="nav-link active" data-scroll-target="#reconocimiento-de-la-fuente-de-datos">Reconocimiento de la fuente de datos</a></li>
+  <li><a href="#volumen-teórico-complementario" id="toc-volumen-teórico-complementario" class="nav-link active" data-scroll-target="#volumen-teórico-complementario">Volumen teórico complementario</a></li>
+  <li><a href="#reconocimiento-de-las-fuentes-de-datos" id="toc-reconocimiento-de-las-fuentes-de-datos" class="nav-link" data-scroll-target="#reconocimiento-de-las-fuentes-de-datos">Reconocimiento de las fuentes de datos</a>
+  <ul class="collapse">
+  <li><a href="#accidentes-de-tránsito-atus" id="toc-accidentes-de-tránsito-atus" class="nav-link" data-scroll-target="#accidentes-de-tránsito-atus">Accidentes de tránsito: ATUS</a></li>
+  <li><a href="#covid-19-secretaría-de-salud" id="toc-covid-19-secretaría-de-salud" class="nav-link" data-scroll-target="#covid-19-secretaría-de-salud">COVID-19: Secretaría de Salud</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./referencias.html">Apéndices</a></li><li class="breadcrumb-item"><a href="./referencias.html">Referencias</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./glosario.html">Apéndices</a></li><li class="breadcrumb-item"><a href="./referencias.html">Referencias</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Referencias</h1>
 </div>
@@ -360,13 +417,38 @@ Montgomery, Douglas C., Elizabeth A. Peck, and G. Geoffrey Vining. 2021.
 Quinlan, J. Ross. 1986. <span>“Induction of Decision Trees.”</span>
 <em>Machine Learning</em> 1: 81–106. <a href="https://doi.org/10.1007/BF00116251">https://doi.org/10.1007/BF00116251</a>.
 </div>
+<div id="ref-rodriguez2026fundamentos" class="csl-entry" role="listitem">
+Rodríguez Escobedo, Jesús Gilberto. 2026. <em>Fundamentos Matemáticos
+Del Aprendizaje Automático: Teoría, Demostraciones y Formulación
+Rigurosa de Los Métodos de Regresión, Clasificación y Análisis de
+Datos</em>. Primera edición digital. San Luis Potosí, México. <a href="https://gilbertorodriguez59.github.io/libro-machine-learning-teorico/">https://gilbertorodriguez59.github.io/libro-machine-learning-teorico/</a>.
 </div>
-<section id="reconocimiento-de-la-fuente-de-datos" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="reconocimiento-de-la-fuente-de-datos">Reconocimiento de la fuente de datos</h2>
+<div id="ref-salud_covid_historicos_2022" class="csl-entry" role="listitem">
+Secretaría de Salud, Dirección General de Epidemiología. 2022.
+<span>“Cierre de Datos Abiertos Históricos 2022: Influenza, COVID-19 y
+Otros Virus Respiratorios.”</span> Gobierno de México, Secretaría de
+Salud. <a href="https://www.gob.mx/salud/documentos/datos-abiertos-bases-historicas-direccion-general-de-epidemiologia">https://www.gob.mx/salud/documentos/datos-abiertos-bases-historicas-direccion-general-de-epidemiologia</a>.
+</div>
+</div>
+<section id="volumen-teórico-complementario" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="volumen-teórico-complementario">Volumen teórico complementario</h2>
+<p>Este libro práctico se complementa con <em>Fundamentos Matemáticos del Aprendizaje Automático</em> <span class="citation" data-cites="rodriguez2026fundamentos">(<a href="referencias.html#ref-rodriguez2026fundamentos" role="doc-biblioref">Rodríguez Escobedo 2026</a>)</span>, donde se desarrollan con mayor profundidad la formulación matemática, las demostraciones y los fundamentos teóricos de los métodos utilizados aquí.</p>
+<p><a href="https://gilbertorodriguez59.github.io/libro-machine-learning-teorico/" target="_blank">Consultar <strong>Fundamentos Matemáticos del Aprendizaje Automático</strong></a></p>
+</section>
+<section id="reconocimiento-de-las-fuentes-de-datos" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="reconocimiento-de-las-fuentes-de-datos">Reconocimiento de las fuentes de datos</h2>
+<section id="accidentes-de-tránsito-atus" class="level3">
+<h3 class="anchored" data-anchor-id="accidentes-de-tránsito-atus">Accidentes de tránsito: ATUS</h3>
 <p>Los datos de accidentes empleados en este libro proceden de la <strong>Estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas (ATUS)</strong> del Instituto Nacional de Estadística y Geografía <span class="citation" data-cites="inegi_atus_2024">(<a href="referencias.html#ref-inegi_atus_2024" role="doc-biblioref">Instituto Nacional de Estadística y Geografía 2025</a>)</span>.</p>
 <p>Los datos originales pertenecen al INEGI. La limpieza, transformación, selección de variables, gráficas, modelos de aprendizaje automático e interpretaciones son elaboración del autor y no constituyen resultados oficiales ni implican el aval del Instituto.</p>
+</section>
+<section id="covid-19-secretaría-de-salud" class="level3">
+<h3 class="anchored" data-anchor-id="covid-19-secretaría-de-salud">COVID-19: Secretaría de Salud</h3>
+<p>Los datos de COVID-19 utilizados en la ruta aplicada del libro se prepararon a partir de las <strong>bases históricas de datos abiertos</strong> de la <strong>Dirección General de Epidemiología de la Secretaría de Salud de México</strong>, en particular del cierre histórico correspondiente a 2022 <span class="citation" data-cites="salud_covid_historicos_2022">(<a href="referencias.html#ref-salud_covid_historicos_2022" role="doc-biblioref">Secretaría de Salud, Dirección General de Epidemiología 2022</a>)</span>.</p>
+<p>Los registros originales pertenecen a la Secretaría de Salud. Para fines estrictamente educativos, el autor realizó procesos de limpieza, selección de variables, recodificación, muestreo, generación de variables derivadas y preparación de archivos reproducibles para los ejemplos de aprendizaje automático. Los resultados, gráficas, modelos e interpretaciones presentados en este libro son elaboración académica del autor y no constituyen información clínica oficial, diagnóstico médico ni implican el aval de la Secretaría de Salud.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -772,11 +854,14 @@ Quinlan, J. Ross. 1986. <span>“Induction of Decision Trees.”</span>
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./12-kmeans.html" class="pagination-link" aria-label="Agrupamiento con k-means">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Agrupamiento con k-means</span></span>
+      <a href="./glosario.html" class="pagination-link" aria-label="Glosario">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Glosario</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./indice-figuras.html" class="pagination-link" aria-label="Índice de figuras">
+        <span class="nav-page-text">Índice de figuras</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

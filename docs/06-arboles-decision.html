@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,10 +12,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -95,10 +98,10 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-12eeb4b20e9f5a2b0bfc604bfaf942bb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-40766f26011dd0955435ccc10f1198e2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <meta name="shinylive:serviceworker_dir" content=".">
 <script src="site_libs/quarto-contrib/shinylive-0.10.12/shinylive/load-shinylive-sw.js" type="module"></script>
 <script src="site_libs/quarto-contrib/shinylive-0.10.12/shinylive/run-python-blocks.js" type="module"></script>
@@ -133,7 +136,7 @@ div.csl-indent {
 }</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -190,7 +193,7 @@ window.Quarto = {
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Aprendizaje y Clasificación Automática con R</a> 
         <div class="sidebar-tools-main">
-    <a href="./Aprendizaje-y-Clasificación-Automática-con-R.pdf" title="Descargar PDF" class="quarto-navigation-tool px-1" aria-label="Descargar PDF"><i class="bi bi-file-pdf"></i></a>
+    <a href="./Aprendizaje-y-Clasificacion-Automatica-con-R.pdf" title="Descargar PDF" class="quarto-navigation-tool px-1" aria-label="Descargar PDF"><i class="bi bi-file-pdf"></i></a>
 </div>
     </div>
       </div>
@@ -209,14 +212,38 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./00-licencia-y-citacion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Licencia, autoría y forma de citar</span></a>
+  <a href="./00-bienvenida.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bienvenida</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00-creditos-editoriales.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Créditos editoriales</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00-licencia-y-uso-academico.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Licencia y uso académico</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00-prefacio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prefacio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00-agradecimientos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Agradecimientos</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./00-cuaderno-google-colab.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Cuaderno completo para Google Colab</span></a>
+ <span class="menu-text">Google Colab: cuaderno completo y cuadernos por capítulo</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -308,8 +335,32 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./glosario.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Glosario</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./referencias.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Referencias</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./indice-figuras.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Índice de figuras</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./indice-tematico.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Índice temático</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./acerca-del-autor.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Acerca del autor</span></a>
   </div>
 </li>
       </ul>
@@ -334,12 +385,14 @@ window.Quarto = {
   <li><a href="#gráfica-opcional-del-árbol" id="toc-gráfica-opcional-del-árbol" class="nav-link" data-scroll-target="#gráfica-opcional-del-árbol"><span class="header-section-number">7.8</span> Gráfica opcional del árbol</a></li>
   <li><a href="#predicción-y-métricas" id="toc-predicción-y-métricas" class="nav-link" data-scroll-target="#predicción-y-métricas"><span class="header-section-number">7.9</span> Predicción y métricas</a></li>
   <li><a href="#laboratorio-interactivo-construye-una-división-del-árbol" id="toc-laboratorio-interactivo-construye-una-división-del-árbol" class="nav-link" data-scroll-target="#laboratorio-interactivo-construye-una-división-del-árbol"><span class="header-section-number">7.10</span> Laboratorio interactivo: construye una división del árbol</a></li>
-  <li><a href="#materiales-complementarios-del-capítulo" id="toc-materiales-complementarios-del-capítulo" class="nav-link" data-scroll-target="#materiales-complementarios-del-capítulo"><span class="header-section-number">7.11</span> Materiales complementarios del capítulo</a>
+  <li><a href="#caso-aplicado-b-árbol-de-decisión-con-covid-19" id="toc-caso-aplicado-b-árbol-de-decisión-con-covid-19" class="nav-link" data-scroll-target="#caso-aplicado-b-árbol-de-decisión-con-covid-19"><span class="header-section-number">7.11</span> Caso aplicado B: árbol de decisión con COVID-19</a></li>
+  <li><a href="#materiales-complementarios-del-capítulo" id="toc-materiales-complementarios-del-capítulo" class="nav-link" data-scroll-target="#materiales-complementarios-del-capítulo"><span class="header-section-number">7.12</span> Materiales complementarios del capítulo</a>
   <ul class="collapse">
-  <li><a href="#video-del-capítulo" id="toc-video-del-capítulo" class="nav-link" data-scroll-target="#video-del-capítulo"><span class="header-section-number">7.11.1</span> Video del capítulo</a></li>
+  <li><a href="#video-explicativo" id="toc-video-explicativo" class="nav-link" data-scroll-target="#video-explicativo"><span class="header-section-number">7.12.1</span> Video explicativo</a></li>
+  <li><a href="#vista-previa-de-la-infografía" id="toc-vista-previa-de-la-infografía" class="nav-link" data-scroll-target="#vista-previa-de-la-infografía"><span class="header-section-number">7.12.2</span> Vista previa de la infografía</a></li>
   </ul></li>
-  <li><a href="#conclusión" id="toc-conclusión" class="nav-link" data-scroll-target="#conclusión"><span class="header-section-number">7.12</span> Conclusión</a></li>
-  <li><a href="#referencias-fundamentales-de-los-árboles-de-decisión" id="toc-referencias-fundamentales-de-los-árboles-de-decisión" class="nav-link" data-scroll-target="#referencias-fundamentales-de-los-árboles-de-decisión"><span class="header-section-number">7.13</span> Referencias fundamentales de los árboles de decisión</a></li>
+  <li><a href="#conclusión" id="toc-conclusión" class="nav-link" data-scroll-target="#conclusión"><span class="header-section-number">7.13</span> Conclusión</a></li>
+  <li><a href="#referencias-fundamentales-de-los-árboles-de-decisión" id="toc-referencias-fundamentales-de-los-árboles-de-decisión" class="nav-link" data-scroll-target="#referencias-fundamentales-de-los-árboles-de-decisión"><span class="header-section-number">7.14</span> Referencias fundamentales de los árboles de decisión</a></li>
   </ul>
 </nav>
     </div>
@@ -365,6 +418,19 @@ window.Quarto = {
 </header>
 
 
+<div class="callout callout-style-default callout-note callout-titled" title="Conexión con el volumen teórico">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Conexión con el volumen teórico
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La formulación matemática de <strong>entropía, impureza, particiones y árboles de decisión</strong> se desarrolla con mayor profundidad en los capítulos 3, 6 y 13 de <em>Fundamentos Matemáticos del Aprendizaje Automático</em> <span class="citation" data-cites="rodriguez2026fundamentos">(<a href="referencias.html#ref-rodriguez2026fundamentos" role="doc-biblioref">Rodríguez Escobedo 2026</a>)</span>.</p>
+</div>
+</div>
 <section id="objetivos-del-capítulo" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="objetivos-del-capítulo"><span class="header-section-number">7.1</span> Objetivos del capítulo</h2>
 <p>Al finalizar este capítulo, el lector será capaz de explicar la idea básica de un árbol de decisión, entrenarlo en R y evaluar su desempeño.</p>
@@ -383,17 +449,11 @@ Gini = 1 - \sum_{k=1}^{K} p_k^2
 <section id="cargar-paquetes-y-datos" class="level2" data-number="7.4">
 <h2 data-number="7.4" class="anchored" data-anchor-id="cargar-paquetes-y-datos"><span class="header-section-number">7.4</span> Cargar paquetes y datos</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'readr' was built under R version 4.5.3</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'dplyr' was built under R version 4.5.3</code></pre>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>
-Adjuntando el paquete: 'dplyr'</code></pre>
+Attaching package: 'dplyr'</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>The following objects are masked from 'package:stats':
@@ -405,32 +465,26 @@ Adjuntando el paquete: 'dplyr'</code></pre>
 
     intersect, setdiff, setequal, union</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rpart)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'rpart' was built under R version 4.5.3</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"util_graficas.R"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'ggplot2' was built under R version 4.5.3</code></pre>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rpart)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"util_graficas.R"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>
-Adjuntando el paquete: 'scales'</code></pre>
+Attaching package: 'scales'</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>The following object is masked from 'package:readr':
 
     col_factor</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>ruta_atus_ml <span class="ot">&lt;-</span> <span class="st">"datos/atus_ml_preparado.csv"</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">file.exists</span>(ruta_atus_ml)) {</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  atus_ml <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(ruta_atus_ml, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Base preparada cargada correctamente."</span>)</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  atus_ml <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"No se encontró el archivo datos/atus_ml_preparado.csv. Ejecuta primero el capítulo 2."</span>)</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ruta_atus_ml <span class="ot">&lt;-</span> <span class="st">"datos/atus_ml_preparado.csv"</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">file.exists</span>(ruta_atus_ml)) {</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  atus_ml <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(ruta_atus_ml, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Base preparada cargada correctamente."</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  atus_ml <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"No se encontró el archivo datos/atus_ml_preparado.csv. Ejecuta primero el capítulo 2."</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Base preparada cargada correctamente."</code></pre>
 </div>
@@ -439,20 +493,20 @@ Adjuntando el paquete: 'scales'</code></pre>
 <section id="usar-la-base-completa" class="level2" data-number="7.5">
 <h2 data-number="7.5" class="anchored" data-anchor-id="usar-la-base-completa"><span class="header-section-number">7.5</span> Usar la base completa</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(atus_ml)) {</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  atus_arbol_base <span class="ot">&lt;-</span> atus_ml <span class="sc">|&gt;</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">accidente_con_victimas =</span> <span class="fu">factor</span>(accidente_con_victimas, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Con víctimas"</span>, <span class="st">"Solo daños"</span>)),</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">MES =</span> <span class="fu">as.factor</span>(MES),</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">ID_HORA =</span> <span class="fu">as.numeric</span>(ID_HORA),</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">DIASEMANA =</span> <span class="fu">as.factor</span>(DIASEMANA),</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">TIPACCID =</span> <span class="fu">as.factor</span>(TIPACCID),</span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">CAUSAACCI =</span> <span class="fu">as.factor</span>(CAUSAACCI)</span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span></span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">na.omit</span>()</span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="at">filas =</span> <span class="fu">nrow</span>(atus_arbol_base), <span class="at">columnas =</span> <span class="fu">ncol</span>(atus_arbol_base))</span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(atus_ml)) {</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  atus_arbol_base <span class="ot">&lt;-</span> atus_ml <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">accidente_con_victimas =</span> <span class="fu">factor</span>(accidente_con_victimas, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Con víctimas"</span>, <span class="st">"Solo daños"</span>)),</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">MES =</span> <span class="fu">as.factor</span>(MES),</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">ID_HORA =</span> <span class="fu">as.numeric</span>(ID_HORA),</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">DIASEMANA =</span> <span class="fu">as.factor</span>(DIASEMANA),</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">TIPACCID =</span> <span class="fu">as.factor</span>(TIPACCID),</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">CAUSAACCI =</span> <span class="fu">as.factor</span>(CAUSAACCI)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">na.omit</span>()</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="at">filas =</span> <span class="fu">nrow</span>(atus_arbol_base), <span class="at">columnas =</span> <span class="fu">ncol</span>(atus_arbol_base))</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   filas columnas
 1 390627        6</code></pre>
@@ -475,19 +529,19 @@ Adjuntando el paquete: 'scales'</code></pre>
 <section id="división-y-entrenamiento" class="level2" data-number="7.6">
 <h2 data-number="7.6" class="anchored" data-anchor-id="división-y-entrenamiento"><span class="header-section-number">7.6</span> División y entrenamiento</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"atus_arbol_base"</span>)) {</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  idx <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(atus_arbol_base), <span class="at">size =</span> <span class="fu">round</span>(<span class="fl">0.7</span> <span class="sc">*</span> <span class="fu">nrow</span>(atus_arbol_base)))</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  entrenamiento <span class="ot">&lt;-</span> atus_arbol_base[idx, ]</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  prueba <span class="ot">&lt;-</span> atus_arbol_base[<span class="sc">-</span>idx, ]</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  modelo_arbol <span class="ot">&lt;-</span> <span class="fu">rpart</span>(</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    accidente_con_victimas <span class="sc">~</span> MES <span class="sc">+</span> ID_HORA <span class="sc">+</span> DIASEMANA <span class="sc">+</span> TIPACCID <span class="sc">+</span> CAUSAACCI,</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> entrenamiento,</span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">"class"</span>,</span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">control =</span> <span class="fu">rpart.control</span>(<span class="at">cp =</span> <span class="fl">0.005</span>, <span class="at">minsplit =</span> <span class="dv">1000</span>, <span class="at">minbucket =</span> <span class="dv">300</span>, <span class="at">maxdepth =</span> <span class="dv">5</span>)</span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"atus_arbol_base"</span>)) {</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  idx <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(atus_arbol_base), <span class="at">size =</span> <span class="fu">round</span>(<span class="fl">0.7</span> <span class="sc">*</span> <span class="fu">nrow</span>(atus_arbol_base)))</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  entrenamiento <span class="ot">&lt;-</span> atus_arbol_base[idx, ]</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  prueba <span class="ot">&lt;-</span> atus_arbol_base[<span class="sc">-</span>idx, ]</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  modelo_arbol <span class="ot">&lt;-</span> <span class="fu">rpart</span>(</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    accidente_con_victimas <span class="sc">~</span> MES <span class="sc">+</span> ID_HORA <span class="sc">+</span> DIASEMANA <span class="sc">+</span> TIPACCID <span class="sc">+</span> CAUSAACCI,</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> entrenamiento,</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">"class"</span>,</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">control =</span> <span class="fu">rpart.control</span>(<span class="at">cp =</span> <span class="fl">0.005</span>, <span class="at">minsplit =</span> <span class="dv">1000</span>, <span class="at">minbucket =</span> <span class="dv">300</span>, <span class="at">maxdepth =</span> <span class="dv">5</span>)</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -506,7 +560,7 @@ Adjuntando el paquete: 'scales'</code></pre>
 <section id="complejidad-e-importancia" class="level2" data-number="7.7">
 <h2 data-number="7.7" class="anchored" data-anchor-id="complejidad-e-importancia"><span class="header-section-number">7.7</span> Complejidad e importancia</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"modelo_arbol"</span>)) <span class="fu">printcp</span>(modelo_arbol)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"modelo_arbol"</span>)) <span class="fu">printcp</span>(modelo_arbol)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Classification tree:
@@ -526,14 +580,14 @@ n= 273439
 1 0.097051      0    1.0000 1.0000 0.0041653
 2 0.005000      2    0.8059 0.8059 0.0038150</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"modelo_arbol"</span>)) {</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  importancia <span class="ot">&lt;-</span> modelo_arbol<span class="sc">$</span>variable.importance</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(importancia)) {</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    importancia_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">variable =</span> <span class="fu">names</span>(importancia), <span class="at">importancia =</span> <span class="fu">as.numeric</span>(importancia), <span class="at">row.names =</span> <span class="cn">NULL</span>)</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    importancia_df <span class="ot">&lt;-</span> importancia_df[<span class="fu">order</span>(<span class="sc">-</span>importancia_df<span class="sc">$</span>importancia), ]</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    importancia_df</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"modelo_arbol"</span>)) {</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  importancia <span class="ot">&lt;-</span> modelo_arbol<span class="sc">$</span>variable.importance</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(importancia)) {</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    importancia_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">variable =</span> <span class="fu">names</span>(importancia), <span class="at">importancia =</span> <span class="fu">as.numeric</span>(importancia), <span class="at">row.names =</span> <span class="cn">NULL</span>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    importancia_df <span class="ot">&lt;-</span> importancia_df[<span class="fu">order</span>(<span class="sc">-</span>importancia_df<span class="sc">$</span>importancia), ]</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    importancia_df</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   variable importancia
 1  TIPACCID   22919.330
@@ -558,35 +612,35 @@ n= 273439
 <h2 data-number="7.8" class="anchored" data-anchor-id="gráfica-opcional-del-árbol"><span class="header-section-number">7.8</span> Gráfica opcional del árbol</h2>
 <p>La gráfica completa del árbol puede ser pesada en PDF. El lector puede ejecutarla manualmente en RStudio.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(modelo_arbol, <span class="at">uniform =</span> <span class="cn">TRUE</span>, <span class="at">margin =</span> <span class="fl">0.1</span>)</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(modelo_arbol, <span class="at">use.n =</span> <span class="cn">TRUE</span>, <span class="at">cex =</span> <span class="fl">0.7</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(modelo_arbol, <span class="at">uniform =</span> <span class="cn">TRUE</span>, <span class="at">margin =</span> <span class="fl">0.1</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(modelo_arbol, <span class="at">use.n =</span> <span class="cn">TRUE</span>, <span class="at">cex =</span> <span class="fl">0.7</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="predicción-y-métricas" class="level2" data-number="7.9">
 <h2 data-number="7.9" class="anchored" data-anchor-id="predicción-y-métricas"><span class="header-section-number">7.9</span> Predicción y métricas</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"modelo_arbol"</span>)) {</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  pred_arbol <span class="ot">&lt;-</span> <span class="fu">predict</span>(modelo_arbol, <span class="at">newdata =</span> prueba, <span class="at">type =</span> <span class="st">"class"</span>)</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  real_arbol <span class="ot">&lt;-</span> <span class="fu">factor</span>(prueba<span class="sc">$</span>accidente_con_victimas, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Con víctimas"</span>, <span class="st">"Solo daños"</span>))</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  pred_arbol <span class="ot">&lt;-</span> <span class="fu">factor</span>(pred_arbol, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Con víctimas"</span>, <span class="st">"Solo daños"</span>))</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  matriz_confusion_arbol <span class="ot">&lt;-</span> <span class="fu">table</span>(<span class="at">Real =</span> real_arbol, <span class="at">Predicho =</span> pred_arbol)</span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  matriz_confusion_arbol</span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"modelo_arbol"</span>)) {</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  pred_arbol <span class="ot">&lt;-</span> <span class="fu">predict</span>(modelo_arbol, <span class="at">newdata =</span> prueba, <span class="at">type =</span> <span class="st">"class"</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  real_arbol <span class="ot">&lt;-</span> <span class="fu">factor</span>(prueba<span class="sc">$</span>accidente_con_victimas, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Con víctimas"</span>, <span class="st">"Solo daños"</span>))</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  pred_arbol <span class="ot">&lt;-</span> <span class="fu">factor</span>(pred_arbol, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Con víctimas"</span>, <span class="st">"Solo daños"</span>))</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  matriz_confusion_arbol <span class="ot">&lt;-</span> <span class="fu">table</span>(<span class="at">Real =</span> real_arbol, <span class="at">Predicho =</span> pred_arbol)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  matriz_confusion_arbol</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>              Predicho
 Real           Con víctimas Solo daños
   Con víctimas         3965      16539
   Solo daños              0      96684</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"matriz_confusion_arbol"</span>)) {</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  VP <span class="ot">&lt;-</span> matriz_confusion_arbol[<span class="st">"Con víctimas"</span>, <span class="st">"Con víctimas"</span>]</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  FN <span class="ot">&lt;-</span> matriz_confusion_arbol[<span class="st">"Con víctimas"</span>, <span class="st">"Solo daños"</span>]</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  FP <span class="ot">&lt;-</span> matriz_confusion_arbol[<span class="st">"Solo daños"</span>, <span class="st">"Con víctimas"</span>]</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  VN <span class="ot">&lt;-</span> matriz_confusion_arbol[<span class="st">"Solo daños"</span>, <span class="st">"Solo daños"</span>]</span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="at">exactitud=</span>(VP<span class="sc">+</span>VN)<span class="sc">/</span>(VP<span class="sc">+</span>FN<span class="sc">+</span>FP<span class="sc">+</span>VN), <span class="at">sensibilidad=</span>VP<span class="sc">/</span>(VP<span class="sc">+</span>FN), <span class="at">especificidad=</span>VN<span class="sc">/</span>(VN<span class="sc">+</span>FP))</span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"matriz_confusion_arbol"</span>)) {</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  VP <span class="ot">&lt;-</span> matriz_confusion_arbol[<span class="st">"Con víctimas"</span>, <span class="st">"Con víctimas"</span>]</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  FN <span class="ot">&lt;-</span> matriz_confusion_arbol[<span class="st">"Con víctimas"</span>, <span class="st">"Solo daños"</span>]</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  FP <span class="ot">&lt;-</span> matriz_confusion_arbol[<span class="st">"Solo daños"</span>, <span class="st">"Con víctimas"</span>]</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  VN <span class="ot">&lt;-</span> matriz_confusion_arbol[<span class="st">"Solo daños"</span>, <span class="st">"Solo daños"</span>]</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="at">exactitud=</span>(VP<span class="sc">+</span>VN)<span class="sc">/</span>(VP<span class="sc">+</span>FN<span class="sc">+</span>FP<span class="sc">+</span>VN), <span class="at">sensibilidad=</span>VP<span class="sc">/</span>(VP<span class="sc">+</span>FN), <span class="at">especificidad=</span>VN<span class="sc">/</span>(VN<span class="sc">+</span>FP))</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  exactitud sensibilidad especificidad
 1 0.8588678    0.1933769             1</code></pre>
@@ -803,55 +857,216 @@ server &lt;- function(input, output, session) {
 
 shinyApp(ui, server)</code></pre>
 </section>
-<section id="materiales-complementarios-del-capítulo" class="level2" data-number="7.11">
-<h2 data-number="7.11" class="anchored" data-anchor-id="materiales-complementarios-del-capítulo"><span class="header-section-number">7.11</span> Materiales complementarios del capítulo</h2>
-<section id="video-del-capítulo" class="level3" data-number="7.11.1">
-<h3 data-number="7.11.1" class="anchored" data-anchor-id="video-del-capítulo"><span class="header-section-number">7.11.1</span> Video del capítulo</h3>
-<div class="video-responsive">
-<iframe src="https://www.youtube.com/embed/UperQjxBYEY" title="Capítulo 7. Árboles de decisión para clasificación" frameborder="0" allowfullscreen="">
-</iframe>
+<section id="caso-aplicado-b-árbol-de-decisión-con-covid-19" class="level2" data-number="7.11">
+<h2 data-number="7.11" class="anchored" data-anchor-id="caso-aplicado-b-árbol-de-decisión-con-covid-19"><span class="header-section-number">7.11</span> Caso aplicado B: árbol de decisión con COVID-19</h2>
+<p>Usamos la misma muestra común de hasta 12 000 registros de COVID-19 México 2022 y la misma semilla <code>2026</code>. El árbol permite observar reglas de decisión fáciles de interpretar.</p>
+<blockquote class="blockquote">
+<p><strong>Uso académico:</strong> las reglas encontradas describen el comportamiento de esta muestra y no deben interpretarse como reglas clínicas.</p>
+</blockquote>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>ruta_covid <span class="ot">&lt;-</span> <span class="st">"datos/covid19/procesados/covid19_mexico_2022_ml_preparado.csv.gz"</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">file.exists</span>(ruta_covid)) {</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  covid_arbol <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(ruta_covid, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(MURIO, EDAD, NEUMONIA, DIABETES, HIPERTENSION,</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>           OBESIDAD, RENAL_CRONICA, NUM_COMORBILIDADES) <span class="sc">|&gt;</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    tidyr<span class="sc">::</span><span class="fu">drop_na</span>()</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>  covid_arbol <span class="ot">&lt;-</span> covid_arbol <span class="sc">|&gt;</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sample_n</span>(<span class="fu">min</span>(<span class="dv">12000</span>, <span class="fu">nrow</span>(covid_arbol))) <span class="sc">|&gt;</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">MURIO =</span> <span class="fu">factor</span>(MURIO, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Defunción"</span>, <span class="st">"Sin defunción"</span>)))</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>  idx_covid <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">seq_len</span>(<span class="fu">nrow</span>(covid_arbol)), <span class="at">size =</span> <span class="fu">floor</span>(<span class="fl">0.80</span> <span class="sc">*</span> <span class="fu">nrow</span>(covid_arbol)))</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>  covid_train <span class="ot">&lt;-</span> covid_arbol[idx_covid, ]</span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>  covid_test <span class="ot">&lt;-</span> covid_arbol[<span class="sc">-</span>idx_covid, ]</span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"covid_train"</span>)) {</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  arbol_covid <span class="ot">&lt;-</span> <span class="fu">rpart</span>(</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    MURIO <span class="sc">~</span> EDAD <span class="sc">+</span> NEUMONIA <span class="sc">+</span> DIABETES <span class="sc">+</span> HIPERTENSION <span class="sc">+</span> OBESIDAD <span class="sc">+</span> RENAL_CRONICA <span class="sc">+</span> NUM_COMORBILIDADES,</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> covid_train,</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">"class"</span>,</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">control =</span> <span class="fu">rpart.control</span>(<span class="at">cp =</span> <span class="fl">0.002</span>, <span class="at">minsplit =</span> <span class="dv">80</span>, <span class="at">minbucket =</span> <span class="dv">30</span>, <span class="at">maxdepth =</span> <span class="dv">5</span>)</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">printcp</span>(arbol_covid)</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Classification tree:
+rpart(formula = MURIO ~ EDAD + NEUMONIA + DIABETES + HIPERTENSION + 
+    OBESIDAD + RENAL_CRONICA + NUM_COMORBILIDADES, data = covid_train, 
+    method = "class", control = rpart.control(cp = 0.002, minsplit = 80, 
+        minbucket = 30, maxdepth = 5))
+
+Variables actually used in tree construction:
+[1] EDAD               NEUMONIA           NUM_COMORBILIDADES RENAL_CRONICA     
+
+Root node error: 2843/9600 = 0.29615
+
+n= 9600 
+
+        CP nsplit rel error  xerror      xstd
+1 0.596553      0   1.00000 1.00000 0.0157345
+2 0.091804      1   0.40345 0.40345 0.0111783
+3 0.027788      2   0.31164 0.31129 0.0099699
+4 0.016532      3   0.28386 0.29195 0.0096856
+5 0.013014      4   0.26732 0.27401 0.0094106
+6 0.002000      5   0.25431 0.25923 0.0091751</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"arbol_covid"</span>)) {</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  imp_covid_arbol <span class="ot">&lt;-</span> arbol_covid<span class="sc">$</span>variable.importance</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(imp_covid_arbol)) {</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">data.frame</span>(<span class="at">variable =</span> <span class="fu">names</span>(imp_covid_arbol), <span class="at">importancia =</span> <span class="fu">as.numeric</span>(imp_covid_arbol)) <span class="sc">|&gt;</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">arrange</span>(<span class="fu">desc</span>(importancia))</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            variable importancia
+1           NEUMONIA 2004.899966
+2               EDAD  939.126105
+3      RENAL_CRONICA  137.905678
+4 NUM_COMORBILIDADES  121.535495
+5           DIABETES   15.133985
+6       HIPERTENSION   12.949699
+7           OBESIDAD    4.524594</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"arbol_covid"</span>)) {</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  pred_covid_arbol <span class="ot">&lt;-</span> <span class="fu">predict</span>(arbol_covid, covid_test, <span class="at">type =</span> <span class="st">"class"</span>)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  matriz_covid_arbol <span class="ot">&lt;-</span> <span class="fu">table</span>(</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Real =</span> <span class="fu">factor</span>(covid_test<span class="sc">$</span>MURIO, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Defunción"</span>, <span class="st">"Sin defunción"</span>)),</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Predicho =</span> <span class="fu">factor</span>(pred_covid_arbol, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Defunción"</span>, <span class="st">"Sin defunción"</span>))</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  matriz_covid_arbol</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>  VP <span class="ot">&lt;-</span> matriz_covid_arbol[<span class="dv">1</span>,<span class="dv">1</span>]; FN <span class="ot">&lt;-</span> matriz_covid_arbol[<span class="dv">1</span>,<span class="dv">2</span>]</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>  FP <span class="ot">&lt;-</span> matriz_covid_arbol[<span class="dv">2</span>,<span class="dv">1</span>]; VN <span class="ot">&lt;-</span> matriz_covid_arbol[<span class="dv">2</span>,<span class="dv">2</span>]</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(</span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">exactitud =</span> (VP <span class="sc">+</span> VN) <span class="sc">/</span> <span class="fu">sum</span>(matriz_covid_arbol),</span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">sensibilidad =</span> <span class="fu">ifelse</span>(VP <span class="sc">+</span> FN <span class="sc">==</span> <span class="dv">0</span>, <span class="cn">NA</span>, VP <span class="sc">/</span> (VP <span class="sc">+</span> FN)),</span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">especificidad =</span> <span class="fu">ifelse</span>(VN <span class="sc">+</span> FP <span class="sc">==</span> <span class="dv">0</span>, <span class="cn">NA</span>, VN <span class="sc">/</span> (VN <span class="sc">+</span> FP))</span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  exactitud sensibilidad especificidad
+1 0.9179167    0.8533145      0.945003</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Interpretación
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La principal ventaja del árbol es que transforma el modelo en una secuencia visible de decisiones. Su desventaja es que un solo árbol puede cambiar bastante ante pequeñas variaciones de la muestra; esto motiva Random Forest.</p>
+</div>
+</div>
+</section>
+<section id="materiales-complementarios-del-capítulo" class="level2" data-number="7.12">
+<h2 data-number="7.12" class="anchored" data-anchor-id="materiales-complementarios-del-capítulo"><span class="header-section-number">7.12</span> Materiales complementarios del capítulo</h2>
+<p>Estos recursos permiten repasar los conceptos principales del capítulo mediante distintos formatos. La presentación puede consultarse en PDF o modificarse en PowerPoint; la infografía ofrece una síntesis visual, el video explica los contenidos y el cuaderno Colab permite ejecutar los ejemplos de manera autónoma.</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
 <th>Recurso</th>
-<th>Descripción</th>
-<th>Abrir o descargar</th>
+<th>Utilidad</th>
+<th>Abrir o reproducir</th>
+<th>Descargar</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Presentación en PDF</td>
-<td>Síntesis del capítulo para lectura o exposición.</td>
-<td><a href="recursos/capitulo-07/capitulo-07-arboles-presentacion.pdf" target="_blank">Abrir PDF</a></td>
+<td>Video explicativo</td>
+<td>Explicación audiovisual de los contenidos del capítulo.</td>
+<td><a href="https://www.youtube.com/watch?v=UperQjxBYEY" target="_blank">Ver en YouTube</a></td>
+<td>—</td>
 </tr>
 <tr class="even">
-<td>Presentación editable</td>
-<td>Diapositivas en PowerPoint.</td>
-<td><a href="recursos/capitulo-07/capitulo-07-arboles-presentacion.pptx">Descargar PPTX</a></td>
+<td>Presentación en PDF</td>
+<td>Diapositivas para lectura, estudio o exposición.</td>
+<td><a href="recursos/capitulo-07/capitulo-07-arboles-presentacion.pdf" target="_blank">Ver PDF</a></td>
+<td><a href="recursos/capitulo-07/capitulo-07-arboles-presentacion.pdf" download="capitulo-07-arboles-presentacion.pdf">Descargar PDF</a></td>
 </tr>
 <tr class="odd">
+<td>Presentación editable</td>
+<td>Archivo PowerPoint para utilizarlo en clase o adaptarlo.</td>
+<td><a href="recursos/capitulo-07/capitulo-07-arboles-presentacion.pptx">Abrir PPTX</a></td>
+<td><a href="recursos/capitulo-07/capitulo-07-arboles-presentacion.pptx" download="capitulo-07-arboles-presentacion.pptx">Descargar PPTX</a></td>
+</tr>
+<tr class="even">
 <td>Infografía</td>
-<td>Resumen visual de árboles de decisión.</td>
-<td><a href="recursos/capitulo-07/capitulo-07-arboles-infografia.png" target="_blank">Abrir infografía</a></td>
+<td>Resumen visual de las ideas fundamentales.</td>
+<td><a href="recursos/capitulo-07/capitulo-07-arboles-infografia.png" target="_blank">Ver infografía</a></td>
+<td><a href="recursos/capitulo-07/capitulo-07-arboles-infografia.png" download="capitulo-07-arboles-infografia.png">Descargar PNG</a></td>
+</tr>
+<tr class="odd">
+<td>Cuaderno Google Colab</td>
+<td>Cuaderno autónomo para ejecutar los ejemplos del capítulo sin necesidad de ejecutar los capítulos anteriores.</td>
+<td><a href="https://colab.research.google.com/github/gilbertorodriguez59/libro-machine-learning-r/blob/main/colab/07-arboles-decision.ipynb" target="_blank">Abrir en Google Colab</a></td>
+<td>—</td>
 </tr>
 </tbody>
 </table>
+<section id="video-explicativo" class="level3" data-number="7.12.1">
+<h3 data-number="7.12.1" class="anchored" data-anchor-id="video-explicativo"><span class="header-section-number">7.12.1</span> Video explicativo</h3>
+<div class="video-responsive">
+<p><iframe src="https://www.youtube.com/embed/UperQjxBYEY" title="Capítulo 7. Árboles de decisión para clasificación" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen=""> </iframe></p>
+</div>
+</section>
+<section id="vista-previa-de-la-infografía" class="level3" data-number="7.12.2">
+<h3 data-number="7.12.2" class="anchored" data-anchor-id="vista-previa-de-la-infografía"><span class="header-section-number">7.12.2</span> Vista previa de la infografía</h3>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="recursos/capitulo-07/capitulo-07-arboles-infografia.png" class="img-fluid figure-img" style="width:85.0%" alt="Infografía sobre árboles de decisión"></p>
+<p><a href="recursos/capitulo-07/capitulo-07-arboles-infografia.png"><img src="recursos/capitulo-07/capitulo-07-arboles-infografia.png" class="img-fluid figure-img"></a></p>
 <figcaption>Infografía del capítulo 7</figcaption>
 </figure>
 </div>
-<p>Los materiales fueron creados con apoyo de NotebookLM de Google a partir del contenido del libro y revisados y adaptados por el autor.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Elaboración de los materiales">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Elaboración de los materiales
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Los materiales complementarios fueron elaborados con apoyo de <strong>NotebookLM de Google</strong>, a partir del contenido del capítulo, y posteriormente revisados y adaptados por el autor. El texto del libro y sus archivos fuente constituyen la referencia principal.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Curso completo en YouTube">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Curso completo en YouTube
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Este video forma parte de la lista oficial del curso <strong>Aprendizaje y Clasificación Automática con R</strong>.</p>
+<p><a href="https://www.youtube.com/playlist?list=PLDJYd2v7Kt-Q" target="_blank">Consultar todos los videos del curso</a></p>
+</div>
+</div>
 </section>
 </section>
-<section id="conclusión" class="level2" data-number="7.12">
-<h2 data-number="7.12" class="anchored" data-anchor-id="conclusión"><span class="header-section-number">7.12</span> Conclusión</h2>
+<section id="conclusión" class="level2" data-number="7.13">
+<h2 data-number="7.13" class="anchored" data-anchor-id="conclusión"><span class="header-section-number">7.13</span> Conclusión</h2>
 <p>Los árboles de decisión son modelos intuitivos, visuales e interpretables. Este capítulo prepara el camino para modelos basados en muchos árboles, como Random Forest.</p>
 </section>
-<section id="referencias-fundamentales-de-los-árboles-de-decisión" class="level2" data-number="7.13">
-<h2 data-number="7.13" class="anchored" data-anchor-id="referencias-fundamentales-de-los-árboles-de-decisión"><span class="header-section-number">7.13</span> Referencias fundamentales de los árboles de decisión</h2>
+<section id="referencias-fundamentales-de-los-árboles-de-decisión" class="level2" data-number="7.14">
+<h2 data-number="7.14" class="anchored" data-anchor-id="referencias-fundamentales-de-los-árboles-de-decisión"><span class="header-section-number">7.14</span> Referencias fundamentales de los árboles de decisión</h2>
 <p>La metodología CART fue desarrollada sistemáticamente por <span class="citation" data-cites="breiman1984classification">Breiman et&nbsp;al. (<a href="referencias.html#ref-breiman1984classification" role="doc-biblioref">1984</a>)</span>. El algoritmo ID3 y la inducción de árboles mediante ganancia de información fueron presentados por <span class="citation" data-cites="quinlan1986induction">Quinlan (<a href="referencias.html#ref-quinlan1986induction" role="doc-biblioref">1986</a>)</span>. Para una introducción contemporánea con ejemplos en R puede consultarse <span class="citation" data-cites="james2021islr">James et&nbsp;al. (<a href="referencias.html#ref-james2021islr" role="doc-biblioref">2021</a>)</span>.</p>
 
 
@@ -864,6 +1079,9 @@ James, Gareth, Daniela Witten, Trevor Hastie, y Robert Tibshirani. 2021. <em>An 
 </div>
 <div id="ref-quinlan1986induction" class="csl-entry" role="listitem">
 Quinlan, J. Ross. 1986. <span>«Induction of Decision Trees»</span>. <em>Machine Learning</em> 1: 81-106. <a href="https://doi.org/10.1007/BF00116251">https://doi.org/10.1007/BF00116251</a>.
+</div>
+<div id="ref-rodriguez2026fundamentos" class="csl-entry" role="listitem">
+Rodríguez Escobedo, Jesús Gilberto. 2026. <em>Fundamentos Matemáticos del Aprendizaje Automático: Teoría, demostraciones y formulación rigurosa de los métodos de regresión, clasificación y análisis de datos</em>. Primera edición digital. San Luis Potosí, México. <a href="https://gilbertorodriguez59.github.io/libro-machine-learning-teorico/">https://gilbertorodriguez59.github.io/libro-machine-learning-teorico/</a>.
 </div>
 </div>
 </section>

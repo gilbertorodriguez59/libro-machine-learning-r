@@ -1,5 +1,14 @@
 # Random Forest para clasificación
 
+
+::: {.callout-note title="Conexión con el volumen teórico"}
+
+La formulación matemática de **bootstrap, ensambles y Random Forest** se desarrolla con mayor profundidad
+en los capítulos 7 y 14 de *Fundamentos Matemáticos del Aprendizaje
+Automático* [@rodriguez2026fundamentos].
+
+:::
+
 ## Objetivos del capítulo
 
 Al finalizar este capítulo, el lector será capaz de explicar Random Forest, entrenar un modelo en R, interpretar importancia de variables y evaluar desempeño.
@@ -280,44 +289,140 @@ estabiliza la proporción acumulada de votos del bosque.
 
 :::
 
+## Caso aplicado B: Random Forest con COVID-19
+
+Ahora aplicamos un bosque aleatorio a la misma muestra COVID utilizada en k-NN y árboles. Esto permite comparar un árbol individual con un ensamble de muchos árboles.
+
+> **Uso académico:** las importancias y predicciones corresponden a una muestra educativa y no deben usarse para decisiones médicas.
+
+```{r covid-rf-preparar}
+ruta_covid <- "datos/covid19/procesados/covid19_mexico_2022_ml_preparado.csv.gz"
+
+if (file.exists(ruta_covid)) {
+  covid_rf <- read_csv(ruta_covid, show_col_types = FALSE) |>
+    select(MURIO, EDAD, NEUMONIA, DIABETES, HIPERTENSION,
+           OBESIDAD, RENAL_CRONICA, NUM_COMORBILIDADES) |>
+    tidyr::drop_na()
+
+  set.seed(2026)
+  covid_rf <- covid_rf |>
+    sample_n(min(12000, nrow(covid_rf))) |>
+    mutate(MURIO = factor(MURIO, levels = c(1, 0), labels = c("Defunción", "Sin defunción")))
+
+  set.seed(2026)
+  idx_covid <- sample(seq_len(nrow(covid_rf)), size = floor(0.80 * nrow(covid_rf)))
+  covid_train <- covid_rf[idx_covid, ]
+  covid_test <- covid_rf[-idx_covid, ]
+}
+```
+
+```{r covid-rf-modelo}
+if (exists("covid_train")) {
+  rf_covid <- ranger(
+    MURIO ~ EDAD + NEUMONIA + DIABETES + HIPERTENSION + OBESIDAD + RENAL_CRONICA + NUM_COMORBILIDADES,
+    data = covid_train,
+    num.trees = 300,
+    mtry = 3,
+    min.node.size = 20,
+    importance = "impurity",
+    probability = TRUE,
+    seed = 2026
+  )
+  rf_covid
+}
+```
+
+```{r covid-rf-importancia, fig.width=7, fig.height=4.5}
+if (exists("rf_covid")) {
+  imp_covid_rf <- data.frame(
+    variable = names(rf_covid$variable.importance),
+    importancia = as.numeric(rf_covid$variable.importance)
+  ) |>
+    arrange(desc(importancia))
+
+  imp_covid_rf
+
+  ggplot(imp_covid_rf, aes(x = reorder(variable, importancia), y = importancia)) +
+    geom_col(fill = col_azul, width = 0.75) +
+    coord_flip() +
+    labs(title = "Importancia de variables: Random Forest COVID-19", x = "Variable", y = "Importancia") +
+    tema_libro()
+}
+```
+
+```{r covid-rf-metricas}
+if (exists("rf_covid")) {
+  pred_prob_covid_rf <- predict(rf_covid, data = covid_test)$predictions
+  pred_clase_covid_rf <- colnames(pred_prob_covid_rf)[max.col(pred_prob_covid_rf, ties.method = "first")]
+
+  matriz_covid_rf <- table(
+    Real = factor(covid_test$MURIO, levels = c("Defunción", "Sin defunción")),
+    Predicho = factor(pred_clase_covid_rf, levels = c("Defunción", "Sin defunción"))
+  )
+  matriz_covid_rf
+
+  VP <- matriz_covid_rf[1,1]; FN <- matriz_covid_rf[1,2]
+  FP <- matriz_covid_rf[2,1]; VN <- matriz_covid_rf[2,2]
+
+  data.frame(
+    exactitud = (VP + VN) / sum(matriz_covid_rf),
+    sensibilidad = ifelse(VP + FN == 0, NA, VP / (VP + FN)),
+    especificidad = ifelse(VN + FP == 0, NA, VN / (VN + FP))
+  )
+}
+```
+
+::: {.callout-tip}
+## Interpretación
+Random Forest suele ser más estable que un árbol individual porque combina muchas decisiones parcialmente distintas. La comparación de métricas con el árbol del capítulo anterior permite observar esa ganancia de estabilidad.
+:::
+
 ## Materiales complementarios del capítulo
 
+Estos recursos permiten repasar los conceptos principales del capítulo mediante distintos formatos. La presentación puede consultarse en PDF o modificarse en PowerPoint; la infografía ofrece una síntesis visual, el video explica los contenidos y el cuaderno Colab permite ejecutar los ejemplos de manera autónoma.
+
+| Recurso | Utilidad | Abrir o reproducir | Descargar |
+|---|---|---|---|
+| Video explicativo | Explicación audiovisual de los contenidos del capítulo. | [Ver en YouTube](https://www.youtube.com/watch?v=KELSgYttifs){target="_blank"} | — |
+| Presentación en PDF | Diapositivas para lectura, estudio o exposición. | [Ver PDF](recursos/capitulo-08/capitulo-08-random-forest-presentacion.pdf){target="_blank"} | [Descargar PDF](recursos/capitulo-08/capitulo-08-random-forest-presentacion.pdf){download="capitulo-08-random-forest-presentacion.pdf"} |
+| Presentación editable | Archivo PowerPoint para utilizarlo en clase o adaptarlo. | [Abrir PPTX](recursos/capitulo-08/capitulo-08-random-forest-presentacion.pptx) | [Descargar PPTX](recursos/capitulo-08/capitulo-08-random-forest-presentacion.pptx){download="capitulo-08-random-forest-presentacion.pptx"} |
+| Infografía | Resumen visual de las ideas fundamentales. | [Ver infografía](recursos/capitulo-08/capitulo-08-random-forest-infografia.png){target="_blank"} | [Descargar PNG](recursos/capitulo-08/capitulo-08-random-forest-infografia.png){download="capitulo-08-random-forest-infografia.png"} |
+| Cuaderno Google Colab | Cuaderno autónomo para ejecutar los ejemplos del capítulo sin necesidad de ejecutar los capítulos anteriores. | [Abrir en Google Colab](https://colab.research.google.com/github/gilbertorodriguez59/libro-machine-learning-r/blob/main/colab/08-random-forest.ipynb){target="_blank"} | — |
+
 ::: {.content-visible when-format="html"}
+### Video explicativo
 
-### Video del capítulo
+<div class="video-responsive">
+  <iframe
+    src="https://www.youtube.com/embed/KELSgYttifs"
+    title="Capítulo 8. Random Forest"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen>
+  </iframe>
+</div>
 
-<iframe width="100%" height="420"
-src="https://www.youtube.com/embed/KELSgYttifs"
-title="Capítulo 8. Random Forest para clasificación"
-frameborder="0"
-allowfullscreen></iframe>
+### Vista previa de la infografía
 
+[![Infografía del capítulo 8](recursos/capitulo-08/capitulo-08-random-forest-infografia.png)](recursos/capitulo-08/capitulo-08-random-forest-infografia.png)
 :::
 
 ::: {.content-visible when-format="pdf"}
+**Video del capítulo:** <https://www.youtube.com/watch?v=KELSgYttifs>
 
-### Video del capítulo
-
-Disponible en YouTube:
-
-<https://youtu.be/KELSgYttifs>
-
+La presentación PDF, el archivo editable, la infografía y el cuaderno Colab pueden consultarse desde la versión web del libro.
 :::
 
-| Recurso | Descripción | Abrir o descargar |
-|---|---|---|
-| Presentación en PDF | Síntesis del capítulo para lectura o exposición. | [Abrir PDF](recursos/capitulo-08/capitulo-08-random-forest-presentacion.pdf){target="_blank"} |
-| Presentación editable | Diapositivas en PowerPoint. | [Descargar PPTX](recursos/capitulo-08/capitulo-08-random-forest-presentacion.pptx) |
-| Infografía | Resumen visual del capítulo. | [Abrir infografía](recursos/capitulo-08/capitulo-08-random-forest-infografia.png){target="_blank"} |
-
-::: {.content-visible when-format="html"}
-
-![Infografía del capítulo 8](recursos/capitulo-08/capitulo-08-random-forest-infografia.png){fig-alt="Capítulo 8. Random Forest para clasificación" width="85%"}
-
+::: {.callout-note title="Elaboración de los materiales"}
+Los materiales complementarios fueron elaborados con apoyo de **NotebookLM de Google**, a partir del contenido del capítulo, y posteriormente revisados y adaptados por el autor. El texto del libro y sus archivos fuente constituyen la referencia principal.
 :::
 
-Los materiales fueron creados con apoyo de NotebookLM de Google a partir del
-contenido del libro y revisados y adaptados por el autor.
+::: {.callout-tip title="Curso completo en YouTube"}
+Este video forma parte de la lista oficial del curso **Aprendizaje y Clasificación Automática con R**.
+
+[Consultar todos los videos del curso](https://www.youtube.com/playlist?list=PLDJYd2v7Kt-Q){target="_blank"}
+:::
 
 ## Conclusión
 

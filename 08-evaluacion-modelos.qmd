@@ -1,5 +1,14 @@
 # Evaluación, validación y comparación de modelos
 
+
+::: {.callout-note title="Conexión con el volumen teórico"}
+
+La formulación matemática de **matrices de confusión, métricas, validación y selección de modelos** se desarrolla con mayor profundidad
+en los capítulos 6 y 7 de *Fundamentos Matemáticos del Aprendizaje
+Automático* [@rodriguez2026fundamentos].
+
+:::
+
 ## Objetivos del capítulo
 
 Al finalizar este capítulo, el lector será capaz de:
@@ -481,8 +490,10 @@ resumen_cv <- resultados_cv |>
   summarise(
     across(
       where(is.numeric) & !matches("pliegue"),
-      list(media = mean, desviacion = sd),
-      na.rm = TRUE
+      list(
+        media = ~ mean(.x, na.rm = TRUE),
+        desviacion = ~ sd(.x, na.rm = TRUE)
+      )
     )
   )
 
@@ -659,39 +670,553 @@ exactitud, sensibilidad, especificidad, precisión y F1.
 
 ## Materiales complementarios del capítulo
 
+Estos recursos permiten repasar los conceptos principales del capítulo mediante distintos formatos. La presentación puede consultarse en PDF o modificarse en PowerPoint; la infografía ofrece una síntesis visual, el video explica los contenidos y el cuaderno Colab permite ejecutar los ejemplos de manera autónoma.
+
+| Recurso | Utilidad | Abrir o reproducir | Descargar |
+|---|---|---|---|
+| Video explicativo | Explicación audiovisual de los contenidos del capítulo. | [Ver en YouTube](https://www.youtube.com/watch?v=ShiKrfhIfpY){target="_blank"} | — |
+| Presentación en PDF | Diapositivas para lectura, estudio o exposición. | [Ver PDF](recursos/capitulo-09/capitulo-09-evaluacion-modelos-presentacion.pdf){target="_blank"} | [Descargar PDF](recursos/capitulo-09/capitulo-09-evaluacion-modelos-presentacion.pdf){download="capitulo-09-evaluacion-modelos-presentacion.pdf"} |
+| Presentación editable | Archivo PowerPoint para utilizarlo en clase o adaptarlo. | [Abrir PPTX](recursos/capitulo-09/capitulo-09-evaluacion-modelos-presentacion.pptx) | [Descargar PPTX](recursos/capitulo-09/capitulo-09-evaluacion-modelos-presentacion.pptx){download="capitulo-09-evaluacion-modelos-presentacion.pptx"} |
+| Infografía | Resumen visual de las ideas fundamentales. | [Ver infografía](recursos/capitulo-09/capitulo-09-evaluacion-modelos-infografia.png){target="_blank"} | [Descargar PNG](recursos/capitulo-09/capitulo-09-evaluacion-modelos-infografia.png){download="capitulo-09-evaluacion-modelos-infografia.png"} |
+| Cuaderno Google Colab | Cuaderno autónomo para ejecutar los ejemplos del capítulo sin necesidad de ejecutar los capítulos anteriores. | [Abrir en Google Colab](https://colab.research.google.com/github/gilbertorodriguez59/libro-machine-learning-r/blob/main/colab/09-evaluacion-modelos.ipynb){target="_blank"} | — |
+
 ::: {.content-visible when-format="html"}
+### Video explicativo
 
-### Video del capítulo
+<div class="video-responsive">
+  <iframe
+    src="https://www.youtube.com/embed/ShiKrfhIfpY"
+    title="Capítulo 9. Evaluación y comparación de modelos"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen>
+  </iframe>
+</div>
 
-<iframe width="100%" height="420"
-src="https://www.youtube.com/embed/ShiKrfhIfpY"
-title="Capítulo 9. Evaluación, validación y comparación de modelos"
-frameborder="0"
-allowfullscreen></iframe>
+### Vista previa de la infografía
 
+[![Infografía del capítulo 9](recursos/capitulo-09/capitulo-09-evaluacion-modelos-infografia.png)](recursos/capitulo-09/capitulo-09-evaluacion-modelos-infografia.png)
 :::
 
 ::: {.content-visible when-format="pdf"}
+**Video del capítulo:** <https://www.youtube.com/watch?v=ShiKrfhIfpY>
 
-### Video del capítulo
+La presentación PDF, el archivo editable, la infografía y el cuaderno Colab pueden consultarse desde la versión web del libro.
+:::
 
-Disponible en YouTube:
+::: {.callout-note title="Elaboración de los materiales"}
+Los materiales complementarios fueron elaborados con apoyo de **NotebookLM de Google**, a partir del contenido del capítulo, y posteriormente revisados y adaptados por el autor. El texto del libro y sus archivos fuente constituyen la referencia principal.
+:::
 
-<https://youtu.be/ShiKrfhIfpY>
+::: {.callout-tip title="Curso completo en YouTube"}
+Este video forma parte de la lista oficial del curso **Aprendizaje y Clasificación Automática con R**.
+
+[Consultar todos los videos del curso](https://www.youtube.com/playlist?list=PLDJYd2v7Kt-Q){target="_blank"}
+:::
+
+## Caso aplicado B: evaluación del modelo COVID-19
+
+La evaluación debe realizarse con observaciones que no participaron en el
+ajuste del modelo.
+
+```{r}
+#| label: covid-evaluacion
+#| message: false
+#| warning: false
+
+library(readr)
+library(dplyr)
+library(tidyr)
+
+covid <- read_csv(
+  "datos/covid19/procesados/covid19_mexico_2022_ml_preparado.csv.gz",
+  show_col_types = FALSE
+)
+
+covid_modelo <- covid |>
+  select(
+    MURIO,
+    EDAD,
+    NEUMONIA,
+    DIABETES,
+    HIPERTENSION,
+    OBESIDAD,
+    RENAL_CRONICA
+  ) |>
+  drop_na()
+
+set.seed(2026)
+
+indice_entrenamiento <- sample(
+  seq_len(nrow(covid_modelo)),
+  size = floor(0.80 * nrow(covid_modelo))
+)
+
+covid_train <- covid_modelo[indice_entrenamiento, ]
+covid_test <- covid_modelo[-indice_entrenamiento, ]
+
+modelo_covid <- glm(
+  MURIO ~ EDAD + NEUMONIA + DIABETES +
+    HIPERTENSION + OBESIDAD + RENAL_CRONICA,
+  data = covid_train,
+  family = binomial()
+)
+
+covid_test$probabilidad <- predict(
+  modelo_covid,
+  newdata = covid_test,
+  type = "response"
+)
+
+umbral <- 0.50
+
+covid_test$prediccion <- ifelse(
+  covid_test$probabilidad >= umbral,
+  1,
+  0
+)
+
+VP <- sum(
+  covid_test$prediccion == 1 &
+    covid_test$MURIO == 1
+)
+
+VN <- sum(
+  covid_test$prediccion == 0 &
+    covid_test$MURIO == 0
+)
+
+FP <- sum(
+  covid_test$prediccion == 1 &
+    covid_test$MURIO == 0
+)
+
+FN <- sum(
+  covid_test$prediccion == 0 &
+    covid_test$MURIO == 1
+)
+
+matriz_covid <- matrix(
+  c(VN, FP, FN, VP),
+  nrow = 2,
+  byrow = TRUE,
+  dimnames = list(
+    Real = c("Clase 0", "Clase 1"),
+    Predicha = c("Clase 0", "Clase 1")
+  )
+)
+
+matriz_covid
+```
+
+### Métricas
+
+```{r}
+#| label: covid-evaluacion-metricas
+
+exactitud <- (VP + VN) / (VP + VN + FP + FN)
+sensibilidad <- VP / (VP + FN)
+especificidad <- VN / (VN + FP)
+precision <- VP / (VP + FP)
+f1 <- 2 * precision * sensibilidad /
+  (precision + sensibilidad)
+balanced_accuracy <- (
+  sensibilidad + especificidad
+) / 2
+
+data.frame(
+  exactitud,
+  sensibilidad,
+  especificidad,
+  precision,
+  f1,
+  balanced_accuracy
+)
+```
+
+### Comparación de umbrales
+
+```{r}
+#| label: covid-evaluacion-umbrales
+#| message: false
+#| warning: false
+
+evaluar_umbral <- function(umbral) {
+  pred <- ifelse(
+    covid_test$probabilidad >= umbral,
+    1,
+    0
+  )
+
+  vp <- sum(pred == 1 & covid_test$MURIO == 1)
+  vn <- sum(pred == 0 & covid_test$MURIO == 0)
+  fp <- sum(pred == 1 & covid_test$MURIO == 0)
+  fn <- sum(pred == 0 & covid_test$MURIO == 1)
+
+  data.frame(
+    umbral = umbral,
+    sensibilidad = vp / (vp + fn),
+    especificidad = vn / (vn + fp),
+    precision = vp / (vp + fp)
+  )
+}
+
+resultados_umbrales <- do.call(
+  rbind,
+  lapply(
+    seq(0.10, 0.90, by = 0.05),
+    evaluar_umbral
+  )
+)
+
+resultados_umbrales
+```
+
+::: {.callout-tip}
+
+En un problema de detección de riesgo, disminuir el umbral suele aumentar la
+sensibilidad, pero también puede generar más falsos positivos. El umbral no es
+una constante universal: depende del objetivo y del costo de cada error.
 
 :::
 
-| Recurso | Descripción | Abrir o descargar |
-|---|---|---|
-| Presentación en PDF | Síntesis del capítulo para lectura o exposición. | [Abrir PDF](recursos/capitulo-09/capitulo-09-evaluacion-modelos-presentacion.pdf){target="_blank"} |
-| Presentación editable | Diapositivas en PowerPoint. | [Descargar PPTX](recursos/capitulo-09/capitulo-09-evaluacion-modelos-presentacion.pptx) |
-| Infografía | Resumen visual del capítulo. | [Abrir infografía](recursos/capitulo-09/capitulo-09-evaluacion-modelos-infografia.png){target="_blank"} |
+## Comparación integrada de modelos con COVID-19
 
-::: {.content-visible when-format="html"}
+Los capítulos anteriores aplicaron distintos algoritmos a COVID-19. Para compararlos de manera más coherente construiremos ahora un **benchmark didáctico común**: todos los modelos usarán las mismas variables, la misma muestra, la misma partición de entrenamiento/prueba y las mismas métricas.
 
-![Infografía del capítulo 9](recursos/capitulo-09/capitulo-09-evaluacion-modelos-infografia.png){fig-alt="Capítulo 9. Evaluación, validación y comparación de modelos" width="85%"}
+> **Uso académico:** esta comparación sirve para estudiar diferencias entre algoritmos. No es una evaluación clínica ni debe utilizarse para pronóstico individual.
 
+### Una muestra balanceada para comparar algoritmos
+
+La variable `MURIO` está muy desbalanceada en la base original. Si evaluáramos únicamente exactitud sobre una muestra aleatoria, un modelo podría obtener un valor alto simplemente prediciendo casi siempre la clase mayoritaria.
+
+Para este ejercicio tomamos, de forma reproducible, hasta 2 500 observaciones de cada clase. Esto produce un banco de pruebas balanceado. **Las métricas obtenidas describen este benchmark educativo y no la prevalencia de defunción en la población.**
+
+```{r covid-comparacion-preparar}
+ruta_covid <- "datos/covid19/procesados/covid19_mexico_2022_ml_preparado.csv.gz"
+
+if (file.exists(ruta_covid)) {
+  covid_comp_base <- readr::read_csv(ruta_covid, show_col_types = FALSE) |>
+    dplyr::select(
+      MURIO, EDAD, NEUMONIA, DIABETES, HIPERTENSION,
+      OBESIDAD, RENAL_CRONICA, NUM_COMORBILIDADES
+    ) |>
+    tidyr::drop_na() |>
+    dplyr::mutate(
+      MURIO = factor(
+        MURIO,
+        levels = c(0, 1),
+        labels = c("Sin defunción", "Defunción")
+      )
+    )
+
+  set.seed(2026)
+  n_por_clase <- min(
+    2500,
+    min(table(covid_comp_base$MURIO))
+  )
+
+  covid_comp <- covid_comp_base |>
+    dplyr::group_by(MURIO) |>
+    dplyr::slice_sample(n = n_por_clase) |>
+    dplyr::ungroup()
+
+  set.seed(2026)
+  idx_train <- unlist(lapply(
+    split(seq_len(nrow(covid_comp)), covid_comp$MURIO),
+    function(i) sample(i, floor(0.80 * length(i)))
+  ))
+
+  train_comp <- covid_comp[idx_train, ]
+  test_comp <- covid_comp[-idx_train, ]
+
+  prop.table(table(train_comp$MURIO))
+  prop.table(table(test_comp$MURIO))
+}
+```
+
+### Función común de métricas
+
+```{r covid-comparacion-funcion-metricas}
+metricas_covid_comunes <- function(real, predicho) {
+  niveles <- c("Sin defunción", "Defunción")
+  real <- factor(real, levels = niveles)
+  predicho <- factor(predicho, levels = niveles)
+  m <- table(Real = real, Predicho = predicho)
+
+  VP <- m["Defunción", "Defunción"]
+  FN <- m["Defunción", "Sin defunción"]
+  FP <- m["Sin defunción", "Defunción"]
+  VN <- m["Sin defunción", "Sin defunción"]
+
+  div <- function(a, b) {
+    if (is.na(b) || b == 0) return(NA_real_)
+    as.numeric(a / b)
+  }
+
+  exactitud <- div(VP + VN, sum(m))
+  sensibilidad <- div(VP, VP + FN)
+  especificidad <- div(VN, VN + FP)
+  precision <- div(VP, VP + FP)
+  f1 <- if (is.na(precision) || is.na(sensibilidad) ||
+            precision + sensibilidad == 0) {
+    NA_real_
+  } else {
+    2 * precision * sensibilidad / (precision + sensibilidad)
+  }
+
+  data.frame(
+    exactitud = exactitud,
+    sensibilidad = sensibilidad,
+    especificidad = especificidad,
+    precision = precision,
+    f1 = f1
+  )
+}
+```
+
+### 1. Regresión logística
+
+```{r covid-comparacion-logistica}
+if (exists("train_comp")) {
+  modelo_log_comp <- glm(
+    MURIO ~ EDAD + NEUMONIA + DIABETES + HIPERTENSION +
+      OBESIDAD + RENAL_CRONICA + NUM_COMORBILIDADES,
+    data = train_comp,
+    family = binomial
+  )
+
+  prob_log_comp <- predict(modelo_log_comp, test_comp, type = "response")
+  pred_log_comp <- factor(
+    ifelse(prob_log_comp >= 0.50, "Defunción", "Sin defunción"),
+    levels = levels(train_comp$MURIO)
+  )
+}
+```
+
+### 2. k-NN
+
+```{r covid-comparacion-knn}
+if (exists("train_comp")) {
+  vars_comp <- c(
+    "EDAD", "NEUMONIA", "DIABETES", "HIPERTENSION",
+    "OBESIDAD", "RENAL_CRONICA", "NUM_COMORBILIDADES"
+  )
+
+  X_train <- as.matrix(train_comp[vars_comp])
+  X_test <- as.matrix(test_comp[vars_comp])
+
+  medias <- apply(X_train, 2, mean)
+  desv <- apply(X_train, 2, sd)
+  desv[desv == 0] <- 1
+
+  X_train_z <- scale(X_train, center = medias, scale = desv)
+  X_test_z <- scale(X_test, center = medias, scale = desv)
+
+  pred_knn_comp <- class::knn(
+    train = X_train_z,
+    test = X_test_z,
+    cl = train_comp$MURIO,
+    k = 11
+  )
+}
+```
+
+### 3. Árbol de decisión
+
+```{r covid-comparacion-arbol}
+if (exists("train_comp")) {
+  modelo_arbol_comp <- rpart::rpart(
+    MURIO ~ EDAD + NEUMONIA + DIABETES + HIPERTENSION +
+      OBESIDAD + RENAL_CRONICA + NUM_COMORBILIDADES,
+    data = train_comp,
+    method = "class",
+    control = rpart::rpart.control(
+      cp = 0.002,
+      minsplit = 60,
+      minbucket = 20,
+      maxdepth = 5
+    )
+  )
+
+  pred_arbol_comp <- predict(
+    modelo_arbol_comp,
+    test_comp,
+    type = "class"
+  )
+}
+```
+
+### 4. Random Forest
+
+```{r covid-comparacion-rf}
+if (exists("train_comp")) {
+  set.seed(2026)
+  modelo_rf_comp <- ranger::ranger(
+    MURIO ~ EDAD + NEUMONIA + DIABETES + HIPERTENSION +
+      OBESIDAD + RENAL_CRONICA + NUM_COMORBILIDADES,
+    data = train_comp,
+    num.trees = 300,
+    mtry = 3,
+    min.node.size = 20,
+    classification = TRUE,
+    probability = FALSE,
+    seed = 2026
+  )
+
+  pred_rf_comp <- predict(modelo_rf_comp, test_comp)$predictions
+}
+```
+
+### 5. SVM radial
+
+```{r covid-comparacion-svm}
+if (exists("train_comp")) {
+  set.seed(2026)
+  modelo_svm_comp <- e1071::svm(
+    MURIO ~ EDAD + NEUMONIA + DIABETES + HIPERTENSION +
+      OBESIDAD + RENAL_CRONICA + NUM_COMORBILIDADES,
+    data = train_comp,
+    kernel = "radial",
+    cost = 1,
+    gamma = 1 / 7,
+    scale = TRUE
+  )
+
+  pred_svm_comp <- predict(modelo_svm_comp, test_comp)
+}
+```
+
+### 6. Naive Bayes
+
+```{r covid-comparacion-nb}
+if (exists("train_comp")) {
+  train_nb_comp <- train_comp |>
+    dplyr::mutate(
+      NEUMONIA = factor(NEUMONIA),
+      DIABETES = factor(DIABETES),
+      HIPERTENSION = factor(HIPERTENSION),
+      OBESIDAD = factor(OBESIDAD),
+      RENAL_CRONICA = factor(RENAL_CRONICA)
+    )
+
+  test_nb_comp <- test_comp |>
+    dplyr::mutate(
+      NEUMONIA = factor(NEUMONIA, levels = levels(train_nb_comp$NEUMONIA)),
+      DIABETES = factor(DIABETES, levels = levels(train_nb_comp$DIABETES)),
+      HIPERTENSION = factor(HIPERTENSION, levels = levels(train_nb_comp$HIPERTENSION)),
+      OBESIDAD = factor(OBESIDAD, levels = levels(train_nb_comp$OBESIDAD)),
+      RENAL_CRONICA = factor(RENAL_CRONICA, levels = levels(train_nb_comp$RENAL_CRONICA))
+    )
+
+  modelo_nb_comp <- e1071::naiveBayes(
+    MURIO ~ EDAD + NEUMONIA + DIABETES + HIPERTENSION +
+      OBESIDAD + RENAL_CRONICA + NUM_COMORBILIDADES,
+    data = train_nb_comp,
+    laplace = 1
+  )
+
+  pred_nb_comp <- predict(modelo_nb_comp, test_nb_comp, type = "class")
+}
+```
+
+### 7. Red neuronal
+
+```{r covid-comparacion-nn}
+if (exists("train_comp")) {
+  train_nn_comp <- as.data.frame(X_train_z)
+  test_nn_comp <- as.data.frame(X_test_z)
+  train_nn_comp$MURIO_NUM <- ifelse(train_comp$MURIO == "Defunción", 1, 0)
+
+  set.seed(2026)
+  modelo_nn_comp <- neuralnet::neuralnet(
+    MURIO_NUM ~ EDAD + NEUMONIA + DIABETES + HIPERTENSION +
+      OBESIDAD + RENAL_CRONICA + NUM_COMORBILIDADES,
+    data = train_nn_comp,
+    hidden = 5,
+    linear.output = FALSE,
+    lifesign = "none",
+    stepmax = 1e6
+  )
+
+  prob_nn_comp <- as.numeric(
+    neuralnet::compute(
+      modelo_nn_comp,
+      test_nn_comp[vars_comp]
+    )$net.result[, 1]
+  )
+
+  pred_nn_comp <- factor(
+    ifelse(prob_nn_comp >= 0.50, "Defunción", "Sin defunción"),
+    levels = levels(train_comp$MURIO)
+  )
+}
+```
+
+### Tabla comparativa final
+
+```{r covid-comparacion-tabla}
+if (exists("pred_nn_comp")) {
+  comparacion_covid_modelos <- dplyr::bind_rows(
+    cbind(modelo = "Regresión logística", metricas_covid_comunes(test_comp$MURIO, pred_log_comp)),
+    cbind(modelo = "k-NN (k=11)", metricas_covid_comunes(test_comp$MURIO, pred_knn_comp)),
+    cbind(modelo = "Árbol de decisión", metricas_covid_comunes(test_comp$MURIO, pred_arbol_comp)),
+    cbind(modelo = "Random Forest", metricas_covid_comunes(test_comp$MURIO, pred_rf_comp)),
+    cbind(modelo = "SVM radial", metricas_covid_comunes(test_comp$MURIO, pred_svm_comp)),
+    cbind(modelo = "Naive Bayes", metricas_covid_comunes(test_comp$MURIO, pred_nb_comp)),
+    cbind(modelo = "Red neuronal", metricas_covid_comunes(test_comp$MURIO, pred_nn_comp))
+  )
+
+  comparacion_covid_modelos |>
+    dplyr::mutate(
+      dplyr::across(
+        c(exactitud, sensibilidad, especificidad, precision, f1),
+        ~ round(.x, 3)
+      )
+    )
+}
+```
+
+```{r covid-comparacion-grafica, fig.width=8, fig.height=5}
+if (exists("comparacion_covid_modelos")) {
+  comp_larga <- comparacion_covid_modelos |>
+    tidyr::pivot_longer(
+      cols = c(exactitud, sensibilidad, especificidad, precision, f1),
+      names_to = "metrica",
+      values_to = "valor"
+    )
+
+  ggplot2::ggplot(
+    comp_larga,
+    ggplot2::aes(x = modelo, y = valor, fill = metrica)
+  ) +
+    ggplot2::geom_col(position = "dodge") +
+    ggplot2::coord_flip() +
+    ggplot2::scale_y_continuous(limits = c(0, 1)) +
+    ggplot2::labs(
+      title = "Comparación común de modelos con COVID-19",
+      subtitle = "Misma muestra balanceada, mismas variables y misma partición 80/20",
+      x = NULL,
+      y = "Valor de la métrica",
+      fill = "Métrica"
+    ) +
+    tema_libro()
+}
+```
+
+::: {.callout-important title="No existe un ganador universal"}
+El modelo con mayor exactitud no necesariamente es el mejor para todos los objetivos. La sensibilidad prioriza detectar defunciones; la especificidad prioriza reconocer correctamente los casos sin defunción; precisión y F1 ofrecen otras perspectivas. Además, aquí se usaron hiperparámetros didácticos fijos, no una búsqueda exhaustiva de optimización.
 :::
 
-Los materiales fueron creados con apoyo de NotebookLM de Google a partir del
-contenido del libro y revisados y adaptados por el autor.
+### Lectura recomendada de la tabla
+
+Al comparar los modelos conviene preguntar:
+
+1. ¿Cuál ofrece el mejor equilibrio entre sensibilidad y especificidad?
+2. ¿Algún modelo gana en exactitud pero pierde mucha sensibilidad?
+3. ¿La mayor complejidad de Random Forest, SVM o la red neuronal produce una mejora suficiente frente a la regresión logística?
+4. ¿Un modelo sencillo sería preferible si ofrece resultados parecidos y mayor interpretabilidad?
+5. ¿Cambiaría la conclusión si la muestra conservara la fuerte desproporción original entre clases?
+
+Esta comparación cierra la ruta supervisada del caso COVID-19 y conecta los capítulos de algoritmos con una evaluación común y reproducible.

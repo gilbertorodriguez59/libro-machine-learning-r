@@ -2,7 +2,7 @@
 title Instalar capítulo 12 corregido
 cd /d "%~dp0"
 
-set "DEST=C:\libro-machine-learning-r-estable"
+set "DEST=C:\libro-machine-learning-r-dev"
 set "SRC=%~dp011-redes-neuronales-corregido.qmd"
 
 if not exist "%SRC%" (

@@ -1,6 +1,6 @@
 @echo off
 title Publicar libro interactivo v0.13.1
-cd /d "C:\libro-machine-learning-r-estable"
+cd /d "C:\libro-machine-learning-r-dev"
 
 echo.
 echo PUBLICACION COMPLETA DEL LIBRO

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,10 +12,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -95,10 +98,10 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-12eeb4b20e9f5a2b0bfc604bfaf942bb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-40766f26011dd0955435ccc10f1198e2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <meta name="shinylive:serviceworker_dir" content=".">
 <script src="site_libs/quarto-contrib/shinylive-0.10.12/shinylive/load-shinylive-sw.js" type="module"></script>
 <script src="site_libs/quarto-contrib/shinylive-0.10.12/shinylive/run-python-blocks.js" type="module"></script>
@@ -161,7 +164,7 @@ div.csl-indent {
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Aprendizaje y Clasificación Automática con R</a> 
         <div class="sidebar-tools-main">
-    <a href="./Aprendizaje-y-Clasificación-Automática-con-R.pdf" title="Descargar PDF" class="quarto-navigation-tool px-1" aria-label="Descargar PDF"><i class="bi bi-file-pdf"></i></a>
+    <a href="./Aprendizaje-y-Clasificacion-Automatica-con-R.pdf" title="Descargar PDF" class="quarto-navigation-tool px-1" aria-label="Descargar PDF"><i class="bi bi-file-pdf"></i></a>
 </div>
     </div>
       </div>
@@ -180,14 +183,38 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./00-licencia-y-citacion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Licencia, autoría y forma de citar</span></a>
+  <a href="./00-bienvenida.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bienvenida</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00-creditos-editoriales.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Créditos editoriales</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00-licencia-y-uso-academico.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Licencia y uso académico</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00-prefacio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prefacio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00-agradecimientos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Agradecimientos</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./00-cuaderno-google-colab.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Cuaderno completo para Google Colab</span></a>
+ <span class="menu-text">Google Colab: cuaderno completo y cuadernos por capítulo</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -279,8 +306,32 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./glosario.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Glosario</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./referencias.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Referencias</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./indice-figuras.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Índice de figuras</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./indice-tematico.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Índice temático</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./acerca-del-autor.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Acerca del autor</span></a>
   </div>
 </li>
       </ul>
@@ -316,6 +367,13 @@ div.csl-indent {
   <li><a href="#vista-previa-de-la-infografía" id="toc-vista-previa-de-la-infografía" class="nav-link" data-scroll-target="#vista-previa-de-la-infografía"><span class="header-section-number">2.16.2</span> Vista previa de la infografía</a></li>
   </ul></li>
   <li><a href="#laboratorio-interactivo-preparar-datos" id="toc-laboratorio-interactivo-preparar-datos" class="nav-link" data-scroll-target="#laboratorio-interactivo-preparar-datos"><span class="header-section-number">2.17</span> Laboratorio interactivo: preparar datos</a></li>
+  <li><a href="#caso-aplicado-b-preparación-de-datos-covid-19" id="toc-caso-aplicado-b-preparación-de-datos-covid-19" class="nav-link" data-scroll-target="#caso-aplicado-b-preparación-de-datos-covid-19"><span class="header-section-number">2.18</span> Caso aplicado B: preparación de datos COVID-19</a>
+  <ul class="collapse">
+  <li><a href="#lectura-de-la-base" id="toc-lectura-de-la-base" class="nav-link" data-scroll-target="#lectura-de-la-base"><span class="header-section-number">2.18.1</span> Lectura de la base</a></li>
+  <li><a href="#variables-binarias-y-códigos-especiales" id="toc-variables-binarias-y-códigos-especiales" class="nav-link" data-scroll-target="#variables-binarias-y-códigos-especiales"><span class="header-section-number">2.18.2</span> Variables binarias y códigos especiales</a></li>
+  <li><a href="#revisión-de-valores-faltantes" id="toc-revisión-de-valores-faltantes" class="nav-link" data-scroll-target="#revisión-de-valores-faltantes"><span class="header-section-number">2.18.3</span> Revisión de valores faltantes</a></li>
+  <li><a href="#número-de-comorbilidades" id="toc-número-de-comorbilidades" class="nav-link" data-scroll-target="#número-de-comorbilidades"><span class="header-section-number">2.18.4</span> Número de comorbilidades</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -341,6 +399,19 @@ div.csl-indent {
 </header>
 
 
+<div class="callout callout-style-default callout-note callout-titled" title="Conexión con el volumen teórico">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Conexión con el volumen teórico
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La formulación matemática de <strong>representación matemática de datos, probabilidad y estadística</strong> se desarrolla con mayor profundidad en los capítulos 1, 2 y 3 de <em>Fundamentos Matemáticos del Aprendizaje Automático</em> <span class="citation" data-cites="rodriguez2026fundamentos">(<a href="referencias.html#ref-rodriguez2026fundamentos" role="doc-biblioref">Rodríguez Escobedo 2026</a>)</span>.</p>
+</div>
+</div>
 <section id="objetivos-del-capítulo" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="objetivos-del-capítulo"><span class="header-section-number">2.1</span> Objetivos del capítulo</h2>
 <p>Al finalizar este capítulo, el lector será capaz de:</p>
@@ -427,17 +498,11 @@ div.csl-indent {
 <section id="cargar-paquetes" class="level2" data-number="2.5">
 <h2 data-number="2.5" class="anchored" data-anchor-id="cargar-paquetes"><span class="header-section-number">2.5</span> Cargar paquetes</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'readr' was built under R version 4.5.3</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'dplyr' was built under R version 4.5.3</code></pre>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>
-Adjuntando el paquete: 'dplyr'</code></pre>
+Attaching package: 'dplyr'</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>The following objects are masked from 'package:stats':
@@ -449,18 +514,12 @@ Adjuntando el paquete: 'dplyr'</code></pre>
 
     intersect, setdiff, setequal, union</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'ggplot2' was built under R version 4.5.3</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'stringr' was built under R version 4.5.3</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"util_graficas.R"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"util_graficas.R"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>
-Adjuntando el paquete: 'scales'</code></pre>
+Attaching package: 'scales'</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>The following object is masked from 'package:readr':
@@ -486,16 +545,23 @@ Adjuntando el paquete: 'scales'</code></pre>
 <h2 data-number="2.6" class="anchored" data-anchor-id="localizar-el-archivo"><span class="header-section-number">2.6</span> Localizar el archivo</h2>
 <p>En lugar de depender únicamente de un nombre fijo, el siguiente código busca archivos cuyo nombre comience con <code>atus</code> y termine en <code>.csv</code>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>archivos_atus <span class="ot">&lt;-</span> <span class="fu">list.files</span>(</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">path =</span> <span class="st">"datos"</span>,</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">pattern =</span> <span class="st">"^atus.*</span><span class="sc">\\</span><span class="st">.csv$"</span>,</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">full.names =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">ignore.case =</span> <span class="cn">TRUE</span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>archivos_atus</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>archivos_atus <span class="ot">&lt;-</span> <span class="fu">list.files</span>(</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">path =</span> <span class="st">"datos"</span>,</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">pattern =</span> <span class="st">"^atus.*</span><span class="sc">\\</span><span class="st">.csv$"</span>,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">full.names =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">ignore.case =</span> <span class="cn">TRUE</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Preferir una base ATUS cruda cuando esté disponible.</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co"># La base *_ml_preparado.csv es una salida de este mismo capítulo y</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co"># no contiene necesariamente CLASACC.</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>archivos_crudos <span class="ot">&lt;-</span> archivos_atus[</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  <span class="sc">!</span><span class="fu">grepl</span>(<span class="st">"ml_preparado"</span>, <span class="fu">basename</span>(archivos_atus), <span class="at">ignore.case =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>archivos_atus</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "datos/atus_2024.csv"         "datos/atus_ml_preparado.csv"</code></pre>
+<pre><code>[1] "datos/atus_ml_preparado.csv"</code></pre>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Interpretación">
@@ -515,26 +581,30 @@ Adjuntando el paquete: 'scales'</code></pre>
 <section id="leer-el-archivo-csv" class="level2" data-number="2.7">
 <h2 data-number="2.7" class="anchored" data-anchor-id="leer-el-archivo-csv"><span class="header-section-number">2.7</span> Leer el archivo CSV</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">length</span>(archivos_atus) <span class="sc">==</span> <span class="dv">0</span>) {</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stop</span>(</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste</span>(</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>      <span class="st">"No se encontró un archivo ATUS en la carpeta datos."</span>,</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Descárguelo desde el portal oficial del INEGI y descomprímalo."</span></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>ruta_atus <span class="ot">&lt;-</span> archivos_atus[<span class="dv">1</span>]</span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>atus <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">file =</span> ruta_atus,</span>
-<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">show_col_types =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">"UTF-8"</span>)</span>
-<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">"Archivo leído: "</span>, ruta_atus)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">length</span>(archivos_atus) <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stop</span>(</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste</span>(</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>      <span class="st">"No se encontró un archivo ATUS en la carpeta datos."</span>,</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Descárguelo desde el portal oficial del INEGI y descomprímalo."</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>ruta_atus <span class="ot">&lt;-</span> <span class="cf">if</span> (<span class="fu">length</span>(archivos_crudos) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  archivos_crudos[<span class="dv">1</span>]</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  archivos_atus[<span class="dv">1</span>]</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>atus <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">file =</span> ruta_atus,</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">show_col_types =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">"UTF-8"</span>)</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">"Archivo leído: "</span>, ruta_atus)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Archivo leído: datos/atus_2024.csv</code></pre>
+<pre><code>Archivo leído: datos/atus_ml_preparado.csv</code></pre>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled" title="Explicación del código">
@@ -554,34 +624,27 @@ Adjuntando el paquete: 'scales'</code></pre>
 <section id="primer-vistazo-a-los-datos" class="level2" data-number="2.8">
 <h2 data-number="2.8" class="anchored" data-anchor-id="primer-vistazo-a-los-datos"><span class="header-section-number">2.8</span> Primer vistazo a los datos</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>resumen_dimensiones <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">filas =</span> <span class="fu">nrow</span>(atus),</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">columnas =</span> <span class="fu">ncol</span>(atus)</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>resumen_dimensiones</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>resumen_dimensiones <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">filas =</span> <span class="fu">nrow</span>(atus),</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">columnas =</span> <span class="fu">ncol</span>(atus)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>resumen_dimensiones</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   filas columnas
-1 390627       45</code></pre>
+1 390627        6</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(atus)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(atus)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 45
-  COBERTURA ID_ENTIDAD ID_MUNICIPIO  ANIO MES   ID_HORA ID_MINUTO ID_DIA
-  &lt;chr&gt;     &lt;chr&gt;      &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt; 
-1 Municipal 01         001           2024 01    02      25        01    
-2 Municipal 01         001           2024 01    03      40        01    
-3 Municipal 01         001           2024 01    04      37        01    
-4 Municipal 01         001           2024 01    05      00        01    
-5 Municipal 01         001           2024 01    06      45        01    
-6 Municipal 01         001           2024 01    07      30        01    
-# ℹ 37 more variables: DIASEMANA &lt;chr&gt;, URBANA &lt;chr&gt;, SUBURBANA &lt;chr&gt;,
-#   TIPACCID &lt;chr&gt;, AUTOMOVIL &lt;dbl&gt;, CAMPASAJ &lt;dbl&gt;, MICROBUS &lt;dbl&gt;,
-#   PASCAMION &lt;dbl&gt;, OMNIBUS &lt;dbl&gt;, TRANVIA &lt;dbl&gt;, CAMIONETA &lt;dbl&gt;,
-#   CAMION &lt;dbl&gt;, TRACTOR &lt;dbl&gt;, FERROCARRI &lt;dbl&gt;, MOTOCICLET &lt;dbl&gt;,
-#   BICICLETA &lt;dbl&gt;, OTROVEHIC &lt;dbl&gt;, CAUSAACCI &lt;chr&gt;, CAPAROD &lt;chr&gt;,
-#   SEXO &lt;chr&gt;, ALIENTO &lt;chr&gt;, CINTURON &lt;chr&gt;, ID_EDAD &lt;dbl&gt;, CONDMUERTO &lt;dbl&gt;,
-#   CONDHERIDO &lt;dbl&gt;, PASAMUERTO &lt;dbl&gt;, PASAHERIDO &lt;dbl&gt;, PEATMUERTO &lt;dbl&gt;, …</code></pre>
+<pre><code># A tibble: 6 × 6
+  accidente_con_victimas MES   ID_HORA DIASEMANA TIPACCID              CAUSAACCI
+  &lt;chr&gt;                  &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;                 &lt;chr&gt;    
+1 Solo daños             01    02      lunes     Colisión con vehícul… Conductor
+2 Solo daños             01    03      lunes     Colisión con objeto … Conductor
+3 Con víctimas           01    04      lunes     Colisión con peatón … Conductor
+4 Solo daños             01    05      lunes     Colisión con objeto … Conductor
+5 Solo daños             01    06      lunes     Colisión con objeto … Conductor
+6 Con víctimas           01    07      lunes     Colisión con vehícul… Conductor</code></pre>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Interpretación">
@@ -601,18 +664,11 @@ Adjuntando el paquete: 'scales'</code></pre>
 <section id="normalizar-los-nombres-de-variables" class="level2" data-number="2.9">
 <h2 data-number="2.9" class="anchored" data-anchor-id="normalizar-los-nombres-de-variables"><span class="header-section-number">2.9</span> Normalizar los nombres de variables</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(atus) <span class="ot">&lt;-</span> <span class="fu">toupper</span>(<span class="fu">names</span>(atus))</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(atus)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(atus) <span class="ot">&lt;-</span> <span class="fu">toupper</span>(<span class="fu">names</span>(atus))</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(atus)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "COBERTURA"    "ID_ENTIDAD"   "ID_MUNICIPIO" "ANIO"         "MES"         
- [6] "ID_HORA"      "ID_MINUTO"    "ID_DIA"       "DIASEMANA"    "URBANA"      
-[11] "SUBURBANA"    "TIPACCID"     "AUTOMOVIL"    "CAMPASAJ"     "MICROBUS"    
-[16] "PASCAMION"    "OMNIBUS"      "TRANVIA"      "CAMIONETA"    "CAMION"      
-[21] "TRACTOR"      "FERROCARRI"   "MOTOCICLET"   "BICICLETA"    "OTROVEHIC"   
-[26] "CAUSAACCI"    "CAPAROD"      "SEXO"         "ALIENTO"      "CINTURON"    
-[31] "ID_EDAD"      "CONDMUERTO"   "CONDHERIDO"   "PASAMUERTO"   "PASAHERIDO"  
-[36] "PEATMUERTO"   "PEATHERIDO"   "CICLMUERTO"   "CICLHERIDO"   "OTROMUERTO"  
-[41] "OTROHERIDO"   "NEMUERTO"     "NEHERIDO"     "CLASACC"      "ESTATUS"     </code></pre>
+<pre><code>[1] "ACCIDENTE_CON_VICTIMAS" "MES"                    "ID_HORA"               
+[4] "DIASEMANA"              "TIPACCID"               "CAUSAACCI"             </code></pre>
 </div>
 </div>
 <p>Se convierten los nombres a mayúsculas para evitar errores por diferencias como <code>Mes</code>, <code>MES</code> o <code>mes</code>.</p>
@@ -620,33 +676,32 @@ Adjuntando el paquete: 'scales'</code></pre>
 <section id="seleccionar-variables-de-interés" class="level2" data-number="2.10">
 <h2 data-number="2.10" class="anchored" data-anchor-id="seleccionar-variables-de-interés"><span class="header-section-number">2.10</span> Seleccionar variables de interés</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>variables_interes <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ANIO"</span>, <span class="st">"MES"</span>, <span class="st">"ID_ENTIDAD"</span>, <span class="st">"ID_MUNICIPIO"</span>,</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ID_HORA"</span>, <span class="st">"ID_DIA"</span>, <span class="st">"DIASEMANA"</span>, <span class="st">"TIPACCID"</span>,</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"CAUSAACCI"</span>, <span class="st">"CLASACC"</span></span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>variables_existentes <span class="ot">&lt;-</span> <span class="fu">intersect</span>(</span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>  variables_interes,</span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(atus)</span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>variables_faltantes <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(</span>
-<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>  variables_interes,</span>
-<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(atus)</span>
-<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>atus_base <span class="ot">&lt;-</span> atus <span class="sc">|&gt;</span></span>
-<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">all_of</span>(variables_existentes))</span>
-<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>variables_existentes</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>variables_interes <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ANIO"</span>, <span class="st">"MES"</span>, <span class="st">"ID_ENTIDAD"</span>, <span class="st">"ID_MUNICIPIO"</span>,</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ID_HORA"</span>, <span class="st">"ID_DIA"</span>, <span class="st">"DIASEMANA"</span>, <span class="st">"TIPACCID"</span>,</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"CAUSAACCI"</span>, <span class="st">"CLASACC"</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>variables_existentes <span class="ot">&lt;-</span> <span class="fu">intersect</span>(</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  variables_interes,</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(atus)</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>variables_faltantes <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>  variables_interes,</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(atus)</span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>atus_base <span class="ot">&lt;-</span> atus <span class="sc">|&gt;</span></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">all_of</span>(variables_existentes))</span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>variables_existentes</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "ANIO"         "MES"          "ID_ENTIDAD"   "ID_MUNICIPIO" "ID_HORA"     
- [6] "ID_DIA"       "DIASEMANA"    "TIPACCID"     "CAUSAACCI"    "CLASACC"     </code></pre>
+<pre><code>[1] "MES"       "ID_HORA"   "DIASEMANA" "TIPACCID"  "CAUSAACCI"</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>variables_faltantes</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>variables_faltantes</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>character(0)</code></pre>
+<pre><code>[1] "ANIO"         "ID_ENTIDAD"   "ID_MUNICIPIO" "ID_DIA"       "CLASACC"     </code></pre>
 </div>
 </div>
 <div class="callout callout-style-default callout-warning callout-titled" title="Compruebe el diccionario de datos">
@@ -671,21 +726,66 @@ Adjuntando el paquete: 'scales'</code></pre>
 <li><strong>Solo daños:</strong> accidentes con daños materiales sin víctimas registradas.</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>atus_modelo <span class="ot">&lt;-</span> atus_base <span class="sc">|&gt;</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">CLASACC_TXT =</span> <span class="fu">str_to_lower</span>(<span class="fu">as.character</span>(CLASACC)),</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">accidente_con_victimas =</span> <span class="fu">case_when</span>(</span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">str_detect</span>(CLASACC_TXT, <span class="st">"sólo daños"</span>) <span class="sc">~</span> <span class="st">"Solo daños"</span>,</span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">str_detect</span>(CLASACC_TXT, <span class="st">"solo daños"</span>) <span class="sc">~</span> <span class="st">"Solo daños"</span>,</span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">str_detect</span>(CLASACC_TXT, <span class="st">"daños"</span>) <span class="sc">~</span> <span class="st">"Solo daños"</span>,</span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">str_detect</span>(CLASACC_TXT, <span class="st">"no fatal"</span>) <span class="sc">~</span> <span class="st">"Con víctimas"</span>,</span>
-<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">str_detect</span>(CLASACC_TXT, <span class="st">"fatal"</span>) <span class="sc">~</span> <span class="st">"Con víctimas"</span>,</span>
-<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_character_</span></span>
-<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(accidente_con_victimas))</span>
-<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(atus_modelo<span class="sc">$</span>accidente_con_victimas)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="st">"CLASACC"</span> <span class="sc">%in%</span> <span class="fu">names</span>(atus_base)) {</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Ruta A: base ATUS cruda del INEGI.</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  atus_modelo <span class="ot">&lt;-</span> atus_base <span class="sc">|&gt;</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">CLASACC_TXT =</span> <span class="fu">str_to_lower</span>(<span class="fu">as.character</span>(CLASACC)),</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">accidente_con_victimas =</span> <span class="fu">case_when</span>(</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>        <span class="fu">str_detect</span>(CLASACC_TXT, <span class="st">"sólo daños"</span>) <span class="sc">~</span> <span class="st">"Solo daños"</span>,</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>        <span class="fu">str_detect</span>(CLASACC_TXT, <span class="st">"solo daños"</span>) <span class="sc">~</span> <span class="st">"Solo daños"</span>,</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>        <span class="fu">str_detect</span>(CLASACC_TXT, <span class="st">"daños"</span>) <span class="sc">~</span> <span class="st">"Solo daños"</span>,</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>        <span class="fu">str_detect</span>(CLASACC_TXT, <span class="st">"no fatal"</span>) <span class="sc">~</span> <span class="st">"Con víctimas"</span>,</span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>        <span class="fu">str_detect</span>(CLASACC_TXT, <span class="st">"fatal"</span>) <span class="sc">~</span> <span class="st">"Con víctimas"</span>,</span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>        <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_character_</span></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span></span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(accidente_con_victimas))</span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (<span class="st">"ACCIDENTE_CON_VICTIMAS"</span> <span class="sc">%in%</span> <span class="fu">names</span>(atus)) {</span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Ruta B: base ya preparada incluida con el libro.</span></span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Después de normalizar nombres, accidente_con_victimas aparece en mayúsculas.</span></span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a>  atus_modelo <span class="ot">&lt;-</span> atus <span class="sc">|&gt;</span></span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">transmute</span>(</span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>      MES,</span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a>      ID_HORA,</span>
+<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>      DIASEMANA,</span>
+<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a>      TIPACCID,</span>
+<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a>      CAUSAACCI,</span>
+<span id="cb24-29"><a href="#cb24-29" aria-hidden="true" tabindex="-1"></a>      <span class="at">accidente_con_victimas =</span> <span class="fu">as.character</span>(ACCIDENTE_CON_VICTIMAS)</span>
+<span id="cb24-30"><a href="#cb24-30" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span></span>
+<span id="cb24-31"><a href="#cb24-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb24-32"><a href="#cb24-32" aria-hidden="true" tabindex="-1"></a>      <span class="at">accidente_con_victimas =</span> <span class="fu">case_when</span>(</span>
+<span id="cb24-33"><a href="#cb24-33" aria-hidden="true" tabindex="-1"></a>        <span class="fu">str_to_lower</span>(accidente_con_victimas) <span class="sc">%in%</span> <span class="fu">c</span>(</span>
+<span id="cb24-34"><a href="#cb24-34" aria-hidden="true" tabindex="-1"></a>          <span class="st">"con víctimas"</span>, <span class="st">"con victimas"</span></span>
+<span id="cb24-35"><a href="#cb24-35" aria-hidden="true" tabindex="-1"></a>        ) <span class="sc">~</span> <span class="st">"Con víctimas"</span>,</span>
+<span id="cb24-36"><a href="#cb24-36" aria-hidden="true" tabindex="-1"></a>        <span class="fu">str_to_lower</span>(accidente_con_victimas) <span class="sc">%in%</span> <span class="fu">c</span>(</span>
+<span id="cb24-37"><a href="#cb24-37" aria-hidden="true" tabindex="-1"></a>          <span class="st">"solo daños"</span>, <span class="st">"sólo daños"</span></span>
+<span id="cb24-38"><a href="#cb24-38" aria-hidden="true" tabindex="-1"></a>        ) <span class="sc">~</span> <span class="st">"Solo daños"</span>,</span>
+<span id="cb24-39"><a href="#cb24-39" aria-hidden="true" tabindex="-1"></a>        <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_character_</span></span>
+<span id="cb24-40"><a href="#cb24-40" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb24-41"><a href="#cb24-41" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span></span>
+<span id="cb24-42"><a href="#cb24-42" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(accidente_con_victimas))</span>
+<span id="cb24-43"><a href="#cb24-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-44"><a href="#cb24-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">message</span>(</span>
+<span id="cb24-45"><a href="#cb24-45" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Se utilizó datos/atus_ml_preparado.csv como respaldo para el render. "</span>,</span>
+<span id="cb24-46"><a href="#cb24-46" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Para reproducir desde cero la preparación, use la base ATUS cruda del INEGI."</span></span>
+<span id="cb24-47"><a href="#cb24-47" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb24-48"><a href="#cb24-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-49"><a href="#cb24-49" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb24-50"><a href="#cb24-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stop</span>(</span>
+<span id="cb24-51"><a href="#cb24-51" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste</span>(</span>
+<span id="cb24-52"><a href="#cb24-52" aria-hidden="true" tabindex="-1"></a>      <span class="st">"No se encontró CLASACC ni ACCIDENTE_CON_VICTIMAS."</span>,</span>
+<span id="cb24-53"><a href="#cb24-53" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Revise el diccionario y la versión de la base ATUS."</span></span>
+<span id="cb24-54"><a href="#cb24-54" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb24-55"><a href="#cb24-55" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb24-56"><a href="#cb24-56" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Se utilizó datos/atus_ml_preparado.csv como respaldo para el render. Para reproducir desde cero la preparación, use la base ATUS cruda del INEGI.</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(atus_modelo<span class="sc">$</span>accidente_con_victimas)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Con víctimas   Solo daños 
@@ -709,32 +809,32 @@ Con víctimas   Solo daños
 <section id="preparar-las-variables-finales" class="level2" data-number="2.12">
 <h2 data-number="2.12" class="anchored" data-anchor-id="preparar-las-variables-finales"><span class="header-section-number">2.12</span> Preparar las variables finales</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>atus_ml <span class="ot">&lt;-</span> atus_modelo <span class="sc">|&gt;</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">MES =</span> <span class="fu">as.factor</span>(MES),</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">ID_HORA =</span> <span class="fu">as.character</span>(ID_HORA),</span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">DIASEMANA =</span> <span class="fu">as.factor</span>(DIASEMANA),</span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">TIPACCID =</span> <span class="fu">as.factor</span>(TIPACCID),</span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">CAUSAACCI =</span> <span class="fu">as.factor</span>(CAUSAACCI),</span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">accidente_con_victimas =</span> <span class="fu">factor</span>(</span>
-<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>      accidente_con_victimas,</span>
-<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Con víctimas"</span>, <span class="st">"Solo daños"</span>)</span>
-<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
-<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>    accidente_con_victimas,</span>
-<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>    MES,</span>
-<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>    ID_HORA,</span>
-<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>    DIASEMANA,</span>
-<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>    TIPACCID,</span>
-<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a>    CAUSAACCI</span>
-<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>()</span>
-<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-23"><a href="#cb33-23" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(</span>
-<span id="cb33-24"><a href="#cb33-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">filas =</span> <span class="fu">nrow</span>(atus_ml),</span>
-<span id="cb33-25"><a href="#cb33-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">columnas =</span> <span class="fu">ncol</span>(atus_ml)</span>
-<span id="cb33-26"><a href="#cb33-26" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>atus_ml <span class="ot">&lt;-</span> atus_modelo <span class="sc">|&gt;</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">MES =</span> <span class="fu">as.factor</span>(MES),</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">ID_HORA =</span> <span class="fu">as.character</span>(ID_HORA),</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">DIASEMANA =</span> <span class="fu">as.factor</span>(DIASEMANA),</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">TIPACCID =</span> <span class="fu">as.factor</span>(TIPACCID),</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">CAUSAACCI =</span> <span class="fu">as.factor</span>(CAUSAACCI),</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">accidente_con_victimas =</span> <span class="fu">factor</span>(</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>      accidente_con_victimas,</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Con víctimas"</span>, <span class="st">"Solo daños"</span>)</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>    accidente_con_victimas,</span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>    MES,</span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>    ID_HORA,</span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>    DIASEMANA,</span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>    TIPACCID,</span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a>    CAUSAACCI</span>
+<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>()</span>
+<span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-23"><a href="#cb28-23" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(</span>
+<span id="cb28-24"><a href="#cb28-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">filas =</span> <span class="fu">nrow</span>(atus_ml),</span>
+<span id="cb28-25"><a href="#cb28-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">columnas =</span> <span class="fu">ncol</span>(atus_ml)</span>
+<span id="cb28-26"><a href="#cb28-26" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   filas columnas
 1 390627        6</code></pre>
@@ -757,14 +857,14 @@ Con víctimas   Solo daños
 <section id="guardar-la-base-preparada" class="level2" data-number="2.13">
 <h2 data-number="2.13" class="anchored" data-anchor-id="guardar-la-base-preparada"><span class="header-section-number">2.13</span> Guardar la base preparada</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">dir.exists</span>(<span class="st">"datos"</span>)) {</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dir.create</span>(<span class="st">"datos"</span>)</span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(</span>
-<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>  atus_ml,</span>
-<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"datos/atus_ml_preparado.csv"</span></span>
-<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">dir.exists</span>(<span class="st">"datos"</span>)) {</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dir.create</span>(<span class="st">"datos"</span>)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  atus_ml,</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"datos/atus_ml_preparado.csv"</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled" title="Explicación del código">
 <div class="callout-header d-flex align-content-center">
@@ -834,12 +934,18 @@ Con víctimas   Solo daños
 <td><a href="recursos/capitulo-02/capitulo-02-preparacion-datos-reales-infografia.png" target="_blank">Ver infografía</a></td>
 <td><a href="recursos/capitulo-02/capitulo-02-preparacion-datos-reales-infografia.png" download="capitulo-02-preparacion-datos-reales-infografia.png">Descargar PNG</a></td>
 </tr>
+<tr class="odd">
+<td>Cuaderno Google Colab</td>
+<td>Cuaderno autónomo para ejecutar los ejemplos del capítulo sin necesidad de ejecutar los capítulos anteriores.</td>
+<td><a href="https://colab.research.google.com/github/gilbertorodriguez59/libro-machine-learning-r/blob/main/colab/02-preparacion-datos.ipynb" target="_blank">Abrir en Google Colab</a></td>
+<td>—</td>
+</tr>
 </tbody>
 </table>
 <section id="video-explicativo" class="level3" data-number="2.16.1">
 <h3 data-number="2.16.1" class="anchored" data-anchor-id="video-explicativo"><span class="header-section-number">2.16.1</span> Video explicativo</h3>
 <div class="video-responsive">
-<p><iframe src="https://www.youtube.com/embed/bmv-tDPZGjQ" title="Capítulo 2. Preparación de datos reales" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen=""> </iframe></p>
+<p><iframe src="https://www.youtube.com/embed/bmv-tDPZGjQ" title="Capítulo 2. Preparación de datos reales" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="" frameborder="0"> </iframe></p>
 </div>
 </section>
 <section id="vista-previa-de-la-infografía" class="level3" data-number="2.16.2">
@@ -959,6 +1065,185 @@ server &lt;- function(input, output, session) {
 }
 
 shinyApp(ui, server)</code></pre>
+</section>
+<section id="caso-aplicado-b-preparación-de-datos-covid-19" class="level2" data-number="2.18">
+<h2 data-number="2.18" class="anchored" data-anchor-id="caso-aplicado-b-preparación-de-datos-covid-19"><span class="header-section-number">2.18</span> Caso aplicado B: preparación de datos COVID-19</h2>
+<p>En esta segunda ruta aplicada utilizamos una muestra nacional de <strong>50 000 registros confirmados de COVID-19 en México durante 2022</strong>. El año fue seleccionado después de comparar los cierres históricos que conservan un esquema homologable.</p>
+<p>La base preparada se encuentra en:</p>
+<pre class="text"><code>datos/covid19/procesados/covid19_mexico_2022_ml_preparado.csv.gz</code></pre>
+<section id="lectura-de-la-base" class="level3" data-number="2.18.1">
+<h3 data-number="2.18.1" class="anchored" data-anchor-id="lectura-de-la-base"><span class="header-section-number">2.18.1</span> Lectura de la base</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>covid <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"datos/covid19/procesados/covid19_mexico_2022_ml_preparado.csv.gz"</span>,</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">show_col_types =</span> <span class="cn">FALSE</span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(covid)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 50000    19</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(covid)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "ID_REGISTRO"        "FECHA_SINTOMAS"     "ENTIDAD_RES"       
+ [4] "SEXO"               "EDAD"               "TIPO_PACIENTE"     
+ [7] "NEUMONIA"           "DIABETES"           "EPOC"              
+[10] "ASMA"               "INMUSUPR"           "HIPERTENSION"      
+[13] "CARDIOVASCULAR"     "OBESIDAD"           "RENAL_CRONICA"     
+[16] "TABAQUISMO"         "UCI"                "NUM_COMORBILIDADES"
+[19] "MURIO"             </code></pre>
+</div>
+</div>
+</section>
+<section id="variables-binarias-y-códigos-especiales" class="level3" data-number="2.18.2">
+<h3 data-number="2.18.2" class="anchored" data-anchor-id="variables-binarias-y-códigos-especiales"><span class="header-section-number">2.18.2</span> Variables binarias y códigos especiales</h3>
+<p>En la base preparada, las variables clínicas de tipo sí/no fueron recodificadas así:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: right;">Valor</th>
+<th>Interpretación</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td>No</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td>Sí</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><code>NA</code></td>
+<td>No especificado, se ignora o no aplica</td>
+</tr>
+</tbody>
+</table>
+<p>La variable <code>TIPO_PACIENTE</code> quedó codificada como:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: right;">Valor</th>
+<th>Interpretación</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td>Ambulatorio</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td>Hospitalizado</td>
+</tr>
+</tbody>
+</table>
+<p>La variable objetivo <code>MURIO</code> se derivó de <code>FECHA_DEF</code>:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: right;">Valor</th>
+<th>Interpretación</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td>Sin defunción registrada</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td>Defunción registrada</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="revisión-de-valores-faltantes" class="level3" data-number="2.18.3">
+<h3 data-number="2.18.3" class="anchored" data-anchor-id="revisión-de-valores-faltantes"><span class="header-section-number">2.18.3</span> Revisión de valores faltantes</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>faltantes_covid <span class="ot">&lt;-</span> covid <span class="sc">|&gt;</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">everything</span>(),</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(.x))</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(</span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">everything</span>(),</span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"variable"</span>,</span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"faltantes"</span></span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(faltantes))</span>
+<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(faltantes_covid, <span class="dv">10</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 2
+   variable       faltantes
+   &lt;chr&gt;              &lt;int&gt;
+ 1 UCI                34297
+ 2 DIABETES             211
+ 3 RENAL_CRONICA        205
+ 4 INMUSUPR             204
+ 5 CARDIOVASCULAR       203
+ 6 ASMA                 202
+ 7 TABAQUISMO           202
+ 8 EPOC                 201
+ 9 HIPERTENSION         200
+10 NEUMONIA             188</code></pre>
+</div>
+</div>
+</section>
+<section id="número-de-comorbilidades" class="level3" data-number="2.18.4">
+<h3 data-number="2.18.4" class="anchored" data-anchor-id="número-de-comorbilidades"><span class="header-section-number">2.18.4</span> Número de comorbilidades</h3>
+<p>La variable <code>NUM_COMORBILIDADES</code> resume la presencia de:</p>
+<ul>
+<li>diabetes;</li>
+<li>EPOC;</li>
+<li>asma;</li>
+<li>inmunosupresión;</li>
+<li>hipertensión;</li>
+<li>enfermedad cardiovascular;</li>
+<li>obesidad;</li>
+<li>enfermedad renal crónica;</li>
+<li>tabaquismo.</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>covid <span class="sc">|&gt;</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(NUM_COMORBILIDADES) <span class="sc">|&gt;</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(NUM_COMORBILIDADES)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 2
+   NUM_COMORBILIDADES     n
+                &lt;dbl&gt; &lt;int&gt;
+ 1                  0 32508
+ 2                  1  8866
+ 3                  2  5316
+ 4                  3  2373
+ 5                  4   684
+ 6                  5   198
+ 7                  6    42
+ 8                  7     9
+ 9                  8     2
+10                  9     2</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Advertencia
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Estos datos se emplean con fines educativos. Los registros administrativos pueden contener sesgos, valores desconocidos y diferencias de cobertura. Los modelos construidos con esta base no sustituyen una valoración médica.</p>
+</div>
+</div>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
@@ -968,7 +1253,11 @@ Instituto Nacional de Estadística y Geografía. 2025. <span>«Estadística de A
 <div id="ref-inegi_terminos_libre_uso" class="csl-entry" role="listitem">
 Instituto Nacional de Estadística y Geografía. 2026. <span>«Términos de libre uso de la información del INEGI»</span>. <a href="https://www.inegi.org.mx/inegi/terminos.html">https://www.inegi.org.mx/inegi/terminos.html</a>.
 </div>
+<div id="ref-rodriguez2026fundamentos" class="csl-entry" role="listitem">
+Rodríguez Escobedo, Jesús Gilberto. 2026. <em>Fundamentos Matemáticos del Aprendizaje Automático: Teoría, demostraciones y formulación rigurosa de los métodos de regresión, clasificación y análisis de datos</em>. Primera edición digital. San Luis Potosí, México. <a href="https://gilbertorodriguez59.github.io/libro-machine-learning-teorico/">https://gilbertorodriguez59.github.io/libro-machine-learning-teorico/</a>.
 </div>
+</div>
+</section>
 </section>
 
 </main> <!-- /main -->

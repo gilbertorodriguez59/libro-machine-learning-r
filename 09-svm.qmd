@@ -1,5 +1,14 @@
 # Máquinas de Vectores de Soporte (SVM)
 
+
+::: {.callout-note title="Conexión con el volumen teórico"}
+
+La formulación matemática de **margen, optimización convexa, condiciones KKT y kernels** se desarrolla con mayor profundidad
+en los capítulos 4 y 15 de *Fundamentos Matemáticos del Aprendizaje
+Automático* [@rodriguez2026fundamentos].
+
+:::
+
 ## Objetivos del capítulo
 
 Al finalizar este capítulo, el lector será capaz de:
@@ -736,41 +745,141 @@ observar el hiperplano, los márgenes y la clase predicha.
 
 :::
 
+
+## Caso aplicado B: SVM con COVID-19
+
+En esta segunda ruta aplicada usamos datos abiertos de COVID-19 México 2022. El objetivo educativo es clasificar la variable `MURIO`, donde **1 representa defunción registrada y 0 ausencia de defunción registrada**, a partir de edad, neumonía, diabetes, hipertensión, obesidad, enfermedad renal crónica y número de comorbilidades.
+
+> **Uso académico:** este ejercicio ilustra el funcionamiento de SVM. No debe interpretarse como herramienta clínica, pronóstico individual ni diagnóstico.
+
+```{r covid-svm-preparar}
+ruta_covid <- "datos/covid19/procesados/covid19_mexico_2022_ml_preparado.csv.gz"
+
+if (file.exists(ruta_covid)) {
+  covid_svm <- readr::read_csv(ruta_covid, show_col_types = FALSE) |>
+    dplyr::select(MURIO, EDAD, NEUMONIA, DIABETES, HIPERTENSION,
+                  OBESIDAD, RENAL_CRONICA, NUM_COMORBILIDADES) |>
+    tidyr::drop_na() |>
+    dplyr::mutate(
+      MURIO = factor(MURIO, levels = c(0, 1),
+                     labels = c("Sin defunción", "Defunción"))
+    )
+
+  set.seed(2026)
+  covid_svm <- covid_svm |>
+    dplyr::sample_n(min(8000, nrow(covid_svm)))
+
+  set.seed(2026)
+  idx_svm_covid <- unlist(lapply(
+    split(seq_len(nrow(covid_svm)), covid_svm$MURIO),
+    function(i) sample(i, floor(0.80 * length(i)))
+  ))
+
+  train_svm_covid <- covid_svm[idx_svm_covid, ]
+  test_svm_covid <- covid_svm[-idx_svm_covid, ]
+}
+```
+
+La división es estratificada para conservar aproximadamente la proporción de ambas clases. Además, `scale = TRUE` estandariza los predictores numéricos dentro de `svm()`.
+
+```{r covid-svm-modelos}
+if (exists("train_svm_covid")) {
+  frec_covid <- table(train_svm_covid$MURIO)
+  pesos_covid <- sum(frec_covid) / (length(frec_covid) * frec_covid)
+
+  modelo_svm_covid_lineal <- e1071::svm(
+    MURIO ~ ., data = train_svm_covid,
+    kernel = "linear", cost = 1,
+    class.weights = pesos_covid,
+    scale = TRUE
+  )
+
+  modelo_svm_covid_radial <- e1071::svm(
+    MURIO ~ ., data = train_svm_covid,
+    kernel = "radial", cost = 1,
+    gamma = 1 / (ncol(train_svm_covid) - 1),
+    class.weights = pesos_covid,
+    scale = TRUE
+  )
+
+  pred_lin <- predict(modelo_svm_covid_lineal, test_svm_covid)
+  pred_rad <- predict(modelo_svm_covid_radial, test_svm_covid)
+}
+```
+
+```{r covid-svm-metricas}
+metricas_covid_binarias <- function(real, predicho, positiva = "Defunción") {
+  real <- factor(real, levels = c("Sin defunción", "Defunción"))
+  predicho <- factor(predicho, levels = levels(real))
+  m <- table(Real = real, Predicho = predicho)
+  VP <- m[positiva, positiva]
+  FN <- m[positiva, "Sin defunción"]
+  FP <- m["Sin defunción", positiva]
+  VN <- m["Sin defunción", "Sin defunción"]
+  div <- function(a,b) ifelse(b == 0, NA_real_, as.numeric(a/b))
+  data.frame(
+    exactitud = div(VP+VN, sum(m)),
+    sensibilidad = div(VP, VP+FN),
+    especificidad = div(VN, VN+FP)
+  )
+}
+
+if (exists("pred_lin")) {
+  comparacion_svm_covid <- dplyr::bind_rows(
+    cbind(modelo = "SVM lineal", metricas_covid_binarias(test_svm_covid$MURIO, pred_lin)),
+    cbind(modelo = "SVM radial", metricas_covid_binarias(test_svm_covid$MURIO, pred_rad))
+  )
+  comparacion_svm_covid
+}
+```
+
+::: {.callout-tip title="Interpretación"}
+La comparación permite estudiar si una frontera no lineal aporta una ventaja real sobre la SVM lineal. En una respuesta desbalanceada, sensibilidad y especificidad deben revisarse junto con la exactitud.
+:::
+
 ## Materiales complementarios del capítulo
 
+Estos recursos permiten repasar los conceptos principales del capítulo mediante distintos formatos. La presentación puede consultarse en PDF o modificarse en PowerPoint; la infografía ofrece una síntesis visual, el video explica los contenidos y el cuaderno Colab permite ejecutar los ejemplos de manera autónoma.
+
+| Recurso | Utilidad | Abrir o reproducir | Descargar |
+|---|---|---|---|
+| Video explicativo | Explicación audiovisual de los contenidos del capítulo. | [Ver en YouTube](https://www.youtube.com/watch?v=upiQi4xIBrQ){target="_blank"} | — |
+| Presentación en PDF | Diapositivas para lectura, estudio o exposición. | [Ver PDF](recursos/capitulo-10/capitulo-10-svm-presentacion.pdf){target="_blank"} | [Descargar PDF](recursos/capitulo-10/capitulo-10-svm-presentacion.pdf){download="capitulo-10-svm-presentacion.pdf"} |
+| Presentación editable | Archivo PowerPoint para utilizarlo en clase o adaptarlo. | [Abrir PPTX](recursos/capitulo-10/capitulo-10-svm-presentacion.pptx) | [Descargar PPTX](recursos/capitulo-10/capitulo-10-svm-presentacion.pptx){download="capitulo-10-svm-presentacion.pptx"} |
+| Infografía | Resumen visual de las ideas fundamentales. | [Ver infografía](recursos/capitulo-10/capitulo-10-svm-infografia.png){target="_blank"} | [Descargar PNG](recursos/capitulo-10/capitulo-10-svm-infografia.png){download="capitulo-10-svm-infografia.png"} |
+| Cuaderno Google Colab | Cuaderno autónomo para ejecutar los ejemplos del capítulo sin necesidad de ejecutar los capítulos anteriores. | [Abrir en Google Colab](https://colab.research.google.com/github/gilbertorodriguez59/libro-machine-learning-r/blob/main/colab/10-svm.ipynb){target="_blank"} | — |
+
 ::: {.content-visible when-format="html"}
+### Video explicativo
 
-### Video del capítulo
+<div class="video-responsive">
+  <iframe
+    src="https://www.youtube.com/embed/upiQi4xIBrQ"
+    title="Capítulo 10. Máquinas de vectores de soporte, SVM"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen>
+  </iframe>
+</div>
 
-<iframe width="100%" height="420"
-src="https://www.youtube.com/embed/upiQi4xIBrQ"
-title="Capítulo 10. Máquinas de vectores de soporte"
-frameborder="0"
-allowfullscreen></iframe>
+### Vista previa de la infografía
 
+[![Infografía del capítulo 10](recursos/capitulo-10/capitulo-10-svm-infografia.png)](recursos/capitulo-10/capitulo-10-svm-infografia.png)
 :::
 
 ::: {.content-visible when-format="pdf"}
+**Video del capítulo:** <https://www.youtube.com/watch?v=upiQi4xIBrQ>
 
-### Video del capítulo
-
-Disponible en YouTube:
-
-<https://youtu.be/upiQi4xIBrQ>
-
+La presentación PDF, el archivo editable, la infografía y el cuaderno Colab pueden consultarse desde la versión web del libro.
 :::
 
-| Recurso | Descripción | Abrir o descargar |
-|---|---|---|
-| Presentación en PDF | Síntesis del capítulo para lectura o exposición. | [Abrir PDF](recursos/capitulo-10/capitulo-10-svm-presentacion.pdf){target="_blank"} |
-| Presentación editable | Diapositivas en PowerPoint. | [Descargar PPTX](recursos/capitulo-10/capitulo-10-svm-presentacion.pptx) |
-| Infografía | Resumen visual del capítulo. | [Abrir infografía](recursos/capitulo-10/capitulo-10-svm-infografia.png){target="_blank"} |
-
-::: {.content-visible when-format="html"}
-
-![Infografía del capítulo 10](recursos/capitulo-10/capitulo-10-svm-infografia.png){fig-alt="Capítulo 10. Máquinas de vectores de soporte" width="85%"}
-
+::: {.callout-note title="Elaboración de los materiales"}
+Los materiales complementarios fueron elaborados con apoyo de **NotebookLM de Google**, a partir del contenido del capítulo, y posteriormente revisados y adaptados por el autor. El texto del libro y sus archivos fuente constituyen la referencia principal.
 :::
 
-Los materiales fueron creados con apoyo de NotebookLM de Google a partir del
-contenido del libro y revisados y adaptados por el autor.
+::: {.callout-tip title="Curso completo en YouTube"}
+Este video forma parte de la lista oficial del curso **Aprendizaje y Clasificación Automática con R**.
+
+[Consultar todos los videos del curso](https://www.youtube.com/playlist?list=PLDJYd2v7Kt-Q){target="_blank"}
+:::

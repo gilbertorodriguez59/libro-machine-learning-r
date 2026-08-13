@@ -1,5 +1,14 @@
 # Redes neuronales artificiales
 
+
+::: {.callout-note title="Conexión con el volumen teórico"}
+
+La formulación matemática de **álgebra lineal, cálculo, descenso por gradiente y redes neuronales** se desarrolla con mayor profundidad
+en los capítulos 2, 4 y 16 de *Fundamentos Matemáticos del Aprendizaje
+Automático* [@rodriguez2026fundamentos].
+
+:::
+
 ## Objetivos de aprendizaje
 
 Al finalizar este capítulo podrás:
@@ -1490,44 +1499,147 @@ Describe tres medidas para reducir sobreajuste.
 - ¿Cuándo sería preferible un modelo más simple?
 - ¿Por qué las probabilidades deben interpretarse con cautela?
 
+
+## Caso aplicado B: red neuronal con COVID-19
+
+En este ejemplo entrenamos una red neuronal pequeña para clasificar `MURIO` con datos de COVID-19 México 2022. Se utiliza una arquitectura deliberadamente sencilla para que el objetivo sea comprender el procedimiento y no construir un sistema clínico.
+
+> **Uso académico:** la salida de la red es una predicción estadística sobre esta muestra y no un pronóstico médico individual.
+
+```{r covid-nn-preparar}
+ruta_covid <- "datos/covid19/procesados/covid19_mexico_2022_ml_preparado.csv.gz"
+
+if (file.exists(ruta_covid)) {
+  covid_nn <- readr::read_csv(ruta_covid, show_col_types = FALSE) |>
+    dplyr::select(MURIO, EDAD, NEUMONIA, DIABETES, HIPERTENSION,
+                  OBESIDAD, RENAL_CRONICA, NUM_COMORBILIDADES) |>
+    tidyr::drop_na()
+
+  set.seed(2026)
+  covid_nn <- covid_nn |>
+    dplyr::sample_n(min(8000, nrow(covid_nn)))
+
+  set.seed(2026)
+  idx_nn_covid <- unlist(lapply(
+    split(seq_len(nrow(covid_nn)), covid_nn$MURIO),
+    function(i) sample(i, floor(0.80 * length(i)))
+  ))
+
+  train_nn_covid <- covid_nn[idx_nn_covid, ]
+  test_nn_covid <- covid_nn[-idx_nn_covid, ]
+
+  predictores_nn <- c("EDAD", "NEUMONIA", "DIABETES", "HIPERTENSION",
+                      "OBESIDAD", "RENAL_CRONICA", "NUM_COMORBILIDADES")
+
+  medias_nn <- sapply(train_nn_covid[predictores_nn], mean)
+  desv_nn <- sapply(train_nn_covid[predictores_nn], sd)
+  desv_nn[desv_nn == 0] <- 1
+
+  train_nn_covid[predictores_nn] <- scale(
+    train_nn_covid[predictores_nn], center = medias_nn, scale = desv_nn
+  )
+  test_nn_covid[predictores_nn] <- scale(
+    test_nn_covid[predictores_nn], center = medias_nn, scale = desv_nn
+  )
+}
+```
+
+La estandarización se calcula exclusivamente con el conjunto de entrenamiento y después se aplica al conjunto de prueba. Esto evita utilizar información de prueba durante el aprendizaje.
+
+```{r covid-nn-modelo}
+if (exists("train_nn_covid")) {
+  set.seed(2026)
+  modelo_nn_covid <- neuralnet::neuralnet(
+    MURIO ~ EDAD + NEUMONIA + DIABETES + HIPERTENSION +
+      OBESIDAD + RENAL_CRONICA + NUM_COMORBILIDADES,
+    data = train_nn_covid,
+    hidden = c(5, 3),
+    linear.output = FALSE,
+    lifesign = "none",
+    stepmax = 1e6
+  )
+
+  prob_nn_covid <- as.numeric(
+    neuralnet::compute(
+      modelo_nn_covid,
+      test_nn_covid[predictores_nn]
+    )$net.result[, 1]
+  )
+
+  pred_nn_covid <- ifelse(prob_nn_covid >= 0.50, 1, 0)
+  matriz_nn_covid <- table(
+    Real = factor(test_nn_covid$MURIO, levels = c(0,1), labels = c("Sin defunción", "Defunción")),
+    Predicho = factor(pred_nn_covid, levels = c(0,1), labels = c("Sin defunción", "Defunción"))
+  )
+  matriz_nn_covid
+}
+```
+
+```{r covid-nn-metricas}
+if (exists("matriz_nn_covid")) {
+  VP <- matriz_nn_covid["Defunción", "Defunción"]
+  FN <- matriz_nn_covid["Defunción", "Sin defunción"]
+  FP <- matriz_nn_covid["Sin defunción", "Defunción"]
+  VN <- matriz_nn_covid["Sin defunción", "Sin defunción"]
+  div <- function(a,b) ifelse(b == 0, NA_real_, as.numeric(a/b))
+  data.frame(
+    exactitud = div(VP+VN, sum(matriz_nn_covid)),
+    sensibilidad = div(VP, VP+FN),
+    especificidad = div(VN, VN+FP)
+  )
+}
+```
+
+::: {.callout-tip title="Interpretación"}
+La red puede representar relaciones no lineales entre edad y comorbilidades, pero eso no garantiza que supere a modelos más simples. La comparación con regresión logística, k-NN, árboles, Random Forest, SVM y Naive Bayes será más importante que observar una sola métrica.
+:::
+
 ## Materiales complementarios del capítulo
 
+Estos recursos permiten repasar los conceptos principales del capítulo mediante distintos formatos. La presentación puede consultarse en PDF o modificarse en PowerPoint; la infografía ofrece una síntesis visual, el video explica los contenidos y el cuaderno Colab permite ejecutar los ejemplos de manera autónoma.
+
+| Recurso | Utilidad | Abrir o reproducir | Descargar |
+|---|---|---|---|
+| Video explicativo | Explicación audiovisual de los contenidos del capítulo. | [Ver en YouTube](https://www.youtube.com/watch?v=gk3bt0h3WUU){target="_blank"} | — |
+| Presentación en PDF | Diapositivas para lectura, estudio o exposición. | [Ver PDF](recursos/capitulo-12/capitulo-12-redes-neuronales-presentacion.pdf){target="_blank"} | [Descargar PDF](recursos/capitulo-12/capitulo-12-redes-neuronales-presentacion.pdf){download="capitulo-12-redes-neuronales-presentacion.pdf"} |
+| Presentación editable | Archivo PowerPoint para utilizarlo en clase o adaptarlo. | [Abrir PPTX](recursos/capitulo-12/capitulo-12-redes-neuronales-presentacion.pptx) | [Descargar PPTX](recursos/capitulo-12/capitulo-12-redes-neuronales-presentacion.pptx){download="capitulo-12-redes-neuronales-presentacion.pptx"} |
+| Infografía | Resumen visual de las ideas fundamentales. | [Ver infografía](recursos/capitulo-12/capitulo-12-redes-neuronales-infografia.png){target="_blank"} | [Descargar PNG](recursos/capitulo-12/capitulo-12-redes-neuronales-infografia.png){download="capitulo-12-redes-neuronales-infografia.png"} |
+| Cuaderno Google Colab | Cuaderno autónomo para ejecutar los ejemplos del capítulo sin necesidad de ejecutar los capítulos anteriores. | [Abrir en Google Colab](https://colab.research.google.com/github/gilbertorodriguez59/libro-machine-learning-r/blob/main/colab/12-redes-neuronales.ipynb){target="_blank"} | — |
+
 ::: {.content-visible when-format="html"}
+### Video explicativo
 
-### Video del capítulo
+<div class="video-responsive">
+  <iframe
+    src="https://www.youtube.com/embed/gk3bt0h3WUU"
+    title="Capítulo 12. Redes neuronales"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen>
+  </iframe>
+</div>
 
-<iframe width="100%" height="420"
-src="https://www.youtube.com/embed/gk3bt0h3WUU"
-title="Capítulo 12. Redes neuronales artificiales"
-frameborder="0"
-allowfullscreen></iframe>
+### Vista previa de la infografía
 
+[![Infografía del capítulo 12](recursos/capitulo-12/capitulo-12-redes-neuronales-infografia.png)](recursos/capitulo-12/capitulo-12-redes-neuronales-infografia.png)
 :::
 
 ::: {.content-visible when-format="pdf"}
+**Video del capítulo:** <https://www.youtube.com/watch?v=gk3bt0h3WUU>
 
-### Video del capítulo
-
-Disponible en YouTube:
-
-<https://youtu.be/gk3bt0h3WUU>
-
+La presentación PDF, el archivo editable, la infografía y el cuaderno Colab pueden consultarse desde la versión web del libro.
 :::
 
-| Recurso | Descripción | Abrir o descargar |
-|---|---|---|
-| Presentación en PDF | Síntesis del capítulo para lectura o exposición. | [Abrir PDF](recursos/capitulo-12/capitulo-12-redes-neuronales-presentacion.pdf){target="_blank"} |
-| Presentación editable | Diapositivas en PowerPoint. | [Descargar PPTX](recursos/capitulo-12/capitulo-12-redes-neuronales-presentacion.pptx) |
-| Infografía | Resumen visual del capítulo. | [Abrir infografía](recursos/capitulo-12/capitulo-12-redes-neuronales-infografia.png){target="_blank"} |
-
-::: {.content-visible when-format="html"}
-
-![Infografía del capítulo 12](recursos/capitulo-12/capitulo-12-redes-neuronales-infografia.png){fig-alt="Capítulo 12. Redes neuronales artificiales" width="85%"}
-
+::: {.callout-note title="Elaboración de los materiales"}
+Los materiales complementarios fueron elaborados con apoyo de **NotebookLM de Google**, a partir del contenido del capítulo, y posteriormente revisados y adaptados por el autor. El texto del libro y sus archivos fuente constituyen la referencia principal.
 :::
 
-Los materiales fueron creados con apoyo de NotebookLM de Google a partir del
-contenido del libro y revisados y adaptados por el autor.
+::: {.callout-tip title="Curso completo en YouTube"}
+Este video forma parte de la lista oficial del curso **Aprendizaje y Clasificación Automática con R**.
+
+[Consultar todos los videos del curso](https://www.youtube.com/playlist?list=PLDJYd2v7Kt-Q){target="_blank"}
+:::
 
 ## Conclusión
 

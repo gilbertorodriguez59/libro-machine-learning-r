@@ -2,55 +2,19 @@ project:
   type: book
   output-dir: docs
   resources:
-  - recursos/capitulo-11/capitulo-11-naive-bayes-presentacion.pdf
-  - recursos/capitulo-11/capitulo-11-naive-bayes-presentacion.pptx
-  - recursos/capitulo-11/capitulo-11-naive-bayes-infografia.png
-  - recursos/capitulo-12/capitulo-12-redes-neuronales-presentacion.pdf
-  - recursos/capitulo-12/capitulo-12-redes-neuronales-presentacion.pptx
-  - recursos/capitulo-12/capitulo-12-redes-neuronales-infografia.png
-  - recursos/capitulo-13/capitulo-13-kmeans-presentacion.pdf
-  - recursos/capitulo-13/capitulo-13-kmeans-presentacion.pptx
-  - recursos/capitulo-13/capitulo-13-kmeans-infografia.png
-  - recursos/capitulo-08/capitulo-08-random-forest-presentacion.pdf
-  - recursos/capitulo-08/capitulo-08-random-forest-presentacion.pptx
-  - recursos/capitulo-08/capitulo-08-random-forest-infografia.png
-  - recursos/capitulo-09/capitulo-09-evaluacion-modelos-presentacion.pdf
-  - recursos/capitulo-09/capitulo-09-evaluacion-modelos-presentacion.pptx
-  - recursos/capitulo-09/capitulo-09-evaluacion-modelos-infografia.png
-  - recursos/capitulo-10/capitulo-10-svm-presentacion.pdf
-  - recursos/capitulo-10/capitulo-10-svm-presentacion.pptx
-  - recursos/capitulo-10/capitulo-10-svm-infografia.png
-  - recursos/capitulo-06/capitulo-06-knn-presentacion.pdf
-  - recursos/capitulo-06/capitulo-06-knn-presentacion.pptx
-  - recursos/capitulo-06/capitulo-06-knn-infografia.png
-  - recursos/capitulo-07/capitulo-07-arboles-presentacion.pdf
-  - recursos/capitulo-07/capitulo-07-arboles-presentacion.pptx
-  - recursos/capitulo-07/capitulo-07-arboles-infografia.png
-    - recursos_colab/atus_2024.csv.gz
-    - recursos_colab/atus_ml_preparado.csv.gz
+    - recursos
+    - recursos_colab
+    - imagenes
+    - datos/covid19/procesados
+    - datos/covid19/muestras
+    - datos/covid19/diccionarios
     - Aprendizaje_y_Clasificacion_Automatica_con_R_Colab.ipynb
-    - recursos/presentacion-licencia-cuaderno.pdf
-    - recursos/presentacion-licencia-cuaderno.pptx
-    - recursos/infografia-presentacion-licencia-cuaderno.png
-    - recursos/capitulo-01/capitulo-01-introduccion-aprendizaje-automatico.pdf
-    - recursos/capitulo-01/capitulo-01-introduccion-aprendizaje-automatico.pptx
-    - recursos/capitulo-01/capitulo-01-introduccion-aprendizaje-automatico-infografia.png
-    - recursos/capitulo-02/capitulo-02-preparacion-datos-reales.pdf
-    - recursos/capitulo-02/capitulo-02-preparacion-datos-reales.pptx
-    - recursos/capitulo-02/capitulo-02-preparacion-datos-reales-infografia.png
-    - imagenes/qr-curso-youtube.png
-    - recursos/capitulo-03/capitulo-03-analisis-exploratorio-datos.pdf
-    - recursos/capitulo-03/capitulo-03-analisis-exploratorio-datos.pptx
-    - recursos/capitulo-03/capitulo-03-analisis-exploratorio-datos-infografia.png
-    - recursos/capitulo-04/capitulo-04-regresion-lineal-simple-multiple.pdf
-    - recursos/capitulo-04/capitulo-04-regresion-lineal-simple-multiple.pptx
-    - recursos/capitulo-04/capitulo-04-regresion-lineal-simple-multiple-infografia.png
-    - recursos/capitulo-05/capitulo-05-regresion-logistica-clasificacion.pdf
-    - recursos/capitulo-05/capitulo-05-regresion-logistica-clasificacion.pptx
-    - recursos/capitulo-05/capitulo-05-regresion-logistica-clasificacion-infografia.png
 
 lang: es
 bibliography: referencias.bib
+
+embed-resources: false
+self-contained: false
 
 filters:
   - shinylive
@@ -58,16 +22,22 @@ filters:
 format:
   html:
     embed-resources: false
+    self-contained: false
 
 book:
   title: "Aprendizaje y Clasificación Automática con R"
   subtitle: "Un enfoque práctico con datos abiertos reales"
-  author: "MI Jesús Gilberto Rodríguez Escobedo"
+  author: "Jesús Gilberto Rodríguez Escobedo"
   date: today
+  output-file: "Aprendizaje-y-Clasificacion-Automatica-con-R"
   downloads: [pdf]
   chapters:
     - index.qmd
-    - 00-licencia-y-citacion.qmd
+    - 00-bienvenida.qmd
+    - 00-creditos-editoriales.qmd
+    - 00-licencia-y-uso-academico.qmd
+    - 00-prefacio.qmd
+    - 00-agradecimientos.qmd
     - 00-cuaderno-google-colab.qmd
     - 01-introduccion.qmd
     - 02-preparacion-datos.qmd
@@ -83,5 +53,8 @@ book:
     - 11-redes-neuronales.qmd
     - 12-kmeans.qmd
   appendices:
+    - glosario.qmd
     - referencias.qmd
-
+    - indice-figuras.qmd
+    - indice-tematico.qmd
+    - acerca-del-autor.qmd

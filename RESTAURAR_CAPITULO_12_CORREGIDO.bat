@@ -1,5 +1,5 @@
 @echo off
-set "PROY=C:\libro-machine-learning-r-estable"
+set "PROY=C:\libro-machine-learning-r-dev"
 set "BACK=C:\respaldo-capitulo-12-corregido\11-redes-neuronales.qmd"
 if not exist "%BACK%" (
   echo ERROR: No existe el respaldo del capitulo 12.

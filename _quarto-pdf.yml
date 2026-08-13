@@ -1,6 +1,13 @@
-# Perfil PDF profesional.
-# Uso: quarto render --profile pdf --to pdf
-# Conserva el código visible y suprime mensajes y advertencias innecesarios.
+# Perfil PDF profesional estable.
+
+project:
+  output-dir: docs
+
+book:
+  output-file: "Aprendizaje-y-Clasificacion-Automatica-con-R"
+
+filters: []
+
 execute:
   echo: true
   warning: false
@@ -20,6 +27,10 @@ knitr:
 
 format:
   pdf:
+    toc: true
+    lof: true
+    number-sections: true
+    keep-tex: false
     include-in-header:
       - latex/configuracion-pdf.tex
       - latex/portada-pdf.tex

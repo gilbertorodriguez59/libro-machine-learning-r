@@ -1,6 +1,6 @@
-$ErrorActionPreference = "Stop"
+﻿$ErrorActionPreference = "Stop"
 
-$ProjectDir = "C:\libro-machine-learning-r-estable"
+$ProjectDir = "C:\libro-machine-learning-r-dev"
 $Publisher = Join-Path $ProjectDir "PREPARAR_SHINYLIVE_Y_PUBLICAR_V0121.bat"
 
 function Fail([string]$Message) {
@@ -49,7 +49,7 @@ Write-Host ""
 Write-Host "PUBLICACIÓN TERMINADA CORRECTAMENTE" -ForegroundColor Green
 Write-Host ""
 Write-Host "Sitio de desarrollo:"
-Write-Host "https://gilbertorodriguez59.github.io/libro-machine-learning-r/"
+Write-Host "https://gilbertorodriguez59.github.io/libro-machine-learning-r-dev/"
 Write-Host ""
 Write-Host "GitHub Pages puede tardar entre 1 y 5 minutos en actualizarse."
 

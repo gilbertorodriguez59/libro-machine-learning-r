@@ -1,5 +1,14 @@
 # Regresión lineal simple y múltiple
 
+
+::: {.callout-note title="Conexión con el volumen teórico"}
+
+La formulación matemática de **regresión lineal simple y múltiple** se desarrolla con mayor profundidad
+en los capítulos 9 y 10 de *Fundamentos Matemáticos del Aprendizaje
+Automático* [@rodriguez2026fundamentos].
+
+:::
+
 ## Objetivos del capítulo
 
 Al terminar este capítulo, el lector podrá:
@@ -516,19 +525,27 @@ La regresión lineal simple explica una respuesta cuantitativa mediante una vari
 
 
 ## Materiales complementarios del capítulo
-
 | Recurso | Utilidad | Abrir o reproducir | Descargar |
 |---|---|---|---|
 | Video explicativo | Explicación audiovisual de la regresión lineal simple y múltiple. | [Ver en YouTube](https://www.youtube.com/watch?v=SE6DCeU9h1w){target="_blank"} | — |
 | Presentación en PDF | Diapositivas para lectura, estudio o exposición. | [Ver PDF](recursos/capitulo-04/capitulo-04-regresion-lineal-simple-multiple.pdf){target="_blank"} | [Descargar PDF](recursos/capitulo-04/capitulo-04-regresion-lineal-simple-multiple.pdf){download="capitulo-04-regresion-lineal-simple-multiple.pdf"} |
 | Presentación editable | Archivo PowerPoint para utilizarlo en clase o adaptarlo. | [Abrir PPTX](recursos/capitulo-04/capitulo-04-regresion-lineal-simple-multiple.pptx) | [Descargar PPTX](recursos/capitulo-04/capitulo-04-regresion-lineal-simple-multiple.pptx){download="capitulo-04-regresion-lineal-simple-multiple.pptx"} |
 | Infografía | Síntesis visual de conceptos, fórmulas e interpretación. | [Ver infografía](recursos/capitulo-04/capitulo-04-regresion-lineal-simple-multiple-infografia.png){target="_blank"} | [Descargar PNG](recursos/capitulo-04/capitulo-04-regresion-lineal-simple-multiple-infografia.png){download="capitulo-04-regresion-lineal-simple-multiple-infografia.png"} |
+| Cuaderno Google Colab | Cuaderno autónomo para ejecutar los ejemplos del capítulo sin necesidad de ejecutar los capítulos anteriores. | [Abrir en Google Colab](https://colab.research.google.com/github/gilbertorodriguez59/libro-machine-learning-r/blob/main/colab/04-regresion-lineal.ipynb){target="_blank"} | — |
 
 ::: {.content-visible when-format="html"}
 ### Video explicativo
 
 <div class="video-responsive">
-  <iframe src="https://www.youtube.com/embed/SE6DCeU9h1w" title="Capítulo 4. Regresión lineal simple y múltiple" frameborder="0" allowfullscreen></iframe>
+  <iframe src="https://www.youtube.com/embed/SE6DCeU9h1w" title="Capítulo 4. Regresión lineal simple y múltiple" allowfullscreen
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen>
+  </iframe>
 </div>
 
 ### Vista previa de la infografía

@@ -1,6 +1,6 @@
-$ErrorActionPreference = "Stop"
+﻿$ErrorActionPreference = "Stop"
 
-$ProjectDir = "C:\libro-machine-learning-r-estable"
+$ProjectDir = "C:\libro-machine-learning-r-dev"
 $Chapter = Join-Path $ProjectDir "11-redes-neuronales.qmd"
 $Utf8NoBom = New-Object System.Text.UTF8Encoding($false)
 

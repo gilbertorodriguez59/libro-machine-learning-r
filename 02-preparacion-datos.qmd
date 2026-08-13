@@ -1,5 +1,14 @@
 # Preparación de datos reales
 
+
+::: {.callout-note title="Conexión con el volumen teórico"}
+
+La formulación matemática de **representación matemática de datos, probabilidad y estadística** se desarrolla con mayor profundidad
+en los capítulos 1, 2 y 3 de *Fundamentos Matemáticos del Aprendizaje
+Automático* [@rodriguez2026fundamentos].
+
+:::
+
 ## Objetivos del capítulo
 
 Al finalizar este capítulo, el lector será capaz de:
@@ -101,6 +110,13 @@ archivos_atus <- list.files(
   ignore.case = TRUE
 )
 
+# Preferir una base ATUS cruda cuando esté disponible.
+# La base *_ml_preparado.csv es una salida de este mismo capítulo y
+# no contiene necesariamente CLASACC.
+archivos_crudos <- archivos_atus[
+  !grepl("ml_preparado", basename(archivos_atus), ignore.case = TRUE)
+]
+
 archivos_atus
 ```
 
@@ -121,7 +137,11 @@ if (length(archivos_atus) == 0) {
   )
 }
 
-ruta_atus <- archivos_atus[1]
+ruta_atus <- if (length(archivos_crudos) > 0) {
+  archivos_crudos[1]
+} else {
+  archivos_atus[1]
+}
 
 atus <- read_csv(
   file = ruta_atus,
@@ -203,19 +223,62 @@ El primer problema de clasificación distinguirá entre:
 
 ```{r crear-respuesta}
 
-atus_modelo <- atus_base |>
-  mutate(
-    CLASACC_TXT = str_to_lower(as.character(CLASACC)),
-    accidente_con_victimas = case_when(
-      str_detect(CLASACC_TXT, "sólo daños") ~ "Solo daños",
-      str_detect(CLASACC_TXT, "solo daños") ~ "Solo daños",
-      str_detect(CLASACC_TXT, "daños") ~ "Solo daños",
-      str_detect(CLASACC_TXT, "no fatal") ~ "Con víctimas",
-      str_detect(CLASACC_TXT, "fatal") ~ "Con víctimas",
-      TRUE ~ NA_character_
+if ("CLASACC" %in% names(atus_base)) {
+
+  # Ruta A: base ATUS cruda del INEGI.
+  atus_modelo <- atus_base |>
+    mutate(
+      CLASACC_TXT = str_to_lower(as.character(CLASACC)),
+      accidente_con_victimas = case_when(
+        str_detect(CLASACC_TXT, "sólo daños") ~ "Solo daños",
+        str_detect(CLASACC_TXT, "solo daños") ~ "Solo daños",
+        str_detect(CLASACC_TXT, "daños") ~ "Solo daños",
+        str_detect(CLASACC_TXT, "no fatal") ~ "Con víctimas",
+        str_detect(CLASACC_TXT, "fatal") ~ "Con víctimas",
+        TRUE ~ NA_character_
+      )
+    ) |>
+    filter(!is.na(accidente_con_victimas))
+
+} else if ("ACCIDENTE_CON_VICTIMAS" %in% names(atus)) {
+
+  # Ruta B: base ya preparada incluida con el libro.
+  # Después de normalizar nombres, accidente_con_victimas aparece en mayúsculas.
+  atus_modelo <- atus |>
+    transmute(
+      MES,
+      ID_HORA,
+      DIASEMANA,
+      TIPACCID,
+      CAUSAACCI,
+      accidente_con_victimas = as.character(ACCIDENTE_CON_VICTIMAS)
+    ) |>
+    mutate(
+      accidente_con_victimas = case_when(
+        str_to_lower(accidente_con_victimas) %in% c(
+          "con víctimas", "con victimas"
+        ) ~ "Con víctimas",
+        str_to_lower(accidente_con_victimas) %in% c(
+          "solo daños", "sólo daños"
+        ) ~ "Solo daños",
+        TRUE ~ NA_character_
+      )
+    ) |>
+    filter(!is.na(accidente_con_victimas))
+
+  message(
+    "Se utilizó datos/atus_ml_preparado.csv como respaldo para el render. ",
+    "Para reproducir desde cero la preparación, use la base ATUS cruda del INEGI."
+  )
+
+} else {
+  stop(
+    paste(
+      "No se encontró CLASACC ni ACCIDENTE_CON_VICTIMAS.",
+      "Revise el diccionario y la versión de la base ATUS."
     )
-  ) |>
-  filter(!is.na(accidente_con_victimas))
+  )
+}
 
 table(atus_modelo$accidente_con_victimas)
 ```
@@ -296,7 +359,6 @@ En este capítulo descargamos y documentamos una base real del INEGI, verificamo
 
 
 ## Materiales complementarios del capítulo
-
 Estos recursos permiten repasar la preparación de datos reales mediante una presentación, una infografía y un video explicativo.
 
 | Recurso | Utilidad | Abrir o reproducir | Descargar |
@@ -305,14 +367,20 @@ Estos recursos permiten repasar la preparación de datos reales mediante una pre
 | Presentación en PDF | Diapositivas para lectura, estudio o exposición. | [Ver PDF](recursos/capitulo-02/capitulo-02-preparacion-datos-reales.pdf){target="_blank"} | [Descargar PDF](recursos/capitulo-02/capitulo-02-preparacion-datos-reales.pdf){download="capitulo-02-preparacion-datos-reales.pdf"} |
 | Presentación editable | Archivo PowerPoint para utilizarlo en clase o adaptarlo. | [Abrir PPTX](recursos/capitulo-02/capitulo-02-preparacion-datos-reales.pptx) | [Descargar PPTX](recursos/capitulo-02/capitulo-02-preparacion-datos-reales.pptx){download="capitulo-02-preparacion-datos-reales.pptx"} |
 | Infografía | Resumen visual de las etapas de preparación de datos. | [Ver infografía](recursos/capitulo-02/capitulo-02-preparacion-datos-reales-infografia.png){target="_blank"} | [Descargar PNG](recursos/capitulo-02/capitulo-02-preparacion-datos-reales-infografia.png){download="capitulo-02-preparacion-datos-reales-infografia.png"} |
+| Cuaderno Google Colab | Cuaderno autónomo para ejecutar los ejemplos del capítulo sin necesidad de ejecutar los capítulos anteriores. | [Abrir en Google Colab](https://colab.research.google.com/github/gilbertorodriguez59/libro-machine-learning-r/blob/main/colab/02-preparacion-datos.ipynb){target="_blank"} | — |
 
 ::: {.content-visible when-format="html"}
 ### Video explicativo
 
 <div class="video-responsive">
-  <iframe
-    src="https://www.youtube.com/embed/bmv-tDPZGjQ"
+  <iframe src="https://www.youtube.com/embed/bmv-tDPZGjQ"
     title="Capítulo 2. Preparación de datos reales"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen
     frameborder="0"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
     referrerpolicy="strict-origin-when-cross-origin"
@@ -341,7 +409,6 @@ Este video forma parte de la lista oficial del curso **Aprendizaje y Clasificaci
 
 [Consultar todos los videos del curso](https://www.youtube.com/playlist?list=PLDJYd2v7Kt-Q){target="_blank"}
 :::
-
 
 ## Laboratorio interactivo: preparar datos
 
@@ -433,5 +500,118 @@ shinyApp(ui, server)
 ### Laboratorio disponible en la versión web
 
 Permite introducir valores faltantes, imputarlos y estandarizar las variables.
+
+:::
+
+## Caso aplicado B: preparación de datos COVID-19
+
+En esta segunda ruta aplicada utilizamos una muestra nacional de **50 000
+registros confirmados de COVID-19 en México durante 2022**. El año fue
+seleccionado después de comparar los cierres históricos que conservan un
+esquema homologable.
+
+La base preparada se encuentra en:
+
+```text
+datos/covid19/procesados/covid19_mexico_2022_ml_preparado.csv.gz
+```
+
+### Lectura de la base
+
+```{r}
+#| label: covid-lectura-preparacion
+#| message: false
+#| warning: false
+
+library(readr)
+library(dplyr)
+
+covid <- read_csv(
+  "datos/covid19/procesados/covid19_mexico_2022_ml_preparado.csv.gz",
+  show_col_types = FALSE
+)
+
+dim(covid)
+names(covid)
+```
+
+### Variables binarias y códigos especiales
+
+En la base preparada, las variables clínicas de tipo sí/no fueron
+recodificadas así:
+
+| Valor | Interpretación |
+|---:|---|
+| 0 | No |
+| 1 | Sí |
+| `NA` | No especificado, se ignora o no aplica |
+
+La variable `TIPO_PACIENTE` quedó codificada como:
+
+| Valor | Interpretación |
+|---:|---|
+| 0 | Ambulatorio |
+| 1 | Hospitalizado |
+
+La variable objetivo `MURIO` se derivó de `FECHA_DEF`:
+
+| Valor | Interpretación |
+|---:|---|
+| 0 | Sin defunción registrada |
+| 1 | Defunción registrada |
+
+### Revisión de valores faltantes
+
+```{r}
+#| label: covid-faltantes
+#| message: false
+#| warning: false
+
+faltantes_covid <- covid |>
+  summarise(
+    across(
+      everything(),
+      ~ sum(is.na(.x))
+    )
+  ) |>
+  tidyr::pivot_longer(
+    cols = everything(),
+    names_to = "variable",
+    values_to = "faltantes"
+  ) |>
+  arrange(desc(faltantes))
+
+head(faltantes_covid, 10)
+```
+
+### Número de comorbilidades
+
+La variable `NUM_COMORBILIDADES` resume la presencia de:
+
+- diabetes;
+- EPOC;
+- asma;
+- inmunosupresión;
+- hipertensión;
+- enfermedad cardiovascular;
+- obesidad;
+- enfermedad renal crónica;
+- tabaquismo.
+
+```{r}
+#| label: covid-comorbilidades
+#| message: false
+#| warning: false
+
+covid |>
+  count(NUM_COMORBILIDADES) |>
+  arrange(NUM_COMORBILIDADES)
+```
+
+::: {.callout-warning}
+
+Estos datos se emplean con fines educativos. Los registros administrativos
+pueden contener sesgos, valores desconocidos y diferencias de cobertura. Los
+modelos construidos con esta base no sustituyen una valoración médica.
 
 :::

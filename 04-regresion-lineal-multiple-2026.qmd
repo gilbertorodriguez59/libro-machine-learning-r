@@ -1,0 +1,182 @@
+# Regresión lineal simple y múltiple
+
+::: {.callout-note title="Conexión con el volumen teórico"}
+La formulación matemática de la regresión lineal simple y múltiple se desarrolla con mayor profundidad en los capítulos 9 y 10 de *Fundamentos Matemáticos del Aprendizaje Automático* [@rodriguez2026fundamentos].
+:::
+
+## Objetivos del capítulo
+
+Al finalizar este capítulo, el lector será capaz de distinguir regresión de clasificación, ajustar modelos lineales simples y múltiples, interpretar coeficientes, evaluar el ajuste fuera de muestra y analizar residuos.
+
+## Regresión lineal simple
+
+El modelo lineal simple se escribe como
+
+$$
+Y_i=\beta_0+\beta_1X_i+\varepsilon_i,
+$$
+
+donde $\beta_0$ es la ordenada al origen, $\beta_1$ es la pendiente y $\varepsilon_i$ representa la variación no explicada por el modelo.
+
+```{r}
+horas <- c(2,3,4,5,6,7,8,9)
+calificacion <- c(55,60,64,70,75,79,86,90)
+datos_estudio <- data.frame(horas, calificacion)
+modelo_simple <- lm(calificacion ~ horas, data = datos_estudio)
+summary(modelo_simple)
+```
+
+## Valores ajustados y residuos
+
+Para la observación $i$, el valor ajustado es $\widehat y_i$ y el residuo se define por
+
+$$
+e_i=y_i-\widehat y_i.
+$$
+
+El residuo es, por tanto, la distancia vertical entre la observación y la recta ajustada.
+
+```{r}
+diagnostico_simple <- data.frame(
+  observado = datos_estudio$calificacion,
+  predicho = fitted(modelo_simple),
+  residuo = residuals(modelo_simple)
+)
+
+diagnostico_simple
+```
+
+```{r fig.width=7, fig.height=4.8}
+library(ggplot2)
+source("util_graficas.R")
+
+ggplot(diagnostico_simple, aes(x = predicho, y = residuo)) +
+  geom_hline(yintercept = 0, linetype = 2) +
+  geom_segment(aes(xend = predicho, yend = 0), alpha = 0.45) +
+  geom_point(size = 3) +
+  labs(
+    title = "Residuos de una regresión lineal",
+    subtitle = "Cada residuo es observado menos predicho",
+    x = "Valor predicho",
+    y = "Residuo"
+  ) +
+  tema_libro()
+```
+
+::: {.callout-tip title="Cómo interpretar la gráfica"}
+Una nube aproximadamente aleatoria alrededor de cero es compatible con un modelo lineal razonable. Curvatura, forma de embudo o puntos muy alejados sugieren revisar la especificación del modelo.
+:::
+
+## Regresión lineal múltiple
+
+Con $p$ variables explicativas,
+
+$$
+Y_i=\beta_0+\beta_1X_{i1}+\beta_2X_{i2}+\cdots+\beta_pX_{ip}+\varepsilon_i.
+$$
+
+Cada coeficiente se interpreta manteniendo constantes las demás variables.
+
+```{r}
+set.seed(2026)
+n <- 80
+
+datos_ambientales <- data.frame(
+  temperatura = runif(n, 12, 35),
+  velocidad_viento = runif(n, 0.5, 8),
+  trafico = runif(n, 100, 900)
+)
+
+datos_ambientales$pm10 <-
+  18 +
+  0.9 * datos_ambientales$temperatura -
+  2.1 * datos_ambientales$velocidad_viento +
+  0.045 * datos_ambientales$trafico +
+  rnorm(n, 0, 6)
+
+modelo_multiple <- lm(
+  pm10 ~ temperatura + velocidad_viento + trafico,
+  data = datos_ambientales
+)
+
+summary(modelo_multiple)
+```
+
+::: {.callout-warning title="Asociación no significa causalidad"}
+Los coeficientes describen asociaciones condicionales dentro del modelo. Por sí solos no demuestran causalidad.
+:::
+
+## Evaluación fuera de muestra
+
+```{r}
+set.seed(2026)
+idx <- sample(
+  seq_len(nrow(datos_ambientales)),
+  size = floor(0.8 * nrow(datos_ambientales))
+)
+
+entrenamiento_reg <- datos_ambientales[idx, ]
+prueba_reg <- datos_ambientales[-idx, ]
+
+modelo_prueba <- lm(
+  pm10 ~ temperatura + velocidad_viento + trafico,
+  data = entrenamiento_reg
+)
+
+pred <- predict(modelo_prueba, newdata = prueba_reg)
+
+rmse <- sqrt(mean((prueba_reg$pm10 - pred)^2))
+mae <- mean(abs(prueba_reg$pm10 - pred))
+
+data.frame(RMSE = rmse, MAE = mae)
+```
+
+El RMSE se calcula como
+
+$$
+RMSE=\sqrt{\frac{1}{n}\sum_{i=1}^{n}(y_i-\widehat y_i)^2}.
+$$
+
+## Observado frente a predicho
+
+```{r fig.width=7, fig.height=4.8}
+comparacion <- data.frame(
+  observado = prueba_reg$pm10,
+  predicho = pred
+)
+
+ggplot(comparacion, aes(x = observado, y = predicho)) +
+  geom_point(size = 3, alpha = 0.8) +
+  geom_abline(slope = 1, intercept = 0, linetype = 2) +
+  labs(
+    title = "Valores observados y predichos",
+    subtitle = "La diagonal representa predicción perfecta",
+    x = "PM10 observado",
+    y = "PM10 predicho"
+  ) +
+  tema_libro()
+```
+
+## Supuestos principales
+
+La interpretación inferencial tradicional de la regresión lineal supone, de manera aproximada: linealidad, independencia de errores, varianza constante, ausencia de colinealidad extrema y normalidad de los errores cuando se construyen pruebas e intervalos.
+
+::: {.callout-note title="Diagnóstico, no ritual"}
+Los supuestos deben revisarse con gráficas, conocimiento del problema y medidas diagnósticas. No deben reducirse a una lista automática de pruebas.
+:::
+
+## Caso ATUS
+
+El número mensual de accidentes es una variable de conteo. Puede usarse aquí para ilustrar una regresión lineal, pero en un estudio formal podrían ser más apropiados modelos de Poisson o binomial negativa.
+
+## Regresión lineal frente a logística
+
+| Característica | Regresión lineal | Regresión logística |
+|---|---|---|
+| Respuesta | Numérica continua | Binaria |
+| Salida | Número real | Probabilidad entre 0 y 1 |
+| Evaluación habitual | RMSE, MAE, $R^2$ | Sensibilidad, especificidad, AUC, calibración |
+
+## Conclusión
+
+La regresión lineal introduce ideas fundamentales del aprendizaje supervisado: función de predicción, error, residuos, ajuste y evaluación fuera de muestra. Estas ideas sirven de puente hacia la regresión logística y otros métodos de clasificación.

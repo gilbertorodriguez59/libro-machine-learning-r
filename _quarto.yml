@@ -49,8 +49,8 @@ book:
     - 01-introduccion.qmd
     - 02-preparacion-datos-2026.qmd
     - 03-analisis-exploratorio.qmd
-    - 04-regresion-lineal-multiple.qmd
-    - 04-regresion-logistica.qmd
+    - 04-regresion-lineal-multiple-2026.qmd
+    - 04-regresion-logistica-2026.qmd
     - 05-knn.qmd
     - 06-arboles-decision.qmd
     - 07-random-forest.qmd

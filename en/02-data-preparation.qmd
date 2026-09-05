@@ -1,78 +1,563 @@
 # Preparing Real-World Data
 
 ::: {.callout-note title="Connection with the theoretical volume"}
-The mathematical representation of data, probability, and statistics is developed in greater depth in Chapters 1, 2, and 3 of *Mathematical Foundations of Machine Learning* [@rodriguez2026fundamentos].
+The mathematical representation of data and the foundations of probability and statistics are developed in greater depth in Chapters 1, 2, and 3 of *Mathematical Foundations of Machine Learning* [@rodriguez2026fundamentos].
 :::
 
 ## Chapter objectives
 
-By the end of this chapter, the reader will be able to locate and document real open datasets, inspect their structure, select and transform variables, create a binary response, and preserve a reproducible preparation workflow.
+By the end of this chapter, the reader will be able to:
 
-## Data provenance and reproducibility
+- identify the provenance of a dataset and document its transformations;
+- locate and download the ATUS dataset from the official INEGI portal;
+- organize original files, processed files, and educational samples within a project;
+- read, inspect, select, and transform variables in R;
+- construct response variables for classification;
+- save prepared datasets for later chapters;
+- distinguish official source data from author-derived products;
+- recognize important data limitations before fitting a model.
 
-The book uses two transversal Mexican open-data routes: **ATUS**, from INEGI, and **COVID-19 historical records**, from Mexico's Ministry of Health. The source files, processed files, and educational samples must remain clearly distinguished.
+## Introduction
 
-::: {.callout-important title="Three data levels"}
-- **Original data:** files released by the source institution.
-- **Processed data:** cleaned and transformed files created by the author.
-- **Educational samples:** subsets prepared for reproducible examples and computational efficiency.
+In professional practice, data rarely arrive ready for a machine-learning algorithm. Before modeling, it is necessary to understand where the data came from, inspect their structure, identify missing values and special codes, transform variables, and document every relevant decision.
+
+This book uses two applied routes based on Mexican open data:
+
+1. **ATUS**, published by INEGI, as the main thread for mobility and road-safety problems;
+2. **COVID-19 historical open data**, published by Mexico's Ministry of Health, as a transversal case for preparation, classification, and evaluation in a public-health context [@salud_covid_historicos_2022].
+
+::: {.callout-important title="Provenance and derived products"}
+The original files belong to the institutions that publish them. Processed datasets, educational samples, derived variables, graphics, models, and interpretations in this book are academic products prepared by the author. They are not official institutional results and do not imply endorsement by the data providers.
 :::
 
-## ATUS preparation
+## Recommended data organization
 
-The ATUS examples use the *Road Traffic Accidents in Urban and Suburban Areas* dataset from INEGI [@inegi_atus_2024]. The preparation workflow checks names, selects variables, constructs the binary outcome `accidente_con_victimas`, and saves a reusable file.
+To preserve traceability and reproducibility, original sources should be separated from the products generated during the analysis.
 
-```{r}
-library(readr)
-library(dplyr)
-library(stringr)
-
-ruta_atus <- "../datos/atus_ml_preparado.csv"
-
-if (!file.exists(ruta_atus)) {
-  stop("The prepared ATUS file was not found.")
-}
-
-atus_ml <- read_csv(ruta_atus, show_col_types = FALSE)
-head(atus_ml)
+```text
+libro-machine-learning-r/
+├── datos/
+│   ├── atus_2024.csv
+│   └── covid19/
+│       ├── originales/
+│       ├── procesados/
+│       ├── muestras/
+│       └── diccionarios/
+├── _quarto.yml
+└── referencias.bib
 ```
 
-::: {.callout-note title="Reproducibility"}
-The raw ATUS file should be retained separately from the processed dataset. Tables and figures based on transformed data should be labeled as the author's processing of INEGI data.
+This structure helps answer three essential questions: **where did the data come from, what transformations were applied, and which file should be used to reproduce a particular example?**
+
+# Applied Case A: ATUS
+
+## Downloading ATUS from INEGI
+
+This book uses the **Road Traffic Accidents in Urban and Suburban Areas (ATUS)** statistical dataset published by Mexico's National Institute of Statistics and Geography, INEGI [@inegi_atus_2024].
+
+To reproduce the examples in this edition:
+
+1. open the official ATUS portal: <https://www.inegi.org.mx/programas/accidentes/>;
+2. locate the open-data section;
+3. select **2024**;
+4. download and, when necessary, decompress the file;
+5. identify the annual CSV file;
+6. save it inside the `datos` directory as `atus_2024.csv`.
+
+::: {.callout-tip title="Using another year"}
+Another period can be used, but the year must be documented and the variable names and categories must be checked against the corresponding data dictionary before reusing the chapter code.
 :::
 
-## COVID-19 preparation
+## How to cite the data
 
-The COVID-19 route does not hard-code a single year. The preprocessing workflow compares the available historical closures and produces the prepared file corresponding to the selected period.
+INEGI's free-use terms require acknowledgment of the source [@inegi_terminos_libre_uso]. When the data have been processed by the author, an appropriate source note is:
 
-```{r}
-archivos_covid <- list.files(
-  "../datos/covid19/procesados",
-  pattern = "covid19_mexico_[0-9]{4}_ml_preparado\\.csv\\.gz$",
-  full.names = TRUE
+> **Source:** Author's processing of INEGI data, Road Traffic Accidents in Urban and Suburban Areas (ATUS), 2024.
+
+## Load the required packages
+
+```{r load-packages-data-preparation}
+library(readr)
+library(dplyr)
+library(ggplot2)
+library(stringr)
+source("../util_graficas.R")
+```
+
+## Locate and read the ATUS file
+
+```{r locate-read-atus}
+atus_files <- list.files(
+  path = "../datos",
+  pattern = "^atus.*\\.csv$",
+  full.names = TRUE,
+  ignore.case = TRUE
 )
 
-if (length(archivos_covid) == 0) {
-  stop("No prepared COVID-19 dataset was found.")
+raw_files <- atus_files[
+  !grepl("ml_preparado", basename(atus_files), ignore.case = TRUE)
+]
+
+if (length(atus_files) == 0) {
+  stop(
+    paste(
+      "No ATUS CSV file was found in the datos directory.",
+      "Download it from the official INEGI portal."
+    )
+  )
 }
 
-ruta_covid <- archivos_covid[1]
-covid <- read_csv(ruta_covid, show_col_types = FALSE)
+atus_path <- if (length(raw_files) > 0) {
+  raw_files[1]
+} else {
+  atus_files[1]
+}
+
+atus <- read_csv(
+  atus_path,
+  show_col_types = FALSE,
+  locale = locale(encoding = "UTF-8")
+)
+
+message("File read: ", atus_path)
+```
+
+::: {.callout-note title="Code explanation"}
+The code first looks for an original ATUS file. If one is not present in the repository, the prepared dataset can be used as a rendering fallback. That fallback makes the book reproducible online, but it does not replace the complete preparation process from the original INEGI file.
+:::
+
+## Inspect structure and variable names
+
+```{r inspect-atus}
+data.frame(
+  rows = nrow(atus),
+  columns = ncol(atus)
+)
+
+head(atus)
+
+names(atus) <- toupper(names(atus))
+names(atus)
+```
+
+## Select variables of interest
+
+```{r select-variables-atus}
+variables_of_interest <- c(
+  "ANIO", "MES", "ID_ENTIDAD", "ID_MUNICIPIO",
+  "ID_HORA", "ID_DIA", "DIASEMANA", "TIPACCID",
+  "CAUSAACCI", "CLASACC"
+)
+
+existing_variables <- intersect(variables_of_interest, names(atus))
+missing_variables <- setdiff(variables_of_interest, names(atus))
+
+atus_base <- atus |>
+  select(all_of(existing_variables))
+
+existing_variables
+missing_variables
+```
+
+::: {.callout-warning title="Check the data dictionary"}
+If a variable is missing, it should not be replaced by another variable merely because its name looks similar. First consult the data dictionary and metadata for the specific ATUS edition being used.
+:::
+
+## Construct the response variable
+
+The first classification problem distinguishes **accidents involving casualties** from **accidents involving property damage only**.
+
+```{r create-response-atus}
+if ("CLASACC" %in% names(atus_base)) {
+  atus_model <- atus_base |>
+    mutate(
+      CLASACC_TXT = str_to_lower(as.character(CLASACC)),
+      accidente_con_victimas = case_when(
+        str_detect(CLASACC_TXT, "sólo daños") ~ "Solo daños",
+        str_detect(CLASACC_TXT, "solo daños") ~ "Solo daños",
+        str_detect(CLASACC_TXT, "daños") ~ "Solo daños",
+        str_detect(CLASACC_TXT, "no fatal") ~ "Con víctimas",
+        str_detect(CLASACC_TXT, "fatal") ~ "Con víctimas",
+        TRUE ~ NA_character_
+      )
+    ) |>
+    filter(!is.na(accidente_con_victimas))
+
+} else if ("ACCIDENTE_CON_VICTIMAS" %in% names(atus)) {
+  atus_model <- atus |>
+    transmute(
+      MES,
+      ID_HORA,
+      DIASEMANA,
+      TIPACCID,
+      CAUSAACCI,
+      accidente_con_victimas = as.character(ACCIDENTE_CON_VICTIMAS)
+    ) |>
+    mutate(
+      accidente_con_victimas = case_when(
+        str_to_lower(accidente_con_victimas) %in% c("con víctimas", "con victimas") ~ "Con víctimas",
+        str_to_lower(accidente_con_victimas) %in% c("solo daños", "sólo daños") ~ "Solo daños",
+        TRUE ~ NA_character_
+      )
+    ) |>
+    filter(!is.na(accidente_con_victimas))
+
+  message(
+    "A prepared ATUS dataset was used as a rendering fallback. ",
+    "Use the original INEGI file to reproduce the preparation from scratch."
+  )
+} else {
+  stop("Neither CLASACC nor ACCIDENTE_CON_VICTIMAS was found. Check the data dictionary.")
+}
+
+table(atus_model$accidente_con_victimas)
+```
+
+::: {.callout-note title="Why are the category labels kept in Spanish in the code?"}
+The prepared ATUS file is shared by both language editions of the book and is also used by later chapters and Colab notebooks. Keeping the stored factor labels unchanged avoids creating two incompatible versions of the same analytical dataset. The surrounding explanations and graphical labels can still be presented in English.
+:::
+
+## Prepare and save the ATUS modeling dataset
+
+```{r prepare-save-atus}
+atus_ml <- atus_model |>
+  mutate(
+    MES = as.factor(MES),
+    ID_HORA = as.character(ID_HORA),
+    DIASEMANA = as.factor(DIASEMANA),
+    TIPACCID = as.factor(TIPACCID),
+    CAUSAACCI = as.factor(CAUSAACCI),
+    accidente_con_victimas = factor(
+      accidente_con_victimas,
+      levels = c("Con víctimas", "Solo daños")
+    )
+  ) |>
+  select(
+    accidente_con_victimas,
+    MES,
+    ID_HORA,
+    DIASEMANA,
+    TIPACCID,
+    CAUSAACCI
+  ) |>
+  na.omit()
+
+# In the English project the shared data directory is one level above.
+# The following write is disabled during rendering to avoid modifying source data.
+# write_csv(atus_ml, "../datos/atus_ml_preparado.csv")
+
+data.frame(
+  rows = nrow(atus_ml),
+  columns = ncol(atus_ml)
+)
+```
+
+::: {.callout-tip title="Reproducible writing step"}
+When reproducing the workflow locally from the original ATUS file, remove the comment marker from `write_csv()` to save the prepared dataset. During book rendering, the repository's validated prepared file is left unchanged.
+:::
+
+# Applied Case B: COVID-19
+
+## Selecting the analysis period
+
+The 2026 edition compares the historical closures available for **2020 through 2025**, using the same confirmed-case criterion and the year of symptom onset whenever the structure of the files permits a comparable definition.
+
+The comparison table stored with the book is:
+
+```text
+datos/covid19/procesados/conteo_casos_confirmados_2020_2025.csv
+```
+
+```{r covid-period-comparison}
+covid_counts <- read_csv(
+  "../datos/covid19/procesados/conteo_casos_confirmados_2020_2025.csv",
+  show_col_types = FALSE
+)
+
+covid_counts
+```
+
+In the validated comparison currently included with this edition, **2022 contains the largest number of confirmed records among the periods processed under a homologated scheme**. The 2024 and 2025 rows are explicitly marked as non-homologated and therefore are not used to select the modeling period.
+
+::: {.callout-important title="Do not confuse publication year with epidemiological period"}
+The year of a historical closure file should not automatically be interpreted as the year of symptom onset. The preparation workflow uses `FECHA_SINTOMAS` when that variable is available and comparable across closures.
+:::
+
+## Select the prepared dataset reproducibly
+
+```{r covid-locate-prepared}
+selected_year <- covid_counts |>
+  filter(
+    ESTADO == "PROCESADO",
+    !is.na(CASOS_CONFIRMADOS)
+  ) |>
+  slice_max(
+    order_by = CASOS_CONFIRMADOS,
+    n = 1,
+    with_ties = FALSE
+  ) |>
+  pull(ANIO)
+
+covid_path <- file.path(
+  "../datos/covid19/procesados",
+  paste0("covid19_mexico_", selected_year, "_ml_preparado.csv.gz")
+)
+
+if (!file.exists(covid_path)) {
+  stop(
+    paste(
+      "The prepared COVID-19 dataset selected by the comparison table was not found:",
+      covid_path
+    )
+  )
+}
+
+message("Selected COVID-19 dataset: ", covid_path)
+message("Selected year: ", selected_year)
+```
+
+## Read and inspect the prepared dataset
+
+```{r covid-read-prepared}
+covid <- read_csv(
+  covid_path,
+  show_col_types = FALSE
+)
 
 dim(covid)
 names(covid)
 ```
 
-Binary clinical variables are coded as 0 = No, 1 = Yes, and `NA` = unknown, not specified, or not applicable. `TIPO_PACIENTE` is recoded as 0 = outpatient and 1 = hospitalized. The educational outcome `MURIO` indicates whether a death date was recorded in the source data.
+## Binary variables and special codes
 
-::: {.callout-warning title="Educational use only"}
-Administrative health records may contain unknown values, selection effects, changes in coverage, and period-specific biases. Models built from these data are educational and are not diagnostic or clinical decision tools.
+In the prepared dataset, binary clinical variables are recoded for teaching purposes as:
+
+| Value | Interpretation |
+|---:|---|
+| 0 | No |
+| 1 | Yes |
+| `NA` | Unspecified, ignored, or not applicable according to the original catalog |
+
+`TIPO_PACIENTE` is represented as 0 = outpatient and 1 = hospitalized. The variable `MURIO` is derived from the presence of a valid death date in `FECHA_DEF` and is used only as an administrative outcome for the educational exercises in this book.
+
+::: {.callout-warning title="Clinical interpretation"}
+`MURIO` does not turn the exercise into a clinical prediction model. The underlying administrative records may contain selection bias, unknown values, changes in surveillance practices, and differences in coverage. The models in this book are educational and must not be used for diagnosis, treatment, or individual medical decisions.
 :::
 
-## Sampling and prevalence
+## Review missing values
 
-If a sample is deliberately balanced or stratified to increase the number of positive cases, its class proportion does **not** represent population prevalence. This distinction becomes essential when logistic regression probabilities are interpreted later in the book.
+```{r covid-missing-values}
+missing_covid <- covid |>
+  summarise(
+    across(everything(), ~ sum(is.na(.x)))
+  ) |>
+  tidyr::pivot_longer(
+    cols = everything(),
+    names_to = "variable",
+    values_to = "missing"
+  ) |>
+  arrange(desc(missing))
+
+head(missing_covid, 10)
+```
+
+## Number of comorbidities
+
+`NUM_COMORBILIDADES` summarizes, when available, diabetes, COPD, asthma, immunosuppression, hypertension, cardiovascular disease, obesity, chronic kidney disease, and smoking.
+
+```{r covid-comorbidities}
+covid |>
+  count(NUM_COMORBILIDADES) |>
+  arrange(NUM_COMORBILIDADES)
+```
+
+::: {.callout-note title="Educational samples and prevalence"}
+If a stratified sample is used to facilitate classification exercises, the proportion of deaths in that sample **must not be interpreted as prevalence or as a population mortality rate**. Probabilistic models trained on samples whose class prevalence has been intentionally modified should not be interpreted as calibrated population probabilities without an additional calibration or weighting procedure.
+:::
+
+## Data-preparation checklist
+
+Before moving to model fitting, verify that:
+
+- the source and period are documented;
+- a separate copy of the original source files is preserved;
+- every variable used in the analysis exists in the corresponding data dictionary;
+- special codes are handled explicitly;
+- derived variables are documented;
+- processed datasets are not presented as unmodified official data;
+- tables and graphics acknowledge the data source;
+- educational samples are not interpreted as population estimates.
+
+## Supplementary materials for this chapter
+
+| Resource | Purpose | Open or play | Download |
+|---|---|---|---|
+| Explanatory video | Downloading, inspecting, cleaning, and preparing data. | [Watch on YouTube](https://www.youtube.com/watch?v=bmv-tDPZGjQ){target="_blank"} | — |
+| PDF presentation | Slides for reading, study, or classroom presentation. | [View PDF](../recursos/capitulo-02/capitulo-02-preparacion-datos-reales.pdf){target="_blank"} | [Download PDF](../recursos/capitulo-02/capitulo-02-preparacion-datos-reales.pdf){download="chapter-02-preparing-real-world-data.pdf"} |
+| Editable presentation | PowerPoint file for classroom use or adaptation. | [Open PPTX](../recursos/capitulo-02/capitulo-02-preparacion-datos-reales.pptx) | [Download PPTX](../recursos/capitulo-02/capitulo-02-preparacion-datos-reales.pptx){download="chapter-02-preparing-real-world-data.pptx"} |
+| Infographic | Visual summary of the main data-preparation stages. | [View infographic](../recursos/capitulo-02/capitulo-02-preparacion-datos-reales-infografia.png){target="_blank"} | [Download PNG](../recursos/capitulo-02/capitulo-02-preparacion-datos-reales-infografia.png){download="chapter-02-data-preparation-infographic.png"} |
+| Google Colab notebook | Self-contained executable examples for this chapter. | [Open in Google Colab](https://colab.research.google.com/github/gilbertorodriguez59/libro-machine-learning-r/blob/main/colab/02-preparacion-datos.ipynb){target="_blank"} | — |
+
+::: {.content-visible when-format="html"}
+### Explanatory video
+
+<div class="video-responsive">
+  <iframe src="https://www.youtube.com/embed/bmv-tDPZGjQ"
+    title="Chapter 2. Preparing real-world data"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen>
+  </iframe>
+</div>
+
+### Infographic preview
+
+[![Chapter 2 infographic](../recursos/capitulo-02/capitulo-02-preparacion-datos-reales-infografia.png)](../recursos/capitulo-02/capitulo-02-preparacion-datos-reales-infografia.png)
+:::
+
+::: {.content-visible when-format="pdf"}
+**Chapter video:** <https://www.youtube.com/watch?v=bmv-tDPZGjQ>
+
+The PDF presentation, editable presentation, infographic, and Colab notebook are available from the web edition of the book.
+:::
+
+::: {.callout-note title="Preparation of supplementary resources"}
+The supplementary materials were prepared with support from **Google NotebookLM**, using the chapter content as the source, and were subsequently reviewed and adapted by the author. The book text, institutional source data, and repository source files remain the primary references.
+:::
+
+## Interactive laboratory: preparing data
+
+::: {.content-visible when-format="html"}
+Use this laboratory to explore the effect of missing values, mean or median imputation, and standardization on a small synthetic environmental dataset.
+
+```{shinylive-r}
+#| standalone: true
+#| viewerHeight: 760
+#| components: [viewer]
+
+library(shiny)
+
+ui <- fluidPage(
+  titlePanel("Interactive data preparation"),
+  sidebarLayout(
+    sidebarPanel(
+      sliderInput(
+        "missing_pct",
+        "Percentage of missing values",
+        min = 0,
+        max = 40,
+        value = 15,
+        step = 5
+      ),
+      selectInput(
+        "imputation",
+        "Imputation method",
+        choices = c("Mean" = "mean", "Median" = "median")
+      ),
+      checkboxInput(
+        "scale_vars",
+        "Standardize variables",
+        value = TRUE
+      ),
+      numericInput(
+        "seed",
+        "Random seed",
+        value = 123,
+        min = 1
+      )
+    ),
+    mainPanel(
+      h4("Data with missing values"),
+      tableOutput("raw_table"),
+      h4("Prepared data"),
+      tableOutput("prepared_table"),
+      h4("Preparation summary"),
+      tableOutput("summary_table")
+    )
+  )
+)
+
+server <- function(input, output, session) {
+  raw_data <- reactive({
+    set.seed(input$seed)
+
+    d <- data.frame(
+      temperature = round(rnorm(12, 25, 4), 1),
+      humidity = round(rnorm(12, 55, 12), 1),
+      pollution = round(rnorm(12, 40, 10), 1)
+    )
+
+    n_missing <- round(length(as.matrix(d)) * input$missing_pct / 100)
+
+    if (n_missing > 0) {
+      m <- as.matrix(d)
+      missing_positions <- sample(seq_len(length(m)), n_missing)
+      m[missing_positions] <- NA
+      d <- as.data.frame(m)
+    }
+
+    d
+  })
+
+  prepared_data <- reactive({
+    d <- raw_data()
+
+    for (j in seq_along(d)) {
+      replacement <- if (input$imputation == "mean") {
+        mean(d[[j]], na.rm = TRUE)
+      } else {
+        median(d[[j]], na.rm = TRUE)
+      }
+
+      d[[j]][is.na(d[[j]])] <- replacement
+    }
+
+    if (isTRUE(input$scale_vars)) {
+      d <- as.data.frame(scale(d))
+    }
+
+    d
+  })
+
+  output$raw_table <- renderTable({
+    raw_data()
+  }, digits = 2)
+
+  output$prepared_table <- renderTable({
+    prepared_data()
+  }, digits = 3)
+
+  output$summary_table <- renderTable({
+    before <- raw_data()
+    after <- prepared_data()
+
+    data.frame(
+      Measure = c(
+        "Missing cells before preparation",
+        "Missing cells after preparation",
+        "Imputation method",
+        "Standardization"
+      ),
+      Value = c(
+        sum(is.na(before)),
+        sum(is.na(after)),
+        ifelse(input$imputation == "mean", "Mean", "Median"),
+        ifelse(input$scale_vars, "Yes", "No")
+      )
+    )
+  })
+}
+
+shinyApp(ui, server)
+```
+:::
+
+::: {.content-visible when-format="pdf"}
+### Laboratory available in the web edition
+The interactive version allows the reader to change the percentage of missing observations, compare mean and median imputation, and turn variable standardization on or off.
+:::
 
 ## Chapter summary
 
-Good machine learning starts before model fitting. Data provenance, coding decisions, missing values, transformations, and sampling must all be documented so that the analytical path can be reproduced and interpreted responsibly.
+Reliable machine learning begins before model fitting. Data provenance, variable definitions, missing values, transformations, class construction, sampling, and limitations must all be documented. The ATUS and COVID-19 routes in this chapter establish the reproducible datasets that will be reused throughout the following modeling chapters.

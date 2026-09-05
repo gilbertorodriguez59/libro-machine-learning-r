@@ -1,0 +1,31 @@
+project:
+  type: book
+  output-dir: ../docs/en
+
+lang: en
+bibliography: ../referencias.bib
+
+format:
+  html:
+    embed-resources: false
+    self-contained: false
+
+book:
+  title: "Machine Learning and Automatic Classification with R"
+  subtitle: "A Practical Approach Using Real Open Data"
+  author: "Jesús Gilberto Rodríguez Escobedo"
+  date: "2026"
+  site-url: "https://gilbertorodriguez59.github.io/libro-machine-learning-r/en/"
+  repo-url: "https://github.com/gilbertorodriguez59/libro-machine-learning-r"
+  output-file: "Machine-Learning-and-Automatic-Classification-with-R"
+  downloads: [pdf]
+  navbar:
+    right:
+      - text: "Español"
+        href: ../index.html
+  chapters:
+    - index.qmd
+    - 00-welcome.qmd
+    - 00-legal-page.qmd
+    - 00-editorial-credits.qmd
+    - 00-license-and-academic-use.qmd

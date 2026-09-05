@@ -1,0 +1,25 @@
+# Figure Index {.unnumbered}
+
+The PDF edition automatically generates a **list of figures** from the captions defined for graphical blocks. In the web edition, figures can be located through each chapter's table of contents and the links below.
+
+## Figures by topic {.unnumbered}
+
+- [Introduction to machine learning](01-introduction.qmd)
+- [Preparing real-world data](02-data-preparation.qmd)
+- [Exploratory data analysis](03-exploratory-data-analysis.qmd)
+- [Simple and multiple linear regression](04-linear-regression.qmd)
+- [Logistic regression](05-logistic-regression.qmd)
+- [k-nearest neighbors, k-NN](06-knn.qmd)
+- [Decision trees](07-decision-trees.qmd)
+- [Random Forest](08-random-forest.qmd)
+- [Model evaluation and validation](09-model-evaluation.qmd)
+- [Support Vector Machines](10-svm.qmd)
+- [Naive Bayes](11-naive-bayes.qmd)
+- [Artificial neural networks](12-neural-networks.qmd)
+- [k-means clustering](13-kmeans.qmd)
+
+::: {.callout-note title="Figures and interactive laboratories"}
+
+Some resources in the web edition are interactive laboratories rather than static figures. In the PDF edition, their purpose is explained and, when appropriate, a static representation or a reference to the online resource is provided.
+
+:::

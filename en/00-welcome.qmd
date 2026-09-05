@@ -1,0 +1,25 @@
+# Welcome {.unnumbered}
+
+This book presents machine learning through a practical, reproducible, and interactive learning path. Its purpose is to guide the reader from data preparation to model construction, evaluation, and interpretation using **R**, real open data, and executable laboratories.
+
+The book is intended for students, instructors, and professionals in engineering, mathematics, computing, statistics, data science, and related areas who want to learn the main methods of regression, classification, and clustering through step-by-step examples.
+
+This practical volume complements *Mathematical Foundations of Machine Learning*. The two books can be studied independently, although reading them together helps connect:
+
+1. the mathematical formulation of the problem;
+2. the algorithmic procedure;
+3. the computational implementation;
+4. model evaluation;
+5. interpretation of results.
+
+## General learning outcomes {.unnumbered}
+
+By the end of the book, the reader should be able to:
+
+- prepare and explore real open datasets;
+- formulate regression, classification, and clustering problems;
+- implement machine-learning algorithms in R;
+- evaluate models using appropriate metrics;
+- interpret results, assumptions, and limitations;
+- use interactive laboratories to experiment with parameters;
+- connect practical implementation with mathematical foundations.

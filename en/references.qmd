@@ -1,0 +1,6 @@
+# References {.unnumbered}
+
+The references cited throughout this edition are collected automatically from the shared bibliography file of the book.
+
+::: {#refs}
+:::

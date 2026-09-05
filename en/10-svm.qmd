@@ -1,0 +1,111 @@
+# Support Vector Machines (SVM)
+
+::: {.callout-note title="Connection with the theoretical volume"}
+The mathematical treatment of margins, convex optimization, KKT conditions, and kernels is developed more deeply in Chapters 4 and 15 of *Mathematical Foundations of Machine Learning* [@rodriguez2026fundamentos].
+:::
+
+## Learning objectives
+
+By the end of this chapter, the reader will be able to explain maximum-margin classification, identify support vectors, distinguish linear and kernel SVMs, understand the roles of `cost` and `gamma`, train SVM models in R, and evaluate them with classification metrics.
+
+## Geometric intuition
+
+For predictors $x_1$ and $x_2$, a linear decision boundary can be written as
+
+$$
+w_1x_1+w_2x_2+b=0.
+$$
+
+The SVM seeks a boundary with a wide margin. In the separable case, the constraints are
+
+$$
+y_i(\mathbf{w}^T\mathbf{x}_i+b)\ge 1,
+$$
+
+with $y_i\in\{-1,1\}$. The margin width is proportional to
+
+$$
+\frac{2}{\lVert\mathbf{w}\rVert}.
+$$
+
+The observations closest to the boundary are the **support vectors** and have a direct role in determining the classifier.
+
+## Soft margin and `cost`
+
+Real data are rarely perfectly separable. The soft-margin SVM allows violations of the margin and balances them against model complexity.
+
+- A smaller `cost` tolerates more violations and favors a wider margin.
+- A larger `cost` penalizes violations more strongly and may fit the training data more closely.
+
+The value of `cost` should be selected through validation or cross-validation, not from the final test set.
+
+## Kernels
+
+When a linear boundary is insufficient, SVMs can use a kernel. A common radial basis function kernel is
+
+$$
+K(\mathbf{x}_i,\mathbf{x}_j)=\exp\left(-\gamma\lVert\mathbf{x}_i-\mathbf{x}_j\rVert^2\right).
+$$
+
+Small values of $\gamma$ produce smoother decision surfaces, while larger values allow more local and complex boundaries.
+
+::: {.callout-warning title="Overfitting risk"}
+Large combinations of `cost` and `gamma` can produce highly flexible boundaries. Hyperparameters must be tuned inside the training process.
+:::
+
+## Scaling
+
+SVMs are sensitive to predictor scale because margins and distances depend on the numeric representation of the variables. Scaling parameters must be learned from training data and then applied unchanged to validation and test data.
+
+::: {.callout-important title="Avoid data leakage"}
+Do not standardize the complete dataset before splitting it. Means and standard deviations must be estimated from the training set only.
+:::
+
+## ATUS route
+
+The Spanish edition uses a reproducible ATUS sample, stratified splitting, class weights for imbalance, and both linear and radial SVMs. Evaluation is based on held-out data and includes sensitivity and specificity in addition to accuracy.
+
+Class weights can help the optimization pay more attention to a minority class, but they do not replace proper evaluation.
+
+## COVID-19 educational route
+
+The COVID-19 example follows the same methodological precautions and selects the processed file dynamically.
+
+```{r}
+library(readr)
+library(dplyr)
+library(tidyr)
+
+files_covid <- list.files(
+  "../datos/covid19/procesados",
+  pattern = "covid19_mexico_[0-9]{4}_ml_preparado\\.csv\\.gz$",
+  full.names = TRUE
+)
+
+if (length(files_covid) == 0) {
+  stop("No prepared COVID-19 data file was found.")
+}
+
+covid_svm <- read_csv(files_covid[1], show_col_types = FALSE) |>
+  select(
+    MURIO, EDAD, NEUMONIA, DIABETES, HIPERTENSION,
+    OBESIDAD, RENAL_CRONICA, NUM_COMORBILIDADES
+  ) |>
+  drop_na()
+```
+
+For computationally efficient teaching examples, a reproducible subsample may be used. Any scaling or hyperparameter tuning must still be performed strictly inside the training workflow.
+
+::: {.callout-warning title="Educational use only"}
+An SVM fitted to administrative COVID-19 data is not a clinical decision tool. Its predictions depend on the selected period, coverage, coding, preprocessing, and sampling strategy.
+:::
+
+## Linear versus radial SVM
+
+A linear SVM is often preferable when the relationship is approximately linear or when interpretability and computational simplicity matter. A radial SVM can model more complex decision boundaries but introduces an additional hyperparameter and greater overfitting risk.
+
+The final choice should be based on validation performance and the practical objective of the analysis.
+
+## Chapter summary
+
+Support Vector Machines build classification boundaries by balancing margin width and classification errors. Scaling, class imbalance, hyperparameter tuning, and strict separation of training and test information are central to a sound implementation.

@@ -1,0 +1,97 @@
+# Random Forest for Classification
+
+::: {.callout-note title="Connection with the theoretical volume"}
+The mathematical foundations of bootstrap sampling, ensembles, and Random Forest are developed in Chapters 7 and 14 of *Mathematical Foundations of Machine Learning* [@rodriguez2026fundamentos].
+:::
+
+## Learning objectives
+
+By the end of this chapter, the reader will be able to explain how Random Forest combines many decision trees, interpret the role of bootstrap samples and random predictor selection, fit a model in R, examine variable importance, and evaluate performance on held-out data.
+
+## Core idea
+
+A Random Forest combines many partially different decision trees. For classification, the final prediction is typically obtained by majority vote:
+
+$$
+\hat{y}(x)=\operatorname{mode}\left\{\hat{y}^{(1)}(x),\hat{y}^{(2)}(x),\ldots,\hat{y}^{(B)}(x)\right\}.
+$$
+
+Each tree is built from a bootstrap sample and considers only a random subset of predictors at each split. These two sources of randomness reduce correlation among trees and usually improve stability relative to a single tree.
+
+## Out-of-bag error
+
+Observations not selected in a particular bootstrap sample are called *out-of-bag* (OOB) observations for that tree. They can be used to obtain an internal estimate of predictive error without fitting a separate model for each resample.
+
+::: {.callout-note title="OOB is useful, but the final test set still matters"}
+OOB error is valuable for model development, but a final untouched test set remains the clearest estimate of out-of-sample performance when one has been reserved.
+:::
+
+## ATUS example
+
+The Spanish edition fits a probabilistic Random Forest with `ranger`, using month, hour, day of week, accident type, and cause to classify accidents as **with victims** or **property damage only**.
+
+The workflow separates training and test data before fitting the forest and evaluates the resulting class predictions with a confusion matrix, sensitivity, and specificity.
+
+## Variable importance
+
+Random Forest can report different forms of variable importance. Impurity-based importance measures how much a predictor contributes to impurity reduction across trees.
+
+::: {.callout-warning title="Importance is not causality"}
+A high importance score means that a variable was useful for prediction in this fitted model. It does not establish a causal relationship with the outcome and may be affected by predictor scale, cardinality, correlation, and the chosen importance measure.
+:::
+
+For stronger interpretation, permutation importance is often preferable when computationally feasible because it evaluates how predictive performance changes after disrupting one predictor.
+
+## COVID-19 educational route
+
+The processed COVID-19 dataset should be selected dynamically instead of fixing a calendar year in the source code.
+
+```{r}
+library(readr)
+library(dplyr)
+library(tidyr)
+library(ranger)
+
+files_covid <- list.files(
+  "../datos/covid19/procesados",
+  pattern = "covid19_mexico_[0-9]{4}_ml_preparado\\.csv\\.gz$",
+  full.names = TRUE
+)
+
+if (length(files_covid) == 0) {
+  stop("No prepared COVID-19 data file was found.")
+}
+
+covid_rf <- read_csv(files_covid[1], show_col_types = FALSE) |>
+  select(
+    MURIO, EDAD, NEUMONIA, DIABETES, HIPERTENSION,
+    OBESIDAD, RENAL_CRONICA, NUM_COMORBILIDADES
+  ) |>
+  drop_na()
+```
+
+A training/test split can then be created and the model fitted with `ranger(..., probability = TRUE)`.
+
+## Probabilities and class decisions
+
+A probabilistic forest returns estimated class probabilities. Converting those probabilities to labels requires a threshold or another decision rule.
+
+As in logistic regression, discrimination and calibration should not be confused. Good ranking of observations does not guarantee well-calibrated probabilities.
+
+::: {.callout-important title="Sampling affects probability interpretation"}
+If the educational COVID-19 sample was balanced or enriched with deaths, the raw class probabilities produced by the forest should not be interpreted as population risk without appropriate weighting or recalibration.
+:::
+
+## Comparing a tree with a forest
+
+A single decision tree is usually easier to explain, while a Random Forest is often more stable and more accurate because it averages many different trees. The trade-off is reduced transparency at the level of individual decision rules.
+
+## Educational and ethical note
+
+::: {.callout-warning title="Educational use only"}
+The COVID-19 model in this chapter is designed to teach ensemble classification. It is not a medical diagnostic system, a clinical prognostic model, or a decision-support tool.
+:::
+
+## Chapter summary
+
+Random Forest improves the stability of individual trees by combining bootstrap sampling, random predictor selection, and aggregation. Its strengths include strong predictive performance and robustness; its limitations include reduced interpretability and the need for careful interpretation of variable importance and predicted probabilities.

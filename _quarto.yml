@@ -47,7 +47,7 @@ book:
     - 00-agradecimientos.qmd
     - 00-cuaderno-google-colab.qmd
     - 01-introduccion.qmd
-    - 02-preparacion-datos.qmd
+    - 02-preparacion-datos-2026.qmd
     - 03-analisis-exploratorio.qmd
     - 04-regresion-lineal-multiple.qmd
     - 04-regresion-logistica.qmd

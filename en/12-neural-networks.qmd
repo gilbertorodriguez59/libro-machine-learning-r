@@ -1,0 +1,211 @@
+# Artificial Neural Networks
+
+::: {.callout-note title="Connection with the theoretical volume"}
+The mathematical treatment of linear algebra, calculus, gradient descent, backpropagation, and neural networks is developed in Chapters 2, 4, and 16 of *Mathematical Foundations of Machine Learning* [@rodriguez2026fundamentos].
+:::
+
+## Learning objectives
+
+By the end of this chapter, the reader will be able to explain the structure of an artificial neuron, interpret inputs, weights, bias, and activation functions, describe forward propagation and backpropagation, distinguish binary from multiclass outputs, prepare data correctly, and evaluate neural-network models without data leakage.
+
+## The artificial neuron
+
+An artificial neuron receives predictors
+
+$$
+x_1,x_2,\ldots,x_p,
+$$
+
+with corresponding weights
+
+$$
+w_1,w_2,\ldots,w_p.
+$$
+
+It first computes
+
+$$
+z=w_1x_1+w_2x_2+\cdots+w_px_p+b,
+$$
+
+where $b$ is the bias, and then applies an activation function
+
+$$
+a=f(z).
+$$
+
+The output may be an intermediate signal or the final prediction.
+
+## Activation functions
+
+Common choices include the sigmoid function
+
+$$
+\sigma(z)=\frac{1}{1+e^{-z}},
+$$
+
+hyperbolic tangent,
+
+$$
+\tanh(z)=\frac{e^z-e^{-z}}{e^z+e^{-z}},
+$$
+
+ReLU,
+
+$$
+\operatorname{ReLU}(z)=\max(0,z),
+$$
+
+and softmax for multiclass classification,
+
+$$
+P(y=k)=\frac{e^{z_k}}{\sum_{j=1}^{K}e^{z_j}}.
+$$
+
+::: {.callout-tip title="Output activation must match the task"}
+For binary classification, a sigmoid output is common. For multiclass classification, softmax is common. For ordinary regression, a linear output is often appropriate.
+:::
+
+## Forward propagation
+
+For one hidden layer,
+
+$$
+\mathbf{h}=f\left(\mathbf{W}^{(1)}\mathbf{x}+\mathbf{b}^{(1)}\right),
+$$
+
+followed by
+
+$$
+\widehat{\mathbf{y}}=g\left(\mathbf{W}^{(2)}\mathbf{h}+\mathbf{b}^{(2)}\right).
+$$
+
+The network transforms the input through a sequence of weighted nonlinear operations.
+
+## Loss functions
+
+For regression, mean squared error is frequently used:
+
+$$
+MSE=\frac{1}{n}\sum_{i=1}^{n}(y_i-\widehat{y}_i)^2.
+$$
+
+For binary classification, binary cross-entropy is common:
+
+$$
+L=-\frac{1}{n}\sum_{i=1}^{n}
+\left[y_i\log(\widehat{p}_i)+(1-y_i)\log(1-\widehat{p}_i)\right].
+$$
+
+## Gradient descent
+
+Training seeks weights that reduce the loss. A generic update is
+
+$$
+w^{\mathrm{new}}=w^{\mathrm{old}}-\eta\frac{\partial L}{\partial w},
+$$
+
+where $\eta$ is the learning rate.
+
+A learning rate that is too small leads to slow learning; one that is too large may produce unstable or divergent optimization.
+
+## Backpropagation
+
+Backpropagation applies the chain rule to compute how each weight contributes to the loss. The general cycle is:
+
+1. forward propagation;
+2. loss calculation;
+3. gradient calculation;
+4. backward propagation of gradients;
+5. parameter update;
+6. repetition over many iterations or epochs.
+
+::: {.callout-important title="Training procedure and model architecture are different concepts"}
+Backpropagation is the mechanism used to compute gradients in many neural networks. It is not a separate predictive model.
+:::
+
+## Manual neuron in R
+
+```{r}
+sigmoid <- function(z) {
+  1 / (1 + exp(-z))
+}
+
+x <- c(0.8, 0.4)
+w <- c(1.2, -0.7)
+b <- 0.1
+
+z <- sum(x * w) + b
+output <- sigmoid(z)
+
+z
+output
+```
+
+## Data preparation
+
+Neural networks are sensitive to scale. Standardization or normalization should be learned from the training set and then applied unchanged to validation and test data.
+
+::: {.callout-warning title="Avoid data leakage"}
+Do not compute means, standard deviations, feature selection rules, or preprocessing transformations from the full dataset before splitting. Information from the test set must not influence training.
+:::
+
+## Overfitting and regularization
+
+Neural networks can have many parameters and may fit training data extremely well. Useful controls include:
+
+- validation data;
+- early stopping;
+- weight decay or L2 regularization;
+- dropout;
+- reduced architecture size;
+- cross-validation or repeated validation when computationally feasible.
+
+Training accuracy alone is never sufficient evidence of generalization.
+
+## Binary classification
+
+With a sigmoid output, the network can produce an estimated probability. A threshold is then applied if a hard class decision is required.
+
+As in logistic regression, the threshold is a decision rule rather than an intrinsic part of the model.
+
+## COVID-19 educational route
+
+The COVID-19 route uses the processed dataset selected by the reproducible preparation workflow rather than a hard-coded year.
+
+```{r}
+library(readr)
+library(dplyr)
+library(tidyr)
+
+files_covid <- list.files(
+  "../datos/covid19/procesados",
+  pattern = "covid19_mexico_[0-9]{4}_ml_preparado\\.csv\\.gz$",
+  full.names = TRUE
+)
+
+if (length(files_covid) == 0) {
+  stop("No prepared COVID-19 data file was found.")
+}
+
+covid_nn <- read_csv(files_covid[1], show_col_types = FALSE) |>
+  select(
+    MURIO, EDAD, NEUMONIA, DIABETES, HIPERTENSION,
+    OBESIDAD, RENAL_CRONICA, NUM_COMORBILIDADES
+  ) |>
+  drop_na()
+```
+
+The same train/validation/test discipline described above must be used before scaling or fitting a neural network.
+
+::: {.callout-important title="Probabilities from a balanced educational sample"}
+If deaths were deliberately oversampled, raw network probabilities must not be interpreted as population risk. Such a sample may still be useful for teaching classification, but probability interpretation requires natural prevalence or appropriate weighting and calibration.
+:::
+
+::: {.callout-warning title="Educational use only"}
+The COVID-19 example is not a diagnostic, prognostic, or clinical decision tool. It is intended to illustrate machine-learning methodology.
+:::
+
+## Chapter summary
+
+Neural networks combine weighted linear transformations with nonlinear activation functions. Their flexibility is powerful, but it increases the need for careful preprocessing, validation, regularization, and transparent evaluation. The quality of a network is determined by performance on unseen data, not by training fit alone.

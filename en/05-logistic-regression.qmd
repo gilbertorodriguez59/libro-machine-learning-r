@@ -1,0 +1,178 @@
+# Logistic Regression for Classification
+
+::: {.callout-note title="Connection with the theoretical volume"}
+Logistic regression, maximum likelihood, and probabilistic classification are developed in greater depth in Chapters 3, 6, and 11 of *Mathematical Foundations of Machine Learning* [@rodriguez2026fundamentos].
+:::
+
+## Chapter objectives
+
+By the end of this chapter, the reader will be able to fit a logistic-regression model, interpret probabilities and coefficients, choose a classification threshold, and distinguish discrimination from calibration.
+
+## Mathematical foundation
+
+Logistic regression models a probability through
+
+$$
+p(x)=\frac{1}{1+e^{-z}},
+$$
+
+where
+
+$$
+z=\beta_0+\beta_1x_1+\cdots+\beta_px_p.
+$$
+
+Equivalently,
+
+$$
+\log\left(\frac{p}{1-p}\right)=\beta_0+\beta_1x_1+\cdots+\beta_px_p.
+$$
+
+The expression on the left is the *logit*.
+
+## Logistic curve
+
+```{r fig.width=7, fig.height=4.5}
+library(ggplot2)
+
+z <- seq(-10, 10, length.out = 200)
+logistic_data <- data.frame(
+  z = z,
+  p = 1 / (1 + exp(-z))
+)
+
+ggplot(logistic_data, aes(x = z, y = p)) +
+  geom_line(linewidth = 1.2) +
+  labs(
+    title = "Logistic function",
+    subtitle = "Maps real-valued scores to probabilities",
+    x = "z",
+    y = "Probability"
+  ) +
+  theme_minimal()
+```
+
+## ATUS case: accidents with victims
+
+```{r}
+library(readr)
+library(dplyr)
+
+atus_ml <- read_csv("../datos/atus_ml_preparado.csv", show_col_types = FALSE)
+
+atus_model <- atus_ml |>
+  mutate(
+    victims_binary = ifelse(accidente_con_victimas == "Con víctimas", 1, 0),
+    MES = as.factor(MES),
+    ID_HORA = as.numeric(ID_HORA),
+    DIASEMANA = as.factor(DIASEMANA),
+    TIPACCID = as.factor(TIPACCID),
+    CAUSAACCI = as.factor(CAUSAACCI)
+  )
+
+set.seed(2026)
+idx <- sample(seq_len(nrow(atus_model)), size = floor(0.70 * nrow(atus_model)))
+train <- atus_model[idx, ]
+test <- atus_model[-idx, ]
+
+model_logit <- glm(
+  victims_binary ~ MES + ID_HORA + DIASEMANA + TIPACCID + CAUSAACCI,
+  data = train,
+  family = binomial
+)
+```
+
+::: {.callout-tip title="Interpreting coefficients"}
+A coefficient describes a change in log-odds while holding the remaining predictors constant. Its exponential, $e^{\beta_j}$, can be interpreted as an odds ratio.
+:::
+
+## Probabilities and classification threshold
+
+```{r}
+test$prob_victims <- predict(model_logit, newdata = test, type = "response")
+threshold <- 0.30
+
+test$predicted_class <- ifelse(
+  test$prob_victims >= threshold,
+  "Con víctimas",
+  "Solo daños"
+)
+```
+
+::: {.callout-note title="The threshold is not part of the fitted probability model"}
+The logistic model produces probabilities. A threshold is a later decision rule and changes the sensitivity-specificity trade-off.
+:::
+
+## Discrimination and calibration
+
+A useful probabilistic classifier must distinguish two ideas:
+
+- **discrimination:** how well the model ranks lower-risk and higher-risk observations;
+- **calibration:** how closely predicted probabilities agree with observed frequencies.
+
+A model can discriminate well while still producing poorly calibrated probabilities.
+
+## COVID-19 educational case
+
+The COVID-19 route dynamically uses the processed file selected by the reproducible preparation procedure instead of fixing a specific year.
+
+```{r}
+covid_files <- list.files(
+  "../datos/covid19/procesados",
+  pattern = "covid19_mexico_[0-9]{4}_ml_preparado\\.csv\\.gz$",
+  full.names = TRUE
+)
+
+if (length(covid_files) == 0) {
+  stop("No prepared COVID-19 dataset was found.")
+}
+
+covid <- read_csv(covid_files[1], show_col_types = FALSE)
+
+covid_model <- covid |>
+  select(
+    MURIO,
+    EDAD,
+    NEUMONIA,
+    DIABETES,
+    HIPERTENSION,
+    OBESIDAD,
+    RENAL_CRONICA
+  ) |>
+  tidyr::drop_na()
+```
+
+::: {.callout-important title="Predicted probability is not automatically population risk"}
+If the educational dataset over-samples deaths or otherwise alters the class proportion, raw logistic probabilities do not directly represent population prevalence. Balanced samples may still be useful for teaching classification, but a risk simulator requires natural-prevalence data or appropriate weighting and calibration.
+:::
+
+```{r}
+set.seed(2026)
+idx_covid <- sample(
+  seq_len(nrow(covid_model)),
+  size = floor(0.80 * nrow(covid_model))
+)
+
+covid_train <- covid_model[idx_covid, ]
+covid_test <- covid_model[-idx_covid, ]
+
+covid_logit <- glm(
+  MURIO ~ EDAD + NEUMONIA + DIABETES + HIPERTENSION + OBESIDAD + RENAL_CRONICA,
+  data = covid_train,
+  family = binomial
+)
+
+covid_test$sample_probability <- predict(
+  covid_logit,
+  newdata = covid_test,
+  type = "response"
+)
+```
+
+::: {.callout-warning title="Educational use only"}
+This model is not a diagnostic or prognostic tool. Its coefficients describe associations within the dataset and depend on time period, coverage, data quality, and sampling strategy.
+:::
+
+## Chapter summary
+
+Logistic regression separates two stages: probability estimation and, when needed, class assignment through a threshold. Responsible probability interpretation requires attention to prevalence, sampling, and calibration, especially in health applications.

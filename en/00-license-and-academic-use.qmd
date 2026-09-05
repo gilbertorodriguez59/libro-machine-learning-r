@@ -1,0 +1,26 @@
+# License and academic use {.unnumbered}
+
+This work is published for educational and academic-reference purposes under the **Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License (CC BY-NC-SA 4.0)**.
+
+Under this license, readers may share and adapt the content, including translations and other derivative works, provided that:
+
+- appropriate credit is given;
+- the use is non-commercial;
+- changes are indicated;
+- derivative works are distributed under the same license or a compatible CC BY-NC-SA 4.0 license.
+
+Commercial uses, different licensing arrangements, or special publishing agreements require authorization from the author.
+
+**Author:** Jesús Gilberto Rodríguez Escobedo  
+**Edition:** First edition, 2026  
+**Place:** San Luis Potosí, S.L.P., Mexico  
+
+## Responsible use of data {.unnumbered}
+
+The examples use open datasets on road-traffic accidents and epidemiological records, among other sources. The models, graphics, and interpretations are academic exercises prepared by the author and do not constitute official results from the institutions that provide the data.
+
+The COVID-19 examples are strictly educational. They are not diagnostic instruments, clinical-prognosis tools, or direct support for medical decision-making.
+
+## Third-party materials {.unnumbered}
+
+When data, images, trademarks, software packages, platforms, or other third-party materials are used, the terms of use and attribution requirements established by their respective owners prevail. The license of this book does not replace or expand those third-party rights.

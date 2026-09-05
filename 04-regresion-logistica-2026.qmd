@@ -1,0 +1,227 @@
+# Regresión logística para clasificación
+
+::: {.callout-note title="Conexión con el volumen teórico"}
+La formulación matemática de la regresión logística, la máxima verosimilitud y la clasificación probabilística se desarrolla con mayor profundidad en los capítulos 3, 6 y 11 de *Fundamentos Matemáticos del Aprendizaje Automático* [@rodriguez2026fundamentos].
+:::
+
+## Objetivos del capítulo
+
+Al finalizar este capítulo, el lector será capaz de ajustar una regresión logística, interpretar probabilidades y coeficientes, elegir un umbral de clasificación y evaluar discriminación y calibración.
+
+## Fundamento matemático
+
+La regresión logística modela una probabilidad mediante
+
+$$
+p(x)=\frac{1}{1+e^{-z}},
+$$
+
+con
+
+$$
+z=\beta_0+\beta_1x_1+\cdots+\beta_px_p.
+$$
+
+Equivalentemente,
+
+$$
+\log\left(\frac{p}{1-p}\right)=\beta_0+\beta_1x_1+\cdots+\beta_px_p.
+$$
+
+El término del lado izquierdo es el *logit* de la probabilidad.
+
+## Función logística
+
+```{r fig.width=7, fig.height=4.5}
+library(ggplot2)
+source("util_graficas.R")
+
+z <- seq(-10, 10, length.out = 200)
+datos_logistica <- data.frame(
+  z = z,
+  p = 1 / (1 + exp(-z))
+)
+
+ggplot(datos_logistica, aes(x = z, y = p)) +
+  geom_line(linewidth = 1.2, color = col_azul) +
+  labs(
+    title = "Función logística",
+    subtitle = "Transforma valores reales en probabilidades",
+    x = "z",
+    y = "Probabilidad"
+  ) +
+  tema_libro()
+```
+
+## Caso ATUS: accidente con víctimas
+
+```{r}
+library(readr)
+library(dplyr)
+
+ruta_atus_ml <- "datos/atus_ml_preparado.csv"
+
+if (!file.exists(ruta_atus_ml)) {
+  stop("No se encontró datos/atus_ml_preparado.csv. Ejecute primero el capítulo de preparación de datos.")
+}
+
+atus_ml <- read_csv(ruta_atus_ml, show_col_types = FALSE)
+
+atus_modelo <- atus_ml |>
+  mutate(
+    victimas_binaria = ifelse(accidente_con_victimas == "Con víctimas", 1, 0),
+    MES = as.factor(MES),
+    ID_HORA = as.numeric(ID_HORA),
+    DIASEMANA = as.factor(DIASEMANA),
+    TIPACCID = as.factor(TIPACCID),
+    CAUSAACCI = as.factor(CAUSAACCI)
+  )
+```
+
+## Separar entrenamiento y prueba
+
+```{r}
+set.seed(2026)
+idx <- sample(
+  seq_len(nrow(atus_modelo)),
+  size = floor(0.70 * nrow(atus_modelo))
+)
+
+entrenamiento <- atus_modelo[idx, ]
+prueba <- atus_modelo[-idx, ]
+```
+
+## Ajustar el modelo
+
+```{r}
+modelo_logistico <- glm(
+  victimas_binaria ~ MES + ID_HORA + DIASEMANA + TIPACCID + CAUSAACCI,
+  data = entrenamiento,
+  family = binomial
+)
+
+head(summary(modelo_logistico)$coefficients, 12)
+```
+
+::: {.callout-tip title="Interpretación de los coeficientes"}
+Un coeficiente describe el cambio en el logaritmo de las *odds* asociado con una variable, manteniendo constantes las demás. Su exponencial, $e^{\beta_j}$, puede interpretarse como una razón de *odds*.
+:::
+
+## Probabilidades y umbral de clasificación
+
+```{r}
+prueba$probabilidad_victimas <- predict(
+  modelo_logistico,
+  newdata = prueba,
+  type = "response"
+)
+
+umbral <- 0.30
+
+prueba$prediccion <- ifelse(
+  prueba$probabilidad_victimas >= umbral,
+  "Con víctimas",
+  "Solo daños"
+)
+```
+
+::: {.callout-note title="El umbral no forma parte del modelo"}
+La regresión logística produce probabilidades. El umbral es una decisión posterior y modifica el equilibrio entre sensibilidad y especificidad.
+:::
+
+## Matriz de confusión y métricas
+
+```{r}
+real <- ifelse(prueba$accidente_con_victimas == "Con víctimas", 1, 0)
+pred <- ifelse(prueba$prediccion == "Con víctimas", 1, 0)
+
+VP <- sum(real == 1 & pred == 1)
+FN <- sum(real == 1 & pred == 0)
+FP <- sum(real == 0 & pred == 1)
+VN <- sum(real == 0 & pred == 0)
+
+data.frame(
+  exactitud = (VP + VN) / (VP + FN + FP + VN),
+  sensibilidad = VP / (VP + FN),
+  especificidad = VN / (VN + FP)
+)
+```
+
+## Discriminación y calibración
+
+Una clasificación útil requiere distinguir entre dos conceptos:
+
+- **discriminación:** capacidad del modelo para ordenar observaciones de menor a mayor riesgo;
+- **calibración:** concordancia entre las probabilidades predichas y las frecuencias observadas.
+
+Un modelo puede discriminar bien y, al mismo tiempo, producir probabilidades mal calibradas.
+
+## Caso aplicado B: COVID-19
+
+La ruta COVID-19 utiliza el archivo procesado del periodo seleccionado por el procedimiento reproducible del capítulo de preparación. No se fija aquí un año específico.
+
+```{r}
+archivos_covid <- list.files(
+  "datos/covid19/procesados",
+  pattern = "covid19_mexico_[0-9]{4}_ml_preparado\\.csv\\.gz$",
+  full.names = TRUE
+)
+
+if (length(archivos_covid) == 0) {
+  stop("No se encontró una base COVID-19 preparada.")
+}
+
+ruta_covid <- archivos_covid[1]
+covid <- read_csv(ruta_covid, show_col_types = FALSE)
+
+covid_modelo <- covid |>
+  select(
+    MURIO,
+    EDAD,
+    NEUMONIA,
+    DIABETES,
+    HIPERTENSION,
+    OBESIDAD,
+    RENAL_CRONICA
+  ) |>
+  tidyr::drop_na()
+```
+
+## Advertencia sobre probabilidades en muestras balanceadas
+
+::: {.callout-important title="Probabilidad estimada no equivale automáticamente a riesgo poblacional"}
+Si la base fue construida con sobremuestreo de defunciones o con una proporción artificial de clases, las probabilidades crudas del modelo no representan directamente la frecuencia poblacional real. En ese caso, la muestra puede ser útil para enseñar clasificación y comparar algoritmos, pero un simulador de riesgo requiere trabajar con prevalencia natural o aplicar ponderación y calibración adecuadas.
+:::
+
+## Modelo educativo COVID-19
+
+```{r}
+set.seed(2026)
+idx_covid <- sample(
+  seq_len(nrow(covid_modelo)),
+  size = floor(0.80 * nrow(covid_modelo))
+)
+
+covid_train <- covid_modelo[idx_covid, ]
+covid_test <- covid_modelo[-idx_covid, ]
+
+modelo_covid <- glm(
+  MURIO ~ EDAD + NEUMONIA + DIABETES + HIPERTENSION + OBESIDAD + RENAL_CRONICA,
+  data = covid_train,
+  family = binomial
+)
+
+covid_test$probabilidad_muestra <- predict(
+  modelo_covid,
+  newdata = covid_test,
+  type = "response"
+)
+```
+
+::: {.callout-warning title="Uso exclusivamente educativo"}
+Este modelo no es una herramienta diagnóstica ni pronóstica. Los coeficientes reflejan asociaciones dentro del conjunto de datos y dependen de su periodo, cobertura, calidad y estrategia de muestreo.
+:::
+
+## Conclusión
+
+La regresión logística separa claramente dos etapas: primero estima probabilidades y después, si se necesita una clase, se aplica un umbral. Para interpretar probabilidades de manera responsable hay que considerar la prevalencia, el muestreo y la calibración, especialmente en aplicaciones de salud.

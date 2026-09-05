@@ -34,3 +34,6 @@ book:
     - 03-exploratory-data-analysis.qmd
     - 04-linear-regression.qmd
     - 05-logistic-regression.qmd
+    - 06-knn.qmd
+    - 07-decision-trees.qmd
+    - 08-random-forest.qmd

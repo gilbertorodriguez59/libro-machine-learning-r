@@ -6,11 +6,55 @@ The mathematical foundations of distances, scaling, and nearest-neighbor methods
 
 ## Learning objectives
 
-By the end of this chapter, the reader will be able to explain the k-NN algorithm, understand why scaling matters, prepare mixed predictors for distance-based classification, compare different values of $k$, and evaluate performance beyond overall accuracy.
+By the end of this chapter, the reader will be able to:
+
+- explain the classification logic of k-NN;
+- calculate and interpret Euclidean distance;
+- prepare numerical and categorical predictors for distance-based classification;
+- avoid information leakage during scaling;
+- create stratified training, validation, and test partitions;
+- choose $k$ using validation while preserving the test set for final evaluation;
+- interpret accuracy, sensitivity, specificity, and balanced accuracy;
+- recognize the effects of class imbalance and high dimensionality on k-NN.
 
 ## Core idea
 
-k-NN classifies a new observation according to the most common class among its nearest neighbors. For two numerical variables, Euclidean distance is
+k-NN (*k-nearest neighbors*) classifies a new observation according to the most common class among its $k$ nearest neighbors [@fix1951discriminatory; @cover1967nearest]. It is often described as a **lazy learner** because it does not estimate a parametric prediction equation during training; much of the computation takes place when a new observation is classified.
+
+```{r knn-intuitive-example-en, fig.width=7, fig.height=4.5}
+library(ggplot2)
+library(class)
+library(dplyr)
+library(tidyr)
+library(readr)
+source("../util_graficas.R")
+
+example_data <- data.frame(
+  hour = c(8, 9, 10, 18, 19, 20, 22, 23),
+  month = c(1, 1, 2, 6, 6, 7, 12, 12),
+  class = c(
+    "Property damage only", "Property damage only", "Property damage only",
+    "With casualties", "With casualties", "With casualties",
+    "With casualties", "With casualties"
+  )
+)
+
+ggplot(example_data, aes(x = hour, y = month, color = class)) +
+  geom_point(size = 4) +
+  escala_clases_color() +
+  labs(
+    title = "Intuitive k-NN example",
+    subtitle = "Classification depends on the nearest observations",
+    x = "Hour",
+    y = "Month",
+    color = "Class"
+  ) +
+  tema_libro()
+```
+
+## Euclidean distance
+
+For two points in two dimensions,
 
 $$
 d(A,B)=\sqrt{(x_1-x_2)^2+(y_1-y_2)^2}.
@@ -19,73 +63,614 @@ $$
 With $p$ predictors,
 
 $$
-d(\mathbf{x},\mathbf{x}')=\sqrt{\sum_{j=1}^{p}(x_j-x'_j)^2}.
+d(\mathbf{x},\mathbf{x}')=
+\sqrt{\sum_{j=1}^{p}(x_j-x'_j)^2}.
 $$
 
-A smaller distance means greater proximity in predictor space.
+```{r knn-distance-en}
+sqrt((8 - 10)^2 + (1 - 2)^2)
+```
 
-## Why scaling is essential
+::: {.callout-tip title="Interpretation"}
+A smaller distance indicates greater proximity in predictor space. That proximity is meaningful only when variables have been represented and scaled appropriately.
+:::
 
-Variables measured on larger numerical scales can dominate Euclidean distance. Therefore, numerical predictors should generally be standardized using parameters estimated from the **training set only**:
+## Why scaling matters
+
+If one variable ranges from 0 to 1000 and another from 0 to 1, the first can dominate Euclidean distance even when it is not substantively more important. A continuous predictor can be standardized as
 
 $$
 z_{ij}=\frac{x_{ij}-\bar{x}_{j,\text{train}}}{s_{j,\text{train}}}.
 $$
 
-::: {.callout-important title="Avoiding data leakage"}
-The means and standard deviations used to scale the test set must come from the training set. Computing them from all observations would leak information from the test data into model construction.
+::: {.callout-important title="Avoiding information leakage"}
+The means and standard deviations used to transform validation and test observations must be estimated **only from training data**. Scaling with the complete dataset would leak test information into model construction.
 :::
 
-## ATUS example
+In this chapter, categorical predictors are converted to 0/1 indicator variables with `model.matrix()`. The continuous hour variable is standardized, while binary indicators remain 0/1. Standardizing rare indicator columns can unintentionally give uncommon categories excessive weight because their standard deviations are very small.
 
-The Spanish edition develops the complete ATUS workflow, including dummy-variable construction, training/test separation, standardization, and classification with `class::knn()`.
+## Helper functions for rigorous evaluation
 
-A useful comparison is to evaluate several values of $k$ using accuracy, sensitivity, and specificity rather than selecting $k$ from a single metric.
+```{r knn-helper-functions-en}
+stratified_split <- function(y, prop_train = 0.60, prop_val = 0.20, seed = 2026) {
+  set.seed(seed)
+  y <- factor(y)
 
-::: {.callout-tip title="Interpretation of k"}
-Small values of $k$ produce highly local and flexible decision boundaries. Larger values smooth the decision rule. There is no universally optimal value of $k$; it should be selected using validation rather than the final test set.
-:::
+  idx_train <- integer(0)
+  idx_val <- integer(0)
+  idx_test <- integer(0)
 
-## COVID-19 educational route
+  for (class_value in levels(y)) {
+    ids <- sample(which(y == class_value))
+    n_train <- floor(prop_train * length(ids))
+    n_val <- floor(prop_val * length(ids))
 
-For the COVID-19 case, the processed file should be selected dynamically rather than hard-coding one calendar year.
+    ids_train <- ids[seq_len(n_train)]
+    remaining <- ids[-seq_len(n_train)]
+    ids_val <- remaining[seq_len(n_val)]
+    ids_test <- setdiff(remaining, ids_val)
 
-```{r}
-library(readr)
-library(dplyr)
-library(tidyr)
-library(class)
+    idx_train <- c(idx_train, ids_train)
+    idx_val <- c(idx_val, ids_val)
+    idx_test <- c(idx_test, ids_test)
+  }
 
-files_covid <- list.files(
-  "../datos/covid19/procesados",
-  pattern = "covid19_mexico_[0-9]{4}_ml_preparado\\.csv\\.gz$",
-  full.names = TRUE
-)
-
-if (length(files_covid) == 0) {
-  stop("No prepared COVID-19 data file was found.")
+  list(
+    train = sort(idx_train),
+    validation = sort(idx_val),
+    test = sort(idx_test)
+  )
 }
 
-covid_knn <- read_csv(files_covid[1], show_col_types = FALSE) |>
-  select(
-    MURIO, EDAD, NEUMONIA, DIABETES, HIPERTENSION,
-    OBESIDAD, RENAL_CRONICA, NUM_COMORBILIDADES
-  ) |>
-  drop_na()
+binary_metrics <- function(actual, predicted, positive, negative) {
+  actual <- factor(actual, levels = c(positive, negative))
+  predicted <- factor(predicted, levels = c(positive, negative))
+  m <- table(Actual = actual, Predicted = predicted)
+
+  TP <- m[positive, positive]
+  FN <- m[positive, negative]
+  FP <- m[negative, positive]
+  TN <- m[negative, negative]
+
+  safe_divide <- function(a, b) if (b == 0) NA_real_ else a / b
+
+  sensitivity <- safe_divide(TP, TP + FN)
+  specificity <- safe_divide(TN, TN + FP)
+
+  data.frame(
+    accuracy = safe_divide(TP + TN, sum(m)),
+    sensitivity = sensitivity,
+    specificity = specificity,
+    balanced_accuracy = mean(c(sensitivity, specificity), na.rm = TRUE)
+  )
+}
 ```
 
-The same scaling rule applies: estimate centering and scaling constants on the training sample and reuse them for the test sample.
+# Applied Case A: ATUS
 
-::: {.callout-warning title="Educational use only"}
-This exercise illustrates distance-based classification. It is not a clinical calculator, diagnostic instrument, or validated prognostic model.
+## Load and prepare the dataset
+
+To keep computation manageable, we use a reproducible sample of up to 12,000 traffic accidents. The sample is intended to teach the algorithm rather than replace a full analysis of the complete ATUS dataset.
+
+```{r load-prepare-knn-atus-en}
+atus_path <- "../datos/atus_ml_preparado.csv"
+
+if (!file.exists(atus_path)) {
+  stop("../datos/atus_ml_preparado.csv was not found. Run Chapter 2 first.")
+}
+
+atus_ml <- read_csv(atus_path, show_col_types = FALSE)
+
+set.seed(2026)
+atus_knn_base <- atus_ml |>
+  mutate(
+    accident_class = factor(
+      accidente_con_victimas,
+      levels = c("Con víctimas", "Solo daños"),
+      labels = c("With casualties", "Property damage only")
+    ),
+    MES = as.factor(MES),
+    HOUR_NUM = suppressWarnings(as.numeric(ID_HORA)),
+    HOUR_NUM = ifelse(
+      HOUR_NUM >= 0 & HOUR_NUM <= 23,
+      HOUR_NUM,
+      NA_real_
+    ),
+    DIASEMANA = as.factor(DIASEMANA),
+    TIPACCID = as.factor(TIPACCID),
+    CAUSAACCI = as.factor(CAUSAACCI)
+  ) |>
+  drop_na(
+    accident_class,
+    MES,
+    HOUR_NUM,
+    DIASEMANA,
+    TIPACCID,
+    CAUSAACCI
+  ) |>
+  slice_sample(n = min(12000, n()))
+
+prop.table(table(atus_knn_base$accident_class))
+```
+
+## Build the predictor matrix
+
+```{r knn-predictor-matrix-en}
+predictor_matrix <- model.matrix(
+  ~ HOUR_NUM + MES + DIASEMANA + TIPACCID + CAUSAACCI - 1,
+  data = atus_knn_base
+)
+
+y_atus <- atus_knn_base$accident_class
+
+dim(predictor_matrix)
+```
+
+::: {.callout-note title="Dummy variables and dimensionality"}
+Each categorical predictor produces several indicator columns. This increases the dimensionality of the space. In high dimensions, distances tend to become more similar and truly close neighbors can be harder to distinguish; this is one aspect of the **curse of dimensionality**.
 :::
 
-## Class imbalance and interpretation
+## Training, validation, and test sets
 
-When classes are imbalanced, high accuracy can coexist with poor detection of the minority class. Sensitivity and specificity should therefore be reported together with the confusion matrix.
+```{r knn-split-atus-en}
+parts_atus <- stratified_split(
+  y_atus,
+  prop_train = 0.60,
+  prop_val = 0.20,
+  seed = 2026
+)
 
-If the COVID-19 sample was intentionally balanced or enriched with deaths, the resulting class proportions do not represent population prevalence.
+x_train <- predictor_matrix[parts_atus$train, , drop = FALSE]
+x_val <- predictor_matrix[parts_atus$validation, , drop = FALSE]
+x_test <- predictor_matrix[parts_atus$test, , drop = FALSE]
+
+y_train <- y_atus[parts_atus$train]
+y_val <- y_atus[parts_atus$validation]
+y_test <- y_atus[parts_atus$test]
+
+rbind(
+  training = prop.table(table(y_train)),
+  validation = prop.table(table(y_val)),
+  test = prop.table(table(y_test))
+)
+```
+
+## Scale the continuous predictor using training data
+
+```{r knn-scaling-atus-en}
+mean_hour <- mean(x_train[, "HOUR_NUM"])
+sd_hour <- sd(x_train[, "HOUR_NUM"])
+if (sd_hour == 0) sd_hour <- 1
+
+x_train_z <- x_train
+x_val_z <- x_val
+x_test_z <- x_test
+
+x_train_z[, "HOUR_NUM"] <-
+  (x_train[, "HOUR_NUM"] - mean_hour) / sd_hour
+x_val_z[, "HOUR_NUM"] <-
+  (x_val[, "HOUR_NUM"] - mean_hour) / sd_hour
+x_test_z[, "HOUR_NUM"] <-
+  (x_test[, "HOUR_NUM"] - mean_hour) / sd_hour
+```
+
+## Select k using validation data
+
+The test set should not be used to tune hyperparameters. We compare several odd values of $k$ on the **validation set** and select the value with the largest balanced accuracy.
+
+```{r select-k-atus-en}
+k_values <- c(3, 5, 7, 11, 15, 21)
+
+validation_results <- do.call(
+  rbind,
+  lapply(k_values, function(current_k) {
+    pred <- knn(
+      train = x_train_z,
+      test = x_val_z,
+      cl = y_train,
+      k = current_k
+    )
+
+    m <- binary_metrics(
+      y_val,
+      pred,
+      positive = "With casualties",
+      negative = "Property damage only"
+    )
+    m$k <- current_k
+    m
+  })
+) |>
+  select(k, accuracy, sensitivity, specificity, balanced_accuracy)
+
+validation_results
+
+best_k <- validation_results$k[
+  which.max(validation_results$balanced_accuracy)
+]
+
+best_k
+```
+
+```{r plot-k-selection-atus-en, fig.width=7, fig.height=4.8}
+validation_long <- validation_results |>
+  pivot_longer(
+    cols = c(accuracy, sensitivity, specificity, balanced_accuracy),
+    names_to = "metric",
+    values_to = "value"
+  )
+
+ggplot(
+  validation_long,
+  aes(x = k, y = value, color = metric, group = metric)
+) +
+  geom_line(linewidth = 1.05) +
+  geom_point(size = 2.8) +
+  scale_color_manual(
+    values = c(
+      accuracy = col_azul,
+      sensitivity = col_coral,
+      specificity = col_turquesa,
+      balanced_accuracy = col_morado
+    )
+  ) +
+  labs(
+    title = "Selecting k on the validation set",
+    subtitle = "The test set remains untouched until final evaluation",
+    x = "k",
+    y = "Metric value",
+    color = "Metric"
+  ) +
+  tema_libro()
+```
+
+## Final evaluation on the test set
+
+After $k$ has been selected, training and validation observations are combined as the reference set and the model is evaluated **once** on the test data.
+
+```{r final-knn-evaluation-atus-en}
+x_reference <- rbind(x_train_z, x_val_z)
+y_reference <- factor(
+  c(as.character(y_train), as.character(y_val)),
+  levels = levels(y_atus)
+)
+
+pred_test_atus <- knn(
+  train = x_reference,
+  test = x_test_z,
+  cl = y_reference,
+  k = best_k
+)
+
+confusion_test_atus <- table(
+  Actual = factor(y_test, levels = c("With casualties", "Property damage only")),
+  Predicted = factor(pred_test_atus, levels = c("With casualties", "Property damage only"))
+)
+
+confusion_test_atus
+
+binary_metrics(
+  y_test,
+  pred_test_atus,
+  positive = "With casualties",
+  negative = "Property damage only"
+)
+```
+
+::: {.callout-tip title="Why balanced accuracy?"}
+When one class is much more frequent, overall accuracy can favor the majority group. Balanced accuracy averages sensitivity and specificity, giving equal importance to both classes.
+:::
+
+# Interactive laboratory: k-NN
+
+::: {.content-visible when-format="html"}
+Choose the number of neighbors and move a new observation. The laboratory highlights the points that participate in the decision and shows their votes.
+
+```{shinylive-r}
+#| standalone: true
+#| viewerHeight: 760
+#| components: [viewer]
+
+library(shiny)
+
+ui <- fluidPage(
+  titlePanel("k-NN classification laboratory"),
+  sidebarLayout(
+    sidebarPanel(
+      sliderInput("k", "Number of neighbors k", 1, 15, 5, step = 2),
+      sliderInput("xnew", "Sepal length", 4, 8, 5.8, step = 0.1),
+      sliderInput("ynew", "Sepal width", 2, 4.5, 3.0, step = 0.1)
+    ),
+    mainPanel(
+      plotOutput("plot", height = "500px"),
+      verbatimTextOutput("result"),
+      textOutput("explanation")
+    )
+  )
+)
+
+server <- function(input, output, session) {
+  result <- reactive({
+    X <- as.matrix(iris[, c("Sepal.Length", "Sepal.Width")])
+    new_point <- c(input$xnew, input$ynew)
+
+    distances <- sqrt(rowSums(sweep(X, 2, new_point, "-")^2))
+    indices <- order(distances)[seq_len(input$k)]
+    votes <- table(iris$Species[indices])
+    predicted_class <- names(which.max(votes))
+
+    list(indices = indices, votes = votes, class = predicted_class)
+  })
+
+  output$plot <- renderPlot({
+    r <- result()
+    species_code <- as.integer(iris$Species)
+
+    plot(
+      iris$Sepal.Length,
+      iris$Sepal.Width,
+      pch = 19,
+      col = species_code,
+      xlab = "Sepal length",
+      ylab = "Sepal width",
+      main = paste("Prediction:", r$class)
+    )
+
+    points(
+      iris$Sepal.Length[r$indices],
+      iris$Sepal.Width[r$indices],
+      pch = 1,
+      cex = 2.1,
+      lwd = 2
+    )
+
+    points(input$xnew, input$ynew, pch = 8, cex = 2.2, lwd = 3)
+
+    segments(
+      input$xnew,
+      input$ynew,
+      iris$Sepal.Length[r$indices],
+      iris$Sepal.Width[r$indices],
+      lty = 3
+    )
+
+    legend(
+      "topright",
+      legend = levels(iris$Species),
+      col = seq_along(levels(iris$Species)),
+      pch = 19,
+      bty = "n"
+    )
+  })
+
+  output$result <- renderPrint({
+    r <- result()
+    cat("Predicted class:", r$class, "\n\n")
+    cat("Neighbor votes:\n")
+    print(r$votes)
+  })
+
+  output$explanation <- renderText({
+    paste0(
+      "The large circles identify the ", input$k,
+      " neighbors used in the vote. The star is the new observation."
+    )
+  })
+}
+
+shinyApp(ui, server)
+```
+:::
+
+::: {.content-visible when-format="pdf"}
+### Laboratory available in the web edition
+The reader can change $k$, move a new observation, and visualize which neighbors determine the predicted class.
+:::
+
+# Applied Case B: k-NN with COVID-19
+
+We use the same reproducible period-selection rule introduced in Chapters 2, 3, and 5. The objective is to classify the administrative outcome `MURIO` strictly for teaching purposes.
+
+```{r select-covid-period-knn-en}
+covid_counts <- read_csv(
+  "../datos/covid19/procesados/conteo_casos_confirmados_2020_2025.csv",
+  show_col_types = FALSE
+)
+
+covid_year <- covid_counts |>
+  filter(ESTADO == "PROCESADO", !is.na(CASOS_CONFIRMADOS)) |>
+  slice_max(CASOS_CONFIRMADOS, n = 1, with_ties = FALSE) |>
+  pull(ANIO)
+
+covid_path <- file.path(
+  "../datos/covid19/procesados",
+  paste0("covid19_mexico_", covid_year, "_ml_preparado.csv.gz")
+)
+
+if (!file.exists(covid_path)) {
+  stop("The COVID-19 dataset selected by the reproducible procedure was not found.")
+}
+
+message("COVID-19 period used: ", covid_year)
+```
+
+## Prepare an educational sample
+
+```{r prepare-covid-knn-en}
+covid_knn <- read_csv(covid_path, show_col_types = FALSE) |>
+  select(
+    MURIO,
+    EDAD,
+    NEUMONIA,
+    DIABETES,
+    HIPERTENSION,
+    OBESIDAD,
+    RENAL_CRONICA,
+    NUM_COMORBILIDADES
+  ) |>
+  drop_na() |>
+  mutate(
+    outcome = factor(
+      MURIO,
+      levels = c(1, 0),
+      labels = c("Recorded death", "No recorded death")
+    )
+  ) |>
+  select(-MURIO)
+
+set.seed(2026)
+covid_knn <- covid_knn |>
+  slice_sample(n = min(12000, n()))
+
+X_covid <- covid_knn |>
+  select(-outcome) |>
+  as.matrix()
+y_covid <- covid_knn$outcome
+```
+
+::: {.callout-warning title="Educational use only"}
+This exercise illustrates k-NN behavior. It is not a clinical calculator, diagnostic instrument, or validated prognostic model. If the educational sample changes class prevalence, its proportions also do not represent population rates.
+:::
+
+## COVID-19 partition and scaling
+
+`EDAD` and `NUM_COMORBILIDADES` are continuous or count predictors and are standardized. Binary clinical indicators remain coded 0/1.
+
+```{r covid-knn-split-scale-en}
+parts_covid <- stratified_split(
+  y_covid,
+  prop_train = 0.60,
+  prop_val = 0.20,
+  seed = 2026
+)
+
+xc_train <- X_covid[parts_covid$train, , drop = FALSE]
+xc_val <- X_covid[parts_covid$validation, , drop = FALSE]
+xc_test <- X_covid[parts_covid$test, , drop = FALSE]
+
+yc_train <- y_covid[parts_covid$train]
+yc_val <- y_covid[parts_covid$validation]
+yc_test <- y_covid[parts_covid$test]
+
+continuous_vars <- intersect(c("EDAD", "NUM_COMORBILIDADES"), colnames(xc_train))
+
+xc_train_z <- xc_train
+xc_val_z <- xc_val
+xc_test_z <- xc_test
+
+for (variable in continuous_vars) {
+  mean_value <- mean(xc_train[, variable])
+  sd_value <- sd(xc_train[, variable])
+  if (sd_value == 0) sd_value <- 1
+
+  xc_train_z[, variable] <- (xc_train[, variable] - mean_value) / sd_value
+  xc_val_z[, variable] <- (xc_val[, variable] - mean_value) / sd_value
+  xc_test_z[, variable] <- (xc_test[, variable] - mean_value) / sd_value
+}
+```
+
+## Select k and evaluate once on the test set
+
+```{r select-k-covid-en}
+k_values_covid <- c(3, 5, 7, 11, 15, 21)
+
+covid_validation_results <- do.call(
+  rbind,
+  lapply(k_values_covid, function(current_k) {
+    p <- knn(xc_train_z, xc_val_z, yc_train, k = current_k)
+    m <- binary_metrics(
+      yc_val,
+      p,
+      positive = "Recorded death",
+      negative = "No recorded death"
+    )
+    m$k <- current_k
+    m
+  })
+) |>
+  select(k, accuracy, sensitivity, specificity, balanced_accuracy)
+
+covid_validation_results
+
+best_k_covid <- covid_validation_results$k[
+  which.max(covid_validation_results$balanced_accuracy)
+]
+
+best_k_covid
+```
+
+```{r final-covid-knn-evaluation-en}
+xc_reference <- rbind(xc_train_z, xc_val_z)
+yc_reference <- factor(
+  c(as.character(yc_train), as.character(yc_val)),
+  levels = levels(y_covid)
+)
+
+pred_covid_test <- knn(
+  train = xc_reference,
+  test = xc_test_z,
+  cl = yc_reference,
+  k = best_k_covid
+)
+
+confusion_covid_knn <- table(
+  Actual = factor(yc_test, levels = c("Recorded death", "No recorded death")),
+  Predicted = factor(pred_covid_test, levels = c("Recorded death", "No recorded death"))
+)
+
+confusion_covid_knn
+
+binary_metrics(
+  yc_test,
+  pred_covid_test,
+  positive = "Recorded death",
+  negative = "No recorded death"
+)
+```
+
+## Interpreting k
+
+Small values of $k$ produce highly local decision boundaries and can react strongly to noise. Larger values smooth the rule and may erase local structure. The appropriate value depends on the data and should be chosen with validation or cross-validation, **not by repeatedly optimizing performance on the final test set**.
+
+## Supplementary materials for this chapter
+
+| Resource | Purpose | Open or play | Download |
+|---|---|---|---|
+| Explanatory video | Audiovisual explanation of k-NN, distance, scaling, and choosing k. | [Watch on YouTube](https://www.youtube.com/watch?v=NLJj0QAWomU){target="_blank"} | — |
+| PDF presentation | Slides for reading, study, or classroom presentation. | [View PDF](../recursos/capitulo-06/capitulo-06-knn-presentacion.pdf){target="_blank"} | [Download PDF](../recursos/capitulo-06/capitulo-06-knn-presentacion.pdf){download="chapter-06-knn-presentation.pdf"} |
+| Editable presentation | PowerPoint file for classroom use or adaptation. | [Open PPTX](../recursos/capitulo-06/capitulo-06-knn-presentacion.pptx) | [Download PPTX](../recursos/capitulo-06/capitulo-06-knn-presentacion.pptx){download="chapter-06-knn-presentation.pptx"} |
+| Infographic | Visual summary of the fundamental ideas. | [View infographic](../recursos/capitulo-06/capitulo-06-knn-infografia.png){target="_blank"} | [Download PNG](../recursos/capitulo-06/capitulo-06-knn-infografia.png){download="chapter-06-knn-infographic.png"} |
+| Google Colab notebook | Self-contained notebook for executing the examples. | [Open in Google Colab](https://colab.research.google.com/github/gilbertorodriguez59/libro-machine-learning-r/blob/main/colab/06-knn.ipynb){target="_blank"} | — |
+
+::: {.content-visible when-format="html"}
+### Explanatory video
+
+<div class="video-responsive">
+  <iframe
+    src="https://www.youtube.com/embed/NLJj0QAWomU"
+    title="Chapter 6. k-nearest neighbors, k-NN"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen>
+  </iframe>
+</div>
+
+### Infographic preview
+
+[![Chapter 6 infographic](../recursos/capitulo-06/capitulo-06-knn-infografia.png)](../recursos/capitulo-06/capitulo-06-knn-infografia.png)
+:::
+
+::: {.content-visible when-format="pdf"}
+**Chapter video:** <https://www.youtube.com/watch?v=NLJj0QAWomU>
+
+The PDF presentation, editable presentation, infographic, and Colab notebook are available from the web edition of the book.
+:::
+
+::: {.callout-note title="Preparation of supplementary resources"}
+The supplementary materials were prepared with support from **Google NotebookLM**, using the chapter content as the source, and were subsequently reviewed and adapted by the author. The book text and repository source files remain the primary references.
+:::
 
 ## Chapter summary
 
-k-NN is simple and intuitive, but its behavior depends strongly on distance, scaling, the choice of $k$, dimensionality, and class balance. Proper preprocessing and validation are part of the algorithm, not optional details.
+k-NN is easy to explain, but reliable use requires disciplined preprocessing: meaningful variable representation, leakage-free scaling, proper data partitioning, and selection of $k$ away from the final test set. Performance can also deteriorate with high dimensionality or strong class imbalance, so validation design and class-sensitive metrics are essential parts of the method.

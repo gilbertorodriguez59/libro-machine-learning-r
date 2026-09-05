@@ -86,9 +86,16 @@ jobs:
           test -s docs/en/00-google-colab.html
           test -s docs/en/figure-index.html
           test -s docs/en/subject-index.html
+          test -s docs/en/01-introduction.html
+          test -s docs/en/02-data-preparation.html
           grep -q 'English' docs/index.html
           grep -q 'Español' docs/en/index.html
           grep -q 'Machine Learning and Automatic Classification with R' docs/en/index.html
+          grep -q 'Supplementary materials for this chapter' docs/en/01-introduction.html
+          grep -q 'Preparing Real-World Data' docs/en/02-data-preparation.html
+          grep -q 'Interactive data preparation' docs/en/02-data-preparation.html
+          grep -q 'bmv-tDPZGjQ' docs/en/02-data-preparation.html
+          grep -q 'chapter-02-preparing-real-world-data.pdf' docs/en/02-data-preparation.html
 
       - name: Guardar sitio bilingüe como artefacto de validación
         uses: actions/upload-artifact@v4

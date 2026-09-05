@@ -86,6 +86,7 @@ jobs:
           test -s docs/05-knn.html
           test -s docs/06-arboles-decision.html
           test -s docs/07-random-forest.html
+          test -s docs/08-evaluacion-modelos.html
           test -s docs/en/00-preface.html
           test -s docs/en/00-acknowledgments.html
           test -s docs/en/00-google-colab.html
@@ -99,47 +100,33 @@ jobs:
           test -s docs/en/06-knn.html
           test -s docs/en/07-decision-trees.html
           test -s docs/en/08-random-forest.html
+          test -s docs/en/09-model-evaluation.html
           grep -q 'English' docs/index.html
           grep -q 'Español' docs/en/index.html
           grep -q 'Machine Learning and Automatic Classification with R' docs/en/index.html
           grep -q 'Supplementary materials for this chapter' docs/en/01-introduction.html
-          grep -q 'Preparing Real-World Data' docs/en/02-data-preparation.html
           grep -q 'Interactive data preparation' docs/en/02-data-preparation.html
           grep -q 'bmv-tDPZGjQ' docs/en/02-data-preparation.html
-          grep -q 'chapter-02-preparing-real-world-data.pdf' docs/en/02-data-preparation.html
-          grep -q 'Exploratory Data Analysis' docs/en/03-exploratory-data-analysis.html
           grep -q 'Interactive data explorer' docs/en/03-exploratory-data-analysis.html
           grep -q 'U2hd8iEovCY' docs/en/03-exploratory-data-analysis.html
-          grep -q 'chapter-03-exploratory-data-analysis.pdf' docs/en/03-exploratory-data-analysis.html
           grep -q 'Laboratorio de regresión lineal' docs/04-regresion-lineal-multiple-2026.html
-          grep -q 'SE6DCeU9h1w' docs/04-regresion-lineal-multiple-2026.html
           grep -q 'Linear regression laboratory' docs/en/04-linear-regression.html
-          grep -q 'SE6DCeU9h1w' docs/en/04-linear-regression.html
-          grep -q 'chapter-04-simple-multiple-linear-regression.pdf' docs/en/04-linear-regression.html
           grep -q 'Calibración por grupos de probabilidad' docs/04-regresion-logistica-2026.html
-          grep -q '7CwP40QDeys' docs/04-regresion-logistica-2026.html
           grep -q 'Calibration by probability groups' docs/en/05-logistic-regression.html
-          grep -q 'Logistic regression laboratory' docs/en/05-logistic-regression.html
-          grep -q '7CwP40QDeys' docs/en/05-logistic-regression.html
-          grep -q 'chapter-05-logistic-regression-classification.pdf' docs/en/05-logistic-regression.html
           grep -q 'Selección de k en el conjunto de validación' docs/05-knn.html
-          grep -q 'NLJj0QAWomU' docs/05-knn.html
           grep -q 'Selecting k on the validation set' docs/en/06-knn.html
-          grep -q 'k-NN classification laboratory' docs/en/06-knn.html
-          grep -q 'NLJj0QAWomU' docs/en/06-knn.html
-          grep -q 'chapter-06-knn-presentation.pdf' docs/en/06-knn.html
           grep -q 'Poda mediante error de validación cruzada' docs/06-arboles-decision.html
-          grep -q 'UperQjxBYEY' docs/06-arboles-decision.html
           grep -q 'Prune using cross-validation error' docs/en/07-decision-trees.html
-          grep -q 'Interactive CART split explorer' docs/en/07-decision-trees.html
-          grep -q 'UperQjxBYEY' docs/en/07-decision-trees.html
-          grep -q 'chapter-07-decision-trees-presentation.pdf' docs/en/07-decision-trees.html
           grep -q 'Selección de mtry mediante Brier OOB' docs/07-random-forest.html
-          grep -q 'KELSgYttifs' docs/07-random-forest.html
           grep -q 'Selecting mtry using OOB Brier score' docs/en/08-random-forest.html
-          grep -q 'Random Forest voting simulator' docs/en/08-random-forest.html
-          grep -q 'KELSgYttifs' docs/en/08-random-forest.html
-          grep -q 'chapter-08-random-forest-presentation.pdf' docs/en/08-random-forest.html
+          grep -q 'Selección del umbral con predicciones fuera de pliegue' docs/08-evaluacion-modelos.html
+          grep -q 'Calibración en el conjunto de prueba' docs/08-evaluacion-modelos.html
+          grep -q 'ShiKrfhIfpY' docs/08-evaluacion-modelos.html
+          grep -q 'Threshold selection with out-of-fold predictions' docs/en/09-model-evaluation.html
+          grep -q 'Calibration on the final test set' docs/en/09-model-evaluation.html
+          grep -q 'Classification metrics calculator' docs/en/09-model-evaluation.html
+          grep -q 'ShiKrfhIfpY' docs/en/09-model-evaluation.html
+          grep -q 'chapter-09-model-evaluation-presentation.pdf' docs/en/09-model-evaluation.html
 
       - name: Guardar sitio bilingüe como artefacto de validación
         uses: actions/upload-artifact@v4

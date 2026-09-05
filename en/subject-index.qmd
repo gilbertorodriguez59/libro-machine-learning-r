@@ -1,0 +1,55 @@
+# Subject Index {.unnumbered}
+
+## A-C {.unnumbered}
+
+**ATUS:** [Data preparation](02-data-preparation.qmd); [Exploratory data analysis](03-exploratory-data-analysis.qmd).
+
+**AUC and ROC curve:** [Model evaluation](09-model-evaluation.qmd).
+
+**Binary classification:** [Logistic regression](05-logistic-regression.qmd); [Naive Bayes](11-naive-bayes.qmd); [Neural networks](12-neural-networks.qmd).
+
+**COVID-19:** [Data preparation](02-data-preparation.qmd); [Exploratory data analysis](03-exploratory-data-analysis.qmd); [Logistic regression](05-logistic-regression.qmd); [Model evaluation](09-model-evaluation.qmd).
+
+**Cross-validation:** [Model evaluation, validation, and comparison](09-model-evaluation.qmd).
+
+## D-H {.unnumbered}
+
+**Euclidean distance:** [k-NN](06-knn.qmd); [k-means](13-kmeans.qmd).
+
+**Entropy and impurity:** [Decision trees](07-decision-trees.qmd); [Random Forest](08-random-forest.qmd).
+
+**Hyperparameters:** [Model evaluation](09-model-evaluation.qmd).
+
+## K-R {.unnumbered}
+
+**k-means:** [k-means clustering](13-kmeans.qmd).
+
+**k-NN:** [k-nearest neighbors](06-knn.qmd).
+
+**Linear regression:** [Simple and multiple linear regression](04-linear-regression.qmd).
+
+**Logistic regression:** [Logistic regression](05-logistic-regression.qmd).
+
+**Missing data:** [Data preparation](02-data-preparation.qmd).
+
+**Naive Bayes:** [Naive Bayes classifier](11-naive-bayes.qmd).
+
+**Random Forest:** [Random Forest](08-random-forest.qmd).
+
+## S-Z {.unnumbered}
+
+**Scaling:** [Data preparation](02-data-preparation.qmd); [k-NN](06-knn.qmd); [SVM](10-svm.qmd); [k-means](13-kmeans.qmd).
+
+**Sensitivity and specificity:** [Model evaluation](09-model-evaluation.qmd).
+
+**Shinylive:** [Linear regression](04-linear-regression.qmd); [Logistic regression](05-logistic-regression.qmd); [k-NN](06-knn.qmd); [Neural networks](12-neural-networks.qmd); [k-means](13-kmeans.qmd).
+
+**Supervised learning:** [Introduction](01-introduction.qmd); [Model evaluation](09-model-evaluation.qmd).
+
+**Support Vector Machines and kernels:** [Support Vector Machines](10-svm.qmd).
+
+**Threshold:** [Logistic regression](05-logistic-regression.qmd); [Model evaluation](09-model-evaluation.qmd).
+
+**Unsupervised learning:** [Introduction](01-introduction.qmd); [k-means](13-kmeans.qmd).
+
+**Overfitting:** [Model evaluation](09-model-evaluation.qmd); [Decision trees](07-decision-trees.qmd); [Random Forest](08-random-forest.qmd); [Neural networks](12-neural-networks.qmd).

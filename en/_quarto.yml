@@ -30,3 +30,7 @@ book:
     - 00-editorial-credits.qmd
     - 00-license-and-academic-use.qmd
     - 01-introduction.qmd
+    - 02-data-preparation.qmd
+    - 03-exploratory-data-analysis.qmd
+    - 04-linear-regression.qmd
+    - 05-logistic-regression.qmd

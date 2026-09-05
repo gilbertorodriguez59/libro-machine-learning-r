@@ -1,0 +1,34 @@
+# Página legal {.unnumbered}
+
+**Aprendizaje y Clasificación Automática con R**  
+*Un enfoque práctico con datos abiertos reales*
+
+**Autor:** Jesús Gilberto Rodríguez Escobedo  
+**Primera edición, 2026**  
+**Lugar de edición:** San Luis Potosí, S.L.P., México  
+**Autor-editor:** Jesús Gilberto Rodríguez Escobedo  
+**ISBN edición digital PDF:** Pendiente de asignación  
+
+© 2026 Jesús Gilberto Rodríguez Escobedo.
+
+Esta obra se distribuye bajo la licencia **Creative Commons Atribución-NoComercial-CompartirIgual 4.0 Internacional (CC BY-NC-SA 4.0)**, salvo que se indique expresamente otra condición para materiales de terceros.
+
+Los datos abiertos utilizados en los ejemplos conservan la autoría, titularidad, términos de uso y reconocimiento establecidos por sus instituciones de origen. Las transformaciones, selecciones de variables, muestras, modelos, gráficas, interpretaciones y materiales didácticos elaborados para esta obra son responsabilidad del autor.
+
+Los ejemplos relacionados con COVID-19 tienen fines exclusivamente educativos y estadísticos. No constituyen diagnóstico, pronóstico clínico, recomendación médica ni herramienta para la toma directa de decisiones de salud.
+
+Los nombres comerciales, marcas, bibliotecas de software y plataformas mencionados pertenecen a sus respectivos titulares y se incluyen únicamente con fines académicos, técnicos y descriptivos.
+
+**Sitio oficial de la obra:**  
+<https://gilbertorodriguez59.github.io/libro-machine-learning-r/>
+
+**Repositorio de código y materiales:**  
+<https://github.com/gilbertorodriguez59/libro-machine-learning-r>
+
+## Forma sugerida de cita {.unnumbered}
+
+Rodríguez Escobedo, J. G. (2026). *Aprendizaje y Clasificación Automática con R: un enfoque práctico con datos abiertos reales*. Primera edición. San Luis Potosí, S.L.P., México.
+
+::: {.callout-note title="Nota sobre el ISBN"}
+El número ISBN se incorporará en esta página legal una vez que sea asignado oficialmente a la primera edición digital en PDF.
+:::

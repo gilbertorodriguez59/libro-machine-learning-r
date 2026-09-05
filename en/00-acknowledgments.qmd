@@ -1,0 +1,13 @@
+# Acknowledgments {.unnumbered}
+
+This book is the result of many years of study, teaching, research, software development, and professional practice. Its content has grown from questions raised in the classroom, projects carried out with students, and experiences accumulated in educational institutions in Mexico and Chile.
+
+I am especially grateful to the students who, over several decades, have asked questions, pointed out difficulties, and pushed me to seek clearer explanations. Many of the teaching decisions in this work emerged from observing how an algorithm, graph, metric, or piece of code is understood—and how it is sometimes not understood.
+
+I also acknowledge the professors, researchers, and professionals with whom I have shared projects related to mathematics, computing, artificial intelligence, educational technology, multimedia, data science, and intelligent tutoring systems.
+
+I express my gratitude to the institutions where I have had the opportunity to teach, learn, and collaborate. Every course, project, and professional experience contributed elements that are now reflected in these pages.
+
+I also thank the public institutions that make open data available. Their work makes it possible to build reproducible academic activities and bring students closer to real-world problems.
+
+Finally, I thank my family for their support, patience, and encouragement throughout the development of this work.

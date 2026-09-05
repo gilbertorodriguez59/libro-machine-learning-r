@@ -40,3 +40,5 @@ book:
     - 09-model-evaluation.qmd
     - 10-svm.qmd
     - 11-naive-bayes.qmd
+    - 12-neural-networks.qmd
+    - 13-kmeans.qmd

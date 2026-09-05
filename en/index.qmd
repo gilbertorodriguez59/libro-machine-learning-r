@@ -1,0 +1,47 @@
+# Presentation {.unnumbered}
+
+## Machine Learning and Automatic Classification with R {.unnumbered}
+
+### A Practical Approach Using Real Open Data {.unnumbered}
+
+**Author:** Jesús Gilberto Rodríguez Escobedo  
+**Edition:** First edition, 2026  
+**Format:** Open, practical, and interactive book  
+**Technologies:** R · Quarto · Machine Learning · Shinylive · Google Colab · YouTube · GitHub Pages
+
+::: {.content-visible when-format="html"}
+
+::: {.callout-note appearance="simple" icon="false"}
+
+## Interactive edition
+
+### Learn Machine Learning by doing
+
+An open book with **R** code, real data, videos, presentations, infographics, Google Colab, and browser-based interactive labs.
+
+[Spanish edition](../index.html){.btn .btn-outline-dark .btn-lg}
+
+:::
+
+:::
+
+This English edition is being prepared as a faithful editorial translation of the 2026 first edition in Spanish. The mathematical notation, code, datasets, chapter structure, references, and learning objectives will remain aligned with the original edition.
+
+The book introduces machine learning through clear, practical, and reproducible examples developed primarily in **R**. Two main open-data routes from Mexico are used throughout the book: **ATUS**, with road-traffic accident data, and **COVID-19**, with historical public-health records prepared for educational use.
+
+::: {.callout-note}
+## Scope of the English edition
+The translation is editorial rather than literal: terminology will follow standard usage in statistics, data science, and machine learning while preserving the meaning and didactic intent of the Spanish edition.
+:::
+
+## General objective {.unnumbered}
+
+Develop basic and intermediate machine-learning skills through the analysis, modeling, and interpretation of real-world data.
+
+## Intended audience {.unnumbered}
+
+This book is intended for students, instructors, and professionals in engineering, science, data science, applied statistics, computing, and related fields who want a practical introduction to machine learning with R.
+
+## Edition status {.unnumbered}
+
+The front matter of the English edition is now under editorial review. The thirteen technical chapters will be translated and validated one by one before the English PDF is released.

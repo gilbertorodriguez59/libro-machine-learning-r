@@ -1,0 +1,91 @@
+# k-Nearest Neighbors (k-NN)
+
+::: {.callout-note title="Connection with the theoretical volume"}
+The mathematical foundations of distances, scaling, and nearest-neighbor methods are developed in greater depth in Chapters 2 and 12 of *Mathematical Foundations of Machine Learning* [@rodriguez2026fundamentos].
+:::
+
+## Learning objectives
+
+By the end of this chapter, the reader will be able to explain the k-NN algorithm, understand why scaling matters, prepare mixed predictors for distance-based classification, compare different values of $k$, and evaluate performance beyond overall accuracy.
+
+## Core idea
+
+k-NN classifies a new observation according to the most common class among its nearest neighbors. For two numerical variables, Euclidean distance is
+
+$$
+d(A,B)=\sqrt{(x_1-x_2)^2+(y_1-y_2)^2}.
+$$
+
+With $p$ predictors,
+
+$$
+d(\mathbf{x},\mathbf{x}')=\sqrt{\sum_{j=1}^{p}(x_j-x'_j)^2}.
+$$
+
+A smaller distance means greater proximity in predictor space.
+
+## Why scaling is essential
+
+Variables measured on larger numerical scales can dominate Euclidean distance. Therefore, numerical predictors should generally be standardized using parameters estimated from the **training set only**:
+
+$$
+z_{ij}=\frac{x_{ij}-\bar{x}_{j,\text{train}}}{s_{j,\text{train}}}.
+$$
+
+::: {.callout-important title="Avoiding data leakage"}
+The means and standard deviations used to scale the test set must come from the training set. Computing them from all observations would leak information from the test data into model construction.
+:::
+
+## ATUS example
+
+The Spanish edition develops the complete ATUS workflow, including dummy-variable construction, training/test separation, standardization, and classification with `class::knn()`.
+
+A useful comparison is to evaluate several values of $k$ using accuracy, sensitivity, and specificity rather than selecting $k$ from a single metric.
+
+::: {.callout-tip title="Interpretation of k"}
+Small values of $k$ produce highly local and flexible decision boundaries. Larger values smooth the decision rule. There is no universally optimal value of $k$; it should be selected using validation rather than the final test set.
+:::
+
+## COVID-19 educational route
+
+For the COVID-19 case, the processed file should be selected dynamically rather than hard-coding one calendar year.
+
+```{r}
+library(readr)
+library(dplyr)
+library(tidyr)
+library(class)
+
+files_covid <- list.files(
+  "../datos/covid19/procesados",
+  pattern = "covid19_mexico_[0-9]{4}_ml_preparado\\.csv\\.gz$",
+  full.names = TRUE
+)
+
+if (length(files_covid) == 0) {
+  stop("No prepared COVID-19 data file was found.")
+}
+
+covid_knn <- read_csv(files_covid[1], show_col_types = FALSE) |>
+  select(
+    MURIO, EDAD, NEUMONIA, DIABETES, HIPERTENSION,
+    OBESIDAD, RENAL_CRONICA, NUM_COMORBILIDADES
+  ) |>
+  drop_na()
+```
+
+The same scaling rule applies: estimate centering and scaling constants on the training sample and reuse them for the test sample.
+
+::: {.callout-warning title="Educational use only"}
+This exercise illustrates distance-based classification. It is not a clinical calculator, diagnostic instrument, or validated prognostic model.
+:::
+
+## Class imbalance and interpretation
+
+When classes are imbalanced, high accuracy can coexist with poor detection of the minority class. Sensitivity and specificity should therefore be reported together with the confusion matrix.
+
+If the COVID-19 sample was intentionally balanced or enriched with deaths, the resulting class proportions do not represent population prevalence.
+
+## Chapter summary
+
+k-NN is simple and intuitive, but its behavior depends strongly on distance, scaling, the choice of $k$, dimensionality, and class balance. Proper preprocessing and validation are part of the algorithm, not optional details.

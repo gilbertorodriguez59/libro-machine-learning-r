@@ -1,0 +1,130 @@
+# Model Evaluation, Validation, and Comparison
+
+::: {.callout-note title="Connection with the theoretical volume"}
+The mathematical treatment of confusion matrices, classification metrics, validation, and model selection is developed more deeply in Chapters 6 and 7 of *Mathematical Foundations of Machine Learning* [@rodriguez2026fundamentos].
+:::
+
+## Learning objectives
+
+By the end of this chapter, the reader will be able to explain why accuracy may be insufficient, construct and interpret a confusion matrix, compute sensitivity, specificity, precision, and F1 score, distinguish training, validation, and test data, use stratified cross-validation, and compare models without relying on a single metric.
+
+## Why evaluation matters
+
+Training a model is only part of the workflow. The central question is whether the model will perform well on observations that were not used during training.
+
+A model that performs extremely well on training data may still generalize poorly. For this reason, model evaluation must be based on held-out data and on metrics that reflect the practical objective of the problem.
+
+## Training, validation, and test sets
+
+- **Training set:** used to estimate model parameters.
+- **Validation set:** used to compare alternatives and select hyperparameters.
+- **Test set:** reserved for the final estimate of predictive performance.
+
+In many practical workflows, cross-validation is performed inside the training data and the test set remains untouched until the end.
+
+::: {.callout-important title="Avoid data leakage"}
+Any preprocessing step that learns from the data—scaling, imputation, variable selection, threshold tuning, or hyperparameter selection—must be estimated using training data only. Information from the test set must not influence model construction.
+:::
+
+## Confusion matrix
+
+For a positive class called **With victims**, the confusion matrix contains:
+
+| Actual class | Predicted positive | Predicted negative |
+|---|---:|---:|
+| Positive | TP | FN |
+| Negative | FP | TN |
+
+The main metrics are
+
+$$
+Accuracy=\frac{TP+TN}{TP+FN+FP+TN},
+$$
+
+$$
+Sensitivity=\frac{TP}{TP+FN},
+$$
+
+$$
+Specificity=\frac{TN}{TN+FP},
+$$
+
+$$
+Precision=\frac{TP}{TP+FP},
+$$
+
+and
+
+$$
+F_1=2\frac{Precision\times Sensitivity}{Precision+Sensitivity}.
+$$
+
+## Why accuracy can mislead
+
+When one class is much more frequent than the other, a classifier can obtain high accuracy by repeatedly predicting the majority class. A useful model should therefore be compared with a simple baseline and assessed with several complementary metrics.
+
+## Stratified splitting
+
+A stratified split approximately preserves class proportions in training and test sets. This is especially important when the outcome is imbalanced.
+
+## Threshold selection
+
+Probability-based classifiers produce scores or probabilities before producing class labels. The classification threshold is a decision rule, not an intrinsic constant of the model.
+
+Lowering the threshold usually increases sensitivity and may decrease specificity. The appropriate threshold depends on the relative cost of false negatives and false positives.
+
+::: {.callout-note title="Thresholds belong to validation"}
+Do not choose a threshold after inspecting the final test results. Threshold selection should be performed using validation data or cross-validation inside the training set.
+:::
+
+## Cross-validation
+
+In $K$-fold cross-validation, the training data are partitioned into $K$ folds. Each fold is used once for validation while the remaining folds are used for training. Metrics are then averaged across folds.
+
+For classification with imbalanced classes, stratified folds are preferable because they preserve class proportions more consistently.
+
+## ROC and AUC
+
+For models that produce continuous scores or probabilities, the ROC curve summarizes sensitivity and false-positive rate across many thresholds. The area under the curve (AUC) measures discrimination: how well the model ranks positive observations above negative observations.
+
+::: {.callout-warning title="AUC is not calibration"}
+A model can have a good AUC and still produce poorly calibrated probabilities. Discrimination and calibration answer different questions.
+:::
+
+## Calibration
+
+Calibration compares predicted probabilities with observed frequencies. If a well-calibrated model assigns approximately 0.20 probability to many similar observations, roughly 20% of those observations should belong to the positive class.
+
+Calibration should be assessed only when the sampling strategy allows probabilities to retain their intended interpretation.
+
+## COVID-19 route
+
+The COVID-19 exercises use a processed educational dataset selected by the reproducible data-preparation workflow. The filename is detected dynamically rather than hard-coded to a single year.
+
+```{r}
+library(readr)
+
+files_covid <- list.files(
+  "../datos/covid19/procesados",
+  pattern = "covid19_mexico_[0-9]{4}_ml_preparado\\.csv\\.gz$",
+  full.names = TRUE
+)
+
+if (length(files_covid) == 0) {
+  stop("No prepared COVID-19 data file was found.")
+}
+
+covid <- read_csv(files_covid[1], show_col_types = FALSE)
+```
+
+::: {.callout-important title="Balanced samples and probability interpretation"}
+If the educational sample artificially changes the proportion of deaths, raw predicted probabilities should not be interpreted as population risk. Such a sample can still be useful for learning classification and comparing algorithms, but population-oriented probability interpretation requires natural prevalence or an appropriate weighting/calibration strategy.
+:::
+
+## Model comparison checklist
+
+A model comparison should consider predictive performance, stability across resamples, calibration when probabilities matter, computational cost, interpretability, class imbalance, and the consequences of different error types.
+
+## Chapter summary
+
+Reliable evaluation requires a strict separation between model development and final testing. No single metric is universally best. Good practice combines stratified resampling, meaningful baselines, multiple metrics, careful threshold selection, and explicit protection against data leakage.

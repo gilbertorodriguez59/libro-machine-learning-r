@@ -1,19 +1,14 @@
 # Análisis exploratorio de datos
 
-
 ::: {.callout-note title="Conexión con el volumen teórico"}
-
-La formulación matemática de **probabilidad, estadística, covarianza y representación multivariada** se desarrolla con mayor profundidad
-en los capítulos 2 y 3 de *Fundamentos Matemáticos del Aprendizaje
-Automático* [@rodriguez2026fundamentos].
-
+La probabilidad, la estadística, la covarianza y la representación multivariada se desarrollan con mayor profundidad en los capítulos 2 y 3 de *Fundamentos Matemáticos del Aprendizaje Automático* [@rodriguez2026fundamentos].
 :::
 
 ## Objetivos del capítulo
 
-Al finalizar este capítulo, el lector será capaz de cargar una base preparada, revisar su estructura, calcular frecuencias, construir gráficas e interpretar patrones iniciales.
+Al finalizar este capítulo, el lector será capaz de cargar una base preparada, revisar su estructura, calcular frecuencias, construir gráficas, comparar distribuciones e interpretar patrones iniciales sin confundir una muestra educativa con una población real.
 
-## Cargar paquetes y base
+## Cargar paquetes y base ATUS
 
 ```{r cargar-base-eda}
 library(readr)
@@ -25,17 +20,12 @@ ruta_atus_ml <- "datos/atus_ml_preparado.csv"
 
 if (file.exists(ruta_atus_ml)) {
   atus_ml <- read_csv(ruta_atus_ml, show_col_types = FALSE)
-  print("Base preparada cargada correctamente.")
+  message("Base ATUS preparada cargada correctamente.")
 } else {
   atus_ml <- NULL
-  print("No se encontró el archivo datos/atus_ml_preparado.csv. Ejecuta primero el capítulo 2.")
+  warning("No se encontró datos/atus_ml_preparado.csv. Ejecute primero el capítulo 2.")
 }
 ```
-
-::: {.callout-note}
-## Explicación del código
-Se carga la base preparada en el capítulo anterior. Esto permite empezar directamente con el análisis exploratorio.
-:::
 
 ## Preparar variables
 
@@ -46,15 +36,13 @@ if (!is.null(atus_ml)) {
       ID_HORA_NUM = as.numeric(ID_HORA),
       MES_NUM = as.numeric(MES),
       MES_FACTOR = factor(sprintf("%02d", MES_NUM), levels = sprintf("%02d", 1:12)),
-      accidente_con_victimas = factor(accidente_con_victimas, levels = c("Con víctimas", "Solo daños"))
+      accidente_con_victimas = factor(
+        accidente_con_victimas,
+        levels = c("Con víctimas", "Solo daños")
+      )
     )
 }
 ```
-
-::: {.callout-note}
-## Explicación del código
-Se crean variables numéricas y factores ordenados para facilitar tablas y gráficas.
-:::
 
 ## Distribución de la variable respuesta
 
@@ -62,9 +50,7 @@ Se crean variables numéricas y factores ordenados para facilitar tablas y gráf
 if (!is.null(atus_ml)) {
   tabla_clase <- table(atus_ml$accidente_con_victimas)
   round(100 * prop.table(tabla_clase), 2)
-}
 
-if (!is.null(atus_ml)) {
   ggplot(atus_ml, aes(x = accidente_con_victimas, fill = accidente_con_victimas)) +
     geom_bar(width = 0.7) +
     escala_clases_fill() +
@@ -81,20 +67,18 @@ if (!is.null(atus_ml)) {
 }
 ```
 
-::: {.callout-tip}
-## Interpretación del resultado
-La base está desbalanceada: hay más accidentes de solo daños que accidentes con víctimas. Esto será importante al evaluar modelos.
+::: {.callout-tip title="Interpretación"}
+La base ATUS puede estar desbalanceada. Una clase mayoritaria no invalida el análisis, pero sí obliga a utilizar métricas de evaluación adecuadas en capítulos posteriores.
 :::
 
 ## Accidentes por mes
 
 ```{r accidentes-mes, fig.width=7, fig.height=4.5}
 if (!is.null(atus_ml)) {
-  accidentes_mes <- atus_ml |> count(MES_FACTOR, name = "n") |> arrange(MES_FACTOR)
-  accidentes_mes
-}
+  accidentes_mes <- atus_ml |>
+    count(MES_FACTOR, name = "n") |>
+    arrange(MES_FACTOR)
 
-if (exists("accidentes_mes")) {
   ggplot(accidentes_mes, aes(x = MES_FACTOR, y = n)) +
     geom_col(fill = col_azul, width = 0.75) +
     scale_y_continuous(labels = etiqueta_numero) +
@@ -108,16 +92,13 @@ if (exists("accidentes_mes")) {
 }
 ```
 
-::: {.callout-note}
-## Explicación del código
-Se cuentan los accidentes por mes y se visualizan con barras. El eje vertical usa separadores de miles para facilitar la lectura.
-:::
-
 ## Accidentes por hora del día
 
 ```{r accidentes-hora, fig.width=7, fig.height=4.5}
 if (!is.null(atus_ml)) {
-  accidentes_hora <- atus_ml |> count(ID_HORA_NUM, name = "n") |> arrange(ID_HORA_NUM)
+  accidentes_hora <- atus_ml |>
+    count(ID_HORA_NUM, name = "n") |>
+    arrange(ID_HORA_NUM)
 
   ggplot(accidentes_hora, aes(x = ID_HORA_NUM, y = n)) +
     geom_col(fill = col_turquesa, width = 0.75) +
@@ -132,16 +113,13 @@ if (!is.null(atus_ml)) {
 }
 ```
 
-::: {.callout-tip}
-## Interpretación del resultado
-La gráfica permite detectar horas con mayor concentración de accidentes.
-:::
-
 ## Tipos de accidente más frecuentes
 
 ```{r tipos-accidente, fig.width=7, fig.height=4.5}
 if (!is.null(atus_ml)) {
-  accidentes_tipo_top <- atus_ml |> count(TIPACCID, name = "n") |> slice_max(n, n = 10)
+  accidentes_tipo_top <- atus_ml |>
+    count(TIPACCID, name = "n") |>
+    slice_max(n, n = 10)
 
   ggplot(accidentes_tipo_top, aes(x = reorder(TIPACCID, n), y = n)) +
     geom_col(fill = col_azul, width = 0.75) +
@@ -156,17 +134,17 @@ if (!is.null(atus_ml)) {
 }
 ```
 
-::: {.callout-note}
-## Explicación del código
-Se seleccionan los diez tipos de accidente con mayor frecuencia para evitar una gráfica saturada.
-:::
-
-## Proporción por tipo de accidente
+## Proporción de accidentes con víctimas por tipo
 
 ```{r proporcion-tipo, fig.width=7, fig.height=4.5}
 if (!is.null(atus_ml)) {
-  tipos_top <- atus_ml |> count(TIPACCID) |> slice_max(n, n = 10) |> pull(TIPACCID)
-  atus_tipo_top <- atus_ml |> filter(TIPACCID %in% tipos_top)
+  tipos_top <- atus_ml |>
+    count(TIPACCID) |>
+    slice_max(n, n = 10) |>
+    pull(TIPACCID)
+
+  atus_tipo_top <- atus_ml |>
+    filter(TIPACCID %in% tipos_top)
 
   ggplot(atus_tipo_top, aes(x = TIPACCID, fill = accidente_con_victimas)) +
     geom_bar(position = "fill") +
@@ -183,21 +161,126 @@ if (!is.null(atus_ml)) {
 }
 ```
 
-::: {.callout-tip}
-## Interpretación del resultado
-Esta gráfica compara proporciones, no cantidades absolutas. Permite identificar tipos de accidente con mayor presencia relativa de víctimas.
+::: {.callout-tip title="Interpretación"}
+Esta gráfica compara proporciones relativas, no cantidades absolutas. Una categoría poco frecuente puede presentar una proporción alta y, al mismo tiempo, pocos casos totales.
+:::
+
+## Caso aplicado B: análisis exploratorio de COVID-19
+
+La edición 2026 localiza automáticamente la base COVID-19 preparada en el capítulo 2 en lugar de asumir un año fijo.
+
+```{r covid-eda-carga}
+#| message: false
+#| warning: false
+
+rutas_covid <- list.files(
+  "datos/covid19/procesados",
+  pattern = "^covid19_mexico_[0-9]{4}_ml_preparado\\.csv\\.gz$",
+  full.names = TRUE
+)
+
+if (length(rutas_covid) == 0) {
+  covid <- NULL
+  warning("No se encontró una base COVID-19 preparada.")
+} else {
+  ruta_covid <- rutas_covid[1]
+  anio_covid <- sub(
+    ".*covid19_mexico_([0-9]{4})_ml_preparado\\.csv\\.gz$",
+    "\\1",
+    ruta_covid
+  )
+
+  covid <- read_csv(ruta_covid, show_col_types = FALSE) |>
+    mutate(
+      desenlace = factor(
+        MURIO,
+        levels = c(0, 1),
+        labels = c("Sin defunción registrada", "Defunción registrada")
+      ),
+      paciente = factor(
+        TIPO_PACIENTE,
+        levels = c(0, 1),
+        labels = c("Ambulatorio", "Hospitalizado")
+      )
+    )
+
+  message("Base COVID-19 cargada para el año: ", anio_covid)
+}
+```
+
+### Distribución de la edad
+
+```{r covid-eda-edad, fig.width=7, fig.height=5}
+#| fig-cap: "Distribución de la edad según el desenlace registrado."
+
+if (!is.null(covid)) {
+  ggplot(covid, aes(x = EDAD, fill = desenlace)) +
+    geom_histogram(
+      bins = 35,
+      position = "identity",
+      alpha = 0.55
+    ) +
+    facet_wrap(~ desenlace, ncol = 1) +
+    labs(
+      x = "Edad",
+      y = "Frecuencia",
+      fill = "Desenlace"
+    ) +
+    theme_minimal()
+}
+```
+
+### Desenlace observado por grupos de edad
+
+```{r covid-eda-grupos-edad}
+if (!is.null(covid)) {
+  resumen_edad <- covid |>
+    mutate(
+      grupo_edad = cut(
+        EDAD,
+        breaks = c(-Inf, 19, 39, 59, 69, 79, Inf),
+        labels = c("0-19", "20-39", "40-59", "60-69", "70-79", "80 o más")
+      )
+    ) |>
+    group_by(grupo_edad) |>
+    summarise(
+      registros = n(),
+      defunciones = sum(MURIO, na.rm = TRUE),
+      proporcion_muestra = mean(MURIO, na.rm = TRUE),
+      .groups = "drop"
+    )
+
+  resumen_edad
+}
+```
+
+### Comorbilidades y desenlace
+
+```{r covid-eda-comorbilidades}
+if (!is.null(covid)) {
+  covid |>
+    group_by(NUM_COMORBILIDADES) |>
+    summarise(
+      registros = n(),
+      proporcion_defuncion_muestra = mean(MURIO, na.rm = TRUE),
+      .groups = "drop"
+    )
+}
+```
+
+::: {.callout-important title="Muestra educativa"}
+Si la base utilizada fue estratificada o balanceada para fines didácticos, las proporciones calculadas en este capítulo describen **esa muestra**. No deben interpretarse como tasas epidemiológicas ni como mortalidad poblacional. Esta distinción será especialmente importante cuando se estudien probabilidades predichas con regresión logística.
 :::
 
 ## Materiales complementarios del capítulo
-Estos recursos permiten repasar los conceptos esenciales del análisis exploratorio de datos mediante distintos formatos.
 
 | Recurso | Utilidad | Abrir o reproducir | Descargar |
 |---|---|---|---|
-| Video explicativo | Explicación audiovisual del análisis exploratorio de datos y de sus principales herramientas. | [Ver en YouTube](https://www.youtube.com/watch?v=U2hd8iEovCY){target="_blank"} | — |
+| Video explicativo | Explicación audiovisual del análisis exploratorio de datos. | [Ver en YouTube](https://www.youtube.com/watch?v=U2hd8iEovCY){target="_blank"} | — |
 | Presentación en PDF | Diapositivas para lectura, estudio o exposición. | [Ver PDF](recursos/capitulo-03/capitulo-03-analisis-exploratorio-datos.pdf){target="_blank"} | [Descargar PDF](recursos/capitulo-03/capitulo-03-analisis-exploratorio-datos.pdf){download="capitulo-03-analisis-exploratorio-datos.pdf"} |
-| Presentación editable | Archivo PowerPoint para utilizarlo en clase o adaptarlo. | [Abrir PPTX](recursos/capitulo-03/capitulo-03-analisis-exploratorio-datos.pptx) | [Descargar PPTX](recursos/capitulo-03/capitulo-03-analisis-exploratorio-datos.pptx){download="capitulo-03-analisis-exploratorio-datos.pptx"} |
-| Infografía | Síntesis visual de conceptos, procedimientos y gráficos del capítulo. | [Ver infografía](recursos/capitulo-03/capitulo-03-analisis-exploratorio-datos-infografia.png){target="_blank"} | [Descargar PNG](recursos/capitulo-03/capitulo-03-analisis-exploratorio-datos-infografia.png){download="capitulo-03-analisis-exploratorio-datos-infografia.png"} |
-| Cuaderno Google Colab | Cuaderno autónomo para ejecutar los ejemplos del capítulo sin necesidad de ejecutar los capítulos anteriores. | [Abrir en Google Colab](https://colab.research.google.com/github/gilbertorodriguez59/libro-machine-learning-r/blob/main/colab/03-analisis-exploratorio.ipynb){target="_blank"} | — |
+| Presentación editable | Archivo PowerPoint para clase o adaptación. | [Abrir PPTX](recursos/capitulo-03/capitulo-03-analisis-exploratorio-datos.pptx) | [Descargar PPTX](recursos/capitulo-03/capitulo-03-analisis-exploratorio-datos.pptx){download="capitulo-03-analisis-exploratorio-datos.pptx"} |
+| Infografía | Síntesis visual de conceptos y procedimientos. | [Ver infografía](recursos/capitulo-03/capitulo-03-analisis-exploratorio-datos-infografia.png){target="_blank"} | [Descargar PNG](recursos/capitulo-03/capitulo-03-analisis-exploratorio-datos-infografia.png){download="capitulo-03-analisis-exploratorio-datos-infografia.png"} |
+| Cuaderno Google Colab | Ejemplos ejecutables del capítulo. | [Abrir en Google Colab](https://colab.research.google.com/github/gilbertorodriguez59/libro-machine-learning-r/blob/main/colab/03-analisis-exploratorio.ipynb){target="_blank"} | — |
 
 ::: {.content-visible when-format="html"}
 ### Video explicativo
@@ -205,43 +288,17 @@ Estos recursos permiten repasar los conceptos esenciales del análisis explorato
 <div class="video-responsive">
   <iframe src="https://www.youtube.com/embed/U2hd8iEovCY"
     title="Capítulo 3. Análisis exploratorio de datos"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    referrerpolicy="strict-origin-when-cross-origin"
-    allowfullscreen
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    referrerpolicy="strict-origin-when-cross-origin"
-    allowfullscreen
     frameborder="0"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
     referrerpolicy="strict-origin-when-cross-origin"
     allowfullscreen>
   </iframe>
 </div>
-
-### Vista previa de la infografía
-
-[![Infografía del capítulo 3](recursos/capitulo-03/capitulo-03-analisis-exploratorio-datos-infografia.png)](recursos/capitulo-03/capitulo-03-analisis-exploratorio-datos-infografia.png)
 :::
 
-::: {.content-visible when-format="pdf"}
-**Video del capítulo:** <https://www.youtube.com/watch?v=U2hd8iEovCY>
-
-La presentación PDF, el archivo editable y la infografía pueden descargarse desde la versión web del libro.
-:::
-
-::: {.callout-tip title="Curso completo en YouTube"}
-Este video forma parte de la lista oficial del curso **Aprendizaje y Clasificación Automática con R**.
-
-[Consultar todos los videos del curso](https://www.youtube.com/playlist?list=PLDJYd2v7Kt-Q){target="_blank"}
-:::
-
-::: {.callout-note title="Elaboración de los materiales"}
-Los materiales complementarios fueron elaborados con apoyo de **NotebookLM de Google**, a partir del contenido del capítulo, y posteriormente revisados y adaptados por el autor. El texto del libro y sus archivos fuente constituyen la referencia principal.
-:::
 ## Laboratorio interactivo: exploración de distribuciones
 
 ::: {.content-visible when-format="html"}
-
 Selecciona una variable de `iris` y examina su distribución.
 
 ```{shinylive-r}
@@ -255,12 +312,11 @@ ui <- fluidPage(
   titlePanel("Explorador interactivo de datos"),
   sidebarLayout(
     sidebarPanel(
-      selectInput("variable", "Variable", choices = names(iris)[1:4],
-                  selected = "Sepal.Length"),
-      radioButtons("grafica", "Tipo de gráfica",
-                   choices = c("Histograma" = "hist",
-                               "Boxplot por especie" = "box",
-                               "Densidad" = "dens")),
+      selectInput("variable", "Variable", choices = names(iris)[1:4], selected = "Sepal.Length"),
+      radioButtons(
+        "grafica", "Tipo de gráfica",
+        choices = c("Histograma" = "hist", "Boxplot por especie" = "box", "Densidad" = "dens")
+      ),
       sliderInput("clases", "Número de intervalos", 5, 30, 12)
     ),
     mainPanel(
@@ -306,219 +362,13 @@ server <- function(input, output, session) {
 
 shinyApp(ui, server)
 ```
-
 :::
 
 ::: {.content-visible when-format="pdf"}
-
 ### Laboratorio disponible en la versión web
-
 Permite elegir una variable y visualizar histograma, densidad o boxplot.
-
 :::
 
-## Caso aplicado B: análisis exploratorio de COVID-19
+## Resumen del capítulo
 
-La muestra de 2022 contiene 35 000 registros sin defunción y 15 000 con
-defunción registrada. Esta proporción fue construida deliberadamente para
-facilitar el aprendizaje de clasificación y **no representa la mortalidad
-poblacional real**.
-
-```{r}
-#| label: covid-eda-carga
-#| message: false
-#| warning: false
-
-library(readr)
-library(dplyr)
-library(ggplot2)
-
-covid <- read_csv(
-  "datos/covid19/procesados/covid19_mexico_2022_ml_preparado.csv.gz",
-  show_col_types = FALSE
-)
-
-covid <- covid |>
-  mutate(
-    desenlace = factor(
-      MURIO,
-      levels = c(0, 1),
-      labels = c("Sin defunción", "Defunción registrada")
-    ),
-    paciente = factor(
-      TIPO_PACIENTE,
-      levels = c(0, 1),
-      labels = c("Ambulatorio", "Hospitalizado")
-    )
-  )
-```
-
-### Distribución de la edad
-
-```{r}
-#| label: covid-eda-edad
-#| fig-cap: "Distribución de la edad según el desenlace registrado."
-
-ggplot(covid, aes(x = EDAD, fill = desenlace)) +
-  geom_histogram(
-    bins = 35,
-    position = "identity",
-    alpha = 0.55
-  ) +
-  facet_wrap(~ desenlace, ncol = 1) +
-  labs(
-    x = "Edad",
-    y = "Frecuencia",
-    fill = "Desenlace"
-  ) +
-  theme_minimal()
-```
-
-### Mortalidad observada por grupos de edad
-
-```{r}
-#| label: covid-eda-grupos-edad
-#| message: false
-#| warning: false
-
-resumen_edad <- covid |>
-  mutate(
-    grupo_edad = cut(
-      EDAD,
-      breaks = c(-Inf, 19, 39, 59, 69, 79, Inf),
-      labels = c(
-        "0-19", "20-39", "40-59",
-        "60-69", "70-79", "80 o más"
-      )
-    )
-  ) |>
-  group_by(grupo_edad) |>
-  summarise(
-    registros = n(),
-    defunciones = sum(MURIO, na.rm = TRUE),
-    proporcion_muestra = mean(MURIO, na.rm = TRUE),
-    .groups = "drop"
-  )
-
-resumen_edad
-```
-
-### Comorbilidades y desenlace
-
-```{r}
-#| label: covid-eda-comorbilidades
-#| message: false
-#| warning: false
-
-covid |>
-  group_by(NUM_COMORBILIDADES) |>
-  summarise(
-    registros = n(),
-    proporcion_defuncion_muestra = mean(MURIO, na.rm = TRUE),
-    .groups = "drop"
-  )
-```
-
-::: {.callout-important}
-
-La proporción calculada corresponde a la muestra educativa balanceada. No debe
-interpretarse como una tasa epidemiológica de mortalidad.
-
-:::
-
-
-## Laboratorio interactivo ATUS: mes, hora y víctimas
-
-Este laboratorio utiliza **conteos agregados calculados a partir de la base ATUS preparada del libro**. Permite seleccionar un mes y observar cómo cambia el número de accidentes por hora y la proporción de accidentes con víctimas.
-
-::: {.content-visible when-format="html"}
-
-```{shinylive-r}
-#| standalone: true
-#| viewerHeight: 720
-#| components: [viewer]
-
-library(shiny)
-
-datos_atus <- data.frame(
-  MES = c(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12),
-  ID_HORA = c(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23),
-  TOTAL = c(671,568,502,405,390,366,681,1202,1817,1681,1488,1513,1650,1685,2031,1986,1889,1733,1705,1830,1498,1161,1029,2119,751,605,520,418,331,379,637,1378,1821,1751,1436,1477,1587,1761,1988,1940,1816,1810,1866,1691,1707,1277,1044,2217,852,667,556,504,418,450,645,1253,1624,1568,1538,1535,1655,1672,1995,2086,1949,1925,1833,1847,1766,1439,1223,2237,805,606,521,472,369,385,619,1279,1781,1608,1488,1477,1626,1718,1962,2007,1888,1947,1881,1827,1727,1376,1131,2166,857,647,573,476,414,439,676,1298,1767,1628,1571,1552,1737,1823,2206,2068,2028,2036,2135,1915,1833,1454,1271,2261,836,690,541,462,413,415,658,1169,1630,1524,1455,1465,1577,1658,1977,1842,1772,1774,1723,1579,1640,1442,1241,2254,706,549,571,485,420,396,644,963,1315,1530,1394,1474,1617,1590,1794,1768,1739,1738,1781,1562,1468,1233,1104,2221,769,593,495,441,411,415,636,1173,1631,1578,1514,1454,1535,1697,1845,1976,1843,1876,1769,1660,1689,1352,1163,2285,688,585,531,458,415,410,685,1383,1797,1537,1430,1377,1563,1613,1982,1764,1778,1803,1645,1701,1653,1282,1079,2192,681,563,511,433,403,442,731,1519,2019,1786,1641,1469,1702,1722,2133,2057,2006,1901,1806,2033,1708,1284,1057,2164,728,620,566,506,408,407,724,1411,1924,1763,1585,1556,1701,1913,2232,2121,1928,1915,1878,1998,1663,1241,1074,2185,799,707,707,634,488,482,698,1131,1540,1532,1536,1634,1728,1826,2080,2048,1896,1890,1850,1830,1703,1260,1220,2264),
-  CON_VICTIMAS = c(135,101,91,62,77,78,154,218,309,279,262,271,290,314,366,328,341,343,317,367,312,255,233,180,151,115,87,77,55,70,136,255,304,270,263,251,270,303,345,323,317,338,358,339,360,273,249,192,171,125,102,95,82,103,154,257,266,246,240,233,289,308,300,336,320,372,382,430,401,351,291,209,176,125,105,78,63,81,133,242,286,251,228,263,258,324,315,337,327,375,341,359,382,354,249,189,175,142,93,93,97,90,148,264,277,262,230,238,271,325,363,352,328,391,374,410,405,319,298,226,170,126,97,76,68,72,131,230,270,240,233,259,253,285,341,299,276,315,335,273,339,325,279,201,139,127,103,86,84,81,134,182,224,234,213,229,247,255,291,273,298,293,316,316,303,278,250,184,166,97,108,81,81,80,121,210,303,251,236,218,243,268,269,287,309,321,326,324,320,301,234,223,131,108,84,101,65,69,128,228,269,251,217,219,261,285,322,269,294,298,320,350,344,280,214,180,125,111,94,66,67,78,138,259,300,275,270,252,262,305,319,315,321,360,332,405,352,279,230,168,172,121,108,70,64,81,155,233,348,291,250,230,276,349,319,322,341,389,350,416,322,279,260,183,169,117,115,96,86,81,137,222,268,263,261,261,252,296,332,365,314,344,368,389,325,270,221,188)
-)
-datos_atus$PORC_VICTIMAS <- ifelse(datos_atus$TOTAL > 0,
-                                   100 * datos_atus$CON_VICTIMAS / datos_atus$TOTAL,
-                                   0)
-
-ui <- fluidPage(
-  titlePanel("Explorador ATUS por mes y hora"),
-  sidebarLayout(
-    sidebarPanel(
-      sliderInput("mes", "Mes", min = 1, max = 12, value = 1, step = 1),
-      radioButtons("vista", "Mostrar", choices = c(
-        "Número de accidentes" = "total",
-        "% con víctimas" = "victimas"
-      ))
-    ),
-    mainPanel(
-      plotOutput("grafica", height = "430px"),
-      tableOutput("resumen"),
-      textOutput("interpretacion")
-    )
-  )
-)
-
-server <- function(input, output, session) {
-  datos_mes <- reactive({
-    datos_atus[datos_atus$MES == input$mes, ]
-  })
-
-  output$grafica <- renderPlot({
-    d <- datos_mes()
-    if (input$vista == "total") {
-      plot(d$ID_HORA, d$TOTAL, type = "h", lwd = 5,
-           xlab = "Hora del día", ylab = "Número de accidentes",
-           main = paste("ATUS: accidentes por hora - mes", input$mes))
-      points(d$ID_HORA, d$TOTAL, pch = 19)
-    } else {
-      plot(d$ID_HORA, d$PORC_VICTIMAS, type = "b", pch = 19,
-           xlab = "Hora del día", ylab = "% con víctimas",
-           ylim = c(0, max(5, max(d$PORC_VICTIMAS, na.rm = TRUE) * 1.1)),
-           main = paste("ATUS: proporción con víctimas - mes", input$mes))
-    }
-    grid()
-  })
-
-  output$resumen <- renderTable({
-    d <- datos_mes()
-    data.frame(
-      Indicador = c("Accidentes del mes", "Con víctimas", "% con víctimas"),
-      Valor = c(sum(d$TOTAL), sum(d$CON_VICTIMAS),
-                round(100 * sum(d$CON_VICTIMAS) / sum(d$TOTAL), 2))
-    )
-  })
-
-  output$interpretacion <- renderText({
-    d <- datos_mes()
-    h <- d$ID_HORA[which.max(d$TOTAL)]
-    paste0("En el mes seleccionado, la hora con mayor número de accidentes es ",
-           h, ":00. Cambia el mes y compara si el patrón se conserva.")
-  })
-}
-
-shinyApp(ui, server)
-```
-
-:::
-
-::: {.content-visible when-format="pdf"}
-
-### Laboratorio interactivo ATUS disponible en la versión web
-
-La versión web permite seleccionar el mes, comparar accidentes por hora y observar el porcentaje de accidentes con víctimas usando agregados de la base ATUS preparada.
-
-:::
-
-## Conclusión
-
-El análisis exploratorio permite detectar patrones iniciales, revisar el desbalance de clases e identificar variables útiles para modelar.
+El análisis exploratorio permite reconocer estructura, desbalance, concentraciones y relaciones antes de ajustar modelos. En la ruta ATUS se estudian frecuencias y proporciones de accidentes; en la ruta COVID-19 se exploran edad, comorbilidades y desenlace administrativo, manteniendo siempre separada la descripción de una muestra educativa de cualquier inferencia poblacional.

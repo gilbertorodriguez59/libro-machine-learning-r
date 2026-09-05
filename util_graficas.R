@@ -38,16 +38,32 @@ tema_libro <- function(base_size = 13) {
 
 escala_clases_fill <- function(...) {
   scale_fill_manual(
-    values = c("Con víctimas" = col_coral, "Solo daños" = col_turquesa,
-               "Alta" = col_coral, "Baja" = col_turquesa),
+    values = c(
+      "Con víctimas" = col_coral,
+      "Solo daños" = col_turquesa,
+      "Alta" = col_coral,
+      "Baja" = col_turquesa,
+      "With casualties" = col_coral,
+      "Property damage only" = col_turquesa,
+      "High" = col_coral,
+      "Low" = col_turquesa
+    ),
     ...
   )
 }
 
 escala_clases_color <- function(...) {
   scale_color_manual(
-    values = c("Con víctimas" = col_coral, "Solo daños" = col_turquesa,
-               "Alta" = col_coral, "Baja" = col_turquesa),
+    values = c(
+      "Con víctimas" = col_coral,
+      "Solo daños" = col_turquesa,
+      "Alta" = col_coral,
+      "Baja" = col_turquesa,
+      "With casualties" = col_coral,
+      "Property damage only" = col_turquesa,
+      "High" = col_coral,
+      "Low" = col_turquesa
+    ),
     ...
   )
 }

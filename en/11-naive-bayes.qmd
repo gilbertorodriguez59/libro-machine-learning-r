@@ -1,0 +1,132 @@
+# Naive Bayes Classifier
+
+::: {.callout-note title="Connection with the theoretical volume"}
+The mathematical treatment of conditional probability, Bayes' theorem, and probabilistic classification is developed more deeply in Chapters 3 and 6 of *Mathematical Foundations of Machine Learning* [@rodriguez2026fundamentos].
+:::
+
+## Learning objectives
+
+By the end of this chapter, the reader will be able to explain Bayes' theorem in a classification setting, interpret priors, likelihoods, and posteriors, understand the conditional-independence assumption, distinguish categorical and Gaussian Naive Bayes, and evaluate the classifier with held-out data.
+
+## Bayes' theorem
+
+For a class $C$ and observed features $X$,
+
+$$
+P(C\mid X)=\frac{P(X\mid C)P(C)}{P(X)}.
+$$
+
+For classification, the common denominator $P(X)$ does not need to be computed explicitly. We compare
+
+$$
+P(C\mid X)\propto P(X\mid C)P(C).
+$$
+
+The components are:
+
+- $P(C)$: prior probability of the class;
+- $P(X\mid C)$: likelihood of the observed predictors under the class;
+- $P(C\mid X)$: posterior probability after observing the predictors.
+
+## The naive conditional-independence assumption
+
+For predictors $X_1,\ldots,X_p$, Naive Bayes assumes conditional independence given the class:
+
+$$
+P(X_1,\ldots,X_p\mid C)=\prod_{j=1}^{p}P(X_j\mid C).
+$$
+
+Therefore,
+
+$$
+P(C\mid X_1,\ldots,X_p)\propto P(C)\prod_{j=1}^{p}P(X_j\mid C).
+$$
+
+::: {.callout-tip title="Key idea"}
+The model computes a class score by multiplying the prior by conditional likelihood contributions from the predictors, then assigns the observation to the class with the larger posterior score.
+:::
+
+## Zero probabilities and Laplace smoothing
+
+If a categorical level never appears with a class in the training data, its estimated conditional probability may be zero. Multiplication then forces the entire class score to zero.
+
+Laplace smoothing replaces raw frequencies with adjusted counts:
+
+$$
+\widehat{P}(X_j=x\mid C=c)=\frac{n_{x,c}+\alpha}{n_c+\alpha k},
+$$
+
+where $k$ is the number of categories and a common choice is $\alpha=1$.
+
+## Gaussian Naive Bayes
+
+For continuous predictors, a common variant assumes
+
+$$
+X_j\mid C=c\sim N(\mu_{jc},\sigma_{jc}^2).
+$$
+
+The mean and variance are estimated separately for each predictor within each class.
+
+## Strengths and limitations
+
+Naive Bayes is fast, simple, probabilistic, and often effective in high-dimensional problems. Its limitations include a strong independence assumption, sensitivity to unobserved levels without smoothing, possible probability miscalibration, and distributional assumptions for continuous variables.
+
+::: {.callout-warning title="Predictive usefulness does not validate the independence assumption"}
+A good classification score does not imply that the predictors are truly conditionally independent. The assumption is a modeling simplification and should be described as such.
+:::
+
+## ATUS route
+
+The Spanish edition applies Naive Bayes to an ATUS sample using month, hour, day of week, accident type, and cause. A stratified train/test split is used, Laplace smoothing is enabled, and performance is summarized with accuracy, sensitivity, specificity, precision, and F1.
+
+The learned class priors and conditional distributions can also be inspected directly, which makes Naive Bayes particularly useful as a didactic probabilistic baseline.
+
+## Probability interpretation
+
+The `type = "raw"` prediction output contains model-based posterior scores. These are conditional on the fitted assumptions and the empirical training distribution.
+
+::: {.callout-important title="Posterior scores are model-dependent"}
+Posterior values should not automatically be interpreted as perfectly calibrated real-world probabilities. Calibration must be checked separately, especially when the sample prevalence has been modified.
+:::
+
+## COVID-19 educational route
+
+The COVID-19 example uses the processed file selected by the reproducible preparation workflow rather than a hard-coded year.
+
+```{r}
+library(readr)
+library(dplyr)
+library(tidyr)
+
+files_covid <- list.files(
+  "../datos/covid19/procesados",
+  pattern = "covid19_mexico_[0-9]{4}_ml_preparado\\.csv\\.gz$",
+  full.names = TRUE
+)
+
+if (length(files_covid) == 0) {
+  stop("No prepared COVID-19 data file was found.")
+}
+
+covid_nb <- read_csv(files_covid[1], show_col_types = FALSE) |>
+  select(
+    MURIO, EDAD, NEUMONIA, DIABETES, HIPERTENSION,
+    OBESIDAD, RENAL_CRONICA, NUM_COMORBILIDADES
+  ) |>
+  drop_na()
+```
+
+For a teaching exercise, the outcome can be converted to a factor and the data split into training and test sets. The model can then combine Gaussian treatment of age with categorical or binary predictors.
+
+::: {.callout-warning title="Educational use only"}
+The resulting posterior scores describe the fitted educational dataset and must not be used for diagnosis, prognosis, or medical decisions.
+:::
+
+## Comparison with other classifiers
+
+Naive Bayes differs from logistic regression because it models class-conditional predictor distributions rather than directly modeling the log-odds. Unlike k-NN and SVM, it does not rely on a distance-based decision rule. Unlike trees and Random Forest, it uses an explicit probabilistic decomposition.
+
+## Chapter summary
+
+Naive Bayes provides a transparent probabilistic classifier based on Bayes' theorem and a simplifying conditional-independence assumption. It is valuable as a fast baseline, but its probabilities and assumptions must be interpreted carefully and evaluated on data not used for training.

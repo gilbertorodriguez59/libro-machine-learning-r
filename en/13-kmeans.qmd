@@ -1,0 +1,143 @@
+# Clustering with k-means
+
+::: {.callout-note title="Connection with the theoretical volume"}
+The mathematical treatment of distances, centroids, objective functions, and k-means clustering is developed in Chapters 2 and 18 of *Mathematical Foundations of Machine Learning* [@rodriguez2026fundamentos].
+:::
+
+## Learning objectives
+
+By the end of this chapter, the reader will be able to distinguish supervised from unsupervised learning, explain the k-means algorithm, calculate centroids, standardize variables, evaluate alternative values of $k$, interpret cluster profiles, and recognize the method's limitations.
+
+## From supervised to unsupervised learning
+
+In supervised learning, a known response variable guides model fitting. In unsupervised learning, no known class label defines the correct grouping. The objective is to discover structure in the predictors.
+
+Clustering groups observations that are similar to one another and separates observations that are dissimilar.
+
+## Basic idea of k-means
+
+k-means partitions observations into $k$ groups. Each group is represented by a centroid, the average position of the observations assigned to that group.
+
+The algorithm alternates between two steps:
+
+1. assign each observation to the nearest centroid;
+2. recompute the centroids from the current assignments.
+
+The process repeats until the assignments stabilize or the improvement becomes negligible.
+
+## Objective function
+
+k-means minimizes the within-cluster sum of squares:
+
+$$
+WSS=\sum_{j=1}^{k}\sum_{\mathbf{x}_i\in C_j}
+\|\mathbf{x}_i-\boldsymbol{\mu}_j\|^2.
+$$
+
+Here, $C_j$ is cluster $j$ and $\boldsymbol{\mu}_j$ is its centroid.
+
+## A small R example
+
+```{r}
+data <- data.frame(
+  x = c(1, 1.5, 3, 5, 3.5, 4.5),
+  y = c(1, 2, 4, 7, 5, 5)
+)
+
+set.seed(123)
+km <- kmeans(data, centers = 2, nstart = 25)
+km
+```
+
+Using multiple random starts is important because k-means can converge to different local solutions depending on the initial centroids.
+
+## Scaling variables
+
+Because k-means is distance-based, variables measured on larger numerical scales can dominate the grouping. A common standardization is
+
+$$
+z=\frac{x-\bar{x}}{s}.
+$$
+
+```{r}
+X <- scale(iris[, 1:4])
+head(X)
+```
+
+::: {.callout-important title="Scaling changes the geometry"}
+Standardization is not a cosmetic preprocessing step. It changes the distances that define the clusters and therefore can change the solution itself.
+:::
+
+## Choosing the number of clusters
+
+The elbow method examines how within-cluster variation decreases as $k$ increases. Silhouette analysis compares within-cluster cohesion with separation from neighboring clusters.
+
+Neither method automatically identifies one universally correct value of $k$. The final choice should combine quantitative diagnostics, stability, interpretability, and subject-matter knowledge.
+
+## Interpreting centroids
+
+Centroids summarize the average profile of each cluster. If standardized variables are used, positive centroid values indicate measurements above the overall mean and negative values indicate measurements below it.
+
+Cluster labels such as 1, 2, and 3 have no intrinsic order or meaning.
+
+::: {.callout-warning title="Clusters are not true classes"}
+A cluster is a structure discovered by an algorithm under a chosen distance, scaling, and value of $k$. It should not be treated automatically as a real-world category.
+:::
+
+## COVID-19 educational route
+
+The COVID-19 route uses the processed dataset selected by the reproducible preparation workflow rather than fixing one year in the chapter.
+
+The outcome `MURIO` is excluded from the variables used to build the clusters.
+
+```{r}
+library(readr)
+library(dplyr)
+library(tidyr)
+
+files_covid <- list.files(
+  "../datos/covid19/procesados",
+  pattern = "covid19_mexico_[0-9]{4}_ml_preparado\\.csv\\.gz$",
+  full.names = TRUE
+)
+
+if (length(files_covid) == 0) {
+  stop("No prepared COVID-19 data file was found.")
+}
+
+covid_km <- read_csv(files_covid[1], show_col_types = FALSE) |>
+  select(
+    MURIO, EDAD, NEUMONIA, DIABETES, HIPERTENSION,
+    OBESIDAD, RENAL_CRONICA, NUM_COMORBILIDADES
+  ) |>
+  drop_na()
+
+set.seed(2026)
+covid_km <- covid_km |>
+  sample_n(min(12000, nrow(covid_km)))
+
+vars_km <- c(
+  "EDAD", "NEUMONIA", "DIABETES", "HIPERTENSION",
+  "OBESIDAD", "RENAL_CRONICA", "NUM_COMORBILIDADES"
+)
+
+X_covid <- scale(covid_km[vars_km])
+```
+
+::: {.callout-important title="The outcome is not used to form clusters"}
+`MURIO` may be retained only for descriptive comparison after clustering. It is not included in the feature matrix and therefore does not guide cluster formation.
+:::
+
+## Stability and interpretation
+
+A responsible clustering analysis should examine whether the solution changes substantially with different seeds, samples, scaling choices, or neighboring values of $k$. A cluster that disappears under minor changes should be interpreted cautiously.
+
+For real applications, descriptive names should be assigned only after inspecting centroid profiles and relevant distributions.
+
+::: {.callout-warning title="Educational use only"}
+COVID-19 clusters are statistical profiles within the selected sample. They are not diagnoses, clinical categories, or medical risk levels.
+:::
+
+## Chapter summary
+
+k-means is a simple and useful unsupervised-learning method, but its results depend strongly on scale, initialization, the number of clusters, and the geometry of the data. Good clustering practice therefore requires diagnostics, stability checks, and cautious interpretation rather than relying on the algorithm alone.

@@ -1,0 +1,75 @@
+# Glossary {.unnumbered}
+
+## A-C {.unnumbered}
+
+**AUC:** area under the ROC curve; summarizes a classifier's discrimination ability across thresholds.
+
+**ATUS:** Statistics on Road Traffic Accidents in Urban and Suburban Areas published by INEGI.
+
+**Classification:** problem in which the response belongs to a finite set of categories.
+
+**Classification threshold:** value used to convert a probability or score into a class.
+
+**Confusion matrix:** table comparing observed and predicted classes.
+
+**COVID-19:** disease caused by the SARS-CoV-2 virus. In this book, open records are used exclusively for educational purposes.
+
+**Cross-validation:** resampling procedure used to estimate performance and select hyperparameters.
+
+## D-H {.unnumbered}
+
+**Gradient descent:** iterative method that updates parameters in the direction opposite to the gradient.
+
+**Generalization:** ability of a model to maintain good performance on new observations.
+
+**Hyperparameter:** value that controls model structure or training and is not estimated as an ordinary model parameter.
+
+## K-R {.unnumbered}
+
+**k-means:** clustering algorithm that minimizes within-cluster sum of squares.
+
+**k-NN:** method that predicts from the nearest observations.
+
+**Kernel:** function used to represent inner products in a transformed feature space.
+
+**Learning algorithm:** procedure that estimates a model from data under an optimization or fitting criterion.
+
+**Linear regression:** model for a numerical response based on a linear combination of predictors.
+
+**Logistic regression:** probabilistic model used mainly for binary classification.
+
+**Loss function:** measure of discrepancy between a prediction and an observed value.
+
+**Model:** representation learned from data to describe, predict, or classify.
+
+**Naive Bayes:** probabilistic classifier based on Bayes' theorem and a conditional-independence assumption.
+
+**Random Forest:** ensemble of decision trees built with bootstrap samples and random feature selection.
+
+**Regularization:** penalty or constraint intended to control model complexity.
+
+**ROC curve:** plot of sensitivity against false-positive rate across classification thresholds.
+
+## S-Z {.unnumbered}
+
+**Sensitivity:** proportion of actual positives correctly detected.
+
+**Shinylive:** technology that runs Shiny for R applications directly in the browser through WebAssembly.
+
+**Silhouette:** cohesion-and-separation measure used to evaluate clustering.
+
+**Specificity:** proportion of actual negatives correctly identified.
+
+**Supervised learning:** construction of a predictive function from input-output pairs.
+
+**SVM:** support vector machine; classifier based on maximum-margin separation.
+
+**Target variable:** response that a supervised model attempts to predict.
+
+**Test data:** observations reserved to estimate final model performance.
+
+**Training data:** observations used to fit model parameters.
+
+**Unsupervised learning:** search for structure in data without using a known target variable.
+
+**Overfitting:** excessive adaptation to training data that harms generalization.

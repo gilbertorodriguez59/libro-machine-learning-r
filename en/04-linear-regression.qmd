@@ -6,33 +6,111 @@ Simple and multiple linear regression are developed in greater mathematical dept
 
 ## Chapter objectives
 
-By the end of this chapter, the reader will be able to distinguish regression from classification, fit simple and multiple linear models, interpret coefficients, evaluate prediction outside the training sample, and analyze residuals.
+By the end of this chapter, the reader will be able to:
+
+- distinguish regression from classification;
+- fit simple and multiple linear models;
+- interpret coefficients and predictions;
+- understand the geometric meaning of residuals;
+- evaluate out-of-sample performance using RMSE and MAE;
+- review basic assumptions using diagnostic reasoning;
+- apply a didactic linear regression to aggregated ATUS data;
+- recognize situations in which linear regression is not the most appropriate model.
+
+## Why study linear regression in a classification book?
+
+Linear regression is not a classification algorithm: its response is numeric and continuous. However, it introduces fundamental supervised-learning ideas that reappear throughout machine learning: prediction functions, coefficients, error, model fit, generalization, and out-of-sample evaluation [@james2021islr].
+
+It also prepares the reader for logistic regression in the next chapter. Both models construct a combination of explanatory variables, although they differ in the nature of the response and the function used to obtain predictions.
+
+::: {.callout-note title="Central idea"}
+Linear regression predicts a quantity, such as a PM10 concentration. Classification predicts a category, such as whether a traffic accident involved casualties or property damage only.
+:::
 
 ## Simple linear regression
 
-The simple linear model is
+The simple linear model is written as
 
 $$
-Y_i=\beta_0+\beta_1X_i+\varepsilon_i.
+Y_i=\beta_0+\beta_1X_i+\varepsilon_i,
 $$
 
-```{r}
-hours <- c(2,3,4,5,6,7,8,9)
-grade <- c(55,60,64,70,75,79,86,90)
+where $\beta_0$ is the intercept, $\beta_1$ is the slope, and $\varepsilon_i$ represents variation not explained by the model. The coefficients are commonly estimated by least squares [@montgomery2021introduction].
+
+```{r simple-regression-data-en}
+hours <- c(2, 3, 4, 5, 6, 7, 8, 9)
+grade <- c(55, 60, 64, 70, 75, 79, 86, 90)
+
 study_data <- data.frame(hours, grade)
-model_simple <- lm(grade ~ hours, data = study_data)
+
+model_simple <- lm(
+  grade ~ hours,
+  data = study_data
+)
+
 summary(model_simple)
 ```
 
+## Visualize the relationship
+
+```{r simple-regression-plot-en, fig.width=7, fig.height=4.8}
+library(ggplot2)
+source("../util_graficas.R")
+
+ggplot(study_data, aes(x = hours, y = grade)) +
+  geom_point(size = 3) +
+  geom_smooth(method = "lm", se = TRUE) +
+  labs(
+    title = "Study hours and grade",
+    subtitle = "Example of an approximately linear relationship",
+    x = "Study hours",
+    y = "Grade"
+  ) +
+  tema_libro()
+```
+
+## Interpret the coefficients
+
+```{r simple-regression-coefficients-en}
+coef(model_simple)
+```
+
+The estimated model can be written as
+
+$$
+\widehat{Y}=\widehat{\beta}_0+\widehat{\beta}_1X.
+$$
+
+The slope estimates the average change in grade associated with one additional study hour within the observed range. The intercept is mathematically necessary, although it may not always have a useful practical interpretation.
+
+## Make a prediction
+
+```{r simple-regression-prediction-en}
+new_student <- data.frame(hours = 6.5)
+
+predict(
+  model_simple,
+  newdata = new_student,
+  interval = "prediction",
+  level = 0.95
+)
+```
+
+::: {.callout-tip title="Point prediction and interval"}
+A point prediction summarizes the value expected by the fitted model. A prediction interval is wider because it incorporates both model uncertainty and the individual variability of a new observation.
+:::
+
 ## Fitted values and residuals
 
-For observation $i$,
+For observation $i$, the fitted value is $\widehat y_i$ and the residual is
 
 $$
 e_i=y_i-\widehat y_i.
 $$
 
-```{r}
+A residual is the vertical distance between an observed point and the fitted line.
+
+```{r simple-regression-residuals-en}
 diagnostics_simple <- data.frame(
   observed = study_data$grade,
   predicted = fitted(model_simple),
@@ -42,29 +120,27 @@ diagnostics_simple <- data.frame(
 diagnostics_simple
 ```
 
-```{r fig.width=7, fig.height=4.8}
-library(ggplot2)
-
+```{r simple-regression-residual-plot-en, fig.width=7, fig.height=4.8}
 ggplot(diagnostics_simple, aes(x = predicted, y = residual)) +
   geom_hline(yintercept = 0, linetype = 2) +
   geom_segment(aes(xend = predicted, yend = 0), alpha = 0.45) +
   geom_point(size = 3) +
   labs(
     title = "Residuals from a linear regression",
-    subtitle = "Residual = observed minus predicted",
+    subtitle = "Each residual is observed minus predicted",
     x = "Predicted value",
     y = "Residual"
   ) +
-  theme_minimal()
+  tema_libro()
 ```
 
-::: {.callout-tip title="How to read the plot"}
-A roughly patternless cloud around zero is compatible with a reasonable linear model. Curvature, funnel shapes, or extreme points suggest that the model specification should be reconsidered.
+::: {.callout-tip title="How to interpret the plot"}
+A roughly patternless cloud around zero is compatible with a reasonable linear model. Curvature, funnel-shaped variation, or very distant points suggest that the model specification should be reviewed.
 :::
 
 ## Multiple linear regression
 
-With $p$ predictors,
+With $p$ explanatory variables,
 
 $$
 Y_i=\beta_0+\beta_1X_{i1}+\beta_2X_{i2}+\cdots+\beta_pX_{ip}+\varepsilon_i.
@@ -72,7 +148,7 @@ $$
 
 Each coefficient is interpreted while holding the remaining predictors constant.
 
-```{r}
+```{r multiple-regression-data-en}
 set.seed(2026)
 n <- 80
 
@@ -83,7 +159,8 @@ environmental_data <- data.frame(
 )
 
 environmental_data$pm10 <-
-  18 + 0.9 * environmental_data$temperature -
+  18 +
+  0.9 * environmental_data$temperature -
   2.1 * environmental_data$wind_speed +
   0.045 * environmental_data$traffic +
   rnorm(n, 0, 6)
@@ -96,13 +173,26 @@ model_multiple <- lm(
 summary(model_multiple)
 ```
 
+## Coefficient table
+
+```{r multiple-regression-coefficients-en}
+data.frame(
+  term = names(coef(model_multiple)),
+  estimate = as.numeric(coef(model_multiple))
+)
+```
+
+For example, the coefficient of `wind_speed` estimates the average change in PM10 associated with a one-unit increase in wind speed while temperature and traffic are held constant.
+
 ::: {.callout-warning title="Association is not causation"}
-Regression coefficients describe conditional associations within the fitted model. By themselves they do not establish causal effects.
+Regression coefficients describe conditional associations within the fitted model. A large or statistically significant coefficient does not, by itself, establish a causal effect.
 :::
 
 ## Out-of-sample evaluation
 
-```{r}
+Evaluating a model on the same observations used to fit it gives an overly optimistic picture. We therefore separate training and test data.
+
+```{r multiple-regression-evaluation-en}
 set.seed(2026)
 idx <- sample(
   seq_len(nrow(environmental_data)),
@@ -125,14 +215,260 @@ mae <- mean(abs(test_reg$pm10 - pred))
 data.frame(RMSE = rmse, MAE = mae)
 ```
 
+The RMSE is
+
+$$
+RMSE=\sqrt{\frac{1}{n}\sum_{i=1}^{n}(y_i-\widehat y_i)^2}.
+$$
+
+MAE uses absolute errors and is generally less sensitive to a few very large prediction errors.
+
+## Observed versus predicted values
+
+```{r observed-predicted-regression-en, fig.width=7, fig.height=4.8}
+comparison <- data.frame(
+  observed = test_reg$pm10,
+  predicted = pred
+)
+
+ggplot(comparison, aes(x = observed, y = predicted)) +
+  geom_point(size = 3, alpha = 0.8) +
+  geom_abline(slope = 1, intercept = 0, linetype = 2) +
+  labs(
+    title = "Observed and predicted values",
+    subtitle = "The diagonal represents perfect prediction",
+    x = "Observed PM10",
+    y = "Predicted PM10"
+  ) +
+  tema_libro()
+```
+
+## Didactic application with aggregated ATUS data
+
+In ATUS, each row represents one traffic accident. To construct a numeric response, we aggregate the records by month and study the **monthly number of recorded accidents**.
+
+::: {.callout-warning title="Teaching model, not a final count-data model"}
+The number of accidents is count data, and this example contains only 12 monthly observations. Linear regression is used to connect the ideas in this chapter with real data from the book. A formal analysis would usually require a longer time series and count models such as Poisson or negative-binomial regression.
+:::
+
+```{r load-atus-regression-en}
+library(readr)
+library(dplyr)
+
+atus_reg_path <- "../datos/atus_ml_preparado.csv"
+
+if (!file.exists(atus_reg_path)) {
+  stop("../datos/atus_ml_preparado.csv was not found. Run Chapter 2 first.")
+}
+
+atus_reg <- read_csv(
+  atus_reg_path,
+  show_col_types = FALSE
+)
+```
+
+## Build the monthly ATUS dataset
+
+```{r monthly-atus-regression-en}
+required_variables <- c(
+  "MES", "ID_HORA", "DIASEMANA", "TIPACCID",
+  "accidente_con_victimas"
+)
+
+missing_variables <- setdiff(required_variables, names(atus_reg))
+
+if (length(missing_variables) > 0) {
+  stop(
+    paste(
+      "Variables required for the example are missing:",
+      paste(missing_variables, collapse = ", ")
+    )
+  )
+}
+
+atus_monthly <- atus_reg |>
+  mutate(
+    MES = suppressWarnings(as.numeric(MES)),
+    ID_HORA_NUM = suppressWarnings(as.numeric(ID_HORA)),
+    VALID_HOUR = ifelse(
+      ID_HORA_NUM >= 0 & ID_HORA_NUM <= 23,
+      ID_HORA_NUM,
+      NA_real_
+    ),
+    weekend = tolower(as.character(DIASEMANA)) %in%
+      c("sábado", "sabado", "domingo"),
+    casualties = accidente_con_victimas == "Con víctimas"
+  ) |>
+  filter(!is.na(MES), MES >= 1, MES <= 12) |>
+  group_by(MES) |>
+  summarise(
+    accidents = n(),
+    accident_types = n_distinct(TIPACCID, na.rm = TRUE),
+    mean_hour = mean(VALID_HOUR, na.rm = TRUE),
+    weekend_proportion = mean(weekend, na.rm = TRUE),
+    casualty_proportion = mean(casualties, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+atus_monthly
+```
+
+## Fit an exploratory multiple regression with ATUS
+
+```{r atus-linear-model-en}
+model_atus_reg <- lm(
+  accidents ~ MES + mean_hour + weekend_proportion,
+  data = atus_monthly
+)
+
+summary(model_atus_reg)
+```
+
+::: {.callout-note title="Responsible interpretation"}
+This fit is useful for practicing the mechanics of `lm()` with a real dataset. With only 12 months, it should not be used for strong claims about prediction, statistical significance, or causation.
+:::
+
 ## Main assumptions
 
-Traditional linear-model inference relies approximately on linearity, independent errors, constant variance, no extreme multicollinearity, and approximate normality of errors when tests and intervals are constructed.
+Traditional linear-model inference relies approximately on:
 
-## ATUS case
+1. linearity;
+2. independent errors;
+3. approximately constant error variance;
+4. absence of extreme multicollinearity;
+5. approximate normality of errors when tests and intervals are constructed.
 
-Monthly accident counts are count data. Linear regression is used here as a teaching device; Poisson or negative-binomial models may be more appropriate in a formal count-data analysis.
+::: {.callout-note title="Diagnosis, not ritual"}
+Assumptions should be examined through graphics, substantive knowledge, and diagnostic measures. They should not be reduced to an automatic checklist of statistical tests.
+:::
+
+## Linear versus logistic regression
+
+| Characteristic | Linear regression | Logistic regression |
+|---|---|---|
+| Response | Continuous numeric | Binary |
+| Output | Real number | Probability between 0 and 1 |
+| Typical link/function | Identity | Logistic |
+| Common evaluation | RMSE, MAE, $R^2$ | Sensitivity, specificity, AUC, calibration |
+| Example | Predict PM10 | Classify an accident with casualties |
+
+## Interactive laboratory: linear regression
+
+::: {.content-visible when-format="html"}
+Change the intercept, slope, noise level, and sample size. The laboratory generates data, refits the least-squares line, and shows how the estimated coefficients, $R^2$, and RMSE respond.
+
+```{shinylive-r}
+#| standalone: true
+#| viewerHeight: 760
+#| components: [viewer]
+
+library(shiny)
+
+ui <- fluidPage(
+  titlePanel("Linear regression laboratory"),
+  sidebarLayout(
+    sidebarPanel(
+      sliderInput("b0", "True intercept", -10, 10, 2, step = 0.5),
+      sliderInput("b1", "True slope", -5, 5, 1.5, step = 0.1),
+      sliderInput("noise", "Noise standard deviation", 0, 8, 2, step = 0.25),
+      sliderInput("n", "Number of observations", 20, 150, 60, step = 10),
+      numericInput("seed", "Random seed", 123, min = 1)
+    ),
+    mainPanel(
+      plotOutput("plot", height = "430px"),
+      tableOutput("metrics")
+    )
+  )
+)
+
+server <- function(input, output, session) {
+  simulation <- reactive({
+    set.seed(input$seed)
+    x <- runif(input$n, 0, 10)
+    y <- input$b0 + input$b1 * x + rnorm(input$n, 0, input$noise)
+    d <- data.frame(x = x, y = y)
+    model <- lm(y ~ x, data = d)
+    list(data = d, model = model)
+  })
+
+  output$plot <- renderPlot({
+    s <- simulation()
+    d <- s$data
+    model <- s$model
+
+    plot(
+      d$x, d$y,
+      pch = 19,
+      xlab = "Explanatory variable x",
+      ylab = "Response y",
+      main = "Simulated data and fitted line"
+    )
+    abline(model, lwd = 3)
+    grid()
+  })
+
+  output$metrics <- renderTable({
+    s <- simulation()
+    model <- s$model
+    d <- s$data
+    pred <- predict(model)
+
+    data.frame(
+      Estimated_intercept = round(coef(model)[1], 3),
+      Estimated_slope = round(coef(model)[2], 3),
+      R2 = round(summary(model)$r.squared, 4),
+      RMSE = round(sqrt(mean((d$y - pred)^2)), 4)
+    )
+  })
+}
+
+shinyApp(ui, server)
+```
+:::
+
+::: {.content-visible when-format="pdf"}
+### Laboratory available in the web edition
+The interactive version allows the reader to modify the true linear relationship and the noise level and observe the effect on the fitted line, $R^2$, and RMSE.
+:::
+
+## Supplementary materials for this chapter
+
+| Resource | Purpose | Open or play | Download |
+|---|---|---|---|
+| Explanatory video | Audiovisual explanation of simple and multiple linear regression. | [Watch on YouTube](https://www.youtube.com/watch?v=SE6DCeU9h1w){target="_blank"} | — |
+| PDF presentation | Slides for reading, study, or classroom presentation. | [View PDF](../recursos/capitulo-04/capitulo-04-regresion-lineal-simple-multiple.pdf){target="_blank"} | [Download PDF](../recursos/capitulo-04/capitulo-04-regresion-lineal-simple-multiple.pdf){download="chapter-04-simple-multiple-linear-regression.pdf"} |
+| Editable presentation | PowerPoint file for classroom use or adaptation. | [Open PPTX](../recursos/capitulo-04/capitulo-04-regresion-lineal-simple-multiple.pptx) | [Download PPTX](../recursos/capitulo-04/capitulo-04-regresion-lineal-simple-multiple.pptx){download="chapter-04-simple-multiple-linear-regression.pptx"} |
+| Infographic | Visual synthesis of concepts, formulas, and interpretation. | [View infographic](../recursos/capitulo-04/capitulo-04-regresion-lineal-simple-multiple-infografia.png){target="_blank"} | [Download PNG](../recursos/capitulo-04/capitulo-04-regresion-lineal-simple-multiple-infografia.png){download="chapter-04-linear-regression-infographic.png"} |
+| Google Colab notebook | Self-contained notebook for executing the chapter examples. | [Open in Google Colab](https://colab.research.google.com/github/gilbertorodriguez59/libro-machine-learning-r/blob/main/colab/04-regresion-lineal.ipynb){target="_blank"} | — |
+
+::: {.content-visible when-format="html"}
+### Explanatory video
+
+<div class="video-responsive">
+  <iframe src="https://www.youtube.com/embed/SE6DCeU9h1w"
+    title="Chapter 4. Simple and multiple linear regression"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen>
+  </iframe>
+</div>
+
+### Infographic preview
+
+[![Chapter 4 infographic](../recursos/capitulo-04/capitulo-04-regresion-lineal-simple-multiple-infografia.png)](../recursos/capitulo-04/capitulo-04-regresion-lineal-simple-multiple-infografia.png)
+:::
+
+::: {.content-visible when-format="pdf"}
+**Chapter video:** <https://www.youtube.com/watch?v=SE6DCeU9h1w>
+
+The PDF presentation, editable presentation, infographic, and Colab notebook are available from the web edition of the book.
+:::
+
+::: {.callout-note title="Preparation of supplementary resources"}
+The supplementary materials were prepared with support from **Google NotebookLM**, using the chapter content as the source, and were subsequently reviewed and adapted by the author. The book text and repository source files remain the primary references.
+:::
 
 ## Chapter summary
 
-Linear regression introduces prediction functions, error, residuals, model fit, and out-of-sample evaluation. These ideas provide a bridge to logistic regression and other supervised-learning methods.
+Linear regression introduces fundamental supervised-learning ideas: prediction functions, coefficients, error, residuals, model fit, and out-of-sample evaluation. Multiple regression allows several predictors to be considered simultaneously, but its coefficients must be interpreted within the fitted model rather than treated as automatic causal effects. These ideas provide a bridge to logistic regression and other classification methods.

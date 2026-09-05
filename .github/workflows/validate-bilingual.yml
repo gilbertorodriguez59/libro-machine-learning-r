@@ -81,6 +81,7 @@ jobs:
         run: |
           test -s docs/00-prefacio.html
           test -s docs/00-agradecimientos.html
+          test -s docs/04-regresion-lineal-multiple-2026.html
           test -s docs/en/00-preface.html
           test -s docs/en/00-acknowledgments.html
           test -s docs/en/00-google-colab.html
@@ -89,6 +90,7 @@ jobs:
           test -s docs/en/01-introduction.html
           test -s docs/en/02-data-preparation.html
           test -s docs/en/03-exploratory-data-analysis.html
+          test -s docs/en/04-linear-regression.html
           grep -q 'English' docs/index.html
           grep -q 'Español' docs/en/index.html
           grep -q 'Machine Learning and Automatic Classification with R' docs/en/index.html
@@ -101,6 +103,11 @@ jobs:
           grep -q 'Interactive data explorer' docs/en/03-exploratory-data-analysis.html
           grep -q 'U2hd8iEovCY' docs/en/03-exploratory-data-analysis.html
           grep -q 'chapter-03-exploratory-data-analysis.pdf' docs/en/03-exploratory-data-analysis.html
+          grep -q 'Laboratorio de regresión lineal' docs/04-regresion-lineal-multiple-2026.html
+          grep -q 'SE6DCeU9h1w' docs/04-regresion-lineal-multiple-2026.html
+          grep -q 'Linear regression laboratory' docs/en/04-linear-regression.html
+          grep -q 'SE6DCeU9h1w' docs/en/04-linear-regression.html
+          grep -q 'chapter-04-simple-multiple-linear-regression.pdf' docs/en/04-linear-regression.html
 
       - name: Guardar sitio bilingüe como artefacto de validación
         uses: actions/upload-artifact@v4

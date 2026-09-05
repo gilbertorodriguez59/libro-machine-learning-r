@@ -72,10 +72,11 @@ $$
 
 ```{r introduction-plot, fig.width=7, fig.height=4.5}
 library(ggplot2)
+source("../util_graficas.R")
 
-# This English edition intentionally keeps the example self-contained.
 ggplot(data, aes(x = pm10, y = temperature, color = class)) +
   geom_point(size = 4, alpha = 0.9) +
+  escala_clases_color() +
   labs(
     title = "Introductory classification example",
     subtitle = "Classification of high or low pollution",
@@ -83,11 +84,11 @@ ggplot(data, aes(x = pm10, y = temperature, color = class)) +
     y = "Temperature",
     color = "Class"
   ) +
-  theme_minimal()
+  tema_libro()
 ```
 
 ::: {.callout-note title="Code explanation"}
-The plot places PM10 on the horizontal axis and temperature on the vertical axis, and uses color to distinguish the classes.
+The plot places PM10 on the horizontal axis and temperature on the vertical axis, and uses color to distinguish the classes. The shared plotting functions keep the graphical identity consistent with the Spanish edition.
 :::
 
 ::: {.callout-tip title="Result interpretation"}
@@ -130,9 +131,51 @@ mean(data$class == data$rule_prediction)
 The confusion matrix compares the actual class with the predicted class. Accuracy measures the proportion of correct predictions.
 :::
 
-## Supplementary materials
+## Supplementary materials for this chapter
 
-The Spanish edition currently contains the official videos, presentations, infographics, and Google Colab notebook associated with this chapter. The bilingual edition preserves those resources while the English-language supplementary materials are prepared.
+These resources provide several ways to review the chapter. The presentation can be read as a PDF or adapted in PowerPoint, the infographic offers a visual synthesis, the video explains the main ideas, and the Google Colab notebook allows the examples to be executed independently.
+
+| Resource | Purpose | Open or play | Download |
+|---|---|---|---|
+| Explanatory video | Audiovisual introduction to machine learning and the chapter contents. | [Watch on YouTube](https://www.youtube.com/watch?v=N2SkzjT2LpU){target="_blank"} | — |
+| PDF presentation | Slides for reading, study, or classroom presentation. | [View PDF](../recursos/capitulo-01/capitulo-01-introduccion-aprendizaje-automatico.pdf){target="_blank"} | [Download PDF](../recursos/capitulo-01/capitulo-01-introduccion-aprendizaje-automatico.pdf){download="chapter-01-introduction-machine-learning.pdf"} |
+| Editable presentation | PowerPoint file for classroom use or adaptation. | [Open PPTX](../recursos/capitulo-01/capitulo-01-introduccion-aprendizaje-automatico.pptx) | [Download PPTX](../recursos/capitulo-01/capitulo-01-introduccion-aprendizaje-automatico.pptx){download="chapter-01-introduction-machine-learning.pptx"} |
+| Infographic | Visual summary of the chapter's main ideas. | [View infographic](../recursos/capitulo-01/capitulo-01-introduccion-aprendizaje-automatico-infografia.png){target="_blank"} | [Download PNG](../recursos/capitulo-01/capitulo-01-introduccion-aprendizaje-automatico-infografia.png){download="chapter-01-introduction-machine-learning-infographic.png"} |
+| Google Colab notebook | Self-contained notebook for running the chapter examples. | [Open in Google Colab](https://colab.research.google.com/github/gilbertorodriguez59/libro-machine-learning-r/blob/main/colab/01-introduccion.ipynb){target="_blank"} | — |
+
+::: {.content-visible when-format="html"}
+### Explanatory video
+
+<div class="video-responsive">
+  <iframe src="https://www.youtube.com/embed/N2SkzjT2LpU"
+    title="Chapter 1. Introduction to machine learning"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen>
+  </iframe>
+</div>
+
+### Infographic preview
+
+[![Chapter 1 infographic](../recursos/capitulo-01/capitulo-01-introduccion-aprendizaje-automatico-infografia.png)](../recursos/capitulo-01/capitulo-01-introduccion-aprendizaje-automatico-infografia.png)
+:::
+
+::: {.content-visible when-format="pdf"}
+**Chapter video:** <https://www.youtube.com/watch?v=N2SkzjT2LpU>
+
+The PDF presentation, editable presentation, and infographic can be downloaded from the web edition of the book.
+:::
+
+::: {.callout-note title="Preparation of supplementary resources"}
+The supplementary materials were prepared with support from **Google NotebookLM**, using the chapter content as the source, and were subsequently reviewed and adapted by the author. The book text and its source files remain the primary reference.
+:::
+
+::: {.callout-tip title="Complete course on YouTube"}
+This video is part of the official playlist for **Machine Learning and Automatic Classification with R**.
+
+[View all course videos](https://www.youtube.com/playlist?list=PLDJYd2v7Kt-Q){target="_blank"}
+:::
 
 ## Interactive laboratory: a classification rule
 

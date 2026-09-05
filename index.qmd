@@ -5,24 +5,22 @@
 ### Un enfoque práctico con datos abiertos reales {.unnumbered}
 
 **Autor:** Jesús Gilberto Rodríguez Escobedo  
-**Versión:** 1.0.0  
+**Edición:** Primera edición, 2026  
 **Modalidad:** Libro abierto, práctico e interactivo  
 **Tecnologías:** R · Quarto · Machine Learning · Shinylive · Google Colab · YouTube · GitHub Pages
-
 
 ::: {.content-visible when-format="html"}
 
 ::: {.callout-note appearance="simple" icon="false"}
 
-## Edición interactiva ampliada
+## Edición interactiva
 
 ### Aprende Machine Learning haciendo
 
-Libro abierto con código en **R**, datos reales, videos, presentaciones,
-infografías, Google Colab y laboratorios que se ejecutan directamente en el
-navegador.
+Libro abierto con código en **R**, datos reales, videos, presentaciones, infografías, Google Colab y laboratorios que se ejecutan directamente en el navegador.
 
 [Comenzar el libro](01-introduccion.qmd){.btn .btn-primary .btn-lg}
+[English edition](en/index.html){.btn .btn-outline-dark .btn-lg}
 [Curso completo en YouTube](https://www.youtube.com/playlist?list=PLDJYd2v7Kt-Q){.btn .btn-danger .btn-lg}
 [Cuaderno Google Colab](00-cuaderno-google-colab.qmd){.btn .btn-outline-primary .btn-lg}
 [Descargar PDF](Aprendizaje-y-Clasificacion-Automatica-con-R.pdf){.btn .btn-outline-secondary .btn-lg target="_blank"}
@@ -37,7 +35,7 @@ navegador.
 
 Este libro introduce el aprendizaje automático (*Machine Learning*) mediante ejemplos claros, didácticos y prácticos desarrollados principalmente en **R**.
 
-La intención no es escribir un tratado matemático extenso, sino construir una guía aplicada para aprender haciendo con datos abiertos reales. En esta versión trabajamos con dos rutas de datos abiertos de México: **ATUS**, con accidentes de tránsito, y **COVID-19**, con registros históricos preparados para fines educativos. Ambas rutas se utilizan para explicar preparación de datos, análisis exploratorio, regresión, clasificación y evaluación de modelos.
+La intención no es escribir un tratado matemático extenso, sino construir una guía aplicada para aprender haciendo con datos abiertos reales. La primera edición trabaja con dos rutas principales de datos abiertos de México: **ATUS**, con accidentes de tránsito, y **COVID-19**, con registros históricos preparados para fines educativos. Ambas rutas se utilizan para explicar preparación de datos, análisis exploratorio, regresión, clasificación y evaluación de modelos.
 
 ::: {.callout-note}
 ## Enfoque del libro
@@ -59,19 +57,17 @@ Este libro está dirigido a estudiantes de ingeniería, ciencias, ciencia de dat
 - Google Colab
 - GitHub
 - GitHub Pages
-- Quarto Pub
-
+- Quarto
 
 ## Cuaderno completo de Google Colab {.unnumbered}
 
-El contenido del libro también está disponible como un cuaderno ejecutable de Google Colab. Las explicaciones se presentan en celdas de texto y cada código R está separado para ejecutarse paso a paso.
+El contenido del libro también está disponible como un cuaderno ejecutable de Google Colab. Las explicaciones se presentan en celdas de texto y cada bloque de código R está separado para ejecutarse paso a paso.
 
 - [Abrir el cuaderno en Google Colab](https://colab.research.google.com/github/gilbertorodriguez59/libro-machine-learning-r/blob/main/Aprendizaje_y_Clasificacion_Automatica_con_R_Colab.ipynb)
 - [Descargar el archivo `.ipynb`](Aprendizaje_y_Clasificacion_Automatica_con_R_Colab.ipynb)
 - [Consultar instrucciones de uso](00-cuaderno-google-colab.qmd)
 
-
-## Video de presentación del libro
+## Video de presentación del libro {.unnumbered}
 
 Este video ofrece una introducción general a la presentación, la licencia de uso y el cuaderno completo de Google Colab.
 
@@ -86,49 +82,25 @@ Este video ofrece una introducción general a la presentación, la licencia de u
 ::: {.content-visible when-format="pdf"}
 \newpage
 
-### Curso completo en YouTube
+### Curso completo en YouTube {.unnumbered}
 
-El libro cuenta con una lista oficial de reproducción en YouTube, donde se
-reúnen el video de presentación y los videos complementarios de cada capítulo.
-
-[▶ Ver el curso completo en YouTube](https://www.youtube.com/playlist?list=PLDJYd2v7Kt-Q)
-
-Enlace directo:
-
-<https://www.youtube.com/playlist?list=PLDJYd2v7Kt-Q>
-
-**Lista oficial del curso**
-
-Presentación general y videos complementarios de los capítulos.
-
-## Curso completo en YouTube
-
-El libro cuenta con una lista oficial de reproducción en YouTube, donde se reúnen los videos de presentación y de cada capítulo.
+El libro cuenta con una lista oficial de reproducción que reúne el video de presentación y los videos complementarios de los capítulos.
 
 [▶ Ver el curso completo en YouTube](https://www.youtube.com/playlist?list=PLDJYd2v7Kt-Q)
-
-Enlace directo: <https://www.youtube.com/playlist?list=PLDJYd2v7Kt-Q>
-
-:::
-
-::: {.content-visible when-format="html"}
-
-**Lista oficial del curso**
-
-Presentación general y videos complementarios de los capítulos.
-
-[Abrir curso en YouTube](https://www.youtube.com/playlist?list=PLDJYd2v7Kt-Q){.btn .btn-danger target="_blank"}
-
-:::
-
-::: {.content-visible when-format="pdf"}
-### Lista oficial del curso
 
 \begin{center}
 \includegraphics[width=0.25\textwidth]{imagenes/qr-curso-youtube.png}
 \end{center}
 
 <https://www.youtube.com/playlist?list=PLDJYd2v7Kt-Q>
+:::
+
+::: {.content-visible when-format="html"}
+
+### Curso completo en YouTube {.unnumbered}
+
+[Abrir curso en YouTube](https://www.youtube.com/playlist?list=PLDJYd2v7Kt-Q){.btn .btn-danger target="_blank"}
+
 :::
 
 ## Materiales complementarios descargables {.unnumbered}
@@ -143,15 +115,13 @@ Para facilitar la presentación, consulta y difusión de las primeras secciones 
 
 ::: {.callout-tip title="Cómo descargar los materiales"}
 Seleccione el enlace de la columna **Descargar**. Dependiendo de la configuración del navegador, el archivo puede descargarse inmediatamente o abrirse primero en una pestaña nueva. En ese caso, utilice el botón de descarga del navegador.
-
-Los archivos se encuentran alojados en el mismo repositorio de GitHub que el libro, por lo que no es necesario iniciar sesión en Google Drive ni solicitar permisos adicionales.
 :::
 
 ::: {.callout-note title="Elaboración de los recursos"}
 Estos materiales complementarios fueron elaborados con apoyo de **NotebookLM de Google**, a partir del contenido del libro, y posteriormente revisados, seleccionados y adaptados por el autor. El contenido del libro y sus archivos fuente constituyen la referencia principal.
 :::
 
-## Estructura actual del libro {.unnumbered}
+## Estructura de la primera edición {.unnumbered}
 
 1. Introducción al aprendizaje automático.
 2. Preparación de datos reales.
@@ -167,17 +137,10 @@ Estos materiales complementarios fueron elaborados con apoyo de **NotebookLM de 
 12. Redes neuronales artificiales.
 13. Agrupamiento con k-means.
 
-## Ruta prevista para los siguientes capítulos {.unnumbered}
-
-14. Análisis de Componentes Principales (PCA).  
-15. Reglas de asociación con Apriori.  
-16. Comparación integral y selección de algoritmos.  
-17. Proyecto aplicado final con datos abiertos.
-
 ## Nota para el lector {.unnumbered}
 
 Los capítulos están diseñados para leerse y ejecutarse paso a paso. Cada bloque de código busca responder una pregunta concreta y cada resultado se acompaña de una interpretación didáctica.
 
 ## Fuente principal de los datos {.unnumbered}
 
-Los ejemplos aplicados utilizan información de la Estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas del INEGI [@inegi_atus_2024] y una base educativa preparada a partir de los cierres históricos de COVID-19 de la Secretaría de Salud de México. Cuando una tabla o gráfica se elabora con estos datos, se indica la fuente y se distingue el procesamiento realizado por el autor.
+Los ejemplos aplicados utilizan información de la Estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas del INEGI [@inegi_atus_2024] y bases históricas de COVID-19 de la Secretaría de Salud de México. Cuando una tabla o gráfica se elabora con estos datos, se indica la fuente y se distingue el procesamiento realizado por el autor.

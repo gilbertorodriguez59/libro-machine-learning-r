@@ -1,0 +1,16 @@
+# About the Author {.unnumbered}
+
+**Jesús Gilberto Rodríguez Escobedo** is a physicist-mathematician, university professor, consultant, and specialist in computer science and artificial intelligence.
+
+His academic background includes studies in Physics and Mathematics at the Instituto Politécnico Nacional, a diploma in Computer Science from Fundación Arturo Rosenblueth, graduate studies in Computer Science with a specialization in Artificial Intelligence at Tecnológico de Monterrey, and postgraduate studies in Computer Engineering.
+
+He has developed an extensive teaching career in Mexico and Chile, teaching mathematics, probability, statistics, numerical methods, programming, computer science, artificial intelligence, data mining, and machine learning. He has also participated in the supervision and review of graduation projects and theses in computing, multimedia, education, and artificial intelligence.
+
+In professional practice, he has worked as a consultant, project leader, systems manager, development director, and designer of information solutions. His experience includes information systems, software development, web applications, multimedia products, and intelligent systems.
+
+His academic and research interests focus on machine learning, data science, intelligent tutoring systems, artificial intelligence applied to education, and the design of technological resources that support the understanding of mathematical and computational concepts.
+
+He is the author of the complementary volumes:
+
+- *Machine Learning and Automatic Classification with R*;
+- *Mathematical Foundations of Machine Learning*.

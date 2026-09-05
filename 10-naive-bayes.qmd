@@ -1,432 +1,415 @@
 # Clasificador Naive Bayes
 
-
 ::: {.callout-note title="Conexión con el volumen teórico"}
-
-La formulación matemática de **probabilidad condicional, teorema de Bayes y clasificación probabilística** se desarrolla con mayor profundidad
-en los capítulos 3 y 6 de *Fundamentos Matemáticos del Aprendizaje
-Automático* [@rodriguez2026fundamentos].
-
+La formulación matemática del teorema de Bayes, probabilidad condicional y clasificación probabilística se desarrolla con mayor profundidad en los capítulos 3 y 16 de *Fundamentos Matemáticos del Aprendizaje Automático* [@rodriguez2026fundamentos].
 :::
 
 ## Objetivos del capítulo
 
 Al finalizar este capítulo, el lector será capaz de:
 
-- explicar el teorema de Bayes aplicado a clasificación;
-- interpretar probabilidades previas, verosimilitudes y probabilidades posteriores;
-- comprender el supuesto de independencia condicional;
-- distinguir entre Naive Bayes categórico y gaussiano;
-- construir un clasificador sencillo sin paquetes especializados;
-- entrenar y evaluar un modelo Naive Bayes en R;
-- aplicar el algoritmo a una muestra de la base ATUS;
-- reconocer sus ventajas, limitaciones y condiciones de uso.
+- explicar la regla de Bayes aplicada a clasificación;
+- distinguir probabilidades previas, verosimilitudes y probabilidades posteriores;
+- comprender el supuesto de independencia condicional de Naive Bayes;
+- aplicar suavizado de Laplace para evitar probabilidades categóricas iguales a cero;
+- combinar predictores categóricos y numéricos;
+- seleccionar el parámetro de suavizado sin utilizar la prueba final;
+- evaluar el modelo con métricas sensibles al desbalance;
+- interpretar con cautela las probabilidades posteriores cuando el muestreo modifica la prevalencia.
 
-## Introducción
+## Del teorema de Bayes al clasificador
 
-**Naive Bayes** es una familia de clasificadores probabilísticos basada en el teorema de Bayes. Su nombre incluye la palabra *naive* —ingenuo— porque supone que las variables predictoras son condicionalmente independientes una vez conocida la clase.
-
-Este supuesto rara vez se cumple de manera exacta en datos reales. Sin embargo, el clasificador puede funcionar sorprendentemente bien incluso cuando existe cierta dependencia entre las variables [@domingos1997optimality; @hand2001idiots].
-
-La principal fortaleza del método es que transforma la clasificación en una comparación de probabilidades. Para una observación nueva, se calcula qué clase resulta más probable dados los valores de sus predictores.
-
-## Recordatorio del teorema de Bayes
-
-Para una clase $C$ y un conjunto de características $X$, el teorema de Bayes establece:
+Para una clase $C_k$ y una observación $\mathbf{x}$,
 
 $$
-P(C\mid X)=\frac{P(X\mid C)P(C)}{P(X)}
+P(C_k\mid \mathbf{x})=
+\frac{P(\mathbf{x}\mid C_k)P(C_k)}{P(\mathbf{x})}.
 $$
 
-donde:
-
-- $P(C)$ es la **probabilidad previa** de la clase;
-- $P(X\mid C)$ es la **verosimilitud** de observar las características cuando la clase es $C$;
-- $P(C\mid X)$ es la **probabilidad posterior** de la clase después de observar $X$;
-- $P(X)$ es una constante común al comparar las clases.
-
-Para clasificar no es necesario calcular explícitamente $P(X)$. Basta comparar:
+Como el denominador es común a todas las clases, la clasificación puede expresarse como
 
 $$
-P(C\mid X)\propto P(X\mid C)P(C)
+\widehat C=\arg\max_k P(C_k)P(\mathbf{x}\mid C_k).
 $$
 
-## El supuesto ingenuo de independencia
-
-Si una observación tiene predictores $X_1,X_2,\ldots,X_p$, Naive Bayes supone que, conocida la clase, sus contribuciones pueden multiplicarse:
+Naive Bayes introduce el supuesto de independencia condicional de los predictores dada la clase:
 
 $$
-P(X_1,\ldots,X_p\mid C)
-=\prod_{j=1}^{p}P(X_j\mid C)
+P(x_1,\ldots,x_p\mid C_k)
+\approx
+\prod_{j=1}^{p}P(x_j\mid C_k).
 $$
 
-Por tanto:
+Por tanto,
 
 $$
-P(C\mid X_1,\ldots,X_p)
-\propto P(C)\prod_{j=1}^{p}P(X_j\mid C)
+\widehat C=\arg\max_k
+P(C_k)\prod_{j=1}^{p}P(x_j\mid C_k).
 $$
 
-::: {.callout-tip title="Idea esencial"}
-Naive Bayes calcula un puntaje probabilístico para cada clase. La observación se asigna a la clase cuyo producto entre probabilidad previa y verosimilitudes es mayor.
+::: {.callout-tip title="Por qué puede funcionar aunque el supuesto sea ingenuo"}
+El objetivo de clasificación es identificar la clase con mayor puntuación posterior. El modelo puede clasificar razonablemente aun cuando los predictores no sean realmente independientes, aunque las probabilidades posteriores pueden estar mal calibradas [@domingos1997optimality; @hand2001idiots].
 :::
 
-## Ejemplo manual con variables categóricas
+## Ejemplo manual
 
-Consideremos un pequeño conjunto de accidentes descritos por dos variables: condición climática y horario.
+Supongamos que queremos decidir si un accidente pertenece a la clase **Con víctimas**. Sean dos evidencias: ocurre de noche y es fin de semana.
 
-```{r nb-datos-didacticos}
-datos_nb <- data.frame(
-  clima = c("Seco", "Seco", "Lluvia", "Lluvia", "Seco",
-            "Lluvia", "Seco", "Lluvia", "Seco", "Lluvia"),
-  horario = c("Día", "Noche", "Día", "Noche", "Día",
-              "Noche", "Noche", "Día", "Día", "Noche"),
-  victimas = factor(
-    c("No", "No", "Sí", "Sí", "No", "Sí", "Sí", "No", "No", "Sí")
-  )
+```{r nb-ejemplo-manual}
+prior_victimas <- 0.35
+prior_danos <- 0.65
+
+p_noche_victimas <- 0.60
+p_finsemana_victimas <- 0.55
+
+p_noche_danos <- 0.30
+p_finsemana_danos <- 0.25
+
+score_victimas <-
+  prior_victimas *
+  p_noche_victimas *
+  p_finsemana_victimas
+
+score_danos <-
+  prior_danos *
+  p_noche_danos *
+  p_finsemana_danos
+
+posterior_victimas <- score_victimas / (score_victimas + score_danos)
+posterior_danos <- score_danos / (score_victimas + score_danos)
+
+c(
+  `Con víctimas` = posterior_victimas,
+  `Solo daños` = posterior_danos
 )
-
-datos_nb
 ```
 
-## Calcular las probabilidades previas
+::: {.callout-note title="Producto de muchas probabilidades"}
+Con muchos predictores, los productos pueden volverse extremadamente pequeños. Las implementaciones prácticas suelen trabajar con logaritmos de las puntuaciones, ya que
 
-```{r nb-probabilidades-previas}
-previas <- prop.table(table(datos_nb$victimas))
-previas
-```
+$$
+\log\left[P(C_k)\prod_jP(x_j\mid C_k)\right]
+=
+\log P(C_k)+\sum_j\log P(x_j\mid C_k).
+$$
 
-Las probabilidades previas representan la proporción inicial de cada clase antes de observar las variables predictoras.
-
-## Calcular probabilidades condicionales
-
-```{r nb-probabilidades-condicionales}
-prob_clima <- prop.table(
-  table(datos_nb$clima, datos_nb$victimas),
-  margin = 2
-)
-
-prob_horario <- prop.table(
-  table(datos_nb$horario, datos_nb$victimas),
-  margin = 2
-)
-
-prob_clima
-prob_horario
-```
-
-## Clasificar una observación manualmente
-
-Supongamos un accidente ocurrido con lluvia durante la noche. Comparamos los puntajes para las dos clases.
-
-```{r nb-clasificacion-manual}
-puntaje_si <-
-  previas["Sí"] *
-  prob_clima["Lluvia", "Sí"] *
-  prob_horario["Noche", "Sí"]
-
-puntaje_no <-
-  previas["No"] *
-  prob_clima["Lluvia", "No"] *
-  prob_horario["Noche", "No"]
-
-c(Sí = puntaje_si, No = puntaje_no)
-```
-
-```{r nb-normalizar-puntajes}
-posteriores <- c(Sí = puntaje_si, No = puntaje_no)
-posteriores <- posteriores / sum(posteriores)
-posteriores
-```
-
-::: {.callout-note title="Interpretación"}
-Los productos iniciales son proporcionales a las probabilidades posteriores. Al dividir cada puntaje entre la suma de ambos se obtienen valores que suman uno y pueden interpretarse como probabilidades normalizadas bajo el modelo.
+La clase que maximiza el producto también maximiza su logaritmo.
 :::
 
-## El problema de las probabilidades iguales a cero
+## Suavizado de Laplace
 
-Cuando una combinación nunca aparece en el entrenamiento, una de las probabilidades condicionales puede ser cero. Al multiplicar, todo el puntaje de esa clase se vuelve cero.
+Si una categoría nunca aparece en una clase durante entrenamiento, su probabilidad condicional empírica puede ser cero. El suavizado de Laplace evita que un solo cero anule todo el producto.
 
-Una solución habitual es el **suavizado de Laplace**, que agrega una pequeña cantidad a los conteos antes de calcular las probabilidades.
-
-$$
-\widehat{P}(X_j=x\mid C=c)
-=\frac{n_{x,c}+\alpha}{n_c+\alpha k}
-$$
-
-Aquí, $k$ es el número de categorías y normalmente se utiliza $\alpha=1$.
-
-## Naive Bayes gaussiano
-
-Cuando un predictor es numérico continuo, una opción común es suponer que, dentro de cada clase, sigue una distribución normal:
+Para una variable categórica con $K$ categorías,
 
 $$
-X_j\mid C=c\sim N(\mu_{jc},\sigma_{jc}^{2})
+\widehat P(X=x\mid C=c)=
+\frac{n_{xc}+\alpha}{n_c+\alpha K}.
 $$
 
-La media y la desviación estándar se estiman por separado para cada clase. Esta variante se denomina **Naive Bayes gaussiano**.
+- $\alpha=0$: sin suavizado;
+- $\alpha=1$: suavizado de Laplace clásico;
+- otros valores permiten una regularización intermedia o mayor.
 
-## Instalar y cargar paquetes
+## Predictores numéricos
 
-```{r nb-paquetes}
-paquetes_nb <- c("readr", "dplyr", "ggplot2", "e1071")
+En la variante gaussiana, un predictor continuo se modela dentro de cada clase mediante
 
-faltantes_nb <- paquetes_nb[
-  !vapply(paquetes_nb, requireNamespace, logical(1), quietly = TRUE)
-]
+$$
+X_j\mid C_k\sim N(\mu_{jk},\sigma_{jk}^2).
+$$
 
-if (length(faltantes_nb) > 0) {
-  install.packages(faltantes_nb, repos = "https://cloud.r-project.org")
-}
+Así, Naive Bayes puede combinar factores y variables continuas. El supuesto gaussiano debe considerarse una aproximación; distribuciones muy asimétricas o con colas pesadas pueden requerir transformaciones u otras variantes del clasificador.
 
+## Funciones auxiliares
+
+```{r nb-funciones-auxiliares}
 library(readr)
 library(dplyr)
+library(tidyr)
 library(ggplot2)
 library(e1071)
 source("util_graficas.R")
-```
 
-## Cargar la base preparada de ATUS
+partir_nb_estratificado <- function(
+  y,
+  prop_train = 0.60,
+  prop_val = 0.20,
+  semilla = 2026
+) {
+  set.seed(semilla)
+  y <- factor(y)
 
-```{r nb-cargar-atus}
-ruta_atus_ml <- "datos/atus_ml_preparado.csv"
+  idx_train <- integer(0)
+  idx_val <- integer(0)
+  idx_test <- integer(0)
 
-if (!file.exists(ruta_atus_ml)) {
-  stop(
-    paste(
-      "No se encontró datos/atus_ml_preparado.csv.",
-      "Ejecute primero el capítulo de preparación de datos."
-    )
+  for (clase in levels(y)) {
+    ids <- sample(which(y == clase))
+    n_train <- floor(prop_train * length(ids))
+    n_val <- floor(prop_val * length(ids))
+
+    ids_train <- ids[seq_len(n_train)]
+    restantes <- ids[-seq_len(n_train)]
+    ids_val <- restantes[seq_len(n_val)]
+    ids_test <- setdiff(restantes, ids_val)
+
+    idx_train <- c(idx_train, ids_train)
+    idx_val <- c(idx_val, ids_val)
+    idx_test <- c(idx_test, ids_test)
+  }
+
+  list(
+    train = sort(idx_train),
+    validation = sort(idx_val),
+    test = sort(idx_test)
   )
 }
 
-atus_ml <- read_csv(ruta_atus_ml, show_col_types = FALSE)
+metricas_nb <- function(real, predicho, positiva, negativa) {
+  real <- factor(real, levels = c(negativa, positiva))
+  predicho <- factor(predicho, levels = c(negativa, positiva))
+  m <- table(Real = real, Predicho = predicho)
+
+  VP <- m[positiva, positiva]
+  FN <- m[positiva, negativa]
+  FP <- m[negativa, positiva]
+  VN <- m[negativa, negativa]
+
+  div <- function(a, b) if (b == 0) NA_real_ else as.numeric(a / b)
+  sensibilidad <- div(VP, VP + FN)
+  especificidad <- div(VN, VN + FP)
+  precision <- div(VP, VP + FP)
+  f1 <- if (
+    is.na(precision) || is.na(sensibilidad) ||
+    precision + sensibilidad == 0
+  ) {
+    NA_real_
+  } else {
+    2 * precision * sensibilidad / (precision + sensibilidad)
+  }
+
+  list(
+    matriz = m,
+    metricas = data.frame(
+      exactitud = div(VP + VN, sum(m)),
+      sensibilidad = sensibilidad,
+      especificidad = especificidad,
+      precision = precision,
+      f1 = f1,
+      exactitud_balanceada = mean(c(sensibilidad, especificidad), na.rm = TRUE)
+    )
+  )
+}
 ```
 
-## Preparar una muestra para el modelo
+# Caso aplicado A: ATUS
+
+## Cargar y preparar los datos
 
 ```{r nb-preparar-atus}
-set.seed(123)
+ruta_atus_ml <- "datos/atus_ml_preparado.csv"
 
+if (!file.exists(ruta_atus_ml)) {
+  stop("No se encontró datos/atus_ml_preparado.csv. Ejecute primero el capítulo 2.")
+}
+
+atus_ml <- read_csv(ruta_atus_ml, show_col_types = FALSE)
+
+set.seed(2026)
 atus_nb <- atus_ml |>
-  sample_n(min(20000, nrow(atus_ml))) |>
-  transmute(
+  mutate(
     accidente_con_victimas = factor(
       accidente_con_victimas,
       levels = c("Solo daños", "Con víctimas")
     ),
     MES = factor(MES),
-    ID_HORA = as.numeric(ID_HORA),
+    ID_HORA_NUM = suppressWarnings(as.numeric(ID_HORA)),
+    ID_HORA_NUM = ifelse(
+      ID_HORA_NUM >= 0 & ID_HORA_NUM <= 23,
+      ID_HORA_NUM,
+      NA_real_
+    ),
     DIASEMANA = factor(DIASEMANA),
     TIPACCID = factor(TIPACCID),
     CAUSAACCI = factor(CAUSAACCI)
   ) |>
-  na.omit()
+  drop_na(
+    accidente_con_victimas,
+    MES,
+    ID_HORA_NUM,
+    DIASEMANA,
+    TIPACCID,
+    CAUSAACCI
+  ) |>
+  slice_sample(n = min(12000, n()))
 
 prop.table(table(atus_nb$accidente_con_victimas))
 ```
 
-## División estratificada en entrenamiento y prueba
+En este modelo `ID_HORA_NUM` se trata como predictor numérico gaussiano, mientras que mes, día de la semana, tipo y causa del accidente se tratan como factores.
 
-```{r nb-division-estratificada}
-set.seed(123)
+## Entrenamiento, validación y prueba
 
-indices_nb <- unlist(
-  lapply(
-    split(seq_len(nrow(atus_nb)), atus_nb$accidente_con_victimas),
-    function(indices) {
-      sample(indices, size = floor(0.70 * length(indices)))
-    }
+```{r nb-particion-atus}
+partes_atus <- partir_nb_estratificado(
+  atus_nb$accidente_con_victimas,
+  prop_train = 0.60,
+  prop_val = 0.20,
+  semilla = 2026
+)
+
+train_nb <- atus_nb[partes_atus$train, ]
+val_nb <- atus_nb[partes_atus$validation, ]
+test_nb <- atus_nb[partes_atus$test, ]
+
+rbind(
+  entrenamiento = prop.table(table(train_nb$accidente_con_victimas)),
+  validacion = prop.table(table(val_nb$accidente_con_victimas)),
+  prueba = prop.table(table(test_nb$accidente_con_victimas))
+)
+```
+
+## Seleccionar el suavizado con validación
+
+La prueba final no se utiliza para elegir $\alpha$.
+
+```{r nb-validar-laplace-atus}
+valores_laplace <- c(0, 0.5, 1, 2)
+
+resultados_laplace <- do.call(
+  rbind,
+  lapply(valores_laplace, function(alpha) {
+    modelo <- naiveBayes(
+      accidente_con_victimas ~
+        MES + ID_HORA_NUM + DIASEMANA + TIPACCID + CAUSAACCI,
+      data = train_nb,
+      laplace = alpha
+    )
+
+    pred <- predict(modelo, val_nb, type = "class")
+
+    m <- metricas_nb(
+      val_nb$accidente_con_victimas,
+      pred,
+      positiva = "Con víctimas",
+      negativa = "Solo daños"
+    )$metricas
+
+    cbind(laplace = alpha, m)
+  })
+)
+
+resultados_laplace
+
+laplace_optimo <- resultados_laplace$laplace[
+  which.max(resultados_laplace$exactitud_balanceada)
+]
+
+laplace_optimo
+```
+
+```{r nb-grafica-laplace, fig.width=7, fig.height=4.5}
+resultados_laplace_largos <- resultados_laplace |>
+  select(laplace, sensibilidad, especificidad, exactitud_balanceada) |>
+  pivot_longer(
+    cols = -laplace,
+    names_to = "metrica",
+    values_to = "valor"
   )
-)
 
-entrenamiento_nb <- atus_nb[indices_nb, ]
-prueba_nb <- atus_nb[-indices_nb, ]
-
-prop.table(table(entrenamiento_nb$accidente_con_victimas))
-prop.table(table(prueba_nb$accidente_con_victimas))
-```
-
-## Entrenar el modelo Naive Bayes
-
-```{r nb-entrenar-modelo}
-modelo_nb <- naiveBayes(
-  accidente_con_victimas ~
-    MES + ID_HORA + DIASEMANA + TIPACCID + CAUSAACCI,
-  data = entrenamiento_nb,
-  laplace = 1
-)
-
-modelo_nb
-```
-
-El argumento `laplace = 1` aplica suavizado de Laplace a los predictores categóricos.
-
-## Obtener predicciones de clase
-
-```{r nb-predicciones-clase}
-prediccion_nb <- predict(
-  modelo_nb,
-  newdata = prueba_nb,
-  type = "class"
-)
-
-head(prediccion_nb)
-```
-
-## Obtener probabilidades posteriores
-
-```{r nb-predicciones-probabilidad}
-probabilidades_nb <- predict(
-  modelo_nb,
-  newdata = prueba_nb,
-  type = "raw"
-)
-
-head(probabilidades_nb)
-```
-
-## Construir la matriz de confusión
-
-```{r nb-matriz-confusion}
-matriz_nb <- table(
-  Real = prueba_nb$accidente_con_victimas,
-  Predicho = prediccion_nb
-)
-
-matriz_nb
-```
-
-## Calcular las métricas
-
-```{r nb-funcion-division-segura}
-division_segura_nb <- function(numerador, denominador) {
-  if (is.na(denominador) || denominador == 0) {
-    return(NA_real_)
-  }
-
-  numerador / denominador
-}
-```
-
-```{r nb-calcular-metricas}
-clase_positiva <- "Con víctimas"
-clase_negativa <- "Solo daños"
-
-vp <- matriz_nb[clase_positiva, clase_positiva]
-fn <- matriz_nb[clase_positiva, clase_negativa]
-fp <- matriz_nb[clase_negativa, clase_positiva]
-vn <- matriz_nb[clase_negativa, clase_negativa]
-
-exactitud <- division_segura_nb(vp + vn, vp + vn + fp + fn)
-sensibilidad <- division_segura_nb(vp, vp + fn)
-especificidad <- division_segura_nb(vn, vn + fp)
-precision <- division_segura_nb(vp, vp + fp)
-f1 <- if (is.na(precision) || is.na(sensibilidad) ||
-          precision + sensibilidad == 0) {
-  NA_real_
-} else {
-  2 * precision * sensibilidad / (precision + sensibilidad)
-}
-
-metricas_nb <- data.frame(
-  Metrica = c(
-    "Exactitud", "Sensibilidad", "Especificidad", "Precisión", "F1"
-  ),
-  Valor = c(exactitud, sensibilidad, especificidad, precision, f1)
-)
-
-metricas_nb
-```
-
-## Visualizar las métricas
-
-```{r nb-grafica-metricas, fig.width=7, fig.height=4.5}
-ggplot(metricas_nb, aes(x = reorder(Metrica, Valor), y = Valor)) +
-  geom_col() +
-  geom_text(
-    aes(label = sprintf("%.3f", Valor)),
-    hjust = -0.1,
-    na.rm = TRUE
-  ) +
-  coord_flip() +
-  scale_y_continuous(limits = c(0, 1.08)) +
+ggplot(
+  resultados_laplace_largos,
+  aes(x = factor(laplace), y = valor, fill = metrica)
+) +
+  geom_col(position = "dodge") +
+  scale_y_continuous(limits = c(0, 1)) +
   labs(
-    title = "Desempeño del modelo Naive Bayes",
-    x = NULL,
-    y = "Valor"
+    title = "Selección del suavizado de Naive Bayes",
+    subtitle = "La decisión se toma con validación",
+    x = "Parámetro de Laplace",
+    y = "Métrica",
+    fill = "Métrica"
   ) +
   tema_libro()
 ```
 
-**Fuente:** elaboración propia mediante R con datos del INEGI, Estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas (ATUS), 2024.
+## Reentrenar y evaluar una sola vez
 
-## Inspeccionar las probabilidades aprendidas
+```{r nb-modelo-final-atus}
+ref_nb <- bind_rows(train_nb, val_nb)
 
-```{r nb-inspeccionar-modelo}
-modelo_nb$apriori
-modelo_nb$tables$MES
+modelo_nb_final <- naiveBayes(
+  accidente_con_victimas ~
+    MES + ID_HORA_NUM + DIASEMANA + TIPACCID + CAUSAACCI,
+  data = ref_nb,
+  laplace = laplace_optimo
+)
+
+pred_nb_test <- predict(
+  modelo_nb_final,
+  test_nb,
+  type = "class"
+)
+
+prob_nb_test <- predict(
+  modelo_nb_final,
+  test_nb,
+  type = "raw"
+)
+
+resultado_nb_test <- metricas_nb(
+  test_nb$accidente_con_victimas,
+  pred_nb_test,
+  positiva = "Con víctimas",
+  negativa = "Solo daños"
+)
+
+resultado_nb_test$matriz
+resultado_nb_test$metricas
+head(prob_nb_test)
 ```
 
-La primera salida muestra las probabilidades previas de las clases. La segunda resume las probabilidades condicionales estimadas para los meses.
+## Probabilidades previas y condicionales aprendidas
 
-## Ventajas de Naive Bayes
+```{r nb-inspeccionar-modelo}
+modelo_nb_final$apriori
+modelo_nb_final$tables$MES
+modelo_nb_final$tables$ID_HORA_NUM
+```
 
-- Es sencillo y rápido de entrenar.
-- Produce probabilidades de pertenencia a cada clase.
-- Funciona con conjuntos de datos de alta dimensión.
-- Puede combinar predictores categóricos y numéricos.
-- Requiere menos datos que modelos más complejos.
-- Constituye una excelente línea base probabilística.
+La salida permite conectar el modelo ajustado con la teoría: `apriori` resume las frecuencias previas de clase; las tablas categóricas muestran probabilidades condicionales y los predictores numéricos se resumen mediante parámetros gaussianos por clase.
 
-## Limitaciones
-
-- El supuesto de independencia condicional puede ser poco realista.
-- Variables muy correlacionadas pueden contar información repetida.
-- Las probabilidades estimadas no siempre están bien calibradas.
-- Las categorías no observadas requieren suavizado.
-- La forma gaussiana puede ser inadecuada para variables numéricas asimétricas.
-
-::: {.callout-warning title="Precaución metodológica"}
-Un buen valor de exactitud no demuestra que el supuesto de independencia sea verdadero. El modelo debe evaluarse con datos no utilizados en el entrenamiento y con métricas apropiadas para la clase de interés.
+::: {.callout-warning title="Probabilidades posteriores y calibración"}
+Las probabilidades de Naive Bayes no deben asumirse automáticamente calibradas. Además, si la muestra altera la prevalencia de clases, las probabilidades previas aprendidas también cambian y las posteriores dejan de representar directamente probabilidades poblacionales.
 :::
 
-## Comparación conceptual con otros algoritmos
+## Distribución de la probabilidad posterior
 
-| Método | Idea principal | Escalamiento | Interpretabilidad | Relaciones no lineales |
-|---|---|---:|---:|---:|
-| Regresión logística | Modela probabilidades mediante una función logística | Recomendable | Alta | Limitada sin transformaciones |
-| k-NN | Clasifica por cercanía | Necesario | Media | Sí |
-| Árbol | Divide el espacio mediante reglas | No necesario | Alta | Sí |
-| Random Forest | Combina muchos árboles | No necesario | Media | Sí |
-| SVM | Maximiza el margen | Muy recomendable | Media-baja | Sí, mediante kernels |
-| Naive Bayes | Multiplica probabilidades condicionales | Depende de la variante | Alta | Mediante distribuciones por clase |
+```{r nb-probabilidades-grafica, fig.width=7, fig.height=4.5}
+datos_prob_nb <- data.frame(
+  probabilidad = prob_nb_test[, "Con víctimas"],
+  clase_real = test_nb$accidente_con_victimas
+)
 
-## Actividades para el lector
+ggplot(
+  datos_prob_nb,
+  aes(x = probabilidad, fill = clase_real)
+) +
+  geom_histogram(bins = 30, alpha = 0.65, position = "identity") +
+  escala_clases_fill(name = "Clase real") +
+  labs(
+    title = "Probabilidades posteriores de Naive Bayes",
+    x = "P(Con víctimas | predictores)",
+    y = "Frecuencia"
+  ) +
+  tema_libro()
+```
 
-1. Cambie el suavizado de Laplace a `0`, `0.5` y `2`. Compare las métricas.
-2. Elimine una variable predictora y examine si mejora la sensibilidad.
-3. Modifique el tamaño de la muestra y mida el tiempo de entrenamiento.
-4. Compare Naive Bayes con la regresión logística utilizando exactamente la misma partición.
-5. Examine qué categorías presentan probabilidades condicionales muy distintas entre las clases.
-6. Explique por qué dos variables correlacionadas pueden influir doblemente en el producto de verosimilitudes.
-
-## Conclusiones
-
-Naive Bayes muestra que un modelo relativamente simple puede construir clasificaciones útiles mediante probabilidades. Su supuesto de independencia facilita el cálculo y reduce el costo computacional, aunque exige interpretar los resultados con prudencia.
-
-En ATUS, el método proporciona una línea base probabilística rápida para predecir si un accidente pertenece a la clase con víctimas o a la clase de solo daños. Su desempeño debe juzgarse junto con la sensibilidad, la especificidad y F1, no únicamente por la exactitud.
-
-## Referencias fundamentales de Naive Bayes
-
-El análisis de las condiciones bajo las cuales el clasificador bayesiano simple puede ser óptimo fue desarrollado por @domingos1997optimality. Una discusión crítica sobre por qué el método puede funcionar bien pese a su supuesto ingenuo aparece en @hand2001idiots. Para una introducción moderna dentro del aprendizaje estadístico puede consultarse @james2021islr.
-
-
-## Laboratorio interactivo: probabilidades posteriores Naive Bayes
+# Laboratorio interactivo: probabilidades posteriores
 
 ::: {.content-visible when-format="html"}
-
-Modifica probabilidades previas y condicionales para observar el resultado.
+Modifique una probabilidad previa y dos verosimilitudes para observar el teorema de Bayes en acción.
 
 ```{shinylive-r}
 #| standalone: true
@@ -442,8 +425,11 @@ ui <- fluidPage(
       sliderInput("prior", "P(Clase 1)", 0.05, 0.95, 0.40, step = 0.05),
       sliderInput("e1", "P(Evidencia | Clase 1)", 0.01, 0.99, 0.80, step = 0.01),
       sliderInput("e0", "P(Evidencia | Clase 0)", 0.01, 0.99, 0.25, step = 0.01),
-      radioButtons("observada", "Evidencia observada",
-                   choices = c("Sí" = "si", "No" = "no"))
+      radioButtons(
+        "observada",
+        "Evidencia observada",
+        choices = c("Sí" = "si", "No" = "no")
+      )
     ),
     mainPanel(
       tableOutput("calculo"),
@@ -457,6 +443,7 @@ server <- function(input, output, session) {
   posterior <- reactive({
     p1 <- input$prior
     p0 <- 1 - p1
+
     if (input$observada == "si") {
       l1 <- input$e1
       l0 <- input$e0
@@ -464,10 +451,15 @@ server <- function(input, output, session) {
       l1 <- 1 - input$e1
       l0 <- 1 - input$e0
     }
+
     num1 <- p1 * l1
     num0 <- p0 * l0
     evidencia <- num1 + num0
-    c(Clase_0 = num0 / evidencia, Clase_1 = num1 / evidencia)
+
+    c(
+      Clase_0 = num0 / evidencia,
+      Clase_1 = num1 / evidencia
+    )
   })
 
   output$calculo <- renderTable({
@@ -480,124 +472,178 @@ server <- function(input, output, session) {
 
   output$grafica <- renderPlot({
     p <- posterior()
-    barplot(p, ylim = c(0, 1),
-            ylab = "Probabilidad posterior",
-            main = "Resultado de Naive Bayes")
+    barplot(
+      p,
+      ylim = c(0, 1),
+      ylab = "Probabilidad posterior",
+      main = "Resultado de Naive Bayes"
+    )
     abline(h = 0.5, lty = 2)
   })
 
   output$decision <- renderText({
     p <- posterior()
-    paste("Clase predicha:",
-          ifelse(p["Clase_1"] >= p["Clase_0"], "Clase 1", "Clase 0"))
+    paste(
+      "Clase predicha:",
+      ifelse(p["Clase_1"] >= p["Clase_0"], "Clase 1", "Clase 0")
+    )
   })
 }
 
 shinyApp(ui, server)
 ```
-
 :::
 
 ::: {.content-visible when-format="pdf"}
-
 ### Laboratorio disponible en la versión web
-
-Permite modificar probabilidades previas y condicionales.
-
+Permite modificar probabilidades previas y condicionales y observar las probabilidades posteriores normalizadas.
 :::
 
+# Caso aplicado B: Naive Bayes con COVID-19
 
-## Caso aplicado B: Naive Bayes con COVID-19
+## Seleccionar el mismo periodo reproducible
 
-Ahora aplicamos Naive Bayes a COVID-19 México 2022. La variable objetivo es `MURIO` y utilizamos la misma familia de predictores empleada en los capítulos anteriores.
+```{r covid-nb-periodo}
+conteo_covid <- read_csv(
+  "datos/covid19/procesados/conteo_casos_confirmados_2020_2025.csv",
+  show_col_types = FALSE
+)
 
-> **Uso académico:** las probabilidades estimadas por este modelo no deben interpretarse como riesgo clínico individual.
+anio_covid <- conteo_covid |>
+  filter(ESTADO == "PROCESADO", !is.na(CASOS_CONFIRMADOS)) |>
+  slice_max(CASOS_CONFIRMADOS, n = 1, with_ties = FALSE) |>
+  pull(ANIO)
+
+ruta_covid <- file.path(
+  "datos/covid19/procesados",
+  paste0("covid19_mexico_", anio_covid, "_ml_preparado.csv.gz")
+)
+
+if (!file.exists(ruta_covid)) {
+  stop("No se encontró la base COVID-19 seleccionada por el procedimiento reproducible.")
+}
+```
+
+## Preparar la muestra
 
 ```{r covid-nb-preparar}
-ruta_covid <- "datos/covid19/procesados/covid19_mexico_2022_ml_preparado.csv.gz"
-
-if (file.exists(ruta_covid)) {
-  covid_nb <- readr::read_csv(ruta_covid, show_col_types = FALSE) |>
-    dplyr::select(MURIO, EDAD, NEUMONIA, DIABETES, HIPERTENSION,
-                  OBESIDAD, RENAL_CRONICA, NUM_COMORBILIDADES) |>
-    tidyr::drop_na() |>
-    dplyr::mutate(
-      MURIO = factor(MURIO, levels = c(0, 1),
-                     labels = c("Sin defunción", "Defunción")),
-      NEUMONIA = factor(NEUMONIA),
-      DIABETES = factor(DIABETES),
-      HIPERTENSION = factor(HIPERTENSION),
-      OBESIDAD = factor(OBESIDAD),
-      RENAL_CRONICA = factor(RENAL_CRONICA)
-    )
-
-  set.seed(2026)
-  covid_nb <- covid_nb |>
-    dplyr::sample_n(min(12000, nrow(covid_nb)))
-
-  set.seed(2026)
-  idx_nb_covid <- unlist(lapply(
-    split(seq_len(nrow(covid_nb)), covid_nb$MURIO),
-    function(i) sample(i, floor(0.80 * length(i)))
-  ))
-
-  train_nb_covid <- covid_nb[idx_nb_covid, ]
-  test_nb_covid <- covid_nb[-idx_nb_covid, ]
-}
-```
-
-En este ejemplo las comorbilidades binarias se tratan como variables categóricas, mientras que `EDAD` y `NUM_COMORBILIDADES` se modelan como numéricas.
-
-```{r covid-nb-modelo}
-if (exists("train_nb_covid")) {
-  modelo_nb_covid <- e1071::naiveBayes(
-    MURIO ~ ., data = train_nb_covid,
-    laplace = 1
+covid_nb <- read_csv(ruta_covid, show_col_types = FALSE) |>
+  select(
+    MURIO, EDAD, NEUMONIA, DIABETES, HIPERTENSION,
+    OBESIDAD, RENAL_CRONICA, NUM_COMORBILIDADES
+  ) |>
+  drop_na() |>
+  mutate(
+    MURIO = factor(
+      MURIO,
+      levels = c(0, 1),
+      labels = c("Sin defunción", "Defunción")
+    ),
+    NEUMONIA = factor(NEUMONIA),
+    DIABETES = factor(DIABETES),
+    HIPERTENSION = factor(HIPERTENSION),
+    OBESIDAD = factor(OBESIDAD),
+    RENAL_CRONICA = factor(RENAL_CRONICA)
   )
 
-  pred_nb_covid <- predict(modelo_nb_covid, test_nb_covid, type = "class")
-  prob_nb_covid <- predict(modelo_nb_covid, test_nb_covid, type = "raw")
+set.seed(2026)
+covid_nb <- covid_nb |>
+  slice_sample(n = min(12000, n()))
 
-  matriz_nb_covid <- table(
-    Real = test_nb_covid$MURIO,
-    Predicho = pred_nb_covid
-  )
-  matriz_nb_covid
-  head(prob_nb_covid)
-}
+partes_covid <- partir_nb_estratificado(
+  covid_nb$MURIO,
+  prop_train = 0.60,
+  prop_val = 0.20,
+  semilla = 2026
+)
+
+covid_train <- covid_nb[partes_covid$train, ]
+covid_val <- covid_nb[partes_covid$validation, ]
+covid_test <- covid_nb[partes_covid$test, ]
 ```
 
-```{r covid-nb-metricas}
-if (exists("matriz_nb_covid")) {
-  VP <- matriz_nb_covid["Defunción", "Defunción"]
-  FN <- matriz_nb_covid["Defunción", "Sin defunción"]
-  FP <- matriz_nb_covid["Sin defunción", "Defunción"]
-  VN <- matriz_nb_covid["Sin defunción", "Sin defunción"]
-  div <- function(a,b) ifelse(b == 0, NA_real_, as.numeric(a/b))
-  data.frame(
-    exactitud = div(VP+VN, sum(matriz_nb_covid)),
-    sensibilidad = div(VP, VP+FN),
-    especificidad = div(VN, VN+FP),
-    precision = div(VP, VP+FP)
-  )
-}
-```
-
-::: {.callout-note title="Qué aporta este ejemplo"}
-Naive Bayes permite observar directamente probabilidades previas y condicionales. Eso lo convierte en un excelente modelo didáctico para conectar el teorema de Bayes con un problema real de clasificación.
+::: {.callout-warning title="Uso exclusivamente educativo"}
+Las probabilidades posteriores de este ejercicio describen el modelo ajustado sobre una muestra administrativa. No constituyen riesgo clínico individual ni una probabilidad poblacional automáticamente calibrada.
 :::
+
+## Seleccionar Laplace y evaluar
+
+```{r covid-nb-validar}
+resultados_covid_laplace <- do.call(
+  rbind,
+  lapply(c(0, 1, 2), function(alpha) {
+    modelo <- naiveBayes(MURIO ~ ., data = covid_train, laplace = alpha)
+    pred <- predict(modelo, covid_val, type = "class")
+
+    m <- metricas_nb(
+      covid_val$MURIO,
+      pred,
+      positiva = "Defunción",
+      negativa = "Sin defunción"
+    )$metricas
+
+    cbind(laplace = alpha, m)
+  })
+)
+
+resultados_covid_laplace
+
+alpha_covid <- resultados_covid_laplace$laplace[
+  which.max(resultados_covid_laplace$exactitud_balanceada)
+]
+```
+
+```{r covid-nb-final}
+covid_ref <- bind_rows(covid_train, covid_val)
+
+modelo_nb_covid <- naiveBayes(
+  MURIO ~ .,
+  data = covid_ref,
+  laplace = alpha_covid
+)
+
+pred_nb_covid <- predict(modelo_nb_covid, covid_test, type = "class")
+prob_nb_covid <- predict(modelo_nb_covid, covid_test, type = "raw")
+
+resultado_covid_nb <- metricas_nb(
+  covid_test$MURIO,
+  pred_nb_covid,
+  positiva = "Defunción",
+  negativa = "Sin defunción"
+)
+
+resultado_covid_nb$matriz
+resultado_covid_nb$metricas
+head(prob_nb_covid)
+```
+
+## Ventajas y limitaciones
+
+### Ventajas
+
+- entrenamiento rápido;
+- conexión directa con probabilidad condicional y Bayes;
+- admite predictores categóricos y continuos;
+- funciona bien como línea base probabilística;
+- puede manejar espacios de alta dimensión.
+
+### Limitaciones
+
+- independencia condicional suele ser una aproximación;
+- predictores correlacionados pueden contar información repetida;
+- las probabilidades pueden estar mal calibradas;
+- categorías raras requieren suavizado;
+- la variante gaussiana puede ser inadecuada para variables continuas muy asimétricas.
 
 ## Materiales complementarios del capítulo
 
-Estos recursos permiten repasar los conceptos principales del capítulo mediante distintos formatos. La presentación puede consultarse en PDF o modificarse en PowerPoint; la infografía ofrece una síntesis visual, el video explica los contenidos y el cuaderno Colab permite ejecutar los ejemplos de manera autónoma.
-
 | Recurso | Utilidad | Abrir o reproducir | Descargar |
 |---|---|---|---|
-| Video explicativo | Explicación audiovisual de los contenidos del capítulo. | [Ver en YouTube](https://www.youtube.com/watch?v=UbfJ3bLDwUI){target="_blank"} | — |
+| Video explicativo | Explicación audiovisual del clasificador Naive Bayes. | [Ver en YouTube](https://www.youtube.com/watch?v=UbfJ3bLDwUI){target="_blank"} | — |
 | Presentación en PDF | Diapositivas para lectura, estudio o exposición. | [Ver PDF](recursos/capitulo-11/capitulo-11-naive-bayes-presentacion.pdf){target="_blank"} | [Descargar PDF](recursos/capitulo-11/capitulo-11-naive-bayes-presentacion.pdf){download="capitulo-11-naive-bayes-presentacion.pdf"} |
 | Presentación editable | Archivo PowerPoint para utilizarlo en clase o adaptarlo. | [Abrir PPTX](recursos/capitulo-11/capitulo-11-naive-bayes-presentacion.pptx) | [Descargar PPTX](recursos/capitulo-11/capitulo-11-naive-bayes-presentacion.pptx){download="capitulo-11-naive-bayes-presentacion.pptx"} |
 | Infografía | Resumen visual de las ideas fundamentales. | [Ver infografía](recursos/capitulo-11/capitulo-11-naive-bayes-infografia.png){target="_blank"} | [Descargar PNG](recursos/capitulo-11/capitulo-11-naive-bayes-infografia.png){download="capitulo-11-naive-bayes-infografia.png"} |
-| Cuaderno Google Colab | Cuaderno autónomo para ejecutar los ejemplos del capítulo sin necesidad de ejecutar los capítulos anteriores. | [Abrir en Google Colab](https://colab.research.google.com/github/gilbertorodriguez59/libro-machine-learning-r/blob/main/colab/11-naive-bayes.ipynb){target="_blank"} | — |
+| Cuaderno Google Colab | Cuaderno autónomo para ejecutar los ejemplos del capítulo. | [Abrir en Google Colab](https://colab.research.google.com/github/gilbertorodriguez59/libro-machine-learning-r/blob/main/colab/11-naive-bayes.ipynb){target="_blank"} | — |
 
 ::: {.content-visible when-format="html"}
 ### Video explicativo
@@ -625,11 +671,21 @@ La presentación PDF, el archivo editable, la infografía y el cuaderno Colab pu
 :::
 
 ::: {.callout-note title="Elaboración de los materiales"}
-Los materiales complementarios fueron elaborados con apoyo de **NotebookLM de Google**, a partir del contenido del capítulo, y posteriormente revisados y adaptados por el autor. El texto del libro y sus archivos fuente constituyen la referencia principal.
+Los materiales complementarios fueron elaborados con apoyo de **NotebookLM de Google**, a partir del contenido del capítulo, y posteriormente revisados y adaptados por el autor.
 :::
 
-::: {.callout-tip title="Curso completo en YouTube"}
-Este video forma parte de la lista oficial del curso **Aprendizaje y Clasificación Automática con R**.
+## Actividades para el lector
 
-[Consultar todos los videos del curso](https://www.youtube.com/playlist?list=PLDJYd2v7Kt-Q){target="_blank"}
-:::
+1. Compare $\alpha=0$, $0.5$, $1$ y $2$ sin utilizar la prueba para elegir.
+2. Elimine un predictor altamente relacionado con otro y observe el cambio.
+3. Compare las probabilidades posteriores con las de regresión logística.
+4. Examine qué categorías tienen probabilidades condicionales muy diferentes entre clases.
+5. Explique por qué una muestra balanceada modifica los *priors* y la interpretación de las probabilidades posteriores.
+
+## Conclusión
+
+Naive Bayes convierte el teorema de Bayes en un clasificador rápido y transparente. Su supuesto de independencia simplifica el cálculo, pero no debe interpretarse como una descripción literal de la dependencia entre variables. El suavizado se selecciona con validación, la prueba queda reservada para el final y las probabilidades posteriores requieren especial cautela cuando el muestreo modifica la prevalencia.
+
+## Referencias fundamentales
+
+El análisis de las condiciones bajo las cuales Naive Bayes puede ser óptimo fue desarrollado por @domingos1997optimality. Una discusión crítica de su eficacia pese al supuesto ingenuo aparece en @hand2001idiots. Para una introducción moderna puede consultarse @james2021islr.

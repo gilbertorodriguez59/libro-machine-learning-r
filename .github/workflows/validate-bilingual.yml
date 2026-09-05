@@ -88,6 +88,7 @@ jobs:
           test -s docs/en/subject-index.html
           test -s docs/en/01-introduction.html
           test -s docs/en/02-data-preparation.html
+          test -s docs/en/03-exploratory-data-analysis.html
           grep -q 'English' docs/index.html
           grep -q 'Español' docs/en/index.html
           grep -q 'Machine Learning and Automatic Classification with R' docs/en/index.html
@@ -96,6 +97,10 @@ jobs:
           grep -q 'Interactive data preparation' docs/en/02-data-preparation.html
           grep -q 'bmv-tDPZGjQ' docs/en/02-data-preparation.html
           grep -q 'chapter-02-preparing-real-world-data.pdf' docs/en/02-data-preparation.html
+          grep -q 'Exploratory Data Analysis' docs/en/03-exploratory-data-analysis.html
+          grep -q 'Interactive data explorer' docs/en/03-exploratory-data-analysis.html
+          grep -q 'U2hd8iEovCY' docs/en/03-exploratory-data-analysis.html
+          grep -q 'chapter-03-exploratory-data-analysis.pdf' docs/en/03-exploratory-data-analysis.html
 
       - name: Guardar sitio bilingüe como artefacto de validación
         uses: actions/upload-artifact@v4

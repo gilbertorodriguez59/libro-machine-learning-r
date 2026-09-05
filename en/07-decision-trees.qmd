@@ -1,0 +1,85 @@
+# Decision Trees for Classification
+
+::: {.callout-note title="Connection with the theoretical volume"}
+The mathematical treatment of entropy, impurity, recursive partitions, and decision trees is developed in Chapters 3, 6, and 13 of *Mathematical Foundations of Machine Learning* [@rodriguez2026fundamentos].
+:::
+
+## Learning objectives
+
+By the end of this chapter, the reader will be able to explain how a classification tree partitions predictor space, interpret the Gini index, train a controlled tree in R, assess its complexity, and evaluate its predictions on held-out data.
+
+## Basic idea
+
+A decision tree classifies observations through a sequence of if-then rules. At each internal node, the algorithm selects a variable and a split that reduce class impurity.
+
+A common impurity measure is the Gini index:
+
+$$
+Gini = 1-\sum_{k=1}^{K}p_k^2.
+$$
+
+A pure node has low impurity because most of its observations belong to the same class.
+
+## Controlling tree complexity
+
+A tree can fit training data extremely well and still generalize poorly. Parameters such as complexity cost, minimum split size, minimum terminal-node size, and maximum depth limit unnecessary growth.
+
+::: {.callout-important title="Interpretability does not eliminate overfitting"}
+A tree may be easy to explain and still be statistically unstable. Interpretability and generalization are different properties and both must be evaluated.
+:::
+
+## ATUS example
+
+The Spanish edition uses `rpart` to classify accidents as **with victims** or **property damage only**, using month, hour, day of week, accident type, and cause. The data are split into training and test sets before fitting the tree.
+
+The resulting confusion matrix is summarized with accuracy, sensitivity, and specificity.
+
+## Variable importance
+
+Tree importance scores describe how strongly predictors contributed to splits in the fitted tree. They are useful for describing the model but should not be interpreted as causal effects.
+
+::: {.callout-warning title="Association is not causation"}
+A variable can be highly useful for prediction without being a cause of the outcome. Tree-based importance reflects predictive contribution inside the fitted model.
+:::
+
+## COVID-19 educational route
+
+The COVID-19 case uses the same predictor set introduced in previous chapters. The processed data file is selected dynamically so that the chapter does not depend on a hard-coded calendar year.
+
+```{r}
+library(readr)
+library(dplyr)
+library(tidyr)
+library(rpart)
+
+files_covid <- list.files(
+  "../datos/covid19/procesados",
+  pattern = "covid19_mexico_[0-9]{4}_ml_preparado\\.csv\\.gz$",
+  full.names = TRUE
+)
+
+if (length(files_covid) == 0) {
+  stop("No prepared COVID-19 data file was found.")
+}
+
+covid_tree <- read_csv(files_covid[1], show_col_types = FALSE) |>
+  select(
+    MURIO, EDAD, NEUMONIA, DIABETES, HIPERTENSION,
+    OBESIDAD, RENAL_CRONICA, NUM_COMORBILIDADES
+  ) |>
+  drop_na()
+```
+
+A controlled tree can then be fitted to a training subset with `rpart(method = "class")` and evaluated on the test subset.
+
+::: {.callout-warning title="Educational use only"}
+Rules found in this sample describe patterns in the selected data. They must not be interpreted as clinical decision rules or medical recommendations.
+:::
+
+## Pruning and validation
+
+The complexity table produced by `printcp()` helps study the trade-off between tree size and error. Final pruning or hyperparameter selection should be based on validation or cross-validation, leaving the final test set untouched until the end.
+
+## Chapter summary
+
+Decision trees translate classification into understandable recursive rules. Their strengths are interpretability and flexibility; their weaknesses include instability and susceptibility to overfitting. Complexity control and out-of-sample evaluation are therefore essential.

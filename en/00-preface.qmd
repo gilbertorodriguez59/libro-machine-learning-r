@@ -1,0 +1,25 @@
+# Preface {.unnumbered}
+
+This book grew from a simple idea: machine-learning methods are understood more deeply when the reader can follow the entire process, from the initial question and data preparation to model training, evaluation, and interpretation.
+
+My background in Physics and Mathematics led me to value rigor, notation, and the need to understand why a procedure works. My studies and experience in Computer Science, Artificial Intelligence, and Computer Engineering broadened that perspective toward algorithms, intelligent systems, and computational solutions to real problems.
+
+Throughout several decades of university teaching in Mexico and Chile, I have observed two recurring difficulties. The first appears when students know the formulas but cannot connect them with concrete data and decisions. The second arises when they can run a software function but do not understand the assumptions, logic, or limitations of the method.
+
+For that reason, *Machine Learning and Automatic Classification with R* seeks to build a bridge between theory and practice. Each chapter follows four principles:
+
+1. **Learn by doing.** Concepts are connected with data, code, graphics, and results.
+2. **Explain before automating.** Code should answer a clearly formulated question.
+3. **Interpret critically.** No metric or algorithm should be used outside its context.
+4. **Connect practice with foundations.** Mathematical developments are linked to the complementary theoretical volume.
+
+ATUS data make it possible to study mobility and road-safety problems. The inclusion of open COVID-19 records extends the book into biomedical and public-health applications, showing that the same principles of preparation, classification, and evaluation can be applied in very different contexts.
+
+Interactive laboratories, the Google Colab notebooks, videos, presentations, and infographics provide multiple entry points for learning. Technology reaches its greatest value when it helps build understanding rather than merely repeat instructions.
+
+This volume is designed to complement *Mathematical Foundations of Machine Learning*. The practical book emphasizes implementation and applied analysis, while the theoretical volume develops linear algebra, probability, optimization, risk, regularization, generalization, and the mathematical formulation of the algorithms [@rodriguez2026fundamentos].
+
+I hope these pages help readers experiment, question, interpret, and continue learning independently.
+
+**Jesús Gilberto Rodríguez Escobedo**  
+San Luis Potosí, Mexico

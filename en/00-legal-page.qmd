@@ -1,0 +1,34 @@
+# Legal page {.unnumbered}
+
+**Machine Learning and Automatic Classification with R**  
+*A Practical Approach Using Real Open Data*
+
+**Author:** Jesús Gilberto Rodríguez Escobedo  
+**First edition, 2026**  
+**Place of publication:** San Luis Potosí, S.L.P., Mexico  
+**Author-publisher:** Jesús Gilberto Rodríguez Escobedo  
+**ISBN, digital PDF edition:** Pending assignment  
+
+© 2026 Jesús Gilberto Rodríguez Escobedo.
+
+This work is distributed under the **Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License (CC BY-NC-SA 4.0)**, except where a different condition is expressly indicated for third-party materials.
+
+Open datasets used in the examples retain the authorship, ownership, terms of use, and attribution requirements established by their source institutions. Transformations, variable selection, samples, models, graphics, interpretations, and instructional materials prepared for this book are the responsibility of the author.
+
+COVID-19 examples are intended solely for educational and statistical purposes. They do not constitute diagnosis, clinical prognosis, medical advice, or a tool for direct healthcare decision-making.
+
+Trade names, trademarks, software libraries, and platforms mentioned in this work belong to their respective owners and are included only for academic, technical, and descriptive purposes.
+
+**Official website:**  
+<https://gilbertorodriguez59.github.io/libro-machine-learning-r/en/>
+
+**Code and materials repository:**  
+<https://github.com/gilbertorodriguez59/libro-machine-learning-r>
+
+## Suggested citation {.unnumbered}
+
+Rodríguez Escobedo, J. G. (2026). *Machine Learning and Automatic Classification with R: A Practical Approach Using Real Open Data*. First edition. San Luis Potosí, S.L.P., Mexico.
+
+::: {.callout-note title="ISBN note"}
+The ISBN will be added to this legal page once it is officially assigned to the English-language digital PDF edition.
+:::

@@ -1,0 +1,80 @@
+# Google Colab: Complete Notebook and Chapter Notebooks {.unnumbered}
+
+In addition to the web edition and the PDF document, the book now provides **two complementary ways to work in Google Colab**:
+
+1. a **complete master notebook**, containing the entire book in a single file;
+2. **13 independent, self-contained notebooks**, one for each chapter, designed so that a reader can study or practice a topic without running the whole book.
+
+::: {.callout-tip title="Recommended access"}
+
+**Index of chapter notebooks:**  
+[Open the Colab notebook index](https://colab.research.google.com/github/gilbertorodriguez59/libro-machine-learning-r/blob/main/colab/00-indice-colabs.ipynb)
+
+**Complete master notebook:**  
+[Open the complete book in Google Colab](https://colab.research.google.com/github/gilbertorodriguez59/libro-machine-learning-r/blob/main/Aprendizaje_y_Clasificacion_Automatica_con_R_Colab.ipynb)
+
+:::
+
+## Self-contained notebooks by chapter {.unnumbered}
+
+Each notebook can be opened directly and includes its own initial setup cell. It is not necessary to run previous chapters.
+
+| Chapter | Topic | Open in Colab |
+|---:|---|---|
+| 1 | Introduction to machine learning | [Open](https://colab.research.google.com/github/gilbertorodriguez59/libro-machine-learning-r/blob/main/colab/01-introduccion.ipynb) |
+| 2 | Preparing real-world data | [Open](https://colab.research.google.com/github/gilbertorodriguez59/libro-machine-learning-r/blob/main/colab/02-preparacion-datos.ipynb) |
+| 3 | Exploratory data analysis | [Open](https://colab.research.google.com/github/gilbertorodriguez59/libro-machine-learning-r/blob/main/colab/03-analisis-exploratorio.ipynb) |
+| 4 | Simple and multiple linear regression | [Open](https://colab.research.google.com/github/gilbertorodriguez59/libro-machine-learning-r/blob/main/colab/04-regresion-lineal.ipynb) |
+| 5 | Logistic regression | [Open](https://colab.research.google.com/github/gilbertorodriguez59/libro-machine-learning-r/blob/main/colab/05-regresion-logistica.ipynb) |
+| 6 | k-nearest neighbors (k-NN) | [Open](https://colab.research.google.com/github/gilbertorodriguez59/libro-machine-learning-r/blob/main/colab/06-knn.ipynb) |
+| 7 | Decision trees | [Open](https://colab.research.google.com/github/gilbertorodriguez59/libro-machine-learning-r/blob/main/colab/07-arboles-decision.ipynb) |
+| 8 | Random Forest | [Open](https://colab.research.google.com/github/gilbertorodriguez59/libro-machine-learning-r/blob/main/colab/08-random-forest.ipynb) |
+| 9 | Model evaluation and comparison | [Open](https://colab.research.google.com/github/gilbertorodriguez59/libro-machine-learning-r/blob/main/colab/09-evaluacion-modelos.ipynb) |
+| 10 | Support Vector Machines (SVM) | [Open](https://colab.research.google.com/github/gilbertorodriguez59/libro-machine-learning-r/blob/main/colab/10-svm.ipynb) |
+| 11 | Naive Bayes | [Open](https://colab.research.google.com/github/gilbertorodriguez59/libro-machine-learning-r/blob/main/colab/11-naive-bayes.ipynb) |
+| 12 | Neural networks | [Open](https://colab.research.google.com/github/gilbertorodriguez59/libro-machine-learning-r/blob/main/colab/12-redes-neuronales.ipynb) |
+| 13 | k-means clustering | [Open](https://colab.research.google.com/github/gilbertorodriguez59/libro-machine-learning-r/blob/main/colab/13-kmeans.ipynb) |
+
+## What does it mean for each notebook to be self-contained? {.unnumbered}
+
+The first cell of each chapter:
+
+- installs the required R packages automatically;
+- creates the necessary folders;
+- downloads `util_graficas.R`;
+- downloads the prepared ATUS dataset;
+- downloads the COVID-19 2022 files used in the examples;
+- checks that the required resources exist before continuing;
+- loads the plotting functions used throughout the book.
+
+This means that a student can open, for example, the **SVM** or **Random Forest** chapter and begin working directly from that notebook.
+
+::: {.callout-warning title="Run the cells in order within each chapter"}
+Although the chapter notebooks are independent from one another, some cells within each notebook use objects created in previous cells. If Colab restarts or disconnects the session, run the notebook again from the first cell.
+:::
+
+## Complete master notebook {.unnumbered}
+
+The master notebook preserves the complete sequence of the book in a single file. It is useful for:
+
+- studying the entire book from beginning to end;
+- keeping an integrated copy of the R code;
+- comparing algorithms in the same session;
+- retaining all ATUS and COVID-19 examples in one notebook.
+
+Because of its length, the self-contained chapter notebooks are recommended for classes, exercises, and quick consultation.
+
+## How to work in Google Colab {.unnumbered}
+
+1. Open the index or the chapter you want to study.
+2. Sign in with a Google account if Colab requests it.
+3. Optionally choose **File → Save a copy in Drive**.
+4. Verify that the runtime uses **R**.
+5. Run the automatic setup cell first.
+6. Continue in order using the play button or `Shift + Enter`.
+
+## Web book, Colab, and interactive laboratories {.unnumbered}
+
+The web edition remains the primary option for reading, navigation, and Shinylive laboratories. The Colab notebooks are designed for modifying code, repeating experiments, and working with the R models without installing R or RStudio locally.
+
+Shinylive laboratories remain in the web edition; the Colab notebooks contain the reproducible development of the algorithms and the applied ATUS and COVID-19 cases.

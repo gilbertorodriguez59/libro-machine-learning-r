@@ -1,0 +1,98 @@
+name: Validar edición bilingüe 2026
+
+on:
+  push:
+    branches: [edicion-2026-bilingue]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: validar-bilingue-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validar-html:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Configurar R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: 'release'
+          use-public-rspm: true
+
+      - name: Instalar bibliotecas del sistema
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libcurl4-openssl-dev libssl-dev libxml2-dev libfontconfig1-dev libharfbuzz-dev libfribidi-dev libfreetype6-dev libpng-dev libtiff-dev libjpeg-dev
+
+      - name: Instalar dependencias R
+        uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          packages: |
+            any::rmarkdown
+            any::knitr
+            any::ggplot2
+            any::readr
+            any::dplyr
+            any::tidyr
+            any::stringr
+            any::data.table
+            any::scales
+            any::class
+            any::rpart
+            any::randomForest
+            any::ranger
+            any::e1071
+            any::naivebayes
+            any::neuralnet
+            any::cluster
+            any::caret
+            any::factoextra
+            any::plotly
+            any::DT
+            any::htmltools
+            any::jsonlite
+            any::fs
+            any::shiny
+            any::shinylive
+          cache-version: bilingual-2026-1
+
+      - name: Renderizar edición en español
+        run: |
+          rm -rf docs .quarto _freeze
+          quarto render --to html --no-cache
+          test -s docs/index.html
+
+      - name: Renderizar edición en inglés
+        run: |
+          quarto render en --to html --no-cache
+          test -s docs/en/index.html
+
+      - name: Validar estructura bilingüe
+        run: |
+          test -s docs/00-prefacio.html
+          test -s docs/00-agradecimientos.html
+          test -s docs/en/00-preface.html
+          test -s docs/en/00-acknowledgments.html
+          test -s docs/en/00-google-colab.html
+          test -s docs/en/figure-index.html
+          test -s docs/en/subject-index.html
+          grep -q 'English' docs/index.html
+          grep -q 'Español' docs/en/index.html
+          grep -q 'Machine Learning and Automatic Classification with R' docs/en/index.html
+
+      - name: Guardar sitio bilingüe como artefacto de validación
+        uses: actions/upload-artifact@v4
+        with:
+          name: libro-bilingue-html
+          path: docs
+          if-no-files-found: error

@@ -1,0 +1,211 @@
+# What Is Machine Learning?
+
+::: {.callout-note title="Connection with the theoretical volume"}
+The mathematical formulation of supervised learning and classification theory is developed in greater depth in Chapters 5 and 6 of *Mathematical Foundations of Machine Learning* [@rodriguez2026fundamentos].
+:::
+
+## Chapter objectives
+
+By the end of this chapter, the reader will be able to explain what machine learning is, distinguish it from traditional programming, and identify classification, regression, and clustering problems.
+
+## Introduction
+
+Machine learning makes it possible to build models capable of learning patterns from data.
+
+In traditional programming, a person defines explicit rules. In machine learning, examples are provided so that an algorithm can learn a relationship between input variables and an expected output.
+
+## Traditional programming versus machine learning
+
+```{r traditional-programming-rule}
+pm10 <- 85
+
+if (pm10 > 75) {
+  print("High pollution")
+} else {
+  print("Low pollution")
+}
+```
+
+::: {.callout-note title="Code explanation"}
+A PM10 value is defined and then a fixed rule is applied. If the value is greater than 75, the program classifies the day as having high pollution.
+:::
+
+::: {.callout-tip title="Result interpretation"}
+This example represents traditional programming: the decision depends on a manually written rule. In machine learning, the rule is learned from examples.
+:::
+
+```{r introduction-example-data}
+data <- data.frame(
+  day = 1:12,
+  pm10 = c(42, 88, 55, 120, 63, 95, 38, 110, 72, 130, 47, 99),
+  temperature = c(25, 28, 22, 30, 24, 29, 21, 31, 27, 32, 23, 30),
+  humidity = c(40, 35, 60, 30, 55, 33, 65, 29, 42, 28, 62, 34),
+  class = c("Low", "High", "Low", "High", "Low", "High", "Low", "High", "Low", "High", "Low", "High")
+)
+
+data
+```
+
+::: {.callout-note title="Code explanation"}
+A small data set with 12 days is created. Each row contains environmental variables and a known class.
+:::
+
+## Predictors and response variable
+
+The response variable is the variable we want to predict. Predictors are the variables used as inputs to the model.
+
+## Main types of machine learning
+
+1. Supervised learning.
+2. Unsupervised learning.
+3. Reinforcement learning.
+
+## Basic notation
+
+Suppose we have $n$ observations and $p$ predictors. We can represent the data using a matrix $X$ and a response variable $Y$.
+
+$$
+\hat{y} = f(x_1, x_2, \ldots, x_p)
+$$
+
+## First visual example in R
+
+```{r introduction-plot, fig.width=7, fig.height=4.5}
+library(ggplot2)
+
+# This English edition intentionally keeps the example self-contained.
+ggplot(data, aes(x = pm10, y = temperature, color = class)) +
+  geom_point(size = 4, alpha = 0.9) +
+  labs(
+    title = "Introductory classification example",
+    subtitle = "Classification of high or low pollution",
+    x = "PM10",
+    y = "Temperature",
+    color = "Class"
+  ) +
+  theme_minimal()
+```
+
+::: {.callout-note title="Code explanation"}
+The plot places PM10 on the horizontal axis and temperature on the vertical axis, and uses color to distinguish the classes.
+:::
+
+::: {.callout-tip title="Result interpretation"}
+The points make it possible to inspect whether the classes tend to separate. This is the basic idea behind many classification methods.
+:::
+
+## Training and test split
+
+```{r training-test-split}
+set.seed(123)
+n <- nrow(data)
+training_indices <- sample(1:n, size = round(0.7 * n))
+
+training <- data[training_indices, ]
+test <- data[-training_indices, ]
+
+training
+test
+```
+
+::: {.callout-note title="Code explanation"}
+The data set is divided into two parts: one for training the model and another for evaluating its performance on observations not used during fitting.
+:::
+
+## First rule-based classifier
+
+```{r rule-based-classifier}
+data$rule_prediction <- ifelse(data$pm10 > 75, "High", "Low")
+
+confusion_matrix <- table(
+  Actual = data$class,
+  Predicted = data$rule_prediction
+)
+
+confusion_matrix
+mean(data$class == data$rule_prediction)
+```
+
+::: {.callout-tip title="Result interpretation"}
+The confusion matrix compares the actual class with the predicted class. Accuracy measures the proportion of correct predictions.
+:::
+
+## Supplementary materials
+
+The Spanish edition currently contains the official videos, presentations, infographics, and Google Colab notebook associated with this chapter. The bilingual edition preserves those resources while the English-language supplementary materials are prepared.
+
+## Interactive laboratory: a classification rule
+
+::: {.content-visible when-format="html"}
+This laboratory shows how a simple rule can classify observations using a threshold.
+
+```{shinylive-r}
+#| standalone: true
+#| viewerHeight: 680
+#| components: [viewer]
+
+library(shiny)
+
+ui <- fluidPage(
+  titlePanel("Threshold-based classifier"),
+  sidebarLayout(
+    sidebarPanel(
+      sliderInput("threshold", "Classification threshold", 0, 10, 5, step = 0.1),
+      sliderInput("noise", "Noise level", 0, 3, 1, step = 0.1),
+      numericInput("seed", "Seed", 123, min = 1)
+    ),
+    mainPanel(
+      plotOutput("plot", height = "400px"),
+      tableOutput("metrics"),
+      textOutput("rule")
+    )
+  )
+)
+
+server <- function(input, output, session) {
+  data_sim <- reactive({
+    set.seed(input$seed)
+    x <- seq(0.5, 9.5, length.out = 80)
+    actual_class <- ifelse(x + rnorm(length(x), 0, input$noise) >= 5, 1, 0)
+    pred <- ifelse(x >= input$threshold, 1, 0)
+    data.frame(x, actual_class, pred)
+  })
+
+  output$plot <- renderPlot({
+    d <- data_sim()
+    plot(d$x, jitter(d$actual_class, amount = 0.08), pch = 19,
+         xlab = "Predictor x", ylab = "Actual class",
+         yaxt = "n", main = "Classification rule")
+    axis(2, at = c(0, 1), labels = c("Class 0", "Class 1"))
+    abline(v = input$threshold, lwd = 3, lty = 2)
+    grid()
+  })
+
+  output$metrics <- renderTable({
+    d <- data_sim()
+    data.frame(
+      Observations = nrow(d),
+      Correct = sum(d$actual_class == d$pred),
+      Errors = sum(d$actual_class != d$pred),
+      Accuracy = round(mean(d$actual_class == d$pred), 4)
+    )
+  })
+
+  output$rule <- renderText({
+    paste0("If x >= ", round(input$threshold, 2),
+           ", predict Class 1; otherwise, Class 0.")
+  })
+}
+
+shinyApp(ui, server)
+```
+:::
+
+::: {.content-visible when-format="pdf"}
+### Laboratory available in the web edition
+The web edition allows the reader to change the classification threshold and observe the resulting accuracy.
+:::
+
+## Conclusion
+
+Machine learning makes it possible to build models that learn patterns from data. In this chapter we examined the difference between manually specified rules and learning from examples.

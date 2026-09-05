@@ -1,41 +1,98 @@
 # Model Evaluation, Validation, and Comparison
 
 ::: {.callout-note title="Connection with the theoretical volume"}
-The mathematical treatment of confusion matrices, classification metrics, validation, and model selection is developed more deeply in Chapters 6 and 7 of *Mathematical Foundations of Machine Learning* [@rodriguez2026fundamentos].
+The mathematical treatment of confusion matrices, classification metrics, validation, and model selection is developed in greater depth in Chapters 6 and 7 of *Mathematical Foundations of Machine Learning* [@rodriguez2026fundamentos].
 :::
 
 ## Learning objectives
 
-By the end of this chapter, the reader will be able to explain why accuracy may be insufficient, construct and interpret a confusion matrix, compute sensitivity, specificity, precision, and F1 score, distinguish training, validation, and test data, use stratified cross-validation, and compare models without relying on a single metric.
+By the end of this chapter, the reader will be able to:
 
-## Why evaluation matters
+- explain why accuracy alone may be insufficient;
+- construct and interpret a confusion matrix;
+- compute accuracy, sensitivity, specificity, precision, F1, and balanced accuracy;
+- distinguish training, cross-validation, and final testing;
+- select a classification threshold without using the test set;
+- interpret ROC/AUC as measures of discrimination;
+- distinguish discrimination from calibration;
+- compare models using the same sample, split, and metrics;
+- select models while considering performance, stability, interpretability, and error costs.
 
-Training a model is only part of the workflow. The central question is whether the model will perform well on observations that were not used during training.
+## Evaluation estimates generalization
 
-A model that performs extremely well on training data may still generalize poorly. For this reason, model evaluation must be based on held-out data and on metrics that reflect the practical objective of the problem.
+Training a model is only one part of machine learning. The central question is:
 
-## Training, validation, and test sets
+> **How well will the model work on observations that were not used to build it?**
 
-- **Training set:** used to estimate model parameters.
-- **Validation set:** used to compare alternatives and select hyperparameters.
-- **Test set:** reserved for the final estimate of predictive performance.
+A model can fit training data extremely well and still fail on new observations. Reliable evaluation therefore protects the independence of the test set and uses metrics that match the practical goal of the problem [@kohavi1995crossvalidation; @james2021islr].
 
-In many practical workflows, cross-validation is performed inside the training data and the test set remains untouched until the end.
+::: {.callout-important title="Separation principle"}
+Any step that learns from data—imputation, scaling, feature selection, hyperparameter tuning, or threshold selection—must use training and validation information only. The final test set must not influence those decisions.
+:::
 
-::: {.callout-important title="Avoid data leakage"}
-Any preprocessing step that learns from the data—scaling, imputation, variable selection, threshold tuning, or hyperparameter selection—must be estimated using training data only. Information from the test set must not influence model construction.
+## Load and prepare ATUS
+
+```{r load-evaluation-atus-en}
+library(readr)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+source("../util_graficas.R")
+
+atus_path <- "../datos/atus_ml_preparado.csv"
+
+if (!file.exists(atus_path)) {
+  stop("../datos/atus_ml_preparado.csv was not found. Run Chapter 2 first.")
+}
+
+atus_ml <- read_csv(atus_path, show_col_types = FALSE)
+
+set.seed(2026)
+atus_eval <- atus_ml |>
+  mutate(
+    accident_class = factor(
+      accidente_con_victimas,
+      levels = c("Solo daños", "Con víctimas"),
+      labels = c("Property damage only", "With casualties")
+    ),
+    MES = factor(MES),
+    HOUR_NUM = suppressWarnings(as.numeric(ID_HORA)),
+    HOUR_NUM = ifelse(
+      HOUR_NUM >= 0 & HOUR_NUM <= 23,
+      HOUR_NUM,
+      NA_real_
+    ),
+    DIASEMANA = factor(DIASEMANA),
+    TIPACCID = factor(TIPACCID),
+    CAUSAACCI = factor(CAUSAACCI)
+  ) |>
+  drop_na(
+    accident_class,
+    MES,
+    HOUR_NUM,
+    DIASEMANA,
+    TIPACCID,
+    CAUSAACCI
+  ) |>
+  slice_sample(n = min(15000, n()))
+
+prop.table(table(atus_eval$accident_class))
+```
+
+::: {.callout-tip title="Class imbalance"}
+When one class is much more frequent, high accuracy can be achieved by repeatedly predicting the majority class. Several metrics and a simple baseline are therefore required.
 :::
 
 ## Confusion matrix
 
-For a positive class called **With victims**, the confusion matrix contains:
+For the positive class **With casualties**:
 
 | Actual class | Predicted positive | Predicted negative |
 |---|---:|---:|
 | Positive | TP | FN |
 | Negative | FP | TN |
 
-The main metrics are
+The principal metrics are
 
 $$
 Accuracy=\frac{TP+TN}{TP+FN+FP+TN},
@@ -43,9 +100,7 @@ $$
 
 $$
 Sensitivity=\frac{TP}{TP+FN},
-$$
-
-$$
+\qquad
 Specificity=\frac{TN}{TN+FP},
 $$
 
@@ -53,78 +108,777 @@ $$
 Precision=\frac{TP}{TP+FP},
 $$
 
+$$
+F_1=2\frac{Precision\cdot Sensitivity}{Precision+Sensitivity},
+$$
+
 and
 
 $$
-F_1=2\frac{Precision\times Sensitivity}{Precision+Sensitivity}.
+Balanced\ Accuracy=\frac{Sensitivity+Specificity}{2}.
 $$
 
-## Why accuracy can mislead
+## Evaluation functions
 
-When one class is much more frequent than the other, a classifier can obtain high accuracy by repeatedly predicting the majority class. A useful model should therefore be compared with a simple baseline and assessed with several complementary metrics.
+```{r evaluation-functions-en}
+classification_metrics <- function(actual, predicted, positive, negative) {
+  actual <- factor(actual, levels = c(negative, positive))
+  predicted <- factor(predicted, levels = c(negative, positive))
+  m <- table(Actual = actual, Predicted = predicted)
 
-## Stratified splitting
+  TP <- m[positive, positive]
+  FN <- m[positive, negative]
+  FP <- m[negative, positive]
+  TN <- m[negative, negative]
 
-A stratified split approximately preserves class proportions in training and test sets. This is especially important when the outcome is imbalanced.
+  safe_divide <- function(a, b) if (b == 0) NA_real_ else as.numeric(a / b)
 
-## Threshold selection
+  sensitivity <- safe_divide(TP, TP + FN)
+  specificity <- safe_divide(TN, TN + FP)
+  precision <- safe_divide(TP, TP + FP)
+  f1 <- if (
+    is.na(precision) || is.na(sensitivity) ||
+    precision + sensitivity == 0
+  ) {
+    NA_real_
+  } else {
+    2 * precision * sensitivity / (precision + sensitivity)
+  }
 
-Probability-based classifiers produce scores or probabilities before producing class labels. The classification threshold is a decision rule, not an intrinsic constant of the model.
-
-Lowering the threshold usually increases sensitivity and may decrease specificity. The appropriate threshold depends on the relative cost of false negatives and false positives.
-
-::: {.callout-note title="Thresholds belong to validation"}
-Do not choose a threshold after inspecting the final test results. Threshold selection should be performed using validation data or cross-validation inside the training set.
-:::
-
-## Cross-validation
-
-In $K$-fold cross-validation, the training data are partitioned into $K$ folds. Each fold is used once for validation while the remaining folds are used for training. Metrics are then averaged across folds.
-
-For classification with imbalanced classes, stratified folds are preferable because they preserve class proportions more consistently.
-
-## ROC and AUC
-
-For models that produce continuous scores or probabilities, the ROC curve summarizes sensitivity and false-positive rate across many thresholds. The area under the curve (AUC) measures discrimination: how well the model ranks positive observations above negative observations.
-
-::: {.callout-warning title="AUC is not calibration"}
-A model can have a good AUC and still produce poorly calibrated probabilities. Discrimination and calibration answer different questions.
-:::
-
-## Calibration
-
-Calibration compares predicted probabilities with observed frequencies. If a well-calibrated model assigns approximately 0.20 probability to many similar observations, roughly 20% of those observations should belong to the positive class.
-
-Calibration should be assessed only when the sampling strategy allows probabilities to retain their intended interpretation.
-
-## COVID-19 route
-
-The COVID-19 exercises use a processed educational dataset selected by the reproducible data-preparation workflow. The filename is detected dynamically rather than hard-coded to a single year.
-
-```{r}
-library(readr)
-
-files_covid <- list.files(
-  "../datos/covid19/procesados",
-  pattern = "covid19_mexico_[0-9]{4}_ml_preparado\\.csv\\.gz$",
-  full.names = TRUE
-)
-
-if (length(files_covid) == 0) {
-  stop("No prepared COVID-19 data file was found.")
+  list(
+    confusion = m,
+    metrics = data.frame(
+      accuracy = safe_divide(TP + TN, sum(m)),
+      sensitivity = sensitivity,
+      specificity = specificity,
+      precision = precision,
+      f1 = f1,
+      balanced_accuracy = mean(c(sensitivity, specificity), na.rm = TRUE)
+    )
+  )
 }
 
-covid <- read_csv(files_covid[1], show_col_types = FALSE)
+auc_by_ranks <- function(y_binary, probability) {
+  n1 <- sum(y_binary == 1)
+  n0 <- sum(y_binary == 0)
+  if (n1 == 0 || n0 == 0) return(NA_real_)
+
+  ranks <- rank(probability, ties.method = "average")
+  (sum(ranks[y_binary == 1]) - n1 * (n1 + 1) / 2) / (n1 * n0)
+}
 ```
 
-::: {.callout-important title="Balanced samples and probability interpretation"}
-If the educational sample artificially changes the proportion of deaths, raw predicted probabilities should not be interpreted as population risk. Such a sample can still be useful for learning classification and comparing algorithms, but population-oriented probability interpretation requires natural prevalence or an appropriate weighting/calibration strategy.
+## Stratified training-test split
+
+Eighty percent of the data are used for model development and 20% remain untouched until final evaluation.
+
+```{r evaluation-split-atus-en}
+set.seed(2026)
+
+idx_train <- unlist(
+  lapply(
+    split(seq_len(nrow(atus_eval)), atus_eval$accident_class),
+    function(ids) sample(ids, floor(0.80 * length(ids)))
+  )
+)
+
+idx_train <- sort(idx_train)
+train <- atus_eval[idx_train, ]
+test <- atus_eval[-idx_train, ]
+
+rbind(
+  training = prop.table(table(train$accident_class)),
+  test = prop.table(table(test$accident_class))
+)
+```
+
+## Majority-class baseline
+
+```{r evaluation-baseline-en}
+majority_class <- names(which.max(table(train$accident_class)))
+
+pred_baseline <- factor(
+  rep(majority_class, nrow(test)),
+  levels = levels(train$accident_class)
+)
+
+result_baseline <- classification_metrics(
+  test$accident_class,
+  pred_baseline,
+  positive = "With casualties",
+  negative = "Property damage only"
+)
+
+result_baseline$confusion
+result_baseline$metrics
+```
+
+::: {.callout-warning title="A baseline is essential"}
+A complex model should outperform or otherwise justify itself against a simple rule. Under strong imbalance, the majority baseline can have surprisingly high accuracy while having zero sensitivity for the minority class.
 :::
 
-## Model comparison checklist
+# Threshold selection without touching the test set
 
-A model comparison should consider predictive performance, stability across resamples, calibration when probabilities matter, computational cost, interpretability, class imbalance, and the consequences of different error types.
+## Create stratified folds inside training data
+
+```{r create-evaluation-folds-en}
+create_folds <- function(response, k = 5, seed = 2026) {
+  set.seed(seed)
+  response <- factor(response)
+  folds <- integer(length(response))
+
+  for (class_value in levels(response)) {
+    ids <- which(response == class_value)
+    labels <- rep(seq_len(k), length.out = length(ids))
+    folds[ids] <- sample(labels)
+  }
+
+  folds
+}
+
+fold <- create_folds(
+  train$accident_class,
+  k = 5,
+  seed = 2026
+)
+
+table(fold, train$accident_class)
+```
+
+## Generate out-of-fold probabilities
+
+Each training observation receives a probability from a model that **was not fitted using that observation**.
+
+```{r logistic-oof-probabilities-en}
+prob_oof <- rep(NA_real_, nrow(train))
+
+for (k in 1:5) {
+  cv_train <- train[fold != k, ]
+  cv_validation <- train[fold == k, ]
+
+  model_cv <- glm(
+    accident_class ~
+      MES + HOUR_NUM + DIASEMANA + TIPACCID + CAUSAACCI,
+    data = cv_train,
+    family = binomial
+  )
+
+  prob_oof[fold == k] <- predict(
+    model_cv,
+    newdata = cv_validation,
+    type = "response"
+  )
+}
+
+summary(prob_oof)
+```
+
+Because **With casualties** is the second factor level, `glm()` models its probability.
+
+## Choose the threshold using balanced accuracy
+
+```{r select-threshold-oof-en}
+thresholds <- seq(0.10, 0.90, by = 0.05)
+
+threshold_metrics <- do.call(
+  rbind,
+  lapply(thresholds, function(threshold) {
+    pred <- factor(
+      ifelse(
+        prob_oof >= threshold,
+        "With casualties",
+        "Property damage only"
+      ),
+      levels = c("Property damage only", "With casualties")
+    )
+
+    m <- classification_metrics(
+      train$accident_class,
+      pred,
+      positive = "With casualties",
+      negative = "Property damage only"
+    )$metrics
+
+    cbind(threshold = threshold, m)
+  })
+)
+
+threshold_metrics
+
+best_threshold <- threshold_metrics$threshold[
+  which.max(threshold_metrics$balanced_accuracy)
+]
+
+best_threshold
+```
+
+```{r threshold-plot-oof-en, fig.width=7.5, fig.height=4.8}
+threshold_long <- threshold_metrics |>
+  select(threshold, sensitivity, specificity, balanced_accuracy, f1) |>
+  pivot_longer(
+    cols = -threshold,
+    names_to = "metric",
+    values_to = "value"
+  )
+
+ggplot(
+  threshold_long,
+  aes(x = threshold, y = value, color = metric)
+) +
+  geom_line(linewidth = 1.05) +
+  geom_point(size = 2) +
+  geom_vline(xintercept = best_threshold, linetype = 2) +
+  labs(
+    title = "Threshold selection with out-of-fold predictions",
+    subtitle = "The final test set does not participate in this decision",
+    x = "Threshold",
+    y = "Metric",
+    color = "Metric"
+  ) +
+  tema_libro()
+```
+
+::: {.callout-note title="The criterion depends on the problem"}
+Balanced accuracy is used here to give equal weight to sensitivity and specificity. Other applications may prioritize sensitivity, precision, expected cost, or a utility function defined with domain experts.
+:::
+
+# Discrimination: ROC and AUC
+
+The ROC curve plots sensitivity against false-positive rate over many thresholds. AUC summarizes how well the model ranks positive observations above negative observations [@fawcett2006roc].
+
+```{r auc-oof-evaluation-en}
+y_oof <- ifelse(train$accident_class == "With casualties", 1, 0)
+auc_oof <- auc_by_ranks(y_oof, prob_oof)
+auc_oof
+```
+
+```{r roc-oof-en, fig.width=6.2, fig.height=5}
+roc_thresholds <- sort(unique(c(0, prob_oof, 1)), decreasing = TRUE)
+
+roc_oof <- do.call(
+  rbind,
+  lapply(roc_thresholds, function(u) {
+    pred_binary <- ifelse(prob_oof >= u, 1, 0)
+    TP <- sum(pred_binary == 1 & y_oof == 1)
+    FN <- sum(pred_binary == 0 & y_oof == 1)
+    FP <- sum(pred_binary == 1 & y_oof == 0)
+    TN <- sum(pred_binary == 0 & y_oof == 0)
+
+    data.frame(
+      fpr = ifelse(FP + TN == 0, NA, FP / (FP + TN)),
+      tpr = ifelse(TP + FN == 0, NA, TP / (TP + FN))
+    )
+  })
+)
+
+ggplot(roc_oof, aes(x = fpr, y = tpr)) +
+  geom_abline(slope = 1, intercept = 0, linetype = 2) +
+  geom_path(linewidth = 1.1, color = col_azul) +
+  coord_equal(xlim = c(0, 1), ylim = c(0, 1)) +
+  labs(
+    title = paste0("Out-of-fold ROC; AUC = ", round(auc_oof, 3)),
+    x = "False-positive rate",
+    y = "Sensitivity"
+  ) +
+  tema_libro()
+```
+
+::: {.callout-warning title="AUC is not calibration"}
+AUC measures discrimination or ranking ability. A model can have a useful AUC and still produce probabilities that are systematically too high or too low.
+:::
+
+# Final fit and one-time test evaluation
+
+```{r final-evaluation-model-en}
+final_logistic <- glm(
+  accident_class ~
+    MES + HOUR_NUM + DIASEMANA + TIPACCID + CAUSAACCI,
+  data = train,
+  family = binomial
+)
+
+prob_test <- predict(
+  final_logistic,
+  newdata = test,
+  type = "response"
+)
+
+pred_test <- factor(
+  ifelse(
+    prob_test >= best_threshold,
+    "With casualties",
+    "Property damage only"
+  ),
+  levels = c("Property damage only", "With casualties")
+)
+
+result_logistic <- classification_metrics(
+  test$accident_class,
+  pred_test,
+  positive = "With casualties",
+  negative = "Property damage only"
+)
+
+result_logistic$confusion
+result_logistic$metrics
+```
+
+## Final test AUC
+
+```{r auc-test-evaluation-en}
+y_test_binary <- ifelse(test$accident_class == "With casualties", 1, 0)
+auc_test <- auc_by_ranks(y_test_binary, prob_test)
+auc_test
+```
+
+## Calibration on the test set
+
+```{r calibration-test-evaluation-en}
+calibration_test <- data.frame(
+  probability = prob_test,
+  actual = y_test_binary
+) |>
+  mutate(group = ntile(probability, 10)) |>
+  group_by(group) |>
+  summarise(
+    n = n(),
+    mean_probability = mean(probability),
+    observed_frequency = mean(actual),
+    .groups = "drop"
+  )
+
+calibration_test
+```
+
+```{r calibration-plot-test-en, fig.width=6.2, fig.height=5}
+ggplot(
+  calibration_test,
+  aes(x = mean_probability, y = observed_frequency)
+) +
+  geom_abline(slope = 1, intercept = 0, linetype = 2) +
+  geom_point(size = 3) +
+  geom_line() +
+  coord_equal(xlim = c(0, 1), ylim = c(0, 1)) +
+  labs(
+    title = "Calibration on the final test set",
+    x = "Mean predicted probability",
+    y = "Observed frequency"
+  ) +
+  tema_libro()
+```
+
+::: {.callout-note title="Calibration also depends on sampling"}
+Probabilities retain a population interpretation only when the sampling process and prevalence permit it, or when appropriate weighting and calibration corrections are applied.
+:::
+
+## Compare with the baseline
+
+```{r compare-baseline-logistic-en}
+comparison_atus <- bind_rows(
+  cbind(model = "Majority baseline", result_baseline$metrics),
+  cbind(model = "Logistic regression", result_logistic$metrics)
+)
+
+comparison_atus
+```
+
+```{r evaluation-comparison-plot-en, fig.width=7.5, fig.height=4.8}
+comparison_long <- comparison_atus |>
+  pivot_longer(
+    cols = -model,
+    names_to = "metric",
+    values_to = "value"
+  )
+
+ggplot(
+  comparison_long,
+  aes(x = metric, y = value, fill = model)
+) +
+  geom_col(position = "dodge") +
+  scale_y_continuous(limits = c(0, 1)) +
+  labs(
+    title = "Final comparison with a simple baseline",
+    x = "Metric",
+    y = "Value",
+    fill = "Model"
+  ) +
+  tema_libro()
+```
+
+**Source:** Author's processing of INEGI ATUS 2024 data [@inegi_atus_2024].
+
+# Common educational benchmark with COVID-19
+
+Up to this point, the book has introduced logistic regression, k-NN, decision trees, and Random Forest. We compare them using **the same sample, predictors, and test split**. SVM, Naive Bayes, and neural networks will be added to the integrated comparison after their own chapters have been developed.
+
+::: {.callout-important title="Educational benchmark, not clinical evaluation"}
+A balanced class sample is constructed to facilitate algorithm comparison. The resulting metrics describe this benchmark and do not represent mortality prevalence or population risk.
+:::
+
+## Select the period and create a balanced sample
+
+```{r covid-benchmark-prepare-en}
+covid_counts <- read_csv(
+  "../datos/covid19/procesados/conteo_casos_confirmados_2020_2025.csv",
+  show_col_types = FALSE
+)
+
+covid_year <- covid_counts |>
+  filter(ESTADO == "PROCESADO", !is.na(CASOS_CONFIRMADOS)) |>
+  slice_max(CASOS_CONFIRMADOS, n = 1, with_ties = FALSE) |>
+  pull(ANIO)
+
+covid_path <- file.path(
+  "../datos/covid19/procesados",
+  paste0("covid19_mexico_", covid_year, "_ml_preparado.csv.gz")
+)
+
+covid_base <- read_csv(covid_path, show_col_types = FALSE) |>
+  select(
+    MURIO, EDAD, NEUMONIA, DIABETES, HIPERTENSION,
+    OBESIDAD, RENAL_CRONICA, NUM_COMORBILIDADES
+  ) |>
+  drop_na() |>
+  mutate(
+    outcome = factor(
+      MURIO,
+      levels = c(0, 1),
+      labels = c("No recorded death", "Recorded death")
+    )
+  ) |>
+  select(-MURIO)
+
+set.seed(2026)
+n_per_class <- min(2000, min(table(covid_base$outcome)))
+
+covid_benchmark <- covid_base |>
+  group_by(outcome) |>
+  slice_sample(n = n_per_class) |>
+  ungroup()
+```
+
+## Common 80/20 split
+
+```{r covid-benchmark-split-en}
+set.seed(2026)
+
+idx_covid_train <- unlist(
+  lapply(
+    split(seq_len(nrow(covid_benchmark)), covid_benchmark$outcome),
+    function(ids) sample(ids, floor(0.80 * length(ids)))
+  )
+)
+
+train_comp <- covid_benchmark[sort(idx_covid_train), ]
+test_comp <- covid_benchmark[-sort(idx_covid_train), ]
+
+prop.table(table(train_comp$outcome))
+prop.table(table(test_comp$outcome))
+```
+
+## Common metric function
+
+```{r covid-benchmark-metric-en}
+covid_metrics <- function(actual, predicted) {
+  classification_metrics(
+    actual,
+    predicted,
+    positive = "Recorded death",
+    negative = "No recorded death"
+  )$metrics
+}
+```
+
+## 1. Logistic regression
+
+```{r covid-benchmark-logistic-en}
+model_log_comp <- glm(
+  outcome ~ EDAD + NEUMONIA + DIABETES + HIPERTENSION +
+    OBESIDAD + RENAL_CRONICA + NUM_COMORBILIDADES,
+  data = train_comp,
+  family = binomial
+)
+
+prob_log_comp <- predict(model_log_comp, test_comp, type = "response")
+pred_log_comp <- factor(
+  ifelse(prob_log_comp >= 0.50, "Recorded death", "No recorded death"),
+  levels = levels(train_comp$outcome)
+)
+```
+
+## 2. k-NN
+
+For this benchmark, $k=11$ is fixed **before inspecting the test results**. The purpose is a common didactic comparison rather than exhaustive hyperparameter optimization.
+
+```{r covid-benchmark-knn-en}
+vars_comp <- c(
+  "EDAD", "NEUMONIA", "DIABETES", "HIPERTENSION",
+  "OBESIDAD", "RENAL_CRONICA", "NUM_COMORBILIDADES"
+)
+
+X_train <- as.matrix(train_comp[vars_comp])
+X_test <- as.matrix(test_comp[vars_comp])
+
+X_train_z <- X_train
+X_test_z <- X_test
+
+for (variable in c("EDAD", "NUM_COMORBILIDADES")) {
+  mean_value <- mean(X_train[, variable])
+  sd_value <- sd(X_train[, variable])
+  if (sd_value == 0) sd_value <- 1
+
+  X_train_z[, variable] <- (X_train[, variable] - mean_value) / sd_value
+  X_test_z[, variable] <- (X_test[, variable] - mean_value) / sd_value
+}
+
+pred_knn_comp <- class::knn(
+  train = X_train_z,
+  test = X_test_z,
+  cl = train_comp$outcome,
+  k = 11
+)
+```
+
+## 3. Decision tree
+
+Complexity is selected using internal cross-validation in the training data.
+
+```{r covid-benchmark-tree-en}
+large_tree_comp <- rpart::rpart(
+  outcome ~ EDAD + NEUMONIA + DIABETES + HIPERTENSION +
+    OBESIDAD + RENAL_CRONICA + NUM_COMORBILIDADES,
+  data = train_comp,
+  method = "class",
+  control = rpart::rpart.control(
+    cp = 0.0005,
+    minsplit = 60,
+    minbucket = 20,
+    maxdepth = 8,
+    xval = 5
+  )
+)
+
+cp_comp <- large_tree_comp$cptable[
+  which.min(large_tree_comp$cptable[, "xerror"]),
+  "CP"
+]
+
+model_tree_comp <- rpart::prune(large_tree_comp, cp = cp_comp)
+pred_tree_comp <- predict(model_tree_comp, test_comp, type = "class")
+```
+
+## 4. Random Forest
+
+`mtry = 3` is fixed before final evaluation to keep the benchmark lightweight and reproducible.
+
+```{r covid-benchmark-rf-en}
+set.seed(2026)
+
+model_rf_comp <- ranger::ranger(
+  outcome ~ EDAD + NEUMONIA + DIABETES + HIPERTENSION +
+    OBESIDAD + RENAL_CRONICA + NUM_COMORBILIDADES,
+  data = train_comp,
+  num.trees = 250,
+  mtry = 3,
+  min.node.size = 20,
+  probability = FALSE,
+  seed = 2026
+)
+
+pred_rf_comp <- predict(model_rf_comp, test_comp)$predictions
+```
+
+## Comparison table
+
+```{r covid-benchmark-table-en}
+comparison_covid <- bind_rows(
+  cbind(model = "Logistic regression", covid_metrics(test_comp$outcome, pred_log_comp)),
+  cbind(model = "k-NN (k=11)", covid_metrics(test_comp$outcome, pred_knn_comp)),
+  cbind(model = "Decision tree", covid_metrics(test_comp$outcome, pred_tree_comp)),
+  cbind(model = "Random Forest", covid_metrics(test_comp$outcome, pred_rf_comp))
+)
+
+comparison_covid |>
+  mutate(across(where(is.numeric), ~ round(.x, 3)))
+```
+
+```{r covid-benchmark-plot-en, fig.width=8, fig.height=5}
+comparison_covid_long <- comparison_covid |>
+  pivot_longer(
+    cols = -model,
+    names_to = "metric",
+    values_to = "value"
+  )
+
+ggplot(
+  comparison_covid_long,
+  aes(x = model, y = value, fill = metric)
+) +
+  geom_col(position = "dodge") +
+  coord_flip() +
+  scale_y_continuous(limits = c(0, 1)) +
+  labs(
+    title = "Common COVID-19 benchmark",
+    subtitle = "Same balanced sample and same final test split",
+    x = NULL,
+    y = "Metric value",
+    fill = "Metric"
+  ) +
+  tema_libro()
+```
+
+::: {.callout-important title="There is no universal winner"}
+The best choice depends on error costs, stability, interpretability, computational cost, and whether calibrated probabilities are required. A small difference in accuracy does not automatically justify a much more complex model.
+:::
+
+# Interactive laboratory: confusion matrix metrics
+
+::: {.content-visible when-format="html"}
+Change TP, TN, FP, and FN and observe how the classification metrics respond.
+
+```{shinylive-r}
+#| standalone: true
+#| viewerHeight: 720
+#| components: [viewer]
+
+library(shiny)
+
+ui <- fluidPage(
+  titlePanel("Classification metrics calculator"),
+  sidebarLayout(
+    sidebarPanel(
+      numericInput("tp", "True positives", 40, min = 0),
+      numericInput("tn", "True negatives", 45, min = 0),
+      numericInput("fp", "False positives", 5, min = 0),
+      numericInput("fn", "False negatives", 10, min = 0)
+    ),
+    mainPanel(
+      tableOutput("matrix"),
+      tableOutput("metrics"),
+      plotOutput("plot", height = "320px")
+    )
+  )
+)
+
+server <- function(input, output, session) {
+  calc <- reactive({
+    tp <- input$tp; tn <- input$tn; fp <- input$fp; fn <- input$fn
+    total <- tp + tn + fp + fn
+    accuracy <- ifelse(total == 0, NA, (tp + tn) / total)
+    sensitivity <- ifelse(tp + fn == 0, NA, tp / (tp + fn))
+    specificity <- ifelse(tn + fp == 0, NA, tn / (tn + fp))
+    precision <- ifelse(tp + fp == 0, NA, tp / (tp + fp))
+    f1 <- ifelse(
+      is.na(precision) || is.na(sensitivity) || precision + sensitivity == 0,
+      NA,
+      2 * precision * sensitivity / (precision + sensitivity)
+    )
+    balanced <- mean(c(sensitivity, specificity), na.rm = TRUE)
+
+    list(
+      matrix = matrix(
+        c(tn, fp, fn, tp),
+        nrow = 2,
+        byrow = TRUE,
+        dimnames = list(
+          "Actual" = c("Class 0", "Class 1"),
+          "Predicted" = c("Class 0", "Class 1")
+        )
+      ),
+      metrics = c(
+        Accuracy = accuracy,
+        Sensitivity = sensitivity,
+        Specificity = specificity,
+        Precision = precision,
+        F1 = f1,
+        Balanced_accuracy = balanced
+      )
+    )
+  })
+
+  output$matrix <- renderTable({
+    as.data.frame.matrix(calc()$matrix)
+  }, rownames = TRUE)
+
+  output$metrics <- renderTable({
+    data.frame(
+      Metric = names(calc()$metrics),
+      Value = round(as.numeric(calc()$metrics), 4)
+    )
+  })
+
+  output$plot <- renderPlot({
+    m <- calc()$metrics
+    barplot(
+      m,
+      ylim = c(0, 1),
+      ylab = "Value",
+      main = "Model metrics"
+    )
+    abline(h = seq(0, 1, by = 0.2), lty = 3)
+  })
+}
+
+shinyApp(ui, server)
+```
+:::
+
+::: {.content-visible when-format="pdf"}
+### Laboratory available in the web edition
+The calculator allows the reader to edit the confusion matrix and automatically recompute the principal metrics.
+:::
+
+## Supplementary materials for this chapter
+
+| Resource | Purpose | Open or play | Download |
+|---|---|---|---|
+| Explanatory video | Audiovisual explanation of evaluation, validation, and model comparison. | [Watch on YouTube](https://www.youtube.com/watch?v=ShiKrfhIfpY){target="_blank"} | — |
+| PDF presentation | Slides for reading, study, or classroom presentation. | [View PDF](../recursos/capitulo-09/capitulo-09-evaluacion-modelos-presentacion.pdf){target="_blank"} | [Download PDF](../recursos/capitulo-09/capitulo-09-evaluacion-modelos-presentacion.pdf){download="chapter-09-model-evaluation-presentation.pdf"} |
+| Editable presentation | PowerPoint file for classroom use or adaptation. | [Open PPTX](../recursos/capitulo-09/capitulo-09-evaluacion-modelos-presentacion.pptx) | [Download PPTX](../recursos/capitulo-09/capitulo-09-evaluacion-modelos-presentacion.pptx){download="chapter-09-model-evaluation-presentation.pptx"} |
+| Infographic | Visual summary of the fundamental ideas. | [View infographic](../recursos/capitulo-09/capitulo-09-evaluacion-modelos-infografia.png){target="_blank"} | [Download PNG](../recursos/capitulo-09/capitulo-09-evaluacion-modelos-infografia.png){download="chapter-09-model-evaluation-infographic.png"} |
+| Google Colab notebook | Self-contained notebook for executing the chapter examples. | [Open in Google Colab](https://colab.research.google.com/github/gilbertorodriguez59/libro-machine-learning-r/blob/main/colab/09-evaluacion-modelos.ipynb){target="_blank"} | — |
+
+::: {.content-visible when-format="html"}
+### Explanatory video
+
+<div class="video-responsive">
+  <iframe
+    src="https://www.youtube.com/embed/ShiKrfhIfpY"
+    title="Chapter 9. Model evaluation and comparison"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen>
+  </iframe>
+</div>
+
+### Infographic preview
+
+[![Chapter 9 infographic](../recursos/capitulo-09/capitulo-09-evaluacion-modelos-infografia.png)](../recursos/capitulo-09/capitulo-09-evaluacion-modelos-infografia.png)
+:::
+
+::: {.content-visible when-format="pdf"}
+**Chapter video:** <https://www.youtube.com/watch?v=ShiKrfhIfpY>
+
+The PDF presentation, editable presentation, infographic, and Colab notebook are available from the web edition of the book.
+:::
+
+::: {.callout-note title="Preparation of supplementary resources"}
+The supplementary materials were prepared with support from **Google NotebookLM**, using the chapter content as the source, and were subsequently reviewed and adapted by the author.
+:::
+
+## Activities for the reader
+
+1. Change the threshold-selection objective: maximize sensitivity subject to specificity of at least 0.70.
+2. Compare AUC with balanced accuracy and explain why they answer different questions.
+3. Repeat the COVID-19 benchmark while preserving natural class imbalance and compare the conclusions.
+4. Add SVM, Naive Bayes, and neural networks after studying those chapters.
+5. Write a technical recommendation of no more than 200 words justifying a model choice.
 
 ## Chapter summary
 
-Reliable evaluation requires a strict separation between model development and final testing. No single metric is universally best. Good practice combines stratified resampling, meaningful baselines, multiple metrics, careful threshold selection, and explicit protection against data leakage.
+Professional evaluation clearly separates **model development** from **final testing**. Hyperparameters and thresholds are chosen without looking at the test set; AUC evaluates discrimination, calibration evaluates probabilities, and threshold-dependent metrics quantify specific error types. Fair model comparison requires the same sample, split, and criteria. There is no universally best model: the appropriate choice depends on the objective and the consequences of error.
+
+## Fundamental references
+
+Cross-validation was comparatively studied by @kohavi1995crossvalidation. A widely used reference for ROC curves and AUC is @fawcett2006roc. An integrated treatment of data splitting, resampling, and model comparison appears in @james2021islr.

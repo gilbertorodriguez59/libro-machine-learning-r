@@ -1,0 +1,103 @@
+# Exploratory Data Analysis
+
+::: {.callout-note title="Connection with the theoretical volume"}
+Probability, statistics, covariance, and multivariate representation are developed in greater depth in Chapters 2 and 3 of *Mathematical Foundations of Machine Learning* [@rodriguez2026fundamentos].
+:::
+
+## Chapter objectives
+
+By the end of this chapter, the reader will be able to inspect a prepared dataset, compute frequencies, build exploratory plots, and identify patterns that may affect later modeling decisions.
+
+## ATUS exploratory analysis
+
+```{r}
+library(readr)
+library(dplyr)
+library(ggplot2)
+
+atus_ml <- read_csv("../datos/atus_ml_preparado.csv", show_col_types = FALSE)
+
+atus_ml <- atus_ml |>
+  mutate(
+    ID_HORA_NUM = as.numeric(ID_HORA),
+    MES_NUM = as.numeric(MES),
+    accidente_con_victimas = factor(
+      accidente_con_victimas,
+      levels = c("Con víctimas", "Solo daños")
+    )
+  )
+```
+
+### Outcome distribution
+
+```{r}
+tabla_clase <- table(atus_ml$accidente_con_victimas)
+round(100 * prop.table(tabla_clase), 2)
+```
+
+::: {.callout-tip title="Interpretation"}
+Class imbalance matters. A model can achieve a deceptively high overall accuracy while performing poorly on the less frequent class.
+:::
+
+### Accidents by hour
+
+```{r fig.width=7, fig.height=4.5}
+atus_ml |>
+  count(ID_HORA_NUM, name = "n") |>
+  ggplot(aes(x = ID_HORA_NUM, y = n)) +
+  geom_col() +
+  scale_x_continuous(breaks = 0:23) +
+  labs(
+    title = "Number of accidents by hour of day",
+    x = "Hour",
+    y = "Number of accidents"
+  ) +
+  theme_minimal()
+```
+
+## COVID-19 exploratory analysis
+
+The prepared COVID-19 file is detected dynamically so that the chapter does not depend on a single hard-coded year.
+
+```{r}
+archivos_covid <- list.files(
+  "../datos/covid19/procesados",
+  pattern = "covid19_mexico_[0-9]{4}_ml_preparado\\.csv\\.gz$",
+  full.names = TRUE
+)
+
+if (length(archivos_covid) == 0) {
+  stop("No prepared COVID-19 dataset was found.")
+}
+
+covid <- read_csv(archivos_covid[1], show_col_types = FALSE)
+```
+
+### Age distribution
+
+```{r fig.width=7, fig.height=4.8}
+ggplot(covid, aes(x = EDAD)) +
+  geom_histogram(bins = 35) +
+  labs(
+    title = "Age distribution in the educational COVID-19 dataset",
+    x = "Age",
+    y = "Frequency"
+  ) +
+  theme_minimal()
+```
+
+### Comorbidities
+
+```{r}
+covid |>
+  count(NUM_COMORBILIDADES) |>
+  arrange(NUM_COMORBILIDADES)
+```
+
+::: {.callout-important title="Do not confuse sample proportions with epidemiological rates"}
+If the educational sample was balanced or stratified, observed class proportions in this chapter should not be interpreted as population mortality or prevalence estimates.
+:::
+
+## Chapter summary
+
+Exploratory analysis helps reveal imbalance, unusual values, concentration patterns, and possible data-quality issues before fitting models. Its role is descriptive and diagnostic; it does not, by itself, establish causal relationships.

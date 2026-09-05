@@ -1,0 +1,480 @@
+# Preparación de datos reales
+
+::: {.callout-note title="Conexión con el volumen teórico"}
+La representación matemática de datos y los fundamentos de probabilidad y estadística se desarrollan con mayor profundidad en los capítulos 1, 2 y 3 de *Fundamentos Matemáticos del Aprendizaje Automático* [@rodriguez2026fundamentos].
+:::
+
+## Objetivos del capítulo
+
+Al finalizar este capítulo, el lector será capaz de:
+
+- identificar la procedencia de un conjunto de datos y documentar su transformación;
+- localizar y descargar la base ATUS desde el portal oficial del INEGI;
+- organizar archivos originales, procesados y muestras dentro del proyecto;
+- leer, revisar, seleccionar y transformar variables en R;
+- construir variables respuesta para clasificación;
+- guardar bases preparadas para capítulos posteriores;
+- distinguir entre datos originales y productos derivados por el autor;
+- reconocer limitaciones de los datos antes de modelar.
+
+## Introducción
+
+En la práctica profesional, los datos rara vez llegan listos para aplicar un algoritmo. Antes de modelar es necesario conocer su procedencia, revisar su estructura, identificar valores faltantes o códigos especiales, transformar variables y documentar cada decisión.
+
+Este libro utiliza dos rutas aplicadas con datos abiertos de México:
+
+1. **ATUS**, de INEGI, como hilo principal para problemas de movilidad y seguridad vial;
+2. **COVID-19**, de la Secretaría de Salud, como caso transversal para ilustrar preparación, clasificación y evaluación en un contexto de salud pública.
+
+::: {.callout-important title="Procedencia y productos derivados"}
+Los archivos originales pertenecen a las instituciones que los publican. Las bases procesadas, muestras, variables derivadas, gráficas, modelos e interpretaciones del libro son elaboración académica del autor. No constituyen resultados oficiales ni implican el aval de las instituciones proveedoras.
+:::
+
+## Organización recomendada de los datos
+
+Para mantener trazabilidad y reproducibilidad conviene separar las fuentes originales de los productos generados durante el análisis.
+
+```text
+libro-machine-learning-r/
+├── datos/
+│   ├── atus_2024.csv
+│   └── covid19/
+│       ├── originales/
+│       ├── procesados/
+│       ├── muestras/
+│       └── diccionarios/
+├── _quarto.yml
+└── referencias.bib
+```
+
+Esta separación permite responder tres preguntas esenciales: **de dónde proviene el dato, qué transformación recibió y qué archivo debe usarse para reproducir un ejemplo**.
+
+# Caso aplicado A: ATUS
+
+## Descargar la base ATUS desde el INEGI
+
+En este libro utilizamos la **Estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas (ATUS)** del Instituto Nacional de Estadística y Geografía [@inegi_atus_2024].
+
+Para reproducir los ejemplos de esta edición:
+
+1. abra el portal oficial de ATUS: <https://www.inegi.org.mx/programas/accidentes/>;
+2. localice el apartado de datos abiertos;
+3. seleccione el año **2024**;
+4. descargue y, si corresponde, descomprima el archivo;
+5. identifique el CSV anual;
+6. guárdelo dentro de `datos` con el nombre `atus_2024.csv`.
+
+::: {.callout-tip title="Uso de otro año"}
+Es posible trabajar con otro periodo, pero debe documentarse el año utilizado y comprobarse que los nombres y categorías de las variables sean compatibles con el código del capítulo.
+:::
+
+## Cómo citar los datos
+
+Los términos de libre uso del INEGI requieren reconocer la fuente [@inegi_terminos_libre_uso]. Cuando existe procesamiento propio, una forma adecuada de presentar la fuente es:
+
+> **Fuente:** Elaboración propia con datos del INEGI, Estadística de Accidentes de Tránsito Terrestre en Zonas Urbanas y Suburbanas (ATUS), 2024.
+
+## Cargar paquetes
+
+```{r cargar-paquetes-preparacion}
+library(readr)
+library(dplyr)
+library(ggplot2)
+library(stringr)
+source("util_graficas.R")
+```
+
+## Localizar y leer el archivo
+
+```{r localizar-leer-atus}
+archivos_atus <- list.files(
+  path = "datos",
+  pattern = "^atus.*\\.csv$",
+  full.names = TRUE,
+  ignore.case = TRUE
+)
+
+archivos_crudos <- archivos_atus[
+  !grepl("ml_preparado", basename(archivos_atus), ignore.case = TRUE)
+]
+
+if (length(archivos_atus) == 0) {
+  stop(
+    paste(
+      "No se encontró un archivo ATUS en la carpeta datos.",
+      "Descárguelo desde el portal oficial del INEGI."
+    )
+  )
+}
+
+ruta_atus <- if (length(archivos_crudos) > 0) {
+  archivos_crudos[1]
+} else {
+  archivos_atus[1]
+}
+
+atus <- read_csv(
+  ruta_atus,
+  show_col_types = FALSE,
+  locale = locale(encoding = "UTF-8")
+)
+
+message("Archivo leído: ", ruta_atus)
+```
+
+::: {.callout-note title="Explicación del código"}
+El código busca primero una base ATUS original. Si no existe, puede utilizar una base preparada como respaldo para el render, pero esa ruta no sustituye la reproducción desde el archivo original.
+:::
+
+## Revisar estructura y nombres
+
+```{r revisar-atus}
+data.frame(
+  filas = nrow(atus),
+  columnas = ncol(atus)
+)
+
+head(atus)
+
+names(atus) <- toupper(names(atus))
+names(atus)
+```
+
+## Seleccionar variables de interés
+
+```{r variables-interes}
+variables_interes <- c(
+  "ANIO", "MES", "ID_ENTIDAD", "ID_MUNICIPIO",
+  "ID_HORA", "ID_DIA", "DIASEMANA", "TIPACCID",
+  "CAUSAACCI", "CLASACC"
+)
+
+variables_existentes <- intersect(variables_interes, names(atus))
+variables_faltantes <- setdiff(variables_interes, names(atus))
+
+atus_base <- atus |>
+  select(all_of(variables_existentes))
+
+variables_existentes
+variables_faltantes
+```
+
+::: {.callout-warning title="Compruebe el diccionario"}
+Si falta una variable, no debe sustituirse por otra solo porque su nombre parezca similar. Primero consulte el diccionario y los metadatos de la versión descargada.
+:::
+
+## Construir la variable respuesta
+
+El primer problema de clasificación distinguirá entre **accidentes con víctimas** y **accidentes con solo daños materiales**.
+
+```{r crear-respuesta}
+if ("CLASACC" %in% names(atus_base)) {
+  atus_modelo <- atus_base |>
+    mutate(
+      CLASACC_TXT = str_to_lower(as.character(CLASACC)),
+      accidente_con_victimas = case_when(
+        str_detect(CLASACC_TXT, "sólo daños") ~ "Solo daños",
+        str_detect(CLASACC_TXT, "solo daños") ~ "Solo daños",
+        str_detect(CLASACC_TXT, "daños") ~ "Solo daños",
+        str_detect(CLASACC_TXT, "no fatal") ~ "Con víctimas",
+        str_detect(CLASACC_TXT, "fatal") ~ "Con víctimas",
+        TRUE ~ NA_character_
+      )
+    ) |>
+    filter(!is.na(accidente_con_victimas))
+
+} else if ("ACCIDENTE_CON_VICTIMAS" %in% names(atus)) {
+  atus_modelo <- atus |>
+    transmute(
+      MES,
+      ID_HORA,
+      DIASEMANA,
+      TIPACCID,
+      CAUSAACCI,
+      accidente_con_victimas = as.character(ACCIDENTE_CON_VICTIMAS)
+    ) |>
+    mutate(
+      accidente_con_victimas = case_when(
+        str_to_lower(accidente_con_victimas) %in% c("con víctimas", "con victimas") ~ "Con víctimas",
+        str_to_lower(accidente_con_victimas) %in% c("solo daños", "sólo daños") ~ "Solo daños",
+        TRUE ~ NA_character_
+      )
+    ) |>
+    filter(!is.na(accidente_con_victimas))
+
+  message(
+    "Se utilizó una base ATUS preparada como respaldo. ",
+    "Para reproducir la preparación desde cero, utilice la base original del INEGI."
+  )
+} else {
+  stop("No se encontró CLASACC ni ACCIDENTE_CON_VICTIMAS. Revise el diccionario de datos.")
+}
+
+table(atus_modelo$accidente_con_victimas)
+```
+
+## Preparar y guardar la base ATUS
+
+```{r preparar-guardar-atus}
+atus_ml <- atus_modelo |>
+  mutate(
+    MES = as.factor(MES),
+    ID_HORA = as.character(ID_HORA),
+    DIASEMANA = as.factor(DIASEMANA),
+    TIPACCID = as.factor(TIPACCID),
+    CAUSAACCI = as.factor(CAUSAACCI),
+    accidente_con_victimas = factor(
+      accidente_con_victimas,
+      levels = c("Con víctimas", "Solo daños")
+    )
+  ) |>
+  select(
+    accidente_con_victimas,
+    MES,
+    ID_HORA,
+    DIASEMANA,
+    TIPACCID,
+    CAUSAACCI
+  ) |>
+  na.omit()
+
+write_csv(atus_ml, "datos/atus_ml_preparado.csv")
+
+data.frame(
+  filas = nrow(atus_ml),
+  columnas = ncol(atus_ml)
+)
+```
+
+# Caso aplicado B: COVID-19
+
+## Selección del periodo
+
+La edición 2026 no fija de antemano un año concreto. El procedimiento de preparación compara los cierres históricos disponibles entre **2020 y 2025**, utilizando el mismo criterio de caso confirmado y el año de inicio de síntomas cuando la estructura de los archivos lo permite. Después selecciona el periodo con mayor número de registros confirmados dentro de esa comparación.
+
+::: {.callout-important title="No confundir publicación con periodo epidemiológico"}
+El año del archivo de cierre no debe confundirse con el año de inicio de síntomas. Para las comparaciones del libro se utiliza `FECHA_SINTOMAS` cuando esa variable está disponible y es compatible entre cierres.
+:::
+
+El archivo de conteo generado por el proceso de preparación se encuentra en:
+
+```text
+datos/covid19/procesados/conteo_casos_confirmados_2020_2025.csv
+```
+
+## Localizar automáticamente la base preparada
+
+```{r covid-localizar}
+rutas_covid <- list.files(
+  "datos/covid19/procesados",
+  pattern = "^covid19_mexico_[0-9]{4}_ml_preparado\\.csv\\.gz$",
+  full.names = TRUE
+)
+
+if (length(rutas_covid) == 0) {
+  stop(
+    paste(
+      "No se encontró una base COVID-19 preparada.",
+      "Ejecute primero el script de procesamiento de los cierres históricos."
+    )
+  )
+}
+
+ruta_covid <- rutas_covid[1]
+anio_covid <- sub(
+  ".*covid19_mexico_([0-9]{4})_ml_preparado\\.csv\\.gz$",
+  "\\1",
+  ruta_covid
+)
+
+message("Base COVID-19 seleccionada: ", ruta_covid)
+message("Año de la base: ", anio_covid)
+```
+
+## Leer y revisar la base
+
+```{r covid-lectura-preparacion}
+library(readr)
+library(dplyr)
+
+covid <- read_csv(
+  ruta_covid,
+  show_col_types = FALSE
+)
+
+dim(covid)
+names(covid)
+```
+
+## Variables binarias y códigos especiales
+
+En la base preparada, las variables clínicas binarias se recodifican de forma didáctica como:
+
+| Valor | Interpretación |
+|---:|---|
+| 0 | No |
+| 1 | Sí |
+| `NA` | No especificado, ignorado o no aplicable según el catálogo original |
+
+`TIPO_PACIENTE` se representa como 0 = ambulatorio y 1 = hospitalizado. La variable `MURIO` se deriva de la presencia de una fecha de defunción válida en `FECHA_DEF` y se utiliza únicamente como desenlace administrativo para los ejercicios del libro.
+
+::: {.callout-warning title="Interpretación clínica"}
+`MURIO` no convierte el ejercicio en un modelo clínico. La base puede contener sesgos de selección, valores desconocidos, cambios de vigilancia y diferencias de cobertura. Los modelos del libro son educativos y no sustituyen una valoración médica.
+:::
+
+## Revisar valores faltantes
+
+```{r covid-faltantes}
+faltantes_covid <- covid |>
+  summarise(
+    across(everything(), ~ sum(is.na(.x)))
+  ) |>
+  tidyr::pivot_longer(
+    cols = everything(),
+    names_to = "variable",
+    values_to = "faltantes"
+  ) |>
+  arrange(desc(faltantes))
+
+head(faltantes_covid, 10)
+```
+
+## Número de comorbilidades
+
+`NUM_COMORBILIDADES` resume, cuando están disponibles, diabetes, EPOC, asma, inmunosupresión, hipertensión, enfermedad cardiovascular, obesidad, enfermedad renal crónica y tabaquismo.
+
+```{r covid-comorbilidades}
+covid |>
+  count(NUM_COMORBILIDADES) |>
+  arrange(NUM_COMORBILIDADES)
+```
+
+::: {.callout-note title="Muestra educativa y prevalencia"}
+Si se utiliza una muestra estratificada para facilitar ejercicios de clasificación, su proporción de defunciones **no debe interpretarse como prevalencia ni como tasa de mortalidad poblacional**. Los modelos probabilísticos entrenados con una muestra cuya prevalencia fue modificada tampoco deben interpretarse como probabilidades poblacionales calibradas sin un procedimiento adicional de calibración o ponderación.
+:::
+
+## Lista de comprobación
+
+Antes de continuar, verifique que:
+
+- la fuente y el año estén documentados;
+- se conserve una copia separada de los archivos originales;
+- las variables empleadas existan en el diccionario correspondiente;
+- los códigos especiales se traten explícitamente;
+- las variables derivadas se documenten;
+- las bases procesadas no se presenten como datos oficiales sin transformación;
+- las tablas y gráficas indiquen la fuente;
+- las muestras educativas no se interpreten como estimaciones poblacionales.
+
+## Materiales complementarios del capítulo
+
+| Recurso | Utilidad | Abrir o reproducir | Descargar |
+|---|---|---|---|
+| Video explicativo | Descarga, revisión, limpieza y preparación de datos. | [Ver en YouTube](https://www.youtube.com/watch?v=bmv-tDPZGjQ){target="_blank"} | — |
+| Presentación en PDF | Diapositivas para lectura, estudio o exposición. | [Ver PDF](recursos/capitulo-02/capitulo-02-preparacion-datos-reales.pdf){target="_blank"} | [Descargar PDF](recursos/capitulo-02/capitulo-02-preparacion-datos-reales.pdf){download="capitulo-02-preparacion-datos-reales.pdf"} |
+| Presentación editable | Archivo PowerPoint para clase o adaptación. | [Abrir PPTX](recursos/capitulo-02/capitulo-02-preparacion-datos-reales.pptx) | [Descargar PPTX](recursos/capitulo-02/capitulo-02-preparacion-datos-reales.pptx){download="capitulo-02-preparacion-datos-reales.pptx"} |
+| Infografía | Resumen visual de las etapas de preparación. | [Ver infografía](recursos/capitulo-02/capitulo-02-preparacion-datos-reales-infografia.png){target="_blank"} | [Descargar PNG](recursos/capitulo-02/capitulo-02-preparacion-datos-reales-infografia.png){download="capitulo-02-preparacion-datos-reales-infografia.png"} |
+| Cuaderno Google Colab | Ejemplos ejecutables del capítulo. | [Abrir en Google Colab](https://colab.research.google.com/github/gilbertorodriguez59/libro-machine-learning-r/blob/main/colab/02-preparacion-datos.ipynb){target="_blank"} | — |
+
+::: {.content-visible when-format="html"}
+### Video explicativo
+
+<div class="video-responsive">
+  <iframe src="https://www.youtube.com/embed/bmv-tDPZGjQ"
+    title="Capítulo 2. Preparación de datos reales"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen>
+  </iframe>
+</div>
+:::
+
+## Laboratorio interactivo: preparar datos
+
+::: {.content-visible when-format="html"}
+Explora valores faltantes, imputación y estandarización.
+
+```{shinylive-r}
+#| standalone: true
+#| viewerHeight: 720
+#| components: [viewer]
+
+library(shiny)
+
+ui <- fluidPage(
+  titlePanel("Preparación interactiva de datos"),
+  sidebarLayout(
+    sidebarPanel(
+      sliderInput("faltantes", "Porcentaje de valores faltantes", 0, 40, 15, step = 5),
+      selectInput("imputacion", "Método de imputación",
+                  choices = c("Media" = "media", "Mediana" = "mediana")),
+      checkboxInput("escalar", "Estandarizar variables", TRUE),
+      numericInput("semilla", "Semilla", 123, min = 1)
+    ),
+    mainPanel(
+      h4("Datos con valores faltantes"),
+      tableOutput("antes"),
+      h4("Datos preparados"),
+      tableOutput("despues"),
+      tableOutput("resumen")
+    )
+  )
+)
+
+server <- function(input, output, session) {
+  datos <- reactive({
+    set.seed(input$semilla)
+    d <- data.frame(
+      temperatura = round(rnorm(12, 25, 4), 1),
+      humedad = round(rnorm(12, 55, 12), 1),
+      contaminacion = round(rnorm(12, 40, 10), 1)
+    )
+    n_na <- round(length(as.matrix(d)) * input$faltantes / 100)
+    if (n_na > 0) {
+      m <- as.matrix(d)
+      m[sample(seq_len(length(m)), n_na)] <- NA
+      d <- as.data.frame(m)
+    }
+    d
+  })
+
+  preparados <- reactive({
+    d <- datos()
+    for (j in seq_along(d)) {
+      valor <- if (input$imputacion == "media") {
+        mean(d[[j]], na.rm = TRUE)
+      } else {
+        median(d[[j]], na.rm = TRUE)
+      }
+      d[[j]][is.na(d[[j]])] <- valor
+    }
+    if (input$escalar) d <- as.data.frame(scale(d))
+    d
+  })
+
+  output$antes <- renderTable(datos(), digits = 2)
+  output$despues <- renderTable(preparados(), digits = 3)
+
+  output$resumen <- renderTable({
+    data.frame(
+      Etapa = c("Antes", "Después"),
+      Valores_faltantes = c(sum(is.na(datos())), sum(is.na(preparados()))),
+      Media_variable_1 = round(c(mean(datos()[[1]], na.rm = TRUE), mean(preparados()[[1]])), 3),
+      Desviacion_variable_1 = round(c(sd(datos()[[1]], na.rm = TRUE), sd(preparados()[[1]])), 3)
+    )
+  })
+}
+
+shinyApp(ui, server)
+```
+:::
+
+::: {.content-visible when-format="pdf"}
+### Laboratorio disponible en la versión web
+Permite introducir valores faltantes, imputarlos y estandarizar las variables.
+:::
+
+## Resumen del capítulo
+
+La preparación de datos no es un paso auxiliar sino una parte central del análisis. En este capítulo se documentaron dos rutas de datos abiertos, se distinguieron archivos originales y derivados, se construyeron variables para modelado y se establecieron precauciones de interpretación que serán necesarias en los capítulos de clasificación y evaluación.

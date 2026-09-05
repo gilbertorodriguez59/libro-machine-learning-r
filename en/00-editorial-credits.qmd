@@ -1,0 +1,35 @@
+# Editorial credits {.unnumbered}
+
+**Title:** Machine Learning and Automatic Classification with R  
+**Subtitle:** A Practical Approach Using Real Open Data  
+**Author:** Jesús Gilberto Rodríguez Escobedo  
+**Place of publication:** San Luis Potosí, S.L.P., Mexico  
+**Edition:** First edition, 2026  
+**Formats:** interactive web edition, digital PDF edition, and executable Google Colab notebook  
+**Primary implementation language:** R  
+**Technologies:** Quarto, Shinylive, GitHub Pages, Google Colab, and YouTube  
+
+This work was conceived as an open academic text for students, instructors, and professionals in engineering, mathematics, computing, statistics, data science, and applied sciences.
+
+Trade names, trademarks, libraries, and platforms mentioned in this work belong to their respective owners and are included for academic, technical, and descriptive purposes.
+
+## How to cite this work {.unnumbered}
+
+Rodríguez Escobedo, J. G. (2026). *Machine Learning and Automatic Classification with R: A Practical Approach Using Real Open Data*. First edition. San Luis Potosí, S.L.P., Mexico.
+
+## Suggested BibTeX entry {.unnumbered}
+
+```bibtex
+@book{rodriguez2026machinelearningR,
+  author    = {Rodríguez Escobedo, Jesús Gilberto},
+  title     = {Machine Learning and Automatic Classification with R},
+  subtitle  = {A Practical Approach Using Real Open Data},
+  year      = {2026},
+  edition   = {First edition},
+  address   = {San Luis Potosí, S.L.P., Mexico}
+}
+```
+
+## Complementary theoretical volume {.unnumbered}
+
+The rigorous mathematical formulation of the methods is developed in the complementary theoretical volume *Mathematical Foundations of Machine Learning*.

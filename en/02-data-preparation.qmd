@@ -1,0 +1,78 @@
+# Preparing Real-World Data
+
+::: {.callout-note title="Connection with the theoretical volume"}
+The mathematical representation of data, probability, and statistics is developed in greater depth in Chapters 1, 2, and 3 of *Mathematical Foundations of Machine Learning* [@rodriguez2026fundamentos].
+:::
+
+## Chapter objectives
+
+By the end of this chapter, the reader will be able to locate and document real open datasets, inspect their structure, select and transform variables, create a binary response, and preserve a reproducible preparation workflow.
+
+## Data provenance and reproducibility
+
+The book uses two transversal Mexican open-data routes: **ATUS**, from INEGI, and **COVID-19 historical records**, from Mexico's Ministry of Health. The source files, processed files, and educational samples must remain clearly distinguished.
+
+::: {.callout-important title="Three data levels"}
+- **Original data:** files released by the source institution.
+- **Processed data:** cleaned and transformed files created by the author.
+- **Educational samples:** subsets prepared for reproducible examples and computational efficiency.
+:::
+
+## ATUS preparation
+
+The ATUS examples use the *Road Traffic Accidents in Urban and Suburban Areas* dataset from INEGI [@inegi_atus_2024]. The preparation workflow checks names, selects variables, constructs the binary outcome `accidente_con_victimas`, and saves a reusable file.
+
+```{r}
+library(readr)
+library(dplyr)
+library(stringr)
+
+ruta_atus <- "../datos/atus_ml_preparado.csv"
+
+if (!file.exists(ruta_atus)) {
+  stop("The prepared ATUS file was not found.")
+}
+
+atus_ml <- read_csv(ruta_atus, show_col_types = FALSE)
+head(atus_ml)
+```
+
+::: {.callout-note title="Reproducibility"}
+The raw ATUS file should be retained separately from the processed dataset. Tables and figures based on transformed data should be labeled as the author's processing of INEGI data.
+:::
+
+## COVID-19 preparation
+
+The COVID-19 route does not hard-code a single year. The preprocessing workflow compares the available historical closures and produces the prepared file corresponding to the selected period.
+
+```{r}
+archivos_covid <- list.files(
+  "../datos/covid19/procesados",
+  pattern = "covid19_mexico_[0-9]{4}_ml_preparado\\.csv\\.gz$",
+  full.names = TRUE
+)
+
+if (length(archivos_covid) == 0) {
+  stop("No prepared COVID-19 dataset was found.")
+}
+
+ruta_covid <- archivos_covid[1]
+covid <- read_csv(ruta_covid, show_col_types = FALSE)
+
+dim(covid)
+names(covid)
+```
+
+Binary clinical variables are coded as 0 = No, 1 = Yes, and `NA` = unknown, not specified, or not applicable. `TIPO_PACIENTE` is recoded as 0 = outpatient and 1 = hospitalized. The educational outcome `MURIO` indicates whether a death date was recorded in the source data.
+
+::: {.callout-warning title="Educational use only"}
+Administrative health records may contain unknown values, selection effects, changes in coverage, and period-specific biases. Models built from these data are educational and are not diagnostic or clinical decision tools.
+:::
+
+## Sampling and prevalence
+
+If a sample is deliberately balanced or stratified to increase the number of positive cases, its class proportion does **not** represent population prevalence. This distinction becomes essential when logistic regression probabilities are interpreted later in the book.
+
+## Chapter summary
+
+Good machine learning starts before model fitting. Data provenance, coding decisions, missing values, transformations, and sampling must all be documented so that the analytical path can be reproduced and interpreted responsibly.

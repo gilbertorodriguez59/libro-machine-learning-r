@@ -1,0 +1,138 @@
+# Simple and Multiple Linear Regression
+
+::: {.callout-note title="Connection with the theoretical volume"}
+Simple and multiple linear regression are developed in greater mathematical depth in Chapters 9 and 10 of *Mathematical Foundations of Machine Learning* [@rodriguez2026fundamentos].
+:::
+
+## Chapter objectives
+
+By the end of this chapter, the reader will be able to distinguish regression from classification, fit simple and multiple linear models, interpret coefficients, evaluate prediction outside the training sample, and analyze residuals.
+
+## Simple linear regression
+
+The simple linear model is
+
+$$
+Y_i=\beta_0+\beta_1X_i+\varepsilon_i.
+$$
+
+```{r}
+hours <- c(2,3,4,5,6,7,8,9)
+grade <- c(55,60,64,70,75,79,86,90)
+study_data <- data.frame(hours, grade)
+model_simple <- lm(grade ~ hours, data = study_data)
+summary(model_simple)
+```
+
+## Fitted values and residuals
+
+For observation $i$,
+
+$$
+e_i=y_i-\widehat y_i.
+$$
+
+```{r}
+diagnostics_simple <- data.frame(
+  observed = study_data$grade,
+  predicted = fitted(model_simple),
+  residual = residuals(model_simple)
+)
+
+diagnostics_simple
+```
+
+```{r fig.width=7, fig.height=4.8}
+library(ggplot2)
+
+ggplot(diagnostics_simple, aes(x = predicted, y = residual)) +
+  geom_hline(yintercept = 0, linetype = 2) +
+  geom_segment(aes(xend = predicted, yend = 0), alpha = 0.45) +
+  geom_point(size = 3) +
+  labs(
+    title = "Residuals from a linear regression",
+    subtitle = "Residual = observed minus predicted",
+    x = "Predicted value",
+    y = "Residual"
+  ) +
+  theme_minimal()
+```
+
+::: {.callout-tip title="How to read the plot"}
+A roughly patternless cloud around zero is compatible with a reasonable linear model. Curvature, funnel shapes, or extreme points suggest that the model specification should be reconsidered.
+:::
+
+## Multiple linear regression
+
+With $p$ predictors,
+
+$$
+Y_i=\beta_0+\beta_1X_{i1}+\beta_2X_{i2}+\cdots+\beta_pX_{ip}+\varepsilon_i.
+$$
+
+Each coefficient is interpreted while holding the remaining predictors constant.
+
+```{r}
+set.seed(2026)
+n <- 80
+
+environmental_data <- data.frame(
+  temperature = runif(n, 12, 35),
+  wind_speed = runif(n, 0.5, 8),
+  traffic = runif(n, 100, 900)
+)
+
+environmental_data$pm10 <-
+  18 + 0.9 * environmental_data$temperature -
+  2.1 * environmental_data$wind_speed +
+  0.045 * environmental_data$traffic +
+  rnorm(n, 0, 6)
+
+model_multiple <- lm(
+  pm10 ~ temperature + wind_speed + traffic,
+  data = environmental_data
+)
+
+summary(model_multiple)
+```
+
+::: {.callout-warning title="Association is not causation"}
+Regression coefficients describe conditional associations within the fitted model. By themselves they do not establish causal effects.
+:::
+
+## Out-of-sample evaluation
+
+```{r}
+set.seed(2026)
+idx <- sample(
+  seq_len(nrow(environmental_data)),
+  size = floor(0.8 * nrow(environmental_data))
+)
+
+train_reg <- environmental_data[idx, ]
+test_reg <- environmental_data[-idx, ]
+
+model_test <- lm(
+  pm10 ~ temperature + wind_speed + traffic,
+  data = train_reg
+)
+
+pred <- predict(model_test, newdata = test_reg)
+
+rmse <- sqrt(mean((test_reg$pm10 - pred)^2))
+mae <- mean(abs(test_reg$pm10 - pred))
+
+data.frame(RMSE = rmse, MAE = mae)
+```
+
+## Main assumptions
+
+Traditional linear-model inference relies approximately on linearity, independent errors, constant variance, no extreme multicollinearity, and approximate normality of errors when tests and intervals are constructed.
+
+## ATUS case
+
+Monthly accident counts are count data. Linear regression is used here as a teaching device; Poisson or negative-binomial models may be more appropriate in a formal count-data analysis.
+
+## Chapter summary
+
+Linear regression introduces prediction functions, error, residuals, model fit, and out-of-sample evaluation. These ideas provide a bridge to logistic regression and other supervised-learning methods.

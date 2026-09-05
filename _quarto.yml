@@ -28,12 +28,19 @@ book:
   title: "Aprendizaje y Clasificación Automática con R"
   subtitle: "Un enfoque práctico con datos abiertos reales"
   author: "Jesús Gilberto Rodríguez Escobedo"
-  date: today
+  date: "2026"
+  site-url: "https://gilbertorodriguez59.github.io/libro-machine-learning-r/"
+  repo-url: "https://github.com/gilbertorodriguez59/libro-machine-learning-r"
   output-file: "Aprendizaje-y-Clasificacion-Automatica-con-R"
   downloads: [pdf]
+  navbar:
+    right:
+      - text: "English"
+        href: en/index.html
   chapters:
     - index.qmd
     - 00-bienvenida.qmd
+    - 00-pagina-legal.qmd
     - 00-creditos-editoriales.qmd
     - 00-licencia-y-uso-academico.qmd
     - 00-prefacio.qmd

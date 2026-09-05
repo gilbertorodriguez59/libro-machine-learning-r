@@ -83,6 +83,8 @@ jobs:
           test -s docs/00-agradecimientos.html
           test -s docs/04-regresion-lineal-multiple-2026.html
           test -s docs/04-regresion-logistica-2026.html
+          test -s docs/05-knn.html
+          test -s docs/06-arboles-decision.html
           test -s docs/en/00-preface.html
           test -s docs/en/00-acknowledgments.html
           test -s docs/en/00-google-colab.html
@@ -93,6 +95,8 @@ jobs:
           test -s docs/en/03-exploratory-data-analysis.html
           test -s docs/en/04-linear-regression.html
           test -s docs/en/05-logistic-regression.html
+          test -s docs/en/06-knn.html
+          test -s docs/en/07-decision-trees.html
           grep -q 'English' docs/index.html
           grep -q 'Español' docs/en/index.html
           grep -q 'Machine Learning and Automatic Classification with R' docs/en/index.html
@@ -116,6 +120,18 @@ jobs:
           grep -q 'Logistic regression laboratory' docs/en/05-logistic-regression.html
           grep -q '7CwP40QDeys' docs/en/05-logistic-regression.html
           grep -q 'chapter-05-logistic-regression-classification.pdf' docs/en/05-logistic-regression.html
+          grep -q 'Selección de k en el conjunto de validación' docs/05-knn.html
+          grep -q 'NLJj0QAWomU' docs/05-knn.html
+          grep -q 'Selecting k on the validation set' docs/en/06-knn.html
+          grep -q 'k-NN classification laboratory' docs/en/06-knn.html
+          grep -q 'NLJj0QAWomU' docs/en/06-knn.html
+          grep -q 'chapter-06-knn-presentation.pdf' docs/en/06-knn.html
+          grep -q 'Poda mediante error de validación cruzada' docs/06-arboles-decision.html
+          grep -q 'UperQjxBYEY' docs/06-arboles-decision.html
+          grep -q 'Prune using cross-validation error' docs/en/07-decision-trees.html
+          grep -q 'Interactive CART split explorer' docs/en/07-decision-trees.html
+          grep -q 'UperQjxBYEY' docs/en/07-decision-trees.html
+          grep -q 'chapter-07-decision-trees-presentation.pdf' docs/en/07-decision-trees.html
 
       - name: Guardar sitio bilingüe como artefacto de validación
         uses: actions/upload-artifact@v4

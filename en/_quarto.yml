@@ -5,6 +5,9 @@ project:
 lang: en
 bibliography: ../referencias.bib
 
+filters:
+  - shinylive
+
 format:
   html:
     embed-resources: false
@@ -29,6 +32,9 @@ book:
     - 00-legal-page.qmd
     - 00-editorial-credits.qmd
     - 00-license-and-academic-use.qmd
+    - 00-preface.qmd
+    - 00-acknowledgments.qmd
+    - 00-google-colab.qmd
     - 01-introduction.qmd
     - 02-data-preparation.qmd
     - 03-exploratory-data-analysis.qmd
@@ -45,4 +51,6 @@ book:
   appendices:
     - glossary.qmd
     - references.qmd
+    - figure-index.qmd
+    - subject-index.qmd
     - about-the-author.qmd

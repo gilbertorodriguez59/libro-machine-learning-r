@@ -37,3 +37,6 @@ book:
     - 06-knn.qmd
     - 07-decision-trees.qmd
     - 08-random-forest.qmd
+    - 09-model-evaluation.qmd
+    - 10-svm.qmd
+    - 11-naive-bayes.qmd

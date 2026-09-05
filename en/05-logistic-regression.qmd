@@ -6,7 +6,15 @@ Logistic regression, maximum likelihood, and probabilistic classification are de
 
 ## Chapter objectives
 
-By the end of this chapter, the reader will be able to fit a logistic-regression model, interpret probabilities and coefficients, choose a classification threshold, and distinguish discrimination from calibration.
+By the end of this chapter, the reader will be able to:
+
+- fit a logistic-regression model for a binary response;
+- interpret probabilities, coefficients, and odds ratios;
+- separate probability estimation from threshold-based decision making;
+- construct a confusion matrix and compute basic classification metrics;
+- interpret AUC as a measure of discrimination;
+- examine calibration using predicted probabilities and observed frequencies;
+- apply the model to ATUS and COVID-19 while maintaining responsible interpretation.
 
 ## Mathematical foundation
 
@@ -28,12 +36,13 @@ $$
 \log\left(\frac{p}{1-p}\right)=\beta_0+\beta_1x_1+\cdots+\beta_px_p.
 $$
 
-The expression on the left is the *logit*.
+The expression on the left is the *logit* of the probability. Coefficients are commonly estimated by maximum likelihood [@cox1958regression; @hosmer2013applied].
 
-## Logistic curve
+## Logistic function
 
-```{r fig.width=7, fig.height=4.5}
+```{r logistic-function-en, fig.width=7, fig.height=4.5}
 library(ggplot2)
+source("../util_graficas.R")
 
 z <- seq(-10, 10, length.out = 200)
 logistic_data <- data.frame(
@@ -42,93 +51,334 @@ logistic_data <- data.frame(
 )
 
 ggplot(logistic_data, aes(x = z, y = p)) +
-  geom_line(linewidth = 1.2) +
+  geom_line(linewidth = 1.2, color = col_azul) +
   labs(
     title = "Logistic function",
     subtitle = "Maps real-valued scores to probabilities",
     x = "z",
     y = "Probability"
   ) +
-  theme_minimal()
+  tema_libro()
 ```
 
-## ATUS case: accidents with victims
+::: {.callout-tip title="Interpretation"}
+The logistic curve has an S shape. Very negative linear-predictor values produce probabilities near zero, while very positive values produce probabilities near one.
+:::
 
-```{r}
+# Applied Case A: ATUS
+
+## Load and prepare the data
+
+```{r load-atus-logistic-en}
 library(readr)
 library(dplyr)
 
-atus_ml <- read_csv("../datos/atus_ml_preparado.csv", show_col_types = FALSE)
+atus_path <- "../datos/atus_ml_preparado.csv"
+
+if (!file.exists(atus_path)) {
+  stop("../datos/atus_ml_preparado.csv was not found. Run the data-preparation chapter first.")
+}
+
+atus_ml <- read_csv(
+  atus_path,
+  show_col_types = FALSE
+)
 
 atus_model <- atus_ml |>
   mutate(
-    victims_binary = ifelse(accidente_con_victimas == "Con víctimas", 1, 0),
+    victims_binary = ifelse(
+      accidente_con_victimas == "Con víctimas",
+      1,
+      0
+    ),
     MES = as.factor(MES),
-    ID_HORA = as.numeric(ID_HORA),
+    HOUR_NUM = suppressWarnings(as.numeric(ID_HORA)),
+    HOUR_NUM = ifelse(
+      HOUR_NUM >= 0 & HOUR_NUM <= 23,
+      HOUR_NUM,
+      NA_real_
+    ),
     DIASEMANA = as.factor(DIASEMANA),
     TIPACCID = as.factor(TIPACCID),
-    CAUSAACCI = as.factor(CAUSAACCI)
+    CAUSAACCI = as.factor(CAUSAACCI),
+    accident_class = factor(
+      accidente_con_victimas,
+      levels = c("Con víctimas", "Solo daños"),
+      labels = c("With casualties", "Property damage only")
+    )
+  ) |>
+  tidyr::drop_na(
+    victims_binary,
+    MES,
+    HOUR_NUM,
+    DIASEMANA,
+    TIPACCID,
+    CAUSAACCI
   )
+```
 
+::: {.callout-note title="Valid hour values"}
+Hour codes outside the interval 0–23 are converted to `NA` before modeling. This avoids treating special codes as if they represented actual clock hours.
+:::
+
+## Stratified training-test split
+
+A stratified split preserves approximately the same class proportion in training and test data.
+
+```{r split-atus-logistic-en}
 set.seed(2026)
-idx <- sample(seq_len(nrow(atus_model)), size = floor(0.70 * nrow(atus_model)))
-train <- atus_model[idx, ]
-test <- atus_model[-idx, ]
 
+idx_victims <- which(atus_model$victims_binary == 1)
+idx_damage <- which(atus_model$victims_binary == 0)
+
+train_victims <- sample(
+  idx_victims,
+  size = floor(0.70 * length(idx_victims))
+)
+
+train_damage <- sample(
+  idx_damage,
+  size = floor(0.70 * length(idx_damage))
+)
+
+idx_train <- sort(c(train_victims, train_damage))
+
+train <- atus_model[idx_train, ]
+test <- atus_model[-idx_train, ]
+
+prop.table(table(train$victims_binary))
+prop.table(table(test$victims_binary))
+```
+
+## Fit the model
+
+```{r fit-atus-logistic-en}
 model_logit <- glm(
-  victims_binary ~ MES + ID_HORA + DIASEMANA + TIPACCID + CAUSAACCI,
+  victims_binary ~ MES + HOUR_NUM + DIASEMANA + TIPACCID + CAUSAACCI,
   data = train,
   family = binomial
 )
+
+head(summary(model_logit)$coefficients, 12)
 ```
 
-::: {.callout-tip title="Interpreting coefficients"}
-A coefficient describes a change in log-odds while holding the remaining predictors constant. Its exponential, $e^{\beta_j}$, can be interpreted as an odds ratio.
+## Interpret coefficients and odds ratios
+
+A coefficient $\beta_j$ represents a change in log-odds while the remaining predictors are held constant. Its exponential,
+
+$$
+OR_j=e^{\beta_j},
+$$
+
+is an odds ratio.
+
+```{r odds-ratios-atus-en}
+coef_atus <- coef(model_logit)
+
+data.frame(
+  term = names(coef_atus),
+  beta = as.numeric(coef_atus),
+  odds_ratio = exp(as.numeric(coef_atus))
+) |>
+  head(12)
+```
+
+::: {.callout-warning title="An odds ratio is not a probability ratio"}
+An odds ratio should not be translated directly as “times more likely.” The relationship between odds and probability depends on the baseline probability.
 :::
 
-## Probabilities and classification threshold
+## Predicted probabilities and classification threshold
 
-```{r}
-test$prob_victims <- predict(model_logit, newdata = test, type = "response")
+```{r probabilities-threshold-atus-en}
+test$prob_victims <- predict(
+  model_logit,
+  newdata = test,
+  type = "response"
+)
+
 threshold <- 0.30
 
-test$predicted_class <- ifelse(
-  test$prob_victims >= threshold,
-  "Con víctimas",
-  "Solo daños"
+test$predicted_class <- factor(
+  ifelse(
+    test$prob_victims >= threshold,
+    "With casualties",
+    "Property damage only"
+  ),
+  levels = c("With casualties", "Property damage only")
 )
 ```
 
-::: {.callout-note title="The threshold is not part of the fitted probability model"}
-The logistic model produces probabilities. A threshold is a later decision rule and changes the sensitivity-specificity trade-off.
+::: {.callout-note title="The threshold is not part of the probability model"}
+Logistic regression produces probabilities. The threshold is a later decision rule. Lower thresholds usually increase sensitivity and reduce specificity; higher thresholds usually do the opposite.
 :::
 
-## Discrimination and calibration
+## Confusion matrix and metrics
 
-A useful probabilistic classifier must distinguish two ideas:
-
-- **discrimination:** how well the model ranks lower-risk and higher-risk observations;
-- **calibration:** how closely predicted probabilities agree with observed frequencies.
-
-A model can discriminate well while still producing poorly calibrated probabilities.
-
-## COVID-19 educational case
-
-The COVID-19 route dynamically uses the processed file selected by the reproducible preparation procedure instead of fixing a specific year.
-
-```{r}
-covid_files <- list.files(
-  "../datos/covid19/procesados",
-  pattern = "covid19_mexico_[0-9]{4}_ml_preparado\\.csv\\.gz$",
-  full.names = TRUE
+```{r metrics-logistic-atus-en}
+confusion_matrix <- table(
+  Actual = test$accident_class,
+  Predicted = test$predicted_class
 )
 
-if (length(covid_files) == 0) {
-  stop("No prepared COVID-19 dataset was found.")
+confusion_matrix
+
+TP <- confusion_matrix["With casualties", "With casualties"]
+FN <- confusion_matrix["With casualties", "Property damage only"]
+FP <- confusion_matrix["Property damage only", "With casualties"]
+TN <- confusion_matrix["Property damage only", "Property damage only"]
+
+safe_divide <- function(a, b) {
+  if (b == 0) NA_real_ else a / b
 }
 
-covid <- read_csv(covid_files[1], show_col_types = FALSE)
+data.frame(
+  accuracy = safe_divide(TP + TN, TP + FN + FP + TN),
+  sensitivity = safe_divide(TP, TP + FN),
+  specificity = safe_divide(TN, TN + FP),
+  precision = safe_divide(TP, TP + FP)
+)
+```
 
+## Distribution of predicted probabilities
+
+```{r probability-distribution-atus-en, fig.width=7, fig.height=4.8}
+ggplot(
+  test,
+  aes(x = prob_victims, fill = accident_class)
+) +
+  geom_histogram(
+    bins = 30,
+    alpha = 0.65,
+    position = "identity"
+  ) +
+  escala_clases_fill(name = "Actual class") +
+  geom_vline(xintercept = threshold, linetype = 2) +
+  labs(
+    title = "Distribution of predicted probabilities",
+    subtitle = paste("Classification threshold =", threshold),
+    x = "Predicted probability of an accident with casualties",
+    y = "Frequency"
+  ) +
+  tema_libro()
+```
+
+## Discrimination: AUC
+
+Discrimination measures how well the model ranks observations from lower to higher event probability. The area under the ROC curve (AUC) summarizes this ranking ability [@fawcett2006roc].
+
+AUC can be calculated without additional packages using probability ranks:
+
+```{r auc-logistic-atus-en}
+auc_by_ranks <- function(y, prob) {
+  n1 <- sum(y == 1)
+  n0 <- sum(y == 0)
+
+  if (n1 == 0 || n0 == 0) {
+    return(NA_real_)
+  }
+
+  ranks <- rank(prob, ties.method = "average")
+
+  (sum(ranks[y == 1]) - n1 * (n1 + 1) / 2) /
+    (n1 * n0)
+}
+
+auc_atus <- auc_by_ranks(
+  test$victims_binary,
+  test$prob_victims
+)
+
+auc_atus
+```
+
+::: {.callout-tip title="Interpreting AUC"}
+An AUC near 0.5 indicates discrimination close to random ranking. Larger values indicate better ranking ability. AUC alone does not tell us whether the predicted probabilities are well calibrated.
+:::
+
+## Calibration
+
+Calibration compares predicted probabilities with observed event frequencies. We group predictions into ten approximately equal-sized groups.
+
+```{r calibration-logistic-atus-en}
+calibration_atus <- test |>
+  mutate(
+    probability_group = ntile(prob_victims, 10)
+  ) |>
+  group_by(probability_group) |>
+  summarise(
+    n = n(),
+    mean_probability = mean(prob_victims),
+    observed_frequency = mean(victims_binary),
+    .groups = "drop"
+  )
+
+calibration_atus
+```
+
+```{r calibration-plot-atus-en, fig.width=6.5, fig.height=5}
+ggplot(
+  calibration_atus,
+  aes(x = mean_probability, y = observed_frequency)
+) +
+  geom_abline(slope = 1, intercept = 0, linetype = 2) +
+  geom_point(size = 3) +
+  geom_line() +
+  coord_equal(xlim = c(0, 1), ylim = c(0, 1)) +
+  labs(
+    title = "Calibration by probability groups",
+    subtitle = "The diagonal represents perfect calibration",
+    x = "Mean predicted probability",
+    y = "Observed frequency"
+  ) +
+  tema_libro()
+```
+
+::: {.callout-note title="Discrimination and calibration answer different questions"}
+A model may rank observations well and achieve a useful AUC while systematically producing probabilities that are too high or too low. This is why discrimination and calibration should be assessed separately.
+:::
+
+# Applied Case B: COVID-19
+
+## Select the same period used in previous chapters
+
+```{r select-covid-logistic-en}
+covid_counts <- read_csv(
+  "../datos/covid19/procesados/conteo_casos_confirmados_2020_2025.csv",
+  show_col_types = FALSE
+)
+
+covid_year <- covid_counts |>
+  filter(
+    ESTADO == "PROCESADO",
+    !is.na(CASOS_CONFIRMADOS)
+  ) |>
+  slice_max(
+    CASOS_CONFIRMADOS,
+    n = 1,
+    with_ties = FALSE
+  ) |>
+  pull(ANIO)
+
+covid_path <- file.path(
+  "../datos/covid19/procesados",
+  paste0("covid19_mexico_", covid_year, "_ml_preparado.csv.gz")
+)
+
+if (!file.exists(covid_path)) {
+  stop("The COVID-19 dataset selected by the reproducible procedure was not found.")
+}
+
+covid <- read_csv(
+  covid_path,
+  show_col_types = FALSE
+)
+
+message("COVID-19 period used: ", covid_year)
+```
+
+## Prepare the educational COVID-19 model
+
+```{r prepare-covid-logistic-en}
 covid_model <- covid |>
   select(
     MURIO,
@@ -143,11 +393,14 @@ covid_model <- covid |>
 ```
 
 ::: {.callout-important title="Predicted probability is not automatically population risk"}
-If the educational dataset over-samples deaths or otherwise alters the class proportion, raw logistic probabilities do not directly represent population prevalence. Balanced samples may still be useful for teaching classification, but a risk simulator requires natural-prevalence data or appropriate weighting and calibration.
+If the dataset was constructed using death over-sampling, class balancing, or another procedure that changes prevalence, raw model probabilities do not directly represent the true population frequency. A modified sample may be useful for teaching classification and comparing algorithms, but a population-risk simulator requires natural-prevalence data or appropriate weighting and calibration methods.
 :::
 
-```{r}
+## Fit the COVID-19 model
+
+```{r fit-covid-logistic-en}
 set.seed(2026)
+
 idx_covid <- sample(
   seq_len(nrow(covid_model)),
   size = floor(0.80 * nrow(covid_model))
@@ -157,7 +410,8 @@ covid_train <- covid_model[idx_covid, ]
 covid_test <- covid_model[-idx_covid, ]
 
 covid_logit <- glm(
-  MURIO ~ EDAD + NEUMONIA + DIABETES + HIPERTENSION + OBESIDAD + RENAL_CRONICA,
+  MURIO ~ EDAD + NEUMONIA + DIABETES +
+    HIPERTENSION + OBESIDAD + RENAL_CRONICA,
   data = covid_train,
   family = binomial
 )
@@ -167,12 +421,150 @@ covid_test$sample_probability <- predict(
   newdata = covid_test,
   type = "response"
 )
+
+head(summary(covid_logit)$coefficients, 10)
 ```
 
 ::: {.callout-warning title="Educational use only"}
-This model is not a diagnostic or prognostic tool. Its coefficients describe associations within the dataset and depend on time period, coverage, data quality, and sampling strategy.
+This model is not a diagnostic or prognostic tool. Its coefficients describe associations within the dataset and depend on the period, coverage, data quality, and sampling strategy.
+:::
+
+## Interactive laboratory: logistic regression
+
+::: {.content-visible when-format="html"}
+Explore how the intercept, slope, and classification threshold change the estimated probability and final predicted class.
+
+```{shinylive-r}
+#| standalone: true
+#| viewerHeight: 720
+#| components: [viewer]
+
+library(shiny)
+
+sigmoid <- function(z) {
+  1 / (1 + exp(-z))
+}
+
+ui <- fluidPage(
+  titlePanel("Logistic regression laboratory"),
+  sidebarLayout(
+    sidebarPanel(
+      sliderInput("b0", "Intercept", -10, 10, -3, step = 0.25),
+      sliderInput("b1", "Slope", -5, 5, 1.2, step = 0.1),
+      sliderInput("threshold", "Classification threshold", 0.05, 0.95, 0.5, step = 0.05),
+      sliderInput("xnew", "New x value", -5, 10, 2.5, step = 0.1)
+    ),
+    mainPanel(
+      plotOutput("curve", height = "440px"),
+      verbatimTextOutput("result"),
+      textOutput("interpretation")
+    )
+  )
+)
+
+server <- function(input, output, session) {
+  new_probability <- reactive({
+    sigmoid(input$b0 + input$b1 * input$xnew)
+  })
+
+  output$curve <- renderPlot({
+    x <- seq(-5, 10, length.out = 400)
+    p <- sigmoid(input$b0 + input$b1 * x)
+
+    plot(
+      x, p,
+      type = "l",
+      lwd = 3,
+      ylim = c(0, 1),
+      xlab = "Variable x",
+      ylab = "Estimated probability",
+      main = "Logistic curve and threshold"
+    )
+
+    abline(h = input$threshold, lty = 2)
+    abline(v = input$xnew, lty = 3)
+    points(input$xnew, new_probability(), pch = 19, cex = 1.8)
+    text(
+      input$xnew,
+      new_probability(),
+      labels = paste0("  p = ", round(new_probability(), 3)),
+      pos = 4
+    )
+  })
+
+  output$result <- renderPrint({
+    predicted_class <- ifelse(
+      new_probability() >= input$threshold,
+      1,
+      0
+    )
+
+    cat("Logit =", round(input$b0 + input$b1 * input$xnew, 4), "\n")
+    cat("Probability =", round(new_probability(), 4), "\n")
+    cat("Threshold =", input$threshold, "\n")
+    cat("Predicted class =", predicted_class)
+  })
+
+  output$interpretation <- renderText({
+    if (new_probability() >= input$threshold) {
+      "The probability exceeds the threshold, so the observation is assigned to Class 1."
+    } else {
+      "The probability does not reach the threshold, so the observation is assigned to Class 0."
+    }
+  })
+}
+
+shinyApp(ui, server)
+```
+:::
+
+::: {.content-visible when-format="pdf"}
+### Laboratory available in the web edition
+The interactive version allows the reader to change the coefficients, threshold, and value of a new observation to study the logistic curve, estimated probability, and predicted class.
+:::
+
+## Supplementary materials for this chapter
+
+These resources present logistic regression from audiovisual, visual, and practical perspectives.
+
+| Resource | Purpose | Open or play | Download |
+|---|---|---|---|
+| Explanatory video | Audiovisual explanation of logistic regression for classification. | [Watch on YouTube](https://www.youtube.com/watch?v=7CwP40QDeys){target="_blank"} | — |
+| PDF presentation | Slides for reading, study, or classroom presentation. | [View PDF](../recursos/capitulo-05/capitulo-05-regresion-logistica-clasificacion.pdf){target="_blank"} | [Download PDF](../recursos/capitulo-05/capitulo-05-regresion-logistica-clasificacion.pdf){download="chapter-05-logistic-regression-classification.pdf"} |
+| Editable presentation | PowerPoint file for classroom use or adaptation. | [Open PPTX](../recursos/capitulo-05/capitulo-05-regresion-logistica-clasificacion.pptx) | [Download PPTX](../recursos/capitulo-05/capitulo-05-regresion-logistica-clasificacion.pptx){download="chapter-05-logistic-regression-classification.pptx"} |
+| Infographic | Visual synthesis of the logistic function, probabilities, and classification process. | [View infographic](../recursos/capitulo-05/capitulo-05-regresion-logistica-clasificacion-infografia.png){target="_blank"} | [Download PNG](../recursos/capitulo-05/capitulo-05-regresion-logistica-clasificacion-infografia.png){download="chapter-05-logistic-regression-infographic.png"} |
+| Google Colab notebook | Self-contained notebook for executing the chapter examples. | [Open in Google Colab](https://colab.research.google.com/github/gilbertorodriguez59/libro-machine-learning-r/blob/main/colab/05-regresion-logistica.ipynb){target="_blank"} | — |
+
+::: {.content-visible when-format="html"}
+### Explanatory video
+
+<div class="video-responsive">
+  <iframe src="https://www.youtube.com/embed/7CwP40QDeys"
+    title="Chapter 5. Logistic regression for classification"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen>
+  </iframe>
+</div>
+
+### Infographic preview
+
+[![Chapter 5 infographic](../recursos/capitulo-05/capitulo-05-regresion-logistica-clasificacion-infografia.png)](../recursos/capitulo-05/capitulo-05-regresion-logistica-clasificacion-infografia.png)
+:::
+
+::: {.content-visible when-format="pdf"}
+**Chapter video:** <https://www.youtube.com/watch?v=7CwP40QDeys>
+
+**Complete course on YouTube:** <https://www.youtube.com/playlist?list=PLDJYd2v7Kt-Q>
+
+The PDF presentation, editable PowerPoint, infographic, and Colab notebook are available from the web edition of the book.
+:::
+
+::: {.callout-note title="Preparation of supplementary resources"}
+The supplementary materials were prepared with support from **Google NotebookLM**, using the chapter content as the source, and were subsequently reviewed and adapted by the author.
 :::
 
 ## Chapter summary
 
-Logistic regression separates two stages: probability estimation and, when needed, class assignment through a threshold. Responsible probability interpretation requires attention to prevalence, sampling, and calibration, especially in health applications.
+Logistic regression clearly separates two stages: probability estimation and, when a class is required, threshold-based assignment. Discrimination, calibration, and threshold-dependent metrics answer different questions. Responsible interpretation of probabilities requires attention to prevalence, sampling, and calibration, especially in health applications.

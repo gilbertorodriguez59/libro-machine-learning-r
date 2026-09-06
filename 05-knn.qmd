@@ -186,8 +186,10 @@ atus_knn_base <- atus_ml |>
     DIASEMANA,
     TIPACCID,
     CAUSAACCI
-  ) |>
-  slice_sample(n = min(12000, n()))
+  )
+
+atus_knn_base <- atus_knn_base |>
+  slice_sample(n = min(12000, nrow(atus_knn_base)))
 
 prop.table(table(atus_knn_base$accidente_con_victimas))
 ```

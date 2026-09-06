@@ -1,0 +1,423 @@
+# Comparación integral y selección de modelos
+
+::: {.callout-note title="Conexión con el volumen teórico"}
+La evaluación del riesgo, generalización, validación, regularización y selección de modelos se desarrolla con mayor profundidad en los capítulos 6 y 7 de *Fundamentos Matemáticos del Aprendizaje Automático* [@rodriguez2026fundamentos].
+:::
+
+## Objetivos del capítulo
+
+Al finalizar este capítulo, el lector será capaz de:
+
+- comparar de manera justa los clasificadores estudiados;
+- distinguir comparación de modelos de búsqueda del “ganador”;
+- separar ajuste, validación y prueba;
+- elegir métricas acordes con el problema;
+- reconocer qué algoritmos requieren escalamiento, codificación o umbral;
+- integrar desempeño, estabilidad, interpretabilidad y costo computacional;
+- explicar por qué regresión lineal y k-means no deben entrar en la misma tabla de clasificación.
+
+## Una comparación justa necesita un protocolo común
+
+No es válido comparar modelos si cada uno utiliza una muestra, una partición o una definición de clase positiva diferente. Para una comparación reproducible deben mantenerse constantes:
+
+1. población o muestra de trabajo;
+2. variable respuesta;
+3. predictores disponibles;
+4. partición entrenamiento/validación/prueba;
+5. clase positiva;
+6. métricas finales;
+7. reglas para evitar fuga de información.
+
+::: {.callout-important title="La prueba no participa en la selección"}
+El conjunto de prueba se utiliza una sola vez, después de seleccionar hiperparámetros, arquitectura y umbral. Si la prueba interviene en esas decisiones, deja de ser una evaluación independiente.
+:::
+
+## Modelos que sí son comparables en una tarea de clasificación
+
+En una respuesta binaria pueden compararse directamente:
+
+- regresión logística;
+- k vecinos más cercanos (k-NN);
+- árbol de decisión;
+- Random Forest;
+- SVM;
+- Naive Bayes;
+- red neuronal.
+
+Todos producen, directa o indirectamente, una clase predicha para la misma respuesta.
+
+## Modelos que deben analizarse por separado
+
+### Regresión lineal
+
+La regresión lineal predice una **cantidad continua**. Sus métricas naturales son RMSE, MAE y $R^2$, no sensibilidad o especificidad.
+
+### k-means
+
+k-means es un método **no supervisado**. No aprende una etiqueta conocida y no debe competir en una tabla de exactitud contra clasificadores supervisados.
+
+::: {.callout-warning title="No forzar comparaciones incompatibles"}
+Un algoritmo no es “mejor” o “peor” fuera de la tarea para la que fue diseñado. La comparación debe respetar la naturaleza de la respuesta y el objetivo analítico.
+:::
+
+## Matriz conceptual de los clasificadores
+
+| Modelo | Escalamiento | Categóricas | Probabilidades | Interpretabilidad | Hiperparámetros principales |
+|---|---|---|---|---|---|
+| Regresión logística | Recomendable | Factores/dummies | Sí | Alta | umbral, regularización si se usa |
+| k-NN | Esencial | Requiere codificación | No directa | Media-baja | $k$, distancia |
+| Árbol | No necesario | Sí | Sí | Alta | `cp`, profundidad, tamaño de nodo |
+| Random Forest | No necesario | Sí | Sí | Media | `mtry`, árboles, tamaño de nodo |
+| SVM | Muy importante | Requiere codificación interna/externa | Opcional | Media-baja | kernel, `cost`, `gamma` |
+| Naive Bayes | Depende de la variante | Sí | Sí | Alta | suavizado, supuestos distributivos |
+| Red neuronal | Importante | Requiere codificación | Sí | Baja | arquitectura, regularización, umbral |
+
+## Métricas comunes
+
+Para una clase positiva de interés:
+
+$$
+\text{Sensibilidad}=\frac{VP}{VP+FN},
+$$
+
+$$
+\text{Especificidad}=\frac{VN}{VN+FP},
+$$
+
+$$
+\text{Precisión}=\frac{VP}{VP+FP},
+$$
+
+$$
+F_1=2\frac{\text{Precisión}\times\text{Sensibilidad}}
+{\text{Precisión}+\text{Sensibilidad}},
+$$
+
+y
+
+$$
+\text{Exactitud balanceada}=
+\frac{\text{Sensibilidad}+\text{Especificidad}}{2}.
+$$
+
+Cuando el modelo produce un puntaje continuo o probabilidad, AUC resume discriminación a través de distintos umbrales. La calibración debe analizarse por separado.
+
+## Por qué no usar solo exactitud
+
+Una clase mayoritaria puede producir exactitudes altas aun cuando el modelo detecte muy mal la clase menos frecuente. En problemas desbalanceados conviene revisar, como mínimo:
+
+- sensibilidad;
+- especificidad;
+- precisión;
+- F1;
+- exactitud balanceada;
+- matriz de confusión.
+
+## Protocolo reproducible con COVID-19
+
+El siguiente esquema utiliza la base preparada seleccionada por el procedimiento reproducible del capítulo 2. Se trata de un **benchmark educativo**, no de una evaluación clínica.
+
+```{r comparacion-cargar-datos}
+#| eval: false
+
+library(readr)
+library(dplyr)
+library(tidyr)
+
+comparacion <- read_csv(
+  "datos/covid19/comparacion_estructural_2020_2025.csv",
+  show_col_types = FALSE
+)
+
+anio <- comparacion |>
+  filter(is_usable_for_book, !is.na(prepared_ml_file)) |>
+  arrange(desc(common_columns), desc(rows)) |>
+  slice(1) |>
+  pull(year)
+
+ruta <- file.path(
+  "datos/covid19/procesados",
+  paste0("covid19_mexico_", anio, "_ml_preparado.csv.gz")
+)
+
+benchmark <- read_csv(ruta, show_col_types = FALSE) |>
+  select(
+    MURIO, EDAD, NEUMONIA, DIABETES, HIPERTENSION,
+    OBESIDAD, RENAL_CRONICA, NUM_COMORBILIDADES
+  ) |>
+  drop_na()
+
+set.seed(2026)
+benchmark <- benchmark |>
+  sample_n(min(10000, nrow(benchmark))) |>
+  mutate(
+    clase = factor(
+      MURIO,
+      levels = c(0, 1),
+      labels = c("Sin defunción", "Defunción")
+    )
+  ) |>
+  select(-MURIO)
+```
+
+::: {.callout-warning title="Benchmark educativo"}
+La muestra permite comparar algoritmos bajo condiciones comunes. Sus probabilidades y métricas no constituyen estimaciones clínicas ni riesgo poblacional.
+:::
+
+## Partición común entrenamiento-validación-prueba
+
+```{r comparacion-particion}
+#| eval: false
+
+muestreo_estratificado <- function(y, proporcion, semilla) {
+  set.seed(semilla)
+  unlist(lapply(
+    split(seq_along(y), y),
+    function(i) sample(i, floor(proporcion * length(i)))
+  ))
+}
+
+idx_desarrollo <- muestreo_estratificado(benchmark$clase, 0.80, 2026)
+desarrollo <- benchmark[idx_desarrollo, ]
+prueba <- benchmark[-idx_desarrollo, ]
+
+idx_entrenamiento <- muestreo_estratificado(desarrollo$clase, 0.75, 2027)
+entrenamiento <- desarrollo[idx_entrenamiento, ]
+validacion <- desarrollo[-idx_entrenamiento, ]
+
+prop.table(table(entrenamiento$clase))
+prop.table(table(validacion$clase))
+prop.table(table(prueba$clase))
+```
+
+La partición aproximada es 60 % entrenamiento, 20 % validación y 20 % prueba.
+
+## Función común de métricas
+
+```{r comparacion-funcion-metricas}
+#| eval: false
+
+metricas_binarias <- function(real, predicho, positiva = "Defunción") {
+  niveles <- c("Sin defunción", "Defunción")
+  real <- factor(real, levels = niveles)
+  predicho <- factor(predicho, levels = niveles)
+  m <- table(Real = real, Predicho = predicho)
+
+  VP <- m[positiva, positiva]
+  FN <- m[positiva, "Sin defunción"]
+  FP <- m["Sin defunción", positiva]
+  VN <- m["Sin defunción", "Sin defunción"]
+
+  div <- function(a, b) if (b == 0) NA_real_ else as.numeric(a / b)
+
+  sensibilidad <- div(VP, VP + FN)
+  especificidad <- div(VN, VN + FP)
+  precision <- div(VP, VP + FP)
+  exactitud <- div(VP + VN, sum(m))
+  f1 <- if (is.na(precision) || is.na(sensibilidad) ||
+            precision + sensibilidad == 0) NA_real_ else
+    2 * precision * sensibilidad / (precision + sensibilidad)
+
+  data.frame(
+    exactitud = exactitud,
+    sensibilidad = sensibilidad,
+    especificidad = especificidad,
+    exactitud_balanceada = mean(c(sensibilidad, especificidad), na.rm = TRUE),
+    precision = precision,
+    f1 = f1
+  )
+}
+```
+
+## Qué debe seleccionarse en validación
+
+Cada algoritmo tiene decisiones diferentes:
+
+| Modelo | Selección en validación |
+|---|---|
+| Regresión logística | umbral y, si aplica, regularización |
+| k-NN | $k$ y esquema de distancia |
+| Árbol | complejidad/poda |
+| Random Forest | `mtry`, tamaño de nodo y número suficiente de árboles |
+| SVM | kernel, `cost` y `gamma` |
+| Naive Bayes | suavizado de Laplace y especificación de variables |
+| Red neuronal | arquitectura, regularización, épocas y umbral |
+
+## Preprocesamiento específico
+
+### Modelos basados en distancia o margen
+
+k-NN, SVM y redes neuronales requieren especial cuidado con el escalamiento. Los parámetros se calculan usando entrenamiento y se reutilizan en validación y prueba.
+
+### Árboles y Random Forest
+
+No requieren estandarización de los predictores para construir divisiones.
+
+### Naive Bayes
+
+Las variables binarias pueden tratarse como categóricas, mientras que variables continuas pueden modelarse mediante una distribución gaussiana.
+
+### Regresión logística
+
+Los factores pueden manejarse mediante variables indicadoras. El umbral debe seleccionarse después del ajuste probabilístico.
+
+## Plantilla de entrenamiento de los siete modelos
+
+El cuaderno Colab del capítulo contiene el desarrollo ejecutable completo. En el libro se muestra la estructura para enfatizar el protocolo.
+
+```{r comparacion-modelos-esquema}
+#| eval: false
+
+# 1. Regresión logística
+modelo_log <- glm(
+  clase ~ .,
+  data = entrenamiento,
+  family = binomial
+)
+
+# 2. k-NN
+# - construir matrices numéricas;
+# - escalar con entrenamiento;
+# - seleccionar k con validación.
+
+# 3. Árbol
+modelo_arbol <- rpart::rpart(
+  clase ~ .,
+  data = entrenamiento,
+  method = "class"
+)
+
+# 4. Random Forest
+modelo_rf <- ranger::ranger(
+  clase ~ .,
+  data = entrenamiento,
+  num.trees = 500,
+  probability = TRUE,
+  seed = 2026
+)
+
+# 5. SVM
+# - seleccionar kernel/cost/gamma con entrenamiento-validación.
+
+# 6. Naive Bayes
+modelo_nb <- e1071::naiveBayes(
+  clase ~ .,
+  data = entrenamiento,
+  laplace = 1
+)
+
+# 7. Red neuronal
+# - codificar/normalizar;
+# - seleccionar arquitectura y umbral con validación.
+```
+
+## Evaluación final
+
+Después de seleccionar cada configuración, el procedimiento correcto es:
+
+1. reentrenar el modelo seleccionado con los datos de desarrollo;
+2. recalcular cualquier transformación usando solo desarrollo;
+3. aplicar exactamente esa transformación a prueba;
+4. obtener una única predicción final;
+5. calcular las mismas métricas para todos los clasificadores.
+
+La tabla final debe tener una estructura como la siguiente:
+
+| Modelo | Exactitud | Sensibilidad | Especificidad | Exactitud balanceada | Precisión | F1 |
+|---|---:|---:|---:|---:|---:|---:|
+| Regresión logística | — | — | — | — | — | — |
+| k-NN | — | — | — | — | — | — |
+| Árbol de decisión | — | — | — | — | — | — |
+| Random Forest | — | — | — | — | — | — |
+| SVM | — | — | — | — | — | — |
+| Naive Bayes | — | — | — | — | — | — |
+| Red neuronal | — | — | — | — | — | — |
+
+Los guiones indican que los valores deben obtenerse al ejecutar el benchmark reproducible, no copiarse de capítulos que utilizaron muestras o particiones distintas.
+
+::: {.callout-important title="No mezclar resultados de experimentos diferentes"}
+Dos métricas solo son directamente comparables si provienen de la misma definición de respuesta y de datos de prueba equivalentes. Copiar la exactitud de un capítulo y compararla con la sensibilidad de otro produciría una conclusión engañosa.
+:::
+
+## La mejor métrica depende del objetivo
+
+- **Sensibilidad:** prioritaria si los falsos negativos son especialmente costosos.
+- **Especificidad:** importante cuando las falsas alarmas son costosas.
+- **Precisión:** útil cuando interesa que una predicción positiva sea confiable.
+- **F1:** equilibra precisión y sensibilidad.
+- **Exactitud balanceada:** resume sensibilidad y especificidad cuando existe desbalance.
+- **AUC:** evalúa discriminación sin fijar un único umbral.
+- **Calibración:** fundamental cuando las probabilidades mismas serán interpretadas.
+
+## Comparación más allá de las métricas
+
+| Criterio | Logística | k-NN | Árbol | RF | SVM | NB | Red neuronal |
+|---|---|---|---|---|---|---|---|
+| Interpretabilidad | Alta | Media-baja | Alta | Media | Media-baja | Alta | Baja |
+| Entrenamiento | Rápido | Muy rápido | Rápido | Medio | Medio-alto | Muy rápido | Medio-alto |
+| Predicción | Rápida | Puede ser lenta | Rápida | Media | Rápida | Rápida | Rápida |
+| No linealidad | Limitada | Alta | Alta | Alta | Alta con kernel | Por distribuciones | Alta |
+| Escalamiento | Recomendable | Esencial | No | No | Importante | Depende | Importante |
+| Probabilidad | Natural | No directa | Sí | Sí | Opcional | Sí | Sí |
+
+## Guía práctica de selección
+
+### Si la interpretación es prioritaria
+
+Comienza por regresión logística o un árbol pequeño.
+
+### Si la frontera puede ser compleja
+
+Random Forest o SVM radial suelen ser candidatos sólidos.
+
+### Si buscas una línea base probabilística rápida
+
+Naive Bayes es útil por su simplicidad y velocidad.
+
+### Si la semejanza local es importante
+
+k-NN puede funcionar bien, especialmente en dimensiones moderadas y con escalamiento adecuado.
+
+### Si existen muchos datos y no linealidades complejas
+
+Una red neuronal puede aportar flexibilidad, pero debe justificar su mayor costo y menor interpretabilidad.
+
+::: {.callout-tip title="Principio de parsimonia"}
+Si dos modelos tienen desempeño prácticamente equivalente, suele ser razonable preferir el más simple, estable, interpretable y fácil de mantener.
+:::
+
+## ¿Dónde queda k-means?
+
+k-means complementa la clasificación desde otra perspectiva: permite descubrir perfiles sin utilizar una respuesta. Puede ayudar a generar hipótesis, explorar heterogeneidad o crear segmentaciones descriptivas, pero sus clusters no deben incorporarse a la tabla anterior como si fueran predicciones supervisadas.
+
+## Recomendaciones para un informe profesional
+
+Un informe de comparación debería documentar:
+
+1. origen y periodo de los datos;
+2. definición exacta de la respuesta;
+3. predictores incluidos;
+4. criterios de limpieza;
+5. particiones y semillas;
+6. transformaciones aprendidas;
+7. hiperparámetros seleccionados;
+8. métrica usada para seleccionar;
+9. métricas finales en prueba;
+10. tiempos de cómputo;
+11. limitaciones y posibles sesgos;
+12. justificación de la recomendación final.
+
+## Actividad integradora
+
+1. Ejecuta el benchmark común del cuaderno Colab.
+2. Completa la tabla final de siete clasificadores.
+3. Ordena los modelos por exactitud balanceada.
+4. Repite el ordenamiento por sensibilidad.
+5. Identifica si el “mejor” modelo cambia según la métrica.
+6. Compara tiempos e interpretabilidad.
+7. Redacta una recomendación técnica de máximo 300 palabras.
+8. Explica por qué k-means no aparece en esa clasificación.
+
+## Conclusión
+
+No existe un algoritmo universalmente superior. La selección de modelos es una decisión basada en el objetivo, los datos, el costo de los errores, la estabilidad, la interpretabilidad y los recursos disponibles. Una comparación rigurosa exige que todos los clasificadores compitan bajo el mismo protocolo y que el conjunto de prueba permanezca independiente hasta el final. El aprendizaje automático profesional comienza precisamente donde termina la búsqueda ingenua de “la mayor exactitud”.

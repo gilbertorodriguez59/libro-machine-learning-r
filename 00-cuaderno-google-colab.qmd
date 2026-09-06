@@ -1,9 +1,9 @@
 # Google Colab: cuaderno completo y cuadernos por capítulo {.unnumbered}
 
-Además de la versión web y del documento PDF, el libro cuenta ahora con **dos formas complementarias de trabajar en Google Colab**:
+Además de la versión web y del documento PDF, el libro cuenta con **dos formas complementarias de trabajar en Google Colab**:
 
-1. un **cuaderno maestro completo**, con todos los capítulos en un solo archivo;
-2. **13 cuadernos independientes y autónomos**, uno por capítulo, pensados para estudiar o practicar un tema sin tener que ejecutar todo el libro.
+1. un **cuaderno maestro completo**, con el recorrido general del libro en un solo archivo;
+2. **14 cuadernos independientes y autónomos**, uno por capítulo, pensados para estudiar o practicar un tema sin ejecutar los capítulos anteriores.
 
 ::: {.callout-tip title="Acceso recomendado"}
 
@@ -17,7 +17,7 @@ Además de la versión web y del documento PDF, el libro cuenta ahora con **dos 
 
 ## Cuadernos autónomos por capítulo {.unnumbered}
 
-Cada cuaderno puede abrirse directamente y contiene su propia celda inicial de preparación. No es necesario ejecutar capítulos anteriores.
+Cada cuaderno puede abrirse directamente y contiene su propia preparación. No es necesario ejecutar capítulos anteriores.
 
 | Capítulo | Tema | Abrir en Colab |
 |---:|---|---|
@@ -34,20 +34,20 @@ Cada cuaderno puede abrirse directamente y contiene su propia celda inicial de p
 | 11 | Naive Bayes | [Abrir](https://colab.research.google.com/github/gilbertorodriguez59/libro-machine-learning-r/blob/main/colab/11-naive-bayes.ipynb) |
 | 12 | Redes neuronales | [Abrir](https://colab.research.google.com/github/gilbertorodriguez59/libro-machine-learning-r/blob/main/colab/12-redes-neuronales.ipynb) |
 | 13 | Agrupamiento k-means | [Abrir](https://colab.research.google.com/github/gilbertorodriguez59/libro-machine-learning-r/blob/main/colab/13-kmeans.ipynb) |
+| 14 | Comparación integral y selección de modelos | [Abrir](https://colab.research.google.com/github/gilbertorodriguez59/libro-machine-learning-r/blob/main/colab/14-comparacion-integral.ipynb) |
 
 ## ¿Qué significa que cada cuaderno sea autónomo? {.unnumbered}
 
-La primera celda de cada capítulo:
+Cada cuaderno incorpora la preparación necesaria para el tema correspondiente. Según el capítulo puede:
 
-- instala automáticamente los paquetes de R que hagan falta;
-- crea las carpetas necesarias;
-- descarga `util_graficas.R`;
-- descarga la base ATUS preparada;
-- descarga los archivos COVID-19 2022 utilizados por los ejemplos;
-- comprueba que los recursos existan antes de continuar;
-- carga las funciones gráficas del libro.
+- instalar los paquetes de R necesarios;
+- crear carpetas de trabajo;
+- descargar los datos preparados utilizados por el ejemplo;
+- comprobar que los recursos existan;
+- fijar semillas para reproducibilidad;
+- cargar funciones y paquetes antes del análisis.
 
-Por ello un estudiante puede abrir, por ejemplo, el capítulo de **SVM** o el de **Random Forest** y comenzar directamente desde ese cuaderno.
+Por ello un estudiante puede abrir, por ejemplo, **SVM**, **Random Forest** o el **benchmark integral del capítulo 14** y trabajar directamente desde ese cuaderno.
 
 ::: {.callout-warning title="Ejecute las celdas en orden dentro del capítulo"}
 Aunque los cuadernos por capítulo son independientes entre sí, dentro de cada cuaderno algunas celdas utilizan objetos creados en celdas anteriores. Si Colab reinicia o desconecta la sesión, vuelva a ejecutar desde la primera celda.
@@ -55,14 +55,14 @@ Aunque los cuadernos por capítulo son independientes entre sí, dentro de cada 
 
 ## Cuaderno maestro completo {.unnumbered}
 
-El cuaderno maestro conserva todo el recorrido del libro en un solo archivo. Es útil para:
+El cuaderno maestro conserva el recorrido integrado del libro en un solo archivo. Es útil para:
 
-- estudiar el libro completo de principio a fin;
+- estudiar el libro de principio a fin;
 - disponer de una copia integral del código R;
 - comparar algoritmos en una misma sesión;
-- conservar todos los ejemplos ATUS y COVID-19 en un solo cuaderno.
+- conservar los ejemplos ATUS y COVID-19.
 
-Debido a su extensión, para clases, prácticas y consultas rápidas se recomienda utilizar los cuadernos autónomos por capítulo.
+Para clases, prácticas y consultas rápidas se recomiendan los cuadernos autónomos por capítulo.
 
 ## Cómo trabajar en Google Colab {.unnumbered}
 
@@ -77,4 +77,4 @@ Debido a su extensión, para clases, prácticas y consultas rápidas se recomien
 
 La versión web sigue siendo la opción principal para lectura, navegación y laboratorios Shinylive. Los cuadernos Colab están pensados para modificar código, repetir experimentos y trabajar con los modelos en R sin instalar R ni RStudio localmente.
 
-Los laboratorios Shinylive permanecen en la versión web; los cuadernos Colab contienen el desarrollo reproducible de los algoritmos y los casos aplicados con ATUS y COVID-19.
+El **Capítulo 14** tiene además un cuaderno específico para ejecutar la comparación común de los siete clasificadores bajo una misma partición de entrenamiento, validación y prueba.

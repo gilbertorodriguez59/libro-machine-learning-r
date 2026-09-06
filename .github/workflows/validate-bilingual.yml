@@ -94,6 +94,7 @@ jobs:
           test -s docs/10-naive-bayes.html
           test -s docs/11-redes-neuronales.html
           test -s docs/12-kmeans.html
+          test -s docs/13-comparacion-integral.html
           test -s docs/indice-figuras.html
           test -s docs/indice-tematico.html
           test -s docs/en/00-preface.html
@@ -114,32 +115,28 @@ jobs:
           test -s docs/en/11-naive-bayes.html
           test -s docs/en/12-neural-networks.html
           test -s docs/en/13-kmeans.html
+          test -s docs/en/14-integrated-model-comparison.html
           grep -q 'English' docs/index.html
           grep -q 'Español' docs/en/index.html
           grep -q 'Machine Learning and Automatic Classification with R' docs/en/index.html
+          grep -q 'fourteen technical chapters' docs/en/index.html
           grep -q 'Supplementary materials for this chapter' docs/en/01-introduction.html
           grep -q 'Interactive data preparation' docs/en/02-data-preparation.html
-          grep -q 'bmv-tDPZGjQ' docs/en/02-data-preparation.html
           grep -q 'Interactive data explorer' docs/en/03-exploratory-data-analysis.html
-          grep -q 'U2hd8iEovCY' docs/en/03-exploratory-data-analysis.html
-          grep -q 'Laboratorio de regresión lineal' docs/04-regresion-lineal-multiple-2026.html
           grep -q 'Linear regression laboratory' docs/en/04-linear-regression.html
-          grep -q 'Calibración por grupos de probabilidad' docs/04-regresion-logistica-2026.html
           grep -q 'Calibration by probability groups' docs/en/05-logistic-regression.html
-          grep -q 'Selección de k en el conjunto de validación' docs/05-knn.html
           grep -q 'Selecting k on the validation set' docs/en/06-knn.html
-          grep -q 'Poda mediante error de validación cruzada' docs/06-arboles-decision.html
           grep -q 'Prune using cross-validation error' docs/en/07-decision-trees.html
-          grep -q 'Selección de mtry mediante Brier OOB' docs/07-random-forest.html
           grep -q 'Selecting mtry using OOB Brier score' docs/en/08-random-forest.html
-          grep -q 'Selección del umbral con predicciones fuera de pliegue' docs/08-evaluacion-modelos.html
           grep -q 'Threshold selection with out-of-fold predictions' docs/en/09-model-evaluation.html
           grep -q 'Artificial Neural Networks' docs/en/12-neural-networks.html
           grep -q 'Interactive k-means laboratory' docs/en/13-kmeans.html
-          grep -q '02-preparacion-datos-2026.html' docs/indice-tematico.html
-          grep -q '04-regresion-logistica-2026.html' docs/indice-figuras.html
-          grep -q 'en/04-linear-regression.html' docs/04-regresion-lineal-multiple-2026.html
-          grep -q '../04-regresion-lineal-multiple-2026.html' docs/en/04-linear-regression.html
+          grep -q 'Comparación integral y selección de modelos' docs/13-comparacion-integral.html
+          grep -q 'Integrated Model Comparison and Selection' docs/en/14-integrated-model-comparison.html
+          grep -q '13-comparacion-integral.html' docs/indice-tematico.html
+          grep -q '14-integrated-model-comparison.html' docs/en/subject-index.html
+          grep -q '14-integrated-model-comparison.html' docs/13-comparacion-integral.html
+          grep -q '../13-comparacion-integral.html' docs/en/14-integrated-model-comparison.html
 
       - name: Renderizar PDF en español
         run: |

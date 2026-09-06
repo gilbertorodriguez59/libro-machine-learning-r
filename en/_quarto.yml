@@ -52,6 +52,7 @@ book:
     - 11-naive-bayes.qmd
     - 12-neural-networks.qmd
     - 13-kmeans.qmd
+    - 14-integrated-model-comparison.qmd
   appendices:
     - glossary.qmd
     - references.qmd

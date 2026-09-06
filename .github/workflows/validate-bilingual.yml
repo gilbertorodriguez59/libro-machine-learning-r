@@ -10,7 +10,7 @@ permissions:
 
 concurrency:
   group: validar-bilingue-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   validar-edicion:
@@ -133,6 +133,7 @@ jobs:
           grep -q 'Español' docs/en/index.html
           grep -q '14 cuadernos' docs/00-cuaderno-google-colab.html
           grep -q '14 independent' docs/en/00-google-colab.html
+          grep -q 'fourteen technical chapters' docs/en/index.html
           grep -q 'Seleccionar el umbral en validación' docs/11-redes-neuronales.html
           grep -q 'keras3' docs/11-redes-neuronales.html
           grep -q 'Select the threshold on validation data' docs/en/12-neural-networks.html
@@ -143,6 +144,10 @@ jobs:
           grep -q 'Integrated Model Comparison and Selection' docs/en/14-integrated-model-comparison.html
           grep -q 'Naive Bayes Classifier' docs/en/11-naive-bayes.html
           grep -q 'Support Vector Machines' docs/en/10-svm.html
+          grep -q '13-comparacion-integral.html' docs/indice-tematico.html
+          grep -q '14-integrated-model-comparison.html' docs/en/subject-index.html
+          grep -q '14-integrated-model-comparison.html' docs/13-comparacion-integral.html
+          grep -q '../13-comparacion-integral.html' docs/en/14-integrated-model-comparison.html
 
       - name: Renderizar PDF en español
         run: |

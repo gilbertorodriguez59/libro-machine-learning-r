@@ -25,13 +25,13 @@ An open book with **R** code, real data, videos, presentations, infographics, Go
 
 :::
 
-This English edition is being prepared as a faithful editorial translation of the 2026 first edition in Spanish. The mathematical notation, code, datasets, chapter structure, references, and learning objectives will remain aligned with the original edition.
+This English edition is a faithful editorial translation of the 2026 first edition in Spanish. The mathematical notation, code, datasets, chapter structure, references, and learning objectives are aligned with the original edition.
 
 The book introduces machine learning through clear, practical, and reproducible examples developed primarily in **R**. Two main open-data routes from Mexico are used throughout the book: **ATUS**, with road-traffic accident data, and **COVID-19**, with historical public-health records prepared for educational use.
 
 ::: {.callout-note}
 ## Scope of the English edition
-The translation is editorial rather than literal: terminology will follow standard usage in statistics, data science, and machine learning while preserving the meaning and didactic intent of the Spanish edition.
+The translation is editorial rather than literal: terminology follows standard usage in statistics, data science, and machine learning while preserving the meaning and didactic intent of the Spanish edition.
 :::
 
 ## General objective {.unnumbered}
@@ -44,4 +44,4 @@ This book is intended for students, instructors, and professionals in engineerin
 
 ## Edition status {.unnumbered}
 
-The front matter of the English edition is now under editorial review. The thirteen technical chapters will be translated and validated one by one before the English PDF is released.
+The fourteen technical chapters and the bilingual front matter are complete. The English web and PDF editions are undergoing final editorial and visual validation before release.

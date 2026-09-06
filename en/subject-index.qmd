@@ -4,23 +4,25 @@
 
 **ATUS:** [Data preparation](02-data-preparation.qmd); [Exploratory data analysis](03-exploratory-data-analysis.qmd); [Linear regression](04-linear-regression.qmd); [Logistic regression](05-logistic-regression.qmd); [k-NN](06-knn.qmd); [Decision trees](07-decision-trees.qmd); [Random Forest](08-random-forest.qmd); [Model evaluation](09-model-evaluation.qmd); [SVM](10-svm.qmd); [Naive Bayes](11-naive-bayes.qmd).
 
-**AUC and ROC curve:** [Model evaluation](09-model-evaluation.qmd).
+**AUC and ROC curve:** [Model evaluation](09-model-evaluation.qmd); [Integrated model comparison](14-integrated-model-comparison.qmd).
 
 **Backpropagation:** [Neural networks](12-neural-networks.qmd).
 
-**Binary classification:** [Logistic regression](05-logistic-regression.qmd); [Naive Bayes](11-naive-bayes.qmd); [Neural networks](12-neural-networks.qmd).
+**Benchmarking models:** [Integrated model comparison and selection](14-integrated-model-comparison.qmd).
 
-**Calibration:** [Logistic regression](05-logistic-regression.qmd); [Model evaluation](09-model-evaluation.qmd); [Neural networks](12-neural-networks.qmd).
+**Binary classification:** [Logistic regression](05-logistic-regression.qmd); [Naive Bayes](11-naive-bayes.qmd); [Neural networks](12-neural-networks.qmd); [Integrated model comparison](14-integrated-model-comparison.qmd).
+
+**Calibration:** [Logistic regression](05-logistic-regression.qmd); [Model evaluation](09-model-evaluation.qmd); [Neural networks](12-neural-networks.qmd); [Integrated model comparison](14-integrated-model-comparison.qmd).
 
 **Centroids:** [k-means clustering](13-kmeans.qmd).
 
-**COVID-19:** [Data preparation](02-data-preparation.qmd); [Exploratory data analysis](03-exploratory-data-analysis.qmd); [Logistic regression](05-logistic-regression.qmd); [k-NN](06-knn.qmd); [Decision trees](07-decision-trees.qmd); [Random Forest](08-random-forest.qmd); [Model evaluation](09-model-evaluation.qmd); [SVM](10-svm.qmd); [Naive Bayes](11-naive-bayes.qmd); [Neural networks](12-neural-networks.qmd); [k-means](13-kmeans.qmd).
+**COVID-19:** [Data preparation](02-data-preparation.qmd); [Exploratory data analysis](03-exploratory-data-analysis.qmd); [Logistic regression](05-logistic-regression.qmd); [k-NN](06-knn.qmd); [Decision trees](07-decision-trees.qmd); [Random Forest](08-random-forest.qmd); [Model evaluation](09-model-evaluation.qmd); [SVM](10-svm.qmd); [Naive Bayes](11-naive-bayes.qmd); [Neural networks](12-neural-networks.qmd); [k-means](13-kmeans.qmd); [Integrated model comparison](14-integrated-model-comparison.qmd).
 
-**Cross-validation:** [Model evaluation](09-model-evaluation.qmd); [SVM](10-svm.qmd).
+**Cross-validation:** [Model evaluation](09-model-evaluation.qmd); [SVM](10-svm.qmd); [Integrated model comparison](14-integrated-model-comparison.qmd).
 
 ## D-H {.unnumbered}
 
-**Data leakage:** [Data preparation](02-data-preparation.qmd); [Model evaluation](09-model-evaluation.qmd); [SVM](10-svm.qmd); [Neural networks](12-neural-networks.qmd).
+**Data leakage:** [Data preparation](02-data-preparation.qmd); [Model evaluation](09-model-evaluation.qmd); [SVM](10-svm.qmd); [Neural networks](12-neural-networks.qmd); [Integrated model comparison](14-integrated-model-comparison.qmd).
 
 **Discrimination:** [Logistic regression](05-logistic-regression.qmd); [Model evaluation](09-model-evaluation.qmd).
 
@@ -30,9 +32,11 @@
 
 **Gradient descent:** [Neural networks](12-neural-networks.qmd).
 
-**Hyperparameters:** [Model evaluation](09-model-evaluation.qmd); [SVM](10-svm.qmd); [Random Forest](08-random-forest.qmd).
+**Hyperparameters:** [Model evaluation](09-model-evaluation.qmd); [SVM](10-svm.qmd); [Random Forest](08-random-forest.qmd); [Integrated model comparison](14-integrated-model-comparison.qmd).
 
-## K-R {.unnumbered}
+## I-R {.unnumbered}
+
+**Independent test set:** [Model evaluation](09-model-evaluation.qmd); [Integrated model comparison](14-integrated-model-comparison.qmd).
 
 **k-means:** [k-means clustering](13-kmeans.qmd).
 
@@ -44,6 +48,10 @@
 
 **Missing data:** [Data preparation](02-data-preparation.qmd).
 
+**Model comparison:** [Model evaluation](09-model-evaluation.qmd); [Integrated model comparison and selection](14-integrated-model-comparison.qmd).
+
+**Model selection:** [Model evaluation](09-model-evaluation.qmd); [Integrated model comparison and selection](14-integrated-model-comparison.qmd).
+
 **Naive Bayes:** [Naive Bayes classifier](11-naive-bayes.qmd).
 
 **Neural networks:** [Artificial neural networks](12-neural-networks.qmd).
@@ -54,22 +62,22 @@
 
 ## S-Z {.unnumbered}
 
-**Scaling:** [Data preparation](02-data-preparation.qmd); [k-NN](06-knn.qmd); [SVM](10-svm.qmd); [Neural networks](12-neural-networks.qmd); [k-means](13-kmeans.qmd).
+**Scaling:** [Data preparation](02-data-preparation.qmd); [k-NN](06-knn.qmd); [SVM](10-svm.qmd); [Neural networks](12-neural-networks.qmd); [k-means](13-kmeans.qmd); [Integrated model comparison](14-integrated-model-comparison.qmd).
 
-**Sensitivity and specificity:** [Model evaluation](09-model-evaluation.qmd).
+**Sensitivity and specificity:** [Model evaluation](09-model-evaluation.qmd); [Integrated model comparison](14-integrated-model-comparison.qmd).
 
 **Shinylive:** interactive laboratories throughout the web edition, including [Introduction](01-introduction.qmd), [Linear regression](04-linear-regression.qmd), [Logistic regression](05-logistic-regression.qmd), [k-NN](06-knn.qmd), [Decision trees](07-decision-trees.qmd), [Random Forest](08-random-forest.qmd), [Neural networks](12-neural-networks.qmd), and [k-means](13-kmeans.qmd).
 
 **Silhouette:** [k-means](13-kmeans.qmd).
 
-**Supervised learning:** [Introduction](01-introduction.qmd); [Model evaluation](09-model-evaluation.qmd).
+**Supervised learning:** [Introduction](01-introduction.qmd); [Model evaluation](09-model-evaluation.qmd); [Integrated model comparison](14-integrated-model-comparison.qmd).
 
 **Support Vector Machines and kernels:** [Support Vector Machines](10-svm.qmd).
 
-**Threshold:** [Logistic regression](05-logistic-regression.qmd); [Model evaluation](09-model-evaluation.qmd); [Neural networks](12-neural-networks.qmd).
+**Threshold:** [Logistic regression](05-logistic-regression.qmd); [Model evaluation](09-model-evaluation.qmd); [Neural networks](12-neural-networks.qmd); [Integrated model comparison](14-integrated-model-comparison.qmd).
 
-**Training, validation, and test data:** [Model evaluation](09-model-evaluation.qmd).
+**Training, validation, and test data:** [Model evaluation](09-model-evaluation.qmd); [Integrated model comparison](14-integrated-model-comparison.qmd).
 
 **Unsupervised learning:** [Introduction](01-introduction.qmd); [k-means](13-kmeans.qmd).
 
-**Overfitting:** [Model evaluation](09-model-evaluation.qmd); [Decision trees](07-decision-trees.qmd); [Random Forest](08-random-forest.qmd); [SVM](10-svm.qmd); [Neural networks](12-neural-networks.qmd).
+**Overfitting:** [Model evaluation](09-model-evaluation.qmd); [Decision trees](07-decision-trees.qmd); [Random Forest](08-random-forest.qmd); [SVM](10-svm.qmd); [Neural networks](12-neural-networks.qmd); [Integrated model comparison](14-integrated-model-comparison.qmd).

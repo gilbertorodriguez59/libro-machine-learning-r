@@ -12,6 +12,9 @@ format:
   html:
     embed-resources: false
     self-contained: false
+  pdf:
+    documentclass: scrreprt
+    keep-tex: true
 
 book:
   title: "Machine Learning and Automatic Classification with R"

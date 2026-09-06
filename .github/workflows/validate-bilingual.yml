@@ -13,7 +13,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  validar-html:
+  validar-edicion:
     runs-on: ubuntu-latest
 
     steps:
@@ -29,10 +29,13 @@ jobs:
           r-version: 'release'
           use-public-rspm: true
 
+      - name: Configurar TinyTeX
+        uses: r-lib/actions/setup-tinytex@v2
+
       - name: Instalar bibliotecas del sistema
         run: |
           sudo apt-get update
-          sudo apt-get install -y libcurl4-openssl-dev libssl-dev libxml2-dev libfontconfig1-dev libharfbuzz-dev libfribidi-dev libfreetype6-dev libpng-dev libtiff-dev libjpeg-dev
+          sudo apt-get install -y libcurl4-openssl-dev libssl-dev libxml2-dev libfontconfig1-dev libharfbuzz-dev libfribidi-dev libfreetype6-dev libpng-dev libtiff-dev libjpeg-dev poppler-utils
 
       - name: Instalar dependencias R
         uses: r-lib/actions/setup-r-dependencies@v2
@@ -64,20 +67,20 @@ jobs:
             any::fs
             any::shiny
             any::shinylive
-          cache-version: bilingual-2026-1
+          cache-version: bilingual-2026-2
 
-      - name: Renderizar edición en español
+      - name: Renderizar edición web en español
         run: |
           rm -rf docs .quarto _freeze
           quarto render --to html --no-cache
           test -s docs/index.html
 
-      - name: Renderizar edición en inglés
+      - name: Renderizar edición web en inglés
         run: |
           quarto render en --to html --no-cache
           test -s docs/en/index.html
 
-      - name: Validar estructura bilingüe
+      - name: Validar estructura bilingüe HTML
         run: |
           test -s docs/00-prefacio.html
           test -s docs/00-agradecimientos.html
@@ -87,6 +90,12 @@ jobs:
           test -s docs/06-arboles-decision.html
           test -s docs/07-random-forest.html
           test -s docs/08-evaluacion-modelos.html
+          test -s docs/09-svm.html
+          test -s docs/10-naive-bayes.html
+          test -s docs/11-redes-neuronales.html
+          test -s docs/12-kmeans.html
+          test -s docs/indice-figuras.html
+          test -s docs/indice-tematico.html
           test -s docs/en/00-preface.html
           test -s docs/en/00-acknowledgments.html
           test -s docs/en/00-google-colab.html
@@ -101,6 +110,10 @@ jobs:
           test -s docs/en/07-decision-trees.html
           test -s docs/en/08-random-forest.html
           test -s docs/en/09-model-evaluation.html
+          test -s docs/en/10-svm.html
+          test -s docs/en/11-naive-bayes.html
+          test -s docs/en/12-neural-networks.html
+          test -s docs/en/13-kmeans.html
           grep -q 'English' docs/index.html
           grep -q 'Español' docs/en/index.html
           grep -q 'Machine Learning and Automatic Classification with R' docs/en/index.html
@@ -120,17 +133,29 @@ jobs:
           grep -q 'Selección de mtry mediante Brier OOB' docs/07-random-forest.html
           grep -q 'Selecting mtry using OOB Brier score' docs/en/08-random-forest.html
           grep -q 'Selección del umbral con predicciones fuera de pliegue' docs/08-evaluacion-modelos.html
-          grep -q 'Calibración en el conjunto de prueba' docs/08-evaluacion-modelos.html
-          grep -q 'ShiKrfhIfpY' docs/08-evaluacion-modelos.html
           grep -q 'Threshold selection with out-of-fold predictions' docs/en/09-model-evaluation.html
-          grep -q 'Calibration on the final test set' docs/en/09-model-evaluation.html
-          grep -q 'Classification metrics calculator' docs/en/09-model-evaluation.html
-          grep -q 'ShiKrfhIfpY' docs/en/09-model-evaluation.html
-          grep -q 'chapter-09-model-evaluation-presentation.pdf' docs/en/09-model-evaluation.html
+          grep -q 'Artificial Neural Networks' docs/en/12-neural-networks.html
+          grep -q 'Interactive k-means laboratory' docs/en/13-kmeans.html
+          grep -q '02-preparacion-datos-2026.html' docs/indice-tematico.html
+          grep -q '04-regresion-logistica-2026.html' docs/indice-figuras.html
+          grep -q 'en/04-linear-regression.html' docs/04-regresion-lineal-multiple-2026.html
+          grep -q '../04-regresion-lineal-multiple-2026.html' docs/en/04-linear-regression.html
 
-      - name: Guardar sitio bilingüe como artefacto de validación
+      - name: Renderizar PDF en español
+        run: |
+          quarto render --profile pdf --to pdf --no-cache
+          test -s docs/Aprendizaje-y-Clasificacion-Automatica-con-R.pdf
+          pdfinfo docs/Aprendizaje-y-Clasificacion-Automatica-con-R.pdf | grep -q '^Pages:'
+
+      - name: Renderizar PDF en inglés
+        run: |
+          quarto render en --profile pdf --to pdf --no-cache
+          test -s docs/en/Machine-Learning-and-Automatic-Classification-with-R.pdf
+          pdfinfo docs/en/Machine-Learning-and-Automatic-Classification-with-R.pdf | grep -q '^Pages:'
+
+      - name: Guardar edición bilingüe completa como artefacto
         uses: actions/upload-artifact@v4
         with:
-          name: libro-bilingue-html
+          name: libro-bilingue-html-pdf
           path: docs
           if-no-files-found: error

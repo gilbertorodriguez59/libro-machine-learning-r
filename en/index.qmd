@@ -17,31 +17,57 @@
 
 ### Learn Machine Learning by doing
 
-An open book with **R** code, real data, videos, presentations, infographics, Google Colab, and browser-based interactive labs.
+An open book with **R** code, real data, videos, presentations, infographics, Google Colab, and browser-based interactive laboratories.
 
 [Spanish edition](../index.html){.btn .btn-outline-dark .btn-lg}
+[Google Colab notebooks](00-google-colab.qmd){.btn .btn-outline-primary .btn-lg}
+
+**14 chapters · Reproducible R · Open data · Shinylive · Google Colab · PDF**
 
 :::
 
 :::
 
-This English edition is a faithful editorial translation of the 2026 first edition in Spanish. The mathematical notation, code, datasets, chapter structure, references, and learning objectives are aligned with the original edition.
+This English edition is an editorial translation of the 2026 first edition in Spanish. Mathematical notation, code, datasets, chapter structure, references, and learning objectives are aligned with the Spanish edition while terminology follows standard English usage in statistics, data science, and machine learning.
 
-The book introduces machine learning through clear, practical, and reproducible examples developed primarily in **R**. Two main open-data routes from Mexico are used throughout the book: **ATUS**, with road-traffic accident data, and **COVID-19**, with historical public-health records prepared for educational use.
+The book introduces machine learning through practical and reproducible examples developed primarily in **R**. Two main open-data routes from Mexico are used throughout the book: **ATUS**, with road-traffic accident data, and **COVID-19**, with historical public-health records prepared for educational use.
 
 ::: {.callout-note}
 ## Scope of the English edition
-The translation is editorial rather than literal: terminology follows standard usage in statistics, data science, and machine learning while preserving the meaning and didactic intent of the Spanish edition.
+The translation is editorial rather than literal. It preserves the didactic intent and modeling cautions of the Spanish edition, including the separation of training, validation, and test data.
 :::
 
 ## General objective {.unnumbered}
 
-Develop basic and intermediate machine-learning skills through the analysis, modeling, and interpretation of real-world data.
+Develop basic and intermediate machine-learning skills through the analysis, modeling, validation, and interpretation of real-world data.
 
 ## Intended audience {.unnumbered}
 
 This book is intended for students, instructors, and professionals in engineering, science, data science, applied statistics, computing, and related fields who want a practical introduction to machine learning with R.
 
+## Google Colab {.unnumbered}
+
+The book includes a master notebook and **14 self-contained chapter notebooks**. Chapter 14 contains a common benchmark for comparing seven supervised classifiers under the same training, validation, and test protocol.
+
+[Open the Colab guide](00-google-colab.qmd)
+
+## Structure of the first edition {.unnumbered}
+
+1. Introduction to machine learning.
+2. Preparing real-world data.
+3. Exploratory data analysis.
+4. Simple and multiple linear regression.
+5. Logistic regression for classification.
+6. k-nearest neighbors (k-NN).
+7. Decision trees.
+8. Random Forest.
+9. Model evaluation, validation, and comparison.
+10. Support Vector Machines (SVM).
+11. Naive Bayes classifier.
+12. Artificial neural networks.
+13. k-means clustering.
+14. Integrated model comparison and selection.
+
 ## Edition status {.unnumbered}
 
-The fourteen technical chapters and the bilingual front matter are complete. The English web and PDF editions are undergoing final editorial and visual validation before release.
+The fourteen technical chapters and the bilingual front matter are complete at source level. The web and PDF editions remain in final automated rendering and visual validation before promotion to the stable release.

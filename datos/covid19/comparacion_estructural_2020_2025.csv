@@ -1,0 +1,7 @@
+year,is_usable_for_book,prepared_ml_file,common_columns,rows,status,selection_basis
+2020,FALSE,,,,PROCESSED_NO_VERSIONED_ML_FILE,"Processed historical period; no prepared ML file is versioned in this edition"
+2021,FALSE,,,,PROCESSED_NO_VERSIONED_ML_FILE,"Processed historical period; no prepared ML file is versioned in this edition"
+2022,TRUE,covid19_mexico_2022_ml_preparado.csv.gz,,,PREPARED_ML_FILE_VERSIONED,"Largest confirmed-case count among processed homologated periods and the prepared ML file versioned with this edition"
+2023,FALSE,,,,PROCESSED_NO_VERSIONED_ML_FILE,"Processed historical period; no prepared ML file is versioned in this edition"
+2024,FALSE,,,,SCHEMA_NOT_HOMOLOGATED,"Marked ESQUEMA_NO_HOMOLOGADO in conteo_casos_confirmados_2020_2025.csv"
+2025,FALSE,,,,SCHEMA_NOT_HOMOLOGATED,"Marked ESQUEMA_NO_HOMOLOGADO in conteo_casos_confirmados_2020_2025.csv"

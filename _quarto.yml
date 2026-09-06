@@ -23,6 +23,9 @@ format:
   html:
     embed-resources: false
     self-contained: false
+  pdf:
+    documentclass: scrreprt
+    keep-tex: true
 
 book:
   title: "Aprendizaje y Clasificación Automática con R"

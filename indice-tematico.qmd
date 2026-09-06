@@ -6,21 +6,30 @@
 [k-means](12-kmeans.qmd).
 
 **Aprendizaje supervisado:** [Introducción](01-introduccion.qmd);
-[Evaluación](08-evaluacion-modelos.qmd).
+[Evaluación](08-evaluacion-modelos.qmd);
+[Comparación integral](13-comparacion-integral.qmd).
 
 **ATUS:** [Preparación](02-preparacion-datos-2026.qmd);
 [Análisis exploratorio](03-analisis-exploratorio.qmd).
 
-**AUC y curva ROC:** [Evaluación de modelos](08-evaluacion-modelos.qmd).
+**AUC y curva ROC:** [Evaluación de modelos](08-evaluacion-modelos.qmd);
+[Comparación integral](13-comparacion-integral.qmd).
+
+**Benchmark de modelos:** [Comparación integral y selección de modelos](13-comparacion-integral.qmd).
 
 **Clasificación binaria:** [Regresión logística](04-regresion-logistica-2026.qmd);
 [Naive Bayes](10-naive-bayes.qmd);
-[Redes neuronales](11-redes-neuronales.qmd).
+[Redes neuronales](11-redes-neuronales.qmd);
+[Comparación integral](13-comparacion-integral.qmd).
+
+**Comparación de modelos:** [Evaluación](08-evaluacion-modelos.qmd);
+[Comparación integral y selección de modelos](13-comparacion-integral.qmd).
 
 **COVID-19:** [Preparación](02-preparacion-datos-2026.qmd);
 [Análisis exploratorio](03-analisis-exploratorio.qmd);
 [Regresión logística](04-regresion-logistica-2026.qmd);
-[Evaluación](08-evaluacion-modelos.qmd).
+[Evaluación](08-evaluacion-modelos.qmd);
+[Comparación integral](13-comparacion-integral.qmd).
 
 ## D-H {.unnumbered}
 
@@ -35,9 +44,11 @@
 **Escalamiento:** [Preparación](02-preparacion-datos-2026.qmd);
 [k-NN](05-knn.qmd);
 [SVM](09-svm.qmd);
-[k-means](12-kmeans.qmd).
+[k-means](12-kmeans.qmd);
+[Comparación integral](13-comparacion-integral.qmd).
 
-**Hiperparámetros:** [Evaluación](08-evaluacion-modelos.qmd).
+**Hiperparámetros:** [Evaluación](08-evaluacion-modelos.qmd);
+[Comparación integral](13-comparacion-integral.qmd).
 
 ## K-R {.unnumbered}
 
@@ -45,9 +56,13 @@
 
 **k-NN:** [Vecinos más cercanos](05-knn.qmd).
 
-**Matriz de confusión:** [Evaluación](08-evaluacion-modelos.qmd).
+**Matriz de confusión:** [Evaluación](08-evaluacion-modelos.qmd);
+[Comparación integral](13-comparacion-integral.qmd).
 
 **Naive Bayes:** [Clasificador Naive Bayes](10-naive-bayes.qmd).
+
+**Prueba independiente:** [Evaluación](08-evaluacion-modelos.qmd);
+[Comparación integral](13-comparacion-integral.qmd).
 
 **Random Forest:** [Random Forest](07-random-forest.qmd).
 
@@ -57,7 +72,11 @@
 
 ## S-Z {.unnumbered}
 
-**Sensibilidad y especificidad:** [Evaluación](08-evaluacion-modelos.qmd).
+**Selección de modelos:** [Evaluación](08-evaluacion-modelos.qmd);
+[Comparación integral y selección de modelos](13-comparacion-integral.qmd).
+
+**Sensibilidad y especificidad:** [Evaluación](08-evaluacion-modelos.qmd);
+[Comparación integral](13-comparacion-integral.qmd).
 
 **Shinylive:** [Regresión lineal](04-regresion-lineal-multiple-2026.qmd);
 [Regresión logística](04-regresion-logistica-2026.qmd);
@@ -68,11 +87,14 @@
 **Sobreajuste:** [Evaluación](08-evaluacion-modelos.qmd);
 [Árboles](06-arboles-decision.qmd);
 [Random Forest](07-random-forest.qmd);
-[Redes neuronales](11-redes-neuronales.qmd).
+[Redes neuronales](11-redes-neuronales.qmd);
+[Comparación integral](13-comparacion-integral.qmd).
 
 **SVM y kernels:** [Máquinas de vectores de soporte](09-svm.qmd).
 
 **Umbral:** [Regresión logística](04-regresion-logistica-2026.qmd);
-[Evaluación](08-evaluacion-modelos.qmd).
+[Evaluación](08-evaluacion-modelos.qmd);
+[Comparación integral](13-comparacion-integral.qmd).
 
-**Validación cruzada:** [Evaluación, validación y comparación](08-evaluacion-modelos.qmd).
+**Validación cruzada:** [Evaluación, validación y comparación](08-evaluacion-modelos.qmd);
+[Comparación integral](13-comparacion-integral.qmd).

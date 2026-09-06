@@ -480,7 +480,7 @@ covid_rf <- read_csv(ruta_covid, show_col_types = FALSE) |>
 
 set.seed(2026)
 covid_rf <- covid_rf |>
-  slice_sample(n = min(10000, n()))
+  slice_sample(n = min(10000, nrow(covid_rf)))
 
 partes_covid <- partir_rf_estratificado(
   covid_rf$MURIO,

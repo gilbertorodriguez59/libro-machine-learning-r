@@ -1,9 +1,9 @@
 # Google Colab: Complete Notebook and Chapter Notebooks {.unnumbered}
 
-In addition to the web edition and the PDF document, the book now provides **two complementary ways to work in Google Colab**:
+In addition to the web edition and PDF, the book provides **two complementary ways to work in Google Colab**:
 
-1. a **complete master notebook**, containing the entire book in a single file;
-2. **13 independent, self-contained notebooks**, one for each chapter, designed so that a reader can study or practice a topic without running the whole book.
+1. a **complete master notebook** with the general book workflow in one file;
+2. **14 independent, self-contained chapter notebooks**, designed so that a reader can study or practice one topic without running previous chapters.
 
 ::: {.callout-tip title="Recommended access"}
 
@@ -16,8 +16,6 @@ In addition to the web edition and the PDF document, the book now provides **two
 :::
 
 ## Self-contained notebooks by chapter {.unnumbered}
-
-Each notebook can be opened directly and includes its own initial setup cell. It is not necessary to run previous chapters.
 
 | Chapter | Topic | Open in Colab |
 |---:|---|---|
@@ -34,35 +32,30 @@ Each notebook can be opened directly and includes its own initial setup cell. It
 | 11 | Naive Bayes | [Open](https://colab.research.google.com/github/gilbertorodriguez59/libro-machine-learning-r/blob/main/colab/11-naive-bayes.ipynb) |
 | 12 | Neural networks | [Open](https://colab.research.google.com/github/gilbertorodriguez59/libro-machine-learning-r/blob/main/colab/12-redes-neuronales.ipynb) |
 | 13 | k-means clustering | [Open](https://colab.research.google.com/github/gilbertorodriguez59/libro-machine-learning-r/blob/main/colab/13-kmeans.ipynb) |
+| 14 | Integrated model comparison and selection | [Open](https://colab.research.google.com/github/gilbertorodriguez59/libro-machine-learning-r/blob/main/colab/14-comparacion-integral.ipynb) |
 
-## What does it mean for each notebook to be self-contained? {.unnumbered}
+## What does self-contained mean? {.unnumbered}
 
-The first cell of each chapter:
+Each chapter notebook includes the preparation needed for its topic. Depending on the chapter it can:
 
-- installs the required R packages automatically;
-- creates the necessary folders;
-- downloads `util_graficas.R`;
-- downloads the prepared ATUS dataset;
-- downloads the COVID-19 2022 files used in the examples;
-- checks that the required resources exist before continuing;
-- loads the plotting functions used throughout the book.
+- install the required R packages;
+- create working folders;
+- download the prepared data used in the examples;
+- verify that resources exist;
+- set random seeds for reproducibility;
+- load packages and helper functions before analysis.
 
-This means that a student can open, for example, the **SVM** or **Random Forest** chapter and begin working directly from that notebook.
+This means that a student can open **SVM**, **Random Forest**, or the **Chapter 14 integrated benchmark** and begin directly from that notebook.
 
-::: {.callout-warning title="Run the cells in order within each chapter"}
-Although the chapter notebooks are independent from one another, some cells within each notebook use objects created in previous cells. If Colab restarts or disconnects the session, run the notebook again from the first cell.
+::: {.callout-warning title="Run cells in order within each notebook"}
+Although chapter notebooks are independent from one another, some cells inside a notebook depend on objects created earlier in that notebook. If Colab restarts the session, run again from the first cell.
 :::
 
 ## Complete master notebook {.unnumbered}
 
-The master notebook preserves the complete sequence of the book in a single file. It is useful for:
+The master notebook preserves the integrated book workflow in a single file. It is useful for studying the book from beginning to end, keeping a complete copy of the R code, comparing algorithms in one session, and retaining the ATUS and COVID-19 examples.
 
-- studying the entire book from beginning to end;
-- keeping an integrated copy of the R code;
-- comparing algorithms in the same session;
-- retaining all ATUS and COVID-19 examples in one notebook.
-
-Because of its length, the self-contained chapter notebooks are recommended for classes, exercises, and quick consultation.
+For classroom work, exercises, and quick consultation, the chapter notebooks are usually more convenient.
 
 ## How to work in Google Colab {.unnumbered}
 
@@ -70,11 +63,11 @@ Because of its length, the self-contained chapter notebooks are recommended for 
 2. Sign in with a Google account if Colab requests it.
 3. Optionally choose **File → Save a copy in Drive**.
 4. Verify that the runtime uses **R**.
-5. Run the automatic setup cell first.
+5. Run the setup cell first.
 6. Continue in order using the play button or `Shift + Enter`.
 
 ## Web book, Colab, and interactive laboratories {.unnumbered}
 
-The web edition remains the primary option for reading, navigation, and Shinylive laboratories. The Colab notebooks are designed for modifying code, repeating experiments, and working with the R models without installing R or RStudio locally.
+The web edition remains the primary option for reading, navigation, and Shinylive laboratories. Colab notebooks are designed for changing code, repeating experiments, and working with R models without installing R or RStudio locally.
 
-Shinylive laboratories remain in the web edition; the Colab notebooks contain the reproducible development of the algorithms and the applied ATUS and COVID-19 cases.
+**Chapter 14** includes a dedicated notebook for running the common seven-classifier comparison under the same training, validation, and test partition.

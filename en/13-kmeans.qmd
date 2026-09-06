@@ -1,7 +1,7 @@
 # Clustering with k-means
 
 ::: {.callout-note title="Connection with the theoretical volume"}
-The mathematical treatment of distances, objective functions, centroids, and k-means clustering is developed in Chapters 2 and 18 of *Mathematical Foundations of Machine Learning* [@rodriguez2026fundamentos].
+The mathematical treatment of distances, centroids, objective functions, and k-means clustering is developed in Chapters 2 and 18 of *Mathematical Foundations of Machine Learning* [@rodriguez2026fundamentos].
 :::
 
 ## Learning objectives
@@ -9,30 +9,29 @@ The mathematical treatment of distances, objective functions, centroids, and k-m
 By the end of this chapter, the reader will be able to:
 
 - distinguish supervised from unsupervised learning;
-- explain the k-means algorithm intuitively and mathematically;
-- calculate centroids and assign observations to clusters;
-- implement k-means with base R;
-- select the number of clusters using the elbow method and silhouette analysis;
-- interpret centroids and cluster profiles;
-- recognize common limitations and mistakes;
-- apply clustering to real open data without treating clusters as true classes.
+- explain the k-means algorithm and its objective function;
+- interpret centroids and assignments;
+- understand the effect of scaling and initialization;
+- compare values of $k$ using elbow and silhouette diagnostics;
+- inspect stability across random initializations;
+- interpret cluster profiles without treating clusters as true classes;
+- apply k-means to real ATUS profiles and an educational COVID-19 sample.
 
 ## From supervised to unsupervised learning
 
-In supervised learning, a known response variable guides model fitting. In unsupervised learning, no known class label defines the correct grouping. The objective is to discover structure in the predictors.
+In supervised learning, a known response guides model fitting. In clustering, no class label defines the correct grouping. The algorithm discovers structure using the selected variables and a definition of similarity.
 
-**Clustering** groups observations that are similar to one another and separates observations that are dissimilar.
+::: {.callout-important title="A cluster is not an external truth"}
+The result depends on the variables, scaling, distance, value of $k$, and sample. A cluster should not automatically be treated as a natural or causal real-world category.
+:::
 
-## Basic idea of k-means
+## Core idea
 
-k-means partitions observations into $k$ groups. Each group is represented by a **centroid**, the average position of the observations assigned to that group.
+k-means partitions observations into $k$ groups. Each group is represented by a centroid. The algorithm alternates between:
 
-The algorithm alternates between two steps:
-
-1. assign each observation to the nearest centroid;
-2. recompute the centroids from the current assignments.
-
-The process repeats until the assignments stabilize or the improvement becomes negligible.
+1. assigning each observation to the nearest centroid;
+2. recomputing centroids from the current assignments;
+3. repeating until the solution stabilizes.
 
 ## Objective function
 
@@ -45,76 +44,62 @@ $$
 
 where $C_j$ is cluster $j$ and $\boldsymbol{\mu}_j$ is its centroid.
 
-## Manual example
+## Basic R example
 
-Consider six two-dimensional observations:
-
-| Point | x | y |
-|---|---:|---:|
-| A | 1 | 1 |
-| B | 1.5 | 2 |
-| C | 3 | 4 |
-| D | 5 | 7 |
-| E | 3.5 | 5 |
-| F | 4.5 | 5 |
-
-For $k=2$, choose two initial centroids, assign each point to the nearest one, recompute both centroids, and repeat until the solution stabilizes.
-
-## Basic implementation in R
-
-```{r en-kmeans-basic-data}
-data_km <- data.frame(
+```{r kmeans-basic}
+data <- data.frame(
   x = c(1, 1.5, 3, 5, 3.5, 4.5),
   y = c(1, 2, 4, 7, 5, 5)
 )
 
-data_km
-```
-
-```{r en-kmeans-basic-fit}
 set.seed(123)
-model_km <- kmeans(data_km, centers = 2, nstart = 25)
-model_km
+km <- kmeans(data, centers = 2, nstart = 25)
+km
 ```
 
-```{r en-kmeans-basic-plot}
-data_km$cluster <- factor(model_km$cluster)
+```{r kmeans-basic-plot, fig.width=7, fig.height=4.8}
+data$cluster <- factor(km$cluster)
 plot(
-  data_km$x, data_km$y,
-  col = data_km$cluster,
+  data$x, data$y,
+  col = data$cluster,
   pch = 19,
-  xlab = "x", ylab = "y",
+  xlab = "x",
+  ylab = "y",
   main = "k-means clustering"
 )
-points(model_km$centers, pch = 8, cex = 2, lwd = 2)
+points(km$centers, pch = 8, cex = 2.2, lwd = 2)
 ```
 
-## Why use `nstart`?
+## Why multiple random starts matter
 
-k-means depends on its initial centroids. With `nstart = 25`, R tries multiple random initializations and keeps the solution with the smallest within-cluster variation.
+k-means can converge to different local solutions. `nstart = 25` runs several initializations and retains the solution with the smallest within-cluster variation.
 
-## Scaling variables
+::: {.callout-tip title="Initialization and stability"}
+A large `nstart` reduces dependence on one initialization, but it does not replace stability checks across samples, variables, or preprocessing choices.
+:::
 
-Because k-means is distance-based, a variable measured in thousands can dominate another measured from 0 to 10. A common standardization is
+## Scaling
+
+Because k-means is distance-based, scale defines the geometry of the problem. Continuous variables are often standardized:
 
 $$
 z=\frac{x-\bar{x}}{s}.
 $$
 
-```{r en-kmeans-scale-iris}
-X <- scale(iris[, 1:4])
-head(X)
+```{r kmeans-iris-scale}
+X_iris <- scale(iris[, 1:4])
+head(X_iris)
 ```
 
-::: {.callout-important title="Scaling changes the geometry"}
-Standardization is not a cosmetic preprocessing step. It changes the distances used to define the clusters and can therefore change the solution itself.
+::: {.callout-important title="Standardizing binary variables is a weighting decision"}
+A 0/1 variable does not have to be standardized automatically. Standardization can give a rare category substantial relative influence. With mixed numeric and binary data, the intended weighting should be explicit and documented.
 :::
 
-## Application with `iris`
+## `iris` example
 
-```{r en-kmeans-iris-fit}
+```{r kmeans-iris}
 set.seed(2026)
-km_iris <- kmeans(X, centers = 3, nstart = 50)
+km_iris <- kmeans(X_iris, centers = 3, nstart = 50)
 
 table(
   Cluster = km_iris$cluster,
@@ -122,29 +107,24 @@ table(
 )
 ```
 
-The numerical cluster labels have no intrinsic meaning or order. Cluster 1 is not better, worse, earlier, or more important than cluster 2.
+Species was not used to form the clusters. It is shown afterward only to compare unsupervised structure with a known label.
 
-## Interpreting centroids
+## Centroids
 
-```{r en-kmeans-iris-centers}
+```{r kmeans-iris-centroids}
 km_iris$centers
 ```
 
-Each row represents an average standardized profile. Positive values indicate measurements above the overall mean; negative values indicate measurements below the overall mean.
+With standardized variables, positive centroid values indicate averages above the overall mean and negative values indicate averages below it.
 
-## Elbow method
+## Choosing $k$: elbow method
 
-The elbow method compares within-cluster variation over a sequence of values of $k$.
-
-```{r en-kmeans-elbow, fig.width=7, fig.height=4.5}
+```{r kmeans-elbow, fig.width=7, fig.height=4.5}
 k_values <- 1:10
-wss <- numeric(length(k_values))
-
-for (i in seq_along(k_values)) {
-  set.seed(123)
-  fit <- kmeans(X, centers = k_values[i], nstart = 25)
-  wss[i] <- fit$tot.withinss
-}
+wss <- sapply(k_values, function(k_now) {
+  set.seed(2026)
+  kmeans(X_iris, centers = k_now, nstart = 30)$tot.withinss
+})
 
 plot(
   k_values, wss,
@@ -155,34 +135,50 @@ plot(
 )
 ```
 
-The goal is to look for a region after which adding more clusters produces progressively smaller improvements. The elbow is a diagnostic, not an automatic proof of the correct value of $k$.
+The elbow is the region where additional clusters begin to provide much smaller reductions in WSS. It is a diagnostic, not an automatic rule.
 
 ## Silhouette coefficient
 
-Silhouette analysis compares within-cluster cohesion with separation from neighboring clusters. Values range from -1 to 1:
+Silhouette compares cohesion within the assigned cluster with separation from the nearest competing cluster. Values close to 1 indicate clear membership, values near 0 indicate boundary observations, and negative values suggest possible misassignment.
 
-- close to 1: the observation is well matched to its cluster;
-- close to 0: the observation lies near a boundary;
-- negative: the observation may fit another cluster better.
+```{r kmeans-iris-silhouette}
+d_iris <- dist(X_iris)
 
-```{r en-kmeans-silhouette}
-#| eval: false
-if (!requireNamespace("cluster", quietly = TRUE)) {
-  install.packages("cluster", repos = "https://cloud.r-project.org")
-}
+sil_iris <- sapply(2:6, function(k_now) {
+  set.seed(2026)
+  model <- kmeans(X_iris, centers = k_now, nstart = 30)
+  sil <- cluster::silhouette(model$cluster, d_iris)
+  mean(sil[, "sil_width"])
+})
 
-sil <- cluster::silhouette(km_iris$cluster, dist(X))
-mean(sil[, "sil_width"])
-plot(sil)
+data.frame(k = 2:6, mean_silhouette = sil_iris)
 ```
 
-Neither the elbow method nor silhouette analysis identifies one universally correct value of $k$. A defensible choice combines quantitative diagnostics, stability, interpretability, and subject-matter knowledge.
+::: {.callout-note title="There is no universally correct k"}
+A reasonable choice combines elbow, silhouette, stability, interpretability, and domain knowledge. A tiny numerical advantage does not necessarily justify a much more complicated segmentation.
+:::
+
+## Stability across initializations
+
+```{r kmeans-iris-stability}
+seed_results <- do.call(rbind, lapply(1:20, function(s) {
+  set.seed(s)
+  model <- kmeans(X_iris, centers = 3, nstart = 10)
+  data.frame(
+    seed = s,
+    wss = model$tot.withinss,
+    between_ratio = model$betweenss / model$totss
+  )
+}))
+
+summary(seed_results[, c("wss", "between_ratio")])
+```
+
+Large changes across seeds despite multiple starts indicate that the solution deserves additional caution.
 
 ## Interactive k-means laboratory
 
 ::: {.content-visible when-format="html"}
-Change the number of clusters, sample size, and dispersion and observe how the centroids and separation change.
-
 ```{shinylive-r}
 #| standalone: true
 #| viewerHeight: 690
@@ -191,12 +187,12 @@ Change the number of clusters, sample size, and dispersion and observe how the c
 library(shiny)
 
 ui <- fluidPage(
-  titlePanel("Interactive laboratory: k-means"),
+  titlePanel("Interactive k-means laboratory"),
   sidebarLayout(
     sidebarPanel(
       sliderInput("k", "Number of clusters", 2, 6, 3, 1),
       sliderInput("n", "Number of observations", 30, 200, 90, 10),
-      sliderInput("disp", "Dispersion", 0.2, 2.0, 0.7, 0.1),
+      sliderInput("spread", "Dispersion", 0.2, 2.0, 0.7, 0.1),
       numericInput("seed", "Seed", 123, 1),
       actionButton("update", "Generate and cluster")
     ),
@@ -208,43 +204,40 @@ ui <- fluidPage(
 )
 
 server <- function(input, output, session) {
-  data_now <- eventReactive(input$update, {
+  data_sim <- eventReactive(input$update, {
     set.seed(input$seed)
     centers <- matrix(
       c(-3,-2, 0,3, 3,-1, -2,4, 4,4, 0,-4),
       ncol = 2, byrow = TRUE
     )
-    group <- sample(seq_len(input$k), input$n, replace = TRUE)
+    g <- sample(seq_len(input$k), input$n, replace = TRUE)
     data.frame(
-      x = centers[group, 1] + rnorm(input$n, sd = input$disp),
-      y = centers[group, 2] + rnorm(input$n, sd = input$disp)
+      x = centers[g, 1] + rnorm(input$n, sd = input$spread),
+      y = centers[g, 2] + rnorm(input$n, sd = input$spread)
     )
   }, ignoreNULL = FALSE)
 
   fit <- reactive({
     set.seed(input$seed)
-    kmeans(data_now(), centers = input$k, nstart = 25)
+    kmeans(data_sim(), centers = input$k, nstart = 25)
   })
 
   output$plot <- renderPlot({
-    d <- data_now()
-    km <- fit()
-    plot(
-      d$x, d$y, col = km$cluster, pch = 19,
-      xlab = "Variable 1", ylab = "Variable 2",
-      main = paste("k-means with k =", input$k)
-    )
-    points(km$centers, pch = 8, cex = 2.2, lwd = 3)
+    d <- data_sim(); model <- fit()
+    plot(d$x, d$y, col = model$cluster, pch = 19,
+         xlab = "Variable 1", ylab = "Variable 2",
+         main = paste("k-means with k =", input$k))
+    points(model$centers, pch = 8, cex = 2.2, lwd = 3)
     grid()
   })
 
   output$summary <- renderTable({
-    km <- fit()
+    model <- fit()
     data.frame(
       Cluster = seq_len(input$k),
-      Size = as.integer(km$size),
-      Center_X = round(km$centers[, 1], 2),
-      Center_Y = round(km$centers[, 2], 2)
+      Size = as.integer(model$size),
+      Center_X = round(model$centers[, 1], 2),
+      Center_Y = round(model$centers[, 2], 2)
     )
   })
 }
@@ -254,131 +247,189 @@ shinyApp(ui, server)
 :::
 
 ::: {.content-visible when-format="pdf"}
-The interactive k-means laboratory is available in the web edition. It allows the reader to change $k$, the sample size, and the dispersion of the groups.
+The interactive k-means laboratory is available in the web edition.
 :::
 
-## Advantages
+## Applied case A: monthly ATUS profiles
 
-- simple and intuitive;
-- fast for many medium and large datasets;
-- easy to visualize;
-- useful for segmentation and exploration;
-- available in base R.
+Rather than clustering raw categorical accident records directly, we first construct **numeric monthly profiles** from the prepared ATUS dataset.
 
-## Limitations
-
-- $k$ must be specified;
-- the solution depends on initialization;
-- the method is sensitive to scale and outliers;
-- it favors approximately spherical clusters;
-- it can perform poorly with clusters of very different densities or sizes;
-- it is naturally defined for numerical variables.
-
-## Common mistakes
-
-1. Failing to standardize variables when scales differ substantially.
-2. Selecting $k$ only because it matches a prior expectation.
-3. Using one random initialization.
-4. Treating cluster numbers as ordered categories.
-5. Including identifiers as features.
-6. Ignoring outliers.
-7. Treating discovered clusters as true classes.
-8. Naming clusters without inspecting their centroid profiles.
-
-## Application with real data
-
-In road-safety data, clustering can be used to group municipalities, time periods, or accident profiles using variables such as number of victims, frequency, hour, area, and severity. The objective is not to predict a known label but to discover similar profiles.
-
-## Guided activity
-
-1. Select four numerical variables from a real dataset.
-2. Handle missing values.
-3. Standardize the variables.
-4. Evaluate values of $k$ from 2 to 10.
-5. Inspect the elbow plot.
-6. Calculate silhouette values.
-7. Fit the final model with `nstart = 50`.
-8. Interpret the centroids.
-9. Assign descriptive names only after inspecting the profiles.
-10. Explain the limitations of the analysis.
-
-## Exercises
-
-1. Carry out one k-means iteration manually.
-2. Compare results with and without standardization.
-3. Change the random seed and examine stability.
-4. Add outliers and observe the effect on centroids.
-5. Compare $k=2$, $k=3$, and $k=5$.
-6. Contrast the elbow method and silhouette analysis.
-7. Apply k-means to environmental or road-accident data.
-
-## Applied case B: k-means with COVID-19 data
-
-This second applied route uses the prepared open COVID-19 data from Mexico to discover **profiles of similar observations**. Unlike classification chapters, k-means is unsupervised: the variable `MURIO` is **not used to form the clusters**.
-
-> **Educational use:** clusters are statistical patterns in the selected sample. They are not clinical categories, diagnoses, prognoses, or medical risk levels.
-
-### Prepare variables for clustering
-
-The workflow selects a prepared dataset rather than silently assuming that one hard-coded year is always available. Binary variables remain coded as 0/1, while all selected features are standardized before clustering.
-
-```{r en-covid-kmeans-prepare}
+```{r atus-kmeans-prepare}
 library(readr)
 library(dplyr)
-library(tidyr)
 
-covid_files <- list.files(
-  "../datos/covid19/procesados",
-  pattern = "covid19_mexico_[0-9]{4}_ml_preparado\\.csv\\.gz$",
-  full.names = TRUE
+atus <- read_csv("../datos/atus_ml_preparado.csv", show_col_types = FALSE)
+
+atus_monthly <- atus |>
+  mutate(
+    MES = as.numeric(MES),
+    ID_HORA = as.numeric(ID_HORA),
+    weekend = DIASEMANA %in% c(
+      "sábado", "sabado", "domingo",
+      "Sábado", "Sabado", "Domingo"
+    ),
+    casualties = accidente_con_victimas == "Con víctimas"
+  ) |>
+  group_by(MES) |>
+  summarise(
+    accidents = n(),
+    mean_hour = mean(ID_HORA, na.rm = TRUE),
+    weekend_proportion = mean(weekend, na.rm = TRUE),
+    casualty_proportion = mean(casualties, na.rm = TRUE),
+    accident_types = n_distinct(TIPACCID),
+    .groups = "drop"
+  ) |>
+  filter(if_all(-MES, is.finite))
+
+atus_monthly
+```
+
+Each row is now a month rather than an individual accident.
+
+```{r atus-kmeans-scale}
+atus_vars <- c(
+  "accidents", "mean_hour", "weekend_proportion",
+  "casualty_proportion", "accident_types"
 )
 
-if (length(covid_files) == 0) {
-  stop("No prepared COVID-19 data file was found.")
-}
+X_atus <- scale(atus_monthly[atus_vars])
+```
 
-covid_km <- read_csv(covid_files[1], show_col_types = FALSE) |>
+### Choose among a small range of k
+
+With only 12 months, a large number of clusters would not be meaningful.
+
+```{r atus-kmeans-select-k}
+d_atus <- dist(X_atus)
+
+sil_atus <- sapply(2:4, function(k_now) {
+  set.seed(2026)
+  model <- kmeans(X_atus, centers = k_now, nstart = 50)
+  mean(cluster::silhouette(model$cluster, d_atus)[, "sil_width"])
+})
+
+atus_k_table <- data.frame(k = 2:4, mean_silhouette = sil_atus)
+atus_k_table
+
+k_atus <- atus_k_table$k[which.max(atus_k_table$mean_silhouette)]
+```
+
+```{r atus-kmeans-model}
+set.seed(2026)
+km_atus <- kmeans(X_atus, centers = k_atus, nstart = 100)
+atus_monthly$cluster <- factor(km_atus$cluster)
+
+atus_monthly |>
+  arrange(cluster, MES)
+```
+
+```{r atus-kmeans-profiles}
+atus_monthly |>
+  group_by(cluster) |>
+  summarise(
+    months = paste(MES, collapse = ", "),
+    mean_accidents = mean(accidents),
+    mean_hour = mean(mean_hour),
+    mean_weekend = mean(weekend_proportion),
+    mean_casualties = mean(casualty_proportion),
+    .groups = "drop"
+  )
+```
+
+::: {.callout-warning title="Only 12 aggregated observations"}
+This is a teaching example for constructing real ATUS profiles. It does not support strong claims about seasonal structure; the clusters describe these 12 monthly profiles in the prepared dataset.
+:::
+
+## Applied case B: COVID-19 profiles
+
+The outcome `MURIO` is excluded from cluster formation and is used only afterward as an external descriptive variable.
+
+```{r covid-kmeans-prepare}
+comparison <- read_csv(
+  "../datos/covid19/comparacion_estructural_2020_2025.csv",
+  show_col_types = FALSE
+)
+
+selected_year <- comparison |>
+  filter(is_usable_for_book, !is.na(prepared_ml_file)) |>
+  arrange(desc(common_columns), desc(rows)) |>
+  slice(1) |>
+  pull(year)
+
+covid_file <- file.path(
+  "../datos/covid19/procesados",
+  paste0("covid19_mexico_", selected_year, "_ml_preparado.csv.gz")
+)
+
+covid_km <- read_csv(covid_file, show_col_types = FALSE) |>
   select(
     MURIO, EDAD, NEUMONIA, DIABETES, HIPERTENSION,
-    OBESIDAD, RENAL_CRONICA, NUM_COMORBILIDADES
+    OBESIDAD, RENAL_CRONICA
   ) |>
-  drop_na()
+  tidyr::drop_na()
 
 set.seed(2026)
 covid_km <- covid_km |>
   sample_n(min(12000, nrow(covid_km)))
-
-kmeans_features <- c(
-  "EDAD", "NEUMONIA", "DIABETES", "HIPERTENSION",
-  "OBESIDAD", "RENAL_CRONICA", "NUM_COMORBILIDADES"
-)
-
-X_covid_km <- scale(covid_km[kmeans_features])
 ```
 
-::: {.callout-important title="MURIO stays outside the clustering features"}
-`MURIO` is retained only for descriptive comparison after clustering. It is not included in `X_covid_km`, so death status cannot guide cluster formation.
+### Build the clustering matrix
+
+Only age is standardized in this edition. Binary comorbidity variables remain 0/1. This avoids automatically giving a rare binary variable a large weight simply because its variance is small.
+
+```{r covid-kmeans-matrix}
+X_covid <- covid_km |>
+  transmute(
+    EDAD = as.numeric(scale(EDAD)),
+    NEUMONIA,
+    DIABETES,
+    HIPERTENSION,
+    OBESIDAD,
+    RENAL_CRONICA
+  ) |>
+  as.matrix()
+```
+
+::: {.callout-note title="Weighting is part of the model"}
+Standardizing every variable or assigning explicit weights would define a different geometry and could produce different clusters. The choice should be documented rather than treated as a hidden preprocessing default.
 :::
 
-### Explore the number of clusters with the elbow method
+### Diagnose k on a reproducible subsample
 
-```{r en-covid-kmeans-elbow, fig.width=7, fig.height=4.5}
-k_covid <- 1:8
-wss_covid <- numeric(length(k_covid))
+```{r covid-kmeans-select-k}
+set.seed(2026)
+n_sil <- min(2500, nrow(X_covid))
+idx_sil <- sample(seq_len(nrow(X_covid)), n_sil)
+X_sil <- X_covid[idx_sil, , drop = FALSE]
+d_sil <- dist(X_sil)
 
-for (i in seq_along(k_covid)) {
+k_candidates <- 2:6
+sil_covid <- sapply(k_candidates, function(k_now) {
   set.seed(2026)
-  fit <- kmeans(
-    X_covid_km,
-    centers = k_covid[i],
-    nstart = 30,
-    iter.max = 100
-  )
-  wss_covid[i] <- fit$tot.withinss
-}
+  model <- kmeans(X_sil, centers = k_now, nstart = 40)
+  mean(cluster::silhouette(model$cluster, d_sil)[, "sil_width"])
+})
+
+covid_k_table <- data.frame(
+  k = k_candidates,
+  mean_silhouette = sil_covid
+)
+covid_k_table
+
+k_covid <- covid_k_table$k[which.max(covid_k_table$mean_silhouette)]
+k_covid
+```
+
+### Elbow method
+
+```{r covid-kmeans-elbow, fig.width=7, fig.height=4.5}
+wss_covid <- sapply(1:8, function(k_now) {
+  set.seed(2026)
+  kmeans(X_covid, centers = k_now, nstart = 30)$tot.withinss
+})
 
 plot(
-  k_covid, wss_covid,
+  1:8, wss_covid,
   type = "b", pch = 19,
   xlab = "Number of clusters k",
   ylab = "Within-cluster sum of squares",
@@ -386,63 +437,44 @@ plot(
 )
 ```
 
-The elbow method does not choose a perfect $k$ automatically. It helps identify where additional clusters produce increasingly small reductions in within-cluster variation.
+Silhouette provides a quantitative guide and the elbow offers a complementary perspective. If they disagree strongly, the ambiguity should be reported rather than hidden.
 
-### Compare silhouette values
+### Fit the selected solution
 
-To keep the distance calculation manageable, silhouette is evaluated on a reproducible subsample.
-
-```{r en-covid-kmeans-silhouette}
-#| eval: false
+```{r covid-kmeans-model}
 set.seed(2026)
-n_sil <- min(2500, nrow(X_covid_km))
-idx_sil <- sample(seq_len(nrow(X_covid_km)), n_sil)
-X_sil <- X_covid_km[idx_sil, , drop = FALSE]
-dist_sil <- dist(X_sil)
-
-silhouette_mean <- sapply(2:6, function(k_now) {
-  set.seed(2026)
-  km_tmp <- kmeans(X_sil, centers = k_now, nstart = 30)
-  sil_tmp <- cluster::silhouette(km_tmp$cluster, dist_sil)
-  mean(sil_tmp[, "sil_width"])
-})
-
-data.frame(
-  k = 2:6,
-  mean_silhouette = silhouette_mean
-)
-```
-
-### Fit a three-cluster teaching solution
-
-For a simple interpretation, the following teaching example uses $k=3$. In a formal analysis, the value should be justified jointly through the elbow, silhouette, stability, and interpretability.
-
-```{r en-covid-kmeans-fit}
-set.seed(2026)
-covid_km_model <- kmeans(
-  X_covid_km,
-  centers = 3,
-  nstart = 50,
+km_covid <- kmeans(
+  X_covid,
+  centers = k_covid,
+  nstart = 100,
   iter.max = 100
 )
 
-covid_km$cluster <- factor(covid_km_model$cluster)
+covid_km$cluster <- factor(km_covid$cluster)
 table(covid_km$cluster)
 ```
 
-### Interpret standardized centroids
+### Stability across seeds
 
-```{r en-covid-kmeans-centers}
-covid_centers <- as.data.frame(covid_km_model$centers)
-covid_centers$cluster <- factor(seq_len(nrow(covid_centers)))
-covid_centers
+```{r covid-kmeans-stability}
+covid_stability <- do.call(rbind, lapply(1:20, function(s) {
+  set.seed(s)
+  model <- kmeans(X_covid, centers = k_covid, nstart = 20)
+  data.frame(
+    seed = s,
+    wss = model$tot.withinss,
+    between_ratio = model$betweenss / model$totss
+  )
+}))
+
+summary(covid_stability[, c("wss", "between_ratio")])
 ```
 
-Because the variables were standardized, a positive centroid coordinate means that the cluster is above the sample mean for that variable; a negative value means it is below the sample mean.
+This checks initialization stability. A stronger analysis would also repeat the procedure on different subsamples.
 
-### Describe profiles in original units
+### Profiles in original units
 
-```{r en-covid-kmeans-profiles}
+```{r covid-kmeans-profiles}
 covid_profiles <- covid_km |>
   group_by(cluster) |>
   summarise(
@@ -453,42 +485,38 @@ covid_profiles <- covid_km |>
     hypertension_pct = mean(HIPERTENSION) * 100,
     obesity_pct = mean(OBESIDAD) * 100,
     chronic_kidney_pct = mean(RENAL_CRONICA) * 100,
-    mean_comorbidities = mean(NUM_COMORBILIDADES),
     .groups = "drop"
   )
 
 covid_profiles
 ```
 
-### Examine `MURIO` only after the clusters have been formed
+### Describe `MURIO` after clustering
 
-```{r en-covid-kmeans-death-description}
-death_by_cluster <- covid_km |>
+```{r covid-kmeans-outcome}
+covid_km |>
   group_by(cluster) |>
   summarise(
-    cases = n(),
-    recorded_deaths = sum(MURIO == 1),
-    death_percentage = mean(MURIO == 1) * 100,
+    records = n(),
+    sample_death_percentage = mean(MURIO == 1) * 100,
     .groups = "drop"
   )
-
-death_by_cluster
 ```
 
-::: {.callout-warning title="Correct interpretation"}
-A difference in the percentage of recorded deaths across clusters does **not** establish causality and does not turn k-means into a predictive model. The groups were formed only from similarity in the input variables.
+::: {.callout-warning title="External variable, not a target"}
+Differences in `MURIO` across clusters do not turn k-means into a classifier and do not establish causality. The variable did not participate in cluster formation.
 :::
 
-### Two-dimensional visualization with PCA
+### PCA visualization
 
-PCA is used here only to project the fitted clusters into two dimensions for visualization. The k-means solution itself remains the one fitted in the original standardized feature space.
+PCA is used only to create a two-dimensional view. Clustering remains defined by `X_covid`.
 
-```{r en-covid-kmeans-pca, fig.width=7, fig.height=5}
-pca_covid_km <- prcomp(X_covid_km, center = FALSE, scale. = FALSE)
+```{r covid-kmeans-pca, fig.width=7, fig.height=5}
+pca_covid <- prcomp(X_covid, center = TRUE, scale. = TRUE)
 
 covid_plot <- data.frame(
-  PC1 = pca_covid_km$x[, 1],
-  PC2 = pca_covid_km$x[, 2],
+  PC1 = pca_covid$x[, 1],
+  PC2 = pca_covid$x[, 2],
   cluster = covid_km$cluster
 )
 
@@ -499,7 +527,7 @@ ggplot2::ggplot(
   ggplot2::geom_point(alpha = 0.35, size = 1.2) +
   ggplot2::labs(
     title = "COVID-19 profiles obtained with k-means",
-    subtitle = "PCA projection used only to visualize the clusters",
+    subtitle = "PCA is used only for visualization",
     x = "Principal component 1",
     y = "Principal component 2",
     color = "Cluster"
@@ -507,65 +535,74 @@ ggplot2::ggplot(
   ggplot2::theme_minimal()
 ```
 
-::: {.callout-tip title="What this case teaches"}
-Classification uses a known label to learn a prediction rule. Clustering searches for structure without a label. External variables may be examined afterward to describe the groups, but that does not imply that those variables caused the clusters.
+::: {.callout-warning title="Educational use only"}
+COVID-19 clusters are statistical profiles within the selected sample. They are not diagnoses, clinical categories, or medical risk levels.
 :::
 
-## Stability and responsible interpretation
+## Strengths and limitations
 
-A responsible clustering analysis should examine whether the solution changes substantially with different seeds, samples, scaling choices, or neighboring values of $k$. A cluster that disappears under small perturbations should be interpreted cautiously.
+### Strengths
 
-Descriptive names should be assigned only after inspecting centroid profiles and the relevant distributions. Cluster labels such as 1, 2, and 3 have no substantive meaning by themselves.
+- simple and intuitive;
+- computationally efficient in many datasets;
+- easy to summarize through centroids;
+- useful for exploration and segmentation.
 
-## Supplementary chapter materials
+### Limitations
 
-The same supporting materials used by the Spanish edition remain available for the bilingual edition. The presentation can be read as a PDF or edited in PowerPoint; the infographic provides a visual summary, the video explains the chapter, and the Colab notebook allows the examples to be executed independently.
+- requires choosing $k$;
+- depends on scale and initialization;
+- is sensitive to outliers;
+- tends to favor compact, roughly spherical groups;
+- is not naturally designed for purely categorical variables;
+- can produce apparently clear clusters even when the underlying structure is weak.
+
+## Common mistakes
+
+1. Failing to document scaling.
+2. Choosing $k$ only because it matches an expectation.
+3. Using a single initialization.
+4. Treating labels 1, 2, and 3 as ordered categories.
+5. Including identifiers.
+6. Calling clusters "true classes."
+7. Describing clusters without inspecting centroids and distributions.
+8. Using an outcome variable to form clusters and later presenting it as external validation.
+
+## Recommended workflow
+
+1. Define what observations should be grouped.
+2. Select substantively meaningful variables.
+3. Handle missing values and outliers.
+4. Decide and document scaling or weighting.
+5. Explore several values of $k$.
+6. Inspect silhouette and elbow diagnostics.
+7. Examine stability.
+8. Fit with multiple random starts.
+9. Interpret centroids in understandable units.
+10. Validate whether the profiles are useful with domain knowledge.
+
+## Supplementary materials for this chapter
 
 | Resource | Purpose | Open or play | Download |
 |---|---|---|---|
-| Explanatory video | Audiovisual explanation of the chapter. | [Watch on YouTube](https://www.youtube.com/watch?v=mZgUlnSxrgA){target="_blank"} | — |
-| PDF presentation | Slides for reading, study, or teaching. | [Open PDF](../recursos/capitulo-13/capitulo-13-kmeans-presentacion.pdf){target="_blank"} | [Download PDF](../recursos/capitulo-13/capitulo-13-kmeans-presentacion.pdf){download="capitulo-13-kmeans-presentacion.pdf"} |
-| Editable presentation | PowerPoint file for adaptation in class. | [Open PPTX](../recursos/capitulo-13/capitulo-13-kmeans-presentacion.pptx) | [Download PPTX](../recursos/capitulo-13/capitulo-13-kmeans-presentacion.pptx){download="capitulo-13-kmeans-presentacion.pptx"} |
-| Infographic | Visual summary of the main ideas. | [Open infographic](../recursos/capitulo-13/capitulo-13-kmeans-infografia.png){target="_blank"} | [Download PNG](../recursos/capitulo-13/capitulo-13-kmeans-infografia.png){download="capitulo-13-kmeans-infografia.png"} |
-| Google Colab notebook | Standalone notebook for running the chapter examples. | [Open in Google Colab](https://colab.research.google.com/github/gilbertorodriguez59/libro-machine-learning-r/blob/main/colab/13-kmeans.ipynb){target="_blank"} | — |
+| Explanatory video | Audiovisual explanation of k-means clustering. | [Watch on YouTube](https://www.youtube.com/watch?v=mZgUlnSxrgA){target="_blank"} | — |
+| PDF presentation | Slides for study or classroom presentation. | [View PDF](../recursos/capitulo-13/capitulo-13-kmeans-presentacion.pdf){target="_blank"} | [Download PDF](../recursos/capitulo-13/capitulo-13-kmeans-presentacion.pdf){download="chapter-13-kmeans-presentation.pdf"} |
+| Editable presentation | PowerPoint file for classroom use or adaptation. | [Open PPTX](../recursos/capitulo-13/capitulo-13-kmeans-presentacion.pptx) | [Download PPTX](../recursos/capitulo-13/capitulo-13-kmeans-presentacion.pptx){download="chapter-13-kmeans-presentation.pptx"} |
+| Infographic | Visual summary of the algorithm and modeling choices. | [View infographic](../recursos/capitulo-13/capitulo-13-kmeans-infografia.png){target="_blank"} | [Download PNG](../recursos/capitulo-13/capitulo-13-kmeans-infografia.png){download="chapter-13-kmeans-infographic.png"} |
+| Google Colab notebook | Self-contained executable notebook. | [Open in Google Colab](https://colab.research.google.com/github/gilbertorodriguez59/libro-machine-learning-r/blob/main/colab/13-kmeans.ipynb){target="_blank"} | — |
 
 ::: {.content-visible when-format="html"}
-### Explanatory video
-
 <div class="video-responsive">
-  <iframe
-    src="https://www.youtube.com/embed/mZgUlnSxrgA"
-    title="Chapter 13. k-means clustering"
+  <iframe src="https://www.youtube.com/embed/mZgUlnSxrgA"
+    title="Chapter 13. k-means Clustering"
     frameborder="0"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
     referrerpolicy="strict-origin-when-cross-origin"
     allowfullscreen>
   </iframe>
 </div>
-
-### Infographic preview
-
-[![Chapter 13 infographic](../recursos/capitulo-13/capitulo-13-kmeans-infografia.png)](../recursos/capitulo-13/capitulo-13-kmeans-infografia.png)
-:::
-
-::: {.content-visible when-format="pdf"}
-**Chapter video:** <https://www.youtube.com/watch?v=mZgUlnSxrgA>
-
-The PDF presentation, editable presentation, infographic, and Colab notebook can be accessed from the web edition.
-:::
-
-::: {.callout-note title="Preparation of the supplementary materials"}
-The supplementary materials were prepared with support from **Google NotebookLM**, using the chapter as their source, and were subsequently reviewed and adapted by the author. The book text and its source files remain the primary reference.
-:::
-
-::: {.callout-tip title="Complete course on YouTube"}
-This video belongs to the official **Machine Learning and Automatic Classification with R** course playlist.
-
-[View the complete course playlist](https://www.youtube.com/playlist?list=PLDJYd2v7Kt-Q){target="_blank"}
 :::
 
 ## Chapter summary
 
-k-means discovers groups through distances and centroids. Its usefulness depends on appropriate preprocessing, a reasoned choice of $k$, stability checks, and interpretation based on the profiles of the resulting clusters rather than on the cluster numbers themselves.
-
-This chapter closes the book's main algorithmic route. The appendices provide the glossary, references, figure index, and subject index for consultation.
+k-means discovers structure through distances and centroids. A sound analysis does not end with `kmeans()`: variables, scaling, and the number of clusters must be justified; stability should be examined; and profiles should be interpreted cautiously. This chapter closes the book's main algorithmic route and prepares the ground for an integrated comparison of the methods studied.

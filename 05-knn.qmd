@@ -522,7 +522,7 @@ covid_knn <- read_csv(ruta_covid, show_col_types = FALSE) |>
 
 set.seed(2026)
 covid_knn <- covid_knn |>
-  slice_sample(n = min(12000, n()))
+  slice_sample(n = min(12000, nrow(covid_knn)))
 
 X_covid <- covid_knn |>
   select(-MURIO) |>

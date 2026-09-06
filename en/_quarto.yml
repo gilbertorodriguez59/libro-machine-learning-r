@@ -12,6 +12,7 @@ format:
   html:
     embed-resources: false
     self-contained: false
+    include-after-body: ../language-switch.html
   pdf:
     documentclass: scrreprt
     keep-tex: true

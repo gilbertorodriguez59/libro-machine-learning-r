@@ -143,8 +143,10 @@ atus_rf_base <- atus_ml |>
     DIASEMANA,
     TIPACCID,
     CAUSAACCI
-  ) |>
-  slice_sample(n = min(15000, n()))
+  )
+
+atus_rf_base <- atus_rf_base |>
+  slice_sample(n = min(15000, nrow(atus_rf_base)))
 
 data.frame(
   filas = nrow(atus_rf_base),

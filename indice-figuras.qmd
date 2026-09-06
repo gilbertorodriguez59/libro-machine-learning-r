@@ -19,6 +19,7 @@ pueden localizarse mediante el índice del capítulo y los enlaces siguientes.
 - [Naive Bayes](10-naive-bayes.qmd)
 - [Redes neuronales artificiales](11-redes-neuronales.qmd)
 - [Agrupamiento con k-means](12-kmeans.qmd)
+- [Comparación integral y selección de modelos](13-comparacion-integral.qmd)
 
 ::: {.callout-note title="Figuras y laboratorios interactivos"}
 

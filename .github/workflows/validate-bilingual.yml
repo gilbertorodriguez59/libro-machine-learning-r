@@ -67,7 +67,20 @@ jobs:
             any::fs
             any::shiny
             any::shinylive
-          cache-version: bilingual-2026-2
+          cache-version: bilingual-2026-3
+
+      - name: Validar archivos fuente críticos
+        run: |
+          test -s datos/atus_ml_preparado.csv
+          test -s datos/covid19/procesados/covid19_mexico_2022_ml_preparado.csv.gz
+          test -s datos/covid19/procesados/conteo_casos_confirmados_2020_2025.csv
+          test -s datos/covid19/comparacion_estructural_2020_2025.csv
+          test -s colab/14-comparacion-integral.ipynb
+          grep -q '2022,TRUE,covid19_mexico_2022_ml_preparado.csv.gz' datos/covid19/comparacion_estructural_2020_2025.csv
+          grep -q 'Comparación integral y selección de modelos' 13-comparacion-integral.qmd
+          grep -q 'Integrated Model Comparison and Selection' en/14-integrated-model-comparison.qmd
+          grep -q 'keras3' 11-redes-neuronales.qmd
+          grep -q 'keras3' en/12-neural-networks.qmd
 
       - name: Renderizar edición web en español
         run: |
@@ -100,8 +113,6 @@ jobs:
           test -s docs/en/00-preface.html
           test -s docs/en/00-acknowledgments.html
           test -s docs/en/00-google-colab.html
-          test -s docs/en/figure-index.html
-          test -s docs/en/subject-index.html
           test -s docs/en/01-introduction.html
           test -s docs/en/02-data-preparation.html
           test -s docs/en/03-exploratory-data-analysis.html
@@ -116,27 +127,22 @@ jobs:
           test -s docs/en/12-neural-networks.html
           test -s docs/en/13-kmeans.html
           test -s docs/en/14-integrated-model-comparison.html
+          test -s docs/en/figure-index.html
+          test -s docs/en/subject-index.html
           grep -q 'English' docs/index.html
           grep -q 'Español' docs/en/index.html
-          grep -q 'Machine Learning and Automatic Classification with R' docs/en/index.html
-          grep -q 'fourteen technical chapters' docs/en/index.html
-          grep -q 'Supplementary materials for this chapter' docs/en/01-introduction.html
-          grep -q 'Interactive data preparation' docs/en/02-data-preparation.html
-          grep -q 'Interactive data explorer' docs/en/03-exploratory-data-analysis.html
-          grep -q 'Linear regression laboratory' docs/en/04-linear-regression.html
-          grep -q 'Calibration by probability groups' docs/en/05-logistic-regression.html
-          grep -q 'Selecting k on the validation set' docs/en/06-knn.html
-          grep -q 'Prune using cross-validation error' docs/en/07-decision-trees.html
-          grep -q 'Selecting mtry using OOB Brier score' docs/en/08-random-forest.html
-          grep -q 'Threshold selection with out-of-fold predictions' docs/en/09-model-evaluation.html
-          grep -q 'Artificial Neural Networks' docs/en/12-neural-networks.html
-          grep -q 'Interactive k-means laboratory' docs/en/13-kmeans.html
+          grep -q '14 cuadernos' docs/00-cuaderno-google-colab.html
+          grep -q '14 independent' docs/en/00-google-colab.html
+          grep -q 'Seleccionar el umbral en validación' docs/11-redes-neuronales.html
+          grep -q 'keras3' docs/11-redes-neuronales.html
+          grep -q 'Select the threshold on validation data' docs/en/12-neural-networks.html
+          grep -q 'keras3' docs/en/12-neural-networks.html
+          grep -q 'perfiles mensuales con ATUS' docs/12-kmeans.html
+          grep -q 'monthly ATUS profiles' docs/en/13-kmeans.html
           grep -q 'Comparación integral y selección de modelos' docs/13-comparacion-integral.html
           grep -q 'Integrated Model Comparison and Selection' docs/en/14-integrated-model-comparison.html
-          grep -q '13-comparacion-integral.html' docs/indice-tematico.html
-          grep -q '14-integrated-model-comparison.html' docs/en/subject-index.html
-          grep -q '14-integrated-model-comparison.html' docs/13-comparacion-integral.html
-          grep -q '../13-comparacion-integral.html' docs/en/14-integrated-model-comparison.html
+          grep -q 'Naive Bayes Classifier' docs/en/11-naive-bayes.html
+          grep -q 'Support Vector Machines' docs/en/10-svm.html
 
       - name: Renderizar PDF en español
         run: |

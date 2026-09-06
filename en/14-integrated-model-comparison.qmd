@@ -1,0 +1,418 @@
+# Integrated Model Comparison and Selection
+
+::: {.callout-note title="Connection with the theoretical volume"}
+Risk, generalization, validation, regularization, and model selection are developed in greater depth in Chapters 6 and 7 of *Mathematical Foundations of Machine Learning* [@rodriguez2026fundamentos].
+:::
+
+## Learning objectives
+
+By the end of this chapter, the reader will be able to:
+
+- compare the studied classifiers fairly;
+- distinguish model comparison from searching for a universal "winner";
+- separate training, validation, and testing;
+- select metrics that match the practical objective;
+- identify which algorithms require scaling, encoding, or threshold selection;
+- combine predictive performance with stability, interpretability, and computational cost;
+- explain why linear regression and k-means do not belong in the same classification leaderboard.
+
+## Fair comparison requires a common protocol
+
+Models should not be compared if they use different samples, train/test splits, outcome definitions, or positive classes. A reproducible comparison should keep constant:
+
+1. the study population or working sample;
+2. the response variable;
+3. the available predictors;
+4. the training/validation/test partition;
+5. the positive class;
+6. the final evaluation metrics;
+7. the rules used to prevent data leakage.
+
+::: {.callout-important title="The test set does not participate in selection"}
+The test set is used once, after hyperparameters, architecture, and thresholds have been selected. If test performance influences those decisions, the test set is no longer an independent evaluation.
+:::
+
+## Models that can be compared directly for binary classification
+
+The following methods can compete under one common binary-classification protocol:
+
+- logistic regression;
+- k-nearest neighbors (k-NN);
+- decision tree;
+- Random Forest;
+- Support Vector Machine;
+- Naive Bayes;
+- neural network.
+
+## Models that must be considered separately
+
+### Linear regression
+
+Linear regression predicts a **continuous quantity**. RMSE, MAE, and $R^2$ are natural metrics; sensitivity and specificity are not.
+
+### k-means
+
+k-means is **unsupervised**. It does not learn a known class label and should not compete in an accuracy table against supervised classifiers.
+
+::: {.callout-warning title="Do not force incompatible comparisons"}
+An algorithm is not globally better or worse outside the task it was designed to solve. Comparison must respect the type of response and the analytical objective.
+:::
+
+## Conceptual comparison matrix
+
+| Model | Scaling | Categorical predictors | Probabilities | Interpretability | Main choices |
+|---|---|---|---|---|---|
+| Logistic regression | Recommended | Factors/dummies | Yes | High | threshold, regularization if used |
+| k-NN | Essential | Encoding required | Not direct | Medium-low | $k$, distance |
+| Decision tree | Usually unnecessary | Yes | Yes | High | complexity, depth, node size |
+| Random Forest | Usually unnecessary | Yes | Yes | Medium | `mtry`, trees, node size |
+| SVM | Very important | Internal/external encoding | Optional | Medium-low | kernel, `cost`, `gamma` |
+| Naive Bayes | Depends on variant | Yes | Yes | High | smoothing, distributional assumptions |
+| Neural network | Important | Encoding required | Yes | Low | architecture, regularization, threshold |
+
+## Common metrics
+
+For a positive class of interest,
+
+$$
+Sensitivity=\frac{TP}{TP+FN},
+$$
+
+$$
+Specificity=\frac{TN}{TN+FP},
+$$
+
+$$
+Precision=\frac{TP}{TP+FP},
+$$
+
+$$
+F_1=2\frac{Precision\times Sensitivity}{Precision+Sensitivity},
+$$
+
+and
+
+$$
+Balanced\ Accuracy=\frac{Sensitivity+Specificity}{2}.
+$$
+
+When a model produces a continuous score or probability, AUC summarizes discrimination across thresholds. Calibration answers a different question and should be assessed separately.
+
+## Why accuracy alone is insufficient
+
+A majority class can produce high accuracy even when the minority class is detected poorly. For imbalanced classification, at minimum inspect:
+
+- sensitivity;
+- specificity;
+- precision;
+- F1;
+- balanced accuracy;
+- the confusion matrix.
+
+## Reproducible COVID-19 benchmark protocol
+
+The following template uses the prepared dataset selected through the reproducible data-preparation procedure. It is an **educational benchmark**, not a clinical evaluation.
+
+```{r comparison-load-data}
+#| eval: false
+
+library(readr)
+library(dplyr)
+library(tidyr)
+
+comparison <- read_csv(
+  "../datos/covid19/comparacion_estructural_2020_2025.csv",
+  show_col_types = FALSE
+)
+
+selected_year <- comparison |>
+  filter(is_usable_for_book, !is.na(prepared_ml_file)) |>
+  arrange(desc(common_columns), desc(rows)) |>
+  slice(1) |>
+  pull(year)
+
+covid_file <- file.path(
+  "../datos/covid19/procesados",
+  paste0("covid19_mexico_", selected_year, "_ml_preparado.csv.gz")
+)
+
+benchmark <- read_csv(covid_file, show_col_types = FALSE) |>
+  select(
+    MURIO, EDAD, NEUMONIA, DIABETES, HIPERTENSION,
+    OBESIDAD, RENAL_CRONICA, NUM_COMORBILIDADES
+  ) |>
+  drop_na()
+
+set.seed(2026)
+benchmark <- benchmark |>
+  sample_n(min(10000, nrow(benchmark))) |>
+  mutate(
+    class = factor(
+      MURIO,
+      levels = c(0, 1),
+      labels = c("No recorded death", "Recorded death")
+    )
+  ) |>
+  select(-MURIO)
+```
+
+::: {.callout-warning title="Educational benchmark"}
+The sample is used to compare algorithms under common conditions. Its probabilities and metrics are not clinical estimates or population risk measures.
+:::
+
+## Common training-validation-test split
+
+```{r comparison-split}
+#| eval: false
+
+stratified_sample <- function(y, proportion, seed) {
+  set.seed(seed)
+  unlist(lapply(
+    split(seq_along(y), y),
+    function(i) sample(i, floor(proportion * length(i)))
+  ))
+}
+
+idx_development <- stratified_sample(benchmark$class, 0.80, 2026)
+development <- benchmark[idx_development, ]
+test <- benchmark[-idx_development, ]
+
+idx_train <- stratified_sample(development$class, 0.75, 2027)
+train <- development[idx_train, ]
+validation <- development[-idx_train, ]
+
+prop.table(table(train$class))
+prop.table(table(validation$class))
+prop.table(table(test$class))
+```
+
+The approximate split is 60% training, 20% validation, and 20% test.
+
+## Common metric function
+
+```{r comparison-metric-function}
+#| eval: false
+
+binary_metrics <- function(actual, predicted,
+                           positive = "Recorded death") {
+  levels_all <- c("No recorded death", "Recorded death")
+  actual <- factor(actual, levels = levels_all)
+  predicted <- factor(predicted, levels = levels_all)
+  m <- table(Actual = actual, Predicted = predicted)
+
+  TP <- m[positive, positive]
+  FN <- m[positive, "No recorded death"]
+  FP <- m["No recorded death", positive]
+  TN <- m["No recorded death", "No recorded death"]
+
+  safe_div <- function(a, b) if (b == 0) NA_real_ else as.numeric(a / b)
+
+  sensitivity <- safe_div(TP, TP + FN)
+  specificity <- safe_div(TN, TN + FP)
+  precision <- safe_div(TP, TP + FP)
+  accuracy <- safe_div(TP + TN, sum(m))
+  f1 <- if (is.na(precision) || is.na(sensitivity) ||
+            precision + sensitivity == 0) NA_real_ else
+    2 * precision * sensitivity / (precision + sensitivity)
+
+  data.frame(
+    accuracy = accuracy,
+    sensitivity = sensitivity,
+    specificity = specificity,
+    balanced_accuracy = mean(c(sensitivity, specificity), na.rm = TRUE),
+    precision = precision,
+    f1 = f1
+  )
+}
+```
+
+## What belongs to validation
+
+| Model | Select using validation/development data |
+|---|---|
+| Logistic regression | threshold and regularization if used |
+| k-NN | $k$ and distance scheme |
+| Decision tree | complexity/pruning |
+| Random Forest | `mtry`, node size, sufficient tree count |
+| SVM | kernel, `cost`, `gamma` |
+| Naive Bayes | Laplace smoothing and variable specification |
+| Neural network | architecture, regularization, epochs, threshold |
+
+## Model-specific preprocessing
+
+### Distance- and margin-based models
+
+k-NN, SVM, and neural networks require particular attention to scaling. Parameters are learned from training data and reused unchanged for validation and test data.
+
+### Trees and Random Forest
+
+Predictor standardization is not required for tree splits.
+
+### Naive Bayes
+
+Binary variables may be treated categorically, while continuous variables may use Gaussian class-conditional distributions.
+
+### Logistic regression
+
+Categorical predictors can be represented through indicator variables. Threshold selection occurs after probability estimation.
+
+## Seven-model training template
+
+The chapter Colab notebook contains the full executable benchmark. The book emphasizes the protocol and model-specific decisions.
+
+```{r comparison-model-template}
+#| eval: false
+
+# 1. Logistic regression
+model_log <- glm(
+  class ~ .,
+  data = train,
+  family = binomial
+)
+
+# 2. k-NN
+# - construct numeric matrices;
+# - scale using training parameters;
+# - select k on validation data.
+
+# 3. Decision tree
+model_tree <- rpart::rpart(
+  class ~ .,
+  data = train,
+  method = "class"
+)
+
+# 4. Random Forest
+model_rf <- ranger::ranger(
+  class ~ .,
+  data = train,
+  num.trees = 500,
+  probability = TRUE,
+  seed = 2026
+)
+
+# 5. SVM
+# - select kernel/cost/gamma using training-validation data.
+
+# 6. Naive Bayes
+model_nb <- e1071::naiveBayes(
+  class ~ .,
+  data = train,
+  laplace = 1
+)
+
+# 7. Neural network
+# - encode/scale;
+# - select architecture and threshold on validation data.
+```
+
+## Final evaluation
+
+After selecting each configuration:
+
+1. refit the selected model using the development data;
+2. recompute learned preprocessing using development data only;
+3. apply the same transformation to the test set;
+4. obtain one final set of predictions;
+5. calculate the same metrics for all classifiers.
+
+The final table should have the following structure:
+
+| Model | Accuracy | Sensitivity | Specificity | Balanced accuracy | Precision | F1 |
+|---|---:|---:|---:|---:|---:|---:|
+| Logistic regression | — | — | — | — | — | — |
+| k-NN | — | — | — | — | — | — |
+| Decision tree | — | — | — | — | — | — |
+| Random Forest | — | — | — | — | — | — |
+| SVM | — | — | — | — | — | — |
+| Naive Bayes | — | — | — | — | — | — |
+| Neural network | — | — | — | — | — | — |
+
+The dashes indicate values to be generated by the reproducible benchmark rather than copied from chapters that used different samples or partitions.
+
+::: {.callout-important title="Do not mix results from different experiments"}
+Metrics are directly comparable only when they come from equivalent test data and the same outcome definition. Copying an accuracy value from one chapter and comparing it with sensitivity from another would be misleading.
+:::
+
+## The best metric depends on the objective
+
+- **Sensitivity:** important when false negatives are especially costly.
+- **Specificity:** important when false alarms are costly.
+- **Precision:** useful when positive predictions must be trustworthy.
+- **F1:** balances precision and sensitivity.
+- **Balanced accuracy:** summarizes sensitivity and specificity under imbalance.
+- **AUC:** measures discrimination without fixing one threshold.
+- **Calibration:** essential when the probabilities themselves will be interpreted.
+
+## Comparison beyond predictive metrics
+
+| Criterion | Logistic | k-NN | Tree | RF | SVM | NB | Neural network |
+|---|---|---|---|---|---|---|---|
+| Interpretability | High | Medium-low | High | Medium | Medium-low | High | Low |
+| Training cost | Low | Very low | Low | Medium | Medium-high | Very low | Medium-high |
+| Prediction cost | Low | Can be high | Low | Medium | Low | Low | Low |
+| Nonlinearity | Limited | High | High | High | High with kernels | Through distributions | High |
+| Scaling | Recommended | Essential | No | No | Important | Depends | Important |
+| Probability output | Natural | Not direct | Yes | Yes | Optional | Yes | Yes |
+
+## Practical selection guide
+
+### When interpretation is the priority
+
+Start with logistic regression or a small decision tree.
+
+### When the decision boundary may be complex
+
+Random Forest or a radial SVM are strong candidates.
+
+### When a fast probabilistic baseline is needed
+
+Naive Bayes is attractive because of its simplicity and speed.
+
+### When local similarity matters
+
+k-NN may work well in moderate dimensions with appropriate scaling.
+
+### When there are many observations and complex nonlinearities
+
+A neural network can provide flexibility, but its additional computational cost and lower interpretability should be justified by a meaningful improvement.
+
+::: {.callout-tip title="Parsimony principle"}
+If two models perform nearly the same, it is often reasonable to prefer the simpler, more stable, more interpretable, and easier-to-maintain model.
+:::
+
+## Where does k-means fit?
+
+k-means complements classification from a different perspective: it discovers profiles without a response variable. It can support exploratory analysis and hypothesis generation, but its clusters should not be added to the classifier table as if they were supervised predictions.
+
+## Recommendations for a professional report
+
+A model-comparison report should document:
+
+1. data source and period;
+2. exact response definition;
+3. included predictors;
+4. cleaning rules;
+5. partitions and random seeds;
+6. learned transformations;
+7. selected hyperparameters;
+8. selection metric;
+9. final test metrics;
+10. computation time;
+11. limitations and possible biases;
+12. justification for the final recommendation.
+
+## Integrative activity
+
+1. Run the common benchmark in the Colab notebook.
+2. Complete the seven-classifier test table.
+3. Rank models by balanced accuracy.
+4. Rank them again by sensitivity.
+5. Determine whether the preferred model changes with the metric.
+6. Compare computation time and interpretability.
+7. Write a technical recommendation of no more than 300 words.
+8. Explain why k-means does not appear in the classifier ranking.
+
+## Chapter summary
+
+There is no universally superior algorithm. Model selection depends on the objective, data, error costs, stability, interpretability, and available resources. A rigorous comparison requires all classifiers to compete under the same protocol and the test set to remain independent until the end. Professional machine learning begins where the naive search for the single highest accuracy ends.

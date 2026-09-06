@@ -17,6 +17,7 @@ The PDF edition automatically generates a **list of figures** from the captions 
 - [Naive Bayes](11-naive-bayes.qmd)
 - [Artificial neural networks](12-neural-networks.qmd)
 - [k-means clustering](13-kmeans.qmd)
+- [Integrated model comparison and selection](14-integrated-model-comparison.qmd)
 
 ::: {.callout-note title="Figures and interactive laboratories"}
 

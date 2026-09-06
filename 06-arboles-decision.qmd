@@ -163,8 +163,10 @@ atus_arbol_base <- atus_ml |>
     DIASEMANA,
     TIPACCID,
     CAUSAACCI
-  ) |>
-  slice_sample(n = min(20000, n()))
+  )
+
+atus_arbol_base <- atus_arbol_base |>
+  slice_sample(n = min(20000, nrow(atus_arbol_base)))
 
 data.frame(
   filas = nrow(atus_arbol_base),

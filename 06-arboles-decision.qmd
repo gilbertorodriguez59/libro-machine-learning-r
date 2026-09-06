@@ -469,7 +469,7 @@ covid_arbol <- read_csv(ruta_covid, show_col_types = FALSE) |>
 
 set.seed(2026)
 covid_arbol <- covid_arbol |>
-  slice_sample(n = min(12000, n()))
+  slice_sample(n = min(12000, nrow(covid_arbol)))
 
 partes_covid <- partir_train_test_estratificado(
   covid_arbol$MURIO,

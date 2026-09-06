@@ -6,17 +6,26 @@ The mathematical treatment of conditional probability, Bayes' theorem, and proba
 
 ## Learning objectives
 
-By the end of this chapter, the reader will be able to explain Bayes' theorem in a classification setting, interpret priors, likelihoods, and posteriors, understand the conditional-independence assumption, distinguish categorical and Gaussian Naive Bayes, and evaluate the classifier with held-out data.
+By the end of this chapter, the reader will be able to:
+
+- explain Bayes' theorem in a classification setting;
+- interpret priors, likelihoods, and posterior probabilities;
+- describe the conditional-independence assumption;
+- distinguish categorical and Gaussian Naive Bayes;
+- understand the zero-probability problem and Laplace smoothing;
+- fit and evaluate a Naive Bayes classifier in R;
+- select a smoothing value using validation rather than the final test set;
+- interpret posterior scores cautiously when prevalence has been modified.
 
 ## Bayes' theorem
 
-For a class $C$ and observed features $X$,
+For a class $C$ and observed predictors $X$,
 
 $$
 P(C\mid X)=\frac{P(X\mid C)P(C)}{P(X)}.
 $$
 
-For classification, the common denominator $P(X)$ does not need to be computed explicitly. We compare
+For classification, $P(X)$ is common to all classes, so we compare
 
 $$
 P(C\mid X)\propto P(X\mid C)P(C).
@@ -25,7 +34,7 @@ $$
 The components are:
 
 - $P(C)$: prior probability of the class;
-- $P(X\mid C)$: likelihood of the observed predictors under the class;
+- $P(X\mid C)$: likelihood of the predictors under the class;
 - $P(C\mid X)$: posterior probability after observing the predictors.
 
 ## The naive conditional-independence assumption
@@ -39,16 +48,42 @@ $$
 Therefore,
 
 $$
-P(C\mid X_1,\ldots,X_p)\propto P(C)\prod_{j=1}^{p}P(X_j\mid C).
+P(C\mid X_1,\ldots,X_p)
+\propto P(C)\prod_{j=1}^{p}P(X_j\mid C).
 $$
 
 ::: {.callout-tip title="Key idea"}
-The model computes a class score by multiplying the prior by conditional likelihood contributions from the predictors, then assigns the observation to the class with the larger posterior score.
+Naive Bayes constructs one score for each class from the prior and the class-conditional predictor distributions. The largest score determines the predicted class.
 :::
+
+## Manual categorical example
+
+```{r nb-manual-data}
+weather <- c("Dry", "Dry", "Rain", "Rain", "Dry",
+             "Rain", "Dry", "Rain", "Dry", "Rain")
+time <- c("Day", "Night", "Day", "Night", "Day",
+          "Night", "Night", "Day", "Day", "Night")
+victims <- factor(c("No", "No", "Yes", "Yes", "No",
+                    "Yes", "Yes", "No", "No", "Yes"))
+
+nb_demo <- data.frame(weather, time, victims)
+
+priors <- prop.table(table(nb_demo$victims))
+p_weather <- prop.table(table(nb_demo$weather, nb_demo$victims), margin = 2)
+p_time <- prop.table(table(nb_demo$time, nb_demo$victims), margin = 2)
+
+score_yes <- priors["Yes"] * p_weather["Rain", "Yes"] * p_time["Night", "Yes"]
+score_no <- priors["No"] * p_weather["Rain", "No"] * p_time["Night", "No"]
+
+posterior <- c(Yes = score_yes, No = score_no)
+posterior / sum(posterior)
+```
+
+The raw products are proportional to the posterior probabilities. Dividing by their sum normalizes them to add to one.
 
 ## Zero probabilities and Laplace smoothing
 
-If a categorical level never appears with a class in the training data, its estimated conditional probability may be zero. Multiplication then forces the entire class score to zero.
+If a categorical level never appears with a class in the training data, an estimated conditional probability may be zero. Multiplication then forces the entire class score to zero.
 
 Laplace smoothing replaces raw frequencies with adjusted counts:
 
@@ -56,77 +91,305 @@ $$
 \widehat{P}(X_j=x\mid C=c)=\frac{n_{x,c}+\alpha}{n_c+\alpha k},
 $$
 
-where $k$ is the number of categories and a common choice is $\alpha=1$.
+where $k$ is the number of categories. A common value is $\alpha=1$, but it should be treated as a modeling choice rather than a universal constant.
 
 ## Gaussian Naive Bayes
 
-For continuous predictors, a common variant assumes
+For a continuous predictor, a common assumption is
 
 $$
-X_j\mid C=c\sim N(\mu_{jc},\sigma_{jc}^2).
+X_j\mid C=c\sim N(\mu_{jc},\sigma_{jc}^{2}).
 $$
 
 The mean and variance are estimated separately for each predictor within each class.
 
-## Strengths and limitations
-
-Naive Bayes is fast, simple, probabilistic, and often effective in high-dimensional problems. Its limitations include a strong independence assumption, sensitivity to unobserved levels without smoothing, possible probability miscalibration, and distributional assumptions for continuous variables.
-
-::: {.callout-warning title="Predictive usefulness does not validate the independence assumption"}
-A good classification score does not imply that the predictors are truly conditionally independent. The assumption is a modeling simplification and should be described as such.
-:::
-
 ## ATUS route
 
-The Spanish edition applies Naive Bayes to an ATUS sample using month, hour, day of week, accident type, and cause. A stratified train/test split is used, Laplace smoothing is enabled, and performance is summarized with accuracy, sensitivity, specificity, precision, and F1.
+```{r nb-atus-load}
+library(readr)
+library(dplyr)
+library(e1071)
+library(ggplot2)
+source("../util_graficas.R")
 
-The learned class priors and conditional distributions can also be inspected directly, which makes Naive Bayes particularly useful as a didactic probabilistic baseline.
+atus <- read_csv("../datos/atus_ml_preparado.csv", show_col_types = FALSE)
 
-## Probability interpretation
+set.seed(2026)
+atus_nb <- atus |>
+  sample_n(min(20000, nrow(atus))) |>
+  transmute(
+    accident_class = factor(
+      accidente_con_victimas,
+      levels = c("Solo daños", "Con víctimas"),
+      labels = c("Property damage only", "With casualties")
+    ),
+    MES = factor(MES),
+    ID_HORA = as.numeric(ID_HORA),
+    DIASEMANA = factor(DIASEMANA),
+    TIPACCID = factor(TIPACCID),
+    CAUSAACCI = factor(CAUSAACCI)
+  ) |>
+  na.omit()
+```
 
-The `type = "raw"` prediction output contains model-based posterior scores. These are conditional on the fitted assumptions and the empirical training distribution.
+## Stratified train, validation, and test split
+
+The final test set must not be used to choose Laplace smoothing or other modeling options.
+
+```{r nb-split}
+stratified_sample <- function(y, proportion, seed) {
+  set.seed(seed)
+  unlist(lapply(
+    split(seq_along(y), y),
+    function(i) sample(i, size = floor(proportion * length(i)))
+  ))
+}
+
+idx_trainval <- stratified_sample(atus_nb$accident_class, 0.80, 2026)
+trainval <- atus_nb[idx_trainval, ]
+test_nb <- atus_nb[-idx_trainval, ]
+
+idx_train <- stratified_sample(trainval$accident_class, 0.75, 2027)
+train_nb <- trainval[idx_train, ]
+valid_nb <- trainval[-idx_train, ]
+
+prop.table(table(train_nb$accident_class))
+prop.table(table(valid_nb$accident_class))
+prop.table(table(test_nb$accident_class))
+```
+
+## Common metric function
+
+```{r nb-metrics-function}
+binary_metrics_nb <- function(actual, predicted,
+                              positive = "With casualties") {
+  levels_all <- c("Property damage only", "With casualties")
+  actual <- factor(actual, levels = levels_all)
+  predicted <- factor(predicted, levels = levels_all)
+  m <- table(Actual = actual, Predicted = predicted)
+
+  tp <- m[positive, positive]
+  fn <- m[positive, "Property damage only"]
+  fp <- m["Property damage only", positive]
+  tn <- m["Property damage only", "Property damage only"]
+
+  safe_div <- function(a, b) if (b == 0) NA_real_ else as.numeric(a / b)
+
+  sensitivity <- safe_div(tp, tp + fn)
+  specificity <- safe_div(tn, tn + fp)
+  precision <- safe_div(tp, tp + fp)
+  accuracy <- safe_div(tp + tn, sum(m))
+  f1 <- if (is.na(precision) || is.na(sensitivity) ||
+            precision + sensitivity == 0) NA_real_ else
+    2 * precision * sensitivity / (precision + sensitivity)
+
+  data.frame(
+    accuracy = accuracy,
+    sensitivity = sensitivity,
+    specificity = specificity,
+    balanced_accuracy = mean(c(sensitivity, specificity), na.rm = TRUE),
+    precision = precision,
+    f1 = f1
+  )
+}
+```
+
+## Select Laplace smoothing on validation data
+
+```{r nb-select-laplace}
+laplace_grid <- c(0, 0.5, 1, 2)
+
+validation_nb <- do.call(rbind, lapply(laplace_grid, function(alpha) {
+  model <- e1071::naiveBayes(
+    accident_class ~ MES + ID_HORA + DIASEMANA + TIPACCID + CAUSAACCI,
+    data = train_nb,
+    laplace = alpha
+  )
+
+  pred <- predict(model, valid_nb, type = "class")
+  cbind(laplace = alpha, binary_metrics_nb(valid_nb$accident_class, pred))
+}))
+
+validation_nb
+best_laplace <- validation_nb$laplace[
+  which.max(validation_nb$balanced_accuracy)
+]
+best_laplace
+```
+
+::: {.callout-important title="Why validation matters"}
+Trying several smoothing values on the final test set and then reporting the best one would make the test result optimistic. The test set is reserved for the model selected before seeing its performance.
+:::
+
+## Refit and evaluate once on the test set
+
+```{r nb-final-model}
+final_nb <- e1071::naiveBayes(
+  accident_class ~ MES + ID_HORA + DIASEMANA + TIPACCID + CAUSAACCI,
+  data = trainval,
+  laplace = best_laplace
+)
+
+pred_test_nb <- predict(final_nb, test_nb, type = "class")
+prob_test_nb <- predict(final_nb, test_nb, type = "raw")
+
+confusion_nb <- table(
+  Actual = test_nb$accident_class,
+  Predicted = pred_test_nb
+)
+
+confusion_nb
+binary_metrics_nb(test_nb$accident_class, pred_test_nb)
+head(prob_test_nb)
+```
+
+## Inspect learned priors and conditional distributions
+
+```{r nb-inspect}
+final_nb$apriori
+final_nb$tables$MES
+```
 
 ::: {.callout-important title="Posterior scores are model-dependent"}
-Posterior values should not automatically be interpreted as perfectly calibrated real-world probabilities. Calibration must be checked separately, especially when the sample prevalence has been modified.
+`type = "raw"` returns posterior scores under the fitted assumptions and training distribution. They are not automatically calibrated real-world probabilities. Calibration must be checked separately, especially when class prevalence has been modified.
+:::
+
+## Interactive laboratory: Naive Bayes posterior probability
+
+::: {.content-visible when-format="html"}
+```{shinylive-r}
+#| standalone: true
+#| viewerHeight: 700
+#| components: [viewer]
+
+library(shiny)
+
+ui <- fluidPage(
+  titlePanel("Naive Bayes calculator"),
+  sidebarLayout(
+    sidebarPanel(
+      sliderInput("prior", "P(Class 1)", 0.05, 0.95, 0.40, step = 0.05),
+      sliderInput("e1", "P(Evidence | Class 1)", 0.01, 0.99, 0.80, step = 0.01),
+      sliderInput("e0", "P(Evidence | Class 0)", 0.01, 0.99, 0.25, step = 0.01),
+      radioButtons("observed", "Observed evidence",
+                   choices = c("Yes" = "yes", "No" = "no"))
+    ),
+    mainPanel(
+      tableOutput("calculation"),
+      plotOutput("plot", height = "340px"),
+      textOutput("decision")
+    )
+  )
+)
+
+server <- function(input, output, session) {
+  posterior <- reactive({
+    p1 <- input$prior
+    p0 <- 1 - p1
+    if (input$observed == "yes") {
+      l1 <- input$e1; l0 <- input$e0
+    } else {
+      l1 <- 1 - input$e1; l0 <- 1 - input$e0
+    }
+    n1 <- p1 * l1; n0 <- p0 * l0
+    evidence <- n1 + n0
+    c(Class_0 = n0 / evidence, Class_1 = n1 / evidence)
+  })
+
+  output$calculation <- renderTable({
+    p <- posterior()
+    data.frame(Class = names(p), Posterior = round(as.numeric(p), 4))
+  })
+
+  output$plot <- renderPlot({
+    p <- posterior()
+    barplot(p, ylim = c(0, 1), ylab = "Posterior probability",
+            main = "Naive Bayes result")
+    abline(h = 0.5, lty = 2)
+  })
+
+  output$decision <- renderText({
+    p <- posterior()
+    paste("Predicted class:",
+          ifelse(p["Class_1"] >= p["Class_0"], "Class 1", "Class 0"))
+  })
+}
+
+shinyApp(ui, server)
+```
+:::
+
+::: {.content-visible when-format="pdf"}
+The web edition includes an interactive calculator for prior, likelihood, and posterior probabilities.
 :::
 
 ## COVID-19 educational route
 
-The COVID-19 example uses the processed file selected by the reproducible preparation workflow rather than a hard-coded year.
+The processed period is selected using the same reproducible comparison table used in the data-preparation chapter.
 
-```{r}
-library(readr)
-library(dplyr)
-library(tidyr)
+```{r nb-covid-load}
+comparison_file <- "../datos/covid19/comparacion_estructural_2020_2025.csv"
+comparison <- read_csv(comparison_file, show_col_types = FALSE)
 
-files_covid <- list.files(
+selected_year <- comparison |>
+  filter(is_usable_for_book, !is.na(prepared_ml_file)) |>
+  arrange(desc(common_columns), desc(rows)) |>
+  slice(1) |>
+  pull(year)
+
+covid_file <- file.path(
   "../datos/covid19/procesados",
-  pattern = "covid19_mexico_[0-9]{4}_ml_preparado\\.csv\\.gz$",
-  full.names = TRUE
+  paste0("covid19_mexico_", selected_year, "_ml_preparado.csv.gz")
 )
 
-if (length(files_covid) == 0) {
-  stop("No prepared COVID-19 data file was found.")
-}
-
-covid_nb <- read_csv(files_covid[1], show_col_types = FALSE) |>
+covid_nb <- read_csv(covid_file, show_col_types = FALSE) |>
   select(
     MURIO, EDAD, NEUMONIA, DIABETES, HIPERTENSION,
     OBESIDAD, RENAL_CRONICA, NUM_COMORBILIDADES
   ) |>
-  drop_na()
+  tidyr::drop_na() |>
+  mutate(
+    outcome = factor(
+      MURIO,
+      levels = c(0, 1),
+      labels = c("No recorded death", "Recorded death")
+    ),
+    NEUMONIA = factor(NEUMONIA),
+    DIABETES = factor(DIABETES),
+    HIPERTENSION = factor(HIPERTENSION),
+    OBESIDAD = factor(OBESIDAD),
+    RENAL_CRONICA = factor(RENAL_CRONICA)
+  )
 ```
 
-For a teaching exercise, the outcome can be converted to a factor and the data split into training and test sets. The model can then combine Gaussian treatment of age with categorical or binary predictors.
+A Naive Bayes model can combine Gaussian treatment of `EDAD` and `NUM_COMORBILIDADES` with categorical treatment of the binary comorbidity variables.
 
 ::: {.callout-warning title="Educational use only"}
-The resulting posterior scores describe the fitted educational dataset and must not be used for diagnosis, prognosis, or medical decisions.
+Posterior scores from this administrative educational sample must not be used for diagnosis, prognosis, or medical decisions. If the class distribution has been intentionally altered, the posterior probabilities do not directly represent population risk.
 :::
 
-## Comparison with other classifiers
+## Supplementary materials for this chapter
 
-Naive Bayes differs from logistic regression because it models class-conditional predictor distributions rather than directly modeling the log-odds. Unlike k-NN and SVM, it does not rely on a distance-based decision rule. Unlike trees and Random Forest, it uses an explicit probabilistic decomposition.
+| Resource | Purpose | Open or play | Download |
+|---|---|---|---|
+| Explanatory video | Audiovisual explanation of Naive Bayes. | [Watch on YouTube](https://www.youtube.com/watch?v=UbfJ3bLDwUI){target="_blank"} | — |
+| PDF presentation | Slides for study or classroom presentation. | [View PDF](../recursos/capitulo-11/capitulo-11-naive-bayes-presentacion.pdf){target="_blank"} | [Download PDF](../recursos/capitulo-11/capitulo-11-naive-bayes-presentacion.pdf){download="chapter-11-naive-bayes-presentation.pdf"} |
+| Editable presentation | PowerPoint file for classroom use or adaptation. | [Open PPTX](../recursos/capitulo-11/capitulo-11-naive-bayes-presentacion.pptx) | [Download PPTX](../recursos/capitulo-11/capitulo-11-naive-bayes-presentacion.pptx){download="chapter-11-naive-bayes-presentation.pptx"} |
+| Infographic | Visual summary of the algorithm. | [View infographic](../recursos/capitulo-11/capitulo-11-naive-bayes-infografia.png){target="_blank"} | [Download PNG](../recursos/capitulo-11/capitulo-11-naive-bayes-infografia.png){download="chapter-11-naive-bayes-infographic.png"} |
+| Google Colab notebook | Self-contained executable notebook. | [Open in Google Colab](https://colab.research.google.com/github/gilbertorodriguez59/libro-machine-learning-r/blob/main/colab/11-naive-bayes.ipynb){target="_blank"} | — |
+
+::: {.content-visible when-format="html"}
+<div class="video-responsive">
+  <iframe src="https://www.youtube.com/embed/UbfJ3bLDwUI"
+    title="Chapter 11. Naive Bayes"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen>
+  </iframe>
+</div>
+:::
 
 ## Chapter summary
 
-Naive Bayes provides a transparent probabilistic classifier based on Bayes' theorem and a simplifying conditional-independence assumption. It is valuable as a fast baseline, but its probabilities and assumptions must be interpreted carefully and evaluated on data not used for training.
+Naive Bayes provides a transparent probabilistic classifier based on Bayes' theorem and a simplifying conditional-independence assumption. Its simplicity is useful as a baseline, but smoothing, priors, sampling, and calibration all affect interpretation. Model-development decisions belong to training or validation data; the final test set is reserved for one independent evaluation.

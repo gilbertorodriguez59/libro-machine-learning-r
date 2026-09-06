@@ -7,10 +7,10 @@ pueden localizarse mediante el índice del capítulo y los enlaces siguientes.
 ## Figuras por tema {.unnumbered}
 
 - [Introducción al aprendizaje automático](01-introduccion.qmd)
-- [Preparación de datos reales](02-preparacion-datos.qmd)
+- [Preparación de datos reales](02-preparacion-datos-2026.qmd)
 - [Análisis exploratorio de datos](03-analisis-exploratorio.qmd)
-- [Regresión lineal simple y múltiple](04-regresion-lineal-multiple.qmd)
-- [Regresión logística](04-regresion-logistica.qmd)
+- [Regresión lineal simple y múltiple](04-regresion-lineal-multiple-2026.qmd)
+- [Regresión logística](04-regresion-logistica-2026.qmd)
 - [Vecinos más cercanos, k-NN](05-knn.qmd)
 - [Árboles de decisión](06-arboles-decision.qmd)
 - [Random Forest](07-random-forest.qmd)

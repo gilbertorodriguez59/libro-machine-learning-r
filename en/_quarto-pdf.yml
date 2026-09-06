@@ -1,0 +1,30 @@
+format:
+  pdf:
+    pdf-engine: lualatex
+    documentclass: scrbook
+    papersize: letter
+    fontsize: 11pt
+    mainfont: TeX Gyre Pagella
+    sansfont: TeX Gyre Heros
+    monofont: TeX Gyre Cursor
+    colorlinks: true
+    linkcolor: AzulLibro
+    urlcolor: AzulLibro
+    citecolor: AzulLibro
+    toc: true
+    toc-depth: 2
+    lof: true
+    fig-pos: H
+    number-sections: true
+    keep-tex: true
+    include-in-header:
+      - ../latex/configuracion-pdf-en.tex
+    include-before-body:
+      - ../latex/portada-pdf-en.tex
+
+book:
+  title: "Machine Learning and Automatic Classification with R"
+  subtitle: "A Practical Approach Using Real Open Data"
+  author: "Jesús Gilberto Rodríguez Escobedo"
+  date: "2026 Edition"
+  output-file: "Machine-Learning-and-Automatic-Classification-with-R"

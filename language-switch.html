@@ -1,0 +1,53 @@
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const esToEn = {
+    "index.html": "index.html",
+    "00-bienvenida.html": "00-welcome.html",
+    "00-pagina-legal.html": "00-legal-page.html",
+    "00-creditos-editoriales.html": "00-editorial-credits.html",
+    "00-licencia-y-uso-academico.html": "00-license-and-academic-use.html",
+    "00-prefacio.html": "00-preface.html",
+    "00-agradecimientos.html": "00-acknowledgments.html",
+    "00-cuaderno-google-colab.html": "00-google-colab.html",
+    "01-introduccion.html": "01-introduction.html",
+    "02-preparacion-datos-2026.html": "02-data-preparation.html",
+    "03-analisis-exploratorio.html": "03-exploratory-data-analysis.html",
+    "04-regresion-lineal-multiple-2026.html": "04-linear-regression.html",
+    "04-regresion-logistica-2026.html": "05-logistic-regression.html",
+    "05-knn.html": "06-knn.html",
+    "06-arboles-decision.html": "07-decision-trees.html",
+    "07-random-forest.html": "08-random-forest.html",
+    "08-evaluacion-modelos.html": "09-model-evaluation.html",
+    "09-svm.html": "10-svm.html",
+    "10-naive-bayes.html": "11-naive-bayes.html",
+    "11-redes-neuronales.html": "12-neural-networks.html",
+    "12-kmeans.html": "13-kmeans.html",
+    "glosario.html": "glossary.html",
+    "referencias.html": "references.html",
+    "indice-figuras.html": "figure-index.html",
+    "indice-tematico.html": "subject-index.html",
+    "acerca-del-autor.html": "about-the-author.html"
+  };
+
+  const enToEs = Object.fromEntries(
+    Object.entries(esToEn).map(([es, en]) => [en, es])
+  );
+
+  const path = window.location.pathname;
+  const inEnglish = /\/en\//.test(path);
+  const currentFile = path.endsWith("/") ? "index.html" : path.split("/").pop();
+  const targetFile = inEnglish ? enToEs[currentFile] : esToEn[currentFile];
+  if (!targetFile) return;
+
+  const expectedText = inEnglish ? "Español" : "English";
+  const switchLink = Array.from(document.querySelectorAll("a")).find(
+    (a) => a.textContent.trim() === expectedText
+  );
+  if (!switchLink) return;
+
+  switchLink.href = inEnglish ? "../" + targetFile : "en/" + targetFile;
+  switchLink.title = inEnglish
+    ? "Abrir la sección equivalente en español"
+    : "Open the equivalent section in English";
+});
+</script>

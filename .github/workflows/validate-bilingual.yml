@@ -85,12 +85,24 @@ jobs:
       - name: Renderizar edición web en español
         run: |
           rm -rf docs .quarto _freeze
-          quarto render --to html --no-cache
+          mkdir -p artifacts/quarto-diagnostics
+          set +e
+          quarto render --to html --no-cache 2>&1 | tee artifacts/quarto-diagnostics/es-html.log
+          status=${PIPESTATUS[0]}
+          printf '\nQuarto exit code: %s\n' "$status" | tee -a artifacts/quarto-diagnostics/es-html.log
+          set -e
+          test "$status" -eq 0
           test -s docs/index.html
 
       - name: Renderizar edición web en inglés
         run: |
-          quarto render en --to html --no-cache
+          mkdir -p artifacts/quarto-diagnostics
+          set +e
+          quarto render en --to html --no-cache 2>&1 | tee artifacts/quarto-diagnostics/en-html.log
+          status=${PIPESTATUS[0]}
+          printf '\nQuarto exit code: %s\n' "$status" | tee -a artifacts/quarto-diagnostics/en-html.log
+          set -e
+          test "$status" -eq 0
           test -s docs/en/index.html
 
       - name: Validar estructura bilingüe HTML
@@ -151,15 +163,36 @@ jobs:
 
       - name: Renderizar PDF en español
         run: |
-          quarto render --profile pdf --to pdf --no-cache
+          mkdir -p artifacts/quarto-diagnostics
+          set +e
+          quarto render --profile pdf --to pdf --no-cache 2>&1 | tee artifacts/quarto-diagnostics/es-pdf.log
+          status=${PIPESTATUS[0]}
+          printf '\nQuarto exit code: %s\n' "$status" | tee -a artifacts/quarto-diagnostics/es-pdf.log
+          set -e
+          test "$status" -eq 0
           test -s docs/Aprendizaje-y-Clasificacion-Automatica-con-R.pdf
           pdfinfo docs/Aprendizaje-y-Clasificacion-Automatica-con-R.pdf | grep -q '^Pages:'
 
       - name: Renderizar PDF en inglés
         run: |
-          quarto render en --profile pdf --to pdf --no-cache
+          mkdir -p artifacts/quarto-diagnostics
+          set +e
+          quarto render en --profile pdf --to pdf --no-cache 2>&1 | tee artifacts/quarto-diagnostics/en-pdf.log
+          status=${PIPESTATUS[0]}
+          printf '\nQuarto exit code: %s\n' "$status" | tee -a artifacts/quarto-diagnostics/en-pdf.log
+          set -e
+          test "$status" -eq 0
           test -s docs/en/Machine-Learning-and-Automatic-Classification-with-R.pdf
           pdfinfo docs/en/Machine-Learning-and-Automatic-Classification-with-R.pdf | grep -q '^Pages:'
+
+      - name: Guardar diagnóstico completo de Quarto
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: quarto-diagnostics-${{ github.run_id }}
+          path: artifacts/quarto-diagnostics
+          if-no-files-found: warn
+          retention-days: 14
 
       - name: Guardar edición bilingüe completa como artefacto
         uses: actions/upload-artifact@v4

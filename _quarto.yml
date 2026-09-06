@@ -63,6 +63,7 @@ book:
     - 10-naive-bayes.qmd
     - 11-redes-neuronales.qmd
     - 12-kmeans.qmd
+    - 13-comparacion-integral.qmd
   appendices:
     - glosario.qmd
     - referencias.qmd

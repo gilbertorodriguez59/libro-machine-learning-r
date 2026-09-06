@@ -6,31 +6,41 @@
 
 **ATUS:** Statistics on Road Traffic Accidents in Urban and Suburban Areas published by INEGI.
 
+**Backpropagation:** application of the chain rule used to compute gradients through the layers of a neural network.
+
+**Calibration:** agreement between predicted probabilities and observed event frequencies.
+
+**Centroid:** average position of the observations assigned to a cluster in k-means.
+
 **Classification:** problem in which the response belongs to a finite set of categories.
 
-**Classification threshold:** value used to convert a probability or score into a class.
+**Classification threshold:** value used to convert a predicted probability or score into a class.
 
 **Confusion matrix:** table comparing observed and predicted classes.
 
 **COVID-19:** disease caused by the SARS-CoV-2 virus. In this book, open records are used exclusively for educational purposes.
 
-**Cross-validation:** resampling procedure used to estimate performance and select hyperparameters.
+**Cross-validation:** resampling procedure used to estimate performance and select hyperparameters without using the final test set.
 
 ## D-H {.unnumbered}
 
-**Gradient descent:** iterative method that updates parameters in the direction opposite to the gradient.
+**Data leakage:** unintended use of information from validation or test data during preprocessing, model fitting, or model selection.
 
-**Generalization:** ability of a model to maintain good performance on new observations.
+**Discrimination:** ability of a model to rank or separate observations from different outcome classes.
 
-**Hyperparameter:** value that controls model structure or training and is not estimated as an ordinary model parameter.
+**Gradient descent:** iterative optimization method that updates parameters in the direction opposite to the gradient.
+
+**Generalization:** ability of a model to maintain useful performance on new observations.
+
+**Hyperparameter:** value that controls model structure or training and is selected outside ordinary parameter estimation.
 
 ## K-R {.unnumbered}
 
 **k-means:** clustering algorithm that minimizes within-cluster sum of squares.
 
-**k-NN:** method that predicts from the nearest observations.
+**k-NN:** method that predicts from the nearest observations according to a chosen distance.
 
-**Kernel:** function used to represent inner products in a transformed feature space.
+**Kernel:** function used by methods such as SVM to represent similarity in a transformed feature space.
 
 **Learning algorithm:** procedure that estimates a model from data under an optimization or fitting criterion.
 
@@ -38,15 +48,17 @@
 
 **Logistic regression:** probabilistic model used mainly for binary classification.
 
-**Loss function:** measure of discrepancy between a prediction and an observed value.
+**Loss function:** measure of discrepancy between a model prediction and an observed value.
 
-**Model:** representation learned from data to describe, predict, or classify.
+**Model:** representation learned from data to describe, predict, classify, or discover structure.
 
 **Naive Bayes:** probabilistic classifier based on Bayes' theorem and a conditional-independence assumption.
 
-**Random Forest:** ensemble of decision trees built with bootstrap samples and random feature selection.
+**Random Forest:** ensemble of decision trees built with resampling and random feature selection.
 
-**Regularization:** penalty or constraint intended to control model complexity.
+**Regularization:** penalty, constraint, or training strategy intended to control model complexity and reduce overfitting.
+
+**Residual:** difference between an observed response and its fitted value, $e_i=y_i-\widehat{y}_i$.
 
 **ROC curve:** plot of sensitivity against false-positive rate across classification thresholds.
 
@@ -62,14 +74,16 @@
 
 **Supervised learning:** construction of a predictive function from input-output pairs.
 
-**SVM:** support vector machine; classifier based on maximum-margin separation.
+**SVM:** support vector machine; classifier based on maximum-margin separation, optionally using kernels.
 
 **Target variable:** response that a supervised model attempts to predict.
 
-**Test data:** observations reserved to estimate final model performance.
+**Test data:** observations reserved for the final estimate of model performance after model development is complete.
 
 **Training data:** observations used to fit model parameters.
 
+**Validation data:** observations, or resampled training folds, used to compare alternatives and select hyperparameters.
+
 **Unsupervised learning:** search for structure in data without using a known target variable.
 
-**Overfitting:** excessive adaptation to training data that harms generalization.
+**Overfitting:** excessive adaptation to training data that harms generalization to new observations.

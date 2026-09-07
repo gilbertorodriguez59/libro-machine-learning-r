@@ -1,5 +1,7 @@
 # Comparación integral y selección de modelos
 
+[Read this chapter in English](en/14-integrated-model-comparison.qmd){.btn .btn-outline-primary}
+
 ::: {.callout-note title="Conexión con el volumen teórico"}
 La evaluación del riesgo, generalización, validación, regularización y selección de modelos se desarrolla con mayor profundidad en los capítulos 6 y 7 de *Fundamentos Matemáticos del Aprendizaje Automático* [@rodriguez2026fundamentos].
 :::

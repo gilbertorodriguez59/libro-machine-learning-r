@@ -1,4 +1,4 @@
-name: Publicar libro en GitHub Pages
+name: Publicar libro bilingüe en GitHub Pages
 
 on:
   push:
@@ -26,10 +26,97 @@ jobs:
       - name: Descargar repositorio
         uses: actions/checkout@v4
 
+      - name: Configurar Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Configurar R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: 'release'
+          use-public-rspm: true
+
+      - name: Configurar TinyTeX
+        uses: r-lib/actions/setup-tinytex@v2
+
+      - name: Instalar bibliotecas del sistema
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libcurl4-openssl-dev libssl-dev libxml2-dev libfontconfig1-dev libharfbuzz-dev libfribidi-dev libfreetype6-dev libpng-dev libtiff-dev libjpeg-dev poppler-utils
+
+      - name: Instalar dependencias R
+        uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          packages: |
+            any::rmarkdown
+            any::knitr
+            any::ggplot2
+            any::readr
+            any::dplyr
+            any::tidyr
+            any::stringr
+            any::data.table
+            any::scales
+            any::class
+            any::rpart
+            any::randomForest
+            any::ranger
+            any::e1071
+            any::naivebayes
+            any::neuralnet
+            any::cluster
+            any::caret
+            any::factoextra
+            any::plotly
+            any::DT
+            any::htmltools
+            any::jsonlite
+            any::fs
+            any::shiny
+            any::shinylive
+          cache-version: bilingual-pages-2026-1
+
+      - name: Renderizar HTML español
+        run: |
+          rm -rf docs .quarto _freeze
+          quarto render --to html --no-cache
+          test -s docs/index.html
+
+      - name: Renderizar HTML inglés
+        run: |
+          quarto render en --to html --no-cache
+          test -s docs/en/index.html
+          test -s docs/en/14-integrated-model-comparison.html
+
+      - name: Conservar HTML bilingüe
+        run: |
+          rm -rf artifacts/site-html
+          mkdir -p artifacts/site-html
+          cp -a docs/. artifacts/site-html/
+
+      - name: Renderizar PDF español
+        run: |
+          quarto render --profile pdf --to pdf --no-cache
+          test -s docs/Aprendizaje-y-Clasificacion-Automatica-con-R.pdf
+          pdfinfo docs/Aprendizaje-y-Clasificacion-Automatica-con-R.pdf | grep -q '^Pages:'
+
+      - name: Renderizar PDF inglés
+        run: |
+          quarto render en --profile pdf --to pdf --no-cache
+          test -s docs/en/Machine-Learning-and-Automatic-Classification-with-R.pdf
+          pdfinfo docs/en/Machine-Learning-and-Automatic-Classification-with-R.pdf | grep -q '^Pages:'
+
+      - name: Restaurar HTML junto a los PDF
+        run: |
+          cp -a artifacts/site-html/. docs/
+          test -s docs/index.html
+          test -s docs/en/index.html
+          test -s docs/Aprendizaje-y-Clasificacion-Automatica-con-R.pdf
+          test -s docs/en/Machine-Learning-and-Automatic-Classification-with-R.pdf
+
       - name: Configurar GitHub Pages
         uses: actions/configure-pages@v5
 
-      - name: Subir carpeta docs
+      - name: Subir edición bilingüe
         uses: actions/upload-pages-artifact@v3
         with:
           path: './docs'

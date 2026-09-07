@@ -126,7 +126,6 @@ binary_metrics <- function(actual, predicted, positive, negative) {
   actual <- factor(actual, levels = c(positive, negative))
   predicted <- factor(predicted, levels = c(positive, negative))
   m <- table(Actual = actual, Predicted = predicted)
-
   TP <- m[positive, positive]
   FN <- m[positive, negative]
   FP <- m[negative, positive]
@@ -187,8 +186,11 @@ atus_knn_base <- atus_ml |>
     DIASEMANA,
     TIPACCID,
     CAUSAACCI
-  ) |>
-  slice_sample(n = min(12000, n()))
+  )
+
+n_sample_atus_knn <- min(12000L, nrow(atus_knn_base))
+atus_knn_base <- atus_knn_base |>
+  slice_sample(n = n_sample_atus_knn)
 
 prop.table(table(atus_knn_base$accident_class))
 ```
@@ -519,8 +521,9 @@ covid_knn <- read_csv(covid_path, show_col_types = FALSE) |>
   select(-MURIO)
 
 set.seed(2026)
+n_sample_covid_knn <- min(12000L, nrow(covid_knn))
 covid_knn <- covid_knn |>
-  slice_sample(n = min(12000, n()))
+  slice_sample(n = n_sample_covid_knn)
 
 X_covid <- covid_knn |>
   select(-outcome) |>

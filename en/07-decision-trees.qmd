@@ -164,8 +164,11 @@ atus_tree_base <- atus_ml |>
     DIASEMANA,
     TIPACCID,
     CAUSAACCI
-  ) |>
-  slice_sample(n = min(20000, n()))
+  )
+
+n_sample_atus_tree <- min(20000L, nrow(atus_tree_base))
+atus_tree_base <- atus_tree_base |>
+  slice_sample(n = n_sample_atus_tree)
 
 data.frame(
   rows = nrow(atus_tree_base),
@@ -468,8 +471,9 @@ covid_tree <- read_csv(covid_path, show_col_types = FALSE) |>
   select(-MURIO)
 
 set.seed(2026)
+n_sample_covid_tree <- min(12000L, nrow(covid_tree))
 covid_tree <- covid_tree |>
-  slice_sample(n = min(12000, n()))
+  slice_sample(n = n_sample_covid_tree)
 
 parts_covid <- stratified_train_test(
   covid_tree$outcome,

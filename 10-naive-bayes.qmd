@@ -241,8 +241,11 @@ atus_nb <- atus_ml |>
     DIASEMANA,
     TIPACCID,
     CAUSAACCI
-  ) |>
-  slice_sample(n = min(12000, n()))
+  )
+
+n_muestra_atus_nb <- min(12000L, nrow(atus_nb))
+atus_nb <- atus_nb |>
+  slice_sample(n = n_muestra_atus_nb)
 
 prop.table(table(atus_nb$accidente_con_victimas))
 ```
@@ -547,8 +550,9 @@ covid_nb <- read_csv(ruta_covid, show_col_types = FALSE) |>
   )
 
 set.seed(2026)
+n_muestra_covid_nb <- min(12000L, nrow(covid_nb))
 covid_nb <- covid_nb |>
-  slice_sample(n = min(12000, n()))
+  slice_sample(n = n_muestra_covid_nb)
 
 partes_covid <- partir_nb_estratificado(
   covid_nb$MURIO,

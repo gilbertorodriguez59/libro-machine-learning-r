@@ -4,9 +4,9 @@ format:
     documentclass: scrbook
     papersize: letter
     fontsize: 11pt
-    mainfont: TeX Gyre Pagella
-    sansfont: TeX Gyre Heros
-    monofont: TeX Gyre Cursor
+    mainfont: Latin Modern Roman
+    sansfont: Latin Modern Sans
+    monofont: Latin Modern Mono
     colorlinks: true
     linkcolor: AzulLibro
     urlcolor: AzulLibro

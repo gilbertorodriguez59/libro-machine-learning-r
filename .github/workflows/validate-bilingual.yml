@@ -107,6 +107,7 @@ jobs:
 
       - name: Validar estructura bilingüe HTML
         run: |
+          set -x
           test -s docs/00-prefacio.html
           test -s docs/00-agradecimientos.html
           test -s docs/04-regresion-lineal-multiple-2026.html

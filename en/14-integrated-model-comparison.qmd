@@ -1,6 +1,6 @@
 # Integrated Model Comparison and Selection
 
-[Leer este capítulo en español](../13-comparacion-integral.qmd){.btn .btn-outline-primary}
+[Leer este capítulo en español](../13-comparacion-integral.html){.btn .btn-outline-primary}
 
 ::: {.callout-note title="Connection with the theoretical volume"}
 Risk, generalization, validation, regularization, and model selection are developed in greater depth in Chapters 6 and 7 of *Mathematical Foundations of Machine Learning* [@rodriguez2026fundamentos].

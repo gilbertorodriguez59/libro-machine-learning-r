@@ -176,7 +176,7 @@ summary(seed_results[, c("wss", "between_ratio")])
 
 Large changes across seeds despite multiple starts indicate that the solution deserves additional caution.
 
-## Interactive k-means laboratory
+## interactive k-means laboratory
 
 ::: {.content-visible when-format="html"}
 ```{shinylive-r}
@@ -292,7 +292,42 @@ atus_vars <- c(
   "casualty_proportion", "accident_types"
 )
 
+atus_sd <- vapply(
+  atus_monthly[atus_vars],
+  sd,
+  numeric(1),
+  na.rm = TRUE
+)
+
+constant_atus_vars <- names(atus_sd)[
+  !is.finite(atus_sd) |
+    atus_sd <= .Machine$double.eps
+]
+
+if (length(constant_atus_vars) > 0) {
+  message(
+    "Variables excluded because of zero variance: ",
+    paste(constant_atus_vars, collapse = ", ")
+  )
+}
+
+atus_vars <- setdiff(atus_vars, constant_atus_vars)
+
+if (length(atus_vars) < 2) {
+  stop(
+    "At least two variables with sufficient variation ",
+    "are required for k-means."
+  )
+}
+
 X_atus <- scale(atus_monthly[atus_vars])
+
+if (!all(is.finite(X_atus))) {
+  stop(
+    "The standardized ATUS matrix contains ",
+    "non-finite values."
+  )
+}
 ```
 
 ### Choose among a small range of k

@@ -295,7 +295,42 @@ vars_atus_km <- c(
   "proporcion_con_victimas", "tipos_accidente"
 )
 
+desv_atus_km <- vapply(
+  atus_mensual[vars_atus_km],
+  sd,
+  numeric(1),
+  na.rm = TRUE
+)
+
+vars_constantes_atus <- names(desv_atus_km)[
+  !is.finite(desv_atus_km) |
+    desv_atus_km <= .Machine$double.eps
+]
+
+if (length(vars_constantes_atus) > 0) {
+  message(
+    "Variables excluidas por varianza nula: ",
+    paste(vars_constantes_atus, collapse = ", ")
+  )
+}
+
+vars_atus_km <- setdiff(vars_atus_km, vars_constantes_atus)
+
+if (length(vars_atus_km) < 2) {
+  stop(
+    "No hay al menos dos variables con variación ",
+    "suficiente para aplicar k-means."
+  )
+}
+
 X_atus_km <- scale(atus_mensual[vars_atus_km])
+
+if (!all(is.finite(X_atus_km))) {
+  stop(
+    "La matriz estandarizada de ATUS contiene ",
+    "valores no finitos."
+  )
+}
 ```
 
 ### Evaluar valores pequeños de k
@@ -497,7 +532,6 @@ perfiles_covid
 ```
 
 ### Describir `MURIO` después del agrupamiento
-
 ```{r covid-kmeans-murio}
 covid_km |>
   group_by(cluster) |>

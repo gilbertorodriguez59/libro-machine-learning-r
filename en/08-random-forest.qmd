@@ -144,8 +144,11 @@ atus_rf_base <- atus_ml |>
     DIASEMANA,
     TIPACCID,
     CAUSAACCI
-  ) |>
-  slice_sample(n = min(15000, n()))
+  )
+
+n_sample_atus_rf <- min(15000L, nrow(atus_rf_base))
+atus_rf_base <- atus_rf_base |>
+  slice_sample(n = n_sample_atus_rf)
 
 data.frame(
   rows = nrow(atus_rf_base),
@@ -479,8 +482,9 @@ covid_rf <- read_csv(covid_path, show_col_types = FALSE) |>
   select(-MURIO)
 
 set.seed(2026)
+n_sample_covid_rf <- min(10000L, nrow(covid_rf))
 covid_rf <- covid_rf |>
-  slice_sample(n = min(10000, n()))
+  slice_sample(n = n_sample_covid_rf)
 
 parts_covid <- stratified_rf_split(
   covid_rf$outcome,

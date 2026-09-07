@@ -72,8 +72,11 @@ atus_eval <- atus_ml |>
     DIASEMANA,
     TIPACCID,
     CAUSAACCI
-  ) |>
-  slice_sample(n = min(15000, n()))
+  )
+
+n_muestra_atus <- min(15000L, nrow(atus_eval))
+atus_eval <- atus_eval |>
+  slice_sample(n = n_muestra_atus)
 
 prop.table(table(atus_eval$accidente_con_victimas))
 ```

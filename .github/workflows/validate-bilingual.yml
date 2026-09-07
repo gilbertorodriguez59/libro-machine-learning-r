@@ -142,7 +142,7 @@ jobs:
           test -s docs/en/figure-index.html
           test -s docs/en/subject-index.html
           grep -q 'English' docs/index.html
-          grep -q 'Español' docs/en/index.html
+          grep -q 'Spanish edition' docs/en/index.html
           grep -q '14 cuadernos' docs/00-cuaderno-google-colab.html
           grep -q '14 independent' docs/en/00-google-colab.html
           grep -q 'fourteen technical chapters' docs/en/index.html

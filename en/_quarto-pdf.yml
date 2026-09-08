@@ -19,7 +19,6 @@ format:
     keep-tex: true
     include-in-header:
       - ../latex/configuracion-pdf-en.tex
-    include-before-body:
       - ../latex/portada-pdf-en.tex
 
 book:

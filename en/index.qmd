@@ -19,8 +19,12 @@
 
 An open book with **R** code, real data, videos, presentations, infographics, Google Colab, and browser-based interactive laboratories.
 
+[Start reading](01-introduction.qmd){.btn .btn-primary .btn-lg}
 [Spanish edition](../index.html){.btn .btn-outline-dark .btn-lg}
 [Google Colab notebooks](00-google-colab.qmd){.btn .btn-outline-primary .btn-lg}
+[Download PDF](Machine-Learning-and-Automatic-Classification-with-R.pdf){.btn .btn-outline-secondary .btn-lg target="_blank"}
+
+![English cover of Machine Learning and Automatic Classification with R](../imagenes/portada-libro-en-carta.jpg){fig-alt="English cover of the book Machine Learning and Automatic Classification with R" width="58%"}
 
 **14 chapters · Reproducible R · Open data · Shinylive · Google Colab · PDF**
 

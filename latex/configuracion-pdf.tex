@@ -39,6 +39,10 @@
 \clubpenalty=10000
 \displaywidowpenalty=10000
 
+% Numerar únicamente los capítulos; las secciones internas permanecen
+% visibles en el índice sin convertirse en capítulos adicionales.
+\AtBeginDocument{\setcounter{secnumdepth}{0}}
+
 % Títulos
 \titleformat{\chapter}[display]
   {\normalfont\Huge\bfseries\color{AzulLibro}}

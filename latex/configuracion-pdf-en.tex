@@ -23,6 +23,10 @@
 \setlist[itemize]{topsep=3pt,itemsep=1.5pt,parsep=0pt}
 \setlist[enumerate]{topsep=3pt,itemsep=1.5pt,parsep=0pt}
 
+% Number chapters only; keep internal sections visible in the contents
+% without promoting them to additional chapters.
+\AtBeginDocument{\setcounter{secnumdepth}{0}}
+
 \setkomafont{chapter}{\normalfont\bfseries\color{AzulLibro}}
 \setkomafont{section}{\normalfont\bfseries\color{AzulLibro}}
 \setkomafont{subsection}{\normalfont\bfseries\color{GrisTexto}}

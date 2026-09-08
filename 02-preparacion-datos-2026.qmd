@@ -49,7 +49,7 @@ libro-machine-learning-r/
 
 Esta separación permite responder tres preguntas esenciales: **de dónde proviene el dato, qué transformación recibió y qué archivo debe usarse para reproducir un ejemplo**.
 
-# Caso aplicado A: ATUS
+## Caso aplicado A: ATUS
 
 ## Descargar la base ATUS desde el INEGI
 
@@ -246,7 +246,7 @@ data.frame(
 )
 ```
 
-# Caso aplicado B: COVID-19
+## Caso aplicado B: COVID-19
 
 ## Selección del periodo
 

@@ -30,6 +30,7 @@ format:
     toc: true
     lof: true
     number-sections: true
+    number-depth: 1
     keep-tex: false
     include-in-header:
       - latex/configuracion-pdf.tex

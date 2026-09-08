@@ -145,7 +145,7 @@ binary_metrics <- function(actual, predicted, positive, negative) {
 }
 ```
 
-# Applied Case A: ATUS
+## Applied Case A: ATUS
 
 ## Load and prepare the dataset
 
@@ -363,7 +363,7 @@ binary_metrics(
 When one class is much more frequent, overall accuracy can favor the majority group. Balanced accuracy averages sensitivity and specificity, giving equal importance to both classes.
 :::
 
-# Interactive laboratory: k-NN
+## Interactive laboratory: k-NN
 
 ::: {.content-visible when-format="html"}
 Choose the number of neighbors and move a new observation. The laboratory highlights the points that participate in the decision and shows their votes.
@@ -469,7 +469,7 @@ shinyApp(ui, server)
 The reader can change $k$, move a new observation, and visualize which neighbors determine the predicted class.
 :::
 
-# Applied Case B: k-NN with COVID-19
+## Applied Case B: k-NN with COVID-19
 
 We use the same reproducible period-selection rule introduced in Chapters 2, 3, and 5. The objective is to classify the administrative outcome `MURIO` strictly for teaching purposes.
 

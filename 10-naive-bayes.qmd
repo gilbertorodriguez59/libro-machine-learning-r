@@ -203,7 +203,7 @@ metricas_nb <- function(real, predicho, positiva, negativa) {
 }
 ```
 
-# Caso aplicado A: ATUS
+## Caso aplicado A: ATUS
 
 ## Cargar y preparar los datos
 
@@ -409,7 +409,7 @@ ggplot(
   tema_libro()
 ```
 
-# Laboratorio interactivo: probabilidades posteriores
+## Laboratorio interactivo: probabilidades posteriores
 
 ::: {.content-visible when-format="html"}
 Modifique una probabilidad previa y dos verosimilitudes para observar el teorema de Bayes en acción.
@@ -502,7 +502,7 @@ shinyApp(ui, server)
 Permite modificar probabilidades previas y condicionales y observar las probabilidades posteriores normalizadas.
 :::
 
-# Caso aplicado B: Naive Bayes con COVID-19
+## Caso aplicado B: Naive Bayes con COVID-19
 
 ## Seleccionar el mismo periodo reproducible
 

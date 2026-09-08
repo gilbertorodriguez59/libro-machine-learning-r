@@ -223,7 +223,7 @@ resultado_ref$metricas
 Un modelo complejo debe superar o justificar claramente su uso frente a una regla simple. Si una clase domina, la exactitud de la regla mayoritaria puede ser sorprendentemente alta aunque su sensibilidad para la clase minoritaria sea nula.
 :::
 
-# Selección de umbral sin tocar la prueba
+## Selección de umbral sin tocar la prueba
 
 ## Crear pliegues estratificados dentro del entrenamiento
 
@@ -344,7 +344,7 @@ ggplot(
 Aquí se maximiza exactitud balanceada para dar igual importancia a sensibilidad y especificidad. En otro contexto podría priorizarse sensibilidad, precisión, costo esperado o una función de utilidad definida con expertos.
 :::
 
-# Discriminación: ROC y AUC
+## Discriminación: ROC y AUC
 
 La curva ROC representa sensibilidad frente a la tasa de falsos positivos para muchos umbrales. El AUC resume la capacidad de ordenar observaciones positivas por encima de negativas [@fawcett2006roc].
 
@@ -394,7 +394,7 @@ ggplot(roc_oof, aes(x = fpr, y = tpr)) +
 AUC mide discriminación o capacidad de ordenamiento. Un modelo puede tener buen AUC y, sin embargo, producir probabilidades sistemáticamente demasiado altas o demasiado bajas.
 :::
 
-# Ajuste final y evaluación única en prueba
+## Ajuste final y evaluación única en prueba
 
 ## Entrenar con todo el conjunto de desarrollo
 
@@ -517,7 +517,7 @@ ggplot(
 
 **Fuente:** Elaboración propia con datos del INEGI, ATUS 2024 [@inegi_atus_2024].
 
-# Benchmark didáctico común con COVID-19
+## Benchmark didáctico común con COVID-19
 
 Hasta este punto del libro se han estudiado regresión logística, k-NN, árbol de decisión y Random Forest. Los compararemos usando **la misma muestra, las mismas variables y la misma partición**. SVM, Naive Bayes y redes neuronales se incorporarán a la comparación integral después de desarrollar sus capítulos.
 
@@ -740,7 +740,7 @@ ggplot(
 La mejor alternativa depende del costo de los errores, estabilidad, capacidad de explicación, costo computacional y necesidad de probabilidades calibradas. Una diferencia pequeña en exactitud no justifica automáticamente un modelo mucho más complejo.
 :::
 
-# Laboratorio interactivo: matriz de confusión
+## Laboratorio interactivo: matriz de confusión
 
 ::: {.content-visible when-format="html"}
 Modifique VP, VN, FP y FN para observar cómo cambian las métricas.

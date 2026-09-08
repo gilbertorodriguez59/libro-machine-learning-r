@@ -146,7 +146,7 @@ metricas_binarias <- function(real, predicho, positiva, negativa) {
 }
 ```
 
-# Caso aplicado A: ATUS
+## Caso aplicado A: ATUS
 
 ## Cargar y preparar la base
 
@@ -364,7 +364,7 @@ metricas_test_atus
 Cuando una clase es mucho más frecuente, la exactitud global puede favorecer al grupo mayoritario. La exactitud balanceada promedia sensibilidad y especificidad y da el mismo peso a ambas clases.
 :::
 
-# Laboratorio interactivo: k-NN
+## Laboratorio interactivo: k-NN
 
 ::: {.content-visible when-format="html"}
 Seleccione el número de vecinos y mueva una observación nueva. El laboratorio muestra cuáles puntos participan en la decisión y cómo votan.
@@ -470,7 +470,7 @@ shinyApp(ui, server)
 El lector puede cambiar $k$, mover una observación nueva y visualizar los vecinos que determinan la clase predicha.
 :::
 
-# Caso aplicado B: k-NN con COVID-19
+## Caso aplicado B: k-NN con COVID-19
 
 Utilizamos el mismo criterio reproducible de selección de periodo introducido en los capítulos 2, 3 y 5. El objetivo es clasificar el desenlace administrativo `MURIO` con fines exclusivamente didácticos.
 

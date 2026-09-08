@@ -261,7 +261,7 @@ svm_metrics <- function(actual, predicted, positive, negative) {
 }
 ```
 
-# Applied Case A: ATUS
+## Applied Case A: ATUS
 
 ## Load and prepare a reproducible sample
 
@@ -515,7 +515,7 @@ The configuration was selected using validation data and the test set was used o
 
 The number of support vectors describes how much of the reference set directly participates in the decision boundary. It is not, by itself, a quality metric: two SVMs can use different numbers of support vectors and have similar predictive performance.
 
-# Interactive laboratory: margin and hyperplane
+## Interactive laboratory: margin and hyperplane
 
 ::: {.content-visible when-format="html"}
 Explore a linear boundary of the form $w_1x_1+w_2x_2+b=0$, its margins, and the classification of a new point.
@@ -602,7 +602,7 @@ shinyApp(ui, server)
 The web version allows the reader to change the weights, bias, and a new point and observe the hyperplane, margins, and predicted class.
 :::
 
-# Applied Case B: SVM with COVID-19
+## Applied Case B: SVM with COVID-19
 
 ## Select the same reproducible period
 

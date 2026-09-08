@@ -25,7 +25,7 @@ EDA is not merely decorative visualization. It helps identify:
 An exploratory association does not establish a causal relationship. EDA helps formulate questions and detect patterns, but causal interpretation requires a different design and stronger assumptions.
 :::
 
-# Applied Case A: ATUS
+## Applied Case A: ATUS
 
 ## Load packages and the prepared ATUS dataset
 
@@ -197,7 +197,7 @@ if (!is.null(atus_ml)) {
 This graph compares **relative proportions**, not absolute counts. A rare category can show a high casualty proportion while still containing only a small number of total observations.
 :::
 
-# Applied Case B: COVID-19
+## Applied Case B: COVID-19
 
 ## Load the same period selected in Chapter 2
 

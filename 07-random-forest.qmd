@@ -105,7 +105,7 @@ metricas_rf <- function(real, predicho, positiva, negativa) {
 }
 ```
 
-# Caso aplicado A: ATUS
+## Caso aplicado A: ATUS
 
 ## Cargar y preparar una muestra reproducible
 
@@ -349,7 +349,7 @@ ggplot(
 El bosque probabilístico produce una distribución de probabilidades. La clase final depende de una regla de decisión; en este ejemplo usamos la clase con mayor probabilidad. Si el costo de falsos negativos y falsos positivos es distinto, el umbral puede ajustarse y debe validarse explícitamente.
 :::
 
-# Laboratorio interactivo: votación de un bosque
+## Laboratorio interactivo: votación de un bosque
 
 ::: {.content-visible when-format="html"}
 El simulador muestra cómo múltiples árboles emiten votos y cómo la proporción acumulada tiende a estabilizarse al aumentar el número de árboles.
@@ -436,7 +436,7 @@ shinyApp(ui, server)
 El laboratorio permite cambiar el número de árboles y observar cómo se estabiliza la proporción acumulada de votos del bosque.
 :::
 
-# Caso aplicado B: Random Forest con COVID-19
+## Caso aplicado B: Random Forest con COVID-19
 
 ## Seleccionar el periodo reproduciblemente
 

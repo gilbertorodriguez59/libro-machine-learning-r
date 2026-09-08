@@ -261,7 +261,7 @@ metricas_svm <- function(real, predicho, positiva, negativa) {
 }
 ```
 
-# Caso aplicado A: ATUS
+## Caso aplicado A: ATUS
 
 ## Cargar y preparar una muestra
 
@@ -514,7 +514,7 @@ La configuración se eligió por validación y la prueba se usó una sola vez. S
 
 El número de vectores de soporte ofrece una descripción útil de cuánto del conjunto de referencia participa directamente en la frontera. No es, por sí solo, una métrica de calidad: dos modelos pueden tener distinto número de soportes y desempeños similares.
 
-# Laboratorio interactivo: margen e hiperplano
+## Laboratorio interactivo: margen e hiperplano
 
 ::: {.content-visible when-format="html"}
 Explore una frontera lineal de la forma $w_1x_1+w_2x_2+b=0$, sus márgenes y la clasificación de un punto nuevo.
@@ -601,7 +601,7 @@ shinyApp(ui, server)
 La versión web permite cambiar pesos, sesgo y un punto nuevo para observar el hiperplano, los márgenes y la clase predicha.
 :::
 
-# Caso aplicado B: SVM con COVID-19
+## Caso aplicado B: SVM con COVID-19
 
 ## Seleccionar el mismo periodo reproducible
 

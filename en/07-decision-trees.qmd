@@ -123,7 +123,7 @@ tree_metrics <- function(actual, predicted, positive, negative) {
 }
 ```
 
-# Applied Case A: ATUS
+## Applied Case A: ATUS
 
 ## Load and prepare the data
 
@@ -291,7 +291,7 @@ result_atus$metrics
 Under class imbalance, overall accuracy should be read together with sensitivity, specificity, and balanced accuracy. A tree that predicts the majority class almost all the time can appear accurate while detecting the minority class poorly.
 :::
 
-# Interactive laboratory: build a CART split
+## Interactive laboratory: build a CART split
 
 ::: {.content-visible when-format="html"}
 Change the predictor and split point to see how a rule partitions the `iris` data and how much it reduces Gini impurity.
@@ -427,7 +427,7 @@ shinyApp(ui, server)
 The web version allows the reader to change the variable and split point and compare impurity before and after the split.
 :::
 
-# Applied Case B: decision tree with COVID-19
+## Applied Case B: decision tree with COVID-19
 
 The same reproducible period-selection procedure used in previous chapters is retained here.
 

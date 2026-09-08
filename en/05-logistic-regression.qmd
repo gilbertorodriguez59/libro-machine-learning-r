@@ -65,7 +65,7 @@ ggplot(logistic_data, aes(x = z, y = p)) +
 The logistic curve has an S shape. Very negative linear-predictor values produce probabilities near zero, while very positive values produce probabilities near one.
 :::
 
-# Applied Case A: ATUS
+## Applied Case A: ATUS
 
 ## Load and prepare the data
 
@@ -337,7 +337,7 @@ ggplot(
 A model may rank observations well and achieve a useful AUC while systematically producing probabilities that are too high or too low. This is why discrimination and calibration should be assessed separately.
 :::
 
-# Applied Case B: COVID-19
+## Applied Case B: COVID-19
 
 ## Select the same period used in previous chapters
 

@@ -123,7 +123,7 @@ metricas_arbol <- function(real, predicho, positiva, negativa) {
 }
 ```
 
-# Caso aplicado A: ATUS
+## Caso aplicado A: ATUS
 
 ## Cargar y preparar datos
 
@@ -289,7 +289,7 @@ resultado_atus$metricas
 Si existe desbalance, la exactitud global debe leerse junto con sensibilidad, especificidad y exactitud balanceada. Un árbol que predice casi siempre la clase mayoritaria puede parecer preciso y, sin embargo, detectar mal la clase minoritaria.
 :::
 
-# Laboratorio interactivo: construye una división CART
+## Laboratorio interactivo: construye una división CART
 
 ::: {.content-visible when-format="html"}
 Cambie la variable y el punto de corte para observar cómo una regla divide `iris` y cuánto disminuye la impureza de Gini.
@@ -425,7 +425,7 @@ shinyApp(ui, server)
 La versión web permite cambiar la variable y el punto de corte y comparar la impureza antes y después de la división.
 :::
 
-# Caso aplicado B: árbol de decisión con COVID-19
+## Caso aplicado B: árbol de decisión con COVID-19
 
 Se utiliza el mismo procedimiento reproducible de selección de periodo aplicado en capítulos anteriores.
 

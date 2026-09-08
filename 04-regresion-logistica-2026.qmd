@@ -65,7 +65,7 @@ ggplot(datos_logistica, aes(x = z, y = p)) +
 La curva tiene forma de S. Valores muy negativos del predictor lineal producen probabilidades cercanas a cero y valores muy positivos producen probabilidades cercanas a uno.
 :::
 
-# Caso aplicado A: ATUS
+## Caso aplicado A: ATUS
 
 ## Cargar y preparar los datos
 
@@ -336,7 +336,7 @@ ggplot(
 Un modelo puede ordenar correctamente las observaciones y obtener un AUC aceptable, pero producir probabilidades sistemáticamente demasiado altas o demasiado bajas. Por eso AUC y calibración responden preguntas diferentes.
 :::
 
-# Caso aplicado B: COVID-19
+## Caso aplicado B: COVID-19
 
 ## Seleccionar el mismo periodo utilizado en los capítulos anteriores
 

@@ -49,7 +49,7 @@ libro-machine-learning-r/
 
 This structure helps answer three essential questions: **where did the data come from, what transformations were applied, and which file should be used to reproduce a particular example?**
 
-# Applied Case A: ATUS
+## Applied Case A: ATUS
 
 ## Downloading ATUS from INEGI
 
@@ -256,7 +256,7 @@ data.frame(
 When reproducing the workflow locally from the original ATUS file, remove the comment marker from `write_csv()` to save the prepared dataset. During book rendering, the repository's validated prepared file is left unchanged.
 :::
 
-# Applied Case B: COVID-19
+## Applied Case B: COVID-19
 
 ## Selecting the analysis period
 

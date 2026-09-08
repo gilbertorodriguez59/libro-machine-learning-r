@@ -16,6 +16,7 @@ format:
     lof: true
     fig-pos: H
     number-sections: true
+    number-depth: 1
     keep-tex: true
     include-in-header:
       - ../latex/configuracion-pdf-en.tex

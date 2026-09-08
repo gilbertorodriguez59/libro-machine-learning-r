@@ -105,7 +105,7 @@ rf_metrics <- function(actual, predicted, positive, negative) {
 }
 ```
 
-# Applied Case A: ATUS
+## Applied Case A: ATUS
 
 ## Load and prepare a reproducible sample
 
@@ -351,7 +351,7 @@ ggplot(
 A probability forest returns class probabilities. A class label requires a decision rule; here we choose the class with the larger probability. When false positives and false negatives have different costs, a threshold should be selected and validated explicitly.
 :::
 
-# Interactive laboratory: forest voting
+## Interactive laboratory: forest voting
 
 ::: {.content-visible when-format="html"}
 This simulator shows how multiple trees vote and how the cumulative vote proportion tends to stabilize as the number of trees increases.
@@ -438,7 +438,7 @@ shinyApp(ui, server)
 The laboratory allows the reader to change the number of trees and observe how the cumulative vote proportion stabilizes.
 :::
 
-# Applied Case B: Random Forest with COVID-19
+## Applied Case B: Random Forest with COVID-19
 
 ## Select the period reproducibly
 

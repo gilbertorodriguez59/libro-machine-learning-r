@@ -220,7 +220,7 @@ result_baseline$metrics
 A complex model should outperform or otherwise justify itself against a simple rule. Under strong imbalance, the majority baseline can have surprisingly high accuracy while having zero sensitivity for the minority class.
 :::
 
-# Threshold selection without touching the test set
+## Threshold selection without touching the test set
 
 ## Create stratified folds inside training data
 
@@ -345,7 +345,7 @@ ggplot(
 Balanced accuracy is used here to give equal weight to sensitivity and specificity. Other applications may prioritize sensitivity, precision, expected cost, or a utility function defined with domain experts.
 :::
 
-# Discrimination: ROC and AUC
+## Discrimination: ROC and AUC
 
 The ROC curve plots sensitivity against false-positive rate over many thresholds. AUC summarizes how well the model ranks positive observations above negative observations [@fawcett2006roc].
 
@@ -390,7 +390,7 @@ ggplot(roc_oof, aes(x = fpr, y = tpr)) +
 AUC measures discrimination or ranking ability. A model can have a useful AUC and still produce probabilities that are systematically too high or too low.
 :::
 
-# Final fit and one-time test evaluation
+## Final fit and one-time test evaluation
 
 ```{r final-evaluation-model-en}
 final_logistic <- glm(
@@ -510,7 +510,7 @@ ggplot(
 
 **Source:** Author's processing of INEGI ATUS 2024 data [@inegi_atus_2024].
 
-# Common educational benchmark with COVID-19
+## Common educational benchmark with COVID-19
 
 Up to this point, the book has introduced logistic regression, k-NN, decision trees, and Random Forest. We compare them using **the same sample, predictors, and test split**. SVM, Naive Bayes, and neural networks will be added to the integrated comparison after their own chapters have been developed.
 
@@ -734,7 +734,7 @@ ggplot(
 The best choice depends on error costs, stability, interpretability, computational cost, and whether calibrated probabilities are required. A small difference in accuracy does not automatically justify a much more complex model.
 :::
 
-# Interactive laboratory: confusion matrix metrics
+## Interactive laboratory: confusion matrix metrics
 
 ::: {.content-visible when-format="html"}
 Change TP, TN, FP, and FN and observe how the classification metrics respond.

@@ -404,6 +404,14 @@ A model-comparison report should document:
 11. limitations and possible biases;
 12. justification for the final recommendation.
 
+## Supplementary materials for this chapter
+
+The chapter notebook is self-contained and runs the reproducible seven-classifier benchmark using the same sample, partitions, and evaluation metrics.
+
+| Resource | Purpose | Open or run |
+|---|---|---|
+| Google Colab notebook | Compare logistic regression, k-NN, decision tree, Random Forest, SVM, Naive Bayes, and a neural network under one common protocol. | [Open in Google Colab](https://colab.research.google.com/github/gilbertorodriguez59/libro-machine-learning-r/blob/main/colab/14-comparacion-integral.ipynb){target="_blank"} |
+
 ## Integrative activity
 
 1. Run the common benchmark in the Colab notebook.

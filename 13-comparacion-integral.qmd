@@ -409,6 +409,14 @@ Un informe de comparación debería documentar:
 11. limitaciones y posibles sesgos;
 12. justificación de la recomendación final.
 
+## Materiales complementarios del capítulo
+
+El cuaderno del capítulo es autónomo y permite ejecutar el benchmark reproducible de los siete clasificadores con la misma muestra, las mismas particiones y las mismas métricas.
+
+| Recurso | Utilidad | Abrir o ejecutar |
+|---|---|---|
+| Cuaderno Google Colab | Comparar regresión logística, k-NN, árbol de decisión, Random Forest, SVM, Naive Bayes y red neuronal bajo un protocolo común. | [Abrir en Google Colab](https://colab.research.google.com/github/gilbertorodriguez59/libro-machine-learning-r/blob/main/colab/14-comparacion-integral.ipynb){target="_blank"} |
+
 ## Actividad integradora
 
 1. Ejecuta el benchmark común del cuaderno Colab.
